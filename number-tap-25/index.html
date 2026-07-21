@@ -9,15 +9,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="NUMBER TAP" />
   <title>NUMBER TAP</title>
-  <link rel="manifest" href="manifest.webmanifest?v=1.2.2" />
+  <link rel="manifest" href="manifest.webmanifest?v=1.2.3" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="style.css?v=1.2.2" />
+  <link rel="stylesheet" href="style.css?v=1.2.3" />
 </head>
 <body>
   <main class="app">
     <header class="header">
       <div><p class="eyebrow">NUMBER SPEED GAME</p><h1>NUMBER TAP</h1></div>
-      <span class="version">v1.2.2</span>
+      <span class="version">v1.2.3</span>
     </header>
 
     <section class="size-panel" aria-label="盤面サイズ設定">
@@ -45,12 +45,13 @@
 
     <p id="message" class="message" aria-live="polite">サイズとルールを選んでスタート！</p>
     <div id="gridWrap" class="grid-wrap"><section id="grid" class="number-grid" aria-label="数字ボタン"></section></div>
-    <div class="actions">
+    <div class="actions" style="grid-template-columns:1.3fr 1fr 1fr">
       <button id="start" class="primary" type="button">スタート</button>
+      <button id="resetGame" class="secondary" type="button">リセット</button>
       <button id="resetBest" class="secondary" type="button">ベスト削除</button>
     </div>
-    <p class="rule">回転は5回正解するごと、数字移動は残りの一部を入れ替えます。</p>
+    <p class="rule">リセットすると途中の記録を破棄して、設定画面へ戻ります。</p>
   </main>
-  <script src="app-v122.js?v=1.2.2"></script>
+  <script src="app-v123.js?v=1.2.3"></script>
 </body>
 </html>

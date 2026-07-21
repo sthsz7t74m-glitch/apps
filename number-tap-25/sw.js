@@ -1,10 +1,10 @@
-const CACHE_NAME='number-tap-25-v3';
+const CACHE_NAME='number-tap-25-v4';
 const ASSETS=[
   './',
   './index.html',
-  './style.css?v=1.1.1',
-  './app.js?v=1.1.1',
-  './manifest.webmanifest?v=1.1.1',
+  './style.css?v=1.2.0',
+  './app.js?v=1.2.0',
+  './manifest.webmanifest?v=1.2.0',
   './icon.svg'
 ];
 

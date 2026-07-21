@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#2563eb" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="1→25 TAP" />
-  <title>1→25 TAP</title>
+  <meta name="apple-mobile-web-app-title" content="NUMBER TAP" />
+  <title>NUMBER TAP</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon.svg" />
   <link rel="stylesheet" href="style.css" />
@@ -17,19 +17,28 @@
     <header class="header">
       <div>
         <p class="eyebrow">NUMBER SPEED GAME</p>
-        <h1>1→25 TAP</h1>
+        <h1>NUMBER TAP</h1>
       </div>
-      <span class="version">v1.0.0</span>
+      <span class="version">v1.1.0</span>
     </header>
+
+    <section class="size-panel" aria-label="盤面サイズ設定">
+      <span>マス数</span>
+      <div class="size-controls">
+        <button id="sizeDown" type="button" aria-label="マス数を減らす">−</button>
+        <strong id="sizeLabel">5×5</strong>
+        <button id="sizeUp" type="button" aria-label="マス数を増やす">＋</button>
+      </div>
+      <small id="totalLabel">1〜25</small>
+    </section>
 
     <section class="stats" aria-label="ゲーム状況">
       <div class="stat"><span>TIME</span><strong id="time">0.00</strong><small>秒</small></div>
-      <div class="stat"><span>NEXT</span><strong id="next">1</strong><small>次の数字</small></div>
-      <div class="stat"><span>BEST</span><strong id="best">--</strong><small>自己ベスト</small></div>
+      <div class="stat"><span>NEXT</span><strong id="next">1</strong><small id="progress">0 / 25</small></div>
+      <div class="stat"><span>BEST</span><strong id="best">--</strong><small>サイズ別</small></div>
     </section>
 
-    <p id="message" class="message" aria-live="polite">スタートを押して挑戦！</p>
-
+    <p id="message" class="message" aria-live="polite">サイズを選んでスタート！</p>
     <section id="grid" class="number-grid" aria-label="数字ボタン"></section>
 
     <div class="actions">
@@ -37,9 +46,8 @@
       <button id="resetBest" class="secondary" type="button">ベスト削除</button>
     </div>
 
-    <p class="rule">1から25まで、順番に素早くタップ。間違えた数字は反応しません。</p>
+    <p class="rule">1から最後の数字まで順番にタップ。3×3〜10×10から選べます。</p>
   </main>
-
   <script src="app.js"></script>
 </body>
 </html>

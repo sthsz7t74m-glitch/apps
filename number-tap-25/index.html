@@ -3,23 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta name="theme-color" content="#2563eb" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="NUMBER TAP" />
   <title>NUMBER TAP</title>
-  <link rel="manifest" href="manifest.webmanifest?v=1.2.0" />
+  <link rel="manifest" href="manifest.webmanifest?v=1.2.1" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="style.css?v=1.2.0" />
+  <link rel="stylesheet" href="style.css?v=1.2.1" />
 </head>
 <body>
   <main class="app">
     <header class="header">
-      <div>
-        <p class="eyebrow">NUMBER SPEED GAME</p>
-        <h1>NUMBER TAP</h1>
-      </div>
-      <span class="version">v1.2.0</span>
+      <div><p class="eyebrow">NUMBER SPEED GAME</p><h1>NUMBER TAP</h1></div>
+      <span class="version">v1.2.1</span>
     </header>
 
     <section class="size-panel" aria-label="盤面サイズ設定">
@@ -33,10 +31,7 @@
     </section>
 
     <section class="mode-panel" aria-label="難易度設定">
-      <div class="mode-heading">
-        <strong>追加ルール</strong>
-        <span id="modeName">NORMAL</span>
-      </div>
+      <div class="mode-heading"><strong>追加ルール</strong><span id="modeName">NORMAL</span></div>
       <label><input id="fillMode" type="checkbox" /> 消えた穴を詰める</label>
       <label><input id="rotateMode" type="checkbox" /> 5回ごとに盤面回転</label>
       <label><input id="moveMode" type="checkbox" /> タップごとに数字移動</label>
@@ -49,17 +44,13 @@
     </section>
 
     <p id="message" class="message" aria-live="polite">サイズとルールを選んでスタート！</p>
-    <div id="gridWrap" class="grid-wrap">
-      <section id="grid" class="number-grid" aria-label="数字ボタン"></section>
-    </div>
-
+    <div id="gridWrap" class="grid-wrap"><section id="grid" class="number-grid" aria-label="数字ボタン"></section></div>
     <div class="actions">
       <button id="start" class="primary" type="button">スタート</button>
       <button id="resetBest" class="secondary" type="button">ベスト削除</button>
     </div>
-
     <p class="rule">回転は5回正解するごと、数字移動は残りの一部を入れ替えます。</p>
   </main>
-  <script src="app.js?v=1.2.0"></script>
+  <script src="app-v121.js"></script>
 </body>
 </html>

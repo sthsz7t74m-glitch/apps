@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="1→25 TAP" />
+  <title>1→25 TAP</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <p class="eyebrow">NUMBER SPEED GAME</p>
+        <h1>1→25 TAP</h1>
+      </div>
+      <span class="version">v1.0.0</span>
+    </header>
+
+    <section class="stats" aria-label="ゲーム状況">
+      <div class="stat"><span>TIME</span><strong id="time">0.00</strong><small>秒</small></div>
+      <div class="stat"><span>NEXT</span><strong id="next">1</strong><small>次の数字</small></div>
+      <div class="stat"><span>BEST</span><strong id="best">--</strong><small>自己ベスト</small></div>
+    </section>
+
+    <p id="message" class="message" aria-live="polite">スタートを押して挑戦！</p>
+
+    <section id="grid" class="number-grid" aria-label="数字ボタン"></section>
+
+    <div class="actions">
+      <button id="start" class="primary" type="button">スタート</button>
+      <button id="resetBest" class="secondary" type="button">ベスト削除</button>
+    </div>
+
+    <p class="rule">1から25まで、順番に素早くタップ。間違えた数字は反応しません。</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

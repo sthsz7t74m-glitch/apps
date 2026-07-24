@@ -6,151 +6,18 @@
   <meta name="theme-color" content="#efe5d1">
   <title>理科ホワイトボード+</title>
   <style>
-    :root{
-      --green:#2d5547; --paper:#fffdf8; --wood:#b8a07b; --bg:#ece2d0; --ink:#22332e;
-      --sub:#6c7a74; --yellow:#ead067; --line:#d4c5ab; --red:#c95a55; --blue:#3b75ad;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    }
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    body{margin:0;min-height:100dvh;background:linear-gradient(135deg,#d9cfba,#efe8d8);color:var(--ink)}
-    button,select{font:inherit}
-    .app{width:min(100%,920px);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px calc(90px + env(safe-area-inset-bottom))}
-    .screen{display:none}.screen.active{display:block}
-    .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-    .top h1{margin:0;font-size:30px;letter-spacing:-.04em}.top p{margin:5px 0 0;color:var(--sub);font-size:12px;line-height:1.5}
-    .pill{background:var(--green);color:#fff;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800;white-space:nowrap}
-    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
-    .stat{background:#faf6ed;border:1px solid var(--line);border-radius:15px;padding:10px;text-align:center}
-    .stat b{display:block;font-size:18px;color:var(--green)} .stat span{font-size:10px;color:var(--sub)}
-    .hero,.panel,.quiz,.result,.boardShell{background:#faf6ed;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.07)}
-    .hero{background:var(--green);color:#fff;padding:18px}.hero p{color:#dce9e4;margin:6px 0 0;font-size:13px;line-height:1.6}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-    .btn{border:0;border-radius:14px;padding:12px 14px;font-weight:800}
-    .primary{background:var(--yellow);color:#2c342f}.secondary{background:#466f60;color:#fff;border:1px solid #709181}.ghost{background:#edf0ed;color:#406357}
-    .head{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 10px}.head h2{font-size:17px;margin:0}.head span{font-size:10px;color:var(--sub)}
-    .filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px;flex-wrap:wrap}
-    .chip{border:1px solid #c2b59b;background:#faf6ed;color:#566760;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;white-space:nowrap}
-    .chip.active{background:var(--green);color:#fff;border-color:var(--green)}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .card{background:#fffdf9;border:1px solid var(--line);border-radius:18px;padding:13px;text-align:left;color:inherit;box-shadow:0 4px 14px rgba(0,0,0,.05)}
-    .card .icon{font-size:22px}.card h3{margin:7px 0 5px;font-size:15px}.card p{margin:0;color:var(--sub);font-size:11px;line-height:1.5}
-    .card small{display:block;margin-top:8px;color:#356454;font-weight:800}.bar{height:5px;background:#e2dbca;border-radius:99px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:#4d8b70}
-    .back{border:0;background:transparent;color:#335a4d;font-weight:900;padding:3px 0 11px}
-    .boardShell{padding:14px;background:#d9ccb3}
-    .board{background:var(--paper);border:10px solid var(--wood);border-radius:14px;min-height:460px;padding:18px 16px;box-shadow:inset 0 0 18px rgba(0,0,0,.05)}
-    .board h2{margin:0 0 8px;color:var(--green);font-size:22px;border-bottom:3px solid var(--green);padding-bottom:6px}
-    .board h3{color:var(--blue);margin:16px 0 6px;font-size:16px}
-    .board p,.board li{font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;font-size:14px;line-height:1.75}
-    .board ul{padding-left:20px}.marker{background:linear-gradient(transparent 58%, #ffea92 58%);font-weight:800}.red{color:var(--red);font-weight:900}
-    .must{color:#b5322f;font-weight:900}.blueKey{color:#245f9e;font-weight:900}.memory{margin-top:12px;background:#edf8ee;border-left:5px solid #62a26e;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.warn{margin-top:12px;background:#fff4e8;border-left:5px solid #e59a47;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.steps{margin-top:12px;background:#eef4fb;border-left:5px solid #5f8dc3;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.tagBox{background:#fff;border:1px solid #ddd2bd;border-radius:10px;padding:9px;font-size:12px;line-height:1.6}.tagBox b{display:block;margin-bottom:4px}.legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.legend span{font-size:11px;padding:5px 8px;border-radius:999px;background:#f2ede2}.legend .l1{color:#b5322f;font-weight:900}.legend .l2{color:#245f9e;font-weight:900}.legend .l3{background:#ffef9f;font-weight:800}.legend .l4{background:#edf8ee}.legend .l5{background:#fff4e8}
-    .formula{margin:12px 0;padding:10px;border:2px dashed var(--blue);border-radius:10px;text-align:center;color:var(--blue);font-size:17px;font-weight:900}
-    .trend{margin-top:14px;border-left:5px solid var(--red);background:#fff3ef;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}
-    .svgbox{margin:12px 0;padding:10px;background:#f3efe6;border-radius:12px;border:1px solid #e2dac8}
-    .pager{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:8px}.dots{display:flex;gap:5px}.dot{width:8px;height:8px;border-radius:50%;background:#cac0ae}.dot.active{background:var(--green)}
-    .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-    .quiz,.result,.panel{padding:16px}.quizHead{display:flex;justify-content:space-between;color:var(--sub);font-size:11px}.question{font-size:18px;font-weight:900;line-height:1.6;margin:22px 0}
-    .choices{display:grid;gap:8px}.choice{border:1px solid #c1b59d;border-radius:13px;padding:12px;background:#fff;text-align:left;color:var(--ink)}
-    .choice.correct{background:#dff4e8;border-color:#54a377}.choice.wrong{background:#ffe2df;border-color:#d86059}
-    .explain{display:none;margin-top:12px;background:#efe9dc;border-radius:12px;padding:12px;font-size:13px;line-height:1.7}.next{display:none;width:100%;margin-top:12px}
-    .result{text-align:center}.result b{display:block;font-size:46px;color:var(--green)}
-    .panel h3{margin:0 0 8px}.analysisList{display:grid;gap:10px}.analysis{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.analysis p,.analysis li{font-size:13px;line-height:1.7;color:#34423d}.analysis ul{padding-left:18px;margin:8px 0 0}
-    .subtabs{display:flex;gap:8px;margin-bottom:12px}.subtabs button{flex:1}
-    .tabs{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:5px;background:rgba(247,243,232,.95);backdrop-filter:blur(12px);border-top:1px solid #bbb19e;padding:7px 8px calc(7px + env(safe-area-inset-bottom))}
-    .tabs button{border:0;background:transparent;color:#707872;padding:8px 14px;border-radius:12px;font-size:11px;font-weight:900}.tabs button.active{background:var(--green);color:#fff}
-    @media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.grid,.grid2{grid-template-columns:1fr 1fr}.top h1{font-size:27px}}
-    @media (max-width:430px){.grid,.grid2,.actions{grid-template-columns:1fr}.board{padding:15px 13px;min-height:420px}.tabs button{padding:8px 10px}}
+    :root{--green:#2d5547;--paper:#fffdf8;--wood:#b8a07b;--bg:#ece2d0;--ink:#22332e;--sub:#6c7a74;--yellow:#ead067;--line:#d4c5ab;--red:#c95a55;--blue:#3b75ad;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;min-height:100dvh;background:linear-gradient(135deg,#d9cfba,#efe8d8);color:var(--ink)}button,select{font:inherit}.app{width:min(100%,920px);margin:auto;padding:max(14px,env(safe-area-inset-top)) 14px calc(90px + env(safe-area-inset-bottom))}.screen{display:none}.screen.active{display:block}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.top h1{margin:0;font-size:30px;letter-spacing:-.04em}.top p{margin:5px 0 0;color:var(--sub);font-size:12px;line-height:1.5}.pill{background:var(--green);color:#fff;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:800;white-space:nowrap}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.stat{background:#faf6ed;border:1px solid var(--line);border-radius:15px;padding:10px;text-align:center}.stat b{display:block;font-size:18px;color:var(--green)}.stat span{font-size:10px;color:var(--sub)}.hero,.panel,.quiz,.result,.boardShell{background:#faf6ed;border:1px solid var(--line);border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.07)}.hero{background:var(--green);color:#fff;padding:18px}.hero p{color:#dce9e4;margin:6px 0 0;font-size:13px;line-height:1.6}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.btn{border:0;border-radius:14px;padding:12px 14px;font-weight:800}.primary{background:var(--yellow);color:#2c342f}.secondary{background:#466f60;color:#fff;border:1px solid #709181}.ghost{background:#edf0ed;color:#406357}.head{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 10px}.head h2{font-size:17px;margin:0}.head span{font-size:10px;color:var(--sub)}.filters{display:flex;gap:6px;overflow:auto;padding-bottom:8px;flex-wrap:wrap}.chip{border:1px solid #c2b59b;background:#faf6ed;color:#566760;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;white-space:nowrap}.chip.active{background:var(--green);color:#fff;border-color:var(--green)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:#fffdf9;border:1px solid var(--line);border-radius:18px;padding:13px;text-align:left;color:inherit;box-shadow:0 4px 14px rgba(0,0,0,.05)}.card .icon{font-size:22px}.card h3{margin:7px 0 5px;font-size:15px}.card p{margin:0;color:var(--sub);font-size:11px;line-height:1.5}.card small{display:block;margin-top:8px;color:#356454;font-weight:800}.bar{height:5px;background:#e2dbca;border-radius:99px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:#4d8b70}.back{border:0;background:transparent;color:#335a4d;font-weight:900;padding:3px 0 11px}.boardShell{padding:14px;background:#d9ccb3}.board{background:var(--paper);border:10px solid var(--wood);border-radius:14px;min-height:460px;padding:18px 16px;box-shadow:inset 0 0 18px rgba(0,0,0,.05)}.board h2{margin:0 0 8px;color:var(--green);font-size:22px;border-bottom:3px solid var(--green);padding-bottom:6px}.board h3{color:var(--blue);margin:16px 0 6px;font-size:16px}.board p,.board li{font-family:"Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;font-size:14px;line-height:1.75}.board ul{padding-left:20px}.marker{background:linear-gradient(transparent 58%,#ffea92 58%);font-weight:800}.red{color:var(--red);font-weight:900}.must{color:#b5322f;font-weight:900}.blueKey{color:#245f9e;font-weight:900}.memory{margin-top:12px;background:#edf8ee;border-left:5px solid #62a26e;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.warn,.warning{margin-top:12px;background:#fff4e8;border-left:5px solid #e59a47;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.steps{margin-top:12px;background:#eef4fb;border-left:5px solid #5f8dc3;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.miniGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.tagBox{background:#fff;border:1px solid #ddd2bd;border-radius:10px;padding:9px;font-size:12px;line-height:1.6}.tagBox b{display:block;margin-bottom:4px}.legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.legend span{font-size:11px;padding:5px 8px;border-radius:999px;background:#f2ede2}.legend .l1{color:#b5322f;font-weight:900}.legend .l2{color:#245f9e;font-weight:900}.legend .l3{background:#ffef9f;font-weight:800}.legend .l4{background:#edf8ee}.legend .l5{background:#fff4e8}.formula{margin:12px 0;padding:10px;border:2px dashed var(--blue);border-radius:10px;text-align:center;color:var(--blue);font-size:17px;font-weight:900}.trend{margin-top:14px;border-left:5px solid var(--red);background:#fff3ef;border-radius:0 12px 12px 0;padding:11px;font-size:12px;line-height:1.65}.svgbox{margin:12px 0;padding:10px;background:#f3efe6;border-radius:12px;border:1px solid #e2dac8}.keylist{display:grid;gap:7px;margin:10px 0}.keylist div{background:#fff;border:1px solid #ddd3c0;border-radius:10px;padding:9px 11px;font-size:13px;line-height:1.55}.pager{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:8px}.dots{display:flex;gap:5px}.dot{width:8px;height:8px;border-radius:50%;background:#cac0ae}.dot.active{background:var(--green)}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.quiz,.result,.panel{padding:16px}.quizHead{display:flex;justify-content:space-between;color:var(--sub);font-size:11px}.question{font-size:18px;font-weight:900;line-height:1.6;margin:22px 0}.choices{display:grid;gap:8px}.choice{border:1px solid #c1b59d;border-radius:13px;padding:12px;background:#fff;text-align:left;color:var(--ink)}.choice.correct{background:#dff4e8;border-color:#54a377}.choice.wrong{background:#ffe2df;border-color:#d86059}.explain{display:none;margin-top:12px;background:#efe9dc;border-radius:12px;padding:12px;font-size:13px;line-height:1.7}.next{display:none;width:100%;margin-top:12px}.result{text-align:center}.result b{display:block;font-size:46px;color:var(--green)}.panel h3{margin:0 0 8px}.analysisList{display:grid;gap:10px}.analysis{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}.analysis p,.analysis li{font-size:13px;line-height:1.7;color:#34423d}.analysis ul{padding-left:18px;margin:8px 0 0}.subtabs{display:flex;gap:8px;margin-bottom:12px}.subtabs button{flex:1}.memoryTop{background:#faf6ed;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}.memoryTop h2{margin:0 0 5px}.memoryTop p{margin:0;color:var(--sub);font-size:12px;line-height:1.6}.memoryFilters{display:flex;gap:6px;overflow:auto;flex-wrap:wrap;margin:12px 0}.memorySheet{display:grid;gap:10px}.memoryCard{background:#fffdf9;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 4px 14px rgba(0,0,0,.05)}.memoryCard .metaLine{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:var(--sub);margin-bottom:8px}.memoryCard .prompt{font-weight:900;line-height:1.55}.memoryCard .answer{margin-top:10px;padding:12px;background:#eef6f2;border-radius:12px;font-weight:900;color:#245e48;line-height:1.6}.memoryCard .answer.hidden{filter:blur(7px);user-select:none}.memoryActions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.memoryActions button{border:0;border-radius:11px;padding:9px;font-size:11px;font-weight:900}.remembered{background:#dff4e8;color:#286847}.weakBtn{background:#fff0dc;color:#9a5a19}.showBtn{background:#edf2f7;color:#365b7d}.memoryCard.isWeak{border-color:#e39a45}.memoryCard.isRemembered{opacity:.72}.memorySummary{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.memorySummary span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:800}.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:5px;background:rgba(247,243,232,.95);backdrop-filter:blur(12px);border-top:1px solid #bbb19e;padding:7px 8px calc(7px + env(safe-area-inset-bottom))}.tabs button{border:0;background:transparent;color:#707872;padding:8px 12px;border-radius:12px;font-size:10px;font-weight:900}.tabs button.active{background:var(--green);color:#fff}@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.grid,.grid2{grid-template-columns:1fr 1fr}.top h1{font-size:27px}}@media(max-width:430px){.grid,.grid2,.actions{grid-template-columns:1fr}.board{padding:15px 13px;min-height:420px}.tabs button{padding:8px 8px}}
   </style>
 </head>
 <body>
-  <main class="app">
-    <section id="home" class="screen active">
-      <div class="top">
-        <div>
-          <h1>理科ホワイトボード+</h1>
-          <p>中学理科3年間の授業・演習・総まとめ・入試分析を1つに。<br>図を増量し、必要なだけページを追加。暗記・図解・実験・計算・入試対策を単元ごとに厚く学べる。</p>
-        </div>
-        <span class="pill">v2.2.0</span>
-      </div>
-      <div class="stats">
-        <div class="stat"><b id="statLearned">0</b><span>学習済み単元</span></div>
-        <div class="stat"><b id="statRate">0%</b><span>全体正答率</span></div>
-        <div class="stat"><b id="statWeak">0</b><span>苦手問題</span></div>
-        <div class="stat"><b id="statSolved">0</b><span>解いた問題数</span></div>
-      </div>
-      <div class="hero">
-        <h2>授業 → 確認 → まとめ → 入試分析</h2>
-        <p>まずは単元のホワイトボード授業で理解し、その後に単元テスト、学年まとめ、都道府県別入試傾向まで確認しよう。</p>
-        <div class="grid2">
-          <button class="btn primary" onclick="startRandomLesson()">今日の授業</button>
-          <button class="btn secondary" onclick="startQuizMode('exam')">入試ミックス</button>
-        </div>
-        <div class="legend"><span class="l1">赤太字＝絶対暗記</span><span class="l2">青太字＝公式・法則</span><span class="l3">黄マーカー＝重要</span><span class="l4">緑＝覚え方</span><span class="l5">橙＝注意</span></div>
-      </div>
-
-      <div class="head"><h2>単元別教材</h2><span id="unitCountLabel">全0単元</span></div>
-      <div class="filters" id="filters"></div>
-      <div class="grid" id="units"></div>
-
-      <div class="head"><h2>総まとめ</h2><span>学年・分野別</span></div>
-      <div class="grid" id="summaryCards"></div>
-    </section>
-
-    <section id="lesson" class="screen">
-      <button class="back" onclick="showScreen('home')">← 単元一覧</button>
-      <div class="boardShell">
-        <div class="board" id="board"></div>
-      </div>
-      <div class="pager">
-        <button class="btn ghost" onclick="moveBoard(-1)">← 前へ</button>
-        <div class="dots" id="dots"></div>
-        <button class="btn ghost" onclick="moveBoard(1)">次へ →</button>
-      </div>
-      <div class="actions">
-        <button class="btn secondary" onclick="markLearned()">学習済みにする</button>
-        <button class="btn primary" onclick="startQuizMode('unit')">単元テスト</button>
-      </div>
-    </section>
-
-    <section id="quiz" class="screen">
-      <button class="back" onclick="showScreen('home')">← ホーム</button>
-      <div class="quiz" id="quizBox">
-        <div class="quizHead"><span id="quizType"></span><span id="quizCount"></span></div>
-        <div class="question" id="question"></div>
-        <div class="choices" id="choices"></div>
-        <div class="explain" id="explain"></div>
-        <button class="btn primary next" id="nextBtn" onclick="nextQuestion()">次の問題</button>
-      </div>
-      <div class="result" id="resultBox" style="display:none">
-        <span>今回の結果</span>
-        <b id="scoreText">0%</b>
-        <p id="resultText"></p>
-        <div class="grid2">
-          <button class="btn secondary" onclick="retryCurrentMode()">もう一度</button>
-          <button class="btn primary" onclick="showScreen('home')">ホームへ</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="analysis" class="screen">
-      <button class="back" onclick="showScreen('home')">← ホーム</button>
-      <div class="panel">
-        <div class="subtabs">
-          <button class="btn secondary" id="prefTabBtn" onclick="switchAnalysis('pref')">都道府県別</button>
-          <button class="btn ghost" id="schoolTabBtn" onclick="switchAnalysis('school')">学校タイプ別</button>
-        </div>
-        <div id="analysisArea"></div>
-      </div>
-    </section>
-  </main>
-
-  <nav class="tabs" id="tabs">
-    <button class="active" onclick="tabNav('home', this)">単元</button>
-    <button onclick="tabNav('quiz', this); startQuizMode('summary')">総まとめ</button>
-    <button onclick="tabNav('quiz', this); startQuizMode('weak')">苦手復習</button>
-    <button onclick="tabNav('analysis', this)">入試分析</button>
-  </nav>
-
-  <script src="./data.js?v=2.2.0"></script>
-  <script src="./app.js?v=2.2.0"></script>
-</body>
-</html>
+<main class="app">
+<section id="home" class="screen active"><div class="top"><div><h1>理科ホワイトボード+</h1><p>中学理科3年間の授業・演習・暗記・発展・入試分析を1つに。<br>基本だけでなく、理由説明・資料読解・発展知識まで掘り下げる。</p></div><span class="pill">v2.3.0</span></div><div class="stats"><div class="stat"><b id="statLearned">0</b><span>学習済み単元</span></div><div class="stat"><b id="statRate">0%</b><span>全体正答率</span></div><div class="stat"><b id="statWeak">0</b><span>苦手問題</span></div><div class="stat"><b id="statSolved">0</b><span>解いた問題数</span></div></div><div class="hero"><h2>授業 → 暗記 → 発展 → 入試</h2><p>暗記シートで高速復習し、発展ページで「なぜそうなるか」まで理解する。</p><div class="grid2"><button class="btn primary" onclick="startRandomLesson()">今日の授業</button><button class="btn secondary" onclick="tabNav('memory',document.querySelectorAll('#tabs button')[1])">暗記シート</button></div><div class="legend"><span class="l1">赤太字＝絶対暗記</span><span class="l2">青太字＝公式・法則</span><span class="l3">黄＝重要</span><span class="l4">緑＝覚え方</span><span class="l5">橙＝注意</span></div></div><div class="head"><h2>単元別教材</h2><span id="unitCountLabel">全0単元</span></div><div class="filters" id="filters"></div><div class="grid" id="units"></div><div class="head"><h2>総まとめ</h2><span>学年・分野別</span></div><div class="grid" id="summaryCards"></div></section>
+<section id="lesson" class="screen"><button class="back" onclick="showScreen('home')">← 単元一覧</button><div class="boardShell"><div class="board" id="board"></div></div><div class="pager"><button class="btn ghost" onclick="moveBoard(-1)">← 前へ</button><div class="dots" id="dots"></div><button class="btn ghost" onclick="moveBoard(1)">次へ →</button></div><div class="actions"><button class="btn secondary" onclick="markLearned()">学習済みにする</button><button class="btn primary" onclick="startQuizMode('unit')">単元テスト</button></div></section>
+<section id="quiz" class="screen"><button class="back" onclick="showScreen('home')">← ホーム</button><div class="quiz" id="quizBox"><div class="quizHead"><span id="quizType"></span><span id="quizCount"></span></div><div class="question" id="question"></div><div class="choices" id="choices"></div><div class="explain" id="explain"></div><button class="btn primary next" id="nextBtn" onclick="nextQuestion()">次の問題</button></div><div class="result" id="resultBox" style="display:none"><span>今回の結果</span><b id="scoreText">0%</b><p id="resultText"></p><div class="grid2"><button class="btn secondary" onclick="retryCurrentMode()">もう一度</button><button class="btn primary" onclick="showScreen('home')">ホームへ</button></div></div></section>
+<section id="memory" class="screen"><button class="back" onclick="showScreen('home')">← ホーム</button><div class="memoryTop"><h2>暗記シート</h2><p>重要語句・公式・実験・記述をカード形式で確認。答えを隠して、覚えた／苦手を保存できる。</p><div class="memorySummary"><span id="memoryTotal">0件</span><span id="memoryRemembered">覚えた 0</span><span id="memoryWeak">苦手 0</span></div></div><div class="memoryFilters" id="memoryFilters"></div><div class="grid2"><button class="btn secondary" onclick="shuffleMemory()">ランダム表示</button><button class="btn ghost" onclick="toggleAllAnswers()">答えを一括切替</button></div><div class="memorySheet" id="memorySheet"></div></section>
+<section id="analysis" class="screen"><button class="back" onclick="showScreen('home')">← ホーム</button><div class="panel"><div class="subtabs"><button class="btn secondary" id="prefTabBtn" onclick="switchAnalysis('pref')">都道府県別</button><button class="btn ghost" id="schoolTabBtn" onclick="switchAnalysis('school')">学校タイプ別</button></div><div id="analysisArea"></div></div></section>
+</main>
+<nav class="tabs" id="tabs"><button class="active" onclick="tabNav('home',this)">単元</button><button onclick="tabNav('memory',this)">暗記</button><button onclick="tabNav('quiz',this);startQuizMode('summary')">まとめ</button><button onclick="tabNav('quiz',this);startQuizMode('weak')">苦手</button><button onclick="tabNav('analysis',this)">入試</button></nav>
+<script src="./data.js?v=2.3.0"></script><script src="./deep-data.js?v=2.3.0"></script><script src="./memory-data.js?v=2.3.0"></script><script src="./app.js?v=2.3.0"></script>
+</body></html>

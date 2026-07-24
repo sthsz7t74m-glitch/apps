@@ -7,7 +7,10 @@
 - [1→25 TAP](./number-tap-25/) — 1から25まで順番にタップしてタイムを競うゲーム
 - [ノリ打ち精算](./noriuchi-calculator/) — 投資・回収・配分率から精算額を計算するアプリ
 - [LOGIC MINES](./minesweeper/) — 特殊ルール、ステージ、デイリーを搭載した思考型マインスイーパー
+- [よい時計（iOS）](./ios/yoitokei/) — SwiftUI製の時計・アラーム・タイマー・ストップウォッチ
 
 ## 公開構成
 
-GitHub Pagesで `main` ブランチの `/ (root)` を公開すると、トップページから各アプリを起動できます。
+WebアプリはGitHub Pagesで `main` ブランチの `/ (root)` を公開すると、トップページから各アプリを起動できます。
+
+iOSアプリは各フォルダ内のREADMEに従い、Mac上のXcodeでビルドします。

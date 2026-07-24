@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#12120f">
+  <title>HUNTER×HUNTER キャラシート</title>
+  <style>
+    :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#f7f3e6;background:#11110e;--gold:#e2bd57;--red:#c84842;--green:#426e56;--panel:#1e1e19;--line:#3c3a30;--muted:#aaa58f}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}body{margin:0;min-height:100dvh;background:radial-gradient(circle at top,#29271e 0,#12120f 54%,#090908 100%)}button,input,select{font:inherit}.app{width:min(100%,920px);margin:auto;padding:max(16px,env(safe-area-inset-top)) 14px calc(82px + env(safe-area-inset-bottom))}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.top h1{margin:0;font-size:27px;letter-spacing:-.04em}.top p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.55}.version{font-size:10px;background:var(--gold);color:#16140e;border-radius:999px;padding:6px 9px;font-weight:900}.hero{margin:14px 0;padding:16px;border:1px solid #5e5130;border-radius:20px;background:linear-gradient(135deg,#252218,#171713);box-shadow:0 12px 30px #0007}.hero b{color:var(--gold)}.hero p{margin:6px 0 0;color:#c9c3ac;font-size:13px;line-height:1.65}.controls{display:grid;grid-template-columns:1fr auto;gap:8px;margin:14px 0}.search,.select{border:1px solid var(--line);background:#1b1b17;color:#fff;border-radius:13px;padding:11px 12px;min-width:0}.arcs{display:flex;gap:7px;overflow:auto;padding-bottom:10px}.arc{border:1px solid var(--line);background:#1a1a16;color:#c8c2ad;border-radius:999px;padding:8px 12px;white-space:nowrap;font-size:11px;font-weight:900}.arc.active{background:var(--gold);color:#18160f;border-color:var(--gold)}.arcInfo{margin:6px 0 12px;padding:13px;border-left:5px solid var(--gold);background:#1c1b16;border-radius:0 14px 14px 0}.arcInfo h2{font-size:18px;margin:0}.arcInfo p{font-size:12px;line-height:1.65;color:#bcb6a1;margin:6px 0 0}.count{font-size:11px;color:var(--muted);margin-bottom:9px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{border:1px solid var(--line);background:linear-gradient(160deg,#23231e,#181815);border-radius:18px;padding:13px;text-align:left;color:inherit;box-shadow:0 7px 18px #0005}.card:active{transform:scale(.985)}.cardTop{display:flex;gap:11px;align-items:center}.avatar{display:grid;place-items:center;flex:0 0 52px;height:52px;border-radius:15px;background:linear-gradient(135deg,#735e29,#c5a449);color:#17140d;font-size:19px;font-weight:950;border:1px solid #e5c875}.name{font-size:16px;font-weight:950}.role{font-size:10px;color:#b9b39f;margin-top:4px}.tags{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}.tag{font-size:10px;font-weight:850;border-radius:999px;padding:5px 8px;background:#303028;color:#ddd5bb}.tag.nen{background:#273c31;color:#cde8d6}.tag.group{background:#3d2927;color:#f2cac4}.summary{font-size:12px;line-height:1.65;color:#c6c0ac}.detail{display:none;border-top:1px solid #3a382f;margin-top:10px;padding-top:10px}.card.open .detail{display:block}.detail dl{margin:0;display:grid;grid-template-columns:68px 1fr;gap:7px;font-size:11px;line-height:1.55}.detail dt{color:var(--gold);font-weight:900}.detail dd{margin:0;color:#d7d1bd}.spoiler{display:none;margin-top:9px;padding:9px;border-radius:10px;background:#351e1c;color:#f0c7c1;font-size:11px;line-height:1.6}.showSpoiler .spoiler{display:block}.empty{grid-column:1/-1;text-align:center;padding:32px;color:var(--muted)}.footer{position:fixed;bottom:0;left:0;right:0;background:#12120fee;border-top:1px solid #37352d;backdrop-filter:blur(10px);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}.spoilerBtn{border:1px solid #65403a;background:#271b19;color:#e7bdb7;border-radius:13px;padding:10px 14px;font-size:11px;font-weight:900}@media(max-width:520px){.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.top h1{font-size:24px}}
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="top"><div><h1>HUNTER×HUNTER キャラシート</h1><p>物語の編ごとに、主要キャラ・所属・能力・役割を整理。</p></div><span class="version">v1.0.0</span></header>
+  <section class="hero"><b>CHARACTER FILE</b><p>編を選ぶと、その時点で活躍するキャラクターだけを表示。カードをタップすると詳細が開く。</p></section>
+  <div class="controls"><input id="search" class="search" placeholder="キャラ名・所属・能力で検索"><select id="group" class="select"><option value="all">所属すべて</option></select></div>
+  <nav id="arcs" class="arcs"></nav>
+  <section id="arcInfo" class="arcInfo"></section>
+  <div id="count" class="count"></div>
+  <section id="grid" class="grid"></section>
+</main>
+<footer class="footer"><button id="spoilerBtn" class="spoilerBtn">ネタバレ表示：OFF</button></footer>
+<script src="./data.js?v=1.0.0"></script><script src="./app.js?v=1.0.0"></script>
+</body></html>

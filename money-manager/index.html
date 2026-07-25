@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f8fb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>かんたん家計簿</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div><p class="eyebrow">MONEY TRACKER</p><h1>かんたん家計簿</h1></div>
+      <button id="openFormButton" class="primary-button small" type="button">＋ 追加</button>
+    </header>
+    <main>
+      <section class="month-switcher card">
+        <button id="prevMonth" class="icon-button" type="button" aria-label="前の月">‹</button>
+        <button id="monthLabel" class="month-label" type="button" aria-label="今月に戻る"></button>
+        <button id="nextMonth" class="icon-button" type="button" aria-label="次の月">›</button>
+      </section>
+      <section class="summary-grid">
+        <article class="summary-card balance"><span>収支</span><strong id="balanceAmount">¥0</strong><small id="balanceNote">今月の差額</small></article>
+        <article class="summary-card income"><span>収入</span><strong id="incomeAmount">¥0</strong></article>
+        <article class="summary-card expense"><span>支出</span><strong id="expenseAmount">¥0</strong></article>
+      </section>
+      <section class="card budget-card">
+        <div class="section-heading compact"><div><p class="eyebrow">MONTHLY BUDGET</p><h2>今月の支出予算</h2></div><button id="editBudgetButton" class="text-button" type="button">設定</button></div>
+        <div class="budget-row"><span id="budgetUsageText">予算未設定</span><strong id="budgetRemainingText">—</strong></div>
+        <div class="progress-track"><div id="budgetProgress" class="progress-bar"></div></div>
+      </section>
+      <section class="card"><div class="section-heading"><div><p class="eyebrow">BREAKDOWN</p><h2>支出の内訳</h2></div></div><div id="categoryBreakdown" class="category-list"></div></section>
+      <section class="card"><div class="section-heading"><div><p class="eyebrow">HISTORY</p><h2>履歴</h2></div><button id="clearMonthButton" class="text-button danger-text" type="button">月データ削除</button></div><div id="transactionList" class="transaction-list"></div></section>
+    </main>
+  </div>
+  <dialog id="transactionDialog" class="dialog">
+    <form id="transactionForm" method="dialog" class="dialog-panel">
+      <div class="dialog-header"><div><p class="eyebrow">TRANSACTION</p><h2 id="dialogTitle">入出金を追加</h2></div><button id="closeDialogButton" class="icon-button" type="button" aria-label="閉じる">×</button></div>
+      <input id="transactionId" type="hidden" />
+      <div class="segmented-control"><label><input type="radio" name="type" value="expense" checked /><span>支出</span></label><label><input type="radio" name="type" value="income" /><span>収入</span></label></div>
+      <label class="field"><span>金額</span><div class="amount-input-wrap"><span>¥</span><input id="amount" type="number" inputmode="numeric" min="1" step="1" placeholder="0" required /></div></label>
+      <div class="two-column"><label class="field"><span>日付</span><input id="date" type="date" required /></label><label class="field"><span>カテゴリ</span><select id="category" required></select></label></div>
+      <label class="field"><span>メモ</span><input id="note" type="text" maxlength="40" placeholder="例：スーパー、給料など" /></label>
+      <button class="primary-button full" type="submit">保存する</button>
+      <button id="deleteTransactionButton" class="secondary-button full danger hidden" type="button">この記録を削除</button>
+    </form>
+  </dialog>
+  <dialog id="budgetDialog" class="dialog">
+    <form id="budgetForm" method="dialog" class="dialog-panel compact-panel">
+      <div class="dialog-header"><div><p class="eyebrow">BUDGET</p><h2>支出予算を設定</h2></div><button id="closeBudgetDialogButton" class="icon-button" type="button" aria-label="閉じる">×</button></div>
+      <label class="field"><span>今月の予算</span><div class="amount-input-wrap"><span>¥</span><input id="budgetAmount" type="number" inputmode="numeric" min="0" step="1000" placeholder="50000" /></div></label>
+      <p class="helper-text">0円で保存すると予算設定を解除します。</p>
+      <button class="primary-button full" type="submit">保存する</button>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

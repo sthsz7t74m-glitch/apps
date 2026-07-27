@@ -6,7 +6,8 @@
   <meta name="theme-color" content="#120f18">
   <meta name="color-scheme" content="dark">
   <title>日本AV女優名鑑</title>
-  <link rel="stylesheet" href="./styles.css?v=1.1.0">
+  <link rel="stylesheet" href="./styles.css?v=1.2.0">
+  <link rel="stylesheet" href="./compact.css?v=1.2.0">
 </head>
 <body class="gated">
   <div id="ageGate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
@@ -20,137 +21,53 @@
     </div>
   </div>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="back-link" href="../" aria-label="MY APPSへ戻る">‹ MY APPS</a>
-      <span class="version">v1.1.0</span>
-    </div>
-  </header>
+  <header class="site-header"><div class="header-inner"><a class="back-link" href="../">‹ MY APPS</a><span class="version">v1.2.0</span></div></header>
 
   <main id="mainContent" class="app" aria-hidden="true">
     <section class="hero">
       <p class="eyebrow">PUBLIC PROFILE DIRECTORY</p>
       <h1>日本AV女優名鑑</h1>
-      <p class="hero-copy">公式確認できたプロフィールに加え、外部プロフィールDB由来の参考情報も収録。名前・出身地・年齢・本名・身長・カップ数から検索できます。</p>
-      <div class="hero-pills" aria-label="掲載方針">
-        <span>全145名規模</span>
-        <span>参考情報は注記</span>
-        <span>本名は公表情報のみ</span>
-        <span>写真は利用条件を確認</span>
-      </div>
+      <p class="hero-copy">公式事務所の在籍一覧・個人プロフィール、確認済み資料、外部プロフィールDBを統合。カードを横長にして、一覧性を高めました。</p>
+      <div class="hero-pills"><span>公式10ソース以上</span><span>省スペース表示</span><span>参考情報は注記</span><span>本名は公表情報のみ</span></div>
     </section>
 
     <section class="search-shell" aria-label="検索と絞り込み">
       <div class="quick-search">
-        <label class="search-box" for="searchInput">
-          <span aria-hidden="true">⌕</span>
-          <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="女優名・よみ・本名で検索">
-        </label>
-        <button id="filterToggle" class="filter-toggle" type="button" aria-expanded="false" aria-controls="filterPanel">
-          絞り込み <span id="activeFilterCount" class="filter-count" hidden>0</span>
-        </button>
+        <label class="search-box" for="searchInput"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="女優名・よみ・本名で検索"></label>
+        <button id="filterToggle" class="filter-toggle" type="button" aria-expanded="false" aria-controls="filterPanel">絞り込み <span id="activeFilterCount" class="filter-count" hidden>0</span></button>
       </div>
-
       <form id="filterPanel" class="filter-panel" hidden>
         <div class="filter-grid">
-          <label class="field">
-            <span>出身地</span>
-            <select id="birthplaceFilter">
-              <option value="">すべて</option>
-            </select>
-          </label>
-
-          <fieldset class="range-field">
-            <legend>年齢</legend>
-            <label><span class="sr-only">最低年齢</span><input id="ageMin" type="number" inputmode="numeric" min="18" max="99" placeholder="下限"></label>
-            <span>〜</span>
-            <label><span class="sr-only">最高年齢</span><input id="ageMax" type="number" inputmode="numeric" min="18" max="99" placeholder="上限"></label>
-            <small>歳</small>
-          </fieldset>
-
-          <label class="field">
-            <span>本名</span>
-            <input id="realNameFilter" type="search" autocomplete="off" placeholder="公表名を入力">
-          </label>
-
-          <fieldset class="range-field">
-            <legend>身長</legend>
-            <label><span class="sr-only">最低身長</span><input id="heightMin" type="number" inputmode="numeric" min="130" max="200" placeholder="下限"></label>
-            <span>〜</span>
-            <label><span class="sr-only">最高身長</span><input id="heightMax" type="number" inputmode="numeric" min="130" max="200" placeholder="上限"></label>
-            <small>cm</small>
-          </fieldset>
-
-          <label class="field">
-            <span>カップ（以上）</span>
-            <select id="cupMin">
-              <option value="">指定なし</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>カップ（以下）</span>
-            <select id="cupMax">
-              <option value="">指定なし</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>並び順</span>
-            <select id="sortSelect">
-              <option value="name">名前順</option>
-              <option value="ageAsc">年齢が若い順</option>
-              <option value="ageDesc">年齢が高い順</option>
-              <option value="heightAsc">身長が低い順</option>
-              <option value="heightDesc">身長が高い順</option>
-              <option value="cupAsc">カップが小さい順</option>
-              <option value="cupDesc">カップが大きい順</option>
-            </select>
-          </label>
-
-          <label class="switch-field">
-            <input id="realNameOnly" type="checkbox">
-            <span class="switch" aria-hidden="true"></span>
-            <span>本名公表ありのみ</span>
-          </label>
-
-          <label class="switch-field">
-            <input id="photoOnly" type="checkbox">
-            <span class="switch" aria-hidden="true"></span>
-            <span>写真ありのみ</span>
-          </label>
+          <label class="field"><span>出身地</span><select id="birthplaceFilter"><option value="">すべて</option></select></label>
+          <fieldset class="range-field"><legend>年齢</legend><label><span class="sr-only">最低年齢</span><input id="ageMin" type="number" inputmode="numeric" min="18" max="99" placeholder="下限"></label><span>〜</span><label><span class="sr-only">最高年齢</span><input id="ageMax" type="number" inputmode="numeric" min="18" max="99" placeholder="上限"></label><small>歳</small></fieldset>
+          <label class="field"><span>本名</span><input id="realNameFilter" type="search" autocomplete="off" placeholder="公表名を入力"></label>
+          <fieldset class="range-field"><legend>身長</legend><label><span class="sr-only">最低身長</span><input id="heightMin" type="number" inputmode="numeric" min="130" max="200" placeholder="下限"></label><span>〜</span><label><span class="sr-only">最高身長</span><input id="heightMax" type="number" inputmode="numeric" min="130" max="200" placeholder="上限"></label><small>cm</small></fieldset>
+          <label class="field"><span>カップ（以上）</span><select id="cupMin"><option value="">指定なし</option></select></label>
+          <label class="field"><span>カップ（以下）</span><select id="cupMax"><option value="">指定なし</option></select></label>
+          <label class="field"><span>並び順</span><select id="sortSelect"><option value="name">名前順</option><option value="ageAsc">年齢が若い順</option><option value="ageDesc">年齢が高い順</option><option value="heightAsc">身長が低い順</option><option value="heightDesc">身長が高い順</option><option value="cupAsc">カップが小さい順</option><option value="cupDesc">カップが大きい順</option></select></label>
+          <label class="switch-field"><input id="realNameOnly" type="checkbox"><span class="switch" aria-hidden="true"></span><span>本名公表ありのみ</span></label>
+          <label class="switch-field"><input id="photoOnly" type="checkbox"><span class="switch" aria-hidden="true"></span><span>写真ありのみ</span></label>
         </div>
-        <div class="filter-actions">
-          <p>範囲指定中は、値が未公表の人物を検索結果から除外します。参考情報は詳細画面の注記と確認元を見て判断してください。</p>
-          <button id="resetButton" class="reset-button" type="button">条件をリセット</button>
-        </div>
+        <div class="filter-actions"><p>範囲指定中は、値が未公表の人物を検索結果から除外します。参考情報は詳細画面の確認元と注記を参照してください。</p><button id="resetButton" class="reset-button" type="button">条件をリセット</button></div>
       </form>
     </section>
 
-    <section class="result-head" aria-live="polite">
-      <div><strong id="resultCount">0</strong><span> 名を表示</span></div>
-      <span id="dataCount" class="data-count"></span>
-    </section>
-
+    <section class="result-head" aria-live="polite"><div><strong id="resultCount">0</strong><span> 名を表示</span></div><span id="dataCount" class="data-count"></span></section>
     <section id="profileGrid" class="profile-grid" aria-label="女優一覧"></section>
-
-    <section class="policy-card">
-      <h2>掲載方針</h2>
-      <p>芸名・生年月日・出身地・身長・カップ数は、事務所、公式ポートフォリオ、出版社の商品紹介、人物データベースなどで公開された公称値をもとにしています。</p>
-      <p>外部プロフィールデータベースからまとめて収録した値は「参考情報」として詳細画面に注記します。同名人物、改名、公称値変更、資料側の転記誤りを含む可能性があるため、確認元リンクも併せて表示します。</p>
-      <p>本名は、本人の過去の芸能活動などを通じて広く公表済みと確認できる場合だけ掲載します。推測・流出情報・未確認の本名は掲載しません。</p>
-      <p>顔写真は再利用条件を確認できた画像のみ表示し、利用可能な画像がない人物はプレースホルダー表示です。</p>
-    </section>
+    <section class="policy-card"><h2>掲載方針</h2><p>公式プロフィール・公式在籍一覧・出版社・人物データベースなど複数の公開資料を統合しています。情報源の信頼度や更新時期が異なるため、詳細画面に確認元を表示します。</p><p>外部DB由来の値には誤記、改名、公称値変更の可能性があります。本名は本人の公的活動などで公表済みと確認できる場合だけ掲載し、推測・流出情報は扱いません。</p><p>顔写真は再利用条件を確認できた画像のみ表示します。</p></section>
   </main>
 
-  <dialog id="profileDialog" class="profile-dialog">
-    <button id="dialogClose" class="dialog-close" type="button" aria-label="閉じる">×</button>
-    <div id="dialogContent"></div>
-  </dialog>
-
+  <dialog id="profileDialog" class="profile-dialog"><button id="dialogClose" class="dialog-close" type="button" aria-label="閉じる">×</button><div id="dialogContent"></div></dialog>
   <noscript><p class="noscript">このページの検索機能にはJavaScriptが必要です。</p></noscript>
-  <script src="./data.js?v=1.1.0"></script>
-  <script src="./data-expanded.js?v=1.1.0"></script>
-  <script src="./app.js?v=1.1.0"></script>
+  <script src="./data.js?v=1.2.0"></script>
+  <script src="./data-expanded.js?v=1.2.0"></script>
+  <script src="./data-official-core.js?v=1.2.0"></script>
+  <script src="./data-official-rosters-1.js?v=1.2.0"></script>
+  <script src="./data-official-rosters-2.js?v=1.2.0"></script>
+  <script src="./data-official-details-1.js?v=1.2.0"></script>
+  <script src="./data-official-details-2.js?v=1.2.0"></script>
+  <script>window.AV_OFFICIAL_FINALIZE && window.AV_OFFICIAL_FINALIZE();</script>
+  <script src="./data-live.js?v=1.2.0"></script>
+  <script src="./app.js?v=1.2.0"></script>
 </body>
 </html>

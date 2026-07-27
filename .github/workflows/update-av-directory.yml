@@ -9,11 +9,13 @@ on:
       - main
     paths:
       - 'scripts/update-av-official-data.mjs'
+      - 'scripts/update-av-catalog.mjs'
       - '.github/workflows/update-av-directory.yml'
   pull_request:
     paths:
       - 'av-actress-directory/**'
       - 'scripts/update-av-official-data.mjs'
+      - 'scripts/update-av-catalog.mjs'
       - '.github/workflows/update-av-directory.yml'
 
 permissions:
@@ -26,7 +28,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,13 +38,17 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Collect public profile data
+      - name: Collect official and open data
         run: node scripts/update-av-official-data.mjs
+
+      - name: Collect full historical catalog
+        run: node scripts/update-av-catalog.mjs
 
       - name: Validate generated files
         run: |
           node --check av-actress-directory/data-live.js
-          node --check av-actress-directory/data-official.js
+          node --check av-actress-directory/data-catalog.js
+          node --check av-actress-directory/data-official-core.js
           node --check av-actress-directory/app.js
           git diff --check
 
@@ -50,20 +56,22 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: av-directory-live-data
-          path: av-actress-directory/data-live.js
+          name: av-directory-generated-data
+          path: |
+            av-actress-directory/data-live.js
+            av-actress-directory/data-catalog.js
           retention-days: 7
 
       - name: Commit refreshed data
         if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          if git diff --quiet -- av-actress-directory/data-live.js; then
+          if git diff --quiet -- av-actress-directory/data-live.js av-actress-directory/data-catalog.js; then
             echo 'No data changes'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add av-actress-directory/data-live.js
-          git commit -m 'Update AV directory live data'
+          git add av-actress-directory/data-live.js av-actress-directory/data-catalog.js
+          git commit -m 'Update AV directory catalog data'
           git push

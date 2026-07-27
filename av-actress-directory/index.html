@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#120f18">
   <meta name="color-scheme" content="dark">
   <title>日本AV女優名鑑</title>
-  <link rel="stylesheet" href="./styles.css?v=1.0.0">
+  <link rel="stylesheet" href="./styles.css?v=1.1.0">
 </head>
 <body class="gated">
   <div id="ageGate" class="age-gate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
@@ -23,7 +23,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="back-link" href="../" aria-label="MY APPSへ戻る">‹ MY APPS</a>
-      <span class="version">v1.0.0</span>
+      <span class="version">v1.1.0</span>
     </div>
   </header>
 
@@ -31,10 +31,11 @@
     <section class="hero">
       <p class="eyebrow">PUBLIC PROFILE DIRECTORY</p>
       <h1>日本AV女優名鑑</h1>
-      <p class="hero-copy">公開確認できたプロフィールを、名前・出身地・年齢・本名・身長・カップ数から検索。未公表または確認できない項目は「—」で表示します。</p>
+      <p class="hero-copy">公式確認できたプロフィールに加え、外部プロフィールDB由来の参考情報も収録。名前・出身地・年齢・本名・身長・カップ数から検索できます。</p>
       <div class="hero-pills" aria-label="掲載方針">
+        <span>全145名規模</span>
+        <span>参考情報は注記</span>
         <span>本名は公表情報のみ</span>
-        <span>年齢は自動計算</span>
         <span>写真は利用条件を確認</span>
       </div>
     </section>
@@ -120,7 +121,7 @@
           </label>
         </div>
         <div class="filter-actions">
-          <p>範囲指定中は、値が未公表の人物を検索結果から除外します。</p>
+          <p>範囲指定中は、値が未公表の人物を検索結果から除外します。参考情報は詳細画面の注記と確認元を見て判断してください。</p>
           <button id="resetButton" class="reset-button" type="button">条件をリセット</button>
         </div>
       </form>
@@ -135,8 +136,9 @@
 
     <section class="policy-card">
       <h2>掲載方針</h2>
-      <p>芸名・生年月日・出身地・身長・カップ数は、事務所、公式ポートフォリオ、出版社の商品紹介、人物データベースなどで公開された公称値をもとにしています。情報源ごとに差がある項目は空欄にするか注記しています。</p>
-      <p>本名は、本人の過去の芸能活動などを通じて広く公表済みと確認できる場合だけ掲載します。推測・流出情報・未確認情報は掲載しません。</p>
+      <p>芸名・生年月日・出身地・身長・カップ数は、事務所、公式ポートフォリオ、出版社の商品紹介、人物データベースなどで公開された公称値をもとにしています。</p>
+      <p>外部プロフィールデータベースからまとめて収録した値は「参考情報」として詳細画面に注記します。同名人物、改名、公称値変更、資料側の転記誤りを含む可能性があるため、確認元リンクも併せて表示します。</p>
+      <p>本名は、本人の過去の芸能活動などを通じて広く公表済みと確認できる場合だけ掲載します。推測・流出情報・未確認の本名は掲載しません。</p>
       <p>顔写真は再利用条件を確認できた画像のみ表示し、利用可能な画像がない人物はプレースホルダー表示です。</p>
     </section>
   </main>
@@ -147,7 +149,8 @@
   </dialog>
 
   <noscript><p class="noscript">このページの検索機能にはJavaScriptが必要です。</p></noscript>
-  <script src="./data.js?v=1.0.0"></script>
-  <script src="./app.js?v=1.0.0"></script>
+  <script src="./data.js?v=1.1.0"></script>
+  <script src="./data-expanded.js?v=1.1.0"></script>
+  <script src="./app.js?v=1.1.0"></script>
 </body>
 </html>

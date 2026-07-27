@@ -1,0 +1,69 @@
+name: Update AV directory data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 18 * * 1'
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/update-av-official-data.mjs'
+      - '.github/workflows/update-av-directory.yml'
+  pull_request:
+    paths:
+      - 'av-actress-directory/**'
+      - 'scripts/update-av-official-data.mjs'
+      - '.github/workflows/update-av-directory.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-av-directory-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Collect public profile data
+        run: node scripts/update-av-official-data.mjs
+
+      - name: Validate generated files
+        run: |
+          node --check av-actress-directory/data-live.js
+          node --check av-actress-directory/data-official.js
+          node --check av-actress-directory/app.js
+          git diff --check
+
+      - name: Upload generated preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: av-directory-live-data
+          path: av-actress-directory/data-live.js
+          retention-days: 7
+
+      - name: Commit refreshed data
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          if git diff --quiet -- av-actress-directory/data-live.js; then
+            echo 'No data changes'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add av-actress-directory/data-live.js
+          git commit -m 'Update AV directory live data'
+          git push

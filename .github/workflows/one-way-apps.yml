@@ -1,0 +1,126 @@
+name: Apply one-way app navigation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/one-way-apps.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Remove links from apps back to the launcher
+        shell: python
+        run: |
+          from pathlib import Path, PurePosixPath
+          from urllib.parse import urlsplit
+          import posixpath
+          import re
+
+          repo = Path(".")
+
+          exact_replacements = {
+              "minesweeper/index.html": [
+                  (
+                      '<header class="top"><a class="back" href="../">← APPS</a>',
+                      '<header class="top"><span class="back" aria-hidden="true">LOGIC GAME</span>',
+                  ),
+              ],
+              "neon-alarm/index.html": [
+                  (
+                      '<header class="top"><a class="back" href="../">← APPS</a>',
+                      '<header class="top"><span class="back" aria-hidden="true">ALARM</span>',
+                  ),
+              ],
+              "av-actress-directory/index.html": [
+                  (
+                      '<a class="secondary-link" href="../">トップへ戻る</a>',
+                      '<p class="secondary-link">閲覧しない場合は、このページを閉じてください</p>',
+                  ),
+                  (
+                      '<a class="back-link" href="../">‹ MY APPS</a>',
+                      '<span class="back-link" aria-hidden="true">PROFILE DIRECTORY</span>',
+                  ),
+              ],
+              "yoshimoto-tokyo-live/index.html": [
+                  (
+                      '<a class="back-link" href="../" aria-label="MY APPSに戻る"><span aria-hidden="true">‹</span><span>MY APPS</span></a>',
+                      '<span class="back-link" aria-hidden="true">YOSHIMOTO LIVE</span>',
+                  ),
+              ],
+          }
+
+          anchor_pattern = re.compile(r"<a\b(?P<attrs>[^>]*)>(?P<body>.*?)</a>", re.IGNORECASE | re.DOTALL)
+          href_pattern = re.compile(r"\bhref\s*=\s*(['\"])(?P<href>.*?)\1", re.IGNORECASE | re.DOTALL)
+
+          def points_to_launcher(file_path: Path, href: str) -> bool:
+              href = href.strip()
+              if not href or href.startswith(("#", "mailto:", "tel:", "javascript:")):
+                  return False
+
+              parsed = urlsplit(href)
+              normalized_path = parsed.path.rstrip("/")
+
+              if parsed.scheme or parsed.netloc:
+                  return (
+                      parsed.netloc.lower() == "sthsz7t74m-glitch.github.io"
+                      and normalized_path in {"/apps", "/apps/index.html"}
+                  )
+
+              if parsed.path.startswith("/"):
+                  return normalized_path in {"/apps", "/apps/index.html"}
+
+              parent = PurePosixPath(file_path.as_posix()).parent
+              target = posixpath.normpath(posixpath.join(parent.as_posix(), parsed.path))
+              return target in {".", "", "index.html"}
+
+          changed_files = []
+
+          for html_file in sorted(repo.rglob("*.html")):
+              relative = html_file.relative_to(repo)
+              if relative == Path("index.html"):
+                  continue
+
+              text = html_file.read_text(encoding="utf-8")
+              original = text
+
+              for old, new in exact_replacements.get(relative.as_posix(), []):
+                  text = text.replace(old, new)
+
+              def remove_root_anchor(match: re.Match) -> str:
+                  href_match = href_pattern.search(match.group("attrs"))
+                  if href_match and points_to_launcher(relative, href_match.group("href")):
+                      return ""
+                  return match.group(0)
+
+              text = anchor_pattern.sub(remove_root_anchor, text)
+
+              if text != original:
+                  html_file.write_text(text, encoding="utf-8")
+                  changed_files.append(relative.as_posix())
+
+          if not changed_files:
+              print("No launcher backlinks found.")
+          else:
+              print("Updated files:")
+              for path in changed_files:
+                  print(f"- {path}")
+
+      - name: Commit navigation changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Make apps launcher navigation one-way"
+          git push

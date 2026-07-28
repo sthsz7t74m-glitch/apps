@@ -1,75 +1,29 @@
 (() => {
   "use strict";
-
-  const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
-
-  class EventRepository {
-    constructor(raw) {
-      this.events = String(raw || "").split(/\r?\n/).map(v => v.trim()).filter(Boolean).map((line, index) => {
-        const [date="", open="", start="", venue="", area="", title="", genre="", status="", priceMin="", priceText="", performers="", url=""] = line.split("|");
-        return { id:`${date}|${start}|${title}|${index}`, date, open, start, venue, area, title, genre, status, priceMin:Number(priceMin)||0, priceText, performers:performers.split("／").map(v=>v.trim()).filter(Boolean), url };
-      }).filter(e => e.date && e.start && e.title);
-    }
-    all() { return [...this.events]; }
-    performers() {
-      const counts = new Map();
-      this.events.forEach(e => e.performers.forEach(n => counts.set(n, (counts.get(n)||0)+1)));
-      return [...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja")).map(([name])=>name);
-    }
+  const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+  class EventRepository{
+    constructor(raw){this.events=String(raw||"").split(/\r?\n/).map(v=>v.trim()).filter(Boolean).map((line,index)=>{const[date="",open="",start="",venue="",area="",title="",genre="",status="",priceMin="",priceText="",performers="",url=""]=line.split("|");return{id:`${date}|${start}|${title}|${venue}`,legacyId:`${date}|${start}|${title}|${index}`,date,open,start,venue,area,title,genre,status,priceMin:Number(priceMin)||0,priceText,performers:performers.split("／").map(v=>v.trim()).filter(Boolean),url};}).filter(e=>e.date&&e.start&&e.title);}
+    all(){return[...this.events];}
+    performers(){const c=new Map();this.events.forEach(e=>e.performers.forEach(n=>c.set(n,(c.get(n)||0)+1)));return[...c.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],"ja")).map(([n])=>n);}
   }
-
-  class FavoriteStore {
-    constructor(showKey="yoshimotoFavoriteShowsV2", artistKey="yoshimotoFavoriteArtistsV2") {
-      this.showKey=showKey; this.artistKey=artistKey;
-      this.shows=new Set(this.read(showKey)); this.artists=new Set(this.read(artistKey));
-    }
-    read(key) { try { const v=JSON.parse(localStorage.getItem(key)||"[]"); return Array.isArray(v)?v:[]; } catch { return []; } }
-    save() { try { localStorage.setItem(this.showKey,JSON.stringify([...this.shows])); localStorage.setItem(this.artistKey,JSON.stringify([...this.artists])); } catch {} }
-    toggleShow(id){ this.shows.has(id)?this.shows.delete(id):this.shows.add(id); this.save(); }
-    toggleArtist(name){ this.artists.has(name)?this.artists.delete(name):this.artists.add(name); this.save(); }
-    isShow(id){ return this.shows.has(id); }
-    isArtist(name){ return this.artists.has(name); }
-    matchedArtists(event){ return event.performers.filter(n=>this.artists.has(n)); }
+  class FavoriteStore{
+    constructor(showKey="yoshimotoFavoriteShowsV2",artistKey="yoshimotoFavoriteArtistsV2"){this.showKey=showKey;this.artistKey=artistKey;this.shows=new Set(this.read(showKey));this.artists=new Set(this.read(artistKey));}
+    read(k){try{const v=JSON.parse(localStorage.getItem(k)||"[]");return Array.isArray(v)?v:[];}catch{return[];}}
+    save(){try{localStorage.setItem(this.showKey,JSON.stringify([...this.shows]));localStorage.setItem(this.artistKey,JSON.stringify([...this.artists]));}catch{}}
+    isShow(e){return typeof e==="string"?this.shows.has(e):this.shows.has(e.id)||this.shows.has(e.legacyId);}
+    toggleShow(e){const on=this.isShow(e);this.shows.delete(e.id);this.shows.delete(e.legacyId);if(!on)this.shows.add(e.id);this.save();}
+    toggleArtist(n){this.artists.has(n)?this.artists.delete(n):this.artists.add(n);this.save();}
+    isArtist(n){return this.artists.has(n);}
+    matchedArtists(e){return e.performers.filter(n=>this.artists.has(n));}
+    cleanupExpired(events,time){const valid=new Set();events.filter(e=>time.endDate(e)>new Date()).forEach(e=>{valid.add(e.id);valid.add(e.legacyId);});const next=new Set([...this.shows].filter(id=>valid.has(id)));if(next.size!==this.shows.size){this.shows=next;this.save();}}
   }
-
-  class EventTimeService {
-    duration(event){ if(/ルミネ|特別公演|寄席/.test(`${event.title}${event.venue}`))return 110; if(/マンゲキお笑いライブ|お盆SP/.test(event.title))return 75; return 60; }
-    add(time,minutes){ const [h,m]=String(time).split(":").map(Number); if(!Number.isFinite(h)||!Number.isFinite(m))return "--:--"; const t=h*60+m+minutes; return `${String(Math.floor(t/60)%24).padStart(2,"0")}:${String(t%60).padStart(2,"0")}`; }
-    end(event){ return this.add(event.start,this.duration(event)); }
-    endDate(event){ return new Date(`${event.date}T${this.end(event)}:00+09:00`); }
+  class EventTimeService{duration(e){if(/ルミネ|特別公演|寄席/.test(`${e.title}${e.venue}`))return 110;if(/マンゲキお笑いライブ|お盆SP/.test(e.title))return 75;return 60;}add(t,n){const[h,m]=String(t).split(":").map(Number);if(!Number.isFinite(h)||!Number.isFinite(m))return"--:--";const x=h*60+m+n;return`${String(Math.floor(x/60)%24).padStart(2,"0")}:${String(x%60).padStart(2,"0")}`;}end(e){return this.add(e.start,this.duration(e));}endDate(e){return new Date(`${e.date}T${this.end(e)}:00+09:00`);}}
+  class RecommendationService{constructor(f,t){this.favorites=f;this.time=t;}score(e){const matched=this.favorites.matchedArtists(e);if(!matched.length)return null;const days=Math.max(0,Math.ceil((new Date(`${e.date}T${e.start}:00+09:00`)-new Date())/86400000));let score=Math.min(70,matched.length*20);const reasons=[`お気に入り芸人${matched.length}組出演`];if(["yose","neta","neta-corner","conte"].includes(e.genre)){score+=10;reasons.push("ネタ中心の公演");}if(e.status==="available"){score+=10;reasons.push("販売中");}if(days<=7){score+=10;reasons.push("今週開催");}if(e.priceMin&&e.priceMin<=2500){score+=5;reasons.push("2,500円以下");}return{event:e,matched,reasons,days,score:Math.min(100,score)};}}
+  class EventCardRenderer{
+    constructor(f,t){this.favorites=f;this.time=t;}
+    formatDate(v){const[y,m,d]=v.split("-").map(Number),dt=new Date(y,m-1,d);return{md:`${m}/${d}`,wd:"日月火水木金土"[dt.getDay()]};}
+    artistButton(n){const on=this.favorites.isArtist(n);return`<button class="performer-button${on?" is-favorite":""}" type="button" data-artist="${esc(n)}">${on?"★":"☆"} ${esc(n)}</button>`;}
+    render(e,{recommendation=null}={}){const date=this.formatDate(e.date),matched=this.favorites.matchedArtists(e),ordered=[...e.performers].sort((a,b)=>Number(this.favorites.isArtist(b))-Number(this.favorites.isArtist(a))),showFav=this.favorites.isShow(e),genre={yose:"寄席・ネタ",neta:"ネタライブ","neta-corner":"ネタ＋コーナー",project:"企画ライブ"}[e.genre]||"お笑いライブ";return`<article class="live-card" data-event-id="${esc(e.id)}"><button class="show-favorite${showFav?" is-favorite":""}" type="button" data-show-id="${esc(e.id)}">${showFav?"★":"☆"}</button><div class="date-panel"><div class="event-date-layout"><div class="event-date-left"><strong>${date.md}</strong><span>(${date.wd})</span></div><div class="event-date-divider"></div><div class="event-time-list"><div class="event-time-row"><span>◷</span><span class="event-time-label">開場</span><strong>${esc(e.open)}</strong></div><div class="event-time-row"><span>●</span><span class="event-time-label">開演</span><strong>${esc(e.start)}</strong></div><div class="event-time-row end-row"><span>◴</span><span class="event-time-label">終演</span><strong>${this.time.end(e)}</strong></div></div></div></div><div class="card-body"><div class="card-topline"><span class="badge genre">${esc(genre)}</span><span class="badge available">○ ${e.status==="available"?"販売中":"公式確認"}</span>${matched.length?`<span class="badge favorite-artist-mark">★ お気に入り芸人 ${matched.length}組</span>`:""}${recommendation?`<span class="badge recommendation-score-badge">おすすめ ${recommendation.score}点</span>`:""}</div><h2>${esc(e.title)}</h2><div class="meta-line"><span>📍 ${esc(e.area)}・${esc(e.venue)}</span><span>🎫 ${esc(e.priceText)}</span></div><div class="performers-preview">${ordered.map(n=>this.artistButton(n)).join("")}</div>${recommendation?`<div class="recommendation-reasons-inline">${recommendation.reasons.map(r=>`<span>${esc(r)}</span>`).join("")}</div>`:""}<div class="card-actions"><span class="availability-note">終演は公演形式から算出した予定時刻</span><a class="official-link" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">空席・購入を見る →</a></div></div></article>`;}
   }
-
-  class RecommendationService {
-    constructor(favorites,time){ this.favorites=favorites; this.time=time; }
-    score(event){
-      const matched=this.favorites.matchedArtists(event); if(!matched.length)return null;
-      const days=Math.max(0,Math.ceil((new Date(`${event.date}T${event.start}:00+09:00`)-new Date())/86400000));
-      let score=Math.min(70,matched.length*20); const reasons=[`お気に入り芸人${matched.length}組出演`];
-      if(["yose","neta","neta-corner","conte"].includes(event.genre)){score+=10;reasons.push("ネタ中心の公演");}
-      if(event.status==="available"){score+=10;reasons.push("販売中");}
-      if(days<=7){score+=10;reasons.push("今週開催");}
-      if(event.priceMin&&event.priceMin<=2500){score+=5;reasons.push("2,500円以下");}
-      return {event,matched,reasons,days,score:Math.min(100,score)};
-    }
-  }
-
-  class EventCardRenderer {
-    constructor(favorites,time){ this.favorites=favorites; this.time=time; }
-    formatDate(value){ const [y,m,d]=value.split("-").map(Number); const dt=new Date(y,m-1,d); return {md:`${m}/${d}`,wd:"日月火水木金土"[dt.getDay()]}; }
-    artistButton(name){ const on=this.favorites.isArtist(name); return `<button class="performer-button${on?" is-favorite":""}" type="button" data-artist="${esc(name)}">${on?"★":"☆"} ${esc(name)}</button>`; }
-    render(event,{recommendation=null}={}){
-      const date=this.formatDate(event.date), matched=this.favorites.matchedArtists(event), first=event.performers.slice(0,6), rest=event.performers.slice(6), showFav=this.favorites.isShow(event.id);
-      const genre={yose:"寄席・ネタ",neta:"ネタライブ","neta-corner":"ネタ＋コーナー",project:"企画ライブ"}[event.genre]||"お笑いライブ";
-      return `<article class="live-card" data-event-id="${esc(event.id)}">
-        <button class="show-favorite${showFav?" is-favorite":""}" type="button" data-show-id="${esc(event.id)}">${showFav?"★":"☆"}</button>
-        <div class="date-panel"><div class="event-date-layout"><div class="event-date-left"><strong>${date.md}</strong><span>(${date.wd})</span></div><div class="event-date-divider"></div><div class="event-time-list"><div class="event-time-row"><span>◷</span><span class="event-time-label">開場</span><strong>${esc(event.open)}</strong></div><div class="event-time-row"><span>●</span><span class="event-time-label">開演</span><strong>${esc(event.start)}</strong></div><div class="event-time-row end-row"><span>◴</span><span class="event-time-label">終演</span><strong>${this.time.end(event)}</strong></div></div></div></div>
-        <div class="card-body"><div class="card-topline"><span class="badge genre">${esc(genre)}</span><span class="badge available">○ ${event.status==="available"?"販売中":"公式確認"}</span>${matched.length?`<span class="badge favorite-artist-mark">★ お気に入り芸人 ${matched.length}組</span>`:""}${recommendation?`<span class="badge recommendation-score-badge">おすすめ ${recommendation.score}点</span>`:""}</div>
-        <h2>${esc(event.title)}</h2><div class="meta-line"><span>📍 ${esc(event.area)}・${esc(event.venue)}</span><span>🎫 ${esc(event.priceText)}</span></div>
-        <div class="performers-preview">${first.map(n=>this.artistButton(n)).join("")}</div>${rest.length?`<details class="performer-details"><summary>ほか ${rest.length}組を見る</summary><div class="performers-preview">${rest.map(n=>this.artistButton(n)).join("")}</div></details>`:""}
-        ${recommendation?`<div class="recommendation-reasons-inline">${recommendation.reasons.map(r=>`<span>${esc(r)}</span>`).join("")}</div>`:""}
-        <div class="card-actions"><span class="availability-note">終演は公演形式から算出した予定時刻</span><a class="official-link" href="${esc(event.url)}" target="_blank" rel="noopener noreferrer">空席・購入を見る →</a></div></div></article>`;
-    }
-  }
-
   window.YoshimotoDomain={EventRepository,FavoriteStore,EventTimeService,RecommendationService,EventCardRenderer,esc};
 })();

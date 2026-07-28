@@ -18,13 +18,14 @@
         promote.textContent = "最推し";
         promote.setAttribute("aria-label", "最推しにする");
       }
-      if (remove) {
-        remove.textContent = "解除";
-      }
+      if (remove) remove.textContent = "解除";
     });
   }
 
   window.addEventListener("DOMContentLoaded", () => {
+    const version = document.querySelector(".version");
+    if (version) version.textContent = "v2.4.0";
+
     const list = document.getElementById("favoriteArtistsList");
     compactArtistCards();
     if (!list) return;

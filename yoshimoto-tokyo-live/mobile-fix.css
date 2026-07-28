@@ -1,4 +1,4 @@
-/* Mobile layout patch v1.4.0 */
+/* Mobile layout patch v1.5.0 */
 html,
 body {
   width: 100%;
@@ -20,37 +20,81 @@ body {
   max-width: 100%;
 }
 
-.field input[type="date"] {
+/*
+ * iOS/WKWebView places the native date text too high inside the input.
+ * Keep the real date input transparent and clickable, and render a stable,
+ * perfectly centered value above it.
+ */
+.date-picker-shell {
+  position: relative;
+  display: grid;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.date-picker-shell:focus-within {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, .16);
+}
+
+.date-picker-shell input[type="date"] {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
   display: block;
   width: 100%;
+  height: 100%;
   min-width: 0;
   max-width: 100%;
-  inline-size: 100%;
-  min-inline-size: 0;
-  max-inline-size: 100%;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  opacity: 0;
+  cursor: pointer;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.date-picker-value {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  color: #0f172a;
+  font-size: 15px;
+  font-weight: 820;
   font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -.02em;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.field input[type="date"]::-webkit-date-and-time-value {
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  text-align: center;
+.date-picker-value.is-empty {
+  color: #94a3b8;
+  font-weight: 760;
 }
 
-.field input[type="date"]::-webkit-datetime-edit,
-.field input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-  min-width: 0;
-  padding: 0;
-}
-
-.field input[type="date"]::-webkit-calendar-picker-indicator {
-  flex: 0 0 auto;
-  margin: 0;
-  padding: 0;
+.date-picker-icon {
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  z-index: 2;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 @media (max-width: 759px) {
@@ -88,16 +132,6 @@ body {
     grid-column: auto;
   }
 
-  .field-date input[type="date"] {
-    height: 46px;
-    padding: 0 7px;
-    border-radius: 13px;
-    font-size: clamp(13px, 3.65vw, 15px);
-    font-weight: 800;
-    letter-spacing: -.025em;
-    text-align: center;
-  }
-
   .performer-chips {
     flex-wrap: nowrap;
     max-height: none;
@@ -133,21 +167,13 @@ body {
     width: 100%;
   }
 
-  .field-date input[type="date"] {
-    padding-right: 5px;
-    padding-left: 5px;
+  .date-picker-value {
+    padding-right: 24px;
+    padding-left: 8px;
     font-size: 13px;
   }
-}
 
-@media (max-width: 320px) {
-  .advanced-filters,
-  .advanced-filters.is-open {
-    grid-template-columns: 1fr;
-  }
-
-  .field-date,
-  .field-wide {
-    grid-column: auto;
+  .date-picker-icon {
+    right: 8px;
   }
 }

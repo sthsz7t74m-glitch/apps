@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "1.8.2";
+  const VERSION = "1.9.0";
 
   function allPerformerNames() {
     const raw = window.YOSHIMOTO_LIVE_ROWS || "";
@@ -50,26 +50,17 @@
     return {
       scrollX: window.scrollX,
       scrollY: window.scrollY,
-      openDetails: [...document.querySelectorAll(".live-card details[open]")]
-        .map((details) => details.closest(".live-card")?.dataset.eventId)
-        .filter(Boolean),
       focusedEventId: document.activeElement?.closest?.(".live-card")?.dataset.eventId || ""
     };
   }
 
   function restoreUi(snapshot) {
     showAllPerformers();
-
-    snapshot.openDetails.forEach((eventId) => {
-      document.querySelectorAll(`.live-card[data-event-id="${CSS.escape(eventId)}"] details`).forEach((details) => {
-        details.open = true;
-      });
-    });
-
     window.scrollTo(snapshot.scrollX, snapshot.scrollY);
 
     if (snapshot.focusedEventId) {
-      const card = document.querySelector(`.live-card[data-event-id="${CSS.escape(snapshot.focusedEventId)}"]`);
+      const eventId = window.CSS?.escape ? CSS.escape(snapshot.focusedEventId) : snapshot.focusedEventId.replace(/["\\]/g, "\\$&");
+      const card = document.querySelector(`.live-card[data-event-id="${eventId}"]`);
       const favoriteButton = card?.querySelector(".show-favorite, .performer-button.is-favorite");
       favoriteButton?.focus({ preventScroll: true });
     }
@@ -84,8 +75,15 @@
 
   document.addEventListener("click", (event) => {
     const favoriteControl = event.target.closest("[data-show-id], [data-artist], [data-remove-artist]");
-    if (!favoriteControl) return;
-    scheduleRestore(snapshotUi());
+    if (favoriteControl) scheduleRestore(snapshotUi());
+  }, true);
+
+  document.addEventListener("toggle", (event) => {
+    const details = event.target;
+    if (!(details instanceof HTMLDetailsElement) || !details.open || !details.closest(".live-card")) return;
+    document.querySelectorAll(".live-card details[open]").forEach((other) => {
+      if (other !== details) other.open = false;
+    });
   }, true);
 
   window.addEventListener("DOMContentLoaded", () => {

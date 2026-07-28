@@ -1,1 +1,77 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f172a"><title>東京よしもと ネタライブ検索</title><link rel="stylesheet" href="./styles.css?v=1.3.0"><link rel="stylesheet" href="./mobile-fix.css?v=1.5.0"><link rel="stylesheet" href="./time-layout.css?v=1.6.0"><script src="./data.js?v=1.2.0" defer></script><script src="./app.js?v=1.3.0" defer></script><script src="./date-ui.js?v=1.5.0" defer></script><script src="./time-layout.js?v=1.6.0" defer></script><style>.favbar{display:flex;gap:8px;overflow:auto;padding:10px 0}.favbtn{flex:0 0 auto;padding:10px 13px;border:1px solid #bae6fd;border-radius:999px;background:#f0f9ff;color:#075985;font-weight:900}.favbtn.on{background:#0284c7;color:#fff}.live-card{position:relative}.showstar{position:absolute;top:20px;right:20px;z-index:3;width:40px;height:40px;border:1px solid #ffffff55;border-radius:50%;background:#0f172a99;color:#fff;font-size:23px}.showstar.on{background:#facc15;color:#713f12}.performer-button:before{content:'☆';margin-right:4px}.performer-button.fav:before{content:'★';color:#eab308}.favartists{display:flex;gap:7px;overflow:auto}.favartists button{flex:0 0 auto;padding:8px 11px;border:0;border-radius:999px;background:#fef9c3;color:#854d0e;font-weight:900}.favhelp{font-size:11px;color:#64748b}.time-layout-right{display:grid!important;grid-template-columns:auto auto auto!important;column-gap:7px!important;row-gap:3px!important}.time-layout-row{display:contents!important}.end-time-row{opacity:.82}.favempty{padding:24px;text-align:center;border:1px dashed #94a3b8;border-radius:18px}</style></head><body><div class="app-shell"><header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version" id="versionLabel">v1.7.0</span></header><main><section class="hero"><p class="eyebrow">TOKYO YOSHIMOTO LIVE</p><h1>普通のネタライブを探す</h1><p class="hero-copy">漫才・コント・寄席を優先表示。企画ライブを避けて、出演者・日程・会場・価格から選べます。</p><div class="mode-tabs"><button class="mode-tab is-active" data-mode="neta">ネタ中心</button><button class="mode-tab" data-mode="all">すべて</button><button class="mode-tab" data-mode="available">販売中のみ</button></div></section><section class="stats"><article class="stat"><span>表示中</span><strong id="visibleCount">0</strong><small>公演</small></article><article class="stat"><span>ネタ中心</span><strong id="netaCount">0</strong><small>公演</small></article><article class="stat"><span>最短公演</span><strong id="nextDate">—</strong><small id="nextDateSub">該当なし</small></article></section><section class="search-panel"><div class="search-row"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="出演者・公演名で検索"></label><button class="filter-toggle" id="filterToggle">絞り込み <span id="filterBadge" class="filter-badge" hidden>0</span></button></div><div class="advanced-filters" id="advancedFilters"><label class="field"><span>会場</span><select id="venueFilter"><option value="">全会場</option></select></label><label class="field"><span>ジャンル</span><select id="genreFilter"><option value="">すべて</option><option value="yose">寄席・大型公演</option><option value="neta">ネタライブ</option><option value="neta-corner">ネタ＋コーナー</option><option value="project">企画ライブ</option></select></label><label class="field field-date"><span>開始日</span><span class="date-picker-shell"><input id="fromDate" type="date"><span class="date-picker-value" id="fromDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label><label class="field field-date"><span>終了日</span><span class="date-picker-shell"><input id="toDate" type="date"><span class="date-picker-value" id="toDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label><label class="field"><span>販売状況</span><select id="statusFilter"><option value="">すべて</option><option value="available">販売中</option><option value="check">公式確認</option></select></label><label class="field"><span>価格上限</span><select id="priceFilter"><option value="">指定なし</option><option value="1500">1,500円まで</option><option value="2500">2,500円まで</option><option value="3000">3,000円まで</option><option value="4000">4,000円まで</option><option value="5000">5,000円まで</option></select></label><label class="field field-wide"><span>並び順</span><select id="sortFilter"><option value="date">日程が近い順</option><option value="price">価格が安い順</option><option value="venue">会場順</option><option value="performers">出演者が多い順</option></select></label></div><div class="performer-filter"><div class="performer-filter-head"><span>よく出る出演者</span><button id="clearPerformer" hidden>選択解除</button></div><div class="performer-chips" id="performerChips"></div></div></section><div class="favbar"><button class="favbtn on" data-fm="all">すべて</button><button class="favbtn" data-fm="shows">★ お気に入り公演 <b id="sc">0</b></button><button class="favbtn" data-fm="artists">★ お気に入り芸人 <b id="ac">0</b></button></div><div class="favartists" id="favartists"></div><p class="favhelp">公演は右上の☆、芸人は出演者名を長押しで登録できます。</p><div class="results-bar"><p id="resultSummary">読み込み中...</p><button id="resetButton">リセット</button></div><section class="live-list" id="liveList"></section><footer class="page-note"><p id="sourceNote"></p></footer></main></div><template id="emptyTemplate"><div class="empty-state"><strong>条件に合う公演がありません</strong></div></template><script>(()=>{const SK='yfShows',AK='yfArtists';let sm='all',S=new Set(JSON.parse(localStorage.getItem(SK)||'[]')),A=new Set(JSON.parse(localStorage.getItem(AK)||'[]'));const save=()=>{localStorage.setItem(SK,JSON.stringify([...S]));localStorage.setItem(AK,JSON.stringify([...A]))},inf=c=>{let d=c.querySelector('.date-main strong')?.textContent||'',t=c.querySelector('h2')?.textContent||'',s=c.textContent.match(/開演\s*(\d{1,2}:\d{2})/)?.[1]||'';let[m,dy]=d.split('/').map(Number);return{d,t,s,m,dy,y:new Date().getFullYear()}},id=c=>{let x=inf(c);return[x.y,x.m,x.dy,x.s,x.t].join('|')},dur=c=>/ルミネ|特別公演|寄席/.test(c.textContent)?110:/マンゲキお笑いライブ|お盆SP/.test(c.textContent)?75:60,plus=(t,n)=>{let[h,m]=t.split(':').map(Number),x=h*60+m+n;return`${String(Math.floor(x/60)%24).padStart(2,'0')}:${String(x%60).padStart(2,'0')}`};function draw(){document.querySelectorAll('.live-card').forEach(c=>{let cid=id(c),st=c.querySelector('.showstar');if(!st){st=document.createElement('button');st.className='showstar';st.onclick=e=>{e.stopPropagation();S.has(cid)?S.delete(cid):S.add(cid);save();draw()};c.append(st)}st.textContent=S.has(cid)?'★':'☆';st.classList.toggle('on',S.has(cid));let r=c.querySelector('.time-layout-right'),x=inf(c);if(r&&x.s&&!r.querySelector('.end-time-row')){let z=document.createElement('div');z.className='time-layout-row end-time-row';z.innerHTML=`<span>◷</span><span class="time-layout-label">終演</span><strong class="time-layout-value">${plus(x.s,dur(c))}</strong>`;r.append(z)}c.querySelectorAll('.performer-button').forEach(b=>{let n=b.textContent.trim().replace(/^[☆★]/,'');b.dataset.an=n;b.classList.toggle('fav',A.has(n));if(!b.dataset.fb){b.dataset.fb=1;let tm;b.onpointerdown=()=>tm=setTimeout(()=>{A.has(n)?A.delete(n):A.add(n);save();draw()},500);b.onpointerup=b.onpointerleave=()=>clearTimeout(tm)}})});document.querySelector('#sc').textContent=S.size;document.querySelector('#ac').textContent=A.size;document.querySelector('#favartists').innerHTML=[...A].map(n=>`<button data-n="${n}">★ ${n}</button>`).join('');apply()}function apply(){let n=0;document.querySelectorAll('.live-card').forEach(c=>{let ok=sm==='all'||sm==='shows'&&S.has(c.dataset.favoriteId||id(c))||sm==='artists'&&[...c.querySelectorAll('.performer-button')].some(b=>A.has(b.dataset.an));c.hidden=!ok;if(ok)n++});document.querySelector('.favempty')?.remove();if(!n&&sm!=='all'){let e=document.createElement('div');e.className='favempty';e.textContent='お気に入りはまだありません';document.querySelector('#liveList').prepend(e)}}window.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.favbtn').forEach(b=>b.onclick=()=>{sm=b.dataset.fm;document.querySelectorAll('.favbtn').forEach(x=>x.classList.toggle('on',x===b));apply()});document.querySelector('#favartists').onclick=e=>{let b=e.target.closest('[data-n]');if(!b)return;let q=document.querySelector('#searchInput');q.value=b.dataset.n;q.dispatchEvent(new Event('input',{bubbles:true}))};new MutationObserver(draw).observe(document.querySelector('#liveList'),{childList:true,subtree:true});setTimeout(draw,0);document.querySelector('#versionLabel').textContent='v1.7.0'});})();</script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>東京よしもと ネタライブ検索</title>
+  <link rel="stylesheet" href="./styles.css?v=1.3.0">
+  <link rel="stylesheet" href="./mobile-fix.css?v=1.5.0">
+  <link rel="stylesheet" href="./favorites-v180.css?v=1.8.0">
+  <script src="./data.js?v=1.2.0" defer></script>
+  <script src="./date-ui.js?v=1.5.0" defer></script>
+  <script src="./app-v180.js?v=1.8.0" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v1.8.0</span></header>
+    <main>
+      <section class="hero">
+        <p class="eyebrow">TOKYO YOSHIMOTO LIVE</p>
+        <h1>普通のネタライブを探す</h1>
+        <p class="hero-copy">漫才・コント・寄席を優先表示。出演者・日程・会場・価格から選べます。</p>
+        <div class="mode-tabs">
+          <button class="mode-tab is-active" type="button" data-mode="neta">ネタ中心</button>
+          <button class="mode-tab" type="button" data-mode="all">すべて</button>
+          <button class="mode-tab" type="button" data-mode="available">販売中のみ</button>
+        </div>
+      </section>
+
+      <nav class="page-tabs" id="pageTabs" aria-label="ページ切り替え">
+        <button class="page-tab is-active" type="button" data-page="list">公演一覧</button>
+        <button class="page-tab" type="button" data-page="shows">お気に入り公演 <b id="favoriteShowCount">0</b></button>
+        <button class="page-tab" type="button" data-page="artists">お気に入り芸人 <b id="favoriteArtistCount">0</b></button>
+      </nav>
+
+      <section id="listPage" class="page-section">
+        <section class="stats">
+          <article class="stat"><span>表示中</span><strong id="visibleCount">0</strong><small>公演</small></article>
+          <article class="stat"><span>ネタ中心</span><strong id="netaCount">0</strong><small>公演</small></article>
+          <article class="stat"><span>最短公演</span><strong id="nextDate">—</strong><small id="nextDateSub">該当なし</small></article>
+        </section>
+
+        <section class="search-panel">
+          <div class="search-row">
+            <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="出演者・公演名で検索"></label>
+            <button class="filter-toggle" id="filterToggle" type="button">絞り込み <span id="filterBadge" class="filter-badge" hidden>0</span></button>
+          </div>
+          <div class="advanced-filters" id="advancedFilters">
+            <label class="field"><span>会場</span><select id="venueFilter"><option value="">全会場</option></select></label>
+            <label class="field"><span>ジャンル</span><select id="genreFilter"><option value="">すべて</option><option value="yose">寄席・大型公演</option><option value="neta">ネタライブ</option><option value="neta-corner">ネタ＋コーナー</option><option value="project">企画ライブ</option></select></label>
+            <label class="field field-date"><span>開始日</span><span class="date-picker-shell"><input id="fromDate" type="date"><span class="date-picker-value" id="fromDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label>
+            <label class="field field-date"><span>終了日</span><span class="date-picker-shell"><input id="toDate" type="date"><span class="date-picker-value" id="toDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label>
+            <label class="field"><span>販売状況</span><select id="statusFilter"><option value="">すべて</option><option value="available">販売中</option><option value="check">公式確認</option></select></label>
+            <label class="field"><span>価格上限</span><select id="priceFilter"><option value="">指定なし</option><option value="1500">1,500円まで</option><option value="2500">2,500円まで</option><option value="3000">3,000円まで</option><option value="4000">4,000円まで</option><option value="5000">5,000円まで</option></select></label>
+            <label class="field field-wide"><span>並び順</span><select id="sortFilter"><option value="date">日程が近い順</option><option value="price">価格が安い順</option><option value="venue">会場順</option><option value="performers">出演者が多い順</option></select></label>
+          </div>
+          <div class="performer-filter"><div class="performer-filter-head"><span>よく出る出演者</span><button id="clearPerformer" type="button" hidden>選択解除</button></div><div class="performer-chips" id="performerChips"></div></div>
+        </section>
+        <div class="results-bar"><p id="resultSummary">読み込み中...</p><button id="resetButton" type="button">リセット</button></div>
+        <section class="live-list" id="liveList"></section>
+      </section>
+
+      <section id="showsPage" class="page-section" hidden>
+        <div class="page-heading"><h2>お気に入り公演</h2><p>終演予定を過ぎた公演は自動で削除されます。</p></div>
+        <section class="live-list" id="favoriteShowsList"></section>
+      </section>
+
+      <section id="artistsPage" class="page-section" hidden>
+        <div class="page-heading"><h2>お気に入り芸人</h2><p>出演者名をタップして登録・解除できます。</p></div>
+        <section id="favoriteArtistsList"></section>
+      </section>
+
+      <footer class="page-note"><p>販売状況・出演者・正確な終演時間は公式ページで最終確認してください。</p></footer>
+    </main>
+  </div>
+</body>
+</html>

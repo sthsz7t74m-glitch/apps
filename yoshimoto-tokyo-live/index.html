@@ -7,15 +7,17 @@
   <title>東京よしもと ネタライブ検索</title>
   <link rel="stylesheet" href="./styles.css?v=1.3.0">
   <link rel="stylesheet" href="./mobile-fix.css?v=1.5.0">
-  <link rel="stylesheet" href="./favorites-v180.css?v=1.8.2">
+  <link rel="stylesheet" href="./favorites-v180.css?v=1.9.0">
+  <link rel="stylesheet" href="./recommendations-v190.css?v=1.9.0">
   <script src="./data.js?v=1.2.0" defer></script>
   <script src="./date-ui.js?v=1.5.0" defer></script>
   <script src="./app-v180.js?v=1.8.1" defer></script>
-  <script src="./interaction-fix-v182.js?v=1.8.2" defer></script>
+  <script src="./interaction-fix-v182.js?v=1.9.0" defer></script>
+  <script src="./recommendations-v190.js?v=1.9.0" defer></script>
 </head>
 <body>
   <div class="app-shell">
-    <header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v1.8.2</span></header>
+    <header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v1.9.0</span></header>
     <main>
       <section class="hero">
         <p class="eyebrow">TOKYO YOSHIMOTO LIVE</p>
@@ -30,6 +32,7 @@
 
       <nav class="page-tabs" id="pageTabs" aria-label="ページ切り替え">
         <button class="page-tab is-active" type="button" data-page="list">公演一覧</button>
+        <button class="page-tab" type="button" data-page="recommendations">おすすめ公演</button>
         <button class="page-tab" type="button" data-page="shows">お気に入り公演 <b id="favoriteShowCount">0</b></button>
         <button class="page-tab" type="button" data-page="artists">お気に入り芸人 <b id="favoriteArtistCount">0</b></button>
       </nav>
@@ -59,6 +62,20 @@
         </section>
         <div class="results-bar"><p id="resultSummary">読み込み中...</p><button id="resetButton" type="button">リセット</button></div>
         <section class="live-list" id="liveList"></section>
+      </section>
+
+      <section id="recommendationsPage" class="page-section" hidden>
+        <div class="recommendation-intro">
+          <h2>おすすめ公演</h2>
+          <p>お気に入り芸人の出演数、ネタ中心か、販売状況、開催日、価格からおすすめ度を計算します。</p>
+        </div>
+        <div class="recommendation-filter" aria-label="おすすめの絞り込み">
+          <button class="is-active" type="button" data-recommendation-filter="all">総合</button>
+          <button type="button" data-recommendation-filter="week">今週</button>
+          <button type="button" data-recommendation-filter="many">2組以上出演</button>
+          <button type="button" data-recommendation-filter="value">2,500円以下</button>
+        </div>
+        <section id="recommendationList" class="recommendation-list"></section>
       </section>
 
       <section id="showsPage" class="page-section" hidden>

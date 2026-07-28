@@ -7,16 +7,16 @@
   <title>東京よしもと ネタライブ検索</title>
   <link rel="stylesheet" href="./styles.css?v=1.3.0">
   <link rel="stylesheet" href="./mobile-fix.css?v=1.5.0">
-  <link rel="stylesheet" href="./favorites-v180.css?v=2.1.0">
-  <link rel="stylesheet" href="./shared-components-v200.css?v=2.1.0">
+  <link rel="stylesheet" href="./favorites-v180.css?v=2.2.0">
+  <link rel="stylesheet" href="./shared-components-v200.css?v=2.2.0">
   <script src="./data.js?v=1.2.0" defer></script>
   <script src="./date-ui.js?v=1.5.0" defer></script>
-  <script src="./domain-v200.js?v=2.1.0" defer></script>
-  <script src="./app-v200.js?v=2.1.0" defer></script>
+  <script src="./domain-v200.js?v=2.2.0" defer></script>
+  <script src="./app-v200.js?v=2.2.0" defer></script>
 </head>
 <body>
 <div class="app-shell">
-<header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v2.1.0</span></header>
+<header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v2.2.0</span></header>
 <main>
 <section class="hero"><p class="eyebrow">TOKYO YOSHIMOTO LIVE</p><h1>普通のネタライブを探す</h1><p class="hero-copy">漫才・コント・寄席を優先表示。出演者・日程・会場・価格から選べます。</p><div class="mode-tabs"><button class="mode-tab is-active" type="button" data-mode="neta">ネタ中心</button><button class="mode-tab" type="button" data-mode="all">すべて</button><button class="mode-tab" type="button" data-mode="available">販売中のみ</button></div></section>
 <nav class="page-tabs" id="pageTabs" aria-label="ページ切り替え"><button class="page-tab is-active" type="button" data-page="list">公演一覧</button><button class="page-tab" type="button" data-page="recommendations">おすすめ公演</button><button class="page-tab" type="button" data-page="shows">お気に入り公演 <b id="favoriteShowCount">0</b></button><button class="page-tab" type="button" data-page="artists">お気に入り芸人 <b id="favoriteArtistCount">0</b></button></nav>
@@ -25,9 +25,9 @@
 <section class="search-panel"><div class="search-row"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="出演者・公演名で検索"></label><button class="filter-toggle" id="filterToggle" type="button">絞り込み <span id="filterBadge" class="filter-badge" hidden>0</span></button></div><div class="advanced-filters" id="advancedFilters"><label class="field"><span>会場</span><select id="venueFilter"><option value="">全会場</option></select></label><label class="field"><span>ジャンル</span><select id="genreFilter"><option value="">すべて</option><option value="yose">寄席・大型公演</option><option value="neta">ネタライブ</option><option value="neta-corner">ネタ＋コーナー</option><option value="project">企画ライブ</option></select></label><label class="field field-date"><span>開始日</span><span class="date-picker-shell"><input id="fromDate" type="date"><span class="date-picker-value" id="fromDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label><label class="field field-date"><span>終了日</span><span class="date-picker-shell"><input id="toDate" type="date"><span class="date-picker-value" id="toDateDisplay">指定なし</span><span class="date-picker-icon">▾</span></span></label><label class="field"><span>販売状況</span><select id="statusFilter"><option value="">すべて</option><option value="available">販売中</option><option value="check">公式確認</option></select></label><label class="field"><span>曜日区分</span><select id="dayTypeFilter"><option value="">すべて</option><option value="weekend">土日祝</option><option value="weekday">平日</option></select></label><label class="field"><span>価格上限</span><select id="priceFilter"><option value="">指定なし</option><option value="1500">1,500円まで</option><option value="2500">2,500円まで</option><option value="3000">3,000円まで</option><option value="4000">4,000円まで</option><option value="5000">5,000円まで</option></select></label><label class="field field-wide"><span>並び順</span><select id="sortFilter"><option value="date">日程が近い順</option><option value="price">価格が安い順</option><option value="venue">会場順</option><option value="performers">出演者が多い順</option></select></label></div><div class="performer-filter"><div class="performer-filter-head"><span>出演者一覧</span><button id="clearPerformer" type="button" hidden>選択解除</button></div><div class="performer-chips" id="performerChips"></div></div></section>
 <div class="results-bar"><p id="resultSummary">読み込み中...</p><button id="resetButton" type="button">リセット</button></div><section class="live-list" id="liveList"></section>
 </section>
-<section id="recommendationsPage" class="page-section" hidden><div class="recommendation-intro"><h2>おすすめ公演</h2><p>お気に入り芸人の出演数、ネタ中心か、販売状況、開催日、価格からおすすめ度を計算します。</p></div><div class="recommendation-filter"><button class="is-active" type="button" data-recommendation-filter="all">総合</button><button type="button" data-recommendation-filter="week">今週</button><button type="button" data-recommendation-filter="many">2組以上出演</button><button type="button" data-recommendation-filter="value">2,500円以下</button></div><section id="recommendationList" class="recommendation-list"></section></section>
+<section id="recommendationsPage" class="page-section" hidden><div class="recommendation-intro"><h2>おすすめ公演</h2><p>最推し・お気に入り芸人の出演数、ネタ中心か、販売状況、開催日、価格からおすすめ度を計算します。</p></div><div class="recommendation-filter"><button class="is-active" type="button" data-recommendation-filter="all">総合</button><button type="button" data-recommendation-filter="week">今週</button><button type="button" data-recommendation-filter="many">2組以上出演</button><button type="button" data-recommendation-filter="value">2,500円以下</button></div><section id="recommendationList" class="recommendation-list"></section></section>
 <section id="showsPage" class="page-section" hidden><div class="page-heading"><h2>お気に入り公演</h2><p>公演日の翌日になると自動で削除されます。</p></div><section class="live-list" id="favoriteShowsList"></section></section>
-<section id="artistsPage" class="page-section" hidden><div class="page-heading"><h2>お気に入り芸人</h2><p>出演者名をタップして登録・解除できます。</p></div><section id="favoriteArtistsList"></section></section>
+<section id="artistsPage" class="page-section" hidden><div class="page-heading"><h2>お気に入り芸人</h2><p>出演者名をタップすると、☆ → ★お気に入り → ♥最推し の順に切り替わります。</p></div><section id="favoriteArtistsList"></section></section>
 <footer class="page-note"><p>販売状況・出演者・正確な終演時間は公式ページで最終確認してください。</p></footer>
 </main></div>
 </body>

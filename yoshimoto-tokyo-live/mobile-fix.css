@@ -1,4 +1,4 @@
-/* Mobile layout patch v1.3.0 */
+/* Mobile layout patch v1.4.0 */
 html,
 body {
   width: 100%;
@@ -28,8 +28,29 @@ body {
   inline-size: 100%;
   min-inline-size: 0;
   max-inline-size: 100%;
+  overflow: hidden;
   -webkit-appearance: none;
   appearance: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.field input[type="date"]::-webkit-date-and-time-value {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.field input[type="date"]::-webkit-datetime-edit,
+.field input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  min-width: 0;
+  padding: 0;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
 }
 
 @media (max-width: 759px) {
@@ -59,10 +80,22 @@ body {
   .advanced-filters,
   .advanced-filters.is-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 10px;
+    row-gap: 11px;
   }
 
   .field-date {
-    grid-column: 1 / -1;
+    grid-column: auto;
+  }
+
+  .field-date input[type="date"] {
+    height: 46px;
+    padding: 0 7px;
+    border-radius: 13px;
+    font-size: clamp(13px, 3.65vw, 15px);
+    font-weight: 800;
+    letter-spacing: -.025em;
+    text-align: center;
   }
 
   .performer-chips {
@@ -100,6 +133,14 @@ body {
     width: 100%;
   }
 
+  .field-date input[type="date"] {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 320px) {
   .advanced-filters,
   .advanced-filters.is-open {
     grid-template-columns: 1fr;

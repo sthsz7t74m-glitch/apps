@@ -1,0 +1,56 @@
+name: Update ONE NEWS data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,37 * * * *'
+  push:
+    paths:
+      - 'ai-news/scripts/update-news.mjs'
+      - 'ai-news/data/sources.json'
+      - '.github/workflows/update-ai-news.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: one-news-data
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check browser JavaScript
+        run: |
+          node --check ai-news/app.js
+          node --check ai-news/demo-data.js
+          node --check ai-news/scripts/update-news.mjs
+
+      - name: Fetch and deduplicate feeds
+        run: node ai-news/scripts/update-news.mjs
+
+      - name: Commit updated data
+        shell: bash
+        run: |
+          if git diff --quiet -- ai-news/data/news.json; then
+            echo 'News data is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ai-news/data/news.json
+          git commit -m 'data: update ONE NEWS feed'
+          git push

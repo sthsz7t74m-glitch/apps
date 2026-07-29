@@ -45,7 +45,7 @@ jobs:
       - name: Commit updated data
         shell: bash
         run: |
-          if git diff --quiet -- ai-news/data/news.json; then
+          if [ -z "$(git status --porcelain -- ai-news/data/news.json)" ]; then
             echo 'News data is unchanged.'
             exit 0
           fi

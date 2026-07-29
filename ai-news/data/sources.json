@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "nhk-news",
+      "name": "NHK NEWS WEB",
+      "url": "https://www3.nhk.or.jp/rss/news/cat0.xml",
+      "type": "報道機関",
+      "category": "国内",
+      "language": "ja",
+      "priority": 12,
+      "maxItems": 35
+    },
+    {
+      "id": "bbc-japanese",
+      "name": "BBC News Japan",
+      "url": "https://feeds.bbci.co.uk/japanese/rss.xml",
+      "type": "報道機関",
+      "category": "国際",
+      "language": "ja",
+      "priority": 10,
+      "maxItems": 30
+    },
+    {
+      "id": "itmedia",
+      "name": "ITmedia",
+      "url": "https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 9,
+      "maxItems": 40
+    },
+    {
+      "id": "impress-watch",
+      "name": "Impress Watch",
+      "url": "https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 8,
+      "maxItems": 35
+    },
+    {
+      "id": "livedoor-news",
+      "name": "ライブドアニュース",
+      "url": "https://news.livedoor.com/topics/rss/top.xml",
+      "type": "報道機関",
+      "category": "国内",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 35
+    },
+    {
+      "id": "jma-extra",
+      "name": "気象庁 防災情報",
+      "url": "https://www.data.jma.go.jp/developer/xml/feed/extra.xml",
+      "type": "公式発表",
+      "category": "気象・防災",
+      "language": "ja",
+      "priority": 14,
+      "maxItems": 25
+    },
+    {
+      "id": "google-japan",
+      "name": "Google Japan Blog",
+      "url": "https://japan.googleblog.com/feeds/posts/default",
+      "type": "公式発表",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 8,
+      "maxItems": 20
+    },
+    {
+      "id": "openai-news",
+      "name": "OpenAI News",
+      "url": "https://openai.com/news/rss.xml",
+      "type": "公式発表",
+      "category": "AI・IT",
+      "language": "en",
+      "priority": 8,
+      "maxItems": 20
+    }
+  ]
+}

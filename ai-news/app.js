@@ -6,6 +6,7 @@
   const KEYWORDS_KEY = 'oneNewsKeywords';
   const SAVED_KEY = 'oneNewsSaved';
   const VIEW_KEY = 'oneNewsView';
+  const READ_KEY = 'oneNewsReadV1';
   const initialKeywords = ['AI', 'サッカー', 'バルセロナ', 'Steam'];
   const iconBookmark = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg>';
 
@@ -17,6 +18,7 @@
     compact: localStorage.getItem(VIEW_KEY) === 'compact',
     keywords: readJson(KEYWORDS_KEY, initialKeywords),
     saved: new Set(readJson(SAVED_KEY, []).map(String)),
+    read: new Set(readJson(READ_KEY, []).map(String)),
     loading: true,
     lastLoadedAt: 0
   };
@@ -40,6 +42,10 @@
     sourceStatusList: document.querySelector('#sourceStatusList'),
     keywordInput: document.querySelector('#keywordInput'),
     keywordChips: document.querySelector('#keywordChips'),
+    unreadTabCount: document.querySelector('#unreadTabCount'),
+    readStatusText: document.querySelector('#readStatusText'),
+    markAllReadButton: document.querySelector('#markAllReadBtn'),
+    clearReadButton: document.querySelector('#clearReadBtn'),
     toast: document.querySelector('#toast')
   };
 
@@ -122,11 +128,29 @@
     };
   }
 
+  function defaultConfidence(sources, duplicateCount) {
+    const sourceCount = Math.max(1, sources.length);
+    return Math.min(96, Math.round(46 + sourceCount * 13 + Math.min(duplicateCount, 6) * 3));
+  }
+
   function normalizeItem(item, index) {
     const sources = Array.isArray(item?.sources)
       ? item.sources.map(normalizeSource).filter(source => source.name)
       : [];
     const summary = String(item?.summary || item?.description || '概要を取得できませんでした。').trim();
+    const duplicateCount = Math.max(sources.length, Number(item?.duplicateCount) || 1);
+    const keyPoints = Array.isArray(item?.keyPoints)
+      ? item.keyPoints.map(String).map(value => value.trim()).filter(Boolean).slice(0, 3)
+      : [
+          String(item?.fact || summary).trim(),
+          sources.length > 1 ? `${sources.length}つの配信元が同じテーマを報じています。` : '',
+          String(item?.outlook || '').trim()
+        ].filter(Boolean).slice(0, 3);
+    const confidence = Math.max(0, Math.min(100, Number(item?.confidence) || defaultConfidence(sources, duplicateCount)));
+    const consensus = String(item?.consensus || (
+      sources.length >= 3 ? '複数社一致' : sources.length === 2 ? '複数ソース' : '単独報道'
+    ));
+
     return {
       id: String(item?.id || `news-${index}`),
       title: String(item?.title || 'タイトル未取得').trim(),
@@ -142,7 +166,11 @@
       breaking: Boolean(item?.breaking),
       publishedAt: item?.publishedAt || item?.updatedAt || null,
       sources,
-      duplicateCount: Math.max(sources.length, Number(item?.duplicateCount) || 1)
+      duplicateCount,
+      confidence,
+      consensus,
+      keyPoints,
+      analysisMode: String(item?.analysisMode || 'semantic-rules')
     };
   }
 
@@ -193,6 +221,50 @@
     }
   }
 
+  function persistRead() {
+    writeJson(READ_KEY, [...state.read]);
+  }
+
+  function pruneLocalState() {
+    const validIds = new Set(state.items.map(item => item.id));
+    state.read = new Set([...state.read].filter(id => validIds.has(id)));
+    state.saved = new Set([...state.saved].filter(id => validIds.has(id)));
+    persistRead();
+    writeJson(SAVED_KEY, [...state.saved]);
+  }
+
+  function unreadItems() {
+    return state.items.filter(item => !state.read.has(item.id));
+  }
+
+  function markRead(id, { rerender = true } = {}) {
+    const key = String(id);
+    if (state.read.has(key)) return false;
+    state.read.add(key);
+    persistRead();
+    if (rerender) {
+      renderReadStatus();
+      renderNews();
+    }
+    return true;
+  }
+
+  function markAllRead() {
+    state.items.forEach(item => state.read.add(item.id));
+    persistRead();
+    renderReadStatus();
+    renderNews();
+    toast('表示中のニュースをすべて既読にしました');
+  }
+
+  function clearReadHistory() {
+    state.read.clear();
+    persistRead();
+    renderReadStatus();
+    renderNews();
+    toast('既読履歴をリセットしました');
+  }
+
   function setSyncing(syncing) {
     state.loading = syncing;
     nodes.refreshButton?.classList.toggle('is-syncing', syncing);
@@ -214,6 +286,7 @@
     state.items = payload.items;
     state.dataMode = mode;
     state.lastLoadedAt = Date.now();
+    pruneLocalState();
     setSyncing(false);
     renderAll();
   }
@@ -251,6 +324,8 @@
       item.importance,
       item.outlook,
       item.category,
+      item.consensus,
+      ...item.keyPoints,
       ...item.tags,
       ...item.sources.map(source => source.name)
     ].join(' ').toLocaleLowerCase('ja');
@@ -270,6 +345,9 @@
     switch (state.currentTab) {
       case 'personal':
         items = items.filter(isPersonal).sort((a, b) => b.priority - a.priority || publishedTime(b) - publishedTime(a));
+        break;
+      case 'unread':
+        items = items.filter(item => !state.read.has(item.id)).sort((a, b) => b.priority - a.priority || publishedTime(b) - publishedTime(a));
         break;
       case 'latest':
         items.sort((a, b) => publishedTime(b) - publishedTime(a));
@@ -296,14 +374,21 @@
     return `<span class="badge ${className}">${escapeHtml(type)}</span>`;
   }
 
+  function confidenceBadge(item) {
+    const className = item.confidence >= 85 ? 'high' : item.confidence >= 68 ? 'medium' : 'low';
+    return `<span class="confidence-badge ${className}">${escapeHtml(item.consensus)} ${Math.round(item.confidence)}%</span>`;
+  }
+
   function cardMarkup(item) {
     const firstSource = item.sources[0] || { type: '報道機関' };
     const names = item.sources.map(source => source.name).join(' / ') || '配信元未取得';
-    return `<article class="news-card${item.sources.length > 1 ? ' is-multi-source' : ''}">
+    const read = state.read.has(item.id);
+    return `<article class="news-card${item.sources.length > 1 ? ' is-multi-source' : ''}${read ? ' is-read' : ' is-unread'}" data-open-card="${escapeHtml(item.id)}">
       <div class="progress"><span style="width:${item.priority}%"></span></div>
       <div class="card-body">
         <div class="meta-row">
           <div class="badges">
+            ${read ? '<span class="badge read-state">既読</span>' : '<span class="badge unread-state"><i></i>未読</span>'}
             ${item.breaking ? '<span class="badge breaking">速報</span>' : ''}
             ${sourceBadge(firstSource)}
             <span class="badge media">${escapeHtml(item.category)}</span>
@@ -312,13 +397,15 @@
         </div>
         <h3>${escapeHtml(item.title)}</h3>
         <p class="summary">${escapeHtml(item.summary)}</p>
+        <div class="analysis-row">
+          ${confidenceBadge(item)}
+          <span class="source-count">${item.sources.length || 1}ソース</span>
+        </div>
         <div class="source-row">
-          <span class="source-count">${item.sources.length || 1}ソース統合</span>
-          <span>・</span>
           <span class="source-names">${escapeHtml(names)}</span>
         </div>
         <div class="card-actions">
-          <button class="open-btn" type="button" data-open="${escapeHtml(item.id)}">詳しく読む</button>
+          <button class="open-btn" type="button" data-open="${escapeHtml(item.id)}">要点を見る</button>
           <button class="mini-btn${state.saved.has(item.id) ? ' active' : ''}" type="button" data-save="${escapeHtml(item.id)}" aria-label="あとで読む">${iconBookmark}</button>
         </div>
       </div>
@@ -333,6 +420,7 @@
       nodes.sectionTitle.textContent = {
         recommend: '今日の重要ニュース',
         personal: 'あなた向け',
+        unread: '未読ニュース',
         latest: '新着ニュース',
         category: 'ジャンル順',
         saved: 'あとで読む'
@@ -343,10 +431,12 @@
     if (!items.length) {
       const message = state.currentTab === 'saved'
         ? 'あとで読むニュースはまだありません。'
-        : state.currentTab === 'personal'
-          ? '興味キーワードに一致するニュースがありません。設定からキーワードを追加できます。'
-          : '検索条件に一致するニュースがありません。';
-      nodes.newsList.innerHTML = `<div class="empty"><strong>該当するニュースがありません</strong>${escapeHtml(message)}</div>`;
+        : state.currentTab === 'unread'
+          ? 'すべて読み終えました。新しいニュースが入るとここに表示されます。'
+          : state.currentTab === 'personal'
+            ? '興味キーワードに一致するニュースがありません。設定からキーワードを追加できます。'
+            : '検索条件に一致するニュースがありません。';
+      nodes.newsList.innerHTML = `<div class="empty"><strong>該当するニュースがありません</strong><p>${escapeHtml(message)}</p></div>`;
       return;
     }
     nodes.newsList.innerHTML = items.map(cardMarkup).join('');
@@ -366,6 +456,18 @@
     if (nodes.sourceCount) nodes.sourceCount.textContent = uniqueSourceCount();
   }
 
+  function renderReadStatus() {
+    const unread = unreadItems().length;
+    const total = state.items.length;
+    if (nodes.unreadTabCount) {
+      nodes.unreadTabCount.textContent = unread > 99 ? '99+' : String(unread);
+      nodes.unreadTabCount.hidden = unread === 0;
+    }
+    if (nodes.readStatusText) nodes.readStatusText.textContent = `${total - unread}/${total}件を既読`;
+    if (nodes.markAllReadButton) nodes.markAllReadButton.disabled = unread === 0;
+    if (nodes.clearReadButton) nodes.clearReadButton.disabled = state.read.size === 0;
+  }
+
   function updateDataStatus(status = state.dataMode) {
     const metadata = state.metadata || {};
     const totalSources = Array.isArray(metadata.sources) ? metadata.sources.length : 0;
@@ -373,6 +475,7 @@
     const generated = formatTimestamp(metadata.generatedAt);
     const articleCount = Number(metadata.totalArticles || state.items.length || 0);
     const clusterCount = Number(metadata.totalClusters || state.items.length || 0);
+    const algorithm = metadata.semanticDeduplication?.algorithm || metadata.deduplication?.algorithm || '';
 
     if (status === 'loading') {
       if (nodes.feedStatusBadge) {
@@ -393,7 +496,7 @@
     if (nodes.brandStatus) nodes.brandStatus.textContent = `${generated}更新`;
     if (nodes.syncLine) {
       nodes.syncLine.textContent = state.dataMode === 'live'
-        ? `最終更新 ${generated}・${success}/${totalSources || success}ソース・${articleCount}記事を${clusterCount}件に統合`
+        ? `最終更新 ${generated}・${success}/${totalSources || success}ソース・${articleCount}記事を${clusterCount}件に整理${algorithm ? '・意味判定ON' : ''}`
         : state.dataMode === 'snapshot'
           ? `最終取得 ${generated}・通信復旧時に自動更新します`
           : '実データの初回生成を待ちながら操作確認用データを表示しています';
@@ -432,6 +535,7 @@
   function renderAll() {
     updateDataStatus();
     renderMetrics();
+    renderReadStatus();
     renderNews();
     renderKeywords();
     renderSourceStatus();
@@ -446,25 +550,35 @@
       : `<div class="source-link">${inner}</div>`;
   }
 
+  function keyPointMarkup(item) {
+    const points = item.keyPoints.length ? item.keyPoints : [item.fact, item.outlook].filter(Boolean);
+    return `<ol class="quick-points">${points.map(point => `<li>${escapeHtml(point)}</li>`).join('')}</ol>`;
+  }
+
   function openDetail(id) {
     const item = state.items.find(news => news.id === String(id));
     if (!item || !nodes.detailSheet || !nodes.detailBackdrop) return;
+    markRead(item.id, { rerender: false });
     nodes.detailSheet.innerHTML = `<div class="sheet-handle"></div>
       <button class="sheet-close" type="button" data-close="detail" aria-label="詳細を閉じる">×</button>
       <div class="badges">
         ${item.breaking ? '<span class="badge breaking">速報</span>' : ''}
         ${sourceBadge(item.sources[0] || {})}
         <span class="badge media">${escapeHtml(item.category)}</span>
+        ${confidenceBadge(item)}
       </div>
       <h2>${escapeHtml(item.title)}</h2>
       <div class="sheet-meta">${escapeHtml(relativeTime(item.publishedAt))}・推定${item.minutes}分・${item.sources.length || 1}ソース統合</div>
+      <section class="detail-section quick-brief"><h3>3行で把握</h3>${keyPointMarkup(item)}</section>
       <section class="detail-section"><h3>何が起きた？</h3><p>${escapeHtml(item.fact)}</p></section>
       <section class="detail-section"><h3>背景</h3><p>${escapeHtml(item.background)}</p></section>
       <section class="detail-section"><h3>なぜ重要？</h3><p>${escapeHtml(item.importance)}</p></section>
-      <section class="detail-section outlook"><h3>今後の確認ポイント</h3><p>${escapeHtml(item.outlook)}</p><div class="disclaimer">※自動整理された要約です。正確な表現と最新情報は元記事で確認してください。</div></section>
+      <section class="detail-section outlook"><h3>今後の確認ポイント</h3><p>${escapeHtml(item.outlook)}</p><div class="disclaimer">※見出しと公開概要を自動整理した内容です。正確な表現と最新情報は元記事で確認してください。</div></section>
       <section class="detail-section"><h3>情報源</h3><div class="sources">${item.sources.length ? item.sources.map(sourceLinkMarkup).join('') : '<div class="source-link"><span>配信元情報なし</span><small>—</small></div>'}</div></section>`;
     nodes.detailBackdrop.classList.add('open');
     nodes.detailSheet.scrollTop = 0;
+    renderReadStatus();
+    renderNews();
   }
 
   function closeSheet(backdrop) {
@@ -498,6 +612,7 @@
   function openSettings() {
     renderKeywords();
     renderSourceStatus();
+    renderReadStatus();
     nodes.settingsBackdrop?.classList.add('open');
   }
 
@@ -526,10 +641,16 @@
   });
 
   nodes.newsList?.addEventListener('click', event => {
-    const openButton = event.target.closest('[data-open]');
     const saveButton = event.target.closest('[data-save]');
-    if (openButton) openDetail(openButton.dataset.open);
-    if (saveButton) toggleSave(saveButton.dataset.save);
+    if (saveButton) {
+      event.stopPropagation();
+      toggleSave(saveButton.dataset.save);
+      return;
+    }
+    const openButton = event.target.closest('[data-open]');
+    const card = event.target.closest('[data-open-card]');
+    const id = openButton?.dataset.open || card?.dataset.openCard;
+    if (id) openDetail(id);
   });
 
   nodes.detailSheet?.addEventListener('click', event => {
@@ -553,6 +674,8 @@
     if (event.key === 'Enter') addKeyword();
   });
 
+  nodes.markAllReadButton?.addEventListener('click', markAllRead);
+  nodes.clearReadButton?.addEventListener('click', clearReadHistory);
   document.querySelector('#settingsBtn')?.addEventListener('click', openSettings);
   nodes.refreshButton?.addEventListener('click', () => loadNews({ fresh: true, announce: true }));
   nodes.searchInput?.addEventListener('input', renderNews);

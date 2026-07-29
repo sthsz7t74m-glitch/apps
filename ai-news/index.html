@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-  <meta name="theme-color" content="#08111f">
-  <meta name="description" content="複数のRSSと公式フィードを横断し、重複ニュースを1件にまとめて表示するニュースアプリ">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="複数のRSSと公式フィードを横断し、同じニュースを意味ベースで統合して短時間で読めるニュースアプリ">
   <title>ONE NEWS</title>
-  <link rel="stylesheet" href="./styles.css?v=300">
+  <link rel="stylesheet" href="./styles.css?v=400">
 </head>
 <body>
   <div class="app">
@@ -37,7 +37,7 @@
           </div>
           <span class="feed-badge is-loading" id="feedStatusBadge"><span class="live-dot"></span>取得中</span>
         </div>
-        <p class="digest-copy">複数メディアの重複記事を自動でまとめ、背景・重要性・今後の確認ポイントまで整理します。</p>
+        <p class="digest-copy">複数メディアの記事を意味ベースでまとめ、要点・背景・重要性・今後の確認ポイントまで整理します。</p>
         <div class="metrics">
           <article class="metric"><strong id="importantCount">—</strong><span>重要ニュース</span></article>
           <article class="metric"><strong id="readMinutes">—</strong><span>推定読了</span></article>
@@ -55,6 +55,7 @@
       <div class="tabs" id="tabs" role="tablist" aria-label="ニュースの表示方法">
         <button class="tab active" type="button" data-tab="recommend">おすすめ</button>
         <button class="tab" type="button" data-tab="personal">あなた向け</button>
+        <button class="tab" type="button" data-tab="unread">未読 <span class="tab-count" id="unreadTabCount" hidden>0</span></button>
         <button class="tab" type="button" data-tab="latest">新着</button>
         <button class="tab" type="button" data-tab="category">ジャンル</button>
         <button class="tab" type="button" data-tab="saved">あとで読む</button>
@@ -105,17 +106,25 @@
       </div>
 
       <div class="setting-group">
+        <div class="setting-heading"><label>既読管理</label><span id="readStatusText">0/0件を既読</span></div>
+        <div class="setting-actions">
+          <button class="secondary-btn" id="markAllReadBtn" type="button">すべて既読</button>
+          <button class="danger-outline" id="clearReadBtn" type="button">既読をリセット</button>
+        </div>
+      </div>
+
+      <div class="setting-group">
         <div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div>
         <div class="source-status-list" id="sourceStatusList"></div>
       </div>
 
-      <div class="notice">RSS・Atom・公式フィードの見出しと概要を定期取得し、タイトル類似度とURLを使って重複記事を統合しています。本文の転載は行わず、元記事へのリンクを表示します。</div>
-      <div class="notice version-notice">自動取得版 v0.3.0</div>
+      <div class="notice">RSS・Atom・公式フィードの見出しと概要を定期取得し、URL・タイトル・要約・固有語の類似度から同じニュースを二段階で統合します。本文の転載は行わず、元記事へのリンクを表示します。</div>
+      <div class="notice version-notice">白基調・意味判定・未読管理 v0.4.0</div>
     </section>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./demo-data.js?v=300" defer></script>
-  <script src="./app.js?v=300" defer></script>
+  <script src="./app.js?v=400" defer></script>
 </body>
 </html>

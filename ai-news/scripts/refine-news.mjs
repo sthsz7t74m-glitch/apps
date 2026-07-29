@@ -154,8 +154,11 @@ function sameSemanticTopic(item, cluster) {
 function uniqueSources(items) {
   const map = new Map();
   items.flatMap(item => asArray(item.sources)).forEach(source => {
-    const key = String(source.url || `${source.name}:${source.publishedAt || ''}`);
-    if (!map.has(key)) map.set(key, source);
+    const key = `${String(source.name || 'unknown').toLocaleLowerCase('ja')}|${String(source.type || '')}`;
+    const current = map.get(key);
+    const currentTime = new Date(current?.publishedAt || 0).getTime() || 0;
+    const nextTime = new Date(source?.publishedAt || 0).getTime() || 0;
+    if (!current || nextTime >= currentTime) map.set(key, source);
   });
   return [...map.values()];
 }

@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'ai-news/scripts/update-news.mjs'
+      - 'ai-news/scripts/refine-news.mjs'
       - 'ai-news/data/sources.json'
       - '.github/workflows/update-ai-news.yml'
 
@@ -38,9 +39,13 @@ jobs:
           node --check ai-news/app.js
           node --check ai-news/demo-data.js
           node --check ai-news/scripts/update-news.mjs
+          node --check ai-news/scripts/refine-news.mjs
 
       - name: Fetch and deduplicate feeds
         run: node ai-news/scripts/update-news.mjs
+
+      - name: Balance recommendations
+        run: node ai-news/scripts/refine-news.mjs
 
       - name: Commit updated data
         shell: bash

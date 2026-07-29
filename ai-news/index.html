@@ -6,8 +6,9 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="複数のRSSと公式フィードを横断し、同じニュースを意味ベースで統合して短時間で読めるニュースアプリ">
   <title>ONE NEWS</title>
-  <link rel="stylesheet" href="./styles.css?v=500">
-  <link rel="stylesheet" href="./category-filter.css?v=500">
+  <link rel="stylesheet" href="./styles.css?v=600">
+  <link rel="stylesheet" href="./category-filter.css?v=600">
+  <link rel="stylesheet" href="./spotlight.css?v=600">
 </head>
 <body>
   <div class="app">
@@ -61,6 +62,18 @@
         <button class="tab" type="button" data-tab="category">ジャンル</button>
         <button class="tab" type="button" data-tab="saved">あとで読む</button>
       </div>
+    </section>
+
+    <section class="consensus-spotlight" id="consensusSpotlight" hidden aria-label="複数社が報じる重要ニュース">
+      <div class="consensus-spotlight__head">
+        <div>
+          <p class="consensus-spotlight__eyebrow">CROSS MEDIA</p>
+          <h2>複数社が追う重要ニュース</h2>
+          <p>報道の広がり・新しさ・公式情報の有無から注目トピックを選出。</p>
+        </div>
+        <span class="consensus-spotlight__count" id="consensusSpotlightCount">確認中</span>
+      </div>
+      <div class="consensus-spotlight__list" id="consensusSpotlightList"></div>
     </section>
 
     <section class="category-picker" id="categoryPicker" hidden aria-label="ジャンルを選択">
@@ -128,13 +141,14 @@
       </div>
 
       <div class="notice">RSS・Atom・公式フィードの見出しと概要を定期取得し、URL・タイトル・要約・固有語の類似度から同じニュースを二段階で統合します。本文の転載は行わず、元記事へのリンクを表示します。</div>
-      <div class="notice version-notice">ジャンル選択・白基調・意味判定・未読管理 v0.5.0</div>
+      <div class="notice version-notice">複数社注目トピック・18ソース・最大110件 v0.6.0</div>
     </section>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="./demo-data.js?v=300" defer></script>
-  <script src="./app.js?v=500" defer></script>
-  <script src="./category-filter.js?v=500" defer></script>
+  <script src="./app.js?v=600" defer></script>
+  <script src="./category-filter.js?v=600" defer></script>
+  <script src="./spotlight.js?v=600" defer></script>
 </body>
 </html>

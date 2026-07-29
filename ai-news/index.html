@@ -2,83 +2,120 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="theme-color" content="#08111f">
+  <meta name="description" content="複数のRSSと公式フィードを横断し、重複ニュースを1件にまとめて表示するニュースアプリ">
   <title>ONE NEWS</title>
-  <style>
-    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#eaf2ff;background:#08111f;--panel:#101d30;--panel2:#14243b;--border:#253a57;--muted:#8ea4c0;--accent:#60a5fa;--accent2:#22d3ee;--danger:#fb7185;--success:#34d399;--warning:#fbbf24}
-    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}body{margin:0;min-height:100dvh;background:radial-gradient(circle at top right,rgba(34,211,238,.12),transparent 28%),linear-gradient(180deg,#08111f,#0b1626)}button,input{font:inherit}button{cursor:pointer}.app{width:min(100%,820px);margin:auto;padding-bottom:calc(92px + env(safe-area-inset-bottom))}
-    .icon{width:22px;height:22px;display:block;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:max(14px,env(safe-area-inset-top)) 16px 12px;border-bottom:1px solid rgba(37,58,87,.7);background:rgba(8,17,31,.92);backdrop-filter:blur(18px)}
-    .brand{display:flex;align-items:center;gap:11px;min-width:0}.logo{display:grid;width:42px;height:42px;place-items:center;border-radius:14px;color:#07101c;background:linear-gradient(135deg,var(--accent2),var(--accent));font-weight:1000;letter-spacing:-.08em;box-shadow:0 8px 24px rgba(34,211,238,.18)}.brand h1{margin:0;font-size:19px;letter-spacing:-.03em}.brand p{margin:2px 0 0;color:var(--muted);font-size:11px}.top-actions{display:flex;gap:8px}.icon-btn{display:grid;width:42px;height:42px;place-items:center;border:1px solid var(--border);border-radius:13px;color:#eaf2ff;background:var(--panel);transition:.18s}.icon-btn:active{transform:scale(.94);background:var(--panel2)}
-    .hero{padding:18px 16px 10px}.digest{padding:18px;border:1px solid rgba(96,165,250,.35);border-radius:24px;background:linear-gradient(135deg,rgba(96,165,250,.15),rgba(34,211,238,.06)),var(--panel)}.digest-head{display:flex;align-items:start;justify-content:space-between;gap:10px}.eyebrow{color:var(--accent2);font-size:12px;font-weight:900;letter-spacing:.08em}.digest h2{margin:7px 0 5px;font-size:clamp(25px,7vw,38px);line-height:1.05;letter-spacing:-.05em}.digest-copy{margin:0;color:#b9c9dd;font-size:14px;line-height:1.7}.live-badge{padding:6px 9px;border-radius:999px;color:#ffd8df;background:rgba(251,113,133,.15);font-size:11px;font-weight:900;white-space:nowrap}.live-dot{display:inline-block;width:7px;height:7px;margin-right:5px;border-radius:50%;background:var(--danger);box-shadow:0 0 10px var(--danger)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.metric{padding:11px 10px;border:1px solid rgba(142,164,192,.18);border-radius:16px;background:rgba(8,17,31,.38)}.metric strong{display:block;font-size:20px}.metric span{color:var(--muted);font-size:11px}
-    .controls{padding:8px 16px 0}.search-wrap{position:relative}.search-wrap .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}.search{width:100%;padding:13px 14px 13px 45px;border:1px solid var(--border);border-radius:16px;outline:none;color:#f8fbff;background:var(--panel)}.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(96,165,250,.15)}.tabs{display:flex;gap:8px;margin-top:12px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:0 0 auto;padding:9px 13px;border:1px solid var(--border);border-radius:999px;color:#b9c9dd;background:transparent;font-size:13px;font-weight:800}.tab.active{border-color:transparent;color:#07101c;background:linear-gradient(135deg,var(--accent2),var(--accent))}
-    .toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 4px}.toolbar h3{margin:0;font-size:16px}.toolbar small{color:var(--muted)}.view-toggle{display:flex;padding:3px;border:1px solid var(--border);border-radius:12px;background:var(--panel)}.view-btn{display:grid;place-items:center;width:36px;height:34px;border:0;border-radius:9px;color:var(--muted);background:transparent}.view-btn .icon{width:18px;height:18px}.view-btn.active{color:#fff;background:var(--panel2)}
-    .news-list{display:grid;gap:12px;padding:10px 16px}.news-card{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:20px;background:linear-gradient(180deg,rgba(20,36,59,.96),rgba(16,29,48,.98))}.card-body{padding:16px}.meta-row,.source-row,.card-actions{display:flex;align-items:center;gap:8px}.meta-row{justify-content:space-between}.badges{display:flex;flex-wrap:wrap;gap:6px}.badge{padding:5px 8px;border-radius:999px;font-size:10px;font-weight:900}.breaking{color:#ffd9df;background:rgba(251,113,133,.14)}.official{color:#c7f9e9;background:rgba(52,211,153,.14)}.media{color:#d7e8ff;background:rgba(96,165,250,.15)}.special{color:#fff0bd;background:rgba(251,191,36,.14)}.time{color:var(--muted);font-size:11px;white-space:nowrap}.news-card h4{margin:12px 0 8px;font-size:19px;line-height:1.45;letter-spacing:-.02em}.summary{margin:0;color:#b9c9dd;line-height:1.75;font-size:14px}.source-row{margin-top:14px;color:var(--muted);font-size:11px;flex-wrap:wrap}.source-count{color:var(--accent2);font-weight:900}.card-actions{justify-content:space-between;margin-top:15px}.open-btn{padding:9px 13px;border:0;border-radius:12px;color:#07101c;background:#d8edff;font-weight:900}.mini-btn{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--border);border-radius:12px;color:#cbd8e8;background:rgba(8,17,31,.35)}.mini-btn .icon{width:19px;height:19px}.mini-btn.active{color:var(--warning);border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.1)}.mini-btn.active .icon{fill:currentColor}.progress{height:3px;background:rgba(142,164,192,.12)}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent))}
-    .news-list.compact{gap:8px}.news-list.compact .news-card{border-radius:15px}.news-list.compact .card-body{padding:12px 13px}.news-list.compact h4{margin:8px 0 5px;font-size:15px}.news-list.compact .summary{display:-webkit-box;overflow:hidden;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:12px}.news-list.compact .source-row{margin-top:8px}.news-list.compact .card-actions{margin-top:9px}.empty{padding:42px 22px;text-align:center;color:var(--muted)}.empty strong{display:block;margin-bottom:6px;color:#eaf2ff}
-    .bottom-nav{position:fixed;left:50%;bottom:0;z-index:30;display:grid;width:min(100%,820px);grid-template-columns:repeat(4,1fr);transform:translateX(-50%);padding:8px 10px max(8px,env(safe-area-inset-bottom));border-top:1px solid rgba(37,58,87,.8);background:rgba(8,17,31,.95);backdrop-filter:blur(18px)}.nav-btn{position:relative;display:flex;min-height:58px;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:0;border-radius:16px;color:var(--muted);background:transparent;font-size:10px;font-weight:700;transition:.18s}.nav-btn .nav-icon-wrap{display:grid;width:34px;height:28px;place-items:center;border-radius:10px;transition:.18s}.nav-btn .icon{width:21px;height:21px}.nav-btn.active{color:#dff8ff}.nav-btn.active .nav-icon-wrap{color:#06111c;background:linear-gradient(135deg,var(--accent2),var(--accent));box-shadow:0 7px 20px rgba(34,211,238,.22)}.nav-btn:active{transform:scale(.96)}
-    .sheet-backdrop{position:fixed;inset:0;z-index:100;display:none;align-items:end;justify-content:center;padding-top:40px;background:rgba(1,7,15,.68);backdrop-filter:blur(6px)}.sheet-backdrop.open{display:flex}.sheet{width:min(100%,820px);max-height:92dvh;overflow-y:auto;border:1px solid var(--border);border-bottom:0;border-radius:26px 26px 0 0;background:#0d192a;padding:12px 16px calc(28px + env(safe-area-inset-bottom));animation:rise .2s ease-out}@keyframes rise{from{transform:translateY(30px);opacity:0}}.sheet-handle{width:46px;height:5px;margin:0 auto 14px;border-radius:99px;background:#344964}.sheet-close{float:right;width:38px;height:38px;border:1px solid var(--border);border-radius:12px;color:#fff;background:var(--panel)}.sheet h2{margin:6px 46px 8px 0;font-size:25px;line-height:1.35;letter-spacing:-.03em}.sheet-meta{color:var(--muted);font-size:12px}.detail-section{margin-top:18px;padding:16px;border:1px solid var(--border);border-radius:18px;background:var(--panel)}.detail-section h3{margin:0 0 9px;font-size:14px;color:var(--accent2)}.detail-section p{margin:0;color:#c5d2e3;font-size:14px;line-height:1.8}.outlook{border-color:rgba(251,191,36,.28)}.outlook h3{color:var(--warning)}.disclaimer{margin-top:8px;color:var(--muted);font-size:11px}.sources{display:grid;gap:8px;margin-top:10px}.source-link{display:flex;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid var(--border);border-radius:13px;color:#d9e7f7;background:#0b1626;text-decoration:none;font-size:13px}.settings-title{margin:4px 0 16px;font-size:24px}.setting-group{margin-top:17px}.setting-group label{display:block;margin-bottom:7px;color:#d7e3f2;font-size:13px;font-weight:800}.keyword-row{display:flex;gap:8px}.keyword-input{flex:1;min-width:0;padding:12px;border:1px solid var(--border);border-radius:13px;color:#fff;background:var(--panel);outline:none}.add-btn{padding:0 15px;border:0;border-radius:13px;color:#07101c;background:var(--accent2);font-weight:900}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.chip{padding:8px 10px;border:1px solid var(--border);border-radius:999px;color:#dbe8f7;background:var(--panel);font-size:12px}.chip button{margin-left:6px;border:0;color:var(--muted);background:transparent}.notice{margin-top:18px;padding:13px;border-radius:14px;color:#a9bdd5;background:rgba(96,165,250,.08);font-size:12px;line-height:1.7}
-    @media(min-width:700px){.news-list:not(.compact){grid-template-columns:repeat(2,minmax(0,1fr))}.news-list:not(.compact) .news-card:first-child{grid-column:1/-1}}
-  </style>
+  <link rel="stylesheet" href="./styles.css?v=300">
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo">1N</div><div><h1>ONE NEWS</h1><p>同じニュースを、ひとつに。</p></div></div>
-  <div class="top-actions">
-    <button class="icon-btn" id="refreshBtn" aria-label="更新"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6v5h-5"/><path d="M18.5 9A7 7 0 1 0 19 15"/></svg></button>
-    <button class="icon-btn" id="settingsBtn" aria-label="設定"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></button>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="MY APPSへ戻る">
+        <span class="logo">1N</span>
+        <span class="brand-copy">
+          <strong>ONE NEWS</strong>
+          <small id="brandStatus">ニュースデータを準備中</small>
+        </span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-btn" id="refreshBtn" type="button" aria-label="最新ニュースを取得">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5"/><path d="M18.5 9A7 7 0 1 0 19 15"/></svg>
+        </button>
+        <button class="icon-btn" id="settingsBtn" type="button" aria-label="ニュース設定">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="digest">
+        <div class="digest-head">
+          <div>
+            <p class="eyebrow">TODAY'S DIGEST</p>
+            <h1>今日を、5分で。</h1>
+          </div>
+          <span class="feed-badge is-loading" id="feedStatusBadge"><span class="live-dot"></span>取得中</span>
+        </div>
+        <p class="digest-copy">複数メディアの重複記事を自動でまとめ、背景・重要性・今後の確認ポイントまで整理します。</p>
+        <div class="metrics">
+          <article class="metric"><strong id="importantCount">—</strong><span>重要ニュース</span></article>
+          <article class="metric"><strong id="readMinutes">—</strong><span>推定読了</span></article>
+          <article class="metric"><strong id="sourceCount">—</strong><span>取得ソース</span></article>
+        </div>
+        <p class="sync-line" id="syncLine">公開ニュースデータを確認しています</p>
+      </div>
+    </section>
+
+    <section class="controls">
+      <label class="search-wrap">
+        <svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input class="search" id="searchInput" type="search" placeholder="タイトル・要約・タグ・配信元を検索" autocomplete="off">
+      </label>
+      <div class="tabs" id="tabs" role="tablist" aria-label="ニュースの表示方法">
+        <button class="tab active" type="button" data-tab="recommend">おすすめ</button>
+        <button class="tab" type="button" data-tab="personal">あなた向け</button>
+        <button class="tab" type="button" data-tab="latest">新着</button>
+        <button class="tab" type="button" data-tab="category">ジャンル</button>
+        <button class="tab" type="button" data-tab="saved">あとで読む</button>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div><h2 id="sectionTitle">今日の重要ニュース</h2><small id="resultCount">0件</small></div>
+      <div class="view-toggle" aria-label="表示切り替え">
+        <button class="view-btn" id="cardViewBtn" type="button" aria-label="カード表示">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg>
+        </button>
+        <button class="view-btn" id="listViewBtn" type="button" aria-label="コンパクト表示">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <main class="news-list" id="newsList" aria-live="polite">
+      <div class="loading-state"><span class="spinner"></span><strong>ニュースを読み込んでいます</strong></div>
+    </main>
   </div>
-</header>
-<section class="hero"><div class="digest"><div class="digest-head"><div><div class="eyebrow">TODAY'S DIGEST</div><h2>今日を、5分で。</h2></div><span class="live-badge"><span class="live-dot"></span>LIVE</span></div><p class="digest-copy">複数メディアの重複記事をまとめ、背景・重要性・今後の見通しまで整理しました。</p><div class="metrics"><div class="metric"><strong id="importantCount">8</strong><span>重要ニュース</span></div><div class="metric"><strong id="readMinutes">5分</strong><span>推定読了</span></div><div class="metric"><strong id="sourceCount">24</strong><span>統合ソース</span></div></div></div></section>
-<section class="controls"><div class="search-wrap"><svg class="icon search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input class="search" id="searchInput" type="search" placeholder="タイトル・要約・タグを検索"></div><div class="tabs" id="tabs"><button class="tab active" data-tab="recommend">AIおすすめ</button><button class="tab" data-tab="personal">あなた向け</button><button class="tab" data-tab="latest">新着</button><button class="tab" data-tab="category">ジャンル</button><button class="tab" data-tab="saved">あとで読む</button></div></section>
-<div class="toolbar"><div><h3 id="sectionTitle">今日の重要ニュース</h3><small id="resultCount"></small></div><div class="view-toggle"><button class="view-btn active" id="cardViewBtn" aria-label="カード表示"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></button><button class="view-btn" id="listViewBtn" aria-label="リスト表示"><svg class="icon" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r=".8" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r=".8" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r=".8" fill="currentColor" stroke="none"/></svg></button></div></div>
-<main class="news-list" id="newsList"></main>
-</div>
-<nav class="bottom-nav">
-<button class="nav-btn active" data-nav="home"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="m4 10 8-6 8 6"/><path d="M6 9v10h12V9"/><path d="M10 19v-5h4v5"/></svg></span><span>ホーム</span></button>
-<button class="nav-btn" data-nav="search"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></span><span>検索</span></button>
-<button class="nav-btn" data-nav="saved"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg></span><span>保存</span></button>
-<button class="nav-btn" data-nav="settings"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></span><span>設定</span></button>
-</nav>
-<div class="sheet-backdrop" id="detailBackdrop"><article class="sheet" id="detailSheet"></article></div>
-<div class="sheet-backdrop" id="settingsBackdrop"><section class="sheet"><div class="sheet-handle"></div><button class="sheet-close" data-close="settings">×</button><h2 class="settings-title">ニュース設定</h2><div class="setting-group"><label for="keywordInput">興味キーワード</label><div class="keyword-row"><input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam"><button class="add-btn" id="addKeywordBtn">追加</button></div><div class="chips" id="keywordChips"></div></div><div class="setting-group"><label>通知</label><div class="notice">MVPでは通知設定のUIのみ。正式版では「重大ニュース」「興味ジャンル」ごとに即時・まとめ通知を選べます。</div></div><div class="notice">現在は操作確認用のデモデータです。次段階でRSS・公式API・AI要約サーバーを接続します。v0.2.0</div></section></div>
-<script>
-const iconBookmark=`<svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg>`;
-const initialKeywords=["AI","サッカー","バルセロナ","Steam"];
-const news=[
-{id:1,title:"生成AI各社、新しい推論モデルを相次いで強化",summary:"主要AI企業が推論性能と処理速度を改善したモデルを相次いで発表。企業利用では精度だけでなく、料金と応答速度の競争がさらに重要になっています。",fact:"複数のAI企業が、推論・コーディング・業務自動化を主な用途とする新モデルや更新を公開しました。",background:"生成AI市場では、単純な文章生成から、複数段階の作業を自律的に進めるエージェント型機能へ競争軸が移っています。",importance:"仕事でAIを使う人にとって、同じ作業でも利用モデルによって速度・料金・成果物の品質が大きく変わる可能性があります。",outlook:"今後はモデル単体の性能だけでなく、外部サービスとの連携、権限管理、実行コストが選定基準になりそうです。",category:"AI・IT",tags:["AI","OpenAI","生成AI"],minutes:2,priority:100,breaking:true,sources:[{name:"公式発表",type:"公式発表"},{name:"Reuters",type:"報道機関"},{name:"ITmedia",type:"専門メディア"}],time:"12分前"},
-{id:2,title:"欧州サッカー移籍市場、若手選手への大型投資が加速",summary:"各クラブが将来性の高い若手選手を早い段階で確保する動きを強化。移籍金だけでなく、契約年数や売却条項も重要になっています。",fact:"欧州主要リーグの複数クラブが、21歳以下の選手獲得や契約延長を発表しました。",background:"財務規制への対応と将来の売却益を両立するため、完成されたスター選手より若手選手へ投資する戦略が広がっています。",importance:"応援クラブの補強方針だけでなく、数年後の戦力や財務状況にも直結する動きです。",outlook:"プレシーズン終盤にかけて、主力放出と若手獲得がセットで進む可能性があります。",category:"サッカー",tags:["サッカー","移籍","バルセロナ"],minutes:2,priority:94,sources:[{name:"クラブ公式",type:"公式発表"},{name:"BBC Sport",type:"報道機関"},{name:"Goal",type:"専門メディア"}],time:"28分前"},
-{id:3,title:"国内で猛烈な暑さ続く、電力需要と熱中症対策に注意",summary:"広い範囲で気温が上昇し、自治体や電力会社が注意を呼びかけています。屋外活動だけでなく、室内での熱中症にも警戒が必要です。",fact:"気象機関が複数地域に高温への警戒情報を発表し、自治体も熱中症予防を呼びかけています。",background:"高温が長時間続くと夜間も室温が下がりにくく、睡眠中や高齢者の室内熱中症リスクが高まります。",importance:"健康への直接的な影響に加え、電力需給や交通、イベント運営にも影響する可能性があります。",outlook:"気温の高い状態が続く間は、時間帯ごとの暑さ指数と自治体情報を確認する必要があります。",category:"国内",tags:["気象","熱中症","電力"],minutes:1,priority:91,breaking:true,sources:[{name:"気象機関",type:"公式発表"},{name:"NHK",type:"報道機関"}],time:"35分前"},
-{id:4,title:"Steamで大型セール、人気作の値下げ幅を比較",summary:"幅広いジャンルのPCゲームがセール対象に。割引率だけでなく、直近評価・平均クリア時間・過去最安値の確認が重要です。",fact:"Steamストアで複数タイトルの期間限定割引が始まりました。",background:"大型セールでは対象作品が多いため、ウィッシュリストや評価条件で絞り込む使い方が一般的です。",importance:"割引率が高くてもプレイ時間や評価が合わない場合があるため、価格以外の比較が購入満足度を左右します。",outlook:"終了直前に購入が集中しやすいため、気になる作品は早めに候補へ保存するのがよさそうです。",category:"ゲーム",tags:["Steam","ゲーム","セール"],minutes:1,priority:88,sources:[{name:"Steam",type:"公式発表"},{name:"PC Gamer",type:"専門メディア"}],time:"1時間前"},
-{id:5,title:"円相場が変動、企業決算と個人消費への影響を整理",summary:"為替市場で円が大きく動き、輸出企業と輸入企業で影響が分かれています。旅行費用や食品価格にも時間差で影響する可能性があります。",fact:"外国為替市場で円相場が前日比で変動しました。",background:"為替は金利差、中央銀行の姿勢、経済指標、投資家心理など複数の要因で動きます。",importance:"企業業績だけでなく、海外旅行、輸入品、エネルギー価格など生活コストにも関係します。",outlook:"重要な経済指標や中央銀行関係者の発言で、短期的な値動きが大きくなる可能性があります。",category:"経済",tags:["経済","円相場","企業決算"],minutes:2,priority:85,sources:[{name:"Reuters",type:"報道機関"},{name:"日本経済新聞",type:"報道機関"}],time:"1時間前"},
-{id:6,title:"Jリーグ終盤戦へ、上位争いと残留争いが同時に激化",summary:"勝ち点差が縮まり、上位・残留とも直接対決の重要性が上昇。今後は連戦日程と選手層の厚さが順位を左右しそうです。",fact:"直近節の結果を受け、複数クラブ間の勝ち点差が縮まりました。",background:"リーグ終盤は対戦相手の順位だけでなく、連戦、負傷者、得失点差も大きな意味を持ちます。",importance:"一試合の勝敗が順位を複数変動させる状況に入り、直接対決の価値が高まっています。",outlook:"控え選手の起用と試合終盤の得点力が、最終順位を決める要因になりそうです。",category:"サッカー",tags:["Jリーグ","サッカー","順位"],minutes:2,priority:82,sources:[{name:"Jリーグ",type:"公式発表"},{name:"スポーツ紙3社",type:"報道機関"}],time:"2時間前"},
-{id:7,title:"スマートフォン各社、端末内AI機能を拡充",summary:"写真編集、文章要約、音声処理などを端末内で実行する機能が増加。通信不要の速さとプライバシー保護が強みです。",fact:"複数のスマートフォンメーカーが、端末内で動作するAI機能の追加を発表しました。",background:"クラウドAIだけでなく、端末内処理を組み合わせることで、通信遅延や個人情報送信を減らせます。",importance:"日常機能にAIが組み込まれることで、専門アプリを開かずに要約や編集ができる場面が増えます。",outlook:"今後は対応端末の性能差と、機能ごとのクラウド依存度が比較ポイントになりそうです。",category:"AI・IT",tags:["Apple","スマホ","AI"],minutes:1,priority:80,sources:[{name:"メーカー公式",type:"公式発表"},{name:"The Verge",type:"専門メディア"}],time:"3時間前"},
-{id:8,title:"国内ゲーム各社、秋以降の新作ラインアップを発表",summary:"家庭用・PC・スマホ向けの新作情報が相次いで公開。発売日の集中により、ユーザーの選択と販売戦略が注目されています。",fact:"複数のゲーム会社が新作タイトルの発売日や追加情報を公開しました。",background:"大型イベントや決算時期に合わせ、年末商戦へ向けた発表が増える傾向があります。",importance:"発売時期が重なるとユーザーの予算とプレイ時間を奪い合うため、予約動向にも影響します。",outlook:"体験版、先行プレイ、レビュー解禁後に注目度が大きく変動する可能性があります。",category:"ゲーム",tags:["ゲーム","新作","任天堂"],minutes:1,priority:76,sources:[{name:"各社公式",type:"公式発表"},{name:"ファミ通",type:"専門メディア"}],time:"4時間前"}];
-let keywords=JSON.parse(localStorage.getItem("oneNewsKeywords")||"null")||initialKeywords;
-let saved=new Set(JSON.parse(localStorage.getItem("oneNewsSaved")||"[]"));
-let currentTab="recommend",compact=localStorage.getItem("oneNewsView")==="compact";
-const newsList=document.getElementById("newsList"),searchInput=document.getElementById("searchInput"),resultCount=document.getElementById("resultCount"),sectionTitle=document.getElementById("sectionTitle");
-const personal=i=>{const h=[i.title,i.summary,i.category,...i.tags].join(" ").toLowerCase();return keywords.some(k=>h.includes(k.toLowerCase()))};
-function filtered(){let a=[...news];if(currentTab==="personal")a=a.filter(personal);if(currentTab==="latest")a.reverse();if(currentTab==="saved")a=a.filter(i=>saved.has(i.id));if(currentTab==="category")a.sort((x,y)=>x.category.localeCompare(y.category,"ja"));const q=searchInput.value.trim().toLowerCase();if(q)a=a.filter(i=>[i.title,i.summary,i.fact,i.background,i.importance,i.outlook,i.category,...i.tags].join(" ").toLowerCase().includes(q));return a}
-function badge(s){return `<span class="badge ${s.type==="公式発表"?"official":s.type==="専門メディア"?"special":"media"}">${s.type}</span>`}
-function render(){const a=filtered();newsList.classList.toggle("compact",compact);resultCount.textContent=`${a.length}件`;sectionTitle.textContent={recommend:"今日の重要ニュース",personal:"あなた向け",latest:"新着ニュース",category:"ジャンル順",saved:"あとで読む"}[currentTab];if(!a.length){newsList.innerHTML='<div class="empty"><strong>該当するニュースがありません</strong>検索条件やキーワードを変更してください。</div>';return}newsList.innerHTML=a.map(i=>`<article class="news-card"><div class="progress"><span style="width:${i.priority}%"></span></div><div class="card-body"><div class="meta-row"><div class="badges">${i.breaking?'<span class="badge breaking">速報</span>':''}${badge(i.sources[0])}<span class="badge media">${i.category}</span></div><span class="time">${i.time}</span></div><h4>${i.title}</h4><p class="summary">${i.summary}</p><div class="source-row"><span class="source-count">${i.sources.length}ソース統合</span><span>・</span><span>${i.sources.map(s=>s.name).join(" / ")}</span></div><div class="card-actions"><button class="open-btn" data-open="${i.id}">詳しく読む</button><button class="mini-btn ${saved.has(i.id)?"active":""}" data-save="${i.id}" aria-label="あとで読む">${iconBookmark}</button></div></div></article>`).join("")}
-function openDetail(id){const i=news.find(n=>n.id===id);if(!i)return;const s=document.getElementById("detailSheet");s.innerHTML=`<div class="sheet-handle"></div><button class="sheet-close" data-close="detail">×</button><div class="badges">${i.breaking?'<span class="badge breaking">速報</span>':''}${badge(i.sources[0])}<span class="badge media">${i.category}</span></div><h2>${i.title}</h2><div class="sheet-meta">${i.time} ・ 推定${i.minutes}分 ・ ${i.sources.length}ソース統合</div><section class="detail-section"><h3>何が起きた？</h3><p>${i.fact}</p></section><section class="detail-section"><h3>背景</h3><p>${i.background}</p></section><section class="detail-section"><h3>なぜ重要？</h3><p>${i.importance}</p></section><section class="detail-section outlook"><h3>今後の見通し</h3><p>${i.outlook}</p><div class="disclaimer">※ここはAIによる考察です。事実とは分けて表示しています。</div></section><section class="detail-section"><h3>情報源</h3><div class="sources">${i.sources.map(x=>`<div class="source-link"><span>${x.name}</span><span>${x.type}</span></div>`).join("")}</div></section>`;document.getElementById("detailBackdrop").classList.add("open");s.scrollTop=0}
-function toggleSave(id){saved.has(id)?saved.delete(id):saved.add(id);localStorage.setItem("oneNewsSaved",JSON.stringify([...saved]));render()}
-function renderKeywords(){document.getElementById("keywordChips").innerHTML=keywords.map((k,i)=>`<span class="chip">${k}<button data-remove-keyword="${i}">×</button></span>`).join("")}
-function openSettings(){renderKeywords();document.getElementById("settingsBackdrop").classList.add("open")}
-document.getElementById("tabs").onclick=e=>{const b=e.target.closest(".tab");if(!b)return;document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");currentTab=b.dataset.tab;render()};
-newsList.onclick=e=>{const o=e.target.closest("[data-open]"),s=e.target.closest("[data-save]");if(o)openDetail(+o.dataset.open);if(s)toggleSave(+s.dataset.save)};
-document.getElementById("detailSheet").onclick=e=>{if(e.target.closest("[data-close]"))document.getElementById("detailBackdrop").classList.remove("open")};
-["detailBackdrop","settingsBackdrop"].forEach(id=>document.getElementById(id).onclick=e=>{if(e.target.id===id)e.currentTarget.classList.remove("open")});
-document.getElementById("settingsBackdrop").addEventListener("click",e=>{if(e.target.closest('[data-close="settings"]'))document.getElementById("settingsBackdrop").classList.remove("open");const r=e.target.closest("[data-remove-keyword]");if(r){keywords.splice(+r.dataset.removeKeyword,1);localStorage.setItem("oneNewsKeywords",JSON.stringify(keywords));renderKeywords();render()}});
-function addKeyword(){const i=document.getElementById("keywordInput"),v=i.value.trim();if(!v||keywords.includes(v))return;keywords.push(v);localStorage.setItem("oneNewsKeywords",JSON.stringify(keywords));i.value="";renderKeywords();render()}
-document.getElementById("addKeywordBtn").onclick=addKeyword;document.getElementById("keywordInput").onkeydown=e=>{if(e.key==="Enter")addKeyword()};document.getElementById("settingsBtn").onclick=openSettings;
-document.getElementById("refreshBtn").onclick=e=>{e.currentTarget.animate([{transform:"rotate(0)"},{transform:"rotate(360deg)"}],{duration:500});document.querySelector(".brand p").textContent="たった今、更新しました";setTimeout(()=>document.querySelector(".brand p").textContent="同じニュースを、ひとつに。",1800)};
-searchInput.oninput=render;
-document.getElementById("cardViewBtn").onclick=()=>{compact=false;localStorage.setItem("oneNewsView","card");document.getElementById("cardViewBtn").classList.add("active");document.getElementById("listViewBtn").classList.remove("active");render()};
-document.getElementById("listViewBtn").onclick=()=>{compact=true;localStorage.setItem("oneNewsView","compact");document.getElementById("listViewBtn").classList.add("active");document.getElementById("cardViewBtn").classList.remove("active");render()};
-document.querySelector(".bottom-nav").onclick=e=>{const b=e.target.closest(".nav-btn");if(!b)return;document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");if(b.dataset.nav==="search"){searchInput.focus();window.scrollTo({top:270,behavior:"smooth"})}if(b.dataset.nav==="saved"){currentTab="saved";document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab==="saved"));render()}if(b.dataset.nav==="settings")openSettings();if(b.dataset.nav==="home"){currentTab="recommend";searchInput.value="";document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.tab==="recommend"));render();window.scrollTo({top:0,behavior:"smooth"})}};
-document.getElementById(compact?"listViewBtn":"cardViewBtn").classList.add("active");document.getElementById(compact?"cardViewBtn":"listViewBtn").classList.remove("active");document.getElementById("importantCount").textContent=news.length;document.getElementById("readMinutes").textContent=`${news.reduce((s,n)=>s+n.minutes,0)}分`;document.getElementById("sourceCount").textContent=news.reduce((s,n)=>s+n.sources.length,0);render();
-</script>
-</body></html>
+
+  <nav class="bottom-nav" aria-label="メインメニュー">
+    <button class="nav-btn active" type="button" data-nav="home"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 8-6 8 6"/><path d="M6 9v10h12V9"/><path d="M10 19v-5h4v5"/></svg></span><span>ホーム</span></button>
+    <button class="nav-btn" type="button" data-nav="search"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></span><span>検索</span></button>
+    <button class="nav-btn" type="button" data-nav="saved"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16l-6-4-6 4z"/></svg></span><span>保存</span></button>
+    <button class="nav-btn" type="button" data-nav="settings"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></span><span>設定</span></button>
+  </nav>
+
+  <div class="sheet-backdrop" id="detailBackdrop">
+    <article class="sheet" id="detailSheet" aria-label="ニュース詳細"></article>
+  </div>
+
+  <div class="sheet-backdrop" id="settingsBackdrop">
+    <section class="sheet settings-sheet" aria-label="ニュース設定">
+      <div class="sheet-handle"></div>
+      <button class="sheet-close" type="button" data-close="settings" aria-label="設定を閉じる">×</button>
+      <h2 class="settings-title">ニュース設定</h2>
+
+      <div class="setting-group">
+        <label for="keywordInput">興味キーワード</label>
+        <div class="keyword-row">
+          <input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam">
+          <button class="add-btn" id="addKeywordBtn" type="button">追加</button>
+        </div>
+        <div class="chips" id="keywordChips"></div>
+      </div>
+
+      <div class="setting-group">
+        <div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div>
+        <div class="source-status-list" id="sourceStatusList"></div>
+      </div>
+
+      <div class="notice">RSS・Atom・公式フィードの見出しと概要を定期取得し、タイトル類似度とURLを使って重複記事を統合しています。本文の転載は行わず、元記事へのリンクを表示します。</div>
+      <div class="notice version-notice">自動取得版 v0.3.0</div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./demo-data.js?v=300" defer></script>
+  <script src="./app.js?v=300" defer></script>
+</body>
+</html>

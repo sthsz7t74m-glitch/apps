@@ -1,8 +1,23 @@
 import { readFile, writeFile, unlink } from 'node:fs/promises';
+import { spawn } from 'node:child_process';
 import path from 'node:path';
-import { fileURLToPath, pathToFileURL } from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function runNode(filePath) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [filePath], {
+      cwd: __dirname,
+      stdio: 'inherit'
+    });
+    child.once('error', reject);
+    child.once('exit', code => {
+      if (code === 0) resolve();
+      else reject(new Error(`${path.basename(filePath)} exited with code ${code}`));
+    });
+  });
+}
 
 async function runPatched(sourceName, replacements) {
   const sourcePath = path.join(__dirname, sourceName);
@@ -16,7 +31,7 @@ async function runPatched(sourceName, replacements) {
   const tempPath = path.join(__dirname, `.__expanded-${Date.now()}-${sourceName}`);
   await writeFile(tempPath, code, 'utf8');
   try {
-    await import(`${pathToFileURL(tempPath).href}?v=${Date.now()}`);
+    await runNode(tempPath);
   } finally {
     await unlink(tempPath).catch(() => {});
   }

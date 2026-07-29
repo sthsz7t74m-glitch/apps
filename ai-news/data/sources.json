@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "sources": [
     {
       "id": "nhk-news",
@@ -9,6 +9,26 @@
       "category": "国内",
       "language": "ja",
       "priority": 12,
+      "maxItems": 45
+    },
+    {
+      "id": "asahi-news",
+      "name": "朝日新聞デジタル",
+      "url": "https://www.asahi.com/rss/asahi/newsheadlines.rdf",
+      "type": "報道機関",
+      "category": "国内",
+      "language": "ja",
+      "priority": 10,
+      "maxItems": 35
+    },
+    {
+      "id": "mainichi-news",
+      "name": "毎日新聞",
+      "url": "https://mainichi.jp/rss/etc/mainichi-flash.rss",
+      "type": "報道機関",
+      "category": "国内",
+      "language": "ja",
+      "priority": 10,
       "maxItems": 35
     },
     {
@@ -19,27 +39,7 @@
       "category": "国際",
       "language": "ja",
       "priority": 10,
-      "maxItems": 30
-    },
-    {
-      "id": "itmedia",
-      "name": "ITmedia",
-      "url": "https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml",
-      "type": "専門メディア",
-      "category": "AI・IT",
-      "language": "ja",
-      "priority": 9,
       "maxItems": 40
-    },
-    {
-      "id": "impress-watch",
-      "name": "Impress Watch",
-      "url": "https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
-      "type": "専門メディア",
-      "category": "AI・IT",
-      "language": "ja",
-      "priority": 8,
-      "maxItems": 35
     },
     {
       "id": "livedoor-news",
@@ -49,7 +49,107 @@
       "category": "国内",
       "language": "ja",
       "priority": 7,
+      "maxItems": 40
+    },
+    {
+      "id": "itmedia",
+      "name": "ITmedia",
+      "url": "https://rss.itmedia.co.jp/rss/2.0/itmedia_all.xml",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 9,
+      "maxItems": 55
+    },
+    {
+      "id": "impress-watch",
+      "name": "Impress Watch",
+      "url": "https://www.watch.impress.co.jp/data/rss/1.0/ipw/feed.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 8,
+      "maxItems": 45
+    },
+    {
+      "id": "cnet-japan",
+      "name": "CNET Japan",
+      "url": "https://japan.cnet.com/rss/index.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 8,
       "maxItems": 35
+    },
+    {
+      "id": "gigazine",
+      "name": "GIGAZINE",
+      "url": "https://gigazine.net/news/rss_2.0/",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 40
+    },
+    {
+      "id": "ascii",
+      "name": "ASCII.jp",
+      "url": "https://ascii.jp/rss.xml",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 35
+    },
+    {
+      "id": "pc-watch",
+      "name": "PC Watch",
+      "url": "https://pc.watch.impress.co.jp/data/rss/1.0/pcw/feed.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 35
+    },
+    {
+      "id": "internet-watch",
+      "name": "INTERNET Watch",
+      "url": "https://internet.watch.impress.co.jp/data/rss/1.0/inw/feed.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 35
+    },
+    {
+      "id": "av-watch",
+      "name": "AV Watch",
+      "url": "https://av.watch.impress.co.jp/data/rss/1.0/avw/feed.rdf",
+      "type": "専門メディア",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 7,
+      "maxItems": 30
+    },
+    {
+      "id": "game-watch",
+      "name": "GAME Watch",
+      "url": "https://game.watch.impress.co.jp/data/rss/1.0/gmw/feed.rdf",
+      "type": "専門メディア",
+      "category": "ゲーム",
+      "language": "ja",
+      "priority": 8,
+      "maxItems": 40
+    },
+    {
+      "id": "jpcert",
+      "name": "JPCERT/CC",
+      "url": "https://www.jpcert.or.jp/rss/jpcert.rdf",
+      "type": "公式発表",
+      "category": "AI・IT",
+      "language": "ja",
+      "priority": 11,
+      "maxItems": 25
     },
     {
       "id": "jma-extra",
@@ -59,7 +159,7 @@
       "category": "気象・防災",
       "language": "ja",
       "priority": 14,
-      "maxItems": 25
+      "maxItems": 30
     },
     {
       "id": "google-japan",
@@ -69,7 +169,7 @@
       "category": "AI・IT",
       "language": "ja",
       "priority": 8,
-      "maxItems": 20
+      "maxItems": 25
     },
     {
       "id": "openai-news",
@@ -79,7 +179,7 @@
       "category": "AI・IT",
       "language": "en",
       "priority": 8,
-      "maxItems": 20
+      "maxItems": 25
     }
   ]
 }

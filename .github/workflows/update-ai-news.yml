@@ -8,6 +8,7 @@ on:
     paths:
       - 'ai-news/scripts/update-news.mjs'
       - 'ai-news/scripts/refine-news.mjs'
+      - 'ai-news/scripts/build-expanded-news.mjs'
       - 'ai-news/data/sources.json'
       - '.github/workflows/update-ai-news.yml'
 
@@ -21,7 +22,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -34,18 +35,18 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Check browser JavaScript
+      - name: Check JavaScript
         run: |
           node --check ai-news/app.js
           node --check ai-news/demo-data.js
+          node --check ai-news/category-filter.js
+          node --check ai-news/spotlight.js
           node --check ai-news/scripts/update-news.mjs
           node --check ai-news/scripts/refine-news.mjs
+          node --check ai-news/scripts/build-expanded-news.mjs
 
-      - name: Fetch and deduplicate feeds
-        run: node ai-news/scripts/update-news.mjs
-
-      - name: Balance recommendations
-        run: node ai-news/scripts/refine-news.mjs
+      - name: Fetch, merge and curate expanded feed
+        run: node ai-news/scripts/build-expanded-news.mjs
 
       - name: Commit updated data
         shell: bash
@@ -57,5 +58,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add ai-news/data/news.json
-          git commit -m 'data: update ONE NEWS feed'
+          git commit -m 'data: update expanded ONE NEWS feed'
           git push

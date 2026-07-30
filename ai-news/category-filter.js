@@ -23,6 +23,7 @@
   if (!select || !newsList) return;
 
   let activeCategory = localStorage.getItem(STORAGE_KEY) || ALL;
+  if (activeCategory !== ALL && !CATEGORY_ORDER.includes(activeCategory)) activeCategory = ALL;
   let applying = false;
 
   function categoryOf(card) {
@@ -36,7 +37,7 @@
   }
 
   function categoryCounts() {
-    const counts = new Map();
+    const counts = new Map(CATEGORY_ORDER.map(category => [category, 0]));
     cards().forEach(card => {
       const category = categoryOf(card);
       card.dataset.category = category;
@@ -47,12 +48,9 @@
 
   function renderOptions(counts) {
     const total = cards().length;
-    const available = CATEGORY_ORDER.filter(category => counts.has(category));
-    if (activeCategory !== ALL && !counts.has(activeCategory)) activeCategory = ALL;
-
     select.innerHTML = [
       `<option value="${ALL}">すべてのジャンル（${total}）</option>`,
-      ...available.map(category => `<option value="${category}">${category}（${counts.get(category)}）</option>`)
+      ...CATEGORY_ORDER.map(category => `<option value="${category}">${category}（${counts.get(category) || 0}）</option>`)
     ].join('');
     select.value = activeCategory;
   }
@@ -83,14 +81,13 @@
       if (show) visible += 1;
     });
 
-    if (sectionTitle && document.querySelector('.tab.active')?.dataset.tab !== 'consensus') {
+    const currentTab = document.querySelector('.tab.active')?.dataset.tab;
+    if (sectionTitle && currentTab !== 'consensus') {
       sectionTitle.textContent = activeCategory === ALL
         ? titleForCurrentTab()
         : `${activeCategory}のニュース`;
     }
-    if (resultCount && document.querySelector('.tab.active')?.dataset.tab !== 'consensus') {
-      resultCount.textContent = `${visible}件`;
-    }
+    if (resultCount && currentTab !== 'consensus') resultCount.textContent = `${visible}件`;
 
     window.dispatchEvent(new CustomEvent('one-news-category-change', {
       detail: { category: activeCategory, visible, total: list.length, announce }
@@ -102,7 +99,9 @@
     activeCategory = select.value || ALL;
     localStorage.setItem(STORAGE_KEY, activeCategory);
     applyFilter({ announce: true });
-    newsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (document.querySelector('.tab.active')?.dataset.tab !== 'consensus') {
+      newsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 
   document.querySelector('#tabs')?.addEventListener('click', event => {

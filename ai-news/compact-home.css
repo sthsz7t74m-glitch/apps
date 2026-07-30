@@ -1,0 +1,146 @@
+/* ONE NEWS compact home layout v0.8 */
+
+.hero {
+  padding: 12px 16px 6px;
+}
+
+.digest {
+  padding: 15px 16px 13px;
+  border-radius: 22px;
+  box-shadow: 0 10px 28px rgba(35, 55, 80, .08);
+}
+
+.digest-head {
+  align-items: center;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: .12em;
+}
+
+.digest h1 {
+  margin: 4px 0 0;
+  font-size: clamp(25px, 6.4vw, 34px);
+  line-height: 1;
+}
+
+.feed-badge {
+  min-height: 26px;
+  padding: 5px 9px;
+  font-size: 10px;
+}
+
+.digest-copy {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 9px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.metrics {
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.metric {
+  min-height: 56px;
+  padding: 8px 9px;
+  border-radius: 14px;
+  transition: transform .14s ease, border-color .14s ease, background .14s ease;
+}
+
+.metric[data-digest-action] {
+  cursor: pointer;
+}
+
+.metric[data-digest-action]:active {
+  transform: scale(.97);
+  border-color: #a9c9f7;
+  background: #f4f8ff;
+}
+
+.metric strong {
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.metric span {
+  margin-top: 3px;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.sync-line {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 9px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.controls {
+  padding-top: 7px;
+}
+
+.search {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.category-select-wrap {
+  min-height: 62px;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 19px;
+}
+
+.category-select-copy small {
+  font-size: 8px;
+}
+
+.category-select-copy strong {
+  font-size: 12px;
+}
+
+.category-select-control {
+  min-width: min(55%, 310px);
+}
+
+.category-select-control select {
+  min-height: 42px;
+  padding-block: 8px;
+  font-size: 12px;
+}
+
+.tabs {
+  margin-top: 9px;
+}
+
+.tab {
+  min-height: 36px;
+  padding: 8px 13px;
+  font-size: 12px;
+}
+
+.toolbar {
+  padding-top: 12px;
+}
+
+@media (max-width: 380px) {
+  .hero { padding-inline: 12px; }
+  .digest { padding-inline: 13px; }
+  .digest-copy { -webkit-line-clamp: 1; }
+  .metric { padding-inline: 7px; }
+  .category-select-wrap { gap: 8px; }
+  .category-select-control { min-width: 53%; }
+}
+
+@media (min-width: 700px) {
+  .digest-copy { -webkit-line-clamp: 1; }
+}

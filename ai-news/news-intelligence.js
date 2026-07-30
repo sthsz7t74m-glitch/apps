@@ -6,7 +6,6 @@
   const controls = document.querySelector('.controls');
   const detailSheet = document.querySelector('#detailSheet');
   const settingsSheet = document.querySelector('.settings-sheet');
-  const search = document.querySelector('#searchInput');
   const toolbar = document.querySelector('#newsToolbar');
   const newsList = document.querySelector('#newsList');
   if (!controls || !detailSheet) return;
@@ -66,7 +65,7 @@
     </div>
     <section class="news-explorer__section">
       <div class="news-explorer__head"><strong>トレンドワード</strong><small>直近7日</small></div>
-      <div class="news-explorer__trends">${trends.map(([word, count]) => `<button type="button" data-trend="${escapeHtml(word)}"><span>#${escapeHtml(word)}</span><b>${count}</b></button>`).join('') || '<span class="news-explorer__empty">話題を集計中です</span>'}</div>
+      <div class="news-explorer__trends">${trends.map(([word, count]) => `<span class="news-explorer__trend"><span>#${escapeHtml(word)}</span><b>${count}</b></span>`).join('') || '<span class="news-explorer__empty">話題を集計中です</span>'}</div>
     </section>
     <section class="news-explorer__section">
       <div class="news-explorer__head"><strong>注目ランキング</strong><div class="news-explorer__ranges"><button type="button" data-range="24h" class="${currentRange === '24h' ? 'active' : ''}">24時間</button><button type="button" data-range="7d" class="${currentRange === '7d' ? 'active' : ''}">7日</button></div></div>
@@ -117,7 +116,7 @@
       <article><span>読了目安</span><strong>${Math.max(1, Number(item.minutes || 1))}分</strong><p>${sources.length > 1 ? '複数媒体を統合' : '公開概要を整理'}</p></article>
     </div>
     ${alternate.length ? `<div class="news-angle-list"><h4>各社の見出し・切り口</h4>${alternate.map(title => `<p>${escapeHtml(title)}</p>`).join('')}</div>` : ''}
-    ${tags.length ? `<div class="news-topic-tags">${tags.map(tag => `<button type="button" data-trend="${escapeHtml(tag)}">#${escapeHtml(tag)}</button>`).join('')}</div>` : ''}`;
+    ${tags.length ? `<div class="news-topic-tags">${tags.map(tag => `<span>#${escapeHtml(tag)}</span>`).join('')}</div>` : ''}`;
   }
 
   function sourceComparisonMarkup(item) {
@@ -147,14 +146,13 @@
   }
 
   function openRelated(id) {
-    const item = items.find(entry => String(entry.id) === String(id));
-    if (!item) return;
+    const direct = document.querySelector(`[data-open-card="${CSS.escape(String(id))}"]`);
+    if (direct) { direct.click(); return; }
+
     document.querySelector('.tab[data-tab="recommend"]')?.click();
-    if (search) {
-      search.value = item.title.slice(0, 40);
-      search.dispatchEvent(new Event('input', { bubbles: true }));
-    }
-    setTimeout(() => document.querySelector(`[data-open-card="${CSS.escape(String(id))}"]`)?.click(), 80);
+    setTimeout(() => {
+      document.querySelector(`[data-open-card="${CSS.escape(String(id))}"]`)?.click();
+    }, 100);
   }
 
   function renderReadingStats() {
@@ -173,13 +171,6 @@
   }
 
   document.addEventListener('click', event => {
-    const trend = event.target.closest('[data-trend]');
-    if (trend && search) {
-      document.querySelector('.tab[data-tab="recommend"]')?.click();
-      search.value = trend.dataset.trend;
-      search.dispatchEvent(new Event('input', { bubbles: true }));
-      setTimeout(() => document.querySelector('#newsToolbar')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
-    }
     const range = event.target.closest('[data-range]');
     if (range) { currentRange = range.dataset.range; renderExplorer(); }
     const related = event.target.closest('[data-related-id]');

@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="複数のRSSと公式フィードを横断し、同じニュースを意味ベースで統合して短時間で読めるニュースアプリ">
   <title>ONE NEWS</title>
-  <link rel="stylesheet" href="./styles.css?v=1000">
-  <link rel="stylesheet" href="./category-filter.css?v=1000">
-  <link rel="stylesheet" href="./spotlight.css?v=1000">
-  <link rel="stylesheet" href="./compact-home.css?v=1000">
-  <link rel="stylesheet" href="./news-intelligence.css?v=1000">
+  <link rel="stylesheet" href="./styles.css?v=1100">
+  <link rel="stylesheet" href="./category-filter.css?v=1100">
+  <link rel="stylesheet" href="./spotlight.css?v=1100">
+  <link rel="stylesheet" href="./compact-home.css?v=1100">
+  <link rel="stylesheet" href="./news-intelligence.css?v=1100">
+  <link rel="stylesheet" href="./filter-reset.css?v=1100">
 </head>
 <body>
   <div class="app">
@@ -24,6 +25,7 @@
     <section class="controls">
       <label class="search-wrap"><svg class="icon search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input class="search" id="searchInput" type="search" placeholder="タイトル・要約・タグ・配信元を検索" autocomplete="off"></label>
       <label class="category-select-wrap" for="categorySelect"><span class="category-select-copy"><small>GENRE</small><strong>ジャンルで絞り込む</strong></span><span class="category-select-control"><select id="categorySelect" aria-label="表示するニュースジャンル"><option value="すべて">すべてのジャンル</option></select><span class="category-select-arrow">⌄</span></span></label>
+      <div class="filter-reset-row"><button class="filter-reset-btn" id="filterResetBtn" type="button" hidden>検索・絞り込みを解除</button></div>
       <div class="tabs" id="tabs" role="tablist" aria-label="ニュースの表示方法"><button class="tab active" type="button" data-tab="recommend">おすすめ</button><button class="tab" type="button" data-tab="consensus">重要</button><button class="tab" type="button" data-tab="discover">発見</button><button class="tab" type="button" data-tab="personal">あなた向け</button><button class="tab" type="button" data-tab="unread">未読 <span class="tab-count" id="unreadTabCount" hidden>0</span></button><button class="tab" type="button" data-tab="latest">新着</button><button class="tab" type="button" data-tab="saved">あとで読む</button></div>
     </section>
 
@@ -35,8 +37,8 @@
   <nav class="bottom-nav" aria-label="メインメニュー"><button class="nav-btn active" type="button" data-nav="home"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="m4 10 8-6 8 6"/><path d="M6 9v10h12V9"/><path d="M10 19v-5h4v5"/></svg></span><span>ホーム</span></button><button class="nav-btn" type="button" data-nav="search"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></span><span>検索</span></button><button class="nav-btn" type="button" data-nav="saved"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg></span><span>保存</span></button><button class="nav-btn" type="button" data-nav="settings"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></span><span>設定</span></button></nav>
 
   <div class="sheet-backdrop" id="detailBackdrop"><article class="sheet" id="detailSheet" aria-label="ニュース詳細"></article></div>
-  <div class="sheet-backdrop" id="settingsBackdrop"><section class="sheet settings-sheet"><div class="sheet-handle"></div><button class="sheet-close" type="button" data-close="settings">×</button><h2 class="settings-title">ニュース設定</h2><div class="setting-group"><label for="keywordInput">興味キーワード</label><div class="keyword-row"><input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam"><button class="add-btn" id="addKeywordBtn" type="button">追加</button></div><div class="chips" id="keywordChips"></div></div><div class="setting-group"><div class="setting-heading"><label>既読管理</label><span id="readStatusText">0/0件を既読</span></div><div class="setting-actions"><button class="secondary-btn" id="markAllReadBtn" type="button">すべて既読</button><button class="danger-outline" id="clearReadBtn" type="button">既読をリセット</button></div></div><div class="setting-group"><div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div><div class="source-status-list" id="sourceStatusList"></div></div><div class="notice">RSS・Atom・公式フィードの公開情報を統合し、要点・背景・影響・各社の切り口・関連記事・時系列まで整理します。</div><div class="notice version-notice">詳細情報拡充・発見タブ・戻り位置修正 v1.0.0</div></section></div>
+  <div class="sheet-backdrop" id="settingsBackdrop"><section class="sheet settings-sheet"><div class="sheet-handle"></div><button class="sheet-close" type="button" data-close="settings">×</button><h2 class="settings-title">ニュース設定</h2><div class="setting-group"><label for="keywordInput">興味キーワード</label><div class="keyword-row"><input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam"><button class="add-btn" id="addKeywordBtn" type="button">追加</button></div><div class="chips" id="keywordChips"></div></div><div class="setting-group"><div class="setting-heading"><label>既読管理</label><span id="readStatusText">0/0件を既読</span></div><div class="setting-actions"><button class="secondary-btn" id="markAllReadBtn" type="button">すべて既読</button><button class="danger-outline" id="clearReadBtn" type="button">既読をリセット</button></div></div><div class="setting-group"><div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div><div class="source-status-list" id="sourceStatusList"></div></div><div class="notice">RSS・Atom・公式フィードの公開情報を統合し、要点・背景・影響・各社の切り口・関連記事・時系列まで整理します。</div><div class="notice version-notice">ユーザー専用検索・ジャンル絞り込み修正・一括解除 v1.1.0</div></section></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./demo-data.js?v=300" defer></script><script src="./app.js?v=1000" defer></script><script src="./category-filter.js?v=1000" defer></script><script src="./spotlight.js?v=1000" defer></script><script src="./home-enhancements.js?v=1000" defer></script><script src="./news-intelligence.js?v=1000" defer></script><script src="./detail-navigation.js?v=1000" defer></script>
+  <script src="./demo-data.js?v=300" defer></script><script src="./app.js?v=1100" defer></script><script src="./category-filter.js?v=1100" defer></script><script src="./spotlight.js?v=1100" defer></script><script src="./home-enhancements.js?v=1100" defer></script><script src="./news-intelligence.js?v=1100" defer></script><script src="./detail-navigation.js?v=1100" defer></script>
 </body>
 </html>

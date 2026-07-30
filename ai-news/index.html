@@ -6,49 +6,37 @@
   <meta name="theme-color" content="#ffffff">
   <meta name="description" content="複数のRSSと公式フィードを横断し、同じニュースを意味ベースで統合して短時間で読めるニュースアプリ">
   <title>ONE NEWS</title>
-  <link rel="stylesheet" href="./styles.css?v=900">
-  <link rel="stylesheet" href="./category-filter.css?v=900">
-  <link rel="stylesheet" href="./spotlight.css?v=900">
-  <link rel="stylesheet" href="./compact-home.css?v=900">
-  <link rel="stylesheet" href="./news-intelligence.css?v=900">
+  <link rel="stylesheet" href="./styles.css?v=1000">
+  <link rel="stylesheet" href="./category-filter.css?v=1000">
+  <link rel="stylesheet" href="./spotlight.css?v=1000">
+  <link rel="stylesheet" href="./compact-home.css?v=1000">
+  <link rel="stylesheet" href="./news-intelligence.css?v=1000">
 </head>
 <body>
   <div class="app">
     <header class="topbar">
-      <a class="brand" href="../" aria-label="MY APPSへ戻る">
-        <span class="logo">1N</span>
-        <span class="brand-copy"><strong>ONE NEWS</strong><small id="brandStatus">ニュースデータを準備中</small></span>
-      </a>
-      <div class="top-actions">
-        <button class="icon-btn" id="refreshBtn" type="button" aria-label="最新ニュースを取得"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5"/><path d="M18.5 9A7 7 0 1 0 19 15"/></svg></button>
-        <button class="icon-btn" id="settingsBtn" type="button" aria-label="ニュース設定"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></button>
-      </div>
+      <a class="brand" href="../" aria-label="MY APPSへ戻る"><span class="logo">1N</span><span class="brand-copy"><strong>ONE NEWS</strong><small id="brandStatus">ニュースデータを準備中</small></span></a>
+      <div class="top-actions"><button class="icon-btn" id="refreshBtn" type="button" aria-label="最新ニュースを取得"><svg class="icon" viewBox="0 0 24 24"><path d="M20 6v5h-5"/><path d="M18.5 9A7 7 0 1 0 19 15"/></svg></button><button class="icon-btn" id="settingsBtn" type="button" aria-label="ニュース設定"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></button></div>
     </header>
 
-    <section class="hero"><div class="digest">
-      <div class="digest-head"><div><p class="eyebrow">TODAY'S DIGEST</p><h1>今日を、5分で。</h1></div><span class="feed-badge is-loading" id="feedStatusBadge"><span class="live-dot"></span>取得中</span></div>
-      <p class="digest-copy">複数メディアの記事を意味ベースでまとめ、要点・背景・重要性・今後の確認ポイントまで整理します。</p>
-      <div class="metrics"><article class="metric"><strong id="importantCount">—</strong><span>重要ニュース</span></article><article class="metric"><strong id="readMinutes">—</strong><span>推定読了</span></article><article class="metric"><strong id="sourceCount">—</strong><span>取得ソース</span></article></div>
-      <p class="sync-line" id="syncLine">公開ニュースデータを確認しています</p>
-    </div></section>
+    <section class="hero"><div class="digest"><div class="digest-head"><div><p class="eyebrow">TODAY'S DIGEST</p><h1>今日を、5分で。</h1></div><span class="feed-badge is-loading" id="feedStatusBadge"><span class="live-dot"></span>取得中</span></div><p class="digest-copy">複数メディアの記事を意味ベースでまとめ、要点・背景・重要性・今後の確認ポイントまで整理します。</p><div class="metrics"><article class="metric"><strong id="importantCount">—</strong><span>重要ニュース</span></article><article class="metric"><strong id="readMinutes">—</strong><span>推定読了</span></article><article class="metric"><strong id="sourceCount">—</strong><span>取得ソース</span></article></div><p class="sync-line" id="syncLine">公開ニュースデータを確認しています</p></div></section>
 
     <section class="controls">
-      <label class="search-wrap"><svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input class="search" id="searchInput" type="search" placeholder="タイトル・要約・タグ・配信元を検索" autocomplete="off"></label>
-      <label class="category-select-wrap" for="categorySelect"><span class="category-select-copy"><small>GENRE</small><strong>ジャンルで絞り込む</strong></span><span class="category-select-control"><select id="categorySelect" aria-label="表示するニュースジャンル"><option value="すべて">すべてのジャンル</option></select><span class="category-select-arrow" aria-hidden="true">⌄</span></span></label>
-      <div class="tabs" id="tabs" role="tablist" aria-label="ニュースの表示方法"><button class="tab active" type="button" data-tab="recommend">おすすめ</button><button class="tab" type="button" data-tab="consensus">重要</button><button class="tab" type="button" data-tab="personal">あなた向け</button><button class="tab" type="button" data-tab="unread">未読 <span class="tab-count" id="unreadTabCount" hidden>0</span></button><button class="tab" type="button" data-tab="latest">新着</button><button class="tab" type="button" data-tab="saved">あとで読む</button></div>
+      <label class="search-wrap"><svg class="icon search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg><input class="search" id="searchInput" type="search" placeholder="タイトル・要約・タグ・配信元を検索" autocomplete="off"></label>
+      <label class="category-select-wrap" for="categorySelect"><span class="category-select-copy"><small>GENRE</small><strong>ジャンルで絞り込む</strong></span><span class="category-select-control"><select id="categorySelect" aria-label="表示するニュースジャンル"><option value="すべて">すべてのジャンル</option></select><span class="category-select-arrow">⌄</span></span></label>
+      <div class="tabs" id="tabs" role="tablist" aria-label="ニュースの表示方法"><button class="tab active" type="button" data-tab="recommend">おすすめ</button><button class="tab" type="button" data-tab="consensus">重要</button><button class="tab" type="button" data-tab="discover">発見</button><button class="tab" type="button" data-tab="personal">あなた向け</button><button class="tab" type="button" data-tab="unread">未読 <span class="tab-count" id="unreadTabCount" hidden>0</span></button><button class="tab" type="button" data-tab="latest">新着</button><button class="tab" type="button" data-tab="saved">あとで読む</button></div>
     </section>
 
     <section class="consensus-spotlight" id="consensusSpotlight" hidden aria-label="複数社が報じる重要ニュース"><div class="consensus-spotlight__head"><div><p class="consensus-spotlight__eyebrow">CROSS MEDIA</p><h2>複数社が追う重要ニュース</h2><p>報道の広がり・新しさ・公式情報の有無から注目トピックを選出。</p></div><span class="consensus-spotlight__count" id="consensusSpotlightCount">確認中</span></div><div class="consensus-spotlight__list" id="consensusSpotlightList"></div></section>
-
-    <div class="toolbar" id="newsToolbar"><div><h2 id="sectionTitle">今日の重要ニュース</h2><small id="resultCount">0件</small></div><div class="view-toggle" aria-label="表示切り替え"><button class="view-btn" id="cardViewBtn" type="button" aria-label="カード表示"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg></button><button class="view-btn" id="listViewBtn" type="button" aria-label="コンパクト表示"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></button></div></div>
+    <div class="toolbar" id="newsToolbar"><div><h2 id="sectionTitle">今日の重要ニュース</h2><small id="resultCount">0件</small></div><div class="view-toggle"><button class="view-btn" id="cardViewBtn" type="button" aria-label="カード表示"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16"/></svg></button><button class="view-btn" id="listViewBtn" type="button" aria-label="コンパクト表示"><svg class="icon" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></button></div></div>
     <main class="news-list" id="newsList" aria-live="polite"><div class="loading-state"><span class="spinner"></span><strong>ニュースを読み込んでいます</strong></div></main>
   </div>
 
   <nav class="bottom-nav" aria-label="メインメニュー"><button class="nav-btn active" type="button" data-nav="home"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="m4 10 8-6 8 6"/><path d="M6 9v10h12V9"/><path d="M10 19v-5h4v5"/></svg></span><span>ホーム</span></button><button class="nav-btn" type="button" data-nav="search"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></span><span>検索</span></button><button class="nav-btn" type="button" data-nav="saved"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"/></svg></span><span>保存</span></button><button class="nav-btn" type="button" data-nav="settings"><span class="nav-icon-wrap"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h10"/><path d="M18 7h2"/><circle cx="16" cy="7" r="2"/><path d="M4 17h2"/><path d="M10 17h10"/><circle cx="8" cy="17" r="2"/></svg></span><span>設定</span></button></nav>
 
   <div class="sheet-backdrop" id="detailBackdrop"><article class="sheet" id="detailSheet" aria-label="ニュース詳細"></article></div>
-  <div class="sheet-backdrop" id="settingsBackdrop"><section class="sheet settings-sheet" aria-label="ニュース設定"><div class="sheet-handle"></div><button class="sheet-close" type="button" data-close="settings" aria-label="設定を閉じる">×</button><h2 class="settings-title">ニュース設定</h2><div class="setting-group"><label for="keywordInput">興味キーワード</label><div class="keyword-row"><input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam"><button class="add-btn" id="addKeywordBtn" type="button">追加</button></div><div class="chips" id="keywordChips"></div></div><div class="setting-group"><div class="setting-heading"><label>既読管理</label><span id="readStatusText">0/0件を既読</span></div><div class="setting-actions"><button class="secondary-btn" id="markAllReadBtn" type="button">すべて既読</button><button class="danger-outline" id="clearReadBtn" type="button">既読をリセット</button></div></div><div class="setting-group"><div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div><div class="source-status-list" id="sourceStatusList"></div></div><div class="notice">RSS・Atom・公式フィードの見出しと概要を定期取得し、URL・タイトル・要約・固有語の類似度から同じニュースを二段階で統合します。</div><div class="notice version-notice">トレンド・ランキング・関連記事・報道タイムライン v0.9.0</div></section></div>
+  <div class="sheet-backdrop" id="settingsBackdrop"><section class="sheet settings-sheet"><div class="sheet-handle"></div><button class="sheet-close" type="button" data-close="settings">×</button><h2 class="settings-title">ニュース設定</h2><div class="setting-group"><label for="keywordInput">興味キーワード</label><div class="keyword-row"><input class="keyword-input" id="keywordInput" placeholder="例：バルセロナ、AI、Steam"><button class="add-btn" id="addKeywordBtn" type="button">追加</button></div><div class="chips" id="keywordChips"></div></div><div class="setting-group"><div class="setting-heading"><label>既読管理</label><span id="readStatusText">0/0件を既読</span></div><div class="setting-actions"><button class="secondary-btn" id="markAllReadBtn" type="button">すべて既読</button><button class="danger-outline" id="clearReadBtn" type="button">既読をリセット</button></div></div><div class="setting-group"><div class="setting-heading"><label>データソース</label><span id="sourceHealth">確認中</span></div><div class="source-status-list" id="sourceStatusList"></div></div><div class="notice">RSS・Atom・公式フィードの公開情報を統合し、要点・背景・影響・各社の切り口・関連記事・時系列まで整理します。</div><div class="notice version-notice">詳細情報拡充・発見タブ・戻り位置修正 v1.0.0</div></section></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./demo-data.js?v=300" defer></script><script src="./app.js?v=900" defer></script><script src="./category-filter.js?v=900" defer></script><script src="./spotlight.js?v=900" defer></script><script src="./home-enhancements.js?v=900" defer></script><script src="./news-intelligence.js?v=900" defer></script>
+  <script src="./demo-data.js?v=300" defer></script><script src="./app.js?v=1000" defer></script><script src="./category-filter.js?v=1000" defer></script><script src="./spotlight.js?v=1000" defer></script><script src="./home-enhancements.js?v=1000" defer></script><script src="./news-intelligence.js?v=1000" defer></script><script src="./detail-navigation.js?v=1000" defer></script>
 </body>
 </html>

@@ -23,7 +23,7 @@
     const targetY = restoreY;
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        window.scrollTo({ top: targetY, left: 0, behavior: 'instant' });
+        window.scrollTo(0, targetY);
         if (activeCardId) {
           const card = document.querySelector(`[data-open-card="${CSS.escape(String(activeCardId))}"]`);
           card?.focus?.({ preventScroll: true });
@@ -34,9 +34,7 @@
 
   document.addEventListener('pointerdown', capture, true);
   document.addEventListener('click', event => {
-    if (event.target.closest('[data-close="detail"]') || event.target === backdrop) {
-      setTimeout(restore, 0);
-    }
+    if (event.target.closest('[data-close="detail"]') || event.target === backdrop) setTimeout(restore, 0);
   }, true);
 
   document.addEventListener('keydown', event => {

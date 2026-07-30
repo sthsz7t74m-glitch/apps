@@ -15,33 +15,15 @@
     '科学・文化',
     'その他'
   ];
-  const CATEGORY_ICONS = {
-    '気象・防災': '☂',
-    '国内': '日',
-    '国際': '地',
-    '経済': '￥',
-    'AI・IT': 'AI',
-    'サッカー': '⚽',
-    'スポーツ': '🏅',
-    'ゲーム': '🎮',
-    '科学・文化': '◇',
-    'その他': '＋'
-  };
 
-  const panel = document.querySelector('#categoryPicker');
-  const chips = document.querySelector('#categoryChips');
-  const summary = document.querySelector('#categorySummary');
+  const select = document.querySelector('#categorySelect');
   const newsList = document.querySelector('#newsList');
-  const tabs = document.querySelector('#tabs');
   const sectionTitle = document.querySelector('#sectionTitle');
   const resultCount = document.querySelector('#resultCount');
-
-  if (!panel || !chips || !newsList || !tabs) return;
+  if (!select || !newsList) return;
 
   let activeCategory = localStorage.getItem(STORAGE_KEY) || ALL;
   let applying = false;
-
-  const isCategoryMode = () => document.querySelector('.tab[data-tab="category"]')?.classList.contains('active');
 
   function categoryOf(card) {
     const labels = [...card.querySelectorAll('.badges .badge')]
@@ -63,53 +45,36 @@
     return counts;
   }
 
-  function availableCategories(counts) {
-    return CATEGORY_ORDER.filter(category => counts.has(category));
-  }
-
-  function chipMarkup(category, count) {
-    const selected = activeCategory === category;
-    const icon = category === ALL ? '全' : CATEGORY_ICONS[category] || '＋';
-    return `<button class="category-chip${selected ? ' active' : ''}" type="button" data-category-filter="${category}" aria-pressed="${selected}">
-      <span class="category-chip__icon" aria-hidden="true">${icon}</span>
-      <span>${category}</span>
-      <b>${count}</b>
-    </button>`;
-  }
-
-  function renderPicker(counts) {
+  function renderOptions(counts) {
     const total = cards().length;
-    const categories = availableCategories(counts);
+    const available = CATEGORY_ORDER.filter(category => counts.has(category));
     if (activeCategory !== ALL && !counts.has(activeCategory)) activeCategory = ALL;
 
-    chips.innerHTML = [
-      chipMarkup(ALL, total),
-      ...categories.map(category => chipMarkup(category, counts.get(category)))
+    select.innerHTML = [
+      `<option value="${ALL}">すべてのジャンル（${total}）</option>`,
+      ...available.map(category => `<option value="${category}">${category}（${counts.get(category)}）</option>`)
     ].join('');
-
-    if (summary) {
-      summary.textContent = activeCategory === ALL
-        ? `${categories.length}ジャンル・全${total}件`
-        : `${activeCategory}を表示中`;
-    }
+    select.value = activeCategory;
   }
 
-  function applyFilter() {
+  function titleForCurrentTab() {
+    const active = document.querySelector('.tab.active')?.dataset.tab;
+    return {
+      recommend: '今日の重要ニュース',
+      personal: 'あなた向け',
+      unread: '未読ニュース',
+      latest: '新着ニュース',
+      saved: 'あとで読む'
+    }[active] || 'ニュース';
+  }
+
+  function applyFilter({ announce = false } = {}) {
     if (applying) return;
     applying = true;
 
-    const categoryMode = isCategoryMode();
-    panel.hidden = !categoryMode;
     const list = cards();
-
-    if (!categoryMode) {
-      list.forEach(card => { card.hidden = false; });
-      applying = false;
-      return;
-    }
-
     const counts = categoryCounts();
-    renderPicker(counts);
+    renderOptions(counts);
 
     let visible = 0;
     list.forEach(card => {
@@ -118,26 +83,29 @@
       if (show) visible += 1;
     });
 
-    if (sectionTitle) {
+    if (sectionTitle && document.querySelector('.tab.active')?.dataset.tab !== 'consensus') {
       sectionTitle.textContent = activeCategory === ALL
-        ? 'ジャンルを選ぶ'
+        ? titleForCurrentTab()
         : `${activeCategory}のニュース`;
     }
-    if (resultCount) resultCount.textContent = `${visible}件`;
+    if (resultCount && document.querySelector('.tab.active')?.dataset.tab !== 'consensus') {
+      resultCount.textContent = `${visible}件`;
+    }
 
+    window.dispatchEvent(new CustomEvent('one-news-category-change', {
+      detail: { category: activeCategory, visible, total: list.length, announce }
+    }));
     applying = false;
   }
 
-  chips.addEventListener('click', event => {
-    const button = event.target.closest('[data-category-filter]');
-    if (!button) return;
-    activeCategory = button.dataset.categoryFilter || ALL;
+  select.addEventListener('change', () => {
+    activeCategory = select.value || ALL;
     localStorage.setItem(STORAGE_KEY, activeCategory);
-    applyFilter();
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    applyFilter({ announce: true });
+    newsList.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  tabs.addEventListener('click', event => {
+  document.querySelector('#tabs')?.addEventListener('click', event => {
     const button = event.target.closest('.tab');
     if (!button) return;
     window.setTimeout(() => {
@@ -148,10 +116,16 @@
 
   const observer = new MutationObserver(() => {
     if (applying) return;
-    window.requestAnimationFrame(applyFilter);
+    window.requestAnimationFrame(() => applyFilter());
   });
   observer.observe(newsList, { childList: true });
 
-  window.addEventListener('pageshow', applyFilter);
+  window.ONE_NEWS_CATEGORY = {
+    get value() { return activeCategory; },
+    all: ALL,
+    apply: applyFilter
+  };
+
+  window.addEventListener('pageshow', () => applyFilter());
   applyFilter();
 })();

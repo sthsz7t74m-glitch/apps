@@ -2,6 +2,9 @@ name: Update Movie Hub data
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'movie-hub/.refresh-catalog'
   schedule:
     - cron: '7 22 * * *'
     - cron: '7 4 * * *'
@@ -17,6 +20,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

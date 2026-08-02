@@ -1,0 +1,46 @@
+name: Update Movie Hub data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 22 * * *'
+    - cron: '7 4 * * *'
+    - cron: '7 10 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-movie-hub-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate secrets
+        env:
+          TMDB_READ_ACCESS_TOKEN: ${{ secrets.TMDB_READ_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: |
+          if [ -z "$TMDB_READ_ACCESS_TOKEN" ] && [ -z "$TMDB_API_KEY" ]; then
+            echo 'TMDb secret is missing' >&2
+            exit 1
+          fi
+      - name: Fetch TMDb movies
+        env:
+          TMDB_READ_ACCESS_TOKEN: ${{ secrets.TMDB_READ_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+        run: node movie-hub/scripts/update-movies.mjs
+      - name: Commit generated data
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add movie-hub/data/movie-data.json
+          git diff --cached --quiet && exit 0
+          git commit -m "data: update Movie Hub from TMDb"
+          git push

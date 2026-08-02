@@ -2,9 +2,6 @@ name: Update Movie Hub data
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - 'movie-hub/.run-update'
   schedule:
     - cron: '7 22 * * *'
     - cron: '7 4 * * *'

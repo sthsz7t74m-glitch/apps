@@ -48,16 +48,24 @@ window.MediaHub = window.MediaHub || {};
       const genre = String(state.genre || 'all');
       const provider = String(state.provider || 'all');
       const minimumRating = Number(state.minimumRating || 0);
+      const minimumVotes = Number(state.minimumVotes || 0);
+      const releaseYearFrom = Number(state.releaseYearFrom || 0);
+      const releaseYearTo = Number(state.releaseYearTo || 0);
       let result = [...items].filter(item => {
         const haystack = [item.title, item.subtitle, item.overview, ...item.genres].join(' ').toLocaleLowerCase('ja');
+        const year = Number(item.year || String(item.releaseDate || '').slice(0, 4) || 0);
         return (!query || haystack.includes(query))
           && (genre === 'all' || item.genres.includes(genre))
           && (provider === 'all' || item.providers.includes(provider))
-          && item.rating >= minimumRating;
+          && item.rating >= minimumRating
+          && item.voteCount >= minimumVotes
+          && (!releaseYearFrom || year >= releaseYearFrom)
+          && (!releaseYearTo || year <= releaseYearTo);
       });
       const sort = state.sort || 'rank';
       result.sort((a, b) => {
         if (sort === 'rating') return b.rating - a.rating || b.voteCount - a.voteCount || b.popularity - a.popularity;
+        if (sort === 'votes') return b.voteCount - a.voteCount || b.rating - a.rating;
         if (sort === 'new') return String(b.releaseDate).localeCompare(String(a.releaseDate));
         if (sort === 'runtime') return a.runtime - b.runtime;
         if (sort === 'title') return a.title.localeCompare(b.title, 'ja');

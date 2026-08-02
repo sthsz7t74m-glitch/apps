@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const { MediaItem, MediaProvider, MediaFilterService, FavoriteService, MediaCard, escapeHtml } = window.MediaHub;
+  const { MediaItem, MediaProvider, MediaFilterService, FavoriteService, MediaCard, escapeHtml, formatCount } = window.MediaHub;
 
   class MovieDataProvider extends MediaProvider {
     constructor(){ super({id:'tmdb',label:'TMDb実データ'}); }
@@ -23,7 +23,7 @@
   }
 
   const fallback = [
-    {id:'sample-1',rank:1,title:'データ取得準備中',subtitle:'GitHub Actions実行後にTMDb実データへ切替',year:'',rating:0,popularity:0,runtime:0,genres:['準備中'],overview:'Actionsの Update Movie Hub data を手動実行してください。',providers:[],providerGroups:{},source:'待機中'}
+    {id:'sample-1',rank:1,title:'データ取得準備中',subtitle:'GitHub Actions実行後にTMDb実データへ切替',year:'',rating:0,voteCount:0,popularity:0,runtime:0,genres:['準備中'],overview:'Actionsの Update Movie Hub data を手動実行してください。',providers:[],providerGroups:{},source:'待機中'}
   ].map(v=>new MediaItem(v));
 
   const provider = new MovieDataProvider();
@@ -47,7 +47,7 @@
   function openDetail(id){
     const item=state.items.find(v=>v.id===String(id)); if(!item)return;
     const pg=item.providerGroups||{};
-    nodes.detailContent.innerHTML=`<div class="detail-head"><span class="media-card__poster detail-poster">${item.image?`<img src="${escapeHtml(item.image)}" alt="">`:'<span class="media-card__fallback">🎬</span>'}</span><div><small>${escapeHtml(item.year)}</small><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.subtitle)}</p></div></div><div class="detail-facts"><article><strong>★ ${item.rating.toFixed(1)}</strong><span>TMDb評価</span></article><article><strong>${item.runtime||'—'}分</strong><span>上映時間</span></article><article><strong>${item.voteCount?.toLocaleString?.()||'—'}</strong><span>投票数</span></article></div><article><strong>あらすじ</strong><p>${escapeHtml(item.overview||'日本語の概要は未登録です。')}</p></article>${item.director?`<article><strong>監督</strong><p>${escapeHtml(item.director)}</p></article>`:''}${item.cast?.length?`<article><strong>主な出演者</strong><p>${item.cast.map(v=>`${escapeHtml(v.name)}${v.character?`（${escapeHtml(v.character)}）`:''}`).join('・')}</p></article>`:''}<article><strong>ジャンル</strong><p>${item.genres.map(escapeHtml).join('・')}</p></article><section class="watch-section"><h3>日本で視聴できるサービス</h3>${group('見放題',pg.flatrate,'flat')}${group('レンタル',pg.rent,'rent')}${group('購入',pg.buy,'buy')}${!item.providers.length?'<p>日本向け配信情報は取得できませんでした。</p>':''}${pg.link?`<a href="${escapeHtml(pg.link)}" target="_blank" rel="noopener">JustWatchで最新状況を確認 ↗</a>`:''}</section><article><strong>外部リンク</strong><p>${item.trailerUrl?`<a href="${escapeHtml(item.trailerUrl)}" target="_blank" rel="noopener">予告編を見る ↗</a>　`:''}<a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener">TMDbで見る ↗</a></p></article><div class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB. 配信情報はTMDb経由のJustWatchデータです。</div>`;
+    nodes.detailContent.innerHTML=`<div class="detail-head"><span class="media-card__poster detail-poster">${item.image?`<img src="${escapeHtml(item.image)}" alt="">`:'<span class="media-card__fallback">🎬</span>'}</span><div><small>${escapeHtml(item.year)}</small><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.subtitle)}</p></div></div><div class="detail-facts"><article><strong>★ ${item.rating.toFixed(1)}</strong><span>TMDb評価</span></article><article><strong>${formatCount(item.voteCount)}</strong><span>評価総数</span></article><article><strong>${item.runtime||'—'}分</strong><span>上映時間</span></article></div><article><strong>あらすじ</strong><p>${escapeHtml(item.overview||'日本語の概要は未登録です。')}</p></article>${item.director?`<article><strong>監督</strong><p>${escapeHtml(item.director)}</p></article>`:''}${item.cast?.length?`<article><strong>主な出演者</strong><p>${item.cast.map(v=>`${escapeHtml(v.name)}${v.character?`（${escapeHtml(v.character)}）`:''}`).join('・')}</p></article>`:''}<article><strong>ジャンル</strong><p>${item.genres.map(escapeHtml).join('・')}</p></article><section class="watch-section"><h3>日本で視聴できるサービス</h3>${group('見放題',pg.flatrate,'flat')}${group('レンタル',pg.rent,'rent')}${group('購入',pg.buy,'buy')}${!item.providers.length?'<p>日本向け配信情報は取得できませんでした。</p>':''}${pg.link?`<a href="${escapeHtml(pg.link)}" target="_blank" rel="noopener">JustWatchで最新状況を確認 ↗</a>`:''}</section><article><strong>外部リンク</strong><p>${item.trailerUrl?`<a href="${escapeHtml(item.trailerUrl)}" target="_blank" rel="noopener">予告編を見る ↗</a>　`:''}<a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener">TMDbで見る ↗</a></p></article><div class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB. 配信情報はTMDb経由のJustWatchデータです。</div>`;
     nodes.detail.showModal();
   }
   document.addEventListener('click',event=>{ const open=event.target.closest('[data-open-media]'); if(open)openDetail(open.dataset.openMedia); const fav=event.target.closest('[data-favorite-media]'); if(fav){event.stopPropagation();favorites.toggle(fav.dataset.favoriteMedia);render();} if(event.target.closest('[data-close]'))event.target.closest('dialog')?.close(); });

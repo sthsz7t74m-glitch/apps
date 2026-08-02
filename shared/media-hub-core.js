@@ -4,16 +4,22 @@ window.MediaHub = window.MediaHub || {};
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[ch]));
+  const formatCount = value => {
+    const count = Number(value || 0);
+    if (!count) return '評価なし';
+    return `${new Intl.NumberFormat('ja-JP').format(count)}件`;
+  };
 
   class MediaItem {
     constructor(data = {}) {
       Object.assign(this, {
         id: '', title: '', subtitle: '', image: '', year: '', rating: 0,
-        popularity: 0, genres: [], overview: '', source: '', sourceUrl: '',
+        voteCount: 0, popularity: 0, genres: [], overview: '', source: '', sourceUrl: '',
         runtime: 0, providers: [], releaseDate: '', rank: 0
       }, data);
       this.id = String(this.id || this.title);
       this.rating = Number(this.rating || 0);
+      this.voteCount = Number(this.voteCount || 0);
       this.popularity = Number(this.popularity || 0);
       this.runtime = Number(this.runtime || 0);
       this.genres = Array.isArray(this.genres) ? this.genres : [];
@@ -51,7 +57,7 @@ window.MediaHub = window.MediaHub || {};
       });
       const sort = state.sort || 'rank';
       result.sort((a, b) => {
-        if (sort === 'rating') return b.rating - a.rating || b.popularity - a.popularity;
+        if (sort === 'rating') return b.rating - a.rating || b.voteCount - a.voteCount || b.popularity - a.popularity;
         if (sort === 'new') return String(b.releaseDate).localeCompare(String(a.releaseDate));
         if (sort === 'runtime') return a.runtime - b.runtime;
         if (sort === 'title') return a.title.localeCompare(b.title, 'ja');
@@ -82,7 +88,7 @@ window.MediaHub = window.MediaHub || {};
             <strong>${escapeHtml(item.title)}</strong>
             ${item.subtitle ? `<span class="media-card__subtitle">${escapeHtml(item.subtitle)}</span>` : ''}
             <span class="media-card__genres">${item.genres.slice(0, 3).map(g => `<i>${escapeHtml(g)}</i>`).join('')}</span>
-            <span class="media-card__score">★ ${item.rating.toFixed(1)} <em>${escapeHtml(item.source || '')}</em></span>
+            <span class="media-card__score"><b>★ ${item.rating.toFixed(1)}</b><em>${formatCount(item.voteCount)}の評価</em></span>
           </span>
         </button>
         <button class="media-card__favorite${favorite ? ' active' : ''}" type="button" data-favorite-media="${escapeHtml(item.id)}" aria-label="お気に入り">${favorite ? '★' : '☆'}</button>
@@ -91,7 +97,7 @@ window.MediaHub = window.MediaHub || {};
   }
 
   Object.assign(namespace, {
-    escapeHtml, MediaItem, MediaProvider, StaticMediaProvider,
+    escapeHtml, formatCount, MediaItem, MediaProvider, StaticMediaProvider,
     MediaFilterService, FavoriteService, MediaCard
   });
 })(window.MediaHub);

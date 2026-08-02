@@ -32,15 +32,17 @@
   const filterService = new MediaFilterService();
   const favorites = new FavoriteService('movieHubFavoritesV2');
   const card = new MovieCard();
-  const state = { items:[], query:'', genre:'all', provider:'all', minimumRating:0, minimumVotes:500, releaseYearFrom:0, releaseYearTo:0, sort:'rank' };
+  const PAGE_SIZE = 80;
+  const state = { items:[], query:'', genre:'all', provider:'all', minimumRating:0, minimumVotes:500, releaseYearFrom:0, releaseYearTo:0, sort:'rank', visibleLimit:PAGE_SIZE };
   const nodes = {
     list:document.querySelector('#movieList'), count:document.querySelector('#resultCount'), search:document.querySelector('#searchInput'),
     genre:document.querySelector('#genreSelect'), provider:document.querySelector('#providerSelect'), rating:document.querySelector('#ratingSelect'),
     votes:document.querySelector('#votesSelect'), yearFrom:document.querySelector('#yearFromSelect'), yearTo:document.querySelector('#yearToSelect'),
     sort:document.querySelector('#sortSelect'), detail:document.querySelector('#detailDialog'), detailContent:document.querySelector('#detailContent'),
-    source:document.querySelector('#sourceDialog'), status:document.querySelector('#dataStatus')
+    source:document.querySelector('#sourceDialog'), status:document.querySelector('#dataStatus'), loadMore:document.querySelector('#loadMoreButton')
   };
 
+  function resetVisible(){ state.visibleLimit=PAGE_SIZE; }
   function buildOptions(){
     const genres=[...new Set(state.items.flatMap(v=>v.genres))].sort((a,b)=>a.localeCompare(b,'ja'));
     const providers=[...new Set(state.items.flatMap(v=>v.providers))].sort((a,b)=>a.localeCompare(b,'ja'));
@@ -66,15 +68,21 @@
 
   function render(){
     const items=filterService.execute(state.items,state);
-    nodes.count.textContent=`${items.length}本`;
-    nodes.list.innerHTML=items.length?items.map(v=>card.render(v,{favorite:favorites.has(v.id)})).join(''):'<p class="empty">条件に合う映画がありません。</p>';
+    const visible=items.slice(0,state.visibleLimit);
+    nodes.count.textContent=`${items.length.toLocaleString('ja-JP')}本`;
+    nodes.list.innerHTML=visible.length?visible.map(v=>card.render(v,{favorite:favorites.has(v.id)})).join(''):'<p class="empty">条件に合う映画がありません。</p>';
+    if(nodes.loadMore){
+      nodes.loadMore.hidden=visible.length>=items.length;
+      nodes.loadMore.textContent=visible.length<items.length?`さらに表示（残り ${(items.length-visible.length).toLocaleString('ja-JP')}本）`:'すべて表示済み';
+    }
   }
 
   const group=(title,items,type)=>items?.length?`<article><strong>${title}</strong><div class="provider-tags">${items.map(v=>`<span class="watch-tag watch-tag--${type}">${escapeHtml(v.name)}</span>`).join('')}</div></article>`:'';
   function openDetail(id){
     const item=state.items.find(v=>v.id===String(id)); if(!item)return;
     const pg=item.providerGroups||{};
-    nodes.detailContent.innerHTML=`<div class="detail-head"><span class="media-card__poster detail-poster">${item.image?`<img src="${escapeHtml(item.image)}" alt="">`:'<span class="media-card__fallback">🎬</span>'}</span><div><small>${escapeHtml(item.year)}</small><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.subtitle)}</p></div></div><div class="detail-facts"><article><strong>★ ${item.rating.toFixed(1)}</strong><span>TMDb評価</span></article><article><strong>${formatCount(item.voteCount)}</strong><span>評価総数</span></article><article><strong>${item.runtime||'—'}分</strong><span>上映時間</span></article></div><article><strong>あらすじ</strong><p>${escapeHtml(item.overview||'日本語の概要は未登録です。')}</p></article>${item.director?`<article><strong>監督</strong><p>${escapeHtml(item.director)}</p></article>`:''}${item.cast?.length?`<article><strong>主な出演者</strong><p>${item.cast.map(v=>`${escapeHtml(v.name)}${v.character?`（${escapeHtml(v.character)}）`:''}`).join('・')}</p></article>`:''}<article><strong>ジャンル</strong><p>${item.genres.map(escapeHtml).join('・')}</p></article><section class="watch-section"><h3>日本で視聴できるサービス</h3>${group('見放題',pg.flatrate,'flat')}${group('レンタル',pg.rent,'rent')}${group('購入',pg.buy,'buy')}${!item.providers.length?'<p>日本向け配信情報は取得できませんでした。</p>':''}${pg.link?`<a href="${escapeHtml(pg.link)}" target="_blank" rel="noopener">JustWatchで最新状況を確認 ↗</a>`:''}</section><article><strong>外部リンク</strong><p>${item.trailerUrl?`<a href="${escapeHtml(item.trailerUrl)}" target="_blank" rel="noopener">予告編を見る ↗</a>　`:''}<a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener">TMDbで見る ↗</a></p></article><div class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB. 配信情報はTMDb経由のJustWatchデータです。</div>`;
+    const detailNote=item.enriched===false?'<p class="detail-note">この作品は一覧情報のみ取得済みです。上映時間・出演者・配信先は段階的に補完されます。</p>':'';
+    nodes.detailContent.innerHTML=`<div class="detail-head"><span class="media-card__poster detail-poster">${item.image?`<img src="${escapeHtml(item.image)}" alt="">`:'<span class="media-card__fallback">🎬</span>'}</span><div><small>${escapeHtml(item.year)}</small><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(item.subtitle)}</p></div></div>${detailNote}<div class="detail-facts"><article><strong>★ ${item.rating.toFixed(1)}</strong><span>TMDb評価</span></article><article><strong>${formatCount(item.voteCount)}</strong><span>評価総数</span></article><article><strong>${item.runtime||'—'}分</strong><span>上映時間</span></article></div><article><strong>あらすじ</strong><p>${escapeHtml(item.overview||'日本語の概要は未登録です。')}</p></article>${item.director?`<article><strong>監督</strong><p>${escapeHtml(item.director)}</p></article>`:''}${item.cast?.length?`<article><strong>主な出演者</strong><p>${item.cast.map(v=>`${escapeHtml(v.name)}${v.character?`（${escapeHtml(v.character)}）`:''}`).join('・')}</p></article>`:''}<article><strong>ジャンル</strong><p>${item.genres.map(escapeHtml).join('・')}</p></article><section class="watch-section"><h3>日本で視聴できるサービス</h3>${group('見放題',pg.flatrate,'flat')}${group('レンタル',pg.rent,'rent')}${group('購入',pg.buy,'buy')}${!item.providers.length?'<p>日本向け配信情報は未取得、または配信先がありません。</p>':''}${pg.link?`<a href="${escapeHtml(pg.link)}" target="_blank" rel="noopener">JustWatchで最新状況を確認 ↗</a>`:''}</section><article><strong>外部リンク</strong><p>${item.trailerUrl?`<a href="${escapeHtml(item.trailerUrl)}" target="_blank" rel="noopener">予告編を見る ↗</a>　`:''}<a href="${escapeHtml(item.sourceUrl)}" target="_blank" rel="noopener">TMDbで見る ↗</a></p></article><div class="attribution">This product uses the TMDB API but is not endorsed or certified by TMDB. 配信情報はTMDb経由のJustWatchデータです。</div>`;
     nodes.detail.showModal();
   }
 
@@ -83,16 +91,17 @@
     const fav=event.target.closest('[data-favorite-media]'); if(fav){event.stopPropagation();favorites.toggle(fav.dataset.favoriteMedia);render();}
     if(event.target.closest('[data-close]'))event.target.closest('dialog')?.close();
   });
-  nodes.search.addEventListener('input',()=>{state.query=nodes.search.value;render();});
-  nodes.genre.addEventListener('change',()=>{state.genre=nodes.genre.value;render();});
-  nodes.provider.addEventListener('change',()=>{state.provider=nodes.provider.value;render();});
-  nodes.rating.addEventListener('change',()=>{state.minimumRating=Number(nodes.rating.value);render();});
-  nodes.votes.addEventListener('change',()=>{state.minimumVotes=Number(nodes.votes.value);render();});
-  nodes.yearFrom.addEventListener('change',()=>{state.releaseYearFrom=Number(nodes.yearFrom.value);normalizeYearRange('from');render();});
-  nodes.yearTo.addEventListener('change',()=>{state.releaseYearTo=Number(nodes.yearTo.value);normalizeYearRange('to');render();});
-  nodes.sort.addEventListener('change',()=>{state.sort=nodes.sort.value;render();});
+  nodes.search.addEventListener('input',()=>{state.query=nodes.search.value;resetVisible();render();});
+  nodes.genre.addEventListener('change',()=>{state.genre=nodes.genre.value;resetVisible();render();});
+  nodes.provider.addEventListener('change',()=>{state.provider=nodes.provider.value;resetVisible();render();});
+  nodes.rating.addEventListener('change',()=>{state.minimumRating=Number(nodes.rating.value);resetVisible();render();});
+  nodes.votes.addEventListener('change',()=>{state.minimumVotes=Number(nodes.votes.value);resetVisible();render();});
+  nodes.yearFrom.addEventListener('change',()=>{state.releaseYearFrom=Number(nodes.yearFrom.value);normalizeYearRange('from');resetVisible();render();});
+  nodes.yearTo.addEventListener('change',()=>{state.releaseYearTo=Number(nodes.yearTo.value);normalizeYearRange('to');resetVisible();render();});
+  nodes.sort.addEventListener('change',()=>{state.sort=nodes.sort.value;resetVisible();render();});
+  nodes.loadMore?.addEventListener('click',()=>{state.visibleLimit+=PAGE_SIZE;render();});
   document.querySelector('#resetButton').addEventListener('click',()=>{
-    Object.assign(state,{query:'',genre:'all',provider:'all',minimumRating:0,minimumVotes:500,releaseYearFrom:0,releaseYearTo:0,sort:'rank'});
+    Object.assign(state,{query:'',genre:'all',provider:'all',minimumRating:0,minimumVotes:500,releaseYearFrom:0,releaseYearTo:0,sort:'rank',visibleLimit:PAGE_SIZE});
     nodes.search.value=''; nodes.genre.value='all'; nodes.provider.value='all'; nodes.rating.value='0'; nodes.votes.value='500';
     nodes.yearFrom.value='0'; nodes.yearTo.value='0'; nodes.sort.value='rank'; render();
   });
@@ -100,7 +109,7 @@
 
   provider.fetchItems().then(items=>{
     state.items=items;
-    nodes.status&&(nodes.status.textContent=`TMDb実データ・${items.length}本`);
+    nodes.status&&(nodes.status.textContent=`TMDb実データ・${items.length.toLocaleString('ja-JP')}本`);
     buildOptions(); render();
   }).catch(error=>{
     console.warn(error); state.items=fallback; nodes.status&&(nodes.status.textContent='取得待ち'); buildOptions(); render();

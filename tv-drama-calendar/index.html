@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#f6f2eb">
+  <meta name="description" content="2026年夏ドラマを曜日・時間・テレビ局から探せる週間カレンダー">
+  <title>今期ドラマカレンダー</title>
+  <link rel="stylesheet" href="./styles.css?v=1.0.0">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__eyebrow">DRAMA CALENDAR</span>
+      <h1>今期ドラマ <em>v1.0.0</em></h1>
+    </div>
+    <button class="icon-button" id="aboutButton" type="button" aria-label="情報について">i</button>
+  </header>
+
+  <main>
+    <section class="season-hero" aria-labelledby="seasonTitle">
+      <div>
+        <p class="season-hero__label">2026 SUMMER</p>
+        <h2 id="seasonTitle">今週、何観る？</h2>
+        <p class="season-hero__copy">放送時間も出演者も、ひと目で。</p>
+      </div>
+      <div class="season-hero__mark" aria-hidden="true">
+        <span>TV</span>
+        <i></i>
+      </div>
+      <p class="season-hero__update" id="updateLabel">更新日を確認中</p>
+    </section>
+
+    <section class="calendar-panel" aria-label="週間カレンダー">
+      <div class="calendar-panel__head">
+        <div>
+          <span>WEEK</span>
+          <strong id="weekLabel">—</strong>
+        </div>
+        <button id="allDaysButton" class="text-button" type="button" aria-pressed="false">全曜日を見る</button>
+      </div>
+      <div class="weekday-tabs" id="weekdayTabs" role="tablist" aria-label="放送曜日"></div>
+    </section>
+
+    <section class="toolbar" aria-label="絞り込みと並び替え">
+      <button class="tool-button" id="stationFilterButton" type="button">
+        <span class="tool-button__icon" aria-hidden="true">⌁</span>
+        <span><small>テレビ局</small><b id="stationFilterLabel">すべて</b></span>
+        <i aria-hidden="true">›</i>
+      </button>
+      <button class="tool-button" id="sortButton" type="button" aria-pressed="false">
+        <span class="tool-button__icon" aria-hidden="true">↕</span>
+        <span><small>時間順</small><b id="sortLabel">早い順</b></span>
+        <i aria-hidden="true">›</i>
+      </button>
+    </section>
+
+    <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+
+    <section class="results" aria-labelledby="resultTitle">
+      <div class="results__head">
+        <div>
+          <span id="resultEyebrow">SATURDAY</span>
+          <h2 id="resultTitle">土曜日のドラマ</h2>
+        </div>
+        <strong id="resultCount">0作品</strong>
+      </div>
+      <div id="dramaList" class="drama-list"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span aria-hidden="true">□</span>
+        <h3>条件に合うドラマはありません</h3>
+        <p>テレビ局の選択を変えてみてください。</p>
+        <button id="emptyResetButton" type="button">フィルターを解除</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="sheet" id="stationDialog" aria-labelledby="stationDialogTitle">
+    <form method="dialog" class="sheet__panel">
+      <div class="sheet__handle" aria-hidden="true"></div>
+      <div class="sheet__head">
+        <div>
+          <span>FILTER</span>
+          <h2 id="stationDialogTitle">テレビ局を選ぶ</h2>
+        </div>
+        <button class="sheet__close" value="cancel" aria-label="閉じる">×</button>
+      </div>
+      <div class="station-options" id="stationOptions"></div>
+      <div class="sheet__actions">
+        <button id="selectAllStationsButton" class="secondary-button" type="button">すべて選択</button>
+        <button id="applyStationsButton" class="primary-button" type="button">この条件で表示</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <div class="about-dialog__head">
+      <div>
+        <span>ABOUT</span>
+        <h2 id="aboutTitle">掲載情報について</h2>
+      </div>
+      <button class="sheet__close" data-close-about type="button" aria-label="閉じる">×</button>
+    </div>
+    <p>2026年夏クールの地上波ドラマを中心に、放送曜日・時間、テレビ局、主な出演者、概要を整理しています。</p>
+    <dl>
+      <div><dt>話数</dt><dd>今週の放送予定回。全話数が未発表の作品は「全話数未発表」と表示します。</dd></div>
+      <div><dt>深夜番組</dt><dd>「24:24」のように、番組表上の曜日に合わせて並べています。</dd></div>
+      <div><dt>作品画像</dt><dd>権利に配慮し、公式画像ではなく作品テーマに合わせたオリジナルのカバーアートです。</dd></div>
+    </dl>
+    <div class="source-links">
+      <a id="primarySourceLink" href="#" target="_blank" rel="noopener">放送情報の参照元 ↗</a>
+      <a id="editorialSourceLink" href="#" target="_blank" rel="noopener">作品情報の参照元 ↗</a>
+    </div>
+    <p class="about-dialog__note">放送時間・内容は変更される場合があります。最新情報は各放送局の番組表をご確認ください。</p>
+  </dialog>
+
+  <script src="./data.js?v=1.0.0"></script>
+  <script src="./app.js?v=1.0.0"></script>
+</body>
+</html>

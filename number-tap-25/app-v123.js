@@ -26,4 +26,4 @@ startButton.addEventListener('click',startGame);resetGameButton.addEventListener
 [fillMode,rotateMode,moveMode].forEach(input=>input.addEventListener('change',()=>{updateModeName();messageEl.textContent='ルールを変更しました'}));
 resetBestButton.addEventListener('click',()=>{localStorage.removeItem(bestKey());showBest();messageEl.textContent='現在の条件のベストを削除しました'});
 updateModeName();updateSizeUi();
-if('serviceWorker'in navigator){window.addEventListener('load',async()=>{for(const r of await navigator.serviceWorker.getRegistrations())await r.unregister();if('caches'in window){for(const key of await caches.keys())await caches.delete(key)}})}
+if('serviceWorker'in navigator){window.addEventListener('load',async()=>{const registration=await navigator.serviceWorker.getRegistration('./');await registration?.unregister();if('caches'in window){for(const key of await caches.keys())if(key.startsWith('number-tap-25-'))await caches.delete(key)}})}

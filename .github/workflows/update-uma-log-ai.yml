@@ -1,0 +1,78 @@
+name: Update Uma Log AI data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,37 0-8 * * 6,0'
+    - cron: '7,37 0-8 * * 1'
+    - cron: '17 1 * * 4,5'
+  push:
+    paths:
+      - 'uma-log-ai/scripts/**'
+      - 'uma-log-ai/tests/**'
+      - 'uma-log-ai/engine.js'
+      - 'uma-log-ai/demo-data.js'
+      - 'uma-log-ai/app.js'
+      - 'uma-log-ai/learning-worker.js'
+      - 'uma-log-ai/sw.js'
+      - 'uma-log-ai/index.html'
+      - 'uma-log-ai/styles.css'
+      - 'uma-log-ai/manifest.webmanifest'
+      - 'money-manager/sw.js'
+      - 'number-tap-25/app-v121.js'
+      - 'number-tap-25/app-v122.js'
+      - 'number-tap-25/app-v123.js'
+      - 'number-tap-25/sw.js'
+      - '.github/workflows/update-uma-log-ai.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: uma-log-ai-data
+  cancel-in-progress: true
+
+jobs:
+  validate-and-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      UMA_LOG_DATA_URL: ${{ vars.UMA_LOG_DATA_URL }}
+      UMA_LOG_DATA_LICENSE_CONFIRMED: ${{ vars.UMA_LOG_DATA_LICENSE_CONFIRMED }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check application and tests
+        run: |
+          node --check uma-log-ai/engine.js
+          node --check uma-log-ai/demo-data.js
+          node --check uma-log-ai/app.js
+          node --check uma-log-ai/learning-worker.js
+          node --check money-manager/sw.js
+          node --check number-tap-25/app-v121.js
+          node --check number-tap-25/app-v122.js
+          node --check number-tap-25/app-v123.js
+          node --check number-tap-25/sw.js
+          node --test uma-log-ai/tests/*.test.mjs
+          node uma-log-ai/scripts/validate-race-data.mjs
+      - name: Refresh licensed dataset when configured
+        run: node uma-log-ai/scripts/update-races.mjs
+      - name: Validate refreshed data
+        run: node uma-log-ai/scripts/validate-race-data.mjs
+      - name: Commit changed dataset
+        shell: bash
+        run: |
+          if git diff --quiet -- uma-log-ai/data/races.json; then
+            echo 'Race data is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add uma-log-ai/data/races.json
+          git commit -m 'data: update Uma Log AI race feed'
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push

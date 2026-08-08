@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071a12">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'">
+  <meta name="description" content="近走・適性・騎手など10項目を100点で評価し、予想と実際の結果を振り返る競馬予想PWA">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="うまログAI">
+  <title>うまログAI</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css?v=110">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">馬</span>
+        <div>
+          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.1.0</span></div>
+          <p id="sourceSummary">データを読み込んでいます</p>
+        </div>
+      </div>
+      <button class="icon-button" id="refreshButton" type="button" aria-label="データを再読込" title="データを再読込">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5"/><path d="M18.4 9A7 7 0 0 0 6.2 6.2L4 9m16 6-2.2 2.8A7 7 0 0 1 5.6 15"/></svg>
+      </button>
+    </header>
+
+    <div class="source-banner" id="sourceBanner" role="status">
+      <span class="live-dot"></span>
+      <strong id="sourceMode">確認中</strong>
+      <span id="sourceDetail">最新データを確認しています</span>
+    </div>
+
+    <section class="race-control" aria-label="レース選択">
+      <div class="control-topline">
+        <label class="date-picker" for="dateSelect">
+          <span>開催日</span>
+          <select id="dateSelect" aria-label="開催日"></select>
+        </label>
+        <div class="snapshot-switch" role="group" aria-label="予想の版">
+          <button type="button" data-edition="dayBefore">前日版</button>
+          <button type="button" class="is-active" data-edition="final">当日最終</button>
+        </div>
+      </div>
+      <div class="venue-tabs" id="venueTabs" role="tablist" aria-label="競馬場"></div>
+      <div class="race-strip" id="raceStrip" role="group" aria-label="レース番号"></div>
+    </section>
+
+    <main id="mainContent" tabindex="-1">
+      <section class="view is-active" id="raceView" data-view="race" aria-labelledby="raceViewTitle">
+        <article class="race-hero panel">
+          <div class="race-heading">
+            <div>
+              <p class="eyebrow" id="raceEyebrow">レース情報</p>
+              <h2 id="raceViewTitle">読み込み中</h2>
+              <p class="race-meta" id="raceMeta">—</p>
+            </div>
+            <div class="confidence-gauge" id="confidenceGauge" role="status" aria-live="polite" aria-label="予想自信度">
+              <span>自信度</span><strong>—</strong><small>分析中</small>
+            </div>
+          </div>
+          <div class="prediction-podium" id="predictionPodium" role="list" aria-label="上位予想"></div>
+          <div class="hero-actions">
+            <button class="primary-action" id="openBreakdownButton" type="button">採点の全内訳</button>
+            <a class="official-link" href="https://www.jra.go.jp/keiba/" target="_blank" rel="noopener noreferrer">JRA公式情報</a>
+          </div>
+        </article>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">PREDICTION</p><h2>出走馬ランキング</h2></div>
+          <span id="runnerCount">0頭</span>
+        </div>
+        <div class="runner-list" id="runnerList" aria-live="polite"></div>
+      </section>
+
+      <section class="view" id="ticketView" data-view="tickets" aria-labelledby="ticketViewTitle" hidden>
+        <div class="section-heading page-heading">
+          <div><p class="eyebrow">TICKETS</p><h2 id="ticketViewTitle">推奨買い目</h2></div>
+          <span id="ticketConfidence">—</span>
+        </div>
+        <article class="budget-card panel">
+          <div class="budget-label"><label for="budgetInput">1レースの予算</label><strong><output id="budgetOutput" for="budgetInput">3,000</output>円</strong></div>
+          <input id="budgetInput" type="range" min="500" max="20000" step="100" value="3000">
+          <div class="budget-presets" role="group" aria-label="予算プリセット">
+            <button type="button" data-budget="1000">1,000円</button>
+            <button type="button" data-budget="3000" class="is-active">3,000円</button>
+            <button type="button" data-budget="5000">5,000円</button>
+            <button type="button" data-budget="10000">10,000円</button>
+          </div>
+          <p>点数差と自信度だけで配分します。オッズは金額計算に使いません。</p>
+        </article>
+        <div class="ticket-summary" id="ticketSummary"></div>
+        <div class="ticket-groups" id="ticketGroups"></div>
+        <p class="responsible-note">予想は情報整理用で、的中を保証するものではありません。馬券は20歳になってから。無理のない範囲で楽しんでください。</p>
+      </section>
+
+      <section class="view" id="resultView" data-view="results" aria-labelledby="resultViewTitle" hidden>
+        <div class="section-heading page-heading">
+          <div><p class="eyebrow">REVIEW</p><h2 id="resultViewTitle">予想と結果</h2></div>
+          <span id="resultStatus">結果待ち</span>
+        </div>
+        <div id="resultContent"></div>
+        <div class="section-heading secondary-heading">
+          <div><p class="eyebrow">TRACK RECORD</p><h2>累積成績</h2></div>
+          <span id="recordRaceCount">0レース</span>
+        </div>
+        <div class="edition-comparison" id="editionComparison"></div>
+        <div class="record-dashboard" id="recordDashboard"></div>
+        <div class="record-table-wrap panel"><table class="record-table"><thead><tr><th>条件</th><th>◎勝率</th><th>◎複勝率</th><th>Top3一致</th><th>対象</th></tr></thead><tbody id="recordTableBody"></tbody></table></div>
+        <div class="section-heading secondary-heading"><div><p class="eyebrow">BY TICKET</p><h2>券種別成績</h2></div></div>
+        <div class="record-table-wrap panel"><table class="record-table ticket-record-table"><thead><tr><th>券種</th><th>的中</th><th>購入</th><th>払戻</th><th>回収率</th></tr></thead><tbody id="ticketRecordBody"></tbody></table></div>
+      </section>
+
+      <section class="view" id="settingsView" data-view="settings" aria-labelledby="settingsViewTitle" hidden>
+        <div class="section-heading page-heading">
+          <div><p class="eyebrow">MODEL &amp; DATA</p><h2 id="settingsViewTitle">採点・データ設定</h2></div>
+          <span>100点満点</span>
+        </div>
+        <article class="panel settings-card">
+          <div class="panel-heading"><div><h3>現在の配点</h3><p>オッズを除外した10項目</p></div><button class="text-button" id="resetWeightsButton" type="button">初期値に戻す</button></div>
+          <div class="weight-list" id="weightList"></div>
+          <div class="weight-total"><span>合計</span><strong id="weightTotal">100点</strong></div>
+        </article>
+        <article class="panel settings-card">
+          <div class="panel-heading"><div><h3>過去1年で自動改善</h3><p>古い60%で学習・20%で検証・新しい20%で最終確認</p></div><span class="status-pill" id="learningStatus">待機中</span></div>
+          <p class="body-copy" id="learningDescription">十分な確定レースが揃うと、時系列を守って配点候補を検証します。検証側の成績が上がった場合だけ採用します。</p>
+          <button class="secondary-action full-width" id="runLearningButton" type="button">配点を再検証</button>
+          <div class="change-log" id="weightChangeLog"></div>
+        </article>
+        <article class="panel settings-card">
+          <div class="panel-heading"><div><h3>レースデータ</h3><p id="dataGeneratedAt">更新時刻 —</p></div><span class="status-pill" id="dataStatusPill">確認中</span></div>
+          <p class="body-copy" id="dataSourceCopy">データソースを確認しています。</p>
+          <div class="data-actions">
+            <button class="secondary-action file-button" id="dataImportButton" type="button">JSONを読み込む</button><input id="dataImportInput" type="file" accept="application/json,.json" hidden>
+            <button class="secondary-action" id="restoreBundledButton" type="button">同梱データに戻す</button>
+          </div>
+          <details class="schema-help"><summary>対応データと注意事項</summary><p>正規化済みJSONのみ端末内へ読み込みます。取得元の利用条件を確認し、再配布が許可されたデータを使用してください。</p></details>
+        </article>
+        <article class="panel settings-card source-card">
+          <h3>情報源・免責</h3>
+          <ul>
+            <li><a href="https://www.jra.go.jp/keiba/" target="_blank" rel="noopener noreferrer">JRA 競馬メニュー</a> — 出馬表・オッズ・結果の公式確認</li>
+            <li><a href="https://www.jra.go.jp/kouza/baken/index.html" target="_blank" rel="noopener noreferrer">JRA 馬券の種類</a> — 頭数別の発売券種・複勝圏の確認</li>
+            <li><a href="https://www.jra.go.jp/use/" target="_blank" rel="noopener noreferrer">JRA ご利用に際して</a> — 著作権・リンク・免責事項</li>
+          </ul>
+          <p>本アプリはJRAの公式サービスではありません。予想点は独自ルールによる参考値です。</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="メインメニュー">
+    <button class="nav-button is-active" type="button" data-nav="race" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18V8m7 10V5m7 13v-7"/><path d="m3 12 6-4 5 3 7-6"/></svg><span>予想</span></button>
+    <button class="nav-button" type="button" data-nav="tickets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4a2 2 0 0 0 0 4v6H5v-6a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></svg><span>買い目</span></button>
+    <button class="nav-button" type="button" data-nav="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9h4v10zm10 0V5h4v14zm-5 0v-6h4v6z"/></svg><span>検証</span></button>
+    <button class="nav-button" type="button" data-nav="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10m4 0h2M4 17h2m4 0h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>設定</span></button>
+  </nav>
+
+  <div class="sheet-backdrop" id="breakdownBackdrop" hidden>
+    <section class="bottom-sheet" role="dialog" aria-modal="true" aria-labelledby="breakdownTitle" tabindex="-1">
+      <div class="sheet-handle"></div>
+      <div class="sheet-heading"><div><p class="eyebrow">SCORING</p><h2 id="breakdownTitle">採点の全内訳</h2></div><button class="sheet-close" id="closeBreakdownButton" type="button" aria-label="閉じる">×</button></div>
+      <div id="breakdownContent"></div>
+    </section>
+  </div>
+
+  <div class="sheet-backdrop" id="runnerBackdrop" hidden>
+    <section class="bottom-sheet runner-sheet" role="dialog" aria-modal="true" aria-labelledby="runnerSheetTitle" tabindex="-1">
+      <div class="sheet-handle"></div>
+      <div class="sheet-heading"><div><p class="eyebrow" id="runnerSheetEyebrow">HORSE DETAIL</p><h2 id="runnerSheetTitle">馬詳細</h2></div><button class="sheet-close" id="closeRunnerButton" type="button" aria-label="閉じる">×</button></div>
+      <div id="runnerSheetContent"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./engine.js?v=110" defer></script>
+  <script src="./demo-data.js?v=110" defer></script>
+  <script src="./app.js?v=110" defer></script>
+</body>
+</html>

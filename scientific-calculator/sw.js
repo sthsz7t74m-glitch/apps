@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "scientific-calculator-";
-const CACHE_NAME = CACHE_PREFIX + "v1.1.1";
+const CACHE_NAME = CACHE_PREFIX + "v1.1.2";
 const APP_SHELL = ["./", "./manifest.webmanifest", "./icon.svg", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {

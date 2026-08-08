@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "scientific-calculator-";
-const CACHE_NAME = CACHE_PREFIX + "v1.0.0";
+const CACHE_NAME = CACHE_PREFIX + "v1.1.0";
 const APP_SHELL = ["./", "./manifest.webmanifest", "./icon.svg", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (event) => {
@@ -7,12 +7,21 @@ self.addEventListener("install", (event) => {
     caches.open(CACHE_NAME).then(async (cache) => {
       await cache.addAll(APP_SHELL);
       const response = await fetch("./");
+      if (!response.ok) throw new Error("App shell request failed");
       const html = await response.clone().text();
       const assets = Array.from(
-        html.matchAll(/(?:src|href)="(\.\/assets\/[^"]+)"/g),
+        html.matchAll(/(?:src|href)=["']([^"']+)["']/g),
         (match) => match[1],
-      );
-      if (assets.length) await cache.addAll(assets);
+      )
+        .map((asset) => new URL(asset, self.registration.scope))
+        .filter(
+          (asset) =>
+            asset.origin === self.location.origin &&
+            (asset.pathname.includes("/assets/") ||
+              asset.pathname.includes("/_next/static/")),
+        )
+        .map((asset) => asset.href);
+      if (assets.length) await cache.addAll([...new Set(assets)]);
       await cache.put("./", response);
       await self.skipWaiting();
     }),
@@ -46,8 +55,10 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put("./", copy));
+          if (response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put("./", copy));
+          }
           return response;
         })
         .catch(() => caches.match("./")),

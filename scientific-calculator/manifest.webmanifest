@@ -1,0 +1,40 @@
+{
+  "name": "全部入り関数電卓",
+  "short_name": "関数電卓",
+  "description": "記号計算、数値計算、グラフ、高度計算を端末内で使える関数電卓",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f3f9",
+  "theme_color": "#7257ff",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "計算を始める",
+      "short_name": "計算",
+      "url": "./"
+    }
+  ]
+}

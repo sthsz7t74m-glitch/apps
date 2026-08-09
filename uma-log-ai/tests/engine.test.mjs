@@ -43,6 +43,11 @@ test('all ten JRA venues are supported', () => {
   assert.deepEqual(Engine.JRA_VENUES, ['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']);
 });
 
+test('all fifteen NAR venues are supported without changing the JRA venue list', () => {
+  assert.deepEqual(Engine.NAR_VENUES, ['帯広ば', '門別', '盛岡', '水沢', '浦和', '船橋', '大井', '川崎', '金沢', '笠松', '名古屋', '園田', '姫路', '高知', '佐賀']);
+  assert.equal(Engine.ALL_VENUES.length, 25);
+});
+
 test('field running styles infer the race pace and last-four-furlong acceleration affects quality', () => {
   const horses = [1, 2, 3, 4, 5].map(number => minimalHorse(number, { runningStyle: number <= 3 ? 'front' : 'mid' }));
   const sample = minimalRace(horses);

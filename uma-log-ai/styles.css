@@ -148,6 +148,11 @@ svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: 
   box-shadow: 0 10px 30px rgba(24, 54, 35, .07);
   overflow: hidden;
 }
+.authority-switch { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 7px 10px; border-bottom: 1px solid var(--line-soft); background: #f7faf8; }
+.authority-switch button { display: flex; min-height: 42px; align-items: center; justify-content: center; gap: 6px; border: 1px solid transparent; border-radius: 11px; color: var(--muted); background: transparent; font-size: 12px; font-weight: 900; }
+.authority-switch button small { padding: 2px 5px; border-radius: 999px; color: #658071; background: #e5ede8; font-size: 8px; letter-spacing: .08em; }
+.authority-switch button.is-active { border-color: #96cbaa; color: var(--accent-strong); background: #fff; box-shadow: 0 5px 15px rgba(24, 54, 35, .07); }
+.authority-switch button.is-active small { color: #fff; background: var(--accent); }
 .control-topline { display: flex; align-items: stretch; justify-content: space-between; gap: 8px; padding: 10px; }
 .date-picker {
   position: relative;
@@ -511,6 +516,12 @@ svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: 
 .import-mode-field { display: grid; gap: 5px; margin: 10px 0 7px; color: var(--muted); font-size: 9px; font-weight: 800; }
 .import-mode-field select { width: 100%; min-width: 0; padding: 9px 30px 9px 10px; border: 1px solid #cad9d0; border-radius: 9px; color: var(--text); background: #fff; font: inherit; }
 .jra-import-action { margin-bottom: 7px; border-color: #087a42; color: #fff; background: linear-gradient(135deg, #087a42, #15965a); box-shadow: 0 8px 20px rgba(8, 122, 66, .17); }
+.nar-import-panel { margin: 10px 0 9px; padding: 11px; border: 1px solid #c6dccf; border-radius: 13px; background: #f4faf6; }
+.nar-official-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; margin-bottom: 8px; }
+.nar-official-link { display: grid; min-height: 38px; place-items: center; padding: 5px; border: 1px solid #c6dccf; border-radius: 9px; color: var(--accent); background: #fff; font-size: 9px; font-weight: 850; text-align: center; text-decoration: none; }
+.nar-import-action { margin-bottom: 7px; border-color: #087a42; color: #fff; background: linear-gradient(135deg, #087a42, #15965a); box-shadow: 0 8px 20px rgba(8, 122, 66, .17); }
+.nar-import-status { margin: 0; color: #486452; font-size: 9px; font-weight: 750; line-height: 1.5; text-align: center; }
+.nar-import-panel .schema-help { margin-bottom: 0; }
 .import-privacy-note { margin: 0 0 9px; color: #76551e; font-size: 9px; font-weight: 700; line-height: 1.5; }
 .file-button { cursor: pointer; }
 .schema-help { margin-top: 10px; color: var(--muted); font-size: 9px; }

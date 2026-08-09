@@ -7,6 +7,8 @@
 
   const ENGINE_VERSION = '2.1.0';
   const JRA_VENUES = Object.freeze(['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']);
+  const NAR_VENUES = Object.freeze(['帯広ば', '門別', '盛岡', '水沢', '浦和', '船橋', '大井', '川崎', '金沢', '笠松', '名古屋', '園田', '姫路', '高知', '佐賀']);
+  const ALL_VENUES = Object.freeze([...JRA_VENUES, ...NAR_VENUES]);
 
   const CATEGORY_META = [
     { key: 'recentForm', label: '直近5走', short: '近走', weight: 22 },
@@ -894,10 +896,10 @@
       if (run.date && run.date >= raceDate) fail(`${label}.date は対象レースより前である必要があります`);
       stringValue(run.venue, `${label}.venue`, { max: 40 });
       enumValue(run.surface, ['turf', 'dirt'], `${label}.surface`);
-      enumValue(run.raceType, ['flat', 'jump'], `${label}.raceType`);
+      enumValue(run.raceType, ['flat', 'jump', 'banei'], `${label}.raceType`);
       enumValue(run.direction, ['left', 'right', 'straight'], `${label}.direction`);
       enumValue(run.going, ['firm', 'good', 'standard', 'yielding', 'soft', 'heavy', 'muddy'], `${label}.going`);
-      numberValue(run.distance, `${label}.distance`, { min: 800, max: 5000, integer: true });
+      numberValue(run.distance, `${label}.distance`, { min: run.raceType === 'banei' ? 200 : 800, max: 5000, integer: true });
       numberValue(run.gate, `${label}.gate`, { min: 1, max: 8, integer: true });
       numberValue(run.finish, `${label}.finish`, { min: 1, max: 40, integer: true });
       numberValue(run.fieldSize, `${label}.fieldSize`, { min: 2, max: 40, integer: true });
@@ -914,7 +916,7 @@
         run.last4FSplits.forEach((split, index) => numberValue(split, `${label}.last4FSplits[${index}]`, { required: true, min: 9, max: 18 }));
       }
     };
-    const validateHorseFields = (horse, label) => {
+    const validateHorseFields = (horse, label, raceType = 'flat') => {
       stringValue(horse.id, `${label}.id`, { max: 180 });
       stringValue(horse.name, `${label}.name`, { max: 100 });
       stringValue(horse.sexAge, `${label}.sexAge`, { max: 16 });
@@ -922,9 +924,9 @@
       stringValue(horse.trainer, `${label}.trainer`, { max: 80 });
       enumValue(horse.runningStyle, ['front', 'stalk', 'mid', 'close', 'unknown'], `${label}.runningStyle`);
       numberValue(horse.gate, `${label}.gate`, { min: 1, max: 8, integer: true });
-      numberValue(horse.carriedWeight, `${label}.carriedWeight`, { min: 40, max: 75 });
+      numberValue(horse.carriedWeight, `${label}.carriedWeight`, { min: 40, max: raceType === 'banei' ? 1000 : 75 });
       numberValue(horse.burdenChange, `${label}.burdenChange`, { min: -10, max: 10 });
-      numberValue(horse.bodyWeight, `${label}.bodyWeight`, { min: 200, max: 800 });
+      numberValue(horse.bodyWeight, `${label}.bodyWeight`, { min: 200, max: raceType === 'banei' ? 1500 : 800 });
       numberValue(horse.bodyWeightChange, `${label}.bodyWeightChange`, { min: -100, max: 100 });
       numberValue(horse.restDays, `${label}.restDays`, { min: 0, max: 2000 });
       numberValue(horse.odds, `${label}.odds`, { min: 1, max: 100000 });
@@ -962,6 +964,7 @@
     stringValue(payload.source.mode, 'source.mode', { required: true, max: 40 });
     stringValue(payload.source.detail, 'source.detail', { max: 300 });
     stringValue(payload.source.datasetId, 'source.datasetId', { required: true, max: 120 });
+    enumValue(payload.source.authority, ['JRA', 'NAR'], 'source.authority');
     if (payload.source.redistributable !== undefined && typeof payload.source.redistributable !== 'boolean') fail('source.redistributable が不正です');
     if (payload.source.automated !== undefined && typeof payload.source.automated !== 'boolean') fail('source.automated が不正です');
     if (payload.source.asOfFieldsGuaranteed !== undefined && typeof payload.source.asOfFieldsGuaranteed !== 'boolean') fail('source.asOfFieldsGuaranteed が不正です');
@@ -972,14 +975,18 @@
       stringValue(race.id, `${raceIndex + 1}件目のrace.id`, { required: true, max: 180 });
       if (ids.has(race.id)) throw new Error(`${raceIndex + 1}件目のレースIDが重複しています`);
       ids.add(race.id);
-      if (!JRA_VENUES.includes(race.venue)) throw new Error(`${race.id}: 対応外の競馬場です`);
+      if (!ALL_VENUES.includes(race.venue)) throw new Error(`${race.id}: 対応外の競馬場です`);
+      enumValue(race.authority, ['JRA', 'NAR'], `${race.id}.authority`);
+      const inferredAuthority = NAR_VENUES.includes(race.venue) ? 'NAR' : 'JRA';
+      if (race.authority && race.authority !== inferredAuthority) fail(`${race.id}.authority と競馬場が一致しません`);
+      if (payload.source.authority && payload.source.authority !== inferredAuthority) fail(`${race.id}: source.authority と競馬場が一致しません`);
       dateValue(race.date, `${race.id}.date`, true);
       if (!Number.isInteger(Number(race.raceNumber)) || Number(race.raceNumber) < 1 || Number(race.raceNumber) > 12) throw new Error(`${race.id}: raceNumber は1〜12です`);
       const slot = `${race.date}:${race.venue}:${Number(race.raceNumber)}`;
       if (slots.has(slot)) fail(`${race.id}: 同じ開催日・競馬場・レース番号が重複しています`);
       slots.add(slot);
       if (!['turf', 'dirt'].includes(race.surface)) throw new Error(`${race.id}: surface は turf または dirt です`);
-      enumValue(race.raceType, ['flat', 'jump'], `${race.id}.raceType`);
+      enumValue(race.raceType, ['flat', 'jump', 'banei'], `${race.id}.raceType`);
       stringValue(race.name, `${race.id}.name`, { required: true, max: 120 });
       stringValue(race.meetingLabel, `${race.id}.meetingLabel`, { max: 120 });
       if (race.startTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(race.startTime)) fail(`${race.id}.startTime が不正です`);
@@ -993,7 +1000,7 @@
       enumValue(race.going, ['firm', 'good', 'standard', 'yielding', 'soft', 'heavy', 'muddy'], `${race.id}.going`);
       enumValue(race.weather, ['sunny', 'cloudy', 'rain', 'snow'], `${race.id}.weather`);
       enumValue(race.pace, ['fast', 'middle', 'slow'], `${race.id}.pace`);
-      numberValue(race.distance, `${race.id}.distance`, { required: true, min: 800, max: 5000, integer: true });
+      numberValue(race.distance, `${race.id}.distance`, { required: true, min: race.raceType === 'banei' ? 200 : 800, max: 5000, integer: true });
       numberValue(race.classLevel, `${race.id}.classLevel`, { min: 0, max: 20 });
       numberValue(race.drawBias, `${race.id}.drawBias`, { min: -2, max: 2 });
       numberValue(race.bettingFieldSize, `${race.id}.bettingFieldSize`, { min: 2, max: 24, integer: true });
@@ -1014,7 +1021,7 @@
         stringValue(published.modelVersion, `${race.id}.publishedPrediction.modelVersion`, { required: true, max: 80 });
         timestampValue(published.generatedAt, `${race.id}.publishedPrediction.generatedAt`, true);
         timestampValue(published.capturedAt, `${race.id}.publishedPrediction.capturedAt`, true);
-        enumValue(published.captureTiming, ['pre-race', 'post-race'], `${race.id}.publishedPrediction.captureTiming`, true);
+        enumValue(published.captureTiming, ['pre-race', 'post-race', 'reference'], `${race.id}.publishedPrediction.captureTiming`, true);
         enumValue(published.output, ['final-win-probability'], `${race.id}.publishedPrediction.output`, true);
         numberValue(published.minutesBeforePost, `${race.id}.publishedPrediction.minutesBeforePost`, { required: true, min: -1440, max: 1440 });
         if (!Array.isArray(published.runners) || published.runners.length < 3 || published.runners.length > 24) fail(`${race.id}.publishedPrediction.runners が不正です`);
@@ -1056,7 +1063,7 @@
           enumValue(override.going, ['firm', 'good', 'standard', 'yielding', 'soft', 'heavy', 'muddy'], `${race.id}.versions.${edition}.going`);
           enumValue(override.weather, ['sunny', 'cloudy', 'rain', 'snow'], `${race.id}.versions.${edition}.weather`);
           enumValue(override.pace, ['fast', 'middle', 'slow'], `${race.id}.versions.${edition}.pace`);
-          numberValue(override.distance, `${race.id}.versions.${edition}.distance`, { min: 800, max: 5000, integer: true });
+          numberValue(override.distance, `${race.id}.versions.${edition}.distance`, { min: race.raceType === 'banei' ? 200 : 800, max: 5000, integer: true });
           numberValue(override.classLevel, `${race.id}.versions.${edition}.classLevel`, { min: 0, max: 20 });
           numberValue(override.drawBias, `${race.id}.versions.${edition}.drawBias`, { min: -2, max: 2 });
           numberValue(override.temperatureC, `${race.id}.versions.${edition}.temperatureC`, { min: -25, max: 55 });
@@ -1091,7 +1098,7 @@
         stringValue(horse.name, `${label}.name`, { required: true, max: 100 });
         if (!Number.isInteger(Number(horse.number)) || Number(horse.number) < 1 || Number(horse.number) > 40 || numbers.has(Number(horse.number))) throw new Error(`${race.id}: 馬番が不正または重複しています`);
         numbers.add(Number(horse.number));
-        validateHorseFields(horse, label);
+        validateHorseFields(horse, label, race.raceType);
         if (!Array.isArray(horse.recentRuns) || horse.recentRuns.length > 10) fail(`${label}.recentRuns は0〜10件の配列にしてください`);
         horse.recentRuns.forEach((run, runIndex) => validateRun(run, `${label}.recentRuns[${runIndex}]`, race.date));
         if (horse.versions !== null && horse.versions !== undefined) {
@@ -1099,7 +1106,7 @@
           ['dayBefore', 'final'].forEach(edition => {
             const override = horse.versions[edition];
             if (override !== null && override !== undefined) {
-              validateHorseFields(override, `${label}.versions.${edition}`);
+              validateHorseFields(override, `${label}.versions.${edition}`, race.raceType);
               if (override.id !== undefined && override.id !== horse.id) fail(`${label}.versions.${edition}.id は変更できません`);
               if (override.number !== undefined && Number(override.number) !== Number(horse.number)) fail(`${label}.versions.${edition}.number は変更できません`);
               if (override.name !== undefined && override.name !== horse.name) fail(`${label}.versions.${edition}.name は変更できません`);
@@ -1195,6 +1202,8 @@
   return {
     ENGINE_VERSION,
     JRA_VENUES,
+    NAR_VENUES,
+    ALL_VENUES,
     CATEGORY_META,
     DEFAULT_WEIGHTS,
     STYLE_LABELS,

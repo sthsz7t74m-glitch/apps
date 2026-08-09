@@ -334,6 +334,7 @@
   function eligibilityBlockers(prediction, race, timing, rows) {
     const blockers = [];
     if ((race?.raceType || 'flat') === 'jump') blockers.push('障害戦は対象外');
+    if ((race?.raceType || 'flat') === 'banei') blockers.push('ばんえい競馬はサラブレッド用モデルの対象外');
     if (race?.isDebut === true || /新馬/.test(String(race?.name || ''))) blockers.push('新馬戦は対象外');
     if (rows.length < CONFIG.minimumRunners) blockers.push('5頭未満は対象外');
     if (prediction?.runners?.some(runner => runner.scratched === true)) blockers.push('取消・除外反映後の出走馬一覧が必要');
@@ -374,10 +375,12 @@
     const fieldSize = Number(prediction?.fieldSize) || runners.length;
     const placeCount = placeCountFor(fieldSize);
     const wideCount = wideCountFor(fieldSize);
-    const placeMarginals = rankingMarginals(win, placeCount);
+    const placementGamma = numeric(prediction?.probabilityModel?.placementStrengthGamma
+      ?? race?.probabilityModel?.placementStrengthGamma) ?? CONFIG.placementStrengthGamma;
+    const placeMarginals = rankingMarginals(win, placeCount, placementGamma);
     const wideMarginals = wideCount === placeCount
       ? placeMarginals
-      : rankingMarginals(win, wideCount);
+      : rankingMarginals(win, wideCount, placementGamma);
     const rows = runners.map((runner, index) => {
       const probabilityLower90 = model.trusted ? calibratedLowerBound(win[index]) : null;
       const effectiveOdds = market.odds[index] * (1 - CONFIG.decisionOddsHaircut);
@@ -533,6 +536,7 @@
       candidate,
       placeCount,
       wideCount,
+      placementGamma,
       modelSource: model.source,
       modelSourceNote: model.note,
       modelTrusted: model.trusted,

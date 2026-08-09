@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'">
-  <meta name="description" content="単勝・複勝・ワイドの確率、適正オッズ、期待値を比較し、前向き収支を検証する競馬予想PWA">
+  <meta name="description" content="中央競馬・地方競馬の単勝、複勝、ワイドを比較し、前向き収支を検証する競馬予想PWA">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="競馬予想">
@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=230">
+  <link rel="stylesheet" href="./styles.css?v=240">
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">馬</span>
         <div>
-          <div class="brand-line"><h1>競馬予想</h1><span class="edition">v2.3.0</span></div>
+          <div class="brand-line"><h1>競馬予想</h1><span class="edition">v2.4.0</span></div>
           <p id="sourceSummary">データを読み込んでいます</p>
         </div>
       </div>
@@ -43,6 +43,10 @@
     </div>
 
     <section class="race-control" aria-label="レース選択">
+      <div class="authority-switch" id="authoritySwitch" role="group" aria-label="主催者">
+        <button class="is-active" type="button" data-authority="JRA" aria-pressed="true"><span>中央競馬</span><small>JRA</small></button>
+        <button type="button" data-authority="NAR" aria-pressed="false"><span>地方競馬</span><small>NAR</small></button>
+      </div>
       <div class="control-topline">
         <label class="date-picker" for="dateSelect">
           <span>開催日</span>
@@ -83,7 +87,7 @@
           <div class="prediction-podium" id="predictionPodium" role="list" aria-label="上位予想"></div>
           <div class="hero-actions">
             <button class="primary-action" id="openBreakdownButton" type="button">採点の全内訳</button>
-            <a class="official-link" href="https://www.jra.go.jp/keiba/" target="_blank" rel="noopener noreferrer">JRA公式情報</a>
+            <a class="official-link" id="officialRaceLink" href="https://www.jra.go.jp/keiba/" target="_blank" rel="noopener noreferrer">JRA公式情報</a>
           </div>
         </article>
 
@@ -165,12 +169,12 @@
       <section class="view" id="settingsView" data-view="settings" aria-labelledby="settingsViewTitle" hidden>
         <div class="section-heading page-heading">
           <div><p class="eyebrow">MODEL &amp; DATA</p><h2 id="settingsViewTitle">モデル・データ設定</h2></div>
-          <span>v5固定</span>
+          <span id="settingsModelStatus">v5固定</span>
         </div>
         <article class="panel settings-card v4-policy-card">
-          <div class="panel-heading"><div><h3>利益判定v5</h3><p>時系列検証で選んだ式と購入基準を固定</p></div><span class="status-pill is-warning">LOCKED</span></div>
-          <div class="formula-card"><span>市場オッズを土台に能力差の残差を加える最終勝率</span><code>p<sub>win</sub> = softmax(α log q + βx)</code></div>
-          <ul class="policy-list">
+          <div class="panel-heading"><div><h3 id="profitPolicyTitle">利益判定v5</h3><p id="profitPolicySubtitle">時系列検証で選んだ式と購入基準を固定</p></div><span class="status-pill is-warning" id="profitPolicyStatus">LOCKED</span></div>
+          <div class="formula-card"><span id="profitFormulaCopy">市場オッズを土台に能力差の残差を加える最終勝率</span><code id="profitFormulaCode">p_win = softmax(α log q + βᵀx)</code></div>
+          <ul class="policy-list" id="profitPolicyList">
             <li>校正済み最終勝率へ旧v4の市場縮小を二重適用しない</li>
             <li>複勝・ワイドはPlackett–Luce着順モデル、検証済み温度0.8で算出</li>
             <li>単勝・複勝・ワイドから1レース最大1点、オッズ下限を10%下げて比較</li>
@@ -180,7 +184,7 @@
           <ul class="activation-list" id="activationChecklist"></ul>
         </article>
         <article class="panel settings-card">
-          <div class="panel-heading"><div><h3>基礎能力モデル</h3><p>オッズと分離した10項目・100点</p></div><button class="text-button" id="resetWeightsButton" type="button">初期値に戻す</button></div>
+          <div class="panel-heading"><div><h3 id="baseModelTitle">基礎能力モデル</h3><p id="baseModelSubtitle">オッズと分離した10項目・100点</p></div><button class="text-button" id="resetWeightsButton" type="button">初期値に戻す</button></div>
           <div class="weight-list" id="weightList"></div>
           <div class="weight-total"><span>合計</span><strong id="weightTotal">100点</strong></div>
         </article>
@@ -193,14 +197,22 @@
         <article class="panel settings-card">
           <div class="panel-heading"><div><h3>レースデータ</h3><p id="dataGeneratedAt">更新時刻 —</p></div><span class="status-pill" id="dataStatusPill">確認中</span></div>
           <p class="body-copy" id="dataSourceCopy">データソースを確認しています。</p>
-          <label class="import-mode-field" for="jraSnapshotMode"><span>出馬表の取込方法</span><select id="jraSnapshotMode"><option value="" selected>選択してください</option><option value="dayBefore">前日版として確定（レース前日のみ）</option><option value="final">当日最終版として確定（当日締切前のみ）</option><option value="reference">参考表示・結果取込（予想を確定しない）</option></select></label>
-          <button class="secondary-action full-width jra-import-action" id="jraHtmlImportButton" type="button">JRA HTMLを取り込む</button><input id="jraHtmlImportInput" type="file" accept="text/html,.html,.htm" multiple hidden>
-          <p class="import-privacy-note">JRA全10競馬場の平地競走に対応。版の確定には保存後30分以内のHTMLが必要で、点数・順位は後から変わりません。個人の私的利用限定です。保存HTML・取込データを共有／転載しないでください。</p>
+          <div id="jraImportPanel">
+            <label class="import-mode-field" for="jraSnapshotMode"><span>出馬表の取込方法</span><select id="jraSnapshotMode"><option value="" selected>選択してください</option><option value="dayBefore">前日版として確定（レース前日のみ）</option><option value="final">当日最終版として確定（当日締切前のみ）</option><option value="reference">参考表示・結果取込（予想を確定しない）</option></select></label>
+            <button class="secondary-action full-width jra-import-action" id="jraHtmlImportButton" type="button">JRA HTMLを取り込む</button><input id="jraHtmlImportInput" type="file" accept="text/html,.html,.htm" multiple hidden>
+            <p class="import-privacy-note">JRA全10競馬場の平地競走に対応。版の確定には保存後30分以内のHTMLが必要で、点数・順位は後から変わりません。個人の私的利用限定です。保存HTML・取込データを共有／転載しないでください。</p>
+            <details class="schema-help import-guide"><summary>Windowsでの無料取込手順</summary><ol><li>JRA公式で対象レースの「詳細出馬表」を開く</li><li><kbd>Ctrl</kbd>＋<kbd>S</kbd>で「Webページ、HTMLのみ」を選んで保存</li><li>前日版・当日最終版・参考表示のいずれかを選び、上のボタンから保存ファイルを選ぶ</li><li>レース後は「参考表示・結果取込」を選び、公式の「レース結果」も同じ方法で取り込む</li></ol><p>複数HTMLを端末内だけで解析します。HTML単体では100点評価からの参考勝率を表示し、固定済み最終勝率と券種別オッズを含む正規化JSONではv5の期待値判定を行います。実オッズがない複勝・ワイドは必要最低オッズだけ表示します。</p></details>
+          </div>
+          <div class="nar-import-panel" id="narImportPanel" hidden>
+            <div class="nar-official-links"><a class="nar-official-link" href="https://www.keiba.go.jp/KeibaWeb/DataDownload/RaceDataDownload?type=daily" target="_blank" rel="noopener noreferrer">NAR公式・レース情報</a><a class="nar-official-link" href="https://www.keiba.go.jp/KeibaWeb/DataDownload/OddsDataDownload?type=daily" target="_blank" rel="noopener noreferrer">NAR公式・オッズ情報</a></div>
+            <button class="secondary-action full-width nar-import-action" id="narZipImportButton" type="button">レース情報ZIP・オッズ情報ZIPを選ぶ</button><input id="narZipImportInput" type="file" accept="application/zip,.zip,text/csv,.csv" multiple hidden>
+            <p class="nar-import-status" id="narImportStatus" role="status">同じ開催日の公式ZIP 2ファイルを選択してください。</p>
+            <details class="schema-help import-guide" open><summary>地方競馬の無料取込手順</summary><ol><li>上の2つのNAR公式ページを開く</li><li>それぞれの日次ZIPを1つずつ保存する</li><li>上のボタンから同じ日の2ファイルをまとめて選ぶ</li></ol><p>ZIPはブラウザ内だけで展開し、IndexedDBへ端末内保存します。公式CSVを外部送信せず、アプリにも同梱しません。NARの利用条件に従い、取込データを共有・転載しないでください。ばんえいは表示のみで予想対象外です。</p></details>
+          </div>
           <div class="data-actions">
-            <button class="secondary-action file-button" id="dataImportButton" type="button">JSONを読み込む</button><input id="dataImportInput" type="file" accept="application/json,.json" hidden>
+            <button class="secondary-action file-button" id="dataImportButton" type="button">端末内JSONを読み込む</button><input id="dataImportInput" type="file" accept="application/json,.json" hidden>
             <button class="secondary-action" id="restoreBundledButton" type="button">取込レースを消す</button>
           </div>
-          <details class="schema-help import-guide"><summary>Windowsでの無料取込手順</summary><ol><li>JRA公式で対象レースの「詳細出馬表」を開く</li><li><kbd>Ctrl</kbd>＋<kbd>S</kbd>で「Webページ、HTMLのみ」を選んで保存</li><li>前日版・当日最終版・参考表示のいずれかを選び、上のボタンから保存ファイルを選ぶ</li><li>レース後は「参考表示・結果取込」を選び、公式の「レース結果」も同じ方法で取り込む</li></ol><p>複数HTMLを端末内だけで解析します。HTML単体では100点評価からの参考勝率を表示し、固定済み最終勝率と券種別オッズを含む正規化JSONではv5の期待値判定を行います。実オッズがない複勝・ワイドは必要最低オッズだけ表示します。</p></details>
           <details class="schema-help"><summary>JSON取込について</summary><p>ライセンス済み提供元などの正規化済みJSONも端末内へ読み込めます。取得元の利用条件を確認してください。</p></details>
         </article>
         <article class="panel settings-card source-card">
@@ -209,8 +221,11 @@
             <li><a href="https://www.jra.go.jp/keiba/" target="_blank" rel="noopener noreferrer">JRA 競馬メニュー</a> — 出馬表・オッズ・結果の公式確認</li>
             <li><a href="https://www.jra.go.jp/kouza/baken/index.html" target="_blank" rel="noopener noreferrer">JRA 馬券の種類</a> — 頭数別の発売券種・複勝圏の確認</li>
             <li><a href="https://www.jra.go.jp/use/" target="_blank" rel="noopener noreferrer">JRA ご利用に際して</a> — 著作権・リンク・免責事項</li>
+            <li><a href="https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/TodayRaceInfoTop" target="_blank" rel="noopener noreferrer">NAR 本日のレース情報</a> — 地方競馬の出走・オッズ・結果確認</li>
+            <li><a href="https://www.keiba.go.jp/pdf/manual/data_pdf_manual.pdf" target="_blank" rel="noopener noreferrer">NAR データ利用マニュアル</a> — 日次・月次CSVの項目と更新時刻</li>
+            <li><a href="https://www.keiba.go.jp/terms.html" target="_blank" rel="noopener noreferrer">NAR 利用条件</a> — 取込データの私的利用条件を確認</li>
           </ul>
-          <p>本アプリはJRAの公式サービスではありません。参考勝率、発走前に固定された校正済み勝率、v5の事後再計算を明確に分けます。利益や的中は保証しません。</p>
+          <p>本アプリはJRA・NARの公式サービスではありません。発走前予想、判定時刻外の参考予想、結果後参考を分離します。利益や的中は保証しません。</p>
         </article>
       </section>
     </main>
@@ -240,9 +255,10 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./engine.js?v=230" defer></script>
-  <script src="./profit-engine.js?v=230" defer></script>
-  <script src="./jra-importer.js?v=230" defer></script>
-  <script src="./app.js?v=230" defer></script>
+  <script src="./engine.js?v=240" defer></script>
+  <script src="./profit-engine.js?v=240" defer></script>
+  <script src="./jra-importer.js?v=240" defer></script>
+  <script src="./nar-importer.js?v=240" defer></script>
+  <script src="./app.js?v=240" defer></script>
 </body>
 </html>

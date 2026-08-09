@@ -59,7 +59,7 @@ test('the application shell uses the white theme and a fresh cache version', asy
   assert.equal(manifest.theme_color, '#ffffff');
   assert.equal(manifest.background_color, '#f5f8f6');
   assert.match(html, /name="theme-color" content="#ffffff"/);
-  assert.match(serviceWorker, /shell-v2\.3\.0/);
+  assert.match(serviceWorker, /shell-v2\.4\.0/);
 });
 
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
@@ -71,12 +71,12 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /v5WinProbability: runner\.v5WinProbability \?\? null/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=230'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=240'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=230/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=240/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
   assert.match(serviceWorker, /\.\/data\/forward-status\.json/);
-  assert.match(serviceWorker, /profit-engine\.js\?v=230/);
+  assert.match(serviceWorker, /profit-engine\.js\?v=240/);
 });
 
 test('manual JRA HTML import stays local, is atomic, and does not auto-create both editions', async () => {
@@ -105,7 +105,30 @@ test('manual JRA HTML import stays local, is atomic, and does not auto-create bo
   assert.doesNotMatch(app, /state\.dataset = window\.UMA_LOG_DEMO/);
   assert.doesNotMatch(html, /demo-data\.js/);
   assert.doesNotMatch(serviceWorker, /demo-data\.js/);
-  assert.match(serviceWorker, /jra-importer\.js\?v=230/);
+  assert.match(serviceWorker, /jra-importer\.js\?v=240/);
+});
+
+test('manual NAR ZIP import stays on device and ships no official race data', async () => {
+  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+  const importer = await readFile(new URL('../nar-importer.js', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  const model = JSON.parse(await readFile(new URL('../data/nar-model.json', import.meta.url), 'utf8'));
+  assert.match(html, /id="authoritySwitch"/);
+  assert.match(html, /data-authority="NAR"/);
+  assert.match(html, /id="narZipImportInput"[^>]*multiple/);
+  assert.match(html, /レース情報ZIP・オッズ情報ZIP/);
+  assert.match(importer, /DecompressionStream\('deflate-raw'\)/);
+  assert.match(importer, /crc32\(content\) !== expectedCrc/);
+  assert.match(importer, /mode: 'local-nar'/);
+  assert.doesNotMatch(importer, /\bfetch\s*\(/);
+  assert.doesNotMatch(importer, /localStorage|indexedDB/);
+  assert.match(app, /idbSet\('active-import:nar', dataset\)/);
+  assert.match(app, /state\.authority === 'NAR' \? 'active-import:nar' : 'active-import'/);
+  assert.match(serviceWorker, /nar-importer\.js\?v=240/);
+  assert.match(serviceWorker, /\.\/data\/nar-model\.json/);
+  assert.equal(model.selectedMode, 'market');
+  assert.equal(model.trainingRange.end, '2026-08-08');
 });
 
 test('v5 multi-market UI fails closed and separates reference probabilities from purchase decisions', async () => {
@@ -188,12 +211,12 @@ test('daily bet list and predictions-results overview are first-class app pages'
   assert.match(app, /function renderDailyTickets\(\)/);
   assert.match(app, /function buildResultOverviewEntries\(\)/);
   assert.match(app, /if \(race\.modelStatus === 'out-of-scope'\) return null/);
-  assert.match(app, /結果後に取得した\$\{postRace\}Rは一覧表示のみ/);
+  assert.match(app, /判定時刻外または結果後に取得した\$\{referenceOnly\}Rは一覧表示のみ/);
   assert.match(app, /candidate\.lowerBoundEv === null \? candidate\.referenceEv : candidate\.lowerBoundEv/);
   assert.match(styles, /\.daily-ticket-row/);
   assert.match(styles, /\.result-overview-row/);
-  assert.match(serviceWorker, /shell-v2\.3\.0/);
-  assert.match(html, /v2\.3\.0/);
+  assert.match(serviceWorker, /shell-v2\.4\.0/);
+  assert.match(html, /v2\.4\.0/);
 });
 
 test('all archived races can be paired into compact prediction and result rows', async () => {

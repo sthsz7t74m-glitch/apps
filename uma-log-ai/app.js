@@ -4,18 +4,21 @@
   const Engine = window.UmaLogEngine;
   const ProfitEngine = window.UmaLogProfitEngine;
   const JraImporter = window.UmaLogJraImporter;
+  const NarImporter = window.UmaLogNarImporter;
   const STORAGE_KEYS = {
     weights: 'umaLogWeightsV1',
     budget: 'umaLogBankrollV2',
     changes: 'umaLogWeightChangesV1',
     selected: 'umaLogSelectionV1',
+    authority: 'umaLogAuthorityV1',
     lastAutoLearn: 'umaLogLastAutoLearnV1'
   };
   const DB_NAME = 'uma-log-ai';
   const DB_STORE = 'datasets';
   const PREDICTION_KEY_PREFIX = 'prediction:';
   const TICKET_PLAN_KEY_PREFIX = 'ticket-plan:';
-  const DATA_URL = './data/races.json';
+  const JRA_DATA_URL = './data/races.json';
+  const NAR_MODEL_URL = './data/nar-model.json';
   const MODEL_STATUS_URL = './data/forward-status.json';
   const DEFAULT_MODEL_STATUS = {
     model_version: '5.0.0-multi-market-audit-locked',
@@ -50,6 +53,22 @@
     venues: [...Engine.JRA_VENUES],
     races: []
   };
+  const EMPTY_NAR_DATASET = {
+    schemaVersion: 1,
+    generatedAt: null,
+    source: {
+      mode: 'unavailable',
+      authority: 'NAR',
+      datasetId: 'uma-log-ai-local-nar-v1',
+      name: '地方競馬データ未取込',
+      detail: 'NAR公式の日次レース情報ZIP・オッズ情報ZIPを設定画面から選んでください',
+      redistributable: false,
+      automated: false,
+      asOfFieldsGuaranteed: false
+    },
+    venues: [...Engine.NAR_VENUES],
+    races: []
+  };
   const FRAME_COLORS = ['#f8fafc', '#23272f', '#e5484d', '#3b82f6', '#f0c841', '#22a45d', '#ee7d36', '#e994b9'];
   const SURFACE_LABELS = { turf: '芝', dirt: 'ダート' };
   const GOING_LABELS = { firm: '良', good: '良', standard: '良', yielding: '稍重', soft: '重', heavy: '不良', muddy: '不良' };
@@ -58,12 +77,14 @@
   const DIRECTION_LABELS = { left: '左', right: '右', straight: '直線' };
   const MARK_CLASSES = { '◎': 'mark-main', '○': 'mark-second', '▲': 'mark-third', '☆': 'mark-star', '消': 'mark-cut' };
   const PUBLISHED_MARKS = ['◎', '○', '▲'];
-  const VENUE_ORDER = new Map(Engine.JRA_VENUES.map((venue, index) => [venue, index]));
+  const VENUE_ORDER = new Map(Engine.ALL_VENUES.map((venue, index) => [venue, index]));
   const snapshotWriteChains = new Map();
   const state = {
     dataset: null,
     modelStatus: structuredClone(DEFAULT_MODEL_STATUS),
+    narModel: null,
     datasetOrigin: 'bundled',
+    authority: readJson(STORAGE_KEYS.authority, 'JRA') === 'NAR' ? 'NAR' : 'JRA',
     date: '',
     venue: '東京',
     raceNumber: 11,
@@ -85,13 +106,15 @@
   };
 
   const nodes = Object.fromEntries([
-    'sourceSummary', 'refreshButton', 'sourceBanner', 'sourceMode', 'sourceDetail', 'gateBanner', 'gateStatus', 'gateDetail', 'dateSelect', 'venueTabs', 'raceStrip',
+    'sourceSummary', 'refreshButton', 'sourceBanner', 'sourceMode', 'sourceDetail', 'gateBanner', 'gateStatus', 'gateDetail', 'authoritySwitch', 'dateSelect', 'venueTabs', 'raceStrip',
     'raceView', 'ticketView', 'resultView', 'settingsView', 'raceEyebrow', 'raceViewTitle', 'ticketViewTitle', 'resultViewTitle', 'raceMeta', 'confidenceGauge',
     'dailyPreviewTitle', 'dailyPreviewStatus', 'dailyPreviewSummary', 'dailyPreviewList', 'openDailyTicketsButton',
     'predictionPodium', 'openBreakdownButton', 'runnerCount', 'runnerList', 'dailyTicketStatus', 'dailyTicketSummary', 'dailyTicketFilters', 'dailyTicketList', 'selectedTicketHeading', 'ticketConfidence', 'budgetInput', 'budgetOutput',
     'ticketSummary', 'ticketGroups', 'resultOverviewStatus', 'resultOverviewSummary', 'resultOverviewFilters', 'resultOverviewList', 'selectedResultHeading', 'resultStatus', 'resultContent', 'forwardValidationSummary', 'activationChecklist', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
-    'weightList', 'weightTotal', 'resetWeightsButton', 'learningStatus', 'learningDescription', 'runLearningButton',
-    'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'jraSnapshotMode', 'jraHtmlImportButton', 'jraHtmlImportInput',
+    'settingsModelStatus', 'profitPolicyTitle', 'profitPolicySubtitle', 'profitPolicyStatus', 'profitFormulaCopy', 'profitFormulaCode', 'profitPolicyList',
+    'baseModelTitle', 'baseModelSubtitle', 'weightList', 'weightTotal', 'resetWeightsButton', 'learningStatus', 'learningDescription', 'runLearningButton',
+    'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'jraImportPanel', 'jraSnapshotMode', 'jraHtmlImportButton', 'jraHtmlImportInput',
+    'narImportPanel', 'narZipImportButton', 'narZipImportInput', 'narImportStatus', 'officialRaceLink',
     'dataImportButton', 'dataImportInput', 'restoreBundledButton',
     'mainContent', 'breakdownBackdrop', 'breakdownContent', 'closeBreakdownButton', 'runnerBackdrop', 'runnerSheetEyebrow',
     'runnerSheetTitle', 'runnerSheetContent', 'closeRunnerButton', 'toast'
@@ -478,7 +501,7 @@
       race: profitRaceInput(race, prediction.edition || state.edition),
       snapshotAt: prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.capturedAt || race.snapshots?.[prediction.edition || state.edition]?.asOf,
       evaluatedAt: prediction.evaluatedAt || prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.generatedAt,
-      gateStatus: state.modelStatus?.activation_status || 'LOCKED',
+      gateStatus: state.authority === 'NAR' ? 'LOCKED' : state.modelStatus?.activation_status || 'LOCKED',
       bankrollYen: normalizeBudget(bankroll)
     });
   }
@@ -583,6 +606,10 @@
     return state.dataset?.races?.find(race => race.date === state.date && race.venue === state.venue && Number(race.raceNumber) === Number(state.raceNumber)) || null;
   }
 
+  function configuredVenues() {
+    return state.authority === 'NAR' ? Engine.NAR_VENUES : Engine.JRA_VENUES;
+  }
+
   function isFinalized(race) {
     return race?.status === 'final' || race?.status === 'cancelled' || race?.result?.status === 'final' || (Array.isArray(race?.result?.order) && race.result.order.length > 0);
   }
@@ -597,6 +624,9 @@
   function isEditionAvailable(race, edition) {
     if (state.dataset?.source?.mode === 'demo') return true;
     if (state.dataset?.source?.mode === 'reference-archive') {
+      return edition === 'final' && (Boolean(race?.publishedPrediction) || race?.modelStatus === 'out-of-scope');
+    }
+    if (state.dataset?.source?.mode === 'local-nar') {
       return edition === 'final' && (Boolean(race?.publishedPrediction) || race?.modelStatus === 'out-of-scope');
     }
     const snapshot = race?.snapshots?.[edition];
@@ -667,7 +697,8 @@
       const prediction = getPrediction(race);
       if (!prediction) {
         const outOfScope = race.modelStatus === 'out-of-scope';
-        return { race, category: 'skip', status: outOfScope ? 'OUT_OF_SCOPE' : 'PENDING', label: outOfScope ? '対象外' : '公開待ち', prediction: null, plan: null, candidate: null, realAmount: 0, paperAmount: 0, reason: outOfScope ? '現在のモデルは障害戦を対象にしません' : 'この版の予想はまだ公開されていません' };
+        const scopeReason = race.raceType === 'banei' ? 'ばんえいはサラブレッド用モデルの対象外です' : '現在のモデルは障害戦を対象にしません';
+        return { race, category: 'skip', status: outOfScope ? 'OUT_OF_SCOPE' : 'PENDING', label: outOfScope ? '対象外' : '公開待ち', prediction: null, plan: null, candidate: null, realAmount: 0, paperAmount: 0, reason: outOfScope ? scopeReason : 'この版の予想はまだ公開されていません' };
       }
       const plan = overviewPlanFor(race, prediction);
       const recommendation = plan?.recommendation || {};
@@ -769,7 +800,9 @@
       const mainNumber = Number(predicted[0]?.number);
       const captureStatus = prediction?.captureStatus || '';
       const postRaceReference = captureStatus === 'published-post-race';
-      const preRace = Boolean(prediction) && !postRaceReference && !['retrospective', 'post-time'].includes(captureStatus);
+      const outsideWindowReference = captureStatus === 'published-reference';
+      const referenceCapture = postRaceReference || outsideWindowReference;
+      const preRace = Boolean(prediction) && !referenceCapture && !['retrospective', 'post-time'].includes(captureStatus);
       const settled = resultOrder.length > 0;
       const mainHit = settled && Number.isFinite(mainNumber) && resultOrder[0] === mainNumber;
       const mainTop3 = settled && Number.isFinite(mainNumber) && resultOrder.slice(0, 3).includes(mainNumber);
@@ -779,11 +812,12 @@
       let label = '結果待ち';
       if (!prediction) { category = 'out-of-scope'; label = race.modelStatus === 'out-of-scope' ? '対象外' : '予想なし'; }
       else if (postRaceReference) { category = 'post-race'; label = '結果後参考'; }
+      else if (outsideWindowReference) { category = 'post-race'; label = '時刻外参考'; }
       else if (!settled) { category = 'waiting'; label = '結果待ち'; }
       else if (mainHit) { category = 'main-hit'; label = '◎1着'; }
       else if (mainTop3) { category = 'main-place'; label = '◎Top3'; }
       else { category = 'miss'; label = '◎圏外'; }
-      return { race, prediction, horses, predicted, resultOrder, preRace, postRaceReference, settled, mainHit, mainTop3, top3Overlap, category, label };
+      return { race, prediction, horses, predicted, resultOrder, preRace, postRaceReference, outsideWindowReference, settled, mainHit, mainTop3, top3Overlap, category, label };
     });
   }
 
@@ -795,7 +829,7 @@
       ? entry.resultOrder.slice(0, 3).map((number, index) => `${index + 1}着 ${number}番 ${escapeHtml(entry.horses.get(number) || `馬番${number}`)}`).join('　')
       : '結果待ち';
     const statusClass = entry.category === 'main-hit' ? 'is-hit' : entry.category === 'main-place' ? 'is-place' : entry.category === 'post-race' ? 'is-reference' : entry.category === 'miss' ? 'is-miss' : '';
-    const captureLabel = entry.postRaceReference ? '結果後取得・集計外' : entry.preRace ? '発走前予想' : '検証対象外';
+    const captureLabel = entry.postRaceReference ? '結果後取得・集計外' : entry.outsideWindowReference ? '判定時刻外・集計外' : entry.preRace ? '発走前予想' : '検証対象外';
     const overlap = entry.prediction && entry.settled ? `Top3一致 ${entry.top3Overlap}/3` : '—';
     return `<button class="result-overview-row ${statusClass}" type="button" data-select-date="${escapeHtml(entry.race.date)}" data-select-venue="${escapeHtml(entry.race.venue)}" data-select-race="${entry.race.raceNumber}" data-target-view="results">
       <span class="overview-race"><strong>${escapeHtml(entry.race.venue)} ${entry.race.raceNumber}R</strong><small>${escapeHtml(entry.race.startTime)} · ${escapeHtml(entry.race.name)}</small></span>
@@ -826,7 +860,7 @@
         capturedOdds,
         currentOdds: capturedOdds,
         capturedPlaceOdds: runner.placeOdds || null,
-        reason: `8月9日公開モデル${Number(saved.rank)}位 · 勝率${formatNumber(Number(saved.probability) * 100, 1)}%`
+        reason: `${race.authority === 'NAR' ? 'NAR地方モデル' : '8月9日公開モデル'}${Number(saved.rank)}位 · 勝率${formatNumber(Number(saved.probability) * 100, 1)}%`
       };
     }).sort((a, b) => a.rank - b.rank || a.number - b.number);
     runners.forEach((runner, index) => {
@@ -838,7 +872,7 @@
       capturedAt: published.capturedAt,
       oddsCapturedAt: race.oddsSnapshotAt || published.capturedAt,
       evaluatedAt: race.oddsSnapshotAt || published.generatedAt,
-      captureStatus: published.captureTiming === 'pre-race' ? 'published-pre-race' : 'published-post-race',
+      captureStatus: published.captureTiming === 'pre-race' ? 'published-pre-race' : published.captureTiming === 'post-race' ? 'published-post-race' : 'published-reference',
       retrospective: published.captureTiming !== 'pre-race',
       probabilityModel: race.probabilityModel,
       publishedPrediction: true,
@@ -916,21 +950,24 @@
   }
 
   function normalizeSelection() {
-    if (state.dataset?.source?.mode === 'reference-archive') state.edition = 'final';
+    if (['reference-archive', 'local-nar'].includes(state.dataset?.source?.mode)) state.edition = 'final';
     const dates = [...new Set((state.dataset?.races || []).map(race => race.date))].sort().reverse();
     if (!dates.includes(state.date)) state.date = dates[0] || '';
-    const venues = Engine.JRA_VENUES.filter(venue => racesForSelection(state.date, venue).length);
-    if (!venues.includes(state.venue)) state.venue = venues[0] || Engine.JRA_VENUES[0];
+    const venueList = configuredVenues();
+    const venues = venueList.filter(venue => racesForSelection(state.date, venue).length);
+    if (!venues.includes(state.venue)) state.venue = venues[0] || venueList[0];
     const races = racesForSelection();
     if (!races.some(race => Number(race.raceNumber) === Number(state.raceNumber))) {
       state.raceNumber = races.find(race => Number(race.raceNumber) === 11)?.raceNumber || races[0]?.raceNumber || 1;
     }
-    writeJson(STORAGE_KEYS.selected, { date: state.date, venue: state.venue, raceNumber: state.raceNumber, edition: state.edition });
+    writeJson(STORAGE_KEYS.selected, { date: state.date, venue: state.venue, raceNumber: state.raceNumber, edition: state.edition, authority: state.authority });
+    writeJson(STORAGE_KEYS.authority, state.authority);
   }
 
   async function fetchBundledDataset(force = false) {
+    if (state.authority === 'NAR') return structuredClone(EMPTY_NAR_DATASET);
     try {
-      const response = await fetch(`${DATA_URL}${force ? `?t=${Date.now()}` : ''}`, { cache: force ? 'no-store' : 'default' });
+      const response = await fetch(`${JRA_DATA_URL}${force ? `?t=${Date.now()}` : ''}`, { cache: force ? 'no-store' : 'default' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const payload = await response.json();
       if (payload?.source?.mode === 'unavailable' && Array.isArray(payload.races) && !payload.races.length) return payload;
@@ -939,6 +976,16 @@
     } catch {
       return structuredClone(EMPTY_DATASET);
     }
+  }
+
+  async function fetchNarModel(force = false) {
+    if (state.narModel && !force) return state.narModel;
+    const response = await fetch(`${NAR_MODEL_URL}${force ? `?t=${Date.now()}` : ''}`, { cache: force ? 'no-store' : 'default' });
+    if (!response.ok) throw new Error(`NARモデル HTTP ${response.status}`);
+    const payload = await response.json();
+    if (!payload?.modelVersion || !Array.isArray(payload.featureNames) || !Array.isArray(payload.coefficients)) throw new Error('NARモデル設定が不正です');
+    state.narModel = payload;
+    return payload;
   }
 
   async function fetchModelStatus(force = false) {
@@ -958,8 +1005,12 @@
     nodes.refreshButton.classList.add('is-spinning');
     renderLoading();
     try {
-      state.modelStatus = await fetchModelStatus(force);
-      const imported = ignoreImport ? null : await idbGet('active-import');
+      [state.modelStatus] = await Promise.all([
+        fetchModelStatus(force),
+        state.authority === 'NAR' ? fetchNarModel(force) : Promise.resolve(null)
+      ]);
+      const importKey = state.authority === 'NAR' ? 'active-import:nar' : 'active-import';
+      const imported = ignoreImport ? null : await idbGet(importKey);
       if (imported) {
         Engine.validateDataset(imported);
         state.dataset = imported;
@@ -976,12 +1027,12 @@
       maybeAutoLearn();
     } catch (error) {
       console.error(error);
-      state.dataset = structuredClone(EMPTY_DATASET);
+      state.dataset = structuredClone(state.authority === 'NAR' ? EMPTY_NAR_DATASET : EMPTY_DATASET);
       state.datasetOrigin = 'bundled';
       normalizeSelection();
       renderControls();
       renderAll();
-      showToast('実データを読み込めませんでした。設定からJRA公式HTMLを取り込んでください');
+      showToast(state.authority === 'NAR' ? '地方競馬データを読み込めませんでした。設定からNAR公式ZIPを取り込んでください' : '実データを読み込めませんでした。設定からJRA公式HTMLを取り込んでください');
     } finally {
       state.loading = false;
       nodes.refreshButton.classList.remove('is-spinning');
@@ -1002,12 +1053,16 @@
       nodes.sourceDetail.textContent = source.detail || '実在データではありません';
     } else if (source.mode === 'unavailable') {
       nodes.sourceBanner.classList.add('is-error');
-      nodes.sourceMode.textContent = '実データ未取込';
-      nodes.sourceDetail.textContent = '設定からJRA公式HTMLを端末内へ読み込んでください';
+      nodes.sourceMode.textContent = state.authority === 'NAR' ? '地方データ未取込' : '実データ未取込';
+      nodes.sourceDetail.textContent = state.authority === 'NAR' ? '設定からNAR公式の日次ZIPを端末内へ読み込んでください' : '設定からJRA公式HTMLを端末内へ読み込んでください';
     } else if (source.mode === 'local-jra') {
       nodes.sourceBanner.classList.add('is-live');
       nodes.sourceMode.textContent = 'JRA端末内取込';
       nodes.sourceDetail.textContent = `${raceCount}R · 外部送信なし`;
+    } else if (source.mode === 'local-nar') {
+      nodes.sourceBanner.classList.add('is-live');
+      nodes.sourceMode.textContent = 'NAR端末内取込';
+      nodes.sourceDetail.textContent = `${raceCount}R · 公式CSVは外部送信・再配布なし`;
     } else if (source.mode === 'reference-archive') {
       nodes.sourceBanner.classList.add('is-live');
       nodes.sourceMode.textContent = '8/9 実データ';
@@ -1028,6 +1083,12 @@
   }
 
   function renderGateStatus() {
+    if (state.authority === 'NAR') {
+      nodes.gateBanner.className = 'gate-banner is-locked';
+      nodes.gateStatus.textContent = 'NAR参考モデル';
+      nodes.gateDetail.textContent = '市場基準の参考予想 · 実購入0円';
+      return;
+    }
     const status = state.modelStatus || DEFAULT_MODEL_STATUS;
     const verified = status.activation_status === 'VERIFIED' && status.production_buy_enabled === true;
     nodes.gateBanner.className = `gate-banner ${verified ? 'is-verified' : 'is-locked'}`;
@@ -1043,7 +1104,8 @@
     nodes.dailyPreviewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
     nodes.dailyPreviewStatus.textContent = `${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
     nodes.dailyPreviewStatus.className = `status-pill ${summary.buyCount ? 'is-ok' : 'is-warning'}`;
-    nodes.dailyPreviewSummary.innerHTML = `<div><strong>${summary.buyCount}件</strong><span>正式購入</span><small>${formatNumber(summary.realTotal)}円</small></div><div><strong>${summary.paperCount}件</strong><span>仮想候補</span><small>${formatNumber(summary.paperTotal)}円</small></div><div><strong>${summary.referenceCount}件</strong><span>v5参考候補</span><small>購入0円</small></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span><small>全${summary.raceCount}R</small></div>`;
+    const referenceLabel = state.authority === 'NAR' ? 'NAR参考候補' : 'v5参考候補';
+    nodes.dailyPreviewSummary.innerHTML = `<div><strong>${summary.buyCount}件</strong><span>正式購入</span><small>${formatNumber(summary.realTotal)}円</small></div><div><strong>${summary.paperCount}件</strong><span>仮想候補</span><small>${formatNumber(summary.paperTotal)}円</small></div><div><strong>${summary.referenceCount}件</strong><span>${referenceLabel}</span><small>購入0円</small></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span><small>全${summary.raceCount}R</small></div>`;
     const featured = summary.buyCount
       ? entries.filter(entry => entry.category === 'buy')
       : summary.paperCount
@@ -1051,9 +1113,12 @@
         : entries.filter(entry => entry.category === 'reference');
     const nearest = entries.filter(entry => entry.candidate && entry.prediction?.captureStatus !== 'published-post-race')
       .sort((a, b) => (entryEv(b) ?? -Infinity) - (entryEv(a) ?? -Infinity))[0];
+    const noCandidateCopy = state.authority === 'NAR'
+      ? '地方競馬は前向き収益検証が未完了のため、参考表示・実購入0円です。'
+      : state.modelStatus?.activation_status === 'VERIFIED' ? '購入条件を満たすレースがありません。' : '利益ゲート通過までは実購入0円です。';
     nodes.dailyPreviewList.innerHTML = featured.length
       ? featured.slice(0, 4).map(entry => dailyEntryMarkup(entry, true)).join('')
-      : `<div class="daily-preview-empty"><strong>正式な買い目はありません</strong><span>${state.modelStatus?.activation_status === 'VERIFIED' ? '購入条件を満たすレースがありません。' : '利益ゲート通過までは実購入0円です。'}${nearest ? ' 下は最も基準に近い候補です。' : ''}</span></div>${nearest ? dailyEntryMarkup(nearest, true) : ''}`;
+      : `<div class="daily-preview-empty"><strong>正式な買い目はありません</strong><span>${noCandidateCopy}${nearest ? ' 下は最も基準に近い候補です。' : ''}</span></div>${nearest ? dailyEntryMarkup(nearest, true) : ''}`;
     nodes.openDailyTicketsButton.textContent = `全${summary.raceCount}Rの買い目・見送りを見る`;
   }
 
@@ -1062,7 +1127,11 @@
     const summary = summarizeDailyBets(entries);
     nodes.ticketViewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
     nodes.dailyTicketStatus.textContent = `購入 ${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
-    nodes.dailyTicketSummary.innerHTML = `<article class="daily-total-card panel"><div class="daily-total-main"><span>本日の正式購入</span><strong>${formatNumber(summary.realTotal)}円</strong><small>${summary.buyCount}レース · 単勝／複勝／ワイド比較</small></div><div class="daily-total-grid"><div><strong>${summary.paperCount}件 / ${formatNumber(summary.paperTotal)}円</strong><span>仮想検証</span></div><div><strong>${summary.referenceCount}件</strong><span>v5参考候補</span></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span></div><div><strong>${formatNumber(Math.floor(state.budget * ProfitEngine.CONFIG.maxBankrollFractionPerDay / 100) * 100)}円</strong><span>解禁後の1日上限</span></div></div><p>${summary.buyCount ? '下の購入行だけが正式な買い目です。' : '正式購入はありません。参考候補は保存済み発走前データをv5で再計算した検証用で、当時の購入扱いにはしません。'}</p></article>`;
+    const referenceLabel = state.authority === 'NAR' ? 'NAR参考候補' : 'v5参考候補';
+    const noBuyCopy = state.authority === 'NAR'
+      ? '地方競馬は市場基準モデルの参考表示です。前向き検証が未完了のため、正式購入には数えません。'
+      : '正式購入はありません。参考候補は保存済み発走前データをv5で再計算した検証用で、当時の購入扱いにはしません。';
+    nodes.dailyTicketSummary.innerHTML = `<article class="daily-total-card panel"><div class="daily-total-main"><span>本日の正式購入</span><strong>${formatNumber(summary.realTotal)}円</strong><small>${summary.buyCount}レース · 単勝／複勝／ワイド比較</small></div><div class="daily-total-grid"><div><strong>${summary.paperCount}件 / ${formatNumber(summary.paperTotal)}円</strong><span>仮想検証</span></div><div><strong>${summary.referenceCount}件</strong><span>${referenceLabel}</span></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span></div><div><strong>${formatNumber(Math.floor(state.budget * ProfitEngine.CONFIG.maxBankrollFractionPerDay / 100) * 100)}円</strong><span>解禁後の1日上限</span></div></div><p>${summary.buyCount ? '下の購入行だけが正式な買い目です。' : noBuyCopy}</p></article>`;
     const counts = {
       all: entries.length,
       buy: entries.filter(entry => entry.category === 'buy').length,
@@ -1086,18 +1155,18 @@
   function renderResultOverview() {
     const entries = buildResultOverviewEntries();
     const settledPreRace = entries.filter(entry => entry.preRace && entry.settled);
-    const postRace = entries.filter(entry => entry.postRaceReference).length;
+    const referenceOnly = entries.filter(entry => entry.postRaceReference || entry.outsideWindowReference).length;
     const mainHits = settledPreRace.filter(entry => entry.mainHit).length;
     const mainTop3 = settledPreRace.filter(entry => entry.mainTop3).length;
     nodes.resultViewTitle.textContent = state.date ? `${formatDate(state.date, true)} 予想と結果` : '予想と結果一覧';
     nodes.resultOverviewStatus.textContent = `${entries.length}レース`;
-    nodes.resultOverviewSummary.innerHTML = `<div class="result-overview-kpis"><div><strong>${settledPreRace.length}</strong><span>発走前予想</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainHits / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎1着率</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainTop3 / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎Top3率</span></div><div><strong>${postRace}</strong><span>結果後参考・集計外</span></div></div><p>率は発走前に保存された予想だけで計算します。結果後に取得した${postRace}Rは一覧表示のみで、成績へ混ぜません。</p>`;
+    nodes.resultOverviewSummary.innerHTML = `<div class="result-overview-kpis"><div><strong>${settledPreRace.length}</strong><span>発走前予想</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainHits / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎1着率</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainTop3 / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎Top3率</span></div><div><strong>${referenceOnly}</strong><span>時刻外・結果後参考</span></div></div><p>率は発走前に保存された予想だけで計算します。判定時刻外または結果後に取得した${referenceOnly}Rは一覧表示のみで、成績へ混ぜません。</p>`;
     const counts = {
       all: entries.length,
       'pre-race': entries.filter(entry => entry.preRace).length,
       'main-hit': entries.filter(entry => entry.category === 'main-hit').length,
       miss: entries.filter(entry => entry.category === 'miss').length,
-      'post-race': postRace
+      'post-race': referenceOnly
     };
     const labels = { all: 'すべて', 'pre-race': '発走前', 'main-hit': '◎1着', miss: '◎圏外', 'post-race': '結果後参考' };
     nodes.resultOverviewFilters.querySelectorAll('[data-result-filter]').forEach(button => {
@@ -1117,6 +1186,19 @@
   }
 
   function renderForwardValidation() {
+    if (state.authority === 'NAR') {
+      const model = state.narModel || {};
+      const audit = Array.isArray(model.forwardAudit) ? model.forwardAudit : [];
+      const selected = model.selectedMode === 'market' ? '市場基準を採用' : '残差モデルを採用';
+      nodes.forwardValidationSummary.innerHTML = `<article class="forward-status-card panel"><div class="forward-status-heading"><div><p class="eyebrow">NAR TIME-SERIES AUDIT</p><h3>${escapeHtml(selected)}</h3></div><span class="gate-pill">実購入 0円</span></div><div class="forward-metrics"><div><strong>${formatNumber(model.trainingRange?.races)}</strong><span>学習対象レース</span></div><div><strong>${formatNumber(audit.length)}</strong><span>前向き検証期間</span></div><div><strong>${formatNumber(model.marketExponent, 1)}</strong><span>市場指数</span></div><div><strong>${formatNumber(model.placementStrengthGamma, 1)}</strong><span>着順温度</span></div></div><p>2026年3月〜8月8日を時系列で分離して比較し、能力特徴の残差は市場単独を上回らなかったため不採用にしました。最終オッズは約定可能時刻を保証しないので、地方競馬は参考表示・実購入0円です。</p></article>`;
+      nodes.activationChecklist.innerHTML = [
+        ['✓', 'ばんえいを分離', true],
+        ['✓', '時系列で市場単独と比較', true],
+        ['—', '発走前オッズを前向き固定', false],
+        ['—', '独立期間で収益性を確認', false]
+      ].map(([mark, label, passed]) => `<li class="${passed ? 'is-passed' : ''}"><span>${mark}</span>${label}</li>`).join('');
+      return;
+    }
     const status = state.modelStatus || DEFAULT_MODEL_STATUS;
     const settled = Number(status.settled_paper_bets) || 0;
     const roi = settled ? formatRatio(status.paper_roi) : '—';
@@ -1134,10 +1216,19 @@
   }
 
   function renderControls() {
+    nodes.authoritySwitch?.querySelectorAll('[data-authority]').forEach(button => {
+      const active = button.dataset.authority === state.authority;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    if (nodes.officialRaceLink) {
+      nodes.officialRaceLink.href = state.authority === 'NAR' ? 'https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/TodayRaceInfoTop' : 'https://www.jra.go.jp/keiba/';
+      nodes.officialRaceLink.textContent = state.authority === 'NAR' ? 'NAR公式情報' : 'JRA公式情報';
+    }
     const dates = [...new Set(state.dataset.races.map(race => race.date))].sort().reverse();
     nodes.dateSelect.innerHTML = dates.map(date => `<option value="${escapeHtml(date)}"${date === state.date ? ' selected' : ''}>${escapeHtml(formatDate(date, true))}${state.dataset.source?.mode === 'demo' ? '（デモ）' : ''}</option>`).join('');
-    const venues = Engine.JRA_VENUES.filter(venue => racesForSelection(state.date, venue).length);
-    nodes.venueTabs.style.setProperty('--venue-count', String(Math.max(1, venues.length)));
+    const venues = configuredVenues().filter(venue => racesForSelection(state.date, venue).length);
+    nodes.venueTabs.style.setProperty('--venue-count', String(Math.max(1, Math.min(4, venues.length))));
     nodes.venueTabs.innerHTML = venues.map(venue => {
       const count = racesForSelection(state.date, venue).length;
       return `<button class="venue-tab${venue === state.venue ? ' is-active' : ''}" type="button" role="tab" aria-selected="${venue === state.venue}" data-venue="${venue}"${count ? '' : ' disabled'}>${venue}<small>${count ? `${count}R` : '開催なし'}</small></button>`;
@@ -1147,8 +1238,10 @@
     const activeRace = nodes.raceStrip.querySelector('.race-chip.is-active');
     if (activeRace) requestAnimationFrame(() => activeRace.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }));
     document.querySelectorAll('[data-edition]').forEach(button => {
-      button.hidden = state.dataset?.source?.mode === 'reference-archive' && button.dataset.edition === 'dayBefore';
-      button.textContent = button.dataset.edition === 'final' && state.dataset?.source?.mode === 'reference-archive' ? '8/9取得版' : button.dataset.edition === 'final' ? '当日最終' : '前日版';
+      button.hidden = ['reference-archive', 'local-nar'].includes(state.dataset?.source?.mode) && button.dataset.edition === 'dayBefore';
+      button.textContent = button.dataset.edition === 'final' && state.dataset?.source?.mode === 'reference-archive'
+        ? '8/9取得版' : button.dataset.edition === 'final' && state.dataset?.source?.mode === 'local-nar'
+          ? 'NAR取込版' : button.dataset.edition === 'final' ? '当日最終' : '前日版';
       const active = button.dataset.edition === state.edition;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
@@ -1163,12 +1256,12 @@
   function raceMetaText(race) {
     const current = effectiveRace(race);
     const pieces = [
-      current.raceType === 'jump' ? '障害' : '平地',
+      current.raceType === 'jump' ? '障害' : current.raceType === 'banei' ? 'ばんえい' : '平地',
       `${SURFACE_LABELS[current.surface] || current.surface}${formatNumber(current.distance)}m`,
       DIRECTION_LABELS[current.direction] || current.direction,
       current.weather ? WEATHER_LABELS[current.weather] || current.weather : '天候未発表',
-      `馬場 ${GOING_LABELS[current.going] || current.going || '未発表'}`,
-      `想定ペース ${PACE_LABELS[current.pace] || '不明'}`,
+      `馬場 ${current.raceType === 'banei' ? current.trackConditionLabel || '未発表' : GOING_LABELS[current.going] || current.going || '未発表'}`,
+      current.raceType === 'banei' ? null : `想定ペース ${PACE_LABELS[current.pace] || '不明'}`,
       Number.isFinite(Number(current.temperatureC)) ? `気温 ${formatNumber(current.temperatureC, 1)}℃` : null,
       Number.isFinite(Number(current.windSpeedMps)) ? `風 ${escapeHtml(current.windDirection || '向き不明')} ${formatNumber(current.windSpeedMps, 1)}m/s` : null,
       current.status === 'cancelled' ? '開催中止' : null
@@ -1200,13 +1293,13 @@
     if (!race) {
       const unavailable = state.dataset?.source?.mode === 'unavailable';
       nodes.raceViewTitle.textContent = unavailable ? '実データを取り込んでください' : '開催データなし';
-      nodes.raceMeta.textContent = unavailable ? '設定 → JRA HTMLを取り込む' : '日付または競馬場を選び直してください';
+      nodes.raceMeta.textContent = unavailable ? state.authority === 'NAR' ? '設定 → NAR公式ZIPを取り込む' : '設定 → JRA HTMLを取り込む' : '日付または競馬場を選び直してください';
       nodes.predictionPodium.innerHTML = '';
       nodes.confidenceGauge.innerHTML = '<span>自信度</span><strong>—</strong><small>データなし</small>';
       nodes.confidenceGauge.removeAttribute('title');
       nodes.openBreakdownButton.disabled = true;
       nodes.runnerCount.textContent = '—';
-      nodes.runnerList.innerHTML = `<div class="empty-state">${unavailable ? 'WindowsのChrome／EdgeでJRA公式の詳細出馬表をHTML保存し、設定画面から読み込むと予想を作成します。' : '選択できるレースがありません'}</div>`;
+      nodes.runnerList.innerHTML = `<div class="empty-state">${unavailable ? state.authority === 'NAR' ? 'NAR公式の「本日のレース情報」から日次レース情報ZIPと日次オッズ情報ZIPを保存し、設定画面で2ファイルを選ぶと実データの予想を作成します。' : 'WindowsのChrome／EdgeでJRA公式の詳細出馬表をHTML保存し、設定画面から読み込むと予想を作成します。' : '選択できるレースがありません'}</div>`;
       return;
     }
     const prediction = getPrediction(race);
@@ -1215,8 +1308,9 @@
         nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · 実データ`;
         nodes.raceViewTitle.textContent = race.name;
         nodes.raceMeta.textContent = raceMetaText(race);
-        nodes.confidenceGauge.innerHTML = '<span>モデル</span><strong>対象外</strong><small>障害戦</small>';
-        nodes.confidenceGauge.title = '現在の予想モデルは平地競走のみを対象にしています';
+        const scopeLabel = race.raceType === 'banei' ? 'ばんえい' : '障害戦';
+        nodes.confidenceGauge.innerHTML = `<span>モデル</span><strong>対象外</strong><small>${scopeLabel}</small>`;
+        nodes.confidenceGauge.title = race.raceType === 'banei' ? 'ばんえい競馬はサラブレッド用の地方モデルから分離しています' : '現在の予想モデルは平地競走のみを対象にしています';
         nodes.predictionPodium.innerHTML = '';
         nodes.openBreakdownButton.disabled = true;
         const active = race.horses.filter(horse => horse.scratched !== true);
@@ -1236,7 +1330,7 @@
       nodes.predictionPodium.innerHTML = '';
       nodes.openBreakdownButton.disabled = true;
       nodes.runnerCount.textContent = '公開待ち';
-      nodes.runnerList.innerHTML = `<div class="empty-state">${state.dataset?.source?.mode === 'local-jra' ? `この${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}はまだ取り込まれていません。対象時刻に保存した詳細出馬表HTMLを読み込んでください。` : 'この版のスナップショットはまだ公開時刻前です。公開後に再読み込みしてください。'}</div>`;
+      nodes.runnerList.innerHTML = `<div class="empty-state">${state.dataset?.source?.mode === 'local-jra' ? `この${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}はまだ取り込まれていません。対象時刻に保存した詳細出馬表HTMLを読み込んでください。` : state.dataset?.source?.mode === 'local-nar' ? '単勝オッズが全頭分揃っていません。締切前に最新のNARオッズZIPをもう一度取り込んでください。' : 'この版のスナップショットはまだ公開時刻前です。公開後に再読み込みしてください。'}</div>`;
       return;
     }
     const profitPlan = prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION
@@ -1247,6 +1341,7 @@
     const timingLabel = race.status === 'cancelled' ? ' · 開催中止'
       : prediction.captureStatus === 'published-pre-race' ? ` · 実データ・発走${formatNumber(prediction.minutesBeforePost, 0)}分前取得`
         : prediction.captureStatus === 'published-post-race' ? ` · 結果後参考（発走${formatNumber(Math.abs(prediction.minutesBeforePost), 0)}分後取得）`
+          : prediction.captureStatus === 'published-reference' ? ' · 判定時刻外の参考予想'
       : prediction.retrospective && state.dataset?.source?.mode !== 'demo'
       ? ` · ${isFinalized(race) ? '結果後' : '締切後'}の参考再計算`
       : prediction.captureStatus === 'pre-race' ? ' · 発走前保存済み'
@@ -1254,10 +1349,15 @@
           : prediction.captureStatus === 'save-failed' ? ' · 端末保存なし' : '';
     const editionLabel = state.dataset?.source?.mode === 'reference-archive'
       ? '8月9日取得版'
+      : state.dataset?.source?.mode === 'local-nar' ? 'NAR端末内取込版'
       : state.edition === 'dayBefore' ? '前日版' : '当日最終版';
     nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${editionLabel}${timingLabel}${prediction.inputChanged ? ' · 元データ更新あり' : ''}`;
     nodes.raceViewTitle.textContent = race.name;
     nodes.raceMeta.textContent = raceMetaText(race);
+    if (nodes.officialRaceLink) {
+      nodes.officialRaceLink.href = state.authority === 'NAR' ? 'https://www.keiba.go.jp/KeibaWeb/TodayRaceInfo/TodayRaceInfoTop' : 'https://www.jra.go.jp/keiba/';
+      nodes.officialRaceLink.textContent = state.authority === 'NAR' ? 'NAR公式情報' : 'JRA公式情報';
+    }
     nodes.openBreakdownButton.disabled = false;
     const topProbability = probabilityByNumber.get(Number(prediction.runners[0]?.number));
     nodes.confidenceGauge.innerHTML = topProbability
@@ -1325,7 +1425,8 @@
     nodes.budgetInput.value = displayBudget;
     nodes.budgetInput.disabled = Boolean(lockedPlan);
     nodes.budgetOutput.textContent = formatNumber(displayBudget);
-    nodes.ticketConfidence.textContent = `${recommendation.modelTrusted ? 'v5校正済み' : 'v5参考再計算'} · ${recommendation.gateStatus}`;
+    const referenceModelName = state.authority === 'NAR' ? 'NAR市場基準' : 'v5参考再計算';
+    nodes.ticketConfidence.textContent = `${recommendation.modelTrusted ? 'v5校正済み' : referenceModelName} · ${recommendation.gateStatus}`;
     document.querySelectorAll('[data-budget]').forEach(button => {
       button.disabled = Boolean(lockedPlan);
       button.classList.toggle('is-active', Number(button.dataset.budget) === Number(displayBudget));
@@ -1358,12 +1459,16 @@
     const probabilityNote = candidate.probabilityLower90 !== null
       ? `90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。`
       : candidate.type === '単勝'
-        ? (prediction.publishedPrediction ? '8月9日の発走前保存値を、結果を特徴量に使わずv5で再計算した参考表示です。当時の購入扱いにはしません。' : 'この勝率は固定・校正保証がないため参考表示のみです。')
+        ? (prediction.publishedPrediction
+          ? race.authority === 'NAR'
+            ? 'NAR公式ZIPの取得オッズから作る市場基準の参考勝率です。約定可能な発走前時刻を保証しないため、購入扱いにはしません。'
+            : '8月9日の発走前保存値を、結果を特徴量に使わずv5で再計算した参考表示です。当時の購入扱いにはしません。'
+          : 'この勝率は固定・校正保証がないため参考表示のみです。')
         : `${candidate.type}確率は、最終勝率からPlackett–Luce法（温度0.8）で算出。レンジオッズは下限を使い、さらに10%低下させています。券種別の確率下限は前向き検証中です。`;
     const targets = (recommendation.priceTargets || []).slice(0, 6);
     const targetMarkup = targets.length ? `<section class="price-target-panel"><div><h3>実オッズ未取得の買える目安</h3><p>下限がこの値以上なら、10%悪化後も期待値+5%以上</p></div><div class="price-target-list">${targets.map(target => `<div><span>${escapeHtml(target.type)} ${target.numbers.join('-')}</span><strong>${formatNumber(target.requiredOddsAtThreshold, 1)}倍以上</strong><small>確率 ${formatNumber(target.probability * 100, 1)}%</small></div>`).join('')}</div></section>` : '';
     nodes.ticketGroups.innerHTML = `<article class="v4-decision-card v5-decision-card panel ${statusClass}">
-      <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? 'v5発走前判定' : 'v5参考再計算'}</span></div>
+      <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? 'v5発走前判定' : race.authority === 'NAR' ? 'NAR市場基準・参考' : 'v5参考再計算'}</span></div>
       <div class="decision-horse"><span class="horse-number" style="${frameStyle(firstGate)}">${candidate.numbers[0]}</span><div><p>${escapeHtml(race.venue)} ${race.raceNumber}R · ${escapeHtml(candidate.type)}</p><h3>${candidateHeading}</h3><span>${escapeHtml(recommendation.message)}</span></div></div>
       <div class="decision-metrics"><div><span>${probabilityLabel}</span><strong>${formatNumber(candidate.probability * 100, 1)}%</strong></div><div><span>適正オッズ</span><strong>${formatNumber(candidate.fairOdds, 2)}倍</strong></div><div><span>取得オッズ下限</span><strong>${oddsText}</strong></div><div><span>予測×下限</span><strong class="${candidate.rawExpectedMultiplier > 1 ? 'is-positive' : 'is-negative'}">${formatNumber(candidate.rawExpectedMultiplier, 2)}</strong></div><div><span>${evLabel}</span><strong class="${ev >= .05 ? 'is-positive' : 'is-negative'}">${ev === null ? '—' : `${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`}</strong></div></div>
       <p class="decision-note">${escapeHtml(probabilityNote)}</p>
@@ -1406,9 +1511,11 @@
         : prediction.captureStatus === 'provider-snapshot'
           ? '提供済み発走前データを照合'
           : prediction.captureStatus === 'published-pre-race'
-            ? '8月9日・発走前参考予想を照合'
+            ? `${race.authority === 'NAR' ? 'NAR' : '8月9日'}・発走前参考予想を照合`
             : prediction.captureStatus === 'published-post-race'
               ? '結果後取得の参考照合（成績集計外）'
+              : prediction.captureStatus === 'published-reference'
+                ? '判定時刻外の参考照合（成績集計外）'
               : `${state.edition === 'dayBefore' ? '前日版' : '当日版'}の発走前予想を照合`;
       const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.paperOnly ? '仮想 · ' : ''}${ticket.refunded ? '返還' : ticket.hit ? '的中' : ticket.returnKnown ? '不的中' : '判定保留'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
       nodes.resultContent.innerHTML = `<div class="result-scorecard">
@@ -1421,7 +1528,7 @@
         const differenceLabel = difference === null ? '予想外' : difference === 0 ? '一致' : difference > 0 ? `${difference}位上振れ` : `${Math.abs(difference)}位下振れ`;
         const capturedOdds = Number.isFinite(Number(item.odds)) ? ` · 単${formatNumber(item.odds, 1)}` : '';
         return `<div class="comparison-row"><span class="finish-badge${item.finish <= 3 ? ' is-medal' : ''}">${item.finish}着</span><span class="comparison-name">${escapeHtml(item.name)} <small>${item.number}番 ${item.mark || ''}</small></span><span class="comparison-predicted">予想${item.predictedRank || '—'}位${capturedOdds}</span><span class="rank-diff${difference === 0 ? ' is-good' : Math.abs(difference || 0) >= 4 ? ' is-bad' : ''}">${differenceLabel}</span></div>`;
-      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・v5多券種判定' : 'v5買い目の結果'}</h3><p>${prediction.publishedPrediction ? 'v5参考候補は事後再計算として分離・当時の正式購入0円' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">正式購入・仮想購入として保存された買い目はありません</div>'}</div></section>`;
+      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? `${race.authority === 'NAR' ? 'NAR地方' : '8月9日'}・多券種判定` : 'v5買い目の結果'}</h3><p>${prediction.publishedPrediction ? '参考候補は正式購入と分離・実購入0円' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">正式購入・仮想購入として保存された買い目はありません</div>'}</div></section>`;
     }
     renderRecords();
   }
@@ -1429,7 +1536,7 @@
   function renderRecords() {
     const resolver = (race, edition) => {
       const prediction = getFrozenPrediction(race, edition);
-      return prediction?.captureStatus === 'published-post-race' ? null : prediction;
+      return ['published-post-race', 'published-reference'].includes(prediction?.captureStatus) ? null : prediction;
     };
     const storedSignature = hashString(Object.entries(state.predictions).sort(([a], [b]) => a.localeCompare(b))
       .map(([key, value]) => `${key}:${value?.capturedAt || ''}`).join('|'));
@@ -1448,12 +1555,12 @@
     const otherRecord = aggregate(otherEdition);
     const recordSuffix = state.dataset?.source?.mode === 'demo'
       ? '（架空デモ）'
-      : state.dataset?.source?.mode === 'reference-archive' ? '（発走前参考のみ）' : '';
+      : ['reference-archive', 'local-nar'].includes(state.dataset?.source?.mode) ? '（発走前参考のみ）' : '';
     nodes.recordRaceCount.textContent = `${record.overall.count}レース${recordSuffix}`;
     const previous = state.edition === 'dayBefore' ? record : otherRecord;
     const final = state.edition === 'final' ? record : otherRecord;
-    nodes.editionComparison.innerHTML = state.dataset?.source?.mode === 'reference-archive'
-      ? `<div><span>発走前取得</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div><div><span>結果後取得</span><strong>集計外</strong><small>${formatNumber(state.dataset?.archive?.postRaceReferenceCount)}R · 画面表示のみ</small></div>`
+    nodes.editionComparison.innerHTML = ['reference-archive', 'local-nar'].includes(state.dataset?.source?.mode)
+      ? `<div><span>発走前取得</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div><div><span>参考取得</span><strong>集計外</strong><small>${formatNumber((state.dataset?.archive?.postRaceReferenceCount || 0) + (state.dataset?.archive?.outsideWindowReferenceCount || 0))}R · 画面表示のみ</small></div>`
       : `<div><span>前日版</span><strong>◎ ${formatNumber(previous.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(previous.overall.top3Rate, 1)}% · ${previous.overall.count}R</small></div><div><span>当日最終版</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div>`;
     const returnRate = record.overall.returnRate;
     nodes.recordDashboard.innerHTML = `<div class="record-kpi"><strong>${formatNumber(record.overall.winRate, 1)}%</strong><span>◎勝率</span></div><div class="record-kpi"><strong>${record.overall.placeRate === null ? '—' : `${formatNumber(record.overall.placeRate, 1)}%`}</strong><span>◎複勝率</span></div><div class="record-kpi"><strong>${formatNumber(record.overall.top3Rate, 1)}%</strong><span>Top3一致</span></div><div class="record-kpi"><strong>${returnRate === null ? '—' : `${formatNumber(returnRate, 1)}%`}</strong><span>回収率</span></div>`;
@@ -1463,6 +1570,30 @@
 
   function renderSettings() {
     renderForwardValidation();
+    const narAuthority = state.authority === 'NAR';
+    nodes.settingsModelStatus.textContent = narAuthority ? 'NAR参考' : 'v5固定';
+    nodes.profitPolicyTitle.textContent = narAuthority ? '地方競馬参考モデル' : '利益判定v5';
+    nodes.profitPolicySubtitle.textContent = narAuthority ? '市場単独との時系列比較で採用した式' : '時系列検証で選んだ式と購入基準を固定';
+    nodes.profitPolicyStatus.textContent = narAuthority ? 'REFERENCE' : 'LOCKED';
+    nodes.profitFormulaCopy.textContent = narAuthority ? '正規化した単勝オッズの市場確率。能力残差は検証で不採用' : '市場オッズを土台に能力差の残差を加える最終勝率';
+    nodes.profitFormulaCode.textContent = narAuthority ? 'p_win = softmax(log q)' : 'p_win = softmax(α log q + βᵀx)';
+    const jraPolicies = [
+      '校正済み最終勝率へ旧v4の市場縮小を二重適用しない',
+      '複勝・ワイドはPlackett–Luce着順モデル、検証済み温度0.8で算出',
+      '単勝・複勝・ワイドから1レース最大1点、オッズ下限を10%下げて比較',
+      '期待値+5%以上だけ仮想100円。実オッズ不明時は必要最低オッズだけ表示',
+      '解禁後も8分の1Kelly、1R資金0.25%・1日1%が上限'
+    ];
+    const narPolicies = [
+      '2026年3月〜8月8日のサラブレッド6,065Rを時系列で検証',
+      '22特徴の能力残差は市場単独を上回らず、係数0として不採用',
+      '複勝・ワイドはPlackett–Luce着順モデル、検証済み温度0.8で算出',
+      'ばんえいは出走・オッズ・結果の表示だけで、モデルから分離',
+      '最終オッズは約定可能時刻を保証しないため、参考表示・実購入0円'
+    ];
+    nodes.profitPolicyList.innerHTML = (narAuthority ? narPolicies : jraPolicies).map(item => `<li>${item}</li>`).join('');
+    nodes.baseModelTitle.textContent = narAuthority ? '補助能力スコア' : '基礎能力モデル';
+    nodes.baseModelSubtitle.textContent = narAuthority ? '説明用の10項目・100点（地方予想順位には不使用）' : 'オッズと分離した10項目・100点';
     const total = Object.values(state.weights).reduce((sum, value) => sum + Number(value), 0);
     nodes.weightList.innerHTML = Engine.CATEGORY_META.map(category => {
       const value = Number(state.weights[category.key]);
@@ -1473,30 +1604,37 @@
     const synthetic = source.mode === 'demo';
     const unavailable = source.mode === 'unavailable';
     const referenceArchive = source.mode === 'reference-archive';
+    const localNar = source.mode === 'local-nar';
     const asOfGuaranteed = source.asOfFieldsGuaranteed === true;
-    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : unavailable ? '実データ待ち' : referenceArchive ? '参考表示のみ' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
+    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : unavailable ? '実データ待ち' : referenceArchive || localNar ? '参考表示のみ' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
     nodes.learningStatus.className = `status-pill ${synthetic || unavailable || !asOfGuaranteed ? 'is-warning' : 'is-ok'}`;
     const eligibleHistory = asOfGuaranteed ? state.dataset?.races?.filter(race => Engine.isHistoricalRaceEligible(race, 'final')).length || 0 : 0;
     nodes.learningDescription.textContent = synthetic
       ? '架空データで改善済みとは表示しません。利用許諾済みの確定レースを端末へ読み込むと、過去1年を時系列で分割して検証できます。'
       : unavailable
-        ? 'まずJRA公式の詳細出馬表HTMLを端末内へ取り込んでください。発走前に保存した予想だけを、結果取込後に検証します。'
+        ? state.authority === 'NAR' ? 'NAR公式の日次レース情報ZIPとオッズ情報ZIPを端末内へ取り込んでください。公式CSV自体は外部送信・再配布しません。' : 'まずJRA公式の詳細出馬表HTMLを端末内へ取り込んでください。発走前に保存した予想だけを、結果取込後に検証します。'
       : referenceArchive
         ? `8月9日の実データ36Rを表示中です。発走前に取得した${formatNumber(state.dataset?.archive?.preRaceReferenceCount)}Rだけを参考精度へ集計し、結果後取得分は学習・利益検証から除外します。`
+      : localNar
+        ? `地方競馬${formatNumber(state.dataset?.archive?.raceCount)}Rを端末内表示中です。発走1〜10分前に取り込んだ予想だけを参考精度へ集計し、時刻外・結果後の取込は除外します。ばんえい${formatNumber(state.dataset?.archive?.outOfScopeCount)}Rはモデル対象外です。`
       : asOfGuaranteed
         ? `提供元が発走前時点で固定済みと保証した確定${eligibleHistory}レースを、開催日単位で古い60%・中間20%・新しい20%へ分けて検証します。`
         : '特徴量が発走前時点で固定済みという提供元保証がないため、配点学習は実行しません。';
     nodes.runLearningButton.disabled = synthetic || unavailable || !asOfGuaranteed;
     nodes.dataGeneratedAt.textContent = `更新 ${formatTimestamp(state.dataset?.generatedAt)}`;
-    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : unavailable ? '未取込' : referenceArchive ? '8/9実データ' : source.mode === 'local-jra' ? 'JRA端末内' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
+    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : unavailable ? '未取込' : referenceArchive ? '8/9実データ' : source.mode === 'local-jra' ? 'JRA端末内' : localNar ? 'NAR端末内' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
     nodes.dataStatusPill.className = `status-pill ${synthetic || unavailable ? 'is-warning' : 'is-ok'}`;
     nodes.dataSourceCopy.textContent = synthetic
       ? '現在は実在のレース・馬・オッズではないUI確認用データです。JRA公式ページの無断自動取得・再配布は行っていません。'
       : unavailable
-        ? '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
+        ? state.authority === 'NAR' ? '架空レースは表示しません。NAR公式の日次ZIPを外部送信せず、この端末内だけで展開・解析します。' : '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
       : referenceArchive
         ? '2026年8月9日の札幌・新潟・中京を、取得済み出馬情報と当日モデル勝率、JRA公式照合済みの上位着順で再現しています。結果後取得分は画面上で明示し、前向き成績には混ぜません。'
+      : localNar
+        ? `${source.name}。NAR公式CSVはIndexedDBへ端末内保存し、GitHubや外部サーバーへ送信しません。単勝・複勝・ワイドを実オッズ下限で比較します。`
       : `${source.name || 'インポートデータ'}。v5は校正済み最終勝率を二重縮小せず使い、単勝・複勝・ワイドを実オッズ下限で比較します。`;
+    if (nodes.jraImportPanel) nodes.jraImportPanel.hidden = state.authority !== 'JRA';
+    if (nodes.narImportPanel) nodes.narImportPanel.hidden = state.authority !== 'NAR';
     nodes.weightChangeLog.innerHTML = state.changes.slice(0, 4).map(change => `<div class="change-item"><strong>${escapeHtml(change.adopted ? '配点更新' : '据え置き')}</strong> · ${escapeHtml(formatTimestamp(change.at))}<br>${escapeHtml(change.reason)}${change.validation ? `（検証 ${change.validation.before} → ${change.validation.after}）` : ''}</div>`).join('');
   }
 
@@ -1665,6 +1803,53 @@
     }
   }
 
+  async function importNarFiles(fileList) {
+    const files = [...(fileList || [])];
+    if (!files.length) return;
+    try {
+      if (!NarImporter) throw new Error('NAR ZIP取込機能を初期化できませんでした');
+      nodes.narZipImportButton.disabled = true;
+      nodes.narImportStatus.textContent = 'ZIPを端末内で展開しています…';
+      const model = await fetchNarModel();
+      const dataset = await NarImporter.importFiles(files, model, new Date().toISOString());
+      Engine.validateDataset(dataset);
+      await idbSet('active-import:nar', dataset);
+      state.authority = 'NAR';
+      writeJson(STORAGE_KEYS.authority, state.authority);
+      state.dataset = dataset;
+      state.datasetOrigin = 'imported';
+      state.edition = 'final';
+      state.recordCache.clear();
+      normalizeSelection();
+      renderControls();
+      renderAll();
+      const archive = dataset.archive || {};
+      nodes.narImportStatus.textContent = `${formatNumber(archive.raceCount)}R・${formatNumber(archive.horseCount)}頭を端末内へ保存しました`;
+      showToast(`地方競馬${formatNumber(archive.raceCount)}Rを端末内へ取り込みました`);
+    } catch (error) {
+      console.error(error);
+      nodes.narImportStatus.textContent = `取込失敗: ${error.message || '日次ZIPを確認してください'}`;
+      showToast(`NAR ZIP取込失敗: ${error.message || '日次ZIPを確認してください'}`);
+    } finally {
+      nodes.narZipImportButton.disabled = false;
+      nodes.narZipImportInput.value = '';
+    }
+  }
+
+  async function switchAuthority(authority) {
+    const normalized = authority === 'NAR' ? 'NAR' : 'JRA';
+    if (normalized === state.authority || state.loading) return;
+    state.authority = normalized;
+    state.date = '';
+    state.venue = normalized === 'NAR' ? Engine.NAR_VENUES[0] : Engine.JRA_VENUES[0];
+    state.raceNumber = 1;
+    state.edition = 'final';
+    state.dailyTicketFilter = 'all';
+    state.resultOverviewFilter = 'all';
+    writeJson(STORAGE_KEYS.authority, normalized);
+    await loadDataset();
+  }
+
   async function importDataset(file) {
     if (!file) return;
     try {
@@ -1672,7 +1857,12 @@
       const text = await file.text();
       const payload = JSON.parse(text);
       Engine.validateDataset(payload);
-      await idbSet('active-import', payload);
+      const authorities = new Set(payload.races.map(race => Engine.NAR_VENUES.includes(race.venue) ? 'NAR' : 'JRA'));
+      if (authorities.size !== 1) throw new Error('JRAとNARを混在させず、主催者ごとに読み込んでください');
+      const narPayload = authorities.has('NAR');
+      state.authority = narPayload ? 'NAR' : 'JRA';
+      await idbSet(narPayload ? 'active-import:nar' : 'active-import', payload);
+      writeJson(STORAGE_KEYS.authority, state.authority);
       state.dataset = payload;
       state.datasetOrigin = 'imported';
       state.recordCache.clear();
@@ -1692,7 +1882,7 @@
 
   async function restoreBundled() {
     try {
-      await idbDelete('active-import');
+      await idbDelete(state.authority === 'NAR' ? 'active-import:nar' : 'active-import');
       showToast('取込レースを消しました。予想・買い目履歴は残しています');
       await loadDataset({ force: true, ignoreImport: true });
     } catch (error) {
@@ -1704,7 +1894,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=230');
+      const worker = new Worker('./learning-worker.js?v=240');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));
@@ -1820,6 +2010,10 @@
 
   function bindEvents() {
     nodes.refreshButton.addEventListener('click', () => loadDataset({ force: true }));
+    nodes.authoritySwitch.addEventListener('click', event => {
+      const button = event.target.closest('[data-authority]');
+      if (button) switchAuthority(button.dataset.authority);
+    });
     nodes.dateSelect.addEventListener('change', event => {
       state.date = event.target.value;
       normalizeSelection();
@@ -1918,19 +2112,27 @@
       nodes.jraHtmlImportInput.click();
     });
     nodes.jraHtmlImportInput.addEventListener('change', event => importJraHtmlFiles(event.target.files));
+    nodes.narZipImportButton.addEventListener('click', () => nodes.narZipImportInput.click());
+    nodes.narZipImportInput.addEventListener('change', event => importNarFiles(event.target.files));
     nodes.dataImportButton.addEventListener('click', () => nodes.dataImportInput.click());
     nodes.dataImportInput.addEventListener('change', event => importDataset(event.target.files?.[0]));
     nodes.restoreBundledButton.addEventListener('click', restoreBundled);
   }
 
   async function init() {
-    if (!Engine || !ProfitEngine || !JraImporter) {
+    if (!Engine || !ProfitEngine || !JraImporter || !NarImporter) {
       nodes.sourceSummary.textContent = '初期化に失敗しました';
       return;
     }
     [state.predictions, state.ticketPlans] = await Promise.all([idbGetPredictionSnapshots(), idbGetTicketPlanRevisions()]);
     const saved = readJson(STORAGE_KEYS.selected, null);
-    if (saved) Object.assign(state, { date: saved.date || '', venue: saved.venue || '東京', raceNumber: Number(saved.raceNumber) || 11, edition: saved.edition === 'dayBefore' ? 'dayBefore' : 'final' });
+    if (saved) Object.assign(state, {
+      authority: saved.authority === 'NAR' ? 'NAR' : state.authority,
+      date: saved.date || '',
+      venue: saved.venue || (state.authority === 'NAR' ? Engine.NAR_VENUES[0] : '東京'),
+      raceNumber: Number(saved.raceNumber) || 11,
+      edition: saved.edition === 'dayBefore' ? 'dayBefore' : 'final'
+    });
     bindEvents();
     await loadDataset();
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {

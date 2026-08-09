@@ -342,10 +342,16 @@ svg { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: 
 .change-log:empty { display: none; }
 .change-item { padding: 9px; border-radius: 10px; color: var(--muted); background: #f5f8f6; font-size: 9px; line-height: 1.5; }
 .data-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.import-mode-field { display: grid; gap: 5px; margin: 10px 0 7px; color: var(--muted); font-size: 9px; font-weight: 800; }
+.import-mode-field select { width: 100%; min-width: 0; padding: 9px 30px 9px 10px; border: 1px solid #cad9d0; border-radius: 9px; color: var(--text); background: #fff; font: inherit; }
+.jra-import-action { margin-bottom: 7px; border-color: #087a42; color: #fff; background: linear-gradient(135deg, #087a42, #15965a); box-shadow: 0 8px 20px rgba(8, 122, 66, .17); }
+.import-privacy-note { margin: 0 0 9px; color: #76551e; font-size: 9px; font-weight: 700; line-height: 1.5; }
 .file-button { cursor: pointer; }
 .schema-help { margin-top: 10px; color: var(--muted); font-size: 9px; }
 .schema-help summary { cursor: pointer; color: #315d45; font-weight: 800; }
 .schema-help p { line-height: 1.55; }
+.import-guide ol { margin: 9px 0; padding-left: 19px; font-size: 10px; line-height: 1.75; }
+.import-guide kbd { min-width: 22px; padding: 1px 4px; border: 1px solid #cbd8d0; border-bottom-width: 2px; border-radius: 4px; color: #274536; background: #f8faf9; font-family: inherit; font-size: 9px; font-weight: 800; line-height: 1.2; }
 .source-card ul { margin: 10px 0; padding-left: 18px; color: var(--muted); font-size: 10px; line-height: 1.65; }
 .source-card a { color: var(--accent); text-underline-offset: 3px; }
 .source-card > p { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.6; }

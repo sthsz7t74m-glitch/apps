@@ -48,7 +48,7 @@ test('the application shell uses the white theme and a fresh cache version', asy
   assert.equal(manifest.theme_color, '#ffffff');
   assert.equal(manifest.background_color, '#f5f8f6');
   assert.match(html, /name="theme-color" content="#ffffff"/);
-  assert.match(serviceWorker, /shell-v1\.2\.0/);
+  assert.match(serviceWorker, /shell-v1\.3\.0/);
 });
 
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
@@ -59,10 +59,48 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /openCursor\(\)/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=120'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=130'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=120/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=130/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
+});
+
+test('manual JRA HTML import stays local, is atomic, and does not auto-create both editions', async () => {
+  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+  const importer = await readFile(new URL('../jra-importer.js', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  assert.match(html, /id="jraHtmlImportInput"[^>]*multiple/);
+  assert.match(html, /Webページ、HTMLのみ/);
+  assert.match(html, /id="jraSnapshotMode"/);
+  assert.match(importer, /document\.createElement\('template'\)/);
+  assert.match(importer, /template\.content/);
+  assert.match(importer, /mode: 'local-jra'/);
+  assert.match(importer, /snapshotMode === 'dayBefore'/);
+  assert.match(importer, /snapshotMode === 'final'/);
+  assert.match(importer, /snapshotMode === 'reference'/);
+  assert.doesNotMatch(importer, /\bfetch\s*\(/);
+  assert.doesNotMatch(importer, /appendChild|replaceChildren|insertAdjacentHTML/);
+  assert.doesNotMatch(importer, /getAttribute\(['"](?:src|href)/);
+  assert.doesNotMatch(importer, /localStorage|indexedDB/);
+  assert.match(app, /database\.transaction\(DB_STORE, 'readwrite'\)/);
+  assert.match(app, /new Date\(entry\.lastModified\)/);
+  assert.match(app, /error\?\.code !== 'NON_JRA_DATASET'/);
+  assert.match(app, /Engine\.validateDataset\(dataset\);\s+output = \{ dataset, summaries \};\s+store\.put\(dataset, 'active-import'\)/);
+  assert.match(app, /state\.dataset\?\.source\?\.mode === 'local-jra'/);
+  assert.doesNotMatch(app, /state\.dataset = window\.UMA_LOG_DEMO/);
+  assert.doesNotMatch(html, /demo-data\.js/);
+  assert.doesNotMatch(serviceWorker, /demo-data\.js/);
+  assert.match(serviceWorker, /jra-importer\.js\?v=130/);
+});
+
+test('manual JRA result import rejects ties and preserves pre-race evidence', async () => {
+  const importer = await readFile(new URL('../jra-importer.js', import.meta.url), 'utf8');
+  assert.match(importer, /同着を含む結果/);
+  assert.match(importer, /recentRuns: existing\.recentRuns/);
+  assert.match(importer, /odds: existing\.odds/);
+  assert.match(importer, /馬名が保存済み.*一致しません/);
+  assert.match(importer, /asOfFieldsGuaranteed: false/);
 });
 
 test('the first saved edition is immutable, including across concurrent tabs', async () => {

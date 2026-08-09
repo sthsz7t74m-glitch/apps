@@ -10,8 +10,11 @@ on:
     paths:
       - 'uma-log-ai/scripts/**'
       - 'uma-log-ai/tests/**'
+      - 'uma-log-ai/package.json'
+      - 'uma-log-ai/package-lock.json'
       - 'uma-log-ai/engine.js'
       - 'uma-log-ai/demo-data.js'
+      - 'uma-log-ai/jra-importer.js'
       - 'uma-log-ai/app.js'
       - 'uma-log-ai/learning-worker.js'
       - 'uma-log-ai/sw.js'
@@ -46,10 +49,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install Uma Log AI test dependencies
+        run: npm ci --prefix uma-log-ai --ignore-scripts
       - name: Check application and tests
         run: |
           node --check uma-log-ai/engine.js
           node --check uma-log-ai/demo-data.js
+          node --check uma-log-ai/jra-importer.js
           node --check uma-log-ai/app.js
           node --check uma-log-ai/learning-worker.js
           node --check money-manager/sw.js

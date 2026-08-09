@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=120">
+  <link rel="stylesheet" href="./styles.css?v=130">
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">馬</span>
         <div>
-          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.2.0</span></div>
+          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.3.0</span></div>
           <p id="sourceSummary">データを読み込んでいます</p>
         </div>
       </div>
@@ -135,11 +135,15 @@
         <article class="panel settings-card">
           <div class="panel-heading"><div><h3>レースデータ</h3><p id="dataGeneratedAt">更新時刻 —</p></div><span class="status-pill" id="dataStatusPill">確認中</span></div>
           <p class="body-copy" id="dataSourceCopy">データソースを確認しています。</p>
+          <label class="import-mode-field" for="jraSnapshotMode"><span>出馬表の取込方法</span><select id="jraSnapshotMode"><option value="" selected>選択してください</option><option value="dayBefore">前日版として確定（レース前日のみ）</option><option value="final">当日最終版として確定（当日締切前のみ）</option><option value="reference">参考表示・結果取込（予想を確定しない）</option></select></label>
+          <button class="secondary-action full-width jra-import-action" id="jraHtmlImportButton" type="button">JRA HTMLを取り込む</button><input id="jraHtmlImportInput" type="file" accept="text/html,.html,.htm" multiple hidden>
+          <p class="import-privacy-note">東京・中山・京都の平地競走に対応。版の確定には保存後30分以内のHTMLが必要で、点数・順位は後から変わりません。個人の私的利用限定です。保存HTML・取込データを共有／転載しないでください。</p>
           <div class="data-actions">
             <button class="secondary-action file-button" id="dataImportButton" type="button">JSONを読み込む</button><input id="dataImportInput" type="file" accept="application/json,.json" hidden>
-            <button class="secondary-action" id="restoreBundledButton" type="button">同梱データに戻す</button>
+            <button class="secondary-action" id="restoreBundledButton" type="button">取込レースを消す</button>
           </div>
-          <details class="schema-help"><summary>対応データと注意事項</summary><p>正規化済みJSONのみ端末内へ読み込みます。取得元の利用条件を確認し、再配布が許可されたデータを使用してください。</p></details>
+          <details class="schema-help import-guide"><summary>Windowsでの無料取込手順</summary><ol><li>JRA公式で対象レースの「詳細出馬表」を開く</li><li><kbd>Ctrl</kbd>＋<kbd>S</kbd>で「Webページ、HTMLのみ」を選んで保存</li><li>前日版・当日最終版・参考表示のいずれかを選び、上のボタンから保存ファイルを選ぶ</li><li>レース後は「参考表示・結果取込」を選び、公式の「レース結果」も同じ方法で取り込む</li></ol><p>複数ファイルをまとめて選択できます。HTMLは不活性な領域で解析し、外部送信せず、必要項目だけをこの端末のIndexedDBへ保存します。オッズは表示専用で予想点には使いません。「取込レースを消す」では予想・買い目の履歴は消えません。</p></details>
+          <details class="schema-help"><summary>JSON取込について</summary><p>ライセンス済み提供元などの正規化済みJSONも端末内へ読み込めます。取得元の利用条件を確認してください。</p></details>
         </article>
         <article class="panel settings-card source-card">
           <h3>情報源・免責</h3>
@@ -178,8 +182,8 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./engine.js?v=120" defer></script>
-  <script src="./demo-data.js?v=120" defer></script>
-  <script src="./app.js?v=120" defer></script>
+  <script src="./engine.js?v=130" defer></script>
+  <script src="./jra-importer.js?v=130" defer></script>
+  <script src="./app.js?v=130" defer></script>
 </body>
 </html>

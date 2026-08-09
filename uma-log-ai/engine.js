@@ -5,7 +5,7 @@
 }(typeof globalThis !== 'undefined' ? globalThis : this, function createEngine() {
   'use strict';
 
-  const ENGINE_VERSION = '1.2.0';
+  const ENGINE_VERSION = '1.3.0';
 
   const CATEGORY_META = [
     { key: 'recentForm', label: '直近5走', short: '近走', weight: 22 },
@@ -238,7 +238,7 @@
       { value: explicitPace, weight: 1 },
       { value: explicitDraw, weight: .8 }
     ]);
-    const paceLabel = { fast: '速め', middle: '平均', slow: '遅め' }[race.pace] || '平均';
+    const paceLabel = { fast: '速め', middle: '平均', slow: '遅め' }[race.pace] || '不明';
     const evidence = [`想定${paceLabel}×${STYLE_LABELS[horse.runningStyle] || '脚質不明'}`];
     if (drawScore !== null && drawScore >= .7) evidence.push('枠順に追い風');
     if (pace >= .75) evidence.push('展開が向きそう');
@@ -593,10 +593,12 @@
     const placeCount = fieldSize >= 8 ? 3 : fieldSize >= 5 ? 2 : 0;
     const payoutMap = new Map((result.payouts || []).map(payout => [`${payout.type}:${normalizeCombo(payout.type, payout.numbers || [])}`, Number(payout.payoutPer100) || 0]));
     const refundKeys = new Set((result.refunds || []).map(refund => `${refund.type}:${normalizeCombo(refund.type, refund.numbers || [])}`));
+    const refundHorseNumbers = new Set((result.refundHorseNumbers || []).map(Number));
+    const refundsUnknown = result.refundsUnknown === true;
     const ticketResults = plan.tickets.map(ticket => {
       const payoutKey = `${ticket.type}:${normalizeCombo(ticket.type, ticket.numbers)}`;
       const payoutAvailable = payoutMap.has(payoutKey);
-      const refunded = refundKeys.has(payoutKey);
+      const refunded = refundKeys.has(payoutKey) || ticket.numbers.some(number => refundHorseNumbers.has(Number(number)));
       const hit = payoutAvailable || isTicketHit(ticket, order, fieldSize);
       const payoutPer100 = payoutAvailable ? payoutMap.get(payoutKey) : null;
       return {
@@ -604,8 +606,8 @@
         hit,
         refunded,
         payoutAvailable,
-        returnKnown: refunded || !hit || payoutAvailable,
-        returnAmount: refunded ? ticket.amount : hit && !payoutAvailable ? null : hit ? Math.floor(ticket.amount / 100) * payoutPer100 : 0
+        returnKnown: refunded || payoutAvailable || (!hit && !refundsUnknown),
+        returnAmount: refunded ? ticket.amount : payoutAvailable ? Math.floor(ticket.amount / 100) * payoutPer100 : hit || refundsUnknown ? null : 0
       };
     });
     const stake = ticketResults.reduce((sum, ticket) => sum + ticket.amount, 0);
@@ -1002,12 +1004,19 @@
         if (typeof race.result !== 'object' || Array.isArray(race.result) || !Array.isArray(race.result.order)) fail(`${race.id}.result が不正です`);
         enumValue(race.result.status, ['final'], `${race.id}.result.status`);
         timestampValue(race.result.confirmedAt, `${race.id}.result.confirmedAt`);
+        timestampValue(race.result.capturedAt, `${race.id}.result.capturedAt`);
         if (race.result.confirmedAt) {
           const postTime = racePostTime(race);
           if (postTime !== null && Date.parse(race.result.confirmedAt) < postTime) fail(`${race.id}.result.confirmedAt は発走後である必要があります`);
         }
         const order = race.result.order.map(Number);
         if (order.length < 3 || order.length > race.horses.length || new Set(order).size !== order.length || order.some(number => !numbers.has(number))) fail(`${race.id}.result.order が出走馬と一致しません`);
+        if (race.result.refundHorseNumbers !== undefined) {
+          if (!Array.isArray(race.result.refundHorseNumbers) || race.result.refundHorseNumbers.length > 40) fail(`${race.id}.result.refundHorseNumbers が不正です`);
+          const refundHorseNumbers = race.result.refundHorseNumbers.map(Number);
+          if (new Set(refundHorseNumbers).size !== refundHorseNumbers.length || refundHorseNumbers.some(number => !numbers.has(number))) fail(`${race.id}.result.refundHorseNumbers が出走馬と一致しません`);
+        }
+        if (race.result.refundsUnknown !== undefined && typeof race.result.refundsUnknown !== 'boolean') fail(`${race.id}.result.refundsUnknown が不正です`);
         if (race.result.payouts !== undefined) {
           if (!Array.isArray(race.result.payouts) || race.result.payouts.length > 80) fail(`${race.id}.result.payouts が不正です`);
           const payoutKeys = new Set();

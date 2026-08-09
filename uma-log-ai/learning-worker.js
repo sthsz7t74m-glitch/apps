@@ -1,6 +1,6 @@
 'use strict';
 
-importScripts('./engine.js?v=120');
+importScripts('./engine.js?v=130');
 
 self.addEventListener('message', event => {
   try {

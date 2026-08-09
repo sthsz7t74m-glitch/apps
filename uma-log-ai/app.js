@@ -2,6 +2,7 @@
   'use strict';
 
   const Engine = window.UmaLogEngine;
+  const JraImporter = window.UmaLogJraImporter;
   const STORAGE_KEYS = {
     weights: 'umaLogWeightsV1',
     budget: 'umaLogBudgetV1',
@@ -14,6 +15,21 @@
   const PREDICTION_KEY_PREFIX = 'prediction:';
   const TICKET_PLAN_KEY_PREFIX = 'ticket-plan:';
   const DATA_URL = './data/races.json';
+  const EMPTY_DATASET = {
+    schemaVersion: 1,
+    generatedAt: null,
+    source: {
+      mode: 'unavailable',
+      datasetId: 'uma-log-ai-public-feed-v1',
+      name: '実データ未取込',
+      detail: 'PCで保存したJRA公式HTMLを設定画面から読み込んでください',
+      redistributable: false,
+      automated: false,
+      asOfFieldsGuaranteed: false
+    },
+    venues: ['東京', '中山', '京都'],
+    races: []
+  };
   const FRAME_COLORS = ['#f8fafc', '#23272f', '#e5484d', '#3b82f6', '#f0c841', '#22a45d', '#ee7d36', '#e994b9'];
   const SURFACE_LABELS = { turf: '芝', dirt: 'ダート' };
   const GOING_LABELS = { firm: '良', good: '良', standard: '良', yielding: '稍重', soft: '重', heavy: '不良', muddy: '不良' };
@@ -49,7 +65,8 @@
     'predictionPodium', 'openBreakdownButton', 'runnerCount', 'runnerList', 'ticketConfidence', 'budgetInput', 'budgetOutput',
     'ticketSummary', 'ticketGroups', 'resultStatus', 'resultContent', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
     'weightList', 'weightTotal', 'resetWeightsButton', 'learningStatus', 'learningDescription', 'runLearningButton',
-    'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'dataImportButton', 'dataImportInput', 'restoreBundledButton',
+    'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'jraSnapshotMode', 'jraHtmlImportButton', 'jraHtmlImportInput',
+    'dataImportButton', 'dataImportInput', 'restoreBundledButton',
     'mainContent', 'breakdownBackdrop', 'breakdownContent', 'closeBreakdownButton', 'runnerBackdrop', 'runnerSheetEyebrow',
     'runnerSheetTitle', 'runnerSheetContent', 'closeRunnerButton', 'toast'
   ].map(id => [id, document.getElementById(id)]));
@@ -94,6 +111,7 @@
   }
 
   function formatTimestamp(value) {
+    if (!value) return '—';
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return '更新時刻不明';
     return date.toLocaleString('ja-JP', { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -150,19 +168,58 @@
     });
   }
 
+  async function idbImportJraHtml(htmlEntries, importedAt, snapshotMode, allowReplace = false) {
+    const database = await openDatabase();
+    if (!database) throw new Error('このブラウザでは端末保存を利用できません');
+    return new Promise((resolve, reject) => {
+      const transaction = database.transaction(DB_STORE, 'readwrite');
+      const store = transaction.objectStore(DB_STORE);
+      const request = store.get('active-import');
+      let output = null;
+      let failure = null;
+      request.onsuccess = () => {
+        try {
+          const current = request.result;
+          if (current?.source?.mode !== 'local-jra' && current?.races?.length && !allowReplace) {
+            const conflict = new Error('端末内に別形式のJSONデータがあります');
+            conflict.code = 'NON_JRA_DATASET';
+            throw conflict;
+          }
+          let dataset = current?.source?.mode === 'local-jra' ? current : null;
+          const summaries = [];
+          htmlEntries.forEach(entry => {
+            const imported = JraImporter.importHtml(entry.html, dataset, new Date(importedAt), snapshotMode, new Date(entry.lastModified));
+            dataset = imported.dataset;
+            summaries.push({ kind: imported.kind, race: imported.race, fileName: entry.fileName });
+          });
+          Engine.validateDataset(dataset);
+          output = { dataset, summaries };
+          store.put(dataset, 'active-import');
+        } catch (error) {
+          failure = error;
+          transaction.abort();
+        }
+      };
+      request.onerror = () => {
+        failure = request.error;
+      };
+      transaction.oncomplete = () => resolve(output);
+      transaction.onabort = () => reject(failure || transaction.error || new Error('JRA HTMLを保存できませんでした'));
+      transaction.onerror = () => {
+        failure ||= transaction.error;
+      };
+    });
+  }
+
   async function idbDelete(key) {
-    try {
-      const database = await openDatabase();
-      if (!database) return;
-      await new Promise((resolve, reject) => {
-        const transaction = database.transaction(DB_STORE, 'readwrite');
-        transaction.objectStore(DB_STORE).delete(key);
-        transaction.oncomplete = () => resolve();
-        transaction.onerror = () => reject(transaction.error);
-      });
-    } catch {
-      // Restoring bundled data is still possible in memory.
-    }
+    const database = await openDatabase();
+    if (!database) throw new Error('このブラウザでは端末保存を利用できません');
+    await new Promise((resolve, reject) => {
+      const transaction = database.transaction(DB_STORE, 'readwrite');
+      transaction.objectStore(DB_STORE).delete(key);
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+    });
   }
 
   async function idbGetPredictionSnapshots() {
@@ -465,6 +522,10 @@
   function isEditionAvailable(race, edition) {
     if (state.dataset?.source?.mode === 'demo') return true;
     const snapshot = race?.snapshots?.[edition];
+    if (state.dataset?.source?.mode === 'local-jra') {
+      const asOf = Date.parse(snapshot?.asOf || '');
+      return snapshot?.ready === true && Number.isFinite(asOf) && asOf <= Date.now();
+    }
     if (!snapshot) return state.datasetOrigin === 'imported' && state.dataset?.source?.automated !== true;
     const asOf = Date.parse(snapshot.asOf || '');
     return snapshot.ready === true && Number.isFinite(asOf) && asOf <= Date.now();
@@ -575,12 +636,11 @@
       const response = await fetch(`${DATA_URL}${force ? `?t=${Date.now()}` : ''}`, { cache: force ? 'no-store' : 'default' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const payload = await response.json();
-      if (!Array.isArray(payload.races) || !payload.races.length) throw new Error('接続済みデータなし');
+      if (payload?.source?.mode === 'unavailable' && Array.isArray(payload.races) && !payload.races.length) return payload;
       Engine.validateDataset(payload);
       return payload;
     } catch {
-      Engine.validateDataset(window.UMA_LOG_DEMO);
-      return window.UMA_LOG_DEMO;
+      return structuredClone(EMPTY_DATASET);
     }
   }
 
@@ -606,12 +666,12 @@
       maybeAutoLearn();
     } catch (error) {
       console.error(error);
-      state.dataset = window.UMA_LOG_DEMO;
-      state.datasetOrigin = 'demo';
+      state.dataset = structuredClone(EMPTY_DATASET);
+      state.datasetOrigin = 'bundled';
       normalizeSelection();
       renderControls();
       renderAll();
-      showToast('データを読み込めなかったため、架空デモを表示します');
+      showToast('実データを読み込めませんでした。設定からJRA公式HTMLを取り込んでください');
     } finally {
       state.loading = false;
       nodes.refreshButton.classList.remove('is-spinning');
@@ -630,6 +690,14 @@
     if (source.mode === 'demo') {
       nodes.sourceMode.textContent = '架空デモ';
       nodes.sourceDetail.textContent = source.detail || '実在データではありません';
+    } else if (source.mode === 'unavailable') {
+      nodes.sourceBanner.classList.add('is-error');
+      nodes.sourceMode.textContent = '実データ未取込';
+      nodes.sourceDetail.textContent = '設定からJRA公式HTMLを端末内へ読み込んでください';
+    } else if (source.mode === 'local-jra') {
+      nodes.sourceBanner.classList.add('is-live');
+      nodes.sourceMode.textContent = 'JRA端末内取込';
+      nodes.sourceDetail.textContent = `${raceCount}R · 外部送信なし`;
     } else if (state.datasetOrigin === 'imported') {
       nodes.sourceBanner.classList.add('is-live');
       nodes.sourceMode.textContent = '端末内データ';
@@ -676,7 +744,7 @@
       DIRECTION_LABELS[current.direction] || current.direction,
       current.weather ? WEATHER_LABELS[current.weather] || current.weather : '天候未発表',
       `馬場 ${GOING_LABELS[current.going] || current.going || '未発表'}`,
-      `想定ペース ${PACE_LABELS[current.pace] || '平均'}`,
+      `想定ペース ${PACE_LABELS[current.pace] || '不明'}`,
       current.status === 'cancelled' ? '開催中止' : null
     ];
     return pieces.filter(Boolean).join(' · ');
@@ -704,10 +772,15 @@
   function renderRaceView() {
     const race = currentRace();
     if (!race) {
-      nodes.raceViewTitle.textContent = '開催データなし';
-      nodes.raceMeta.textContent = '日付または競馬場を選び直してください';
+      const unavailable = state.dataset?.source?.mode === 'unavailable';
+      nodes.raceViewTitle.textContent = unavailable ? '実データを取り込んでください' : '開催データなし';
+      nodes.raceMeta.textContent = unavailable ? '設定 → JRA HTMLを取り込む' : '日付または競馬場を選び直してください';
       nodes.predictionPodium.innerHTML = '';
-      nodes.runnerList.innerHTML = '<div class="empty-state">選択できるレースがありません</div>';
+      nodes.confidenceGauge.innerHTML = '<span>自信度</span><strong>—</strong><small>データなし</small>';
+      nodes.confidenceGauge.removeAttribute('title');
+      nodes.openBreakdownButton.disabled = true;
+      nodes.runnerCount.textContent = '—';
+      nodes.runnerList.innerHTML = `<div class="empty-state">${unavailable ? 'WindowsのChrome／EdgeでJRA公式の詳細出馬表をHTML保存し、設定画面から読み込むと予想を作成します。' : '選択できるレースがありません'}</div>`;
       return;
     }
     const prediction = getPrediction(race);
@@ -718,8 +791,9 @@
       nodes.confidenceGauge.innerHTML = '<span>自信度</span><strong>—</strong><small>公開待ち</small>';
       nodes.confidenceGauge.removeAttribute('title');
       nodes.predictionPodium.innerHTML = '';
+      nodes.openBreakdownButton.disabled = true;
       nodes.runnerCount.textContent = '公開待ち';
-      nodes.runnerList.innerHTML = '<div class="empty-state">この版のスナップショットはまだ公開時刻前です。公開後に再読み込みしてください。</div>';
+      nodes.runnerList.innerHTML = `<div class="empty-state">${state.dataset?.source?.mode === 'local-jra' ? `この${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}はまだ取り込まれていません。対象時刻に保存した詳細出馬表HTMLを読み込んでください。` : 'この版のスナップショットはまだ公開時刻前です。公開後に再読み込みしてください。'}</div>`;
       return;
     }
     const timingLabel = race.status === 'cancelled' ? ' · 開催中止'
@@ -731,6 +805,7 @@
     nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}${timingLabel}${prediction.inputChanged ? ' · 元データ更新あり' : ''}`;
     nodes.raceViewTitle.textContent = race.name;
     nodes.raceMeta.textContent = raceMetaText(race);
+    nodes.openBreakdownButton.disabled = false;
     nodes.confidenceGauge.innerHTML = `<span>自信度</span><strong>${prediction.confidence.value}</strong><small>${escapeHtml(prediction.confidence.label)}</small>`;
     nodes.confidenceGauge.title = `${prediction.confidence.reason}・充足度${prediction.confidence.coverage}%`;
     nodes.predictionPodium.innerHTML = prediction.runners.slice(0, 3).map(runner => `<div class="podium-card" role="listitem"><span class="podium-mark">${runner.mark}</span><strong>${escapeHtml(runner.name)}</strong><span>${runner.number}番 · ${formatNumber(runner.score, 1)}点</span></div>`).join('');
@@ -830,7 +905,7 @@
       const plan = prediction.ticketPlan || Engine.createTickets(prediction, prediction.budget || 3000);
       const comparison = Engine.compareResult(prediction, race.result, plan);
       nodes.resultStatus.textContent = prediction.captureStatus === 'demo-replay' ? `${state.edition === 'dayBefore' ? '前日版' : '当日版'}・架空デモ再現` : prediction.captureStatus === 'provider-snapshot' ? '提供済み発走前データを照合' : `${state.edition === 'dayBefore' ? '前日版' : '当日版'}の発走前予想を照合`;
-      const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.refunded ? '返還' : ticket.hit ? '的中' : '不的中'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
+      const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.refunded ? '返還' : ticket.hit ? '的中' : ticket.returnKnown ? '不的中' : '判定保留'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
       nodes.resultContent.innerHTML = `<div class="result-scorecard">
         <article class="result-metric"><span>◎の1着</span><strong>${comparison.winnerHit ? '的中' : '不的中'}</strong><small>${comparison.winnerHit ? '本命が勝利' : `勝馬は予想${comparison.comparisons[0]?.predictedRank || '圏外'}位`}</small></article>
         <article class="result-metric"><span>◎の複勝圏</span><strong>${comparison.mainPlaced === null ? '発売なし' : comparison.mainPlaced ? '的中' : '不的中'}</strong><small>${comparison.mainPlaced === null ? '4頭以下' : (prediction.fieldSize || prediction.runners.length) >= 8 ? '3着以内' : '2着以内'}</small></article>
@@ -882,21 +957,26 @@
     nodes.weightTotal.textContent = `${formatNumber(total, total % 1 ? 1 : 0)}点`;
     const source = state.dataset?.source || {};
     const synthetic = source.mode === 'demo';
+    const unavailable = source.mode === 'unavailable';
     const asOfGuaranteed = source.asOfFieldsGuaranteed === true;
-    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
-    nodes.learningStatus.className = `status-pill ${synthetic || !asOfGuaranteed ? 'is-warning' : 'is-ok'}`;
+    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : unavailable ? '実データ待ち' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
+    nodes.learningStatus.className = `status-pill ${synthetic || unavailable || !asOfGuaranteed ? 'is-warning' : 'is-ok'}`;
     const eligibleHistory = asOfGuaranteed ? state.dataset?.races?.filter(race => Engine.isHistoricalRaceEligible(race, 'final')).length || 0 : 0;
     nodes.learningDescription.textContent = synthetic
       ? '架空データで改善済みとは表示しません。利用許諾済みの確定レースを端末へ読み込むと、過去1年を時系列で分割して検証できます。'
+      : unavailable
+        ? 'まずJRA公式の詳細出馬表HTMLを端末内へ取り込んでください。発走前に保存した予想だけを、結果取込後に検証します。'
       : asOfGuaranteed
         ? `提供元が発走前時点で固定済みと保証した確定${eligibleHistory}レースを、開催日単位で古い60%・中間20%・新しい20%へ分けて検証します。`
         : '特徴量が発走前時点で固定済みという提供元保証がないため、配点学習は実行しません。';
-    nodes.runLearningButton.disabled = synthetic || !asOfGuaranteed;
+    nodes.runLearningButton.disabled = synthetic || unavailable || !asOfGuaranteed;
     nodes.dataGeneratedAt.textContent = `更新 ${formatTimestamp(state.dataset?.generatedAt)}`;
-    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
-    nodes.dataStatusPill.className = `status-pill ${synthetic ? 'is-warning' : 'is-ok'}`;
+    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : unavailable ? '未取込' : source.mode === 'local-jra' ? 'JRA端末内' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
+    nodes.dataStatusPill.className = `status-pill ${synthetic || unavailable ? 'is-warning' : 'is-ok'}`;
     nodes.dataSourceCopy.textContent = synthetic
       ? '現在は実在のレース・馬・オッズではないUI確認用データです。JRA公式ページの無断自動取得・再配布は行っていません。'
+      : unavailable
+        ? '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
       : `${source.name || 'インポートデータ'}。予想計算にはオッズを使わず、画面表示だけに結合します。`;
     nodes.weightChangeLog.innerHTML = state.changes.slice(0, 4).map(change => `<div class="change-item"><strong>${escapeHtml(change.adopted ? '配点更新' : '据え置き')}</strong> · ${escapeHtml(formatTimestamp(change.at))}<br>${escapeHtml(change.reason)}${change.validation ? `（検証 ${change.validation.before} → ${change.validation.after}）` : ''}</div>`).join('');
   }
@@ -987,6 +1067,73 @@
     renderTickets();
   }
 
+  async function importJraHtmlFiles(fileList) {
+    const files = [...(fileList || [])];
+    if (!files.length) return;
+    try {
+      if (!JraImporter) throw new Error('JRA HTML取込機能を初期化できませんでした');
+      const snapshotMode = nodes.jraSnapshotMode.value;
+      if (!['dayBefore', 'final', 'reference'].includes(snapshotMode)) throw new Error('出馬表の取込方法を選んでください');
+      if (files.length > 48) throw new Error('一度に読み込めるのは48ファイルまでです');
+      if (files.some(file => file.size > 8 * 1024 * 1024)) throw new Error('1ファイル8MB以内にしてください');
+      if (files.reduce((sum, file) => sum + file.size, 0) > 32 * 1024 * 1024) throw new Error('合計32MB以内にしてください');
+      if (files.some(file => !/\.html?$/i.test(file.name) && file.type !== 'text/html')) throw new Error('JRAページをHTML形式で保存したファイルを選んでください');
+      const htmlEntries = [];
+      for (const file of files) {
+        const html = JraImporter.decodeHtml(await file.arrayBuffer());
+        const inspected = JraImporter.inspectHtml(html);
+        htmlEntries.push({ html, fileName: file.name, lastModified: file.lastModified, ...inspected });
+      }
+      const importedAt = new Date().toISOString();
+      const duplicateKeys = new Set();
+      htmlEntries.forEach(entry => {
+        const key = `${entry.kind}:${entry.raceId}`;
+        if (duplicateKeys.has(key)) throw new Error(`同じレースの${entry.kind === 'card' ? '出馬表' : '結果'}HTMLは一度に1件だけ選んでください`);
+        duplicateKeys.add(key);
+      });
+      if (snapshotMode !== 'reference') {
+        const importedTime = Date.parse(importedAt);
+        const staleCard = htmlEntries.find(entry => entry.kind === 'card' && (!Number.isFinite(entry.lastModified)
+          || importedTime - entry.lastModified > 30 * 60 * 1000 || entry.lastModified - importedTime > 5 * 60 * 1000));
+        if (staleCard) throw new Error('版の確定には、30分以内に保存した出馬表HTMLを使用してください');
+      }
+      htmlEntries.sort((a, b) => (a.kind === 'card' ? 0 : 1) - (b.kind === 'card' ? 0 : 1));
+      let imported;
+      try {
+        imported = await idbImportJraHtml(htmlEntries, importedAt, snapshotMode);
+      } catch (error) {
+        if (error?.code !== 'NON_JRA_DATASET') throw error;
+        if (!window.confirm('現在端末に保存されているJSON取込データを、JRA HTMLの端末内データへ切り替えますか？')) return;
+        imported = await idbImportJraHtml(htmlEntries, importedAt, snapshotMode, true);
+      }
+      state.dataset = imported.dataset;
+      state.datasetOrigin = 'imported';
+      state.recordCache.clear();
+      const hasCards = imported.summaries.some(item => item.kind === 'card');
+      const selected = (hasCards ? imported.summaries.filter(item => item.kind === 'card').at(-1) : imported.summaries.at(-1))?.race;
+      if (selected) {
+        state.date = selected.date;
+        state.venue = selected.venue;
+        state.raceNumber = selected.raceNumber;
+        if (hasCards && (snapshotMode === 'dayBefore' || snapshotMode === 'final')) state.edition = snapshotMode;
+      }
+      normalizeSelection();
+      captureEligiblePredictions();
+      renderControls();
+      renderAll();
+      const cards = imported.summaries.filter(item => item.kind === 'card').length;
+      const results = imported.summaries.filter(item => item.kind === 'result').length;
+      const summary = [cards ? `出馬表${cards}件` : '', results ? `結果${results}件` : ''].filter(Boolean).join('・');
+      const edition = cards && snapshotMode === 'dayBefore' ? '・前日版を確定' : cards && snapshotMode === 'final' ? '・当日最終版を確定' : '';
+      showToast(`${summary}を端末内へ取り込みました${edition}`);
+    } catch (error) {
+      console.error(error);
+      showToast(`JRA HTML取込失敗: ${error.message || '保存したページを確認してください'}`);
+    } finally {
+      nodes.jraHtmlImportInput.value = '';
+    }
+  }
+
   async function importDataset(file) {
     if (!file) return;
     try {
@@ -1013,15 +1160,20 @@
   }
 
   async function restoreBundled() {
-    await idbDelete('active-import');
-    showToast('同梱データへ戻しました');
-    await loadDataset({ force: true, ignoreImport: true });
+    try {
+      await idbDelete('active-import');
+      showToast('取込レースを消しました。予想・買い目履歴は残しています');
+      await loadDataset({ force: true, ignoreImport: true });
+    } catch (error) {
+      console.error(error);
+      showToast('取込レースを削除できませんでした');
+    }
   }
 
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=120');
+      const worker = new Worker('./learning-worker.js?v=130');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));
@@ -1197,13 +1349,22 @@
     });
     nodes.resetWeightsButton.addEventListener('click', resetWeights);
     nodes.runLearningButton.addEventListener('click', runLearning);
+    nodes.jraHtmlImportButton.addEventListener('click', () => {
+      if (!nodes.jraSnapshotMode.value) {
+        showToast('先に出馬表の取込方法を選んでください');
+        nodes.jraSnapshotMode.focus();
+        return;
+      }
+      nodes.jraHtmlImportInput.click();
+    });
+    nodes.jraHtmlImportInput.addEventListener('change', event => importJraHtmlFiles(event.target.files));
     nodes.dataImportButton.addEventListener('click', () => nodes.dataImportInput.click());
     nodes.dataImportInput.addEventListener('change', event => importDataset(event.target.files?.[0]));
     nodes.restoreBundledButton.addEventListener('click', restoreBundled);
   }
 
   async function init() {
-    if (!Engine || !window.UMA_LOG_DEMO) {
+    if (!Engine || !JraImporter) {
       nodes.sourceSummary.textContent = '初期化に失敗しました';
       return;
     }

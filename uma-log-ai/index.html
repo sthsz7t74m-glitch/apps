@@ -13,7 +13,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=210">
+  <link rel="stylesheet" href="./styles.css?v=220">
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">馬</span>
         <div>
-          <div class="brand-line"><h1>競馬予想</h1><span class="edition">v2.1.0</span></div>
+          <div class="brand-line"><h1>競馬予想</h1><span class="edition">v2.2.0</span></div>
           <p id="sourceSummary">データを読み込んでいます</p>
         </div>
       </div>
@@ -59,6 +59,16 @@
 
     <main id="mainContent" tabindex="-1">
       <section class="view is-active" id="raceView" data-view="race" aria-labelledby="raceViewTitle">
+        <article class="daily-preview panel" aria-labelledby="dailyPreviewTitle">
+          <div class="daily-preview-heading">
+            <div><p class="eyebrow">TODAY'S BETS</p><h2 id="dailyPreviewTitle">選択日の買い目</h2></div>
+            <span class="status-pill is-warning" id="dailyPreviewStatus">集計中</span>
+          </div>
+          <div class="daily-preview-summary" id="dailyPreviewSummary"></div>
+          <div class="daily-preview-list" id="dailyPreviewList"></div>
+          <button class="secondary-action full-width" id="openDailyTicketsButton" type="button">全レースの買い目を見る</button>
+        </article>
+
         <article class="race-hero panel">
           <div class="race-heading">
             <div>
@@ -86,7 +96,19 @@
 
       <section class="view" id="ticketView" data-view="tickets" aria-labelledby="ticketViewTitle" hidden>
         <div class="section-heading page-heading">
-          <div><p class="eyebrow">VALUE DECISION</p><h2 id="ticketViewTitle">確率・買い判定</h2></div>
+          <div><p class="eyebrow">DAILY BET LIST</p><h2 id="ticketViewTitle">選択日の買い目</h2></div>
+          <span id="dailyTicketStatus">集計中</span>
+        </div>
+        <div class="daily-ticket-summary" id="dailyTicketSummary"></div>
+        <div class="list-filter-bar" id="dailyTicketFilters" role="group" aria-label="買い目の絞り込み">
+          <button type="button" class="is-active" data-ticket-filter="all">すべて</button>
+          <button type="button" data-ticket-filter="buy">購入</button>
+          <button type="button" data-ticket-filter="paper">仮想</button>
+          <button type="button" data-ticket-filter="skip">見送り</button>
+        </div>
+        <div class="daily-ticket-list" id="dailyTicketList" aria-live="polite"></div>
+        <div class="section-heading secondary-heading selected-race-heading" id="selectedTicketHeading">
+          <div><p class="eyebrow">SELECTED RACE</p><h2>選択レースの判定</h2></div>
           <span id="ticketConfidence">—</span>
         </div>
         <article class="budget-card panel">
@@ -107,11 +129,27 @@
 
       <section class="view" id="resultView" data-view="results" aria-labelledby="resultViewTitle" hidden>
         <div class="section-heading page-heading">
-          <div><p class="eyebrow">FORWARD VALIDATION</p><h2 id="resultViewTitle">予想と収支検証</h2></div>
+          <div><p class="eyebrow">PREDICTIONS &amp; RESULTS</p><h2 id="resultViewTitle">予想と結果一覧</h2></div>
+          <span id="resultOverviewStatus">集計中</span>
+        </div>
+        <div class="result-overview-summary" id="resultOverviewSummary"></div>
+        <div class="list-filter-bar" id="resultOverviewFilters" role="group" aria-label="予想結果の絞り込み">
+          <button type="button" class="is-active" data-result-filter="all">すべて</button>
+          <button type="button" data-result-filter="pre-race">発走前</button>
+          <button type="button" data-result-filter="main-hit">◎1着</button>
+          <button type="button" data-result-filter="miss">◎圏外</button>
+          <button type="button" data-result-filter="post-race">結果後参考</button>
+        </div>
+        <div class="result-overview-list" id="resultOverviewList" aria-live="polite"></div>
+        <div class="section-heading secondary-heading selected-race-heading" id="selectedResultHeading">
+          <div><p class="eyebrow">SELECTED RACE</p><h2>選択レースの照合</h2></div>
           <span id="resultStatus">結果待ち</span>
         </div>
-        <div id="forwardValidationSummary"></div>
         <div id="resultContent"></div>
+        <div class="section-heading secondary-heading">
+          <div><p class="eyebrow">FORWARD VALIDATION</p><h2>前向き収支検証</h2></div>
+        </div>
+        <div id="forwardValidationSummary"></div>
         <div class="section-heading secondary-heading">
           <div><p class="eyebrow">TRACK RECORD</p><h2>累積成績</h2></div>
           <span id="recordRaceCount">0レース</span>
@@ -178,8 +216,8 @@
 
   <nav class="bottom-nav" aria-label="メインメニュー">
     <button class="nav-button is-active" type="button" data-nav="race" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18V8m7 10V5m7 13v-7"/><path d="m3 12 6-4 5 3 7-6"/></svg><span>予想</span></button>
-    <button class="nav-button" type="button" data-nav="tickets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4a2 2 0 0 0 0 4v6H5v-6a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></svg><span>買い判定</span></button>
-    <button class="nav-button" type="button" data-nav="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9h4v10zm10 0V5h4v14zm-5 0v-6h4v6z"/></svg><span>検証</span></button>
+    <button class="nav-button" type="button" data-nav="tickets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4a2 2 0 0 0 0 4v6H5v-6a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></svg><span>買い目</span></button>
+    <button class="nav-button" type="button" data-nav="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9h4v10zm10 0V5h4v14zm-5 0v-6h4v6z"/></svg><span>予想結果</span></button>
     <button class="nav-button" type="button" data-nav="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10m4 0h2M4 17h2m4 0h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>設定</span></button>
   </nav>
 
@@ -200,9 +238,9 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./engine.js?v=210" defer></script>
-  <script src="./profit-engine.js?v=210" defer></script>
-  <script src="./jra-importer.js?v=210" defer></script>
-  <script src="./app.js?v=210" defer></script>
+  <script src="./engine.js?v=220" defer></script>
+  <script src="./profit-engine.js?v=220" defer></script>
+  <script src="./jra-importer.js?v=220" defer></script>
+  <script src="./app.js?v=220" defer></script>
 </body>
 </html>

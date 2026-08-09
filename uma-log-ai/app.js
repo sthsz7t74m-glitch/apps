@@ -58,6 +58,7 @@
   const DIRECTION_LABELS = { left: '左', right: '右', straight: '直線' };
   const MARK_CLASSES = { '◎': 'mark-main', '○': 'mark-second', '▲': 'mark-third', '☆': 'mark-star', '消': 'mark-cut' };
   const PUBLISHED_MARKS = ['◎', '○', '▲'];
+  const VENUE_ORDER = new Map(Engine.JRA_VENUES.map((venue, index) => [venue, index]));
   const snapshotWriteChains = new Map();
   const state = {
     dataset: null,
@@ -68,6 +69,8 @@
     raceNumber: 11,
     edition: 'final',
     view: 'race',
+    dailyTicketFilter: 'all',
+    resultOverviewFilter: 'all',
     budget: normalizeBudget(readJson(STORAGE_KEYS.budget, 100000)),
     weights: Engine.normalizeWeights(readJson(STORAGE_KEYS.weights, Engine.DEFAULT_WEIGHTS)),
     predictions: {},
@@ -83,9 +86,10 @@
 
   const nodes = Object.fromEntries([
     'sourceSummary', 'refreshButton', 'sourceBanner', 'sourceMode', 'sourceDetail', 'gateBanner', 'gateStatus', 'gateDetail', 'dateSelect', 'venueTabs', 'raceStrip',
-    'raceView', 'ticketView', 'resultView', 'settingsView', 'raceEyebrow', 'raceViewTitle', 'raceMeta', 'confidenceGauge',
-    'predictionPodium', 'openBreakdownButton', 'runnerCount', 'runnerList', 'ticketConfidence', 'budgetInput', 'budgetOutput',
-    'ticketSummary', 'ticketGroups', 'resultStatus', 'resultContent', 'forwardValidationSummary', 'activationChecklist', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
+    'raceView', 'ticketView', 'resultView', 'settingsView', 'raceEyebrow', 'raceViewTitle', 'ticketViewTitle', 'resultViewTitle', 'raceMeta', 'confidenceGauge',
+    'dailyPreviewTitle', 'dailyPreviewStatus', 'dailyPreviewSummary', 'dailyPreviewList', 'openDailyTicketsButton',
+    'predictionPodium', 'openBreakdownButton', 'runnerCount', 'runnerList', 'dailyTicketStatus', 'dailyTicketSummary', 'dailyTicketFilters', 'dailyTicketList', 'selectedTicketHeading', 'ticketConfidence', 'budgetInput', 'budgetOutput',
+    'ticketSummary', 'ticketGroups', 'resultOverviewStatus', 'resultOverviewSummary', 'resultOverviewFilters', 'resultOverviewList', 'selectedResultHeading', 'resultStatus', 'resultContent', 'forwardValidationSummary', 'activationChecklist', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
     'weightList', 'weightTotal', 'resetWeightsButton', 'learningStatus', 'learningDescription', 'runLearningButton',
     'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'jraSnapshotMode', 'jraHtmlImportButton', 'jraHtmlImportInput',
     'dataImportButton', 'dataImportInput', 'restoreBundledButton',
@@ -631,6 +635,149 @@
     return (state.dataset?.races || []).filter(race => race.date === date && race.venue === venue).sort((a, b) => a.raceNumber - b.raceNumber);
   }
 
+  function racesForDate(date = state.date) {
+    return (state.dataset?.races || []).filter(race => race.date === date).sort((a, b) => {
+      const time = String(a.startTime || '').localeCompare(String(b.startTime || ''));
+      return time || (VENUE_ORDER.get(a.venue) ?? 99) - (VENUE_ORDER.get(b.venue) ?? 99) || Number(a.raceNumber) - Number(b.raceNumber);
+    });
+  }
+
+  function overviewPlanFor(race, prediction) {
+    if (!prediction) return null;
+    const savedPlan = ['pre-race', 'pending-save'].includes(prediction.captureStatus)
+      && prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION
+      ? prediction.ticketPlan
+      : null;
+    return savedPlan || createProfitPlan(prediction, race, prediction.budget || state.budget);
+  }
+
+  function buildDailyBetEntries() {
+    return racesForDate().map(race => {
+      if (race.status === 'cancelled') {
+        return { race, category: 'skip', status: 'CANCELLED', label: '中止', prediction: null, plan: null, candidate: null, realAmount: 0, paperAmount: 0, reason: '開催中止' };
+      }
+      const prediction = getPrediction(race);
+      if (!prediction) {
+        const outOfScope = race.modelStatus === 'out-of-scope';
+        return { race, category: 'skip', status: outOfScope ? 'OUT_OF_SCOPE' : 'PENDING', label: outOfScope ? '対象外' : '公開待ち', prediction: null, plan: null, candidate: null, realAmount: 0, paperAmount: 0, reason: outOfScope ? '現在のモデルは障害戦を対象にしません' : 'この版の予想はまだ公開されていません' };
+      }
+      const plan = overviewPlanFor(race, prediction);
+      const recommendation = plan?.recommendation || {};
+      const category = recommendation.status === 'BUY' ? 'buy' : recommendation.status === 'PAPER_ONLY' ? 'paper' : 'skip';
+      const label = category === 'buy' ? '購入' : category === 'paper' ? '仮想' : recommendation.status === 'REFERENCE_ONLY' ? '見送り' : '見送り';
+      return {
+        race,
+        prediction,
+        plan,
+        recommendation,
+        candidate: recommendation.candidate || null,
+        category,
+        status: recommendation.status || 'SKIP',
+        label,
+        realAmount: Number(plan?.realAllocated) || 0,
+        paperAmount: Number(plan?.paperAllocated) || 0,
+        reason: plan?.reason || recommendation.message || '見送り'
+      };
+    });
+  }
+
+  function summarizeDailyBets(entries) {
+    const buy = entries.filter(entry => entry.category === 'buy');
+    const paper = entries.filter(entry => entry.category === 'paper');
+    return {
+      raceCount: entries.length,
+      buyCount: buy.length,
+      paperCount: paper.length,
+      skipCount: entries.length - buy.length - paper.length,
+      realTotal: buy.reduce((sum, entry) => sum + entry.realAmount, 0),
+      paperTotal: paper.reduce((sum, entry) => sum + entry.paperAmount, 0)
+    };
+  }
+
+  function entryEv(entry) {
+    const candidate = entry?.candidate;
+    if (!candidate) return null;
+    return candidate.lowerBoundEv === null ? candidate.referenceEv : candidate.lowerBoundEv;
+  }
+
+  function dailyDecisionText(entry) {
+    if (entry.category === 'buy' && entry.candidate) return `単勝 ${entry.candidate.number}番　${formatNumber(entry.realAmount)}円`;
+    if (entry.category === 'paper' && entry.candidate) return `仮想・単勝 ${entry.candidate.number}番　${formatNumber(entry.paperAmount)}円`;
+    return entry.label;
+  }
+
+  function dailyEntryMarkup(entry, compact = false) {
+    const { race, candidate, recommendation } = entry;
+    const ev = entryEv(entry);
+    const trusted = recommendation?.modelTrusted === true;
+    const candidateText = candidate
+      ? `${candidate.number}番 ${escapeHtml(candidate.name)}`
+      : entry.status === 'OUT_OF_SCOPE' ? '予想対象外' : '候補なし';
+    const metric = candidate
+      ? `${trusted ? 'v4勝率' : '参考勝率'} ${formatNumber(candidate.v4Probability * 100, 1)}% · 適正${formatNumber(candidate.fairOdds, 2)}倍`
+      : entry.reason;
+    const compactMetric = candidate && ev !== null
+      ? `${metric} · ${trusted ? '保守' : '参考'}EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`
+      : metric;
+    const statusClass = entry.category === 'buy' ? 'is-buy' : entry.category === 'paper' ? 'is-paper' : 'is-skip';
+    if (compact) {
+      return `<button class="daily-preview-row ${statusClass}" type="button" data-select-date="${escapeHtml(race.date)}" data-select-venue="${escapeHtml(race.venue)}" data-select-race="${race.raceNumber}" data-target-view="tickets"><span><strong>${escapeHtml(race.venue)} ${race.raceNumber}R</strong><small>${escapeHtml(race.startTime)} ${escapeHtml(race.name)}</small></span><span><strong>${candidateText}</strong><small>${escapeHtml(compactMetric)}</small></span><span class="daily-decision">${escapeHtml(dailyDecisionText(entry))}</span></button>`;
+    }
+    const evText = ev === null
+      ? 'EV —'
+      : `${trusted ? '保守' : '参考'}EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%${trusted ? ` · 基準まで${formatNumber(Math.max(0, ProfitEngine.CONFIG.minimumLowerBoundEv - ev) * 100, 1)}pt` : ' · 正式判定対象外'}`;
+    return `<button class="daily-ticket-row ${statusClass}" type="button" data-select-date="${escapeHtml(race.date)}" data-select-venue="${escapeHtml(race.venue)}" data-select-race="${race.raceNumber}" data-target-view="tickets">
+      <span class="daily-race-cell"><strong>${escapeHtml(race.venue)} ${race.raceNumber}R</strong><small>${escapeHtml(race.startTime)} · ${escapeHtml(race.name)}</small></span>
+      <span class="daily-candidate-cell"><strong>${candidateText}</strong><small>${escapeHtml(metric)} · ${escapeHtml(evText)}</small></span>
+      <span class="daily-action-cell"><span>${escapeHtml(entry.label)}</span><strong>${escapeHtml(dailyDecisionText(entry))}</strong><small>${entry.category === 'skip' ? escapeHtml(entry.reason) : `実購入 ${formatNumber(entry.realAmount)}円`}</small></span>
+    </button>`;
+  }
+
+  function buildResultOverviewEntries() {
+    return racesForDate().map(race => {
+      const resultOrder = Array.isArray(race.result?.order) ? race.result.order.map(Number) : [];
+      const prediction = getFrozenPrediction(race, state.edition);
+      const horses = new Map((race.horses || []).map(horse => [Number(horse.number), horse.name]));
+      const predicted = prediction?.runners?.slice().sort((a, b) => Number(a.rank) - Number(b.rank)).slice(0, 3) || [];
+      const mainNumber = Number(predicted[0]?.number);
+      const captureStatus = prediction?.captureStatus || '';
+      const postRaceReference = captureStatus === 'published-post-race';
+      const preRace = Boolean(prediction) && !postRaceReference && !['retrospective', 'post-time'].includes(captureStatus);
+      const settled = resultOrder.length > 0;
+      const mainHit = settled && Number.isFinite(mainNumber) && resultOrder[0] === mainNumber;
+      const mainTop3 = settled && Number.isFinite(mainNumber) && resultOrder.slice(0, 3).includes(mainNumber);
+      const predictedTop3 = new Set(predicted.map(runner => Number(runner.number)));
+      const top3Overlap = resultOrder.slice(0, 3).filter(number => predictedTop3.has(number)).length;
+      let category = 'waiting';
+      let label = '結果待ち';
+      if (!prediction) { category = 'out-of-scope'; label = race.modelStatus === 'out-of-scope' ? '対象外' : '予想なし'; }
+      else if (postRaceReference) { category = 'post-race'; label = '結果後参考'; }
+      else if (!settled) { category = 'waiting'; label = '結果待ち'; }
+      else if (mainHit) { category = 'main-hit'; label = '◎1着'; }
+      else if (mainTop3) { category = 'main-place'; label = '◎Top3'; }
+      else { category = 'miss'; label = '◎圏外'; }
+      return { race, prediction, horses, predicted, resultOrder, preRace, postRaceReference, settled, mainHit, mainTop3, top3Overlap, category, label };
+    });
+  }
+
+  function resultOverviewMarkup(entry) {
+    const predictionTop = entry.predicted.length
+      ? entry.predicted.map((runner, index) => `${PUBLISHED_MARKS[index] || `${index + 1}位`} ${runner.number}番 ${escapeHtml(runner.name)}`).join('　')
+      : '予想なし';
+    const actualTop = entry.resultOrder.length
+      ? entry.resultOrder.slice(0, 3).map((number, index) => `${index + 1}着 ${number}番 ${escapeHtml(entry.horses.get(number) || `馬番${number}`)}`).join('　')
+      : '結果待ち';
+    const statusClass = entry.category === 'main-hit' ? 'is-hit' : entry.category === 'main-place' ? 'is-place' : entry.category === 'post-race' ? 'is-reference' : entry.category === 'miss' ? 'is-miss' : '';
+    const captureLabel = entry.postRaceReference ? '結果後取得・集計外' : entry.preRace ? '発走前予想' : '検証対象外';
+    const overlap = entry.prediction && entry.settled ? `Top3一致 ${entry.top3Overlap}/3` : '—';
+    return `<button class="result-overview-row ${statusClass}" type="button" data-select-date="${escapeHtml(entry.race.date)}" data-select-venue="${escapeHtml(entry.race.venue)}" data-select-race="${entry.race.raceNumber}" data-target-view="results">
+      <span class="overview-race"><strong>${escapeHtml(entry.race.venue)} ${entry.race.raceNumber}R</strong><small>${escapeHtml(entry.race.startTime)} · ${escapeHtml(entry.race.name)}</small></span>
+      <span class="overview-prediction"><small>予想</small><strong>${predictionTop}</strong></span>
+      <span class="overview-actual"><small>結果</small><strong>${actualTop}</strong></span>
+      <span class="overview-outcome"><span>${escapeHtml(entry.label)}</span><strong>${escapeHtml(overlap)}</strong><small>${escapeHtml(captureLabel)}</small></span>
+    </button>`;
+  }
+
   function buildPublishedPrediction(race, edition = 'final') {
     const published = race?.publishedPrediction;
     if (edition !== 'final' || !published || !Array.isArray(published.runners) || !published.runners.length) return null;
@@ -671,6 +818,7 @@
 
   function getPrediction(race = currentRace()) {
     if (!race) return null;
+    if (race.modelStatus === 'out-of-scope') return null;
     if (!isEditionAvailable(race, state.edition)) return null;
     const published = buildPublishedPrediction(race, state.edition);
     if (published) return published;
@@ -856,6 +1004,82 @@
       : `前向き検証${formatNumber(status.settled_paper_bets)}件 · 条件通過までは実購入0円`;
   }
 
+  function renderDailyPreview() {
+    const entries = buildDailyBetEntries();
+    const summary = summarizeDailyBets(entries);
+    nodes.dailyPreviewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
+    nodes.dailyPreviewStatus.textContent = `${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
+    nodes.dailyPreviewStatus.className = `status-pill ${summary.buyCount ? 'is-ok' : 'is-warning'}`;
+    nodes.dailyPreviewSummary.innerHTML = `<div><strong>${summary.buyCount}件</strong><span>正式購入</span><small>${formatNumber(summary.realTotal)}円</small></div><div><strong>${summary.paperCount}件</strong><span>仮想候補</span><small>${formatNumber(summary.paperTotal)}円</small></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span><small>全${summary.raceCount}R</small></div>`;
+    const featured = summary.buyCount
+      ? entries.filter(entry => entry.category === 'buy')
+      : entries.filter(entry => entry.category === 'paper');
+    const nearest = entries.filter(entry => entry.candidate && entry.prediction?.captureStatus !== 'published-post-race')
+      .sort((a, b) => (entryEv(b) ?? -Infinity) - (entryEv(a) ?? -Infinity))[0];
+    nodes.dailyPreviewList.innerHTML = featured.length
+      ? featured.slice(0, 4).map(entry => dailyEntryMarkup(entry, true)).join('')
+      : `<div class="daily-preview-empty"><strong>正式な買い目はありません</strong><span>${state.modelStatus?.activation_status === 'VERIFIED' ? '購入条件を満たすレースがありません。' : '利益ゲート通過までは全レース実購入0円です。'}${nearest ? ' 下は最も基準に近い参考候補です。' : ''}</span></div>${nearest ? dailyEntryMarkup(nearest, true) : ''}`;
+    nodes.openDailyTicketsButton.textContent = `全${summary.raceCount}Rの買い目・見送りを見る`;
+  }
+
+  function renderDailyTickets() {
+    const entries = buildDailyBetEntries();
+    const summary = summarizeDailyBets(entries);
+    nodes.ticketViewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
+    nodes.dailyTicketStatus.textContent = `購入 ${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
+    nodes.dailyTicketSummary.innerHTML = `<article class="daily-total-card panel"><div class="daily-total-main"><span>本日の正式購入</span><strong>${formatNumber(summary.realTotal)}円</strong><small>${summary.buyCount}レース · 単勝のみ</small></div><div class="daily-total-grid"><div><strong>${summary.paperCount}件 / ${formatNumber(summary.paperTotal)}円</strong><span>仮想検証</span></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span></div><div><strong>${formatNumber(Math.floor(state.budget * ProfitEngine.CONFIG.maxBankrollFractionPerDay / 100) * 100)}円</strong><span>解禁後の1日上限</span></div></div><p>${summary.buyCount ? '下の購入行だけが正式な買い目です。' : '現在、正式に買うレースはありません。候補馬が表示されていても「見送り」は購入しません。'}</p></article>`;
+    const counts = {
+      all: entries.length,
+      buy: entries.filter(entry => entry.category === 'buy').length,
+      paper: entries.filter(entry => entry.category === 'paper').length,
+      skip: entries.filter(entry => entry.category === 'skip').length
+    };
+    const filterLabels = { all: 'すべて', buy: '購入', paper: '仮想', skip: '見送り' };
+    nodes.dailyTicketFilters.querySelectorAll('[data-ticket-filter]').forEach(button => {
+      const filter = button.dataset.ticketFilter;
+      button.textContent = `${filterLabels[filter]} ${counts[filter]}`;
+      button.classList.toggle('is-active', filter === state.dailyTicketFilter);
+      button.setAttribute('aria-pressed', String(filter === state.dailyTicketFilter));
+    });
+    const visible = state.dailyTicketFilter === 'all' ? entries : entries.filter(entry => entry.category === state.dailyTicketFilter);
+    nodes.dailyTicketList.innerHTML = visible.length
+      ? visible.map(entry => dailyEntryMarkup(entry)).join('')
+      : '<div class="empty-state">この条件に該当するレースはありません</div>';
+  }
+
+  function renderResultOverview() {
+    const entries = buildResultOverviewEntries();
+    const settledPreRace = entries.filter(entry => entry.preRace && entry.settled);
+    const postRace = entries.filter(entry => entry.postRaceReference).length;
+    const mainHits = settledPreRace.filter(entry => entry.mainHit).length;
+    const mainTop3 = settledPreRace.filter(entry => entry.mainTop3).length;
+    nodes.resultViewTitle.textContent = state.date ? `${formatDate(state.date, true)} 予想と結果` : '予想と結果一覧';
+    nodes.resultOverviewStatus.textContent = `${entries.length}レース`;
+    nodes.resultOverviewSummary.innerHTML = `<div class="result-overview-kpis"><div><strong>${settledPreRace.length}</strong><span>発走前予想</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainHits / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎1着率</span></div><div><strong>${settledPreRace.length ? `${formatNumber(mainTop3 / settledPreRace.length * 100, 1)}%` : '—'}</strong><span>◎Top3率</span></div><div><strong>${postRace}</strong><span>結果後参考・集計外</span></div></div><p>率は発走前に保存された予想だけで計算します。結果後に取得した${postRace}Rは一覧表示のみで、成績へ混ぜません。</p>`;
+    const counts = {
+      all: entries.length,
+      'pre-race': entries.filter(entry => entry.preRace).length,
+      'main-hit': entries.filter(entry => entry.category === 'main-hit').length,
+      miss: entries.filter(entry => entry.category === 'miss').length,
+      'post-race': postRace
+    };
+    const labels = { all: 'すべて', 'pre-race': '発走前', 'main-hit': '◎1着', miss: '◎圏外', 'post-race': '結果後参考' };
+    nodes.resultOverviewFilters.querySelectorAll('[data-result-filter]').forEach(button => {
+      const filter = button.dataset.resultFilter;
+      button.textContent = `${labels[filter]} ${counts[filter]}`;
+      button.classList.toggle('is-active', filter === state.resultOverviewFilter);
+      button.setAttribute('aria-pressed', String(filter === state.resultOverviewFilter));
+    });
+    const visible = entries.filter(entry => {
+      if (state.resultOverviewFilter === 'all') return true;
+      if (state.resultOverviewFilter === 'pre-race') return entry.preRace;
+      return entry.category === state.resultOverviewFilter;
+    });
+    nodes.resultOverviewList.innerHTML = visible.length
+      ? visible.map(resultOverviewMarkup).join('')
+      : '<div class="empty-state">この条件に該当するレースはありません</div>';
+  }
+
   function renderForwardValidation() {
     const status = state.modelStatus || DEFAULT_MODEL_STATUS;
     const settled = Number(status.settled_paper_bets) || 0;
@@ -997,7 +1221,7 @@
       : state.edition === 'dayBefore' ? '前日版' : '当日最終版';
     nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${editionLabel}${timingLabel}${prediction.inputChanged ? ' · 元データ更新あり' : ''}`;
     nodes.raceViewTitle.textContent = race.name;
-    nodes.raceMeta.textContent = `${raceMetaText(race)}${prediction.publishedDecision ? ` · 当時判定 ${prediction.publishedDecision}` : ''}`;
+    nodes.raceMeta.textContent = raceMetaText(race);
     nodes.openBreakdownButton.disabled = false;
     const topProbability = probabilityByNumber.get(Number(prediction.runners[0]?.number));
     nodes.confidenceGauge.innerHTML = topProbability
@@ -1031,12 +1255,14 @@
   }
 
   function renderTickets() {
+    renderDailyTickets();
     const race = currentRace();
     if (!race) {
       nodes.ticketSummary.innerHTML = '';
       nodes.ticketGroups.innerHTML = '<div class="empty-state">レースを選択してください</div>';
       return;
     }
+    nodes.selectedTicketHeading.querySelector('h2').textContent = `${race.venue} ${race.raceNumber}Rの判定`;
     const prediction = getPrediction(race);
     if (!prediction) {
       nodes.ticketConfidence.textContent = '予想公開待ち';
@@ -1086,9 +1312,11 @@
   }
 
   function renderResult() {
+    renderResultOverview();
     renderForwardValidation();
     const race = currentRace();
     if (!race) { nodes.resultContent.innerHTML = '<div class="empty-state">レースを選択してください</div>'; return; }
+    nodes.selectedResultHeading.querySelector('h2').textContent = `${race.venue} ${race.raceNumber}Rの照合`;
     if (race.status === 'cancelled') {
       nodes.resultStatus.textContent = '開催中止';
       nodes.resultContent.innerHTML = '<article class="result-pending panel"><div class="pending-icon">中止</div><h3>このレースは開催中止です</h3><p>的中率・順位精度の集計対象には含めません。返還内容は公式発表を確認してください。</p></article>';
@@ -1131,7 +1359,7 @@
         const differenceLabel = difference === null ? '予想外' : difference === 0 ? '一致' : difference > 0 ? `${difference}位上振れ` : `${Math.abs(difference)}位下振れ`;
         const capturedOdds = Number.isFinite(Number(item.odds)) ? ` · 単${formatNumber(item.odds, 1)}` : '';
         return `<div class="comparison-row"><span class="finish-badge${item.finish <= 3 ? ' is-medal' : ''}">${item.finish}着</span><span class="comparison-name">${escapeHtml(item.name)} <small>${item.number}番 ${item.mark || ''}</small></span><span class="comparison-predicted">予想${item.predictedRank || '—'}位${capturedOdds}</span><span class="rank-diff${difference === 0 ? ' is-good' : Math.abs(difference || 0) >= 4 ? ' is-bad' : ''}">${differenceLabel}</span></div>`;
-      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・買い判定' : 'v4単勝の結果'}</h3><p>${prediction.publishedPrediction ? '参考表示・実購入対象外' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
+      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・v4買い判定' : 'v4単勝の結果'}</h3><p>${prediction.publishedPrediction ? '旧方式のワイド判定は不採用・正式購入0円' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
     }
     renderRecords();
   }
@@ -1213,6 +1441,7 @@
   function renderAll() {
     renderSourceStatus();
     renderGateStatus();
+    renderDailyPreview();
     renderRaceView();
     switchView(state.view, false);
   }
@@ -1299,6 +1528,7 @@
       if (prediction) saveTicketPlanRevision(race, prediction, state.budget);
       else savePrediction(race, Engine.scoreRace(race, state.edition, state.weights), state.budget);
     }
+    renderDailyPreview();
     renderTickets();
   }
 
@@ -1408,7 +1638,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=210');
+      const worker = new Worker('./learning-worker.js?v=220');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));
@@ -1509,6 +1739,19 @@
     toastTimer = window.setTimeout(() => nodes.toast.classList.remove('is-visible'), 2800);
   }
 
+  function selectOverviewRace(button) {
+    if (!button) return;
+    state.date = button.dataset.selectDate || state.date;
+    state.venue = button.dataset.selectVenue || state.venue;
+    state.raceNumber = Number(button.dataset.selectRace) || state.raceNumber;
+    state.view = button.dataset.targetView || state.view;
+    normalizeSelection();
+    renderControls();
+    renderAll();
+    const anchor = state.view === 'results' ? nodes.selectedResultHeading : nodes.selectedTicketHeading;
+    requestAnimationFrame(() => anchor?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+  }
+
   function bindEvents() {
     nodes.refreshButton.addEventListener('click', () => loadDataset({ force: true }));
     nodes.dateSelect.addEventListener('change', event => {
@@ -1552,6 +1795,22 @@
     document.querySelector('.bottom-nav').addEventListener('click', event => {
       const button = event.target.closest('[data-nav]');
       if (button) switchView(button.dataset.nav);
+    });
+    nodes.openDailyTicketsButton.addEventListener('click', () => switchView('tickets'));
+    nodes.dailyPreviewList.addEventListener('click', event => selectOverviewRace(event.target.closest('[data-select-race]')));
+    nodes.dailyTicketList.addEventListener('click', event => selectOverviewRace(event.target.closest('[data-select-race]')));
+    nodes.resultOverviewList.addEventListener('click', event => selectOverviewRace(event.target.closest('[data-select-race]')));
+    nodes.dailyTicketFilters.addEventListener('click', event => {
+      const button = event.target.closest('[data-ticket-filter]');
+      if (!button) return;
+      state.dailyTicketFilter = button.dataset.ticketFilter;
+      renderDailyTickets();
+    });
+    nodes.resultOverviewFilters.addEventListener('click', event => {
+      const button = event.target.closest('[data-result-filter]');
+      if (!button) return;
+      state.resultOverviewFilter = button.dataset.resultFilter;
+      renderResultOverview();
     });
     nodes.runnerList.addEventListener('click', event => {
       const button = event.target.closest('[data-runner-number]');

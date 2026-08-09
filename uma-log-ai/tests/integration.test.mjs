@@ -59,7 +59,7 @@ test('the application shell uses the white theme and a fresh cache version', asy
   assert.equal(manifest.theme_color, '#ffffff');
   assert.equal(manifest.background_color, '#f5f8f6');
   assert.match(html, /name="theme-color" content="#ffffff"/);
-  assert.match(serviceWorker, /shell-v2\.1\.0/);
+  assert.match(serviceWorker, /shell-v2\.2\.0/);
 });
 
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
@@ -70,12 +70,12 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /openCursor\(\)/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=210'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=220'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=210/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=220/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
   assert.match(serviceWorker, /\.\/data\/forward-status\.json/);
-  assert.match(serviceWorker, /profit-engine\.js\?v=210/);
+  assert.match(serviceWorker, /profit-engine\.js\?v=220/);
 });
 
 test('manual JRA HTML import stays local, is atomic, and does not auto-create both editions', async () => {
@@ -104,7 +104,7 @@ test('manual JRA HTML import stays local, is atomic, and does not auto-create bo
   assert.doesNotMatch(app, /state\.dataset = window\.UMA_LOG_DEMO/);
   assert.doesNotMatch(html, /demo-data\.js/);
   assert.doesNotMatch(serviceWorker, /demo-data\.js/);
-  assert.match(serviceWorker, /jra-importer\.js\?v=210/);
+  assert.match(serviceWorker, /jra-importer\.js\?v=220/);
 });
 
 test('v4 UI fails closed and separates reference probabilities from purchase decisions', async () => {
@@ -171,4 +171,46 @@ test('the bundled archive exposes all real August 9 races without counting post-
   assert.ok(Math.abs(sapporo1.publishedPrediction.runners[0].probability - 0.5168107857362774) < 1e-12);
   assert.deepEqual(sapporo1.result.order, [10, 12, 4]);
   assert.doesNotMatch(raw, /cite|\bL\d+:/);
+});
+
+test('daily bet list and predictions-results overview are first-class app pages', async () => {
+  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
+  const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  assert.match(html, /id="dailyPreviewSummary"/);
+  assert.match(html, /id="dailyTicketList"/);
+  assert.match(html, /id="resultOverviewList"/);
+  assert.match(html, />買い目<\/span>/);
+  assert.match(html, />予想結果<\/span>/);
+  assert.match(app, /function buildDailyBetEntries\(\)/);
+  assert.match(app, /function renderDailyTickets\(\)/);
+  assert.match(app, /function buildResultOverviewEntries\(\)/);
+  assert.match(app, /if \(race\.modelStatus === 'out-of-scope'\) return null/);
+  assert.match(app, /結果後に取得した\$\{postRace\}Rは一覧表示のみ/);
+  assert.match(app, /candidate\.lowerBoundEv === null \? candidate\.referenceEv : candidate\.lowerBoundEv/);
+  assert.match(styles, /\.daily-ticket-row/);
+  assert.match(styles, /\.result-overview-row/);
+  assert.match(serviceWorker, /shell-v2\.2\.0/);
+  assert.match(html, /v2\.2\.0/);
+});
+
+test('all archived races can be paired into compact prediction and result rows', async () => {
+  const dataset = JSON.parse(await readFile(new URL('../data/races.json', import.meta.url), 'utf8'));
+  const rows = dataset.races.map(race => {
+    const predictions = race.publishedPrediction?.runners || [];
+    const result = race.result?.order || [];
+    return {
+      id: race.id,
+      captureTiming: race.publishedPrediction?.captureTiming || 'out-of-scope',
+      predictedTop3: predictions.slice().sort((a, b) => a.rank - b.rank).slice(0, 3).map(runner => runner.number),
+      actualTop3: result.slice(0, 3)
+    };
+  });
+  assert.equal(rows.length, 36);
+  assert.equal(rows.filter(row => row.captureTiming === 'pre-race').length, 20);
+  assert.equal(rows.filter(row => row.captureTiming === 'post-race').length, 15);
+  assert.equal(rows.filter(row => row.captureTiming === 'out-of-scope').length, 1);
+  assert.ok(rows.filter(row => row.captureTiming !== 'out-of-scope').every(row => row.predictedTop3.length === 3));
+  assert.ok(rows.every(row => row.actualTop3.length === 3));
 });

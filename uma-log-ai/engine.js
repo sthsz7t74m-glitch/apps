@@ -5,7 +5,7 @@
 }(typeof globalThis !== 'undefined' ? globalThis : this, function createEngine() {
   'use strict';
 
-  const ENGINE_VERSION = '1.1.0';
+  const ENGINE_VERSION = '1.2.0';
 
   const CATEGORY_META = [
     { key: 'recentForm', label: '直近5走', short: '近走', weight: 22 },

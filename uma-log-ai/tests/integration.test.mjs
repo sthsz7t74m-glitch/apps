@@ -37,6 +37,20 @@ test('install metadata includes raster icons for Android and iOS', async () => {
   assert.match(html, /apple-touch-icon\.png/);
 });
 
+test('the application shell uses the white theme and a fresh cache version', async () => {
+  const styles = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
+  const manifest = JSON.parse(await readFile(new URL('../manifest.webmanifest', import.meta.url), 'utf8'));
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const serviceWorker = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
+  assert.match(styles, /color-scheme:\s*light/);
+  assert.match(styles, /--panel:\s*#ffffff/);
+  assert.doesNotMatch(styles, /--bg:\s*#06110c/);
+  assert.equal(manifest.theme_color, '#ffffff');
+  assert.equal(manifest.background_color, '#f5f8f6');
+  assert.match(html, /name="theme-color" content="#ffffff"/);
+  assert.match(serviceWorker, /shell-v1\.2\.0/);
+});
+
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
   const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
   const worker = await readFile(new URL('../learning-worker.js', import.meta.url), 'utf8');
@@ -45,9 +59,9 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /openCursor\(\)/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=110'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=120'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=110/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=120/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
 });
 

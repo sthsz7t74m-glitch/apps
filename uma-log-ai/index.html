@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#071a12">
+  <meta name="theme-color" content="#ffffff">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'">
   <meta name="description" content="近走・適性・騎手など10項目を100点で評価し、予想と実際の結果を振り返る競馬予想PWA">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="うまログAI">
   <title>うまログAI</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=110">
+  <link rel="stylesheet" href="./styles.css?v=120">
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">馬</span>
         <div>
-          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.1.0</span></div>
+          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.2.0</span></div>
           <p id="sourceSummary">データを読み込んでいます</p>
         </div>
       </div>
@@ -178,8 +178,8 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./engine.js?v=110" defer></script>
-  <script src="./demo-data.js?v=110" defer></script>
-  <script src="./app.js?v=110" defer></script>
+  <script src="./engine.js?v=120" defer></script>
+  <script src="./demo-data.js?v=120" defer></script>
+  <script src="./app.js?v=120" defer></script>
 </body>
 </html>

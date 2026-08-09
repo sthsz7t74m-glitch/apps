@@ -1021,7 +1021,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=110');
+      const worker = new Worker('./learning-worker.js?v=120');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));

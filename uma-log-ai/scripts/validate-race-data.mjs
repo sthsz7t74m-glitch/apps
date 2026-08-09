@@ -17,15 +17,21 @@ export function validatePayload(payload, { allowEmpty = false } = {}) {
   if (payload.source.mode !== 'demo' && payload.source.redistributable !== true) {
     throw new Error('source.redistributable must be true before data can be committed to a public repository');
   }
-  if (payload.source.mode !== 'demo' && payload.source.asOfFieldsGuaranteed !== true) {
+  const referenceArchive = payload.source.mode === 'reference-archive';
+  if (referenceArchive && (payload.source.asOfFieldsGuaranteed !== false
+    || payload.source.normalizedFactsOnly !== true
+    || payload.source.officialResultsVerified !== true)) {
+    throw new Error('reference archives must be normalized facts, officially verified, and excluded from as-of guarantees');
+  }
+  if (payload.source.mode !== 'demo' && !referenceArchive && payload.source.asOfFieldsGuaranteed !== true) {
     throw new Error('source.asOfFieldsGuaranteed must confirm that every feature is frozen at snapshot time');
   }
-  const missingSnapshot = payload.races.find(race => ['dayBefore', 'final'].some(edition => {
+  const missingSnapshot = !referenceArchive && payload.races.find(race => ['dayBefore', 'final'].some(edition => {
     const snapshot = race.snapshots?.[edition];
     return !snapshot?.asOf || typeof snapshot.ready !== 'boolean';
   }));
   if (missingSnapshot) throw new Error(`${missingSnapshot.id}: dayBefore and final snapshots require asOf and a boolean ready state`);
-  const incompleteFinal = payload.races.find(race => (race.status === 'final' || race.result?.status === 'final')
+  const incompleteFinal = !referenceArchive && payload.races.find(race => (race.status === 'final' || race.result?.status === 'final')
     && (race.snapshots.dayBefore.ready !== true || race.snapshots.final.ready !== true));
   if (incompleteFinal) throw new Error(`${incompleteFinal.id}: finalized races require both ready snapshots`);
   return true;

@@ -76,7 +76,8 @@ const mergedBySlot = new Map(current.races
   .filter(race => new Date(`${race.date}T23:59:59Z`).getTime() >= cutoff)
   .map(race => [slotKey(race), race]));
 payload.races.forEach(race => mergedBySlot.set(slotKey(race), race));
-const venueOrder = new Map([['東京', 0], ['中山', 1], ['京都', 2]]);
+const venueOrder = new Map(['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']
+  .map((venue, index) => [venue, index]));
 const merged = {
   ...payload,
   races: [...mergedBySlot.values()].sort((a, b) => String(a.date).localeCompare(String(b.date))

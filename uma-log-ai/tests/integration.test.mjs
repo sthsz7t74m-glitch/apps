@@ -59,7 +59,7 @@ test('the application shell uses the white theme and a fresh cache version', asy
   assert.equal(manifest.theme_color, '#ffffff');
   assert.equal(manifest.background_color, '#f5f8f6');
   assert.match(html, /name="theme-color" content="#ffffff"/);
-  assert.match(serviceWorker, /shell-v2\.0\.0/);
+  assert.match(serviceWorker, /shell-v2\.1\.0/);
 });
 
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
@@ -70,12 +70,12 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /openCursor\(\)/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=200'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=210'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=200/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=210/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
   assert.match(serviceWorker, /\.\/data\/forward-status\.json/);
-  assert.match(serviceWorker, /profit-engine\.js\?v=200/);
+  assert.match(serviceWorker, /profit-engine\.js\?v=210/);
 });
 
 test('manual JRA HTML import stays local, is atomic, and does not auto-create both editions', async () => {
@@ -104,7 +104,7 @@ test('manual JRA HTML import stays local, is atomic, and does not auto-create bo
   assert.doesNotMatch(app, /state\.dataset = window\.UMA_LOG_DEMO/);
   assert.doesNotMatch(html, /demo-data\.js/);
   assert.doesNotMatch(serviceWorker, /demo-data\.js/);
-  assert.match(serviceWorker, /jra-importer\.js\?v=200/);
+  assert.match(serviceWorker, /jra-importer\.js\?v=210/);
 });
 
 test('v4 UI fails closed and separates reference probabilities from purchase decisions', async () => {
@@ -142,5 +142,33 @@ test('the first saved edition is immutable, including across concurrent tabs', a
   assert.match(app, /savedTicketPlanRevision/);
   assert.match(app, /savedPlan && !isCaptureWindowOpen\(race, state\.edition\)/);
   assert.match(app, /TICKET_PLAN_KEY_PREFIX/);
-  assert.match(app, /const resolver = \(race, edition\) => getFrozenPrediction\(race, edition\)/);
+  assert.match(app, /const resolver = \(race, edition\) => \{[\s\S]*getFrozenPrediction\(race, edition\)[\s\S]*published-post-race/);
+});
+
+test('the bundled archive exposes all real August 9 races without counting post-race captures', async () => {
+  const dataset = JSON.parse(await readFile(new URL('../data/races.json', import.meta.url), 'utf8'));
+  const raw = await readFile(new URL('../data/races.json', import.meta.url), 'utf8');
+  assert.equal(dataset.source.mode, 'reference-archive');
+  assert.equal(dataset.races.length, 36);
+  assert.equal(dataset.races.reduce((sum, race) => sum + race.horses.length, 0), 495);
+  assert.deepEqual(Object.fromEntries(['札幌', '新潟', '中京'].map(venue => [venue, dataset.races.filter(race => race.venue === venue).length])), {
+    札幌: 12,
+    新潟: 12,
+    中京: 12
+  });
+  const published = dataset.races.filter(race => race.publishedPrediction);
+  assert.equal(published.length, 35);
+  assert.equal(published.filter(race => race.publishedPrediction.captureTiming === 'pre-race').length, 20);
+  assert.equal(published.filter(race => race.publishedPrediction.captureTiming === 'post-race').length, 15);
+  assert.equal(dataset.races.filter(race => race.modelStatus === 'out-of-scope').length, 1);
+  published.forEach(race => {
+    const total = race.publishedPrediction.runners.reduce((sum, runner) => sum + runner.probability, 0);
+    assert.ok(Math.abs(total - 1) < 1e-8, `${race.id} probabilities must total one`);
+  });
+  const sapporo1 = dataset.races.find(race => race.id === '2601010601');
+  assert.equal(sapporo1.name, 'サラ系2歳未勝利');
+  assert.equal(sapporo1.publishedPrediction.runners[0].number, 12);
+  assert.ok(Math.abs(sapporo1.publishedPrediction.runners[0].probability - 0.5168107857362774) < 1e-12);
+  assert.deepEqual(sapporo1.result.order, [10, 12, 4]);
+  assert.doesNotMatch(raw, /cite|\bL\d+:/);
 });

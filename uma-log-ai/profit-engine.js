@@ -87,13 +87,19 @@
       const total = explicit.reduce((sum, value) => sum + value, 0);
       if (Math.abs(total - 1) > 1e-4) throw new Error('v3勝率のレース内合計が1ではありません');
       const probabilityModel = prediction?.probabilityModel || {};
+      const finalOutput = probabilityModel.output === 'final-win-probability';
       const trusted = probabilityModel.frozenBeforePost === true
         && /^3(?:\.|$)|v3/i.test(String(probabilityModel.version || ''));
       return {
         values: explicit,
-        source: trusted ? 'frozen-v3' : 'unverified-v3',
+        source: trusted ? 'frozen-v3' : finalOutput ? 'published-final-probability' : 'unverified-v3',
         trusted,
-        note: trusted ? '発走前に固定されたv3勝率' : 'v3勝率の発走前固定保証がありません'
+        finalOutput,
+        note: trusted
+          ? '発走前に固定されたv3勝率'
+          : finalOutput
+            ? '当日公開モデルの最終勝率（v4利益判定対象外）'
+            : 'v3勝率の発走前固定保証がありません'
       };
     }
 
@@ -231,7 +237,7 @@
       };
     }
 
-    const blended = blendProbabilities(model.values, market.values);
+    const blended = model.finalOutput ? model.values : blendProbabilities(model.values, market.values);
     const rows = runners.map((runner, index) => {
       const v4Probability = blended[index];
       const probabilityLower90 = model.trusted ? calibratedLowerBound(v4Probability) : null;

@@ -57,6 +57,7 @@
   const PACE_LABELS = { fast: '速め', middle: '平均', slow: '遅め' };
   const DIRECTION_LABELS = { left: '左', right: '右', straight: '直線' };
   const MARK_CLASSES = { '◎': 'mark-main', '○': 'mark-second', '▲': 'mark-third', '☆': 'mark-star', '消': 'mark-cut' };
+  const PUBLISHED_MARKS = ['◎', '○', '▲'];
   const snapshotWriteChains = new Map();
   const state = {
     dataset: null,
@@ -583,6 +584,9 @@
 
   function isEditionAvailable(race, edition) {
     if (state.dataset?.source?.mode === 'demo') return true;
+    if (state.dataset?.source?.mode === 'reference-archive') {
+      return edition === 'final' && (Boolean(race?.publishedPrediction) || race?.modelStatus === 'out-of-scope');
+    }
     const snapshot = race?.snapshots?.[edition];
     if (state.dataset?.source?.mode === 'local-jra') {
       const asOf = Date.parse(snapshot?.asOf || '');
@@ -627,9 +631,49 @@
     return (state.dataset?.races || []).filter(race => race.date === date && race.venue === venue).sort((a, b) => a.raceNumber - b.raceNumber);
   }
 
+  function buildPublishedPrediction(race, edition = 'final') {
+    const published = race?.publishedPrediction;
+    if (edition !== 'final' || !published || !Array.isArray(published.runners) || !published.runners.length) return null;
+    const base = Engine.scoreRace(race, edition, state.weights);
+    const publishedByNumber = new Map(published.runners.map(runner => [Number(runner.number), runner]));
+    if (base.runners.some(runner => !publishedByNumber.has(Number(runner.number)))) return null;
+    const markedCount = Math.min(base.runners.length, Math.max(5, Math.min(7, Math.ceil(base.runners.length / 3) + 2)));
+    const runners = base.runners.map(runner => {
+      const saved = publishedByNumber.get(Number(runner.number));
+      return {
+        ...runner,
+        rank: Number(saved.rank),
+        modelProbability: Number(saved.probability),
+        publishedWinProbability: Number(saved.probability),
+        odds: Number(saved.odds),
+        capturedOdds: Number(saved.odds),
+        currentOdds: Number(saved.odds),
+        reason: `8月9日公開モデル${Number(saved.rank)}位 · 勝率${formatNumber(Number(saved.probability) * 100, 1)}%`
+      };
+    }).sort((a, b) => a.rank - b.rank || a.number - b.number);
+    runners.forEach((runner, index) => {
+      runner.mark = PUBLISHED_MARKS[index] || (index < markedCount ? '△' : '消');
+    });
+    return {
+      ...base,
+      generatedAt: published.generatedAt,
+      capturedAt: published.capturedAt,
+      captureStatus: published.captureTiming === 'pre-race' ? 'published-pre-race' : 'published-post-race',
+      retrospective: published.captureTiming !== 'pre-race',
+      probabilityModel: race.probabilityModel,
+      publishedPrediction: true,
+      publishedDecision: published.decision || null,
+      publishedGrade: published.grade || null,
+      minutesBeforePost: Number(published.minutesBeforePost),
+      runners
+    };
+  }
+
   function getPrediction(race = currentRace()) {
     if (!race) return null;
     if (!isEditionAvailable(race, state.edition)) return null;
+    const published = buildPublishedPrediction(race, state.edition);
+    if (published) return published;
     const key = snapshotKey(race, state.edition);
     const stored = storedPredictionFor(race, state.edition);
     if (stored) return hydrateStoredPrediction(stored, race, state.edition);
@@ -651,6 +695,15 @@
   }
 
   function getFrozenPrediction(race, edition) {
+    const published = buildPublishedPrediction(race, edition);
+    if (published) {
+      const budget = 100000;
+      return {
+        ...published,
+        budget,
+        ticketPlan: createProfitPlan(published, race, budget)
+      };
+    }
     const stored = storedPredictionFor(race, edition);
     if (stored) return withSavedTicketPlan(stored, race, edition);
     const demo = state.dataset?.source?.mode === 'demo';
@@ -682,6 +735,7 @@
   }
 
   function normalizeSelection() {
+    if (state.dataset?.source?.mode === 'reference-archive') state.edition = 'final';
     const dates = [...new Set((state.dataset?.races || []).map(race => race.date))].sort().reverse();
     if (!dates.includes(state.date)) state.date = dates[0] || '';
     const venues = Engine.JRA_VENUES.filter(venue => racesForSelection(state.date, venue).length);
@@ -773,6 +827,10 @@
       nodes.sourceBanner.classList.add('is-live');
       nodes.sourceMode.textContent = 'JRA端末内取込';
       nodes.sourceDetail.textContent = `${raceCount}R · 外部送信なし`;
+    } else if (source.mode === 'reference-archive') {
+      nodes.sourceBanner.classList.add('is-live');
+      nodes.sourceMode.textContent = '8/9 実データ';
+      nodes.sourceDetail.textContent = source.detail || `${raceCount}R · JRA公式結果照合済み`;
     } else if (state.datasetOrigin === 'imported') {
       nodes.sourceBanner.classList.add('is-live');
       nodes.sourceMode.textContent = '端末内データ';
@@ -829,6 +887,8 @@
     const activeRace = nodes.raceStrip.querySelector('.race-chip.is-active');
     if (activeRace) requestAnimationFrame(() => activeRace.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }));
     document.querySelectorAll('[data-edition]').forEach(button => {
+      button.hidden = state.dataset?.source?.mode === 'reference-archive' && button.dataset.edition === 'dayBefore';
+      button.textContent = button.dataset.edition === 'final' && state.dataset?.source?.mode === 'reference-archive' ? '8/9取得版' : button.dataset.edition === 'final' ? '当日最終' : '前日版';
       const active = button.dataset.edition === state.edition;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
@@ -891,6 +951,23 @@
     }
     const prediction = getPrediction(race);
     if (!prediction) {
+      if (race.modelStatus === 'out-of-scope') {
+        nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · 実データ`;
+        nodes.raceViewTitle.textContent = race.name;
+        nodes.raceMeta.textContent = raceMetaText(race);
+        nodes.confidenceGauge.innerHTML = '<span>モデル</span><strong>対象外</strong><small>障害戦</small>';
+        nodes.confidenceGauge.title = '現在の予想モデルは平地競走のみを対象にしています';
+        nodes.predictionPodium.innerHTML = '';
+        nodes.openBreakdownButton.disabled = true;
+        const active = race.horses.filter(horse => horse.scratched !== true);
+        nodes.runnerCount.textContent = `${active.length}頭`;
+        nodes.runnerList.innerHTML = active.map(horse => `<div class="runner-card is-reference-only">
+          <span class="horse-number" style="${frameStyle(horse.gate)}">${horse.number}<small>${formatNumber(horse.gate)}枠</small></span>
+          <span class="runner-main"><span class="runner-title"><span class="mark">—</span><strong>${escapeHtml(horse.name)}</strong></span><span class="runner-sub"><span>${escapeHtml(horse.sexAge || '')} ${formatNumber(horse.carriedWeight, 1)}kg</span><span>${escapeHtml(bodyWeightText(horse))}</span><span>${escapeHtml(horse.jockey || '騎手未定')}</span></span><span class="runner-reason">実出馬データ · 予想対象外</span></span>
+          <span class="runner-score"><strong>—</strong><span>予想なし</span><span class="odds">単 ${formatNumber(horse.odds, 1)}${horse.popularity ? `（${formatNumber(horse.popularity)}人気）` : ''}</span></span>
+        </div>`).join('');
+        return;
+      }
       nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}`;
       nodes.raceViewTitle.textContent = race.name;
       nodes.raceMeta.textContent = raceMetaText(race);
@@ -908,18 +985,23 @@
     const profit = profitPlan.recommendation;
     const probabilityByNumber = new Map((profit?.rows || []).map(row => [Number(row.number), row]));
     const timingLabel = race.status === 'cancelled' ? ' · 開催中止'
+      : prediction.captureStatus === 'published-pre-race' ? ` · 実データ・発走${formatNumber(prediction.minutesBeforePost, 0)}分前取得`
+        : prediction.captureStatus === 'published-post-race' ? ` · 結果後参考（発走${formatNumber(Math.abs(prediction.minutesBeforePost), 0)}分後取得）`
       : prediction.retrospective && state.dataset?.source?.mode !== 'demo'
       ? ` · ${isFinalized(race) ? '結果後' : '締切後'}の参考再計算`
       : prediction.captureStatus === 'pre-race' ? ' · 発走前保存済み'
         : prediction.captureStatus === 'pending-save' ? ' · 端末へ保存中'
           : prediction.captureStatus === 'save-failed' ? ' · 端末保存なし' : '';
-    nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}${timingLabel}${prediction.inputChanged ? ' · 元データ更新あり' : ''}`;
+    const editionLabel = state.dataset?.source?.mode === 'reference-archive'
+      ? '8月9日取得版'
+      : state.edition === 'dayBefore' ? '前日版' : '当日最終版';
+    nodes.raceEyebrow.textContent = `${race.venue} ${race.raceNumber}R · ${editionLabel}${timingLabel}${prediction.inputChanged ? ' · 元データ更新あり' : ''}`;
     nodes.raceViewTitle.textContent = race.name;
-    nodes.raceMeta.textContent = raceMetaText(race);
+    nodes.raceMeta.textContent = `${raceMetaText(race)}${prediction.publishedDecision ? ` · 当時判定 ${prediction.publishedDecision}` : ''}`;
     nodes.openBreakdownButton.disabled = false;
     const topProbability = probabilityByNumber.get(Number(prediction.runners[0]?.number));
     nodes.confidenceGauge.innerHTML = topProbability
-      ? `<span>本命勝率</span><strong>${formatNumber(topProbability.v4Probability * 100, 1)}%</strong><small>${profit.modelTrusted ? 'v4校正' : '参考値'}</small>`
+      ? `<span>本命勝率</span><strong>${formatNumber(topProbability.v4Probability * 100, 1)}%</strong><small>${profit.modelTrusted ? 'v4校正' : prediction.publishedGrade ? `当日評価 ${prediction.publishedGrade}` : '参考値'}</small>`
       : `<span>自信度</span><strong>${prediction.confidence.value}</strong><small>${escapeHtml(prediction.confidence.label)}</small>`;
     nodes.confidenceGauge.title = topProbability
       ? `${profit.modelSourceNote}・適正オッズ${formatNumber(topProbability.fairOdds, 2)}倍`
@@ -997,7 +1079,7 @@
       <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? '90%校正下限で判定' : '参考表示のみ'}</span></div>
       <div class="decision-horse"><span class="horse-number" style="${frameStyle(prediction.runners.find(runner => Number(runner.number) === candidate.number)?.gate)}">${candidate.number}</span><div><p>${escapeHtml(race.venue)} ${race.raceNumber}R</p><h3>${escapeHtml(candidate.name)}</h3><span>${escapeHtml(recommendation.message)}</span></div></div>
       <div class="decision-metrics"><div><span>予測勝率</span><strong>${formatNumber(candidate.v4Probability * 100, 1)}%</strong></div><div><span>適正オッズ</span><strong>${formatNumber(candidate.fairOdds, 2)}倍</strong></div><div><span>取得オッズ</span><strong>${formatNumber(candidate.currentOdds, 1)}倍</strong></div><div><span>${evLabel}</span><strong class="${ev >= .05 ? 'is-positive' : 'is-negative'}">${ev === null ? '—' : `${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`}</strong></div></div>
-      ${candidate.probabilityLower90 === null ? '<p class="decision-note">この確率は端末の100点評価から換算した参考値です。固定v3勝率がないため、購入判定には使いません。</p>' : `<p class="decision-note">90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。</p>`}
+      ${candidate.probabilityLower90 === null ? `<p class="decision-note">${prediction.publishedPrediction ? '8月9日に算出した最終勝率の再現表示です。v3固定確率ではないため、v4の購入判定や前向き利益検証には使いません。' : 'この確率は端末の100点評価から換算した参考値です。固定v3勝率がないため、購入判定には使いません。'}</p>` : `<p class="decision-note">90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。</p>`}
       ${ticket ? `<div class="paper-ticket"><span>${ticket.paperOnly ? '仮想購入' : '購入候補'}</span><strong>単勝 ${ticket.numbers[0]}番　${formatNumber(ticket.amount)}円</strong><small>実購入 ${formatNumber(plan.realAllocated)}円</small></div>` : ''}
       <details class="decision-blockers"><summary>判定理由</summary><ul>${recommendation.blockers.length ? recommendation.blockers.map(blocker => `<li>${escapeHtml(blocker)}</li>`).join('') : '<li>購入条件を通過</li>'}</ul></details>
     </article>`;
@@ -1029,7 +1111,15 @@
         ? prediction.ticketPlan
         : createProfitPlan(prediction, race, prediction.budget || 100000);
       const comparison = Engine.compareResult(prediction, race.result, plan);
-      nodes.resultStatus.textContent = prediction.captureStatus === 'demo-replay' ? `${state.edition === 'dayBefore' ? '前日版' : '当日版'}・架空デモ再現` : prediction.captureStatus === 'provider-snapshot' ? '提供済み発走前データを照合' : `${state.edition === 'dayBefore' ? '前日版' : '当日版'}の発走前予想を照合`;
+      nodes.resultStatus.textContent = prediction.captureStatus === 'demo-replay'
+        ? `${state.edition === 'dayBefore' ? '前日版' : '当日版'}・架空デモ再現`
+        : prediction.captureStatus === 'provider-snapshot'
+          ? '提供済み発走前データを照合'
+          : prediction.captureStatus === 'published-pre-race'
+            ? '8月9日・発走前参考予想を照合'
+            : prediction.captureStatus === 'published-post-race'
+              ? '結果後取得の参考照合（成績集計外）'
+              : `${state.edition === 'dayBefore' ? '前日版' : '当日版'}の発走前予想を照合`;
       const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.paperOnly ? '仮想 · ' : ''}${ticket.refunded ? '返還' : ticket.hit ? '的中' : ticket.returnKnown ? '不的中' : '判定保留'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
       nodes.resultContent.innerHTML = `<div class="result-scorecard">
         <article class="result-metric"><span>◎の1着</span><strong>${comparison.winnerHit ? '的中' : '不的中'}</strong><small>${comparison.winnerHit ? '本命が勝利' : `勝馬は予想${comparison.comparisons[0]?.predictedRank || '圏外'}位`}</small></article>
@@ -1041,13 +1131,16 @@
         const differenceLabel = difference === null ? '予想外' : difference === 0 ? '一致' : difference > 0 ? `${difference}位上振れ` : `${Math.abs(difference)}位下振れ`;
         const capturedOdds = Number.isFinite(Number(item.odds)) ? ` · 単${formatNumber(item.odds, 1)}` : '';
         return `<div class="comparison-row"><span class="finish-badge${item.finish <= 3 ? ' is-medal' : ''}">${item.finish}着</span><span class="comparison-name">${escapeHtml(item.name)} <small>${item.number}番 ${item.mark || ''}</small></span><span class="comparison-predicted">予想${item.predictedRank || '—'}位${capturedOdds}</span><span class="rank-diff${difference === 0 ? ' is-good' : Math.abs(difference || 0) >= 4 ? ' is-bad' : ''}">${differenceLabel}</span></div>`;
-      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>v4単勝の結果</h3><p>${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
+      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・買い判定' : 'v4単勝の結果'}</h3><p>${prediction.publishedPrediction ? '参考表示・実購入対象外' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
     }
     renderRecords();
   }
 
   function renderRecords() {
-    const resolver = (race, edition) => getFrozenPrediction(race, edition);
+    const resolver = (race, edition) => {
+      const prediction = getFrozenPrediction(race, edition);
+      return prediction?.captureStatus === 'published-post-race' ? null : prediction;
+    };
     const storedSignature = hashString(Object.entries(state.predictions).sort(([a], [b]) => a.localeCompare(b))
       .map(([key, value]) => `${key}:${value?.capturedAt || ''}`).join('|'));
     const planSignature = hashString(Object.entries(state.ticketPlans).sort(([a], [b]) => a.localeCompare(b))
@@ -1063,10 +1156,15 @@
     const record = aggregate(state.edition);
     const otherEdition = state.edition === 'dayBefore' ? 'final' : 'dayBefore';
     const otherRecord = aggregate(otherEdition);
-    nodes.recordRaceCount.textContent = `${record.overall.count}レース${state.dataset?.source?.mode === 'demo' ? '（架空デモ）' : ''}`;
+    const recordSuffix = state.dataset?.source?.mode === 'demo'
+      ? '（架空デモ）'
+      : state.dataset?.source?.mode === 'reference-archive' ? '（発走前参考のみ）' : '';
+    nodes.recordRaceCount.textContent = `${record.overall.count}レース${recordSuffix}`;
     const previous = state.edition === 'dayBefore' ? record : otherRecord;
     const final = state.edition === 'final' ? record : otherRecord;
-    nodes.editionComparison.innerHTML = `<div><span>前日版</span><strong>◎ ${formatNumber(previous.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(previous.overall.top3Rate, 1)}% · ${previous.overall.count}R</small></div><div><span>当日最終版</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div>`;
+    nodes.editionComparison.innerHTML = state.dataset?.source?.mode === 'reference-archive'
+      ? `<div><span>発走前取得</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div><div><span>結果後取得</span><strong>集計外</strong><small>${formatNumber(state.dataset?.archive?.postRaceReferenceCount)}R · 画面表示のみ</small></div>`
+      : `<div><span>前日版</span><strong>◎ ${formatNumber(previous.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(previous.overall.top3Rate, 1)}% · ${previous.overall.count}R</small></div><div><span>当日最終版</span><strong>◎ ${formatNumber(final.overall.winRate, 1)}%</strong><small>Top3 ${formatNumber(final.overall.top3Rate, 1)}% · ${final.overall.count}R</small></div>`;
     const returnRate = record.overall.returnRate;
     nodes.recordDashboard.innerHTML = `<div class="record-kpi"><strong>${formatNumber(record.overall.winRate, 1)}%</strong><span>◎勝率</span></div><div class="record-kpi"><strong>${record.overall.placeRate === null ? '—' : `${formatNumber(record.overall.placeRate, 1)}%`}</strong><span>◎複勝率</span></div><div class="record-kpi"><strong>${formatNumber(record.overall.top3Rate, 1)}%</strong><span>Top3一致</span></div><div class="record-kpi"><strong>${returnRate === null ? '—' : `${formatNumber(returnRate, 1)}%`}</strong><span>回収率</span></div>`;
     nodes.recordTableBody.innerHTML = record.groups.map(group => `<tr><td>${escapeHtml(group.label)}</td><td>${formatNumber(group.winRate, 1)}%</td><td>${group.placeRate === null ? '—' : `${formatNumber(group.placeRate, 1)}%`}</td><td>${formatNumber(group.top3Rate, 1)}%</td><td>${group.count}R</td></tr>`).join('') || '<tr><td colspan="5">確定レースがありません</td></tr>';
@@ -1084,25 +1182,30 @@
     const source = state.dataset?.source || {};
     const synthetic = source.mode === 'demo';
     const unavailable = source.mode === 'unavailable';
+    const referenceArchive = source.mode === 'reference-archive';
     const asOfGuaranteed = source.asOfFieldsGuaranteed === true;
-    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : unavailable ? '実データ待ち' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
+    nodes.learningStatus.textContent = synthetic ? 'デモでは停止' : unavailable ? '実データ待ち' : referenceArchive ? '参考表示のみ' : !asOfGuaranteed ? '保証待ち' : state.autoLearning ? '自動検証中' : '検証可能';
     nodes.learningStatus.className = `status-pill ${synthetic || unavailable || !asOfGuaranteed ? 'is-warning' : 'is-ok'}`;
     const eligibleHistory = asOfGuaranteed ? state.dataset?.races?.filter(race => Engine.isHistoricalRaceEligible(race, 'final')).length || 0 : 0;
     nodes.learningDescription.textContent = synthetic
       ? '架空データで改善済みとは表示しません。利用許諾済みの確定レースを端末へ読み込むと、過去1年を時系列で分割して検証できます。'
       : unavailable
         ? 'まずJRA公式の詳細出馬表HTMLを端末内へ取り込んでください。発走前に保存した予想だけを、結果取込後に検証します。'
+      : referenceArchive
+        ? `8月9日の実データ36Rを表示中です。発走前に取得した${formatNumber(state.dataset?.archive?.preRaceReferenceCount)}Rだけを参考精度へ集計し、結果後取得分は学習・利益検証から除外します。`
       : asOfGuaranteed
         ? `提供元が発走前時点で固定済みと保証した確定${eligibleHistory}レースを、開催日単位で古い60%・中間20%・新しい20%へ分けて検証します。`
         : '特徴量が発走前時点で固定済みという提供元保証がないため、配点学習は実行しません。';
     nodes.runLearningButton.disabled = synthetic || unavailable || !asOfGuaranteed;
     nodes.dataGeneratedAt.textContent = `更新 ${formatTimestamp(state.dataset?.generatedAt)}`;
-    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : unavailable ? '未取込' : source.mode === 'local-jra' ? 'JRA端末内' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
+    nodes.dataStatusPill.textContent = synthetic ? '架空デモ' : unavailable ? '未取込' : referenceArchive ? '8/9実データ' : source.mode === 'local-jra' ? 'JRA端末内' : state.datasetOrigin === 'imported' ? '端末内' : source.automated ? '自動更新' : '接続済み';
     nodes.dataStatusPill.className = `status-pill ${synthetic || unavailable ? 'is-warning' : 'is-ok'}`;
     nodes.dataSourceCopy.textContent = synthetic
       ? '現在は実在のレース・馬・オッズではないUI確認用データです。JRA公式ページの無断自動取得・再配布は行っていません。'
       : unavailable
         ? '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
+      : referenceArchive
+        ? '2026年8月9日の札幌・新潟・中京を、取得済み出馬情報と当日モデル勝率、JRA公式照合済みの上位着順で再現しています。結果後取得分は画面上で明示し、前向き成績には混ぜません。'
       : `${source.name || 'インポートデータ'}。基礎能力の100点評価はオッズと分離し、v4では最後に市場確率・適正オッズ・保守EVの判定だけへ利用します。`;
     nodes.weightChangeLog.innerHTML = state.changes.slice(0, 4).map(change => `<div class="change-item"><strong>${escapeHtml(change.adopted ? '配点更新' : '据え置き')}</strong> · ${escapeHtml(formatTimestamp(change.at))}<br>${escapeHtml(change.reason)}${change.validation ? `（検証 ${change.validation.before} → ${change.validation.after}）` : ''}</div>`).join('');
   }
@@ -1305,7 +1408,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=200');
+      const worker = new Worker('./learning-worker.js?v=210');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));

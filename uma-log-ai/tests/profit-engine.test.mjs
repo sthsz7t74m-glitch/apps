@@ -73,6 +73,27 @@ test('browser score probabilities are visible for reference but cannot unlock a 
   assert.ok(analysis.rows.every(row => row.probabilityLower90 === null));
 });
 
+test('a published final probability is reproduced exactly and never becomes a v4 bet', () => {
+  const probabilities = [.5168107857362774, .2, .12, .09, .0731892142637226];
+  const prediction = trustedPrediction({
+    generatedAt: '2026-08-09T10:08:00+09:00',
+    capturedAt: '2026-08-09T10:08:00+09:00',
+    probabilityModel: { version: '2.0.0-stable', frozenBeforePost: false, output: 'final-win-probability' },
+    runners: trustedPrediction().runners.map(({ v3WinProbability, ...runner }, index) => ({
+      ...runner,
+      modelProbability: probabilities[index]
+    }))
+  });
+  const archivedRace = { ...race, date: '2026-08-09', startTime: '10:00' };
+  const analysis = ProfitEngine.analyze(prediction, { race: archivedRace, gateStatus: 'VERIFIED', bankrollYen: 100000 });
+  assert.equal(analysis.status, 'REFERENCE_ONLY');
+  assert.equal(analysis.modelSource, 'published-final-probability');
+  assert.equal(analysis.modelTrusted, false);
+  assert.ok(Math.abs(analysis.rows[0].v4Probability - probabilities[0]) < 1e-12);
+  assert.equal(analysis.realStakeYen, 0);
+  assert.equal(analysis.paperStakeYen, 0);
+});
+
 test('snapshot timing outside one to ten minutes before post is rejected', () => {
   const prediction = trustedPrediction({ capturedAt: '2026-08-15T09:40:00+09:00' });
   const analysis = ProfitEngine.analyze(prediction, { race, gateStatus: 'LOCKED', bankrollYen: 100000 });

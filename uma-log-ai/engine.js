@@ -740,7 +740,7 @@
       if (comparison) entries.push({ race, effectiveRace: mergeRaceEdition(race, edition), prediction, comparison });
     });
     const groups = [];
-    ['東京', '中山', '京都'].forEach(venue => {
+    JRA_VENUES.forEach(venue => {
       const items = entries.filter(entry => entry.race.venue === venue);
       if (items.length) groups.push(summarizeGroup(items, venue));
     });
@@ -994,7 +994,42 @@
       if (race.probabilityModel !== null && race.probabilityModel !== undefined) {
         if (typeof race.probabilityModel !== 'object' || Array.isArray(race.probabilityModel)) fail(`${race.id}.probabilityModel が不正です`);
         stringValue(race.probabilityModel.version, `${race.id}.probabilityModel.version`, { required: true, max: 80 });
-        if (race.probabilityModel.frozenBeforePost !== true) fail(`${race.id}.probabilityModel.frozenBeforePost は true が必要です`);
+        if (typeof race.probabilityModel.frozenBeforePost !== 'boolean') fail(`${race.id}.probabilityModel.frozenBeforePost は真偽値が必要です`);
+        enumValue(race.probabilityModel.output, ['model-probability', 'final-win-probability'], `${race.id}.probabilityModel.output`);
+      }
+      if (race.publishedPrediction !== null && race.publishedPrediction !== undefined) {
+        const published = race.publishedPrediction;
+        if (typeof published !== 'object' || Array.isArray(published)) fail(`${race.id}.publishedPrediction が不正です`);
+        stringValue(published.modelVersion, `${race.id}.publishedPrediction.modelVersion`, { required: true, max: 80 });
+        timestampValue(published.generatedAt, `${race.id}.publishedPrediction.generatedAt`, true);
+        timestampValue(published.capturedAt, `${race.id}.publishedPrediction.capturedAt`, true);
+        enumValue(published.captureTiming, ['pre-race', 'post-race'], `${race.id}.publishedPrediction.captureTiming`, true);
+        enumValue(published.output, ['final-win-probability'], `${race.id}.publishedPrediction.output`, true);
+        numberValue(published.minutesBeforePost, `${race.id}.publishedPrediction.minutesBeforePost`, { required: true, min: -1440, max: 1440 });
+        if (!Array.isArray(published.runners) || published.runners.length < 3 || published.runners.length > 24) fail(`${race.id}.publishedPrediction.runners が不正です`);
+        const publishedNumbers = new Set();
+        const publishedRanks = new Set();
+        let publishedProbabilityTotal = 0;
+        published.runners.forEach((runner, runnerIndex) => {
+          const label = `${race.id}.publishedPrediction.runners[${runnerIndex}]`;
+          if (!runner || typeof runner !== 'object' || Array.isArray(runner)) fail(`${label} が不正です`);
+          numberValue(runner.number, `${label}.number`, { required: true, min: 1, max: 40, integer: true });
+          numberValue(runner.rank, `${label}.rank`, { required: true, min: 1, max: 24, integer: true });
+          numberValue(runner.probability, `${label}.probability`, { required: true, min: Number.EPSILON, max: 1 - Number.EPSILON });
+          numberValue(runner.odds, `${label}.odds`, { min: 1, max: 100000 });
+          numberValue(runner.fairOdds, `${label}.fairOdds`, { min: 1, max: 100000 });
+          if (publishedNumbers.has(Number(runner.number))) fail(`${label}.number が重複しています`);
+          if (publishedRanks.has(Number(runner.rank))) fail(`${label}.rank が重複しています`);
+          publishedNumbers.add(Number(runner.number));
+          publishedRanks.add(Number(runner.rank));
+          publishedProbabilityTotal += Number(runner.probability);
+        });
+        if (Math.abs(publishedProbabilityTotal - 1) > 1e-4) fail(`${race.id}.publishedPrediction の勝率合計が1ではありません`);
+        if (race.probabilityModel?.version !== published.modelVersion
+          || race.probabilityModel?.output !== published.output
+          || race.probabilityModel?.frozenBeforePost !== (published.captureTiming === 'pre-race')) {
+          fail(`${race.id}.publishedPrediction と probabilityModel が一致しません`);
+        }
       }
       if (race.versions !== null && race.versions !== undefined) {
         if (typeof race.versions !== 'object' || Array.isArray(race.versions)) fail(`${race.id}.versions が不正です`);
@@ -1068,6 +1103,13 @@
       const v3Probabilities = race.horses.map(horse => numeric(horse.v3WinProbability)).filter(value => value !== null);
       if (v3Probabilities.length && v3Probabilities.length !== race.horses.length) fail(`${race.id}: v3WinProbability は全出走馬分が必要です`);
       if (v3Probabilities.length && Math.abs(v3Probabilities.reduce((sum, value) => sum + value, 0) - 1) > 1e-4) fail(`${race.id}: v3WinProbability の合計が1ではありません`);
+      if (race.publishedPrediction) {
+        const activeNumbers = new Set(race.horses.filter(horse => horse.scratched !== true).map(horse => Number(horse.number)));
+        const publishedNumbers = new Set(race.publishedPrediction.runners.map(runner => Number(runner.number)));
+        if (activeNumbers.size !== publishedNumbers.size || [...publishedNumbers].some(number => !activeNumbers.has(number))) {
+          fail(`${race.id}.publishedPrediction の馬番が有効な出走馬と一致しません`);
+        }
+      }
       if (race.result !== null && race.result !== undefined) {
         if (typeof race.result !== 'object' || Array.isArray(race.result) || !Array.isArray(race.result.order)) fail(`${race.id}.result が不正です`);
         enumValue(race.result.status, ['final'], `${race.id}.result.status`);

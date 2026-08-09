@@ -5,7 +5,8 @@
 }(typeof globalThis !== 'undefined' ? globalThis : this, function createEngine() {
   'use strict';
 
-  const ENGINE_VERSION = '1.3.0';
+  const ENGINE_VERSION = '2.0.0';
+  const JRA_VENUES = Object.freeze(['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']);
 
   const CATEGORY_META = [
     { key: 'recentForm', label: '直近5走', short: '近走', weight: 22 },
@@ -138,6 +139,13 @@
     }
     const speed = numeric(run.speedRating);
     if (speed !== null) parts.push({ value: clamp((speed - 55) / 65), weight: 1.7 });
+    const explicitLast4F = numeric(run.last4FAcceleration);
+    if (explicitLast4F !== null) parts.push({ value: clamp(explicitLast4F / 100), weight: 1 });
+    const splits = Array.isArray(run.last4FSplits) ? run.last4FSplits.map(numeric) : [];
+    if (splits.length === 4 && splits.every(value => value !== null && value >= 9 && value <= 18)) {
+      const acceleration = clamp(.5 + (splits[0] - splits[3]) / 4);
+      parts.push({ value: acceleration, weight: 1 });
+    }
     const quality = weightedMean(parts);
     return quality === null ? null : clamp(quality);
   }
@@ -154,6 +162,12 @@
     const recentTop3 = runs.filter(run => numeric(run.finish) !== null && Number(run.finish) <= 3).length;
     if (recentTop3) evidence.push(`近5走で3着内${recentTop3}回`);
     if (numeric(latest?.last3FRank) === 1) evidence.push('前走上がり最速');
+    if (numeric(latest?.last4FAcceleration) >= 70) evidence.push('前走ラスト4Fの加速が優秀');
+    if (Array.isArray(latest?.last4FSplits) && latest.last4FSplits.length === 4) {
+      const first = numeric(latest.last4FSplits[0]);
+      const last = numeric(latest.last4FSplits[3]);
+      if (first !== null && last !== null && last < first) evidence.push('前走ラスト4Fで加速');
+    }
     return metric(ratio, usable / 5, evidence.length ? evidence : '近走データ不足');
   }
 
@@ -232,17 +246,21 @@
     const pace = stylePaceFit(horse.runningStyle || 'unknown', race.pace || 'middle');
     const explicitPace = ratioFromPercent(horse.paceFit);
     const explicitDraw = ratioFromPercent(horse.drawFit);
+    const startAbility = ratioFromPercent(horse.startScore);
     const ratio = weightedMean([
       { value: drawScore, weight: 1.2 },
       { value: pace, weight: 2 },
       { value: explicitPace, weight: 1 },
-      { value: explicitDraw, weight: .8 }
+      { value: explicitDraw, weight: .8 },
+      { value: startAbility, weight: 1.15 }
     ]);
     const paceLabel = { fast: '速め', middle: '平均', slow: '遅め' }[race.pace] || '不明';
     const evidence = [`想定${paceLabel}×${STYLE_LABELS[horse.runningStyle] || '脚質不明'}`];
     if (drawScore !== null && drawScore >= .7) evidence.push('枠順に追い風');
     if (pace >= .75) evidence.push('展開が向きそう');
-    return metric(ratio, clamp((gate !== null ? .35 : 0) + (horse.runningStyle ? .35 : 0) + (explicitPace !== null ? .15 : 0) + (explicitDraw !== null ? .15 : 0)), evidence);
+    if (startAbility !== null && startAbility >= .72) evidence.push('スタート評価が高い');
+    if (startAbility !== null && startAbility <= .35) evidence.push('出遅れリスクあり');
+    return metric(ratio, clamp((gate !== null ? .27 : 0) + (horse.runningStyle ? .28 : 0) + (explicitPace !== null ? .13 : 0) + (explicitDraw !== null ? .12 : 0) + (startAbility !== null ? .2 : 0)), evidence);
   }
 
   function scoreJockey(horse, race) {
@@ -294,8 +312,17 @@
     if (bodyWeight !== null) evidence.push(`馬体重${bodyWeight}kg`);
     const explicit = ratioFromPercent(horse.conditionScore);
     values.push({ value: explicit, weight: 1.1 });
+    const muscle = ratioFromPercent(horse.muscleScore);
+    values.push({ value: muscle, weight: 1.1 });
+    if (muscle !== null && muscle >= .72) evidence.push('パドック筋肉評価が良好');
+    const temperatureFit = ratioFromPercent(horse.temperatureFit);
+    values.push({ value: temperatureFit, weight: .55 });
+    if (temperatureFit !== null && fieldContext.temperatureC !== null) evidence.push(`気温${fieldContext.temperatureC}℃への適性を反映`);
+    const windFit = ratioFromPercent(horse.windFit);
+    values.push({ value: windFit, weight: .55 });
+    if (windFit !== null && fieldContext.windSpeedMps !== null) evidence.push(`風速${fieldContext.windSpeedMps}m/sへの適性を反映`);
     const ratio = weightedMean(values);
-    return metric(ratio, values.filter(item => item.value !== null).length / 5, evidence.length ? evidence : '当日状態データ不足');
+    return metric(ratio, values.filter(item => item.value !== null).length / 8, evidence.length ? evidence : '当日状態データ不足');
   }
 
   function scoreClassLevel(horse, race) {
@@ -405,15 +432,32 @@
     return { value, label, reason, coverage: round(coverage, 0), topGap: round(topGap, 1) };
   }
 
+  function inferFieldPace(horses, edition) {
+    const styles = horses.map(horse => mergeHorseEdition(horse, edition).runningStyle).filter(Boolean);
+    if (!styles.length) return 'middle';
+    const front = styles.filter(style => style === 'front').length;
+    const forward = front + styles.filter(style => style === 'stalk').length * .45;
+    if (front >= 3 || forward / styles.length >= .38) return 'fast';
+    if (front === 0 && forward / styles.length <= .13) return 'slow';
+    return 'middle';
+  }
+
   function scoreRace(race, edition = 'final', weightInput = DEFAULT_WEIGHTS) {
     if (!race || !Array.isArray(race.horses)) throw new Error('出走馬データがありません');
-    const effectiveRace = mergeRaceEdition(race, edition);
     const weights = normalizeWeights(weightInput);
     const activeHorses = race.horses.filter(horse => !mergeHorseEdition(horse, edition).scratched);
+    const mergedRace = mergeRaceEdition(race, edition);
+    const effectiveRace = { ...mergedRace, pace: mergedRace.pace || inferFieldPace(activeHorses, edition) };
     const maxGate = Math.max(1, ...activeHorses.map(horse => Number(mergeHorseEdition(horse, edition).gate) || 1));
     const meanCarriedWeight = mean(activeHorses.map(horse => mergeHorseEdition(horse, edition).carriedWeight));
+    const fieldContext = {
+      meanCarriedWeight,
+      temperatureC: numeric(effectiveRace.temperatureC),
+      windSpeedMps: numeric(effectiveRace.windSpeedMps),
+      windDirection: effectiveRace.windDirection || null
+    };
     const runners = activeHorses
-      .map(horse => scoreHorse(horse, effectiveRace, edition, weights, maxGate, { meanCarriedWeight }))
+      .map(horse => scoreHorse(horse, effectiveRace, edition, weights, maxGate, fieldContext))
       .sort((a, b) => b.scoreRaw - a.scoreRaw
         || b.coverage - a.coverage
         || b.breakdown.recentForm.ratio - a.breakdown.recentForm.ratio
@@ -442,6 +486,8 @@
       engineVersion: ENGINE_VERSION,
       fieldSize: Number(effectiveRace.bettingFieldSize) || activeHorses.length,
       generatedAt: new Date().toISOString(),
+      probabilityModel: effectiveRace.probabilityModel || null,
+      inferredPace: !mergedRace.pace,
       weights,
       confidence: confidenceFor(runners),
       runners
@@ -859,6 +905,11 @@
       numberValue(run.speedRating, `${label}.speedRating`, { min: 0, max: 200 });
       numberValue(run.classLevel, `${label}.classLevel`, { min: 0, max: 20 });
       numberValue(run.opponentRating, `${label}.opponentRating`, { min: 0, max: 100 });
+      numberValue(run.last4FAcceleration, `${label}.last4FAcceleration`, { min: 0, max: 100 });
+      if (run.last4FSplits !== null && run.last4FSplits !== undefined) {
+        if (!Array.isArray(run.last4FSplits) || run.last4FSplits.length !== 4) fail(`${label}.last4FSplits は4区間の配列にしてください`);
+        run.last4FSplits.forEach((split, index) => numberValue(split, `${label}.last4FSplits[${index}]`, { required: true, min: 9, max: 18 }));
+      }
     };
     const validateHorseFields = (horse, label) => {
       stringValue(horse.id, `${label}.id`, { max: 180 });
@@ -877,7 +928,8 @@
       numberValue(horse.popularity, `${label}.popularity`, { min: 1, max: 40, integer: true });
       numberValue(horse.number, `${label}.number`, { min: 1, max: 40, integer: true });
       if (horse.scratched !== undefined && typeof horse.scratched !== 'boolean') fail(`${label}.scratched が不正です`);
-      ['distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore'].forEach(key => numberValue(horse[key], `${label}.${key}`, { min: 0, max: 100 }));
+      ['distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore', 'startScore', 'muscleScore', 'temperatureFit', 'windFit'].forEach(key => numberValue(horse[key], `${label}.${key}`, { min: 0, max: 100 }));
+      numberValue(horse.v3WinProbability, `${label}.v3WinProbability`, { min: Number.EPSILON, max: 1 - Number.EPSILON });
       validateRateObject(horse.jockeyStats, `${label}.jockeyStats`);
       validateRateObject(horse.trainerStats, `${label}.trainerStats`);
       if (horse.pedigree !== null && horse.pedigree !== undefined) {
@@ -909,7 +961,7 @@
       stringValue(race.id, `${raceIndex + 1}件目のrace.id`, { required: true, max: 180 });
       if (ids.has(race.id)) throw new Error(`${raceIndex + 1}件目のレースIDが重複しています`);
       ids.add(race.id);
-      if (!['東京', '中山', '京都'].includes(race.venue)) throw new Error(`${race.id}: 対応外の競馬場です`);
+      if (!JRA_VENUES.includes(race.venue)) throw new Error(`${race.id}: 対応外の競馬場です`);
       dateValue(race.date, `${race.id}.date`, true);
       if (!Number.isInteger(Number(race.raceNumber)) || Number(race.raceNumber) < 1 || Number(race.raceNumber) > 12) throw new Error(`${race.id}: raceNumber は1〜12です`);
       const slot = `${race.date}:${race.venue}:${Number(race.raceNumber)}`;
@@ -934,13 +986,23 @@
       numberValue(race.classLevel, `${race.id}.classLevel`, { min: 0, max: 20 });
       numberValue(race.drawBias, `${race.id}.drawBias`, { min: -2, max: 2 });
       numberValue(race.bettingFieldSize, `${race.id}.bettingFieldSize`, { min: 2, max: 24, integer: true });
+      numberValue(race.temperatureC, `${race.id}.temperatureC`, { min: -25, max: 55 });
+      numberValue(race.windSpeedMps, `${race.id}.windSpeedMps`, { min: 0, max: 80 });
+      stringValue(race.windDirection, `${race.id}.windDirection`, { max: 24 });
+      timestampValue(race.oddsSnapshotAt, `${race.id}.oddsSnapshotAt`);
+      if (race.isDebut !== undefined && typeof race.isDebut !== 'boolean') fail(`${race.id}.isDebut が不正です`);
+      if (race.probabilityModel !== null && race.probabilityModel !== undefined) {
+        if (typeof race.probabilityModel !== 'object' || Array.isArray(race.probabilityModel)) fail(`${race.id}.probabilityModel が不正です`);
+        stringValue(race.probabilityModel.version, `${race.id}.probabilityModel.version`, { required: true, max: 80 });
+        if (race.probabilityModel.frozenBeforePost !== true) fail(`${race.id}.probabilityModel.frozenBeforePost は true が必要です`);
+      }
       if (race.versions !== null && race.versions !== undefined) {
         if (typeof race.versions !== 'object' || Array.isArray(race.versions)) fail(`${race.id}.versions が不正です`);
         ['dayBefore', 'final'].forEach(edition => {
           const override = race.versions[edition];
           if (override === null || override === undefined) return;
           if (typeof override !== 'object' || Array.isArray(override) || override.horses !== undefined || override.result !== undefined) fail(`${race.id}.versions.${edition} が不正です`);
-          const allowed = new Set(['surface', 'direction', 'going', 'weather', 'pace', 'distance', 'classLevel', 'drawBias']);
+          const allowed = new Set(['surface', 'direction', 'going', 'weather', 'pace', 'distance', 'classLevel', 'drawBias', 'temperatureC', 'windSpeedMps', 'windDirection']);
           const unknown = Object.keys(override).find(key => !allowed.has(key));
           if (unknown) fail(`${race.id}.versions.${edition}.${unknown} は変更できません`);
           enumValue(override.surface, ['turf', 'dirt'], `${race.id}.versions.${edition}.surface`);
@@ -951,6 +1013,9 @@
           numberValue(override.distance, `${race.id}.versions.${edition}.distance`, { min: 800, max: 5000, integer: true });
           numberValue(override.classLevel, `${race.id}.versions.${edition}.classLevel`, { min: 0, max: 20 });
           numberValue(override.drawBias, `${race.id}.versions.${edition}.drawBias`, { min: -2, max: 2 });
+          numberValue(override.temperatureC, `${race.id}.versions.${edition}.temperatureC`, { min: -25, max: 55 });
+          numberValue(override.windSpeedMps, `${race.id}.versions.${edition}.windSpeedMps`, { min: 0, max: 80 });
+          stringValue(override.windDirection, `${race.id}.versions.${edition}.windDirection`, { max: 24 });
         });
       }
       if (race.snapshots !== null && race.snapshots !== undefined) {
@@ -1000,6 +1065,9 @@
           });
         }
       });
+      const v3Probabilities = race.horses.map(horse => numeric(horse.v3WinProbability)).filter(value => value !== null);
+      if (v3Probabilities.length && v3Probabilities.length !== race.horses.length) fail(`${race.id}: v3WinProbability は全出走馬分が必要です`);
+      if (v3Probabilities.length && Math.abs(v3Probabilities.reduce((sum, value) => sum + value, 0) - 1) > 1e-4) fail(`${race.id}: v3WinProbability の合計が1ではありません`);
       if (race.result !== null && race.result !== undefined) {
         if (typeof race.result !== 'object' || Array.isArray(race.result) || !Array.isArray(race.result.order)) fail(`${race.id}.result が不正です`);
         enumValue(race.result.status, ['final'], `${race.id}.result.status`);
@@ -1055,6 +1123,7 @@
 
   return {
     ENGINE_VERSION,
+    JRA_VENUES,
     CATEGORY_META,
     DEFAULT_WEIGHTS,
     STYLE_LABELS,
@@ -1071,6 +1140,6 @@
     predictionDeadline,
     validateDataset,
     distanceBand,
-    _test: { clamp, runQuality, performanceScore, normalizeCombo, combinations }
+    _test: { clamp, runQuality, performanceScore, normalizeCombo, combinations, inferFieldPace }
   };
 }));

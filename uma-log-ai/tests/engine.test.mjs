@@ -39,6 +39,21 @@ test('initial category weights total exactly 100', () => {
   assert.equal(Engine.CATEGORY_META.length, 10);
 });
 
+test('all ten JRA venues are supported', () => {
+  assert.deepEqual(Engine.JRA_VENUES, ['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']);
+});
+
+test('field running styles infer the race pace and last-four-furlong acceleration affects quality', () => {
+  const horses = [1, 2, 3, 4, 5].map(number => minimalHorse(number, { runningStyle: number <= 3 ? 'front' : 'mid' }));
+  const sample = minimalRace(horses);
+  sample.pace = null;
+  const prediction = Engine.scoreRace(sample, 'final');
+  assert.equal(prediction.inferredPace, true);
+  const accelerating = Engine._test.runQuality({ finish: 3, fieldSize: 12, last4FSplits: [12.6, 12.1, 11.8, 11.4] });
+  const fading = Engine._test.runQuality({ finish: 3, fieldSize: 12, last4FSplits: [11.4, 11.8, 12.1, 12.6] });
+  assert.ok(accelerating > fading);
+});
+
 test('weight normalization is non-negative and totals exactly 100 for hostile persisted values', () => {
   const hostile = {
     recentForm: .0043878,
@@ -275,7 +290,7 @@ test('result comparison retains the odds captured with the prediction', () => {
   assert.equal(comparison.comparisons[0].popularity, 2);
 });
 
-test('demo dataset is valid, covers all 3 venues and all 12 races, and produces finite scores', () => {
+test('demo dataset is valid, covers its 3 sample venues and all 12 races, and produces finite scores', () => {
   assert.equal(Engine.validateDataset(globalThis.UMA_LOG_DEMO), true);
   const latestDate = [...new Set(globalThis.UMA_LOG_DEMO.races.map(race => race.date))].sort().at(-1);
   for (const venue of ['東京', '中山', '京都']) {

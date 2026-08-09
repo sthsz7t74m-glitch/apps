@@ -86,10 +86,16 @@ test('result HTML merges into the matching card while retaining pre-race evidenc
 
 test('unsafe or ambiguous inputs fail closed', () => {
   assert.throws(() => Importer.importHtml(resultHtml({ tie: true }), null, new Date('2026-09-12T11:00:00+09:00')), /同着/);
-  assert.throws(() => Importer.importHtml(cardHtml({ venue: '阪神' }), null, new Date('2026-09-11T12:00:00+09:00')), /東京・中山・京都/);
   const jump = cardHtml().replace('芝1,200メートル（右）', '3,000メートル（芝→ダート）');
   assert.throws(() => Importer.importHtml(jump, null, new Date('2026-09-12T11:00:00+09:00'), 'reference'), /平地競走/);
   assert.throws(() => Importer.importHtml('<img src="https://example.invalid/pixel">', null), /詳細出馬表またはレース結果/);
+});
+
+test('all ten JRA venues are accepted', () => {
+  for (const venue of Engine.JRA_VENUES) {
+    const imported = Importer.importHtml(cardHtml({ venue }), null, new Date('2026-09-11T12:00:00+09:00'), 'dayBefore');
+    assert.equal(imported.race.venue, venue);
+  }
 });
 
 test('snapshot edition boundaries are explicit and fail closed', () => {

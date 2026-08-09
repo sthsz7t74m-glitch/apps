@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'">
-  <meta name="description" content="近走・適性・騎手など10項目を100点で評価し、予想と実際の結果を振り返る競馬予想PWA">
+  <meta name="description" content="勝率・適正オッズ・保守期待値を計算し、前向き収支を検証する競馬予想PWA">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="うまログAI">
-  <title>うまログAI</title>
+  <meta name="apple-mobile-web-app-title" content="競馬予想">
+  <title>競馬予想</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-  <link rel="stylesheet" href="./styles.css?v=130">
+  <link rel="stylesheet" href="./styles.css?v=200">
 </head>
 <body>
   <div class="app-shell">
@@ -21,7 +21,7 @@
       <div class="brand-lockup">
         <span class="brand-mark" aria-hidden="true">馬</span>
         <div>
-          <div class="brand-line"><h1>うまログAI</h1><span class="edition">v1.3.0</span></div>
+          <div class="brand-line"><h1>競馬予想</h1><span class="edition">v2.0.0</span></div>
           <p id="sourceSummary">データを読み込んでいます</p>
         </div>
       </div>
@@ -34,6 +34,12 @@
       <span class="live-dot"></span>
       <strong id="sourceMode">確認中</strong>
       <span id="sourceDetail">最新データを確認しています</span>
+    </div>
+
+    <div class="gate-banner is-locked" id="gateBanner" role="status">
+      <span class="gate-icon" aria-hidden="true">盾</span>
+      <strong id="gateStatus">利益ゲート LOCKED</strong>
+      <span id="gateDetail">条件通過までは実購入0円</span>
     </div>
 
     <section class="race-control" aria-label="レース選択">
@@ -80,30 +86,31 @@
 
       <section class="view" id="ticketView" data-view="tickets" aria-labelledby="ticketViewTitle" hidden>
         <div class="section-heading page-heading">
-          <div><p class="eyebrow">TICKETS</p><h2 id="ticketViewTitle">推奨買い目</h2></div>
+          <div><p class="eyebrow">VALUE DECISION</p><h2 id="ticketViewTitle">確率・買い判定</h2></div>
           <span id="ticketConfidence">—</span>
         </div>
         <article class="budget-card panel">
-          <div class="budget-label"><label for="budgetInput">1レースの予算</label><strong><output id="budgetOutput" for="budgetInput">3,000</output>円</strong></div>
-          <input id="budgetInput" type="range" min="500" max="20000" step="100" value="3000">
+          <div class="budget-label"><label for="budgetInput">資金総額（解禁後の金額計算用）</label><strong><output id="budgetOutput" for="budgetInput">100,000</output>円</strong></div>
+          <input id="budgetInput" type="range" min="10000" max="1000000" step="10000" value="100000">
           <div class="budget-presets" role="group" aria-label="予算プリセット">
-            <button type="button" data-budget="1000">1,000円</button>
-            <button type="button" data-budget="3000" class="is-active">3,000円</button>
-            <button type="button" data-budget="5000">5,000円</button>
-            <button type="button" data-budget="10000">10,000円</button>
+            <button type="button" data-budget="10000">1万円</button>
+            <button type="button" data-budget="50000">5万円</button>
+            <button type="button" data-budget="100000" class="is-active">10万円</button>
+            <button type="button" data-budget="300000">30万円</button>
           </div>
-          <p>点数差と自信度だけで配分します。オッズは金額計算に使いません。</p>
+          <p>v4は単勝1頭だけを候補にし、オッズ10%低下後の90%勝率下限で保守EVを計算します。現在は利益ゲート未通過のため、資金額にかかわらず実購入0円です。</p>
         </article>
         <div class="ticket-summary" id="ticketSummary"></div>
         <div class="ticket-groups" id="ticketGroups"></div>
-        <p class="responsible-note">予想は情報整理用で、的中を保証するものではありません。馬券は20歳になってから。無理のない範囲で楽しんでください。</p>
+        <p class="responsible-note">将来の利益や的中を保証するものではありません。馬券は20歳になってから。生活資金を使わず、実購入は必ずご自身で判断してください。</p>
       </section>
 
       <section class="view" id="resultView" data-view="results" aria-labelledby="resultViewTitle" hidden>
         <div class="section-heading page-heading">
-          <div><p class="eyebrow">REVIEW</p><h2 id="resultViewTitle">予想と結果</h2></div>
+          <div><p class="eyebrow">FORWARD VALIDATION</p><h2 id="resultViewTitle">予想と収支検証</h2></div>
           <span id="resultStatus">結果待ち</span>
         </div>
+        <div id="forwardValidationSummary"></div>
         <div id="resultContent"></div>
         <div class="section-heading secondary-heading">
           <div><p class="eyebrow">TRACK RECORD</p><h2>累積成績</h2></div>
@@ -112,17 +119,28 @@
         <div class="edition-comparison" id="editionComparison"></div>
         <div class="record-dashboard" id="recordDashboard"></div>
         <div class="record-table-wrap panel"><table class="record-table"><thead><tr><th>条件</th><th>◎勝率</th><th>◎複勝率</th><th>Top3一致</th><th>対象</th></tr></thead><tbody id="recordTableBody"></tbody></table></div>
-        <div class="section-heading secondary-heading"><div><p class="eyebrow">BY TICKET</p><h2>券種別成績</h2></div></div>
+        <div class="section-heading secondary-heading"><div><p class="eyebrow">WIN BET</p><h2>単勝・仮想収支</h2></div></div>
         <div class="record-table-wrap panel"><table class="record-table ticket-record-table"><thead><tr><th>券種</th><th>的中</th><th>購入</th><th>払戻</th><th>回収率</th></tr></thead><tbody id="ticketRecordBody"></tbody></table></div>
       </section>
 
       <section class="view" id="settingsView" data-view="settings" aria-labelledby="settingsViewTitle" hidden>
         <div class="section-heading page-heading">
-          <div><p class="eyebrow">MODEL &amp; DATA</p><h2 id="settingsViewTitle">採点・データ設定</h2></div>
-          <span>100点満点</span>
+          <div><p class="eyebrow">MODEL &amp; DATA</p><h2 id="settingsViewTitle">モデル・データ設定</h2></div>
+          <span>v4固定</span>
         </div>
+        <article class="panel settings-card v4-policy-card">
+          <div class="panel-heading"><div><h3>利益判定v4</h3><p>式と購入基準は前向き検証中に変更しません</p></div><span class="status-pill is-warning">LOCKED</span></div>
+          <div class="formula-card"><span>市場確率 q と基礎勝率 p を合成</span><code>p₄ ∝ q × (p ÷ q)<sup>0.8</sup></code></div>
+          <ul class="policy-list">
+            <li>対象は平地・新馬戦以外、1レース最大1頭の単勝のみ</li>
+            <li>発走1〜10分前に取得し、2分以内に計算したオッズを10%下げて使用</li>
+            <li>90%勝率下限による保守EVが+5%以上だけ仮想100円</li>
+            <li>解禁後も8分の1Kelly、1R資金0.25%・1日1%が上限</li>
+          </ul>
+          <ul class="activation-list" id="activationChecklist"></ul>
+        </article>
         <article class="panel settings-card">
-          <div class="panel-heading"><div><h3>現在の配点</h3><p>オッズを除外した10項目</p></div><button class="text-button" id="resetWeightsButton" type="button">初期値に戻す</button></div>
+          <div class="panel-heading"><div><h3>基礎能力モデル</h3><p>オッズと分離した10項目・100点</p></div><button class="text-button" id="resetWeightsButton" type="button">初期値に戻す</button></div>
           <div class="weight-list" id="weightList"></div>
           <div class="weight-total"><span>合計</span><strong id="weightTotal">100点</strong></div>
         </article>
@@ -137,12 +155,12 @@
           <p class="body-copy" id="dataSourceCopy">データソースを確認しています。</p>
           <label class="import-mode-field" for="jraSnapshotMode"><span>出馬表の取込方法</span><select id="jraSnapshotMode"><option value="" selected>選択してください</option><option value="dayBefore">前日版として確定（レース前日のみ）</option><option value="final">当日最終版として確定（当日締切前のみ）</option><option value="reference">参考表示・結果取込（予想を確定しない）</option></select></label>
           <button class="secondary-action full-width jra-import-action" id="jraHtmlImportButton" type="button">JRA HTMLを取り込む</button><input id="jraHtmlImportInput" type="file" accept="text/html,.html,.htm" multiple hidden>
-          <p class="import-privacy-note">東京・中山・京都の平地競走に対応。版の確定には保存後30分以内のHTMLが必要で、点数・順位は後から変わりません。個人の私的利用限定です。保存HTML・取込データを共有／転載しないでください。</p>
+          <p class="import-privacy-note">JRA全10競馬場の平地競走に対応。版の確定には保存後30分以内のHTMLが必要で、点数・順位は後から変わりません。個人の私的利用限定です。保存HTML・取込データを共有／転載しないでください。</p>
           <div class="data-actions">
             <button class="secondary-action file-button" id="dataImportButton" type="button">JSONを読み込む</button><input id="dataImportInput" type="file" accept="application/json,.json" hidden>
             <button class="secondary-action" id="restoreBundledButton" type="button">取込レースを消す</button>
           </div>
-          <details class="schema-help import-guide"><summary>Windowsでの無料取込手順</summary><ol><li>JRA公式で対象レースの「詳細出馬表」を開く</li><li><kbd>Ctrl</kbd>＋<kbd>S</kbd>で「Webページ、HTMLのみ」を選んで保存</li><li>前日版・当日最終版・参考表示のいずれかを選び、上のボタンから保存ファイルを選ぶ</li><li>レース後は「参考表示・結果取込」を選び、公式の「レース結果」も同じ方法で取り込む</li></ol><p>複数ファイルをまとめて選択できます。HTMLは不活性な領域で解析し、外部送信せず、必要項目だけをこの端末のIndexedDBへ保存します。オッズは表示専用で予想点には使いません。「取込レースを消す」では予想・買い目の履歴は消えません。</p></details>
+          <details class="schema-help import-guide"><summary>Windowsでの無料取込手順</summary><ol><li>JRA公式で対象レースの「詳細出馬表」を開く</li><li><kbd>Ctrl</kbd>＋<kbd>S</kbd>で「Webページ、HTMLのみ」を選んで保存</li><li>前日版・当日最終版・参考表示のいずれかを選び、上のボタンから保存ファイルを選ぶ</li><li>レース後は「参考表示・結果取込」を選び、公式の「レース結果」も同じ方法で取り込む</li></ol><p>複数HTMLを端末内だけで解析します。HTML単体では100点評価からの参考勝率を表示し、固定v3勝率を含む正規化JSONを読み込んだ場合だけv4の保守EV判定を有効にします。「取込レースを消す」では予想・検証履歴は消えません。</p></details>
           <details class="schema-help"><summary>JSON取込について</summary><p>ライセンス済み提供元などの正規化済みJSONも端末内へ読み込めます。取得元の利用条件を確認してください。</p></details>
         </article>
         <article class="panel settings-card source-card">
@@ -152,7 +170,7 @@
             <li><a href="https://www.jra.go.jp/kouza/baken/index.html" target="_blank" rel="noopener noreferrer">JRA 馬券の種類</a> — 頭数別の発売券種・複勝圏の確認</li>
             <li><a href="https://www.jra.go.jp/use/" target="_blank" rel="noopener noreferrer">JRA ご利用に際して</a> — 著作権・リンク・免責事項</li>
           </ul>
-          <p>本アプリはJRAの公式サービスではありません。予想点は独自ルールによる参考値です。</p>
+          <p>本アプリはJRAの公式サービスではありません。100点評価からの参考勝率と、発走前に固定されたv3勝率を用いるv4利益判定を明確に分けます。利益や的中は保証しません。</p>
         </article>
       </section>
     </main>
@@ -160,7 +178,7 @@
 
   <nav class="bottom-nav" aria-label="メインメニュー">
     <button class="nav-button is-active" type="button" data-nav="race" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 18V8m7 10V5m7 13v-7"/><path d="m3 12 6-4 5 3 7-6"/></svg><span>予想</span></button>
-    <button class="nav-button" type="button" data-nav="tickets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4a2 2 0 0 0 0 4v6H5v-6a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></svg><span>買い目</span></button>
+    <button class="nav-button" type="button" data-nav="tickets"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5h14v4a2 2 0 0 0 0 4v6H5v-6a2 2 0 0 0 0-4z"/><path d="M9 8v8"/></svg><span>買い判定</span></button>
     <button class="nav-button" type="button" data-nav="results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V9h4v10zm10 0V5h4v14zm-5 0v-6h4v6z"/></svg><span>検証</span></button>
     <button class="nav-button" type="button" data-nav="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10m4 0h2M4 17h2m4 0h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>設定</span></button>
   </nav>
@@ -182,8 +200,9 @@
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./engine.js?v=130" defer></script>
-  <script src="./jra-importer.js?v=130" defer></script>
-  <script src="./app.js?v=130" defer></script>
+  <script src="./engine.js?v=200" defer></script>
+  <script src="./profit-engine.js?v=200" defer></script>
+  <script src="./jra-importer.js?v=200" defer></script>
+  <script src="./app.js?v=200" defer></script>
 </body>
 </html>

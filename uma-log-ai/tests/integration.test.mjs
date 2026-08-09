@@ -1,6 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { parseHTML } from 'linkedom';
+
+test('every DOM node used by the app exists in the application shell', async () => {
+  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const nodeList = app.match(/const nodes = Object\.fromEntries\(\[([\s\S]*?)\]\.map\(id/);
+  assert.ok(nodeList, 'app node registry was not found');
+  const ids = [...nodeList[1].matchAll(/'([^']+)'/g)].map(match => match[1]);
+  const { document } = parseHTML(html);
+  assert.deepEqual(ids.filter(id => !document.getElementById(id)), []);
+});
 
 test('service worker only removes caches owned by Uma Log AI', async () => {
   const source = await readFile(new URL('../sw.js', import.meta.url), 'utf8');
@@ -48,7 +59,7 @@ test('the application shell uses the white theme and a fresh cache version', asy
   assert.equal(manifest.theme_color, '#ffffff');
   assert.equal(manifest.background_color, '#f5f8f6');
   assert.match(html, /name="theme-color" content="#ffffff"/);
-  assert.match(serviceWorker, /shell-v1\.3\.0/);
+  assert.match(serviceWorker, /shell-v2\.0\.0/);
 });
 
 test('prediction history uses IndexedDB and learning runs in a worker', async () => {
@@ -59,10 +70,12 @@ test('prediction history uses IndexedDB and learning runs in a worker', async ()
   assert.match(app, /openCursor\(\)/);
   assert.doesNotMatch(app, /umaLogPredictionSnapshots/);
   assert.doesNotMatch(app, /keys\.length > 60/);
-  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=130'\)/);
+  assert.match(app, /new Worker\('\.\/learning-worker\.js\?v=200'\)/);
   assert.match(worker, /UmaLogEngine\.optimizeWeights/);
-  assert.match(serviceWorker, /learning-worker\.js\?v=130/);
+  assert.match(serviceWorker, /learning-worker\.js\?v=200/);
   assert.match(serviceWorker, /\.\/data\/races\.json/);
+  assert.match(serviceWorker, /\.\/data\/forward-status\.json/);
+  assert.match(serviceWorker, /profit-engine\.js\?v=200/);
 });
 
 test('manual JRA HTML import stays local, is atomic, and does not auto-create both editions', async () => {
@@ -91,7 +104,22 @@ test('manual JRA HTML import stays local, is atomic, and does not auto-create bo
   assert.doesNotMatch(app, /state\.dataset = window\.UMA_LOG_DEMO/);
   assert.doesNotMatch(html, /demo-data\.js/);
   assert.doesNotMatch(serviceWorker, /demo-data\.js/);
-  assert.match(serviceWorker, /jra-importer\.js\?v=130/);
+  assert.match(serviceWorker, /jra-importer\.js\?v=200/);
+});
+
+test('v4 UI fails closed and separates reference probabilities from purchase decisions', async () => {
+  const app = await readFile(new URL('../app.js', import.meta.url), 'utf8');
+  const profit = await readFile(new URL('../profit-engine.js', import.meta.url), 'utf8');
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.match(app, /ProfitEngine\.createPlan/);
+  assert.match(profit, /decisionOddsHaircut:\s*0\.1/);
+  assert.match(profit, /minimumLowerBoundEv:\s*0\.05/);
+  assert.match(profit, /maximumSnapshotAgeMinutes:\s*2/);
+  assert.match(profit, /productionBuyEnabled:\s*false/);
+  assert.match(profit, /REFERENCE_ONLY/);
+  assert.match(html, /利益ゲート LOCKED/);
+  assert.match(html, /実購入0円/);
+  assert.match(html, /最大1頭の単勝/);
 });
 
 test('manual JRA result import rejects ties and preserves pre-race evidence', async () => {

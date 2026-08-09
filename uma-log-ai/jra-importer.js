@@ -1,8 +1,8 @@
 (function exposeJraLocalImporter(root) {
   'use strict';
 
-  const SUPPORTED_VENUES = new Set(['東京', '中山', '京都']);
   const JRA_VENUES = ['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉'];
+  const SUPPORTED_VENUES = new Set(JRA_VENUES);
   const LOCAL_DATASET_ID = 'uma-log-ai-jra-local-v1';
   const GOING_MAP = {
     良: 'firm',
@@ -106,7 +106,7 @@
     const date = japaneseDate(dateLine);
     const venue = [...SUPPORTED_VENUES].find(item => dateLine.includes(item));
     if (!date) throw new Error('開催日を読み取れませんでした');
-    if (!venue) throw new Error('初版は東京・中山・京都のレースだけ取り込めます');
+    if (!venue) throw new Error('JRAの競馬場名を読み取れませんでした');
     const raceAlt = container.querySelector('.race_number img')?.getAttribute('alt') || '';
     const raceNumber = integer(raceAlt);
     if (!raceNumber || raceNumber < 1 || raceNumber > 12) throw new Error('レース番号を読み取れませんでした');
@@ -131,6 +131,7 @@
       raceNumber,
       startTime,
       name: raceName,
+      isDebut: /新馬/.test(raceName),
       classLevel: classLevel(`${raceName} ${typeText} ${gradeAlt}`),
       surface: course.surface,
       raceType: 'flat',
@@ -472,7 +473,7 @@
         automated: false,
         asOfFieldsGuaranteed: false
       },
-      venues: ['東京', '中山', '京都'],
+      venues: JRA_VENUES.slice(),
       races
     };
   }

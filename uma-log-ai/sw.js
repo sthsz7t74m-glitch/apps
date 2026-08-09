@@ -1,6 +1,6 @@
 const CACHE_PREFIX = 'uma-log-ai-';
-const CACHE_NAME = `${CACHE_PREFIX}shell-v1.3.0`;
-const APP_SHELL = ['./', './index.html', './styles.css?v=130', './engine.js?v=130', './jra-importer.js?v=130', './app.js?v=130', './learning-worker.js?v=130', './data/races.json', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const CACHE_NAME = `${CACHE_PREFIX}shell-v2.0.0`;
+const APP_SHELL = ['./', './index.html', './styles.css?v=200', './engine.js?v=200', './profit-engine.js?v=200', './jra-importer.js?v=200', './app.js?v=200', './learning-worker.js?v=200', './data/races.json', './data/forward-status.json', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));
@@ -18,8 +18,9 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
-  if (url.pathname.endsWith('/data/races.json')) {
-    const canonicalDataRequest = new Request(new URL('./data/races.json', self.location.href));
+  if (url.pathname.endsWith('/data/races.json') || url.pathname.endsWith('/data/forward-status.json')) {
+    const file = url.pathname.endsWith('/data/forward-status.json') ? './data/forward-status.json' : './data/races.json';
+    const canonicalDataRequest = new Request(new URL(file, self.location.href));
     event.respondWith(fetch(event.request).then(async response => {
       if (response.ok) {
         const cache = await caches.open(CACHE_NAME);

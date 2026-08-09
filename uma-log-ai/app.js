@@ -2,10 +2,11 @@
   'use strict';
 
   const Engine = window.UmaLogEngine;
+  const ProfitEngine = window.UmaLogProfitEngine;
   const JraImporter = window.UmaLogJraImporter;
   const STORAGE_KEYS = {
     weights: 'umaLogWeightsV1',
-    budget: 'umaLogBudgetV1',
+    budget: 'umaLogBankrollV2',
     changes: 'umaLogWeightChangesV1',
     selected: 'umaLogSelectionV1',
     lastAutoLearn: 'umaLogLastAutoLearnV1'
@@ -15,6 +16,25 @@
   const PREDICTION_KEY_PREFIX = 'prediction:';
   const TICKET_PLAN_KEY_PREFIX = 'ticket-plan:';
   const DATA_URL = './data/races.json';
+  const MODEL_STATUS_URL = './data/forward-status.json';
+  const DEFAULT_MODEL_STATUS = {
+    model_version: '4.0.0-audit-locked',
+    generated_at: null,
+    frozen_race_captures: 0,
+    paper_candidates: 0,
+    settled_paper_bets: 0,
+    paper_stake_yen: 0,
+    paper_return_yen: 0,
+    paper_profit_yen: 0,
+    paper_roi: 0,
+    cluster_bootstrap_roi_ci95_lower_bound: 0,
+    roi_without_highest_payout: 0,
+    independent_periods_passed: 0,
+    activation_status: 'LOCKED',
+    production_buy_enabled: false,
+    real_stake_yen: 0,
+    activation_checks: {}
+  };
   const EMPTY_DATASET = {
     schemaVersion: 1,
     generatedAt: null,
@@ -27,7 +47,7 @@
       automated: false,
       asOfFieldsGuaranteed: false
     },
-    venues: ['東京', '中山', '京都'],
+    venues: [...Engine.JRA_VENUES],
     races: []
   };
   const FRAME_COLORS = ['#f8fafc', '#23272f', '#e5484d', '#3b82f6', '#f0c841', '#22a45d', '#ee7d36', '#e994b9'];
@@ -40,13 +60,14 @@
   const snapshotWriteChains = new Map();
   const state = {
     dataset: null,
+    modelStatus: structuredClone(DEFAULT_MODEL_STATUS),
     datasetOrigin: 'bundled',
     date: '',
     venue: '東京',
     raceNumber: 11,
     edition: 'final',
     view: 'race',
-    budget: normalizeBudget(readJson(STORAGE_KEYS.budget, 3000)),
+    budget: normalizeBudget(readJson(STORAGE_KEYS.budget, 100000)),
     weights: Engine.normalizeWeights(readJson(STORAGE_KEYS.weights, Engine.DEFAULT_WEIGHTS)),
     predictions: {},
     pendingPredictions: {},
@@ -60,10 +81,10 @@
   };
 
   const nodes = Object.fromEntries([
-    'sourceSummary', 'refreshButton', 'sourceBanner', 'sourceMode', 'sourceDetail', 'dateSelect', 'venueTabs', 'raceStrip',
+    'sourceSummary', 'refreshButton', 'sourceBanner', 'sourceMode', 'sourceDetail', 'gateBanner', 'gateStatus', 'gateDetail', 'dateSelect', 'venueTabs', 'raceStrip',
     'raceView', 'ticketView', 'resultView', 'settingsView', 'raceEyebrow', 'raceViewTitle', 'raceMeta', 'confidenceGauge',
     'predictionPodium', 'openBreakdownButton', 'runnerCount', 'runnerList', 'ticketConfidence', 'budgetInput', 'budgetOutput',
-    'ticketSummary', 'ticketGroups', 'resultStatus', 'resultContent', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
+    'ticketSummary', 'ticketGroups', 'resultStatus', 'resultContent', 'forwardValidationSummary', 'activationChecklist', 'recordRaceCount', 'editionComparison', 'recordDashboard', 'recordTableBody', 'ticketRecordBody',
     'weightList', 'weightTotal', 'resetWeightsButton', 'learningStatus', 'learningDescription', 'runLearningButton',
     'weightChangeLog', 'dataGeneratedAt', 'dataStatusPill', 'dataSourceCopy', 'jraSnapshotMode', 'jraHtmlImportButton', 'jraHtmlImportInput',
     'dataImportButton', 'dataImportInput', 'restoreBundledButton',
@@ -91,7 +112,7 @@
 
   function normalizeBudget(value) {
     const number = Number(value);
-    return Number.isFinite(number) ? Math.max(500, Math.min(20000, Math.floor(number / 100) * 100)) : 3000;
+    return Number.isFinite(number) ? Math.max(10000, Math.min(1000000, Math.floor(number / 1000) * 1000)) : 100000;
   }
 
   function escapeHtml(value) {
@@ -102,6 +123,11 @@
     if (value === null || value === undefined || value === '') return '—';
     const number = Number(value);
     return Number.isFinite(number) ? number.toLocaleString('ja-JP', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : '—';
+  }
+
+  function formatRatio(value, digits = 1) {
+    const number = Number(value);
+    return Number.isFinite(number) ? `${(number * 100).toLocaleString('ja-JP', { minimumFractionDigits: digits, maximumFractionDigits: digits })}%` : '—';
   }
 
   function formatDate(value, includeYear = false) {
@@ -335,16 +361,16 @@
     const horses = race.horses.map(horse => {
       const current = Engine.mergeHorseEdition(horse, edition);
       return {
-        ...pick(current, ['id', 'number', 'gate', 'scratched', 'carriedWeight', 'burdenChange', 'bodyWeight', 'bodyWeightChange', 'restDays', 'runningStyle', 'distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore']),
+        ...pick(current, ['id', 'number', 'gate', 'scratched', 'carriedWeight', 'burdenChange', 'bodyWeight', 'bodyWeightChange', 'restDays', 'runningStyle', 'distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore', 'startScore', 'muscleScore', 'temperatureFit', 'windFit', 'v3WinProbability', 'odds', 'popularity']),
         jockeyStats: pick(current.jockeyStats, ['winRate', 'placeRate', 'coursePlaceRate', 'pairPlaceRate', 'pairStarts']),
         trainerStats: pick(current.trainerStats, ['winRate', 'placeRate', 'coursePlaceRate']),
         pedigree: pick(current.pedigree, ['turfScore', 'dirtScore', 'distanceScore']),
         workout: pick(current.workout, ['score']),
-        recentRuns: (current.recentRuns || []).map(run => pick(run, ['id', 'date', 'venue', 'surface', 'raceType', 'distance', 'direction', 'going', 'finish', 'fieldSize', 'margin', 'last3FRank', 'speedRating', 'classLevel', 'opponentRating']))
+        recentRuns: (current.recentRuns || []).map(run => pick(run, ['id', 'date', 'venue', 'surface', 'raceType', 'distance', 'direction', 'going', 'finish', 'fieldSize', 'margin', 'last3FRank', 'last4FAcceleration', 'last4FSplits', 'speedRating', 'classLevel', 'opponentRating']))
       };
     }).sort((a, b) => Number(a.number) - Number(b.number));
     const input = {
-      modelVersion: 2,
+      modelVersion: 4,
       date: currentRaceData.date,
       venue: currentRaceData.venue,
       raceNumber: currentRaceData.raceNumber,
@@ -357,6 +383,12 @@
       drawBias: currentRaceData.drawBias,
       classLevel: currentRaceData.classLevel,
       bettingFieldSize: currentRaceData.bettingFieldSize,
+      temperatureC: currentRaceData.temperatureC,
+      windSpeedMps: currentRaceData.windSpeedMps,
+      windDirection: currentRaceData.windDirection,
+      probabilityModel: currentRaceData.probabilityModel,
+      oddsSnapshotAt: currentRaceData.oddsSnapshotAt || race.snapshots?.[edition]?.asOf,
+      isDebut: currentRaceData.isDebut,
       horses,
       weights,
       engineVersion: Engine.ENGINE_VERSION
@@ -369,9 +401,11 @@
       raceId: prediction.raceId,
       edition: prediction.edition,
       engineVersion: prediction.engineVersion || Engine.ENGINE_VERSION,
+      profitEngineVersion: ProfitEngine.ENGINE_VERSION,
+      probabilityModel: prediction.probabilityModel || race.probabilityModel || null,
       fieldSize: prediction.fieldSize,
       generatedAt: prediction.generatedAt,
-      capturedAt: new Date().toISOString(),
+      capturedAt: prediction.capturedAt || race.oddsSnapshotAt || race.snapshots?.[prediction.edition]?.asOf || new Date().toISOString(),
       datasetFingerprint: datasetFingerprint(),
       inputFingerprint,
       weightSignature: hashWeights(prediction.weights),
@@ -396,6 +430,7 @@
         popularity: runner.popularity,
         capturedOdds: runner.odds,
         capturedPopularity: runner.popularity,
+        v3WinProbability: runner.v3WinProbability ?? null,
         rank: runner.rank,
         mark: runner.mark,
         score: runner.score,
@@ -412,6 +447,29 @@
     return `${datasetFingerprint()}:${race.id}:${edition}`;
   }
 
+  function profitRaceInput(race, edition = state.edition) {
+    const current = Engine.mergeRaceEdition(race, edition);
+    return {
+      ...current,
+      date: race.date,
+      venue: race.venue,
+      raceNumber: race.raceNumber,
+      startTime: race.startTime,
+      name: race.name,
+      isDebut: race.isDebut === true || /新馬/.test(String(race.name || '')),
+      scheduledPostAt: race.scheduledPostAt || null
+    };
+  }
+
+  function createProfitPlan(prediction, race, bankroll = state.budget) {
+    return ProfitEngine.createPlan(prediction, {
+      race: profitRaceInput(race, prediction.edition || state.edition),
+      snapshotAt: prediction.capturedAt || race.oddsSnapshotAt || race.snapshots?.[prediction.edition || state.edition]?.asOf,
+      gateStatus: state.modelStatus?.activation_status || 'LOCKED',
+      bankrollYen: normalizeBudget(bankroll)
+    });
+  }
+
   function savePrediction(race, prediction, budget = state.budget) {
     const key = snapshotKey(race, prediction.edition);
     const existing = state.predictions[key];
@@ -419,8 +477,12 @@
     if (state.pendingPredictions[key]) return state.pendingPredictions[key];
     const inputFingerprint = predictionInputFingerprint(race, prediction.edition, prediction.weights);
     const normalizedBudget = normalizeBudget(budget);
-    const ticketPlan = Engine.createTickets(prediction, normalizedBudget);
-    const persisted = compactPrediction(prediction, race, normalizedBudget, ticketPlan, inputFingerprint);
+    const frozenPrediction = {
+      ...prediction,
+      capturedAt: race.oddsSnapshotAt || race.snapshots?.[prediction.edition]?.asOf || new Date().toISOString()
+    };
+    const ticketPlan = createProfitPlan(frozenPrediction, race, normalizedBudget);
+    const persisted = compactPrediction(frozenPrediction, race, normalizedBudget, ticketPlan, inputFingerprint);
     const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const pending = { ...persisted, captureStatus: 'pending-save', saveToken: token };
     state.pendingPredictions[key] = pending;
@@ -485,7 +547,7 @@
       predictionCapturedAt: prediction.capturedAt,
       savedAt: new Date().toISOString(),
       budget: normalizedBudget,
-      ticketPlan: Engine.createTickets(prediction, normalizedBudget)
+      ticketPlan: createProfitPlan(prediction, race, normalizedBudget)
     };
     const token = `${Date.now()}-${Math.random().toString(36).slice(2)}`;
     state.pendingTicketPlans[key] = { ...revision, saveToken: token };
@@ -595,9 +657,9 @@
     const providerSnapshot = state.dataset?.source?.asOfFieldsGuaranteed === true && Engine.isHistoricalRaceEligible(race, edition);
     if (!demo && !providerSnapshot) return null;
     const prediction = Engine.scoreRace(race, edition, state.weights);
-    const budget = 3000;
-    const replay = compactPrediction(prediction, race, budget, Engine.createTickets(prediction, budget), predictionInputFingerprint(race, edition, prediction.weights));
-    replay.capturedAt = race.snapshots?.[edition]?.asOf || replay.capturedAt;
+    const budget = 100000;
+    const frozenPrediction = { ...prediction, capturedAt: race.oddsSnapshotAt || race.snapshots?.[edition]?.asOf || prediction.generatedAt };
+    const replay = compactPrediction(frozenPrediction, race, budget, createProfitPlan(frozenPrediction, race, budget), predictionInputFingerprint(race, edition, prediction.weights));
     replay.captureStatus = demo ? 'demo-replay' : 'provider-snapshot';
     replay.retrospective = true;
     return replay;
@@ -622,8 +684,8 @@
   function normalizeSelection() {
     const dates = [...new Set((state.dataset?.races || []).map(race => race.date))].sort().reverse();
     if (!dates.includes(state.date)) state.date = dates[0] || '';
-    const venues = ['東京', '中山', '京都'].filter(venue => racesForSelection(state.date, venue).length);
-    if (!venues.includes(state.venue)) state.venue = venues[0] || '東京';
+    const venues = Engine.JRA_VENUES.filter(venue => racesForSelection(state.date, venue).length);
+    if (!venues.includes(state.venue)) state.venue = venues[0] || Engine.JRA_VENUES[0];
     const races = racesForSelection();
     if (!races.some(race => Number(race.raceNumber) === Number(state.raceNumber))) {
       state.raceNumber = races.find(race => Number(race.raceNumber) === 11)?.raceNumber || races[0]?.raceNumber || 1;
@@ -644,11 +706,24 @@
     }
   }
 
+  async function fetchModelStatus(force = false) {
+    try {
+      const response = await fetch(`${MODEL_STATUS_URL}${force ? `?t=${Date.now()}` : ''}`, { cache: force ? 'no-store' : 'default' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const payload = await response.json();
+      if (!payload || !['LOCKED', 'VERIFIED'].includes(String(payload.activation_status))) throw new Error('検証ステータスが不正です');
+      return { ...structuredClone(DEFAULT_MODEL_STATUS), ...payload };
+    } catch {
+      return structuredClone(DEFAULT_MODEL_STATUS);
+    }
+  }
+
   async function loadDataset({ force = false, ignoreImport = false } = {}) {
     state.loading = true;
     nodes.refreshButton.classList.add('is-spinning');
     renderLoading();
     try {
+      state.modelStatus = await fetchModelStatus(force);
       const imported = ignoreImport ? null : await idbGet('active-import');
       if (imported) {
         Engine.validateDataset(imported);
@@ -713,13 +788,42 @@
     }
   }
 
+  function renderGateStatus() {
+    const status = state.modelStatus || DEFAULT_MODEL_STATUS;
+    const verified = status.activation_status === 'VERIFIED' && status.production_buy_enabled === true;
+    nodes.gateBanner.className = `gate-banner ${verified ? 'is-verified' : 'is-locked'}`;
+    nodes.gateStatus.textContent = verified ? '利益ゲート VERIFIED' : '利益ゲート LOCKED';
+    nodes.gateDetail.textContent = verified
+      ? `前向き検証${formatNumber(status.settled_paper_bets)}件 · 実購入条件を確認済み`
+      : `前向き検証${formatNumber(status.settled_paper_bets)}件 · 条件通過までは実購入0円`;
+  }
+
+  function renderForwardValidation() {
+    const status = state.modelStatus || DEFAULT_MODEL_STATUS;
+    const settled = Number(status.settled_paper_bets) || 0;
+    const roi = settled ? formatRatio(status.paper_roi) : '—';
+    const ci = settled ? formatRatio(status.cluster_bootstrap_roi_ci95_lower_bound) : '—';
+    nodes.forwardValidationSummary.innerHTML = `<article class="forward-status-card panel"><div class="forward-status-heading"><div><p class="eyebrow">V4 FORWARD TEST</p><h3>${escapeHtml(status.activation_status || 'LOCKED')}</h3></div><span class="gate-pill ${status.activation_status === 'VERIFIED' ? 'is-verified' : ''}">実購入 ${formatNumber(status.real_stake_yen)}円</span></div><div class="forward-metrics"><div><strong>${formatNumber(status.frozen_race_captures)}</strong><span>発走前固定</span></div><div><strong>${formatNumber(settled)}</strong><span>公式精算</span></div><div><strong>${roi}</strong><span>仮想回収率</span></div><div><strong>${ci}</strong><span>95%下限</span></div></div><p>v4式と購入条件は固定。時刻付きオッズとJRA公式払戻で前向きに検証し、基準通過までは実購入を出しません。</p></article>`;
+    const labels = {
+      timestamped_odds_verified: '時刻付き発走前オッズ',
+      official_settlements_verified: '公式払戻・返還で精算',
+      minimum_independent_periods: '独立した2期間以上で黒字',
+      minimum_qualified_bets: '必要な購入候補数',
+      roi_ci95_lower_bound: '回収率95%下限が102%以上',
+      roi_without_top_payout: '最大払戻を除いても100%超'
+    };
+    nodes.activationChecklist.innerHTML = Object.entries(labels).map(([key, label]) => `<li class="${status.activation_checks?.[key] ? 'is-passed' : ''}"><span>${status.activation_checks?.[key] ? '✓' : '—'}</span>${escapeHtml(label)}</li>`).join('');
+  }
+
   function renderControls() {
     const dates = [...new Set(state.dataset.races.map(race => race.date))].sort().reverse();
     nodes.dateSelect.innerHTML = dates.map(date => `<option value="${escapeHtml(date)}"${date === state.date ? ' selected' : ''}>${escapeHtml(formatDate(date, true))}${state.dataset.source?.mode === 'demo' ? '（デモ）' : ''}</option>`).join('');
-    nodes.venueTabs.innerHTML = ['東京', '中山', '京都'].map(venue => {
+    const venues = Engine.JRA_VENUES.filter(venue => racesForSelection(state.date, venue).length);
+    nodes.venueTabs.style.setProperty('--venue-count', String(Math.max(1, venues.length)));
+    nodes.venueTabs.innerHTML = venues.map(venue => {
       const count = racesForSelection(state.date, venue).length;
       return `<button class="venue-tab${venue === state.venue ? ' is-active' : ''}" type="button" role="tab" aria-selected="${venue === state.venue}" data-venue="${venue}"${count ? '' : ' disabled'}>${venue}<small>${count ? `${count}R` : '開催なし'}</small></button>`;
-    }).join('');
+    }).join('') || '<div class="empty-state">開催データなし</div>';
     const races = racesForSelection();
     nodes.raceStrip.innerHTML = races.length ? races.map(race => `<button class="race-chip${Number(race.raceNumber) === Number(state.raceNumber) ? ' is-active' : ''}${race.result?.status === 'final' ? ' is-final' : ''}" type="button" data-race-number="${race.raceNumber}" aria-pressed="${Number(race.raceNumber) === Number(state.raceNumber)}" aria-label="${race.raceNumber}レース ${escapeHtml(race.startTime)}"><strong>${race.raceNumber}R</strong><small>${escapeHtml(race.startTime)}</small></button>`).join('') : '<div class="empty-state">この競馬場の開催データはありません</div>';
     const activeRace = nodes.raceStrip.querySelector('.race-chip.is-active');
@@ -745,6 +849,8 @@
       current.weather ? WEATHER_LABELS[current.weather] || current.weather : '天候未発表',
       `馬場 ${GOING_LABELS[current.going] || current.going || '未発表'}`,
       `想定ペース ${PACE_LABELS[current.pace] || '不明'}`,
+      Number.isFinite(Number(current.temperatureC)) ? `気温 ${formatNumber(current.temperatureC, 1)}℃` : null,
+      Number.isFinite(Number(current.windSpeedMps)) ? `風 ${escapeHtml(current.windDirection || '向き不明')} ${formatNumber(current.windSpeedMps, 1)}m/s` : null,
       current.status === 'cancelled' ? '開催中止' : null
     ];
     return pieces.filter(Boolean).join(' · ');
@@ -796,6 +902,11 @@
       nodes.runnerList.innerHTML = `<div class="empty-state">${state.dataset?.source?.mode === 'local-jra' ? `この${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}はまだ取り込まれていません。対象時刻に保存した詳細出馬表HTMLを読み込んでください。` : 'この版のスナップショットはまだ公開時刻前です。公開後に再読み込みしてください。'}</div>`;
       return;
     }
+    const profitPlan = prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION
+      ? prediction.ticketPlan
+      : createProfitPlan(prediction, race, prediction.budget || state.budget);
+    const profit = profitPlan.recommendation;
+    const probabilityByNumber = new Map((profit?.rows || []).map(row => [Number(row.number), row]));
     const timingLabel = race.status === 'cancelled' ? ' · 開催中止'
       : prediction.retrospective && state.dataset?.source?.mode !== 'demo'
       ? ` · ${isFinalized(race) ? '結果後' : '締切後'}の参考再計算`
@@ -806,9 +917,18 @@
     nodes.raceViewTitle.textContent = race.name;
     nodes.raceMeta.textContent = raceMetaText(race);
     nodes.openBreakdownButton.disabled = false;
-    nodes.confidenceGauge.innerHTML = `<span>自信度</span><strong>${prediction.confidence.value}</strong><small>${escapeHtml(prediction.confidence.label)}</small>`;
-    nodes.confidenceGauge.title = `${prediction.confidence.reason}・充足度${prediction.confidence.coverage}%`;
-    nodes.predictionPodium.innerHTML = prediction.runners.slice(0, 3).map(runner => `<div class="podium-card" role="listitem"><span class="podium-mark">${runner.mark}</span><strong>${escapeHtml(runner.name)}</strong><span>${runner.number}番 · ${formatNumber(runner.score, 1)}点</span></div>`).join('');
+    const topProbability = probabilityByNumber.get(Number(prediction.runners[0]?.number));
+    nodes.confidenceGauge.innerHTML = topProbability
+      ? `<span>本命勝率</span><strong>${formatNumber(topProbability.v4Probability * 100, 1)}%</strong><small>${profit.modelTrusted ? 'v4校正' : '参考値'}</small>`
+      : `<span>自信度</span><strong>${prediction.confidence.value}</strong><small>${escapeHtml(prediction.confidence.label)}</small>`;
+    nodes.confidenceGauge.title = topProbability
+      ? `${profit.modelSourceNote}・適正オッズ${formatNumber(topProbability.fairOdds, 2)}倍`
+      : `${prediction.confidence.reason}・充足度${prediction.confidence.coverage}%`;
+    nodes.predictionPodium.innerHTML = prediction.runners.slice(0, 3).map(runner => {
+      const row = probabilityByNumber.get(Number(runner.number));
+      const metric = row ? `勝率 ${formatNumber(row.v4Probability * 100, 1)}% · 適正${formatNumber(row.fairOdds, 2)}倍` : `${formatNumber(runner.score, 1)}点`;
+      return `<div class="podium-card" role="listitem"><span class="podium-mark">${runner.mark}</span><strong>${escapeHtml(runner.name)}</strong><span>${runner.number}番 · ${metric}</span></div>`;
+    }).join('');
     nodes.runnerCount.textContent = `${prediction.runners.length}頭`;
     nodes.runnerList.innerHTML = prediction.runners.map(runner => {
       const capturedOdds = runner.capturedOdds ?? runner.odds;
@@ -817,17 +937,24 @@
       const currentText = Number.isFinite(Number(currentOdds)) ? `単 ${formatNumber(currentOdds, 1)}${currentPopularity ? `（${formatNumber(currentPopularity)}人気）` : ''}` : 'オッズ未発表';
       const changed = Number.isFinite(Number(capturedOdds)) && Number.isFinite(Number(currentOdds)) && Number(capturedOdds) !== Number(currentOdds);
       const oddsText = changed ? `予想時 ${formatNumber(capturedOdds, 1)} / 現在 ${currentText}` : currentText;
+      const probability = probabilityByNumber.get(Number(runner.number));
+      const probabilityText = probability ? `${formatNumber(probability.v4Probability * 100, 1)}%` : formatNumber(runner.score, 1);
+      const probabilityLabel = probability ? `${profit.modelTrusted ? 'v4勝率' : '参考勝率'} / 適正${formatNumber(probability.fairOdds, 2)}倍` : `${runner.rank}位 / 100点`;
       return `<button class="runner-card${runner.rank <= 3 ? ' is-top' : ''}" type="button" data-runner-number="${runner.number}" aria-label="${escapeHtml(runner.name)}の詳細">
         <span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span>
         <span class="runner-main"><span class="runner-title"><span class="mark ${markClass(runner.mark)}">${runner.mark || '—'}</span><strong>${escapeHtml(runner.name)}</strong></span><span class="runner-sub"><span>${escapeHtml(runner.sexAge || '')} ${formatNumber(runner.carriedWeight, 1)}kg</span><span>${escapeHtml(bodyWeightText(runner))}</span><span>${escapeHtml(runner.jockey || '騎手未定')}</span><span>${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</span></span><span class="runner-reason">${escapeHtml(runner.reason)}</span></span>
-        <span class="runner-score"><strong>${formatNumber(runner.score, 1)}</strong><span>${runner.rank}位 / 100点</span><span class="odds${Number.isFinite(Number(currentOdds)) ? '' : ' is-missing'}">${escapeHtml(oddsText)}</span></span>
+        <span class="runner-score"><strong>${probabilityText}</strong><span>${probabilityLabel}</span><span class="odds${Number.isFinite(Number(currentOdds)) ? '' : ' is-missing'}">${escapeHtml(oddsText)} · 基礎${formatNumber(runner.score, 1)}</span></span>
       </button>`;
     }).join('');
   }
 
   function renderTickets() {
     const race = currentRace();
-    if (!race) { nodes.ticketGroups.innerHTML = '<div class="empty-state">レースを選択してください</div>'; return; }
+    if (!race) {
+      nodes.ticketSummary.innerHTML = '';
+      nodes.ticketGroups.innerHTML = '<div class="empty-state">レースを選択してください</div>';
+      return;
+    }
     const prediction = getPrediction(race);
     if (!prediction) {
       nodes.ticketConfidence.textContent = '予想公開待ち';
@@ -842,46 +969,42 @@
       nodes.ticketGroups.innerHTML = '<div class="empty-state">この版の予想データはまだ公開されていません。</div>';
       return;
     }
-    const savedPlan = ['pre-race', 'pending-save'].includes(prediction.captureStatus) ? prediction.ticketPlan : null;
+    const savedPlan = ['pre-race', 'pending-save'].includes(prediction.captureStatus) && prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION ? prediction.ticketPlan : null;
     const lockedPlan = Boolean(savedPlan && !isCaptureWindowOpen(race, state.edition));
     const displayBudget = savedPlan ? prediction.budget : state.budget;
-    const plan = savedPlan || Engine.createTickets(prediction, displayBudget);
+    const plan = savedPlan || createProfitPlan(prediction, race, displayBudget);
+    const recommendation = plan.recommendation;
     nodes.budgetInput.value = displayBudget;
     nodes.budgetInput.disabled = Boolean(lockedPlan);
     nodes.budgetOutput.textContent = formatNumber(displayBudget);
-    nodes.ticketConfidence.textContent = prediction.ticketPlanStatus === 'pending-save'
-      ? `予算保存中 · 自信度 ${prediction.confidence.value}`
-      : prediction.captureStatus === 'pending-save'
-      ? `保存中 · 自信度 ${prediction.confidence.value}`
-      : lockedPlan ? `発走前保存 · 自信度 ${prediction.confidence.value}`
-        : prediction.captureStatus === 'save-failed' ? `未保存 · 自信度 ${prediction.confidence.value}`
-          : prediction.retrospective ? `結果後の参考 · 自信度 ${prediction.confidence.value}`
-            : savedPlan ? `予想保存済・予算変更可 · 自信度 ${prediction.confidence.value}` : `自信度 ${prediction.confidence.value} · ${prediction.confidence.label}`;
+    nodes.ticketConfidence.textContent = `${recommendation.modelTrusted ? 'v4校正済み' : '参考確率'} · ${recommendation.gateStatus}`;
     document.querySelectorAll('[data-budget]').forEach(button => {
       button.disabled = Boolean(lockedPlan);
       button.classList.toggle('is-active', Number(button.dataset.budget) === Number(displayBudget));
     });
-    if (!plan.tickets.length) {
-      nodes.ticketSummary.innerHTML = `<div class="ticket-metric"><strong>0</strong><span>買い目</span></div><div class="ticket-metric"><strong>見送り</strong><span>判定</span></div><div class="ticket-metric"><strong>${prediction.confidence.value}</strong><span>自信度</span></div>`;
-      nodes.ticketGroups.innerHTML = `<div class="empty-state">${escapeHtml(plan.reason || '買い目を作成できません')}</div>`;
+    nodes.ticketSummary.classList.add('is-v4');
+    nodes.ticketSummary.innerHTML = `<div class="ticket-metric"><strong>${escapeHtml(recommendation.status === 'BUY' ? '購入' : recommendation.status === 'PAPER_ONLY' ? '仮想' : '見送り')}</strong><span>最終判定</span></div><div class="ticket-metric"><strong>${formatNumber(plan.realAllocated)}円</strong><span>実購入</span></div><div class="ticket-metric"><strong>${formatNumber(plan.paperAllocated)}円</strong><span>仮想検証</span></div><div class="ticket-metric"><strong>単勝のみ</strong><span>検証済券種</span></div>`;
+    const candidate = recommendation.candidate;
+    if (!candidate) {
+      nodes.ticketGroups.innerHTML = `<div class="empty-state">${escapeHtml(plan.reason || '買い目を計算できません')}</div>`;
       return;
     }
-    const types = new Set(plan.tickets.map(ticket => ticket.type));
-    nodes.ticketSummary.innerHTML = `<div class="ticket-metric"><strong>${plan.tickets.length}</strong><span>買い目</span></div><div class="ticket-metric"><strong>${types.size}</strong><span>券種</span></div><div class="ticket-metric"><strong>${formatNumber(plan.allocated)}円</strong><span>配分合計</span></div>`;
-    const groups = [
-      { label: '単勝・複勝', types: ['単勝', '複勝'] },
-      { label: '馬連・ワイド・馬単', types: ['馬連', 'ワイド', '馬単'] },
-      { label: '三連系', types: ['三連複', '三連単'] }
-    ];
-    nodes.ticketGroups.innerHTML = groups.map(group => {
-      const tickets = plan.tickets.filter(ticket => group.types.includes(ticket.type));
-      if (!tickets.length) return '';
-      const subtotal = tickets.reduce((sum, ticket) => sum + ticket.amount, 0);
-      return `<section class="ticket-group"><div class="ticket-group-heading"><h3>${group.label}</h3><span>${tickets.length}点 · ${formatNumber(subtotal)}円</span></div>${tickets.map(ticket => `<div class="ticket-row"><span class="ticket-type">${ticket.type}</span><span class="ticket-combo">${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}<small>${escapeHtml(ticket.note)} · ${escapeHtml(ticket.names.join(' / '))}</small></span><span class="ticket-amount">${formatNumber(ticket.amount)}円</span></div>`).join('')}</section>`;
-    }).join('');
+    const ev = candidate.lowerBoundEv === null ? candidate.referenceEv : candidate.lowerBoundEv;
+    const evLabel = candidate.lowerBoundEv === null ? '参考EV' : '保守EV';
+    const statusClass = recommendation.status === 'BUY' ? 'is-buy' : recommendation.status === 'PAPER_ONLY' ? 'is-paper' : 'is-skip';
+    const ticket = plan.tickets[0];
+    nodes.ticketGroups.innerHTML = `<article class="v4-decision-card panel ${statusClass}">
+      <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? '90%校正下限で判定' : '参考表示のみ'}</span></div>
+      <div class="decision-horse"><span class="horse-number" style="${frameStyle(prediction.runners.find(runner => Number(runner.number) === candidate.number)?.gate)}">${candidate.number}</span><div><p>${escapeHtml(race.venue)} ${race.raceNumber}R</p><h3>${escapeHtml(candidate.name)}</h3><span>${escapeHtml(recommendation.message)}</span></div></div>
+      <div class="decision-metrics"><div><span>予測勝率</span><strong>${formatNumber(candidate.v4Probability * 100, 1)}%</strong></div><div><span>適正オッズ</span><strong>${formatNumber(candidate.fairOdds, 2)}倍</strong></div><div><span>取得オッズ</span><strong>${formatNumber(candidate.currentOdds, 1)}倍</strong></div><div><span>${evLabel}</span><strong class="${ev >= .05 ? 'is-positive' : 'is-negative'}">${ev === null ? '—' : `${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`}</strong></div></div>
+      ${candidate.probabilityLower90 === null ? '<p class="decision-note">この確率は端末の100点評価から換算した参考値です。固定v3勝率がないため、購入判定には使いません。</p>' : `<p class="decision-note">90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。</p>`}
+      ${ticket ? `<div class="paper-ticket"><span>${ticket.paperOnly ? '仮想購入' : '購入候補'}</span><strong>単勝 ${ticket.numbers[0]}番　${formatNumber(ticket.amount)}円</strong><small>実購入 ${formatNumber(plan.realAllocated)}円</small></div>` : ''}
+      <details class="decision-blockers"><summary>判定理由</summary><ul>${recommendation.blockers.length ? recommendation.blockers.map(blocker => `<li>${escapeHtml(blocker)}</li>`).join('') : '<li>購入条件を通過</li>'}</ul></details>
+    </article>`;
   }
 
   function renderResult() {
+    renderForwardValidation();
     const race = currentRace();
     if (!race) { nodes.resultContent.innerHTML = '<div class="empty-state">レースを選択してください</div>'; return; }
     if (race.status === 'cancelled') {
@@ -902,10 +1025,12 @@
         renderRecords();
         return;
       }
-      const plan = prediction.ticketPlan || Engine.createTickets(prediction, prediction.budget || 3000);
+      const plan = prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION
+        ? prediction.ticketPlan
+        : createProfitPlan(prediction, race, prediction.budget || 100000);
       const comparison = Engine.compareResult(prediction, race.result, plan);
       nodes.resultStatus.textContent = prediction.captureStatus === 'demo-replay' ? `${state.edition === 'dayBefore' ? '前日版' : '当日版'}・架空デモ再現` : prediction.captureStatus === 'provider-snapshot' ? '提供済み発走前データを照合' : `${state.edition === 'dayBefore' ? '前日版' : '当日版'}の発走前予想を照合`;
-      const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.refunded ? '返還' : ticket.hit ? '的中' : ticket.returnKnown ? '不的中' : '判定保留'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
+      const ticketRows = comparison.ticketResults.map(ticket => `<div class="ticket-result-row${ticket.hit ? ' is-hit' : ''}${ticket.refunded ? ' is-refund' : ''}"><span class="ticket-type">${ticket.type}</span><span><strong>${ticket.numbers.join(ticket.ordered ? ' → ' : ' − ')}</strong><small>${ticket.paperOnly ? '仮想 · ' : ''}${ticket.refunded ? '返還' : ticket.hit ? '的中' : ticket.returnKnown ? '不的中' : '判定保留'} · ${formatNumber(ticket.amount)}円</small></span><strong>${ticket.returnAmount === null ? '未登録' : `${formatNumber(ticket.returnAmount)}円`}</strong></div>`).join('');
       nodes.resultContent.innerHTML = `<div class="result-scorecard">
         <article class="result-metric"><span>◎の1着</span><strong>${comparison.winnerHit ? '的中' : '不的中'}</strong><small>${comparison.winnerHit ? '本命が勝利' : `勝馬は予想${comparison.comparisons[0]?.predictedRank || '圏外'}位`}</small></article>
         <article class="result-metric"><span>◎の複勝圏</span><strong>${comparison.mainPlaced === null ? '発売なし' : comparison.mainPlaced ? '的中' : '不的中'}</strong><small>${comparison.mainPlaced === null ? '4頭以下' : (prediction.fieldSize || prediction.runners.length) >= 8 ? '3着以内' : '2着以内'}</small></article>
@@ -916,7 +1041,7 @@
         const differenceLabel = difference === null ? '予想外' : difference === 0 ? '一致' : difference > 0 ? `${difference}位上振れ` : `${Math.abs(difference)}位下振れ`;
         const capturedOdds = Number.isFinite(Number(item.odds)) ? ` · 単${formatNumber(item.odds, 1)}` : '';
         return `<div class="comparison-row"><span class="finish-badge${item.finish <= 3 ? ' is-medal' : ''}">${item.finish}着</span><span class="comparison-name">${escapeHtml(item.name)} <small>${item.number}番 ${item.mark || ''}</small></span><span class="comparison-predicted">予想${item.predictedRank || '—'}位${capturedOdds}</span><span class="rank-diff${difference === 0 ? ' is-good' : Math.abs(difference || 0) >= 4 ? ' is-bad' : ''}">${differenceLabel}</span></div>`;
-      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>買い目の結果</h3><p>保存予算 ${formatNumber(plan.allocated || prediction.budget || 0)}円</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">保存された買い目がありません</div>'}</div></section>`;
+      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>v4単勝の結果</h3><p>${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
     }
     renderRecords();
   }
@@ -949,6 +1074,7 @@
   }
 
   function renderSettings() {
+    renderForwardValidation();
     const total = Object.values(state.weights).reduce((sum, value) => sum + Number(value), 0);
     nodes.weightList.innerHTML = Engine.CATEGORY_META.map(category => {
       const value = Number(state.weights[category.key]);
@@ -977,12 +1103,13 @@
       ? '現在は実在のレース・馬・オッズではないUI確認用データです。JRA公式ページの無断自動取得・再配布は行っていません。'
       : unavailable
         ? '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
-      : `${source.name || 'インポートデータ'}。予想計算にはオッズを使わず、画面表示だけに結合します。`;
+      : `${source.name || 'インポートデータ'}。基礎能力の100点評価はオッズと分離し、v4では最後に市場確率・適正オッズ・保守EVの判定だけへ利用します。`;
     nodes.weightChangeLog.innerHTML = state.changes.slice(0, 4).map(change => `<div class="change-item"><strong>${escapeHtml(change.adopted ? '配点更新' : '据え置き')}</strong> · ${escapeHtml(formatTimestamp(change.at))}<br>${escapeHtml(change.reason)}${change.validation ? `（検証 ${change.validation.before} → ${change.validation.after}）` : ''}</div>`).join('');
   }
 
   function renderAll() {
     renderSourceStatus();
+    renderGateStatus();
     renderRaceView();
     switchView(state.view, false);
   }
@@ -1023,10 +1150,15 @@
     const prediction = getPrediction(race);
     const runner = prediction?.runners.find(item => Number(item.number) === Number(number));
     if (!runner) return;
+    const profitPlan = prediction.ticketPlan?.modelVersion === ProfitEngine.ENGINE_VERSION
+      ? prediction.ticketPlan
+      : createProfitPlan(prediction, race, prediction.budget || state.budget);
+    const probability = profitPlan.recommendation?.rows?.find(row => Number(row.number) === Number(number));
     nodes.runnerSheetEyebrow.textContent = `${runner.mark} 予想${runner.rank}位 · ${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}`;
     nodes.runnerSheetTitle.textContent = runner.name;
-    nodes.runnerSheetContent.innerHTML = `<div class="runner-profile"><span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span><div><h3>${escapeHtml(runner.name)}</h3><p>${escapeHtml(runner.sexAge || '')} · 斤量${formatNumber(runner.carriedWeight, 1)}kg · ${escapeHtml(runner.jockey || '騎手未定')}<br>${escapeHtml(bodyWeightText(runner))} · ${escapeHtml(runner.trainer || '調教師不明')} · ${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</p><div class="profile-score"><strong>${formatNumber(runner.score, 1)}</strong><span>点 · データ充足度 ${runner.coverage}%</span></div></div></div>
+    nodes.runnerSheetContent.innerHTML = `<div class="runner-profile"><span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span><div><h3>${escapeHtml(runner.name)}</h3><p>${escapeHtml(runner.sexAge || '')} · 斤量${formatNumber(runner.carriedWeight, 1)}kg · ${escapeHtml(runner.jockey || '騎手未定')}<br>${escapeHtml(bodyWeightText(runner))} · ${escapeHtml(runner.trainer || '調教師不明')} · ${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</p><div class="profile-score"><strong>${probability ? `${formatNumber(probability.v4Probability * 100, 1)}%` : formatNumber(runner.score, 1)}</strong><span>${probability ? `${profitPlan.recommendation.modelTrusted ? 'v4勝率' : '参考勝率'} · 適正${formatNumber(probability.fairOdds, 2)}倍` : `点 · データ充足度 ${runner.coverage}%`}</span></div></div></div>
       <section class="detail-section"><h3>評価理由</h3><div class="reason-box">${escapeHtml(runner.reason)}</div></section>
+      ${probability ? `<section class="detail-section"><h3>確率・期待値</h3><div class="score-breakdown"><div class="score-cell"><span>予測勝率</span><strong>${formatNumber(probability.v4Probability * 100, 1)}%</strong><span>${escapeHtml(profitPlan.recommendation.modelSourceNote)}</span></div><div class="score-cell"><span>適正 / 取得オッズ</span><strong>${formatNumber(probability.fairOdds, 2)} / ${formatNumber(probability.currentOdds, 1)}倍</strong><span>取得オッズは10%低下させて判定</span></div><div class="score-cell"><span>90%下限 / 保守EV</span><strong>${probability.probabilityLower90 === null ? '判定対象外' : `${formatNumber(probability.probabilityLower90 * 100, 1)}% / ${probability.lowerBoundEv >= 0 ? '+' : ''}${formatNumber(probability.lowerBoundEv * 100, 1)}%`}</strong><span>利益ゲート ${escapeHtml(profitPlan.recommendation.gateStatus)}</span></div></div></section>` : ''}
       <section class="detail-section"><h3>10項目の内訳</h3><div class="score-breakdown">${Engine.CATEGORY_META.map(category => { const score = breakdownCell(runner, category, prediction.weights); return `<div class="score-cell"><span>${escapeHtml(category.label)}</span><strong>${formatNumber(score.points, 1)} / ${formatNumber(score.weight, 1)}点</strong><span>充足度 ${formatNumber(score.coverage * 100, 0)}% · ${escapeHtml(score.evidence?.[0] || '保存時の根拠なし')}</span></div>`; }).join('')}</div></section>
       <section class="detail-section"><h3>直近5走</h3><div class="history-scroll"><table class="history-table"><thead><tr><th>日付・競馬場</th><th>条件</th><th>着順</th><th>着差</th><th>上がり</th><th>指数</th></tr></thead><tbody>${Array.isArray(runner.recentRuns) && runner.recentRuns.length ? runner.recentRuns.slice(0, 5).map(run => `<tr><td>${escapeHtml(run.date)} ${escapeHtml(run.venue)}</td><td>${escapeHtml(SURFACE_LABELS[run.surface] || run.surface || '不明')}${formatNumber(run.distance)}m ${escapeHtml(GOING_LABELS[run.going] || run.going || '')}</td><td>${formatNumber(run.finish)} / ${formatNumber(run.fieldSize)}</td><td>${Number(run.margin) <= 0 ? '1着' : `+${formatNumber(run.margin, 1)}`}</td><td>${formatNumber(run.last3F, 1)}（${formatNumber(run.last3FRank)}位）</td><td>${formatNumber(run.speedRating)}</td></tr>`).join('') : '<tr><td colspan="6">近走データがありません</td></tr>'}</tbody></table></div></section>`;
     openSheet(nodes.runnerBackdrop);
@@ -1173,7 +1305,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=130');
+      const worker = new Worker('./learning-worker.js?v=200');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));
@@ -1364,7 +1496,7 @@
   }
 
   async function init() {
-    if (!Engine || !JraImporter) {
+    if (!Engine || !ProfitEngine || !JraImporter) {
       nodes.sourceSummary.textContent = '初期化に失敗しました';
       return;
     }

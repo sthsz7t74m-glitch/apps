@@ -1,0 +1,29 @@
+{
+  "model_version": "4.0.0-audit-locked",
+  "generated_at": "2026-08-09T20:12:10+09:00",
+  "ledger_events": 1,
+  "ledger_head_hash": "40cb37d7277351b7ae23cfb0daa97350b2e9452e4ab8393cbe6eff6b27cb3806",
+  "frozen_race_captures": 0,
+  "paper_candidates": 0,
+  "settled_paper_bets": 0,
+  "unsettled_paper_candidates": 0,
+  "paper_stake_yen": 0,
+  "paper_return_yen": 0,
+  "paper_profit_yen": 0,
+  "paper_roi": 0,
+  "cluster_bootstrap_roi_ci95_lower_bound": 0,
+  "roi_without_highest_payout": 0,
+  "independent_periods_passed": 0,
+  "periods": [],
+  "activation_checks": {
+    "timestamped_odds_verified": false,
+    "official_settlements_verified": false,
+    "minimum_independent_periods": false,
+    "minimum_qualified_bets": false,
+    "roi_ci95_lower_bound": false,
+    "roi_without_top_payout": false
+  },
+  "activation_status": "LOCKED",
+  "production_buy_enabled": false,
+  "real_stake_yen": 0
+}

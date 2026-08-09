@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff8e7">
+  <meta name="description" content="お笑いネタ番組を曜日・時間・放送局・配信媒体・出演者から探せる週間カレンダー">
+  <title>お笑いネタ番組カレンダー</title>
+  <link rel="stylesheet" href="./styles.css?v=1.0.0">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand__eyebrow">COMEDY ON AIR</span>
+      <h1>ネタ番組カレンダー <em>v1.0.0</em></h1>
+    </div>
+    <button class="round-button" id="aboutButton" type="button" aria-label="掲載情報について">i</button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__copy">
+        <span class="hero__label">NEXT LAUGH</span>
+        <h2 id="heroTitle">次の笑いを<br>逃さない。</h2>
+        <p>テレビも見逃し配信も、ひとつの予定表に。</p>
+      </div>
+      <div class="hero__ticket" aria-hidden="true">
+        <span>ON<br>AIR</span>
+        <i></i><i></i><i></i>
+      </div>
+      <div class="next-on-air" id="nextOnAir" aria-live="polite">
+        <small>次の放送</small>
+        <strong>読み込み中</strong>
+        <span>—</span>
+      </div>
+    </section>
+
+    <section class="week-panel" aria-label="週間カレンダー">
+      <div class="week-panel__head">
+        <button class="week-arrow" id="previousWeekButton" type="button" aria-label="前の週">←</button>
+        <div>
+          <span>WEEK</span>
+          <strong id="weekLabel">—</strong>
+        </div>
+        <button class="week-arrow" id="nextWeekButton" type="button" aria-label="次の週">→</button>
+      </div>
+      <div class="weekday-tabs" id="weekdayTabs" role="tablist" aria-label="放送日"></div>
+    </section>
+
+    <section class="controls" aria-label="番組検索と絞り込み">
+      <label class="search-box">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="番組名・芸人名で検索" aria-label="番組名・芸人名で検索">
+        <button id="clearSearchButton" type="button" aria-label="検索を消去" hidden>×</button>
+      </label>
+
+      <div class="filter-row" id="mediumFilters" aria-label="視聴方法">
+        <button type="button" data-medium="all" aria-pressed="true">すべて</button>
+        <button type="button" data-medium="tokyo-tv" aria-pressed="false">東京で地上波</button>
+        <button type="button" data-medium="free" aria-pressed="false">無料配信</button>
+        <button type="button" data-medium="paid" aria-pressed="false">有料配信</button>
+      </div>
+
+      <div class="sub-controls">
+        <label>
+          <span>ネタの種類</span>
+          <select id="genreSelect" aria-label="ネタの種類">
+            <option value="all">すべて</option>
+          </select>
+        </label>
+        <button class="favorite-filter" id="favoriteFilterButton" type="button" aria-pressed="false">
+          <span aria-hidden="true">☆</span> お気に入りだけ
+        </button>
+      </div>
+    </section>
+
+    <div class="notice" id="dataNotice">
+      <span aria-hidden="true">●</span>
+      <p><strong>放送確定</strong>と<strong>通常枠</strong>を分けて掲載。東京で映らない番組も、無料配信があれば表示します。</p>
+    </div>
+
+    <section class="results" aria-labelledby="resultsTitle">
+      <div class="section-head">
+        <div>
+          <span id="resultsEyebrow">THIS WEEK</span>
+          <h2 id="resultsTitle">今週のネタ番組</h2>
+        </div>
+        <strong id="resultCount">0本</strong>
+      </div>
+      <div class="program-list" id="programList"></div>
+      <div class="empty-state" id="emptyState" hidden>
+        <span aria-hidden="true">…</span>
+        <h3>条件に合う番組がありません</h3>
+        <p>日付か視聴方法を変えてみてください。</p>
+        <button id="resetFiltersButton" type="button">条件をリセット</button>
+      </div>
+    </section>
+
+    <section class="watchlist-section" aria-labelledby="watchlistTitle">
+      <div class="section-head">
+        <div>
+          <span>SPECIAL WATCH</span>
+          <h2 id="watchlistTitle">次回を待ってる特番</h2>
+        </div>
+      </div>
+      <p class="watchlist-copy">放送日が出たら週間カレンダーへ移す特番・賞レースです。</p>
+      <div class="watchlist" id="watchlist"></div>
+    </section>
+  </main>
+
+  <dialog class="detail-dialog" id="detailDialog" aria-labelledby="detailTitle">
+    <div id="detailContent"></div>
+  </dialog>
+
+  <dialog class="about-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <div class="dialog-head">
+      <div>
+        <span>ABOUT</span>
+        <h2 id="aboutTitle">掲載情報について</h2>
+      </div>
+      <button class="dialog-close" type="button" data-close-about aria-label="閉じる">×</button>
+    </div>
+    <p>お笑いのネタ・演芸・即興コントを中心に、放送日時、チャンネル、見逃し配信、出演者をまとめています。</p>
+    <dl>
+      <div><dt>放送確定</dt><dd>放送局や公式番組表で日時を確認できた予定です。</dd></div>
+      <div><dt>通常枠</dt><dd>番組の通常放送枠をもとにした目安です。休止や時間変更があります。</dd></div>
+      <div><dt>深夜表記</dt><dd>土曜24:25は、実際には日曜0:25です。番組表の曜日に合わせています。</dd></div>
+      <div><dt>東京での視聴</dt><dd>関西ローカル番組でも、TVerなどで見逃し配信があるものは掲載します。</dd></div>
+    </dl>
+    <p class="about-note" id="updatedLabel">データ更新日を確認中</p>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./data.js?v=1.0.0"></script>
+  <script src="./app.js?v=1.0.0"></script>
+</body>
+</html>

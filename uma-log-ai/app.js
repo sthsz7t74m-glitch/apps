@@ -18,7 +18,7 @@
   const DATA_URL = './data/races.json';
   const MODEL_STATUS_URL = './data/forward-status.json';
   const DEFAULT_MODEL_STATUS = {
-    model_version: '4.0.0-audit-locked',
+    model_version: '5.0.0-multi-market-audit-locked',
     generated_at: null,
     frozen_race_captures: 0,
     paper_candidates: 0,
@@ -366,7 +366,7 @@
     const horses = race.horses.map(horse => {
       const current = Engine.mergeHorseEdition(horse, edition);
       return {
-        ...pick(current, ['id', 'number', 'gate', 'scratched', 'carriedWeight', 'burdenChange', 'bodyWeight', 'bodyWeightChange', 'restDays', 'runningStyle', 'distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore', 'startScore', 'muscleScore', 'temperatureFit', 'windFit', 'v3WinProbability', 'odds', 'popularity']),
+        ...pick(current, ['id', 'number', 'gate', 'scratched', 'carriedWeight', 'burdenChange', 'bodyWeight', 'bodyWeightChange', 'restDays', 'runningStyle', 'distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore', 'startScore', 'muscleScore', 'temperatureFit', 'windFit', 'v3WinProbability', 'v5WinProbability', 'odds', 'winOddsSnapshot', 'placeOdds', 'popularity']),
         jockeyStats: pick(current.jockeyStats, ['winRate', 'placeRate', 'coursePlaceRate', 'pairPlaceRate', 'pairStarts']),
         trainerStats: pick(current.trainerStats, ['winRate', 'placeRate', 'coursePlaceRate']),
         pedigree: pick(current.pedigree, ['turfScore', 'dirtScore', 'distanceScore']),
@@ -375,7 +375,7 @@
       };
     }).sort((a, b) => Number(a.number) - Number(b.number));
     const input = {
-      modelVersion: 4,
+      modelVersion: 5,
       date: currentRaceData.date,
       venue: currentRaceData.venue,
       raceNumber: currentRaceData.raceNumber,
@@ -393,6 +393,7 @@
       windDirection: currentRaceData.windDirection,
       probabilityModel: currentRaceData.probabilityModel,
       oddsSnapshotAt: currentRaceData.oddsSnapshotAt || race.snapshots?.[edition]?.asOf,
+      wideOdds: currentRaceData.wideOdds || null,
       isDebut: currentRaceData.isDebut,
       horses,
       weights,
@@ -411,6 +412,8 @@
       fieldSize: prediction.fieldSize,
       generatedAt: prediction.generatedAt,
       capturedAt: prediction.capturedAt || race.oddsSnapshotAt || race.snapshots?.[prediction.edition]?.asOf || new Date().toISOString(),
+      oddsCapturedAt: prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.capturedAt,
+      evaluatedAt: prediction.evaluatedAt || prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.generatedAt,
       datasetFingerprint: datasetFingerprint(),
       inputFingerprint,
       weightSignature: hashWeights(prediction.weights),
@@ -432,10 +435,14 @@
         bodyWeightChange: runner.bodyWeightChange,
         runningStyle: runner.runningStyle,
         odds: runner.odds,
+        winOddsSnapshot: runner.winOddsSnapshot ?? null,
+        placeOdds: runner.placeOdds ?? null,
+        capturedPlaceOdds: runner.capturedPlaceOdds ?? runner.placeOdds ?? null,
         popularity: runner.popularity,
         capturedOdds: runner.odds,
         capturedPopularity: runner.popularity,
         v3WinProbability: runner.v3WinProbability ?? null,
+        v5WinProbability: runner.v5WinProbability ?? null,
         rank: runner.rank,
         mark: runner.mark,
         score: runner.score,
@@ -469,7 +476,8 @@
   function createProfitPlan(prediction, race, bankroll = state.budget) {
     return ProfitEngine.createPlan(prediction, {
       race: profitRaceInput(race, prediction.edition || state.edition),
-      snapshotAt: prediction.capturedAt || race.oddsSnapshotAt || race.snapshots?.[prediction.edition || state.edition]?.asOf,
+      snapshotAt: prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.capturedAt || race.snapshots?.[prediction.edition || state.edition]?.asOf,
+      evaluatedAt: prediction.evaluatedAt || prediction.oddsCapturedAt || race.oddsSnapshotAt || prediction.generatedAt,
       gateStatus: state.modelStatus?.activation_status || 'LOCKED',
       bankrollYen: normalizeBudget(bankroll)
     });
@@ -663,8 +671,15 @@
       }
       const plan = overviewPlanFor(race, prediction);
       const recommendation = plan?.recommendation || {};
-      const category = recommendation.status === 'BUY' ? 'buy' : recommendation.status === 'PAPER_ONLY' ? 'paper' : 'skip';
-      const label = category === 'buy' ? '購入' : category === 'paper' ? '仮想' : recommendation.status === 'REFERENCE_ONLY' ? '見送り' : '見送り';
+      const positiveReference = recommendation.status === 'REFERENCE_ONLY'
+        && prediction.captureStatus !== 'published-post-race'
+        && Number(recommendation.candidate?.referenceEv) >= ProfitEngine.CONFIG.minimumReferenceEv;
+      const category = recommendation.status === 'BUY' ? 'buy'
+        : recommendation.status === 'PAPER_ONLY' ? 'paper'
+          : positiveReference ? 'reference' : 'skip';
+      const label = category === 'buy' ? '購入'
+        : category === 'paper' ? '仮想'
+          : category === 'reference' ? '参考候補' : '見送り';
       return {
         race,
         prediction,
@@ -684,11 +699,13 @@
   function summarizeDailyBets(entries) {
     const buy = entries.filter(entry => entry.category === 'buy');
     const paper = entries.filter(entry => entry.category === 'paper');
+    const reference = entries.filter(entry => entry.category === 'reference');
     return {
       raceCount: entries.length,
       buyCount: buy.length,
       paperCount: paper.length,
-      skipCount: entries.length - buy.length - paper.length,
+      referenceCount: reference.length,
+      skipCount: entries.length - buy.length - paper.length - reference.length,
       realTotal: buy.reduce((sum, entry) => sum + entry.realAmount, 0),
       paperTotal: paper.reduce((sum, entry) => sum + entry.paperAmount, 0)
     };
@@ -701,8 +718,11 @@
   }
 
   function dailyDecisionText(entry) {
-    if (entry.category === 'buy' && entry.candidate) return `単勝 ${entry.candidate.number}番　${formatNumber(entry.realAmount)}円`;
-    if (entry.category === 'paper' && entry.candidate) return `仮想・単勝 ${entry.candidate.number}番　${formatNumber(entry.paperAmount)}円`;
+    const candidate = entry.candidate;
+    const numbers = candidate?.numbers?.join('-') || candidate?.number;
+    if (entry.category === 'buy' && candidate) return `${candidate.type} ${numbers}　${formatNumber(entry.realAmount)}円`;
+    if (entry.category === 'paper' && candidate) return `仮想・${candidate.type} ${numbers}　${formatNumber(entry.paperAmount)}円`;
+    if (entry.category === 'reference' && candidate) return `参考・${candidate.type} ${numbers}`;
     return entry.label;
   }
 
@@ -710,22 +730,29 @@
     const { race, candidate, recommendation } = entry;
     const ev = entryEv(entry);
     const trusted = recommendation?.modelTrusted === true;
+    const candidateNumbers = candidate?.numbers?.join('-') || candidate?.number;
     const candidateText = candidate
-      ? `${candidate.number}番 ${escapeHtml(candidate.name)}`
+      ? `${candidate.type} ${candidateNumbers}　${escapeHtml(candidate.name)}`
       : entry.status === 'OUT_OF_SCOPE' ? '予想対象外' : '候補なし';
+    const probabilityLabel = candidate?.type === '複勝' ? '複勝圏率' : candidate?.type === 'ワイド' ? '同時圏内率' : '勝率';
+    const oddsText = candidate?.oddsLower === null || candidate?.oddsLower === undefined
+      ? '実オッズなし'
+      : candidate.oddsUpper > candidate.oddsLower
+        ? `${formatNumber(candidate.oddsLower, 1)}〜${formatNumber(candidate.oddsUpper, 1)}倍`
+        : `${formatNumber(candidate.oddsLower, 1)}倍`;
     const metric = candidate
-      ? `${trusted ? 'v4勝率' : '参考勝率'} ${formatNumber(candidate.v4Probability * 100, 1)}% · 適正${formatNumber(candidate.fairOdds, 2)}倍`
+      ? `${probabilityLabel} ${formatNumber(candidate.probability * 100, 1)}% · ${oddsText} · 適正${formatNumber(candidate.fairOdds, 2)}倍`
       : entry.reason;
     const compactMetric = candidate && ev !== null
-      ? `${metric} · ${trusted ? '保守' : '参考'}EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`
+      ? `${metric} · 予測×下限 ${formatNumber(candidate.rawExpectedMultiplier, 2)} · 10%減EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`
       : metric;
-    const statusClass = entry.category === 'buy' ? 'is-buy' : entry.category === 'paper' ? 'is-paper' : 'is-skip';
+    const statusClass = entry.category === 'buy' ? 'is-buy' : entry.category === 'paper' ? 'is-paper' : entry.category === 'reference' ? 'is-reference' : 'is-skip';
     if (compact) {
       return `<button class="daily-preview-row ${statusClass}" type="button" data-select-date="${escapeHtml(race.date)}" data-select-venue="${escapeHtml(race.venue)}" data-select-race="${race.raceNumber}" data-target-view="tickets"><span><strong>${escapeHtml(race.venue)} ${race.raceNumber}R</strong><small>${escapeHtml(race.startTime)} ${escapeHtml(race.name)}</small></span><span><strong>${candidateText}</strong><small>${escapeHtml(compactMetric)}</small></span><span class="daily-decision">${escapeHtml(dailyDecisionText(entry))}</span></button>`;
     }
     const evText = ev === null
       ? 'EV —'
-      : `${trusted ? '保守' : '参考'}EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%${trusted ? ` · 基準まで${formatNumber(Math.max(0, ProfitEngine.CONFIG.minimumLowerBoundEv - ev) * 100, 1)}pt` : ' · 正式判定対象外'}`;
+      : `10%減EV ${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}% · 予測×下限 ${formatNumber(candidate.rawExpectedMultiplier, 2)}${trusted ? ` · 基準まで${formatNumber(Math.max(0, ProfitEngine.CONFIG.minimumReferenceEv - ev) * 100, 1)}pt` : ' · 参考再計算'}`;
     return `<button class="daily-ticket-row ${statusClass}" type="button" data-select-date="${escapeHtml(race.date)}" data-select-venue="${escapeHtml(race.venue)}" data-select-race="${race.raceNumber}" data-target-view="tickets">
       <span class="daily-race-cell"><strong>${escapeHtml(race.venue)} ${race.raceNumber}R</strong><small>${escapeHtml(race.startTime)} · ${escapeHtml(race.name)}</small></span>
       <span class="daily-candidate-cell"><strong>${candidateText}</strong><small>${escapeHtml(metric)} · ${escapeHtml(evText)}</small></span>
@@ -787,14 +814,18 @@
     const markedCount = Math.min(base.runners.length, Math.max(5, Math.min(7, Math.ceil(base.runners.length / 3) + 2)));
     const runners = base.runners.map(runner => {
       const saved = publishedByNumber.get(Number(runner.number));
+      const snapshotOdds = Number(runner.winOddsSnapshot);
+      const capturedOdds = Number.isFinite(snapshotOdds) && snapshotOdds > 1 ? snapshotOdds : Number(saved.odds);
       return {
         ...runner,
         rank: Number(saved.rank),
         modelProbability: Number(saved.probability),
         publishedWinProbability: Number(saved.probability),
-        odds: Number(saved.odds),
-        capturedOdds: Number(saved.odds),
-        currentOdds: Number(saved.odds),
+        modelCapturedOdds: Number(saved.odds),
+        odds: capturedOdds,
+        capturedOdds,
+        currentOdds: capturedOdds,
+        capturedPlaceOdds: runner.placeOdds || null,
         reason: `8月9日公開モデル${Number(saved.rank)}位 · 勝率${formatNumber(Number(saved.probability) * 100, 1)}%`
       };
     }).sort((a, b) => a.rank - b.rank || a.number - b.number);
@@ -805,6 +836,8 @@
       ...base,
       generatedAt: published.generatedAt,
       capturedAt: published.capturedAt,
+      oddsCapturedAt: race.oddsSnapshotAt || published.capturedAt,
+      evaluatedAt: race.oddsSnapshotAt || published.generatedAt,
       captureStatus: published.captureTiming === 'pre-race' ? 'published-pre-race' : 'published-post-race',
       retrospective: published.captureTiming !== 'pre-race',
       probabilityModel: race.probabilityModel,
@@ -1010,15 +1043,17 @@
     nodes.dailyPreviewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
     nodes.dailyPreviewStatus.textContent = `${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
     nodes.dailyPreviewStatus.className = `status-pill ${summary.buyCount ? 'is-ok' : 'is-warning'}`;
-    nodes.dailyPreviewSummary.innerHTML = `<div><strong>${summary.buyCount}件</strong><span>正式購入</span><small>${formatNumber(summary.realTotal)}円</small></div><div><strong>${summary.paperCount}件</strong><span>仮想候補</span><small>${formatNumber(summary.paperTotal)}円</small></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span><small>全${summary.raceCount}R</small></div>`;
+    nodes.dailyPreviewSummary.innerHTML = `<div><strong>${summary.buyCount}件</strong><span>正式購入</span><small>${formatNumber(summary.realTotal)}円</small></div><div><strong>${summary.paperCount}件</strong><span>仮想候補</span><small>${formatNumber(summary.paperTotal)}円</small></div><div><strong>${summary.referenceCount}件</strong><span>v5参考候補</span><small>購入0円</small></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span><small>全${summary.raceCount}R</small></div>`;
     const featured = summary.buyCount
       ? entries.filter(entry => entry.category === 'buy')
-      : entries.filter(entry => entry.category === 'paper');
+      : summary.paperCount
+        ? entries.filter(entry => entry.category === 'paper')
+        : entries.filter(entry => entry.category === 'reference');
     const nearest = entries.filter(entry => entry.candidate && entry.prediction?.captureStatus !== 'published-post-race')
       .sort((a, b) => (entryEv(b) ?? -Infinity) - (entryEv(a) ?? -Infinity))[0];
     nodes.dailyPreviewList.innerHTML = featured.length
       ? featured.slice(0, 4).map(entry => dailyEntryMarkup(entry, true)).join('')
-      : `<div class="daily-preview-empty"><strong>正式な買い目はありません</strong><span>${state.modelStatus?.activation_status === 'VERIFIED' ? '購入条件を満たすレースがありません。' : '利益ゲート通過までは全レース実購入0円です。'}${nearest ? ' 下は最も基準に近い参考候補です。' : ''}</span></div>${nearest ? dailyEntryMarkup(nearest, true) : ''}`;
+      : `<div class="daily-preview-empty"><strong>正式な買い目はありません</strong><span>${state.modelStatus?.activation_status === 'VERIFIED' ? '購入条件を満たすレースがありません。' : '利益ゲート通過までは実購入0円です。'}${nearest ? ' 下は最も基準に近い候補です。' : ''}</span></div>${nearest ? dailyEntryMarkup(nearest, true) : ''}`;
     nodes.openDailyTicketsButton.textContent = `全${summary.raceCount}Rの買い目・見送りを見る`;
   }
 
@@ -1027,14 +1062,15 @@
     const summary = summarizeDailyBets(entries);
     nodes.ticketViewTitle.textContent = state.date ? `${formatDate(state.date, true)}の買い目` : '選択日の買い目';
     nodes.dailyTicketStatus.textContent = `購入 ${summary.buyCount}件・${formatNumber(summary.realTotal)}円`;
-    nodes.dailyTicketSummary.innerHTML = `<article class="daily-total-card panel"><div class="daily-total-main"><span>本日の正式購入</span><strong>${formatNumber(summary.realTotal)}円</strong><small>${summary.buyCount}レース · 単勝のみ</small></div><div class="daily-total-grid"><div><strong>${summary.paperCount}件 / ${formatNumber(summary.paperTotal)}円</strong><span>仮想検証</span></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span></div><div><strong>${formatNumber(Math.floor(state.budget * ProfitEngine.CONFIG.maxBankrollFractionPerDay / 100) * 100)}円</strong><span>解禁後の1日上限</span></div></div><p>${summary.buyCount ? '下の購入行だけが正式な買い目です。' : '現在、正式に買うレースはありません。候補馬が表示されていても「見送り」は購入しません。'}</p></article>`;
+    nodes.dailyTicketSummary.innerHTML = `<article class="daily-total-card panel"><div class="daily-total-main"><span>本日の正式購入</span><strong>${formatNumber(summary.realTotal)}円</strong><small>${summary.buyCount}レース · 単勝／複勝／ワイド比較</small></div><div class="daily-total-grid"><div><strong>${summary.paperCount}件 / ${formatNumber(summary.paperTotal)}円</strong><span>仮想検証</span></div><div><strong>${summary.referenceCount}件</strong><span>v5参考候補</span></div><div><strong>${summary.skipCount}件</strong><span>見送り・対象外</span></div><div><strong>${formatNumber(Math.floor(state.budget * ProfitEngine.CONFIG.maxBankrollFractionPerDay / 100) * 100)}円</strong><span>解禁後の1日上限</span></div></div><p>${summary.buyCount ? '下の購入行だけが正式な買い目です。' : '正式購入はありません。参考候補は保存済み発走前データをv5で再計算した検証用で、当時の購入扱いにはしません。'}</p></article>`;
     const counts = {
       all: entries.length,
       buy: entries.filter(entry => entry.category === 'buy').length,
       paper: entries.filter(entry => entry.category === 'paper').length,
+      reference: entries.filter(entry => entry.category === 'reference').length,
       skip: entries.filter(entry => entry.category === 'skip').length
     };
-    const filterLabels = { all: 'すべて', buy: '購入', paper: '仮想', skip: '見送り' };
+    const filterLabels = { all: 'すべて', buy: '購入', paper: '仮想', reference: '参考候補', skip: '見送り' };
     nodes.dailyTicketFilters.querySelectorAll('[data-ticket-filter]').forEach(button => {
       const filter = button.dataset.ticketFilter;
       button.textContent = `${filterLabels[filter]} ${counts[filter]}`;
@@ -1085,7 +1121,7 @@
     const settled = Number(status.settled_paper_bets) || 0;
     const roi = settled ? formatRatio(status.paper_roi) : '—';
     const ci = settled ? formatRatio(status.cluster_bootstrap_roi_ci95_lower_bound) : '—';
-    nodes.forwardValidationSummary.innerHTML = `<article class="forward-status-card panel"><div class="forward-status-heading"><div><p class="eyebrow">V4 FORWARD TEST</p><h3>${escapeHtml(status.activation_status || 'LOCKED')}</h3></div><span class="gate-pill ${status.activation_status === 'VERIFIED' ? 'is-verified' : ''}">実購入 ${formatNumber(status.real_stake_yen)}円</span></div><div class="forward-metrics"><div><strong>${formatNumber(status.frozen_race_captures)}</strong><span>発走前固定</span></div><div><strong>${formatNumber(settled)}</strong><span>公式精算</span></div><div><strong>${roi}</strong><span>仮想回収率</span></div><div><strong>${ci}</strong><span>95%下限</span></div></div><p>v4式と購入条件は固定。時刻付きオッズとJRA公式払戻で前向きに検証し、基準通過までは実購入を出しません。</p></article>`;
+    nodes.forwardValidationSummary.innerHTML = `<article class="forward-status-card panel"><div class="forward-status-heading"><div><p class="eyebrow">V5 FORWARD TEST</p><h3>${escapeHtml(status.activation_status || 'LOCKED')}</h3></div><span class="gate-pill ${status.activation_status === 'VERIFIED' ? 'is-verified' : ''}">実購入 ${formatNumber(status.real_stake_yen)}円</span></div><div class="forward-metrics"><div><strong>${formatNumber(status.frozen_race_captures)}</strong><span>発走前固定</span></div><div><strong>${formatNumber(settled)}</strong><span>公式精算</span></div><div><strong>${roi}</strong><span>仮想回収率</span></div><div><strong>${ci}</strong><span>95%下限</span></div></div><p>v5式と単勝・複勝・ワイドの判定条件は固定。時刻付き実オッズと公式払戻で前向きに検証し、基準通過までは実購入を出しません。</p></article>`;
     const labels = {
       timestamped_odds_verified: '時刻付き発走前オッズ',
       official_settlements_verified: '公式払戻・返還で精算',
@@ -1225,14 +1261,14 @@
     nodes.openBreakdownButton.disabled = false;
     const topProbability = probabilityByNumber.get(Number(prediction.runners[0]?.number));
     nodes.confidenceGauge.innerHTML = topProbability
-      ? `<span>本命勝率</span><strong>${formatNumber(topProbability.v4Probability * 100, 1)}%</strong><small>${profit.modelTrusted ? 'v4校正' : prediction.publishedGrade ? `当日評価 ${prediction.publishedGrade}` : '参考値'}</small>`
+      ? `<span>本命勝率</span><strong>${formatNumber(topProbability.winProbability * 100, 1)}%</strong><small>${profit.modelTrusted ? 'v5校正' : prediction.publishedGrade ? `当日評価 ${prediction.publishedGrade}` : '参考値'}</small>`
       : `<span>自信度</span><strong>${prediction.confidence.value}</strong><small>${escapeHtml(prediction.confidence.label)}</small>`;
     nodes.confidenceGauge.title = topProbability
       ? `${profit.modelSourceNote}・適正オッズ${formatNumber(topProbability.fairOdds, 2)}倍`
       : `${prediction.confidence.reason}・充足度${prediction.confidence.coverage}%`;
     nodes.predictionPodium.innerHTML = prediction.runners.slice(0, 3).map(runner => {
       const row = probabilityByNumber.get(Number(runner.number));
-      const metric = row ? `勝率 ${formatNumber(row.v4Probability * 100, 1)}% · 適正${formatNumber(row.fairOdds, 2)}倍` : `${formatNumber(runner.score, 1)}点`;
+      const metric = row ? `勝率 ${formatNumber(row.winProbability * 100, 1)}% · 複勝圏${formatNumber(row.placeProbability * 100, 1)}%` : `${formatNumber(runner.score, 1)}点`;
       return `<div class="podium-card" role="listitem"><span class="podium-mark">${runner.mark}</span><strong>${escapeHtml(runner.name)}</strong><span>${runner.number}番 · ${metric}</span></div>`;
     }).join('');
     nodes.runnerCount.textContent = `${prediction.runners.length}頭`;
@@ -1240,12 +1276,16 @@
       const capturedOdds = runner.capturedOdds ?? runner.odds;
       const currentOdds = runner.currentOdds ?? runner.odds;
       const currentPopularity = runner.currentPopularity ?? runner.popularity;
-      const currentText = Number.isFinite(Number(currentOdds)) ? `単 ${formatNumber(currentOdds, 1)}${currentPopularity ? `（${formatNumber(currentPopularity)}人気）` : ''}` : 'オッズ未発表';
+      const placeOdds = runner.capturedPlaceOdds || runner.placeOdds;
+      const placeText = placeOdds?.lower
+        ? ` · 複 ${formatNumber(placeOdds.lower, 1)}〜${formatNumber(placeOdds.upper, 1)}`
+        : '';
+      const currentText = Number.isFinite(Number(currentOdds)) ? `単 ${formatNumber(currentOdds, 1)}${currentPopularity ? `（${formatNumber(currentPopularity)}人気）` : ''}${placeText}` : 'オッズ未発表';
       const changed = Number.isFinite(Number(capturedOdds)) && Number.isFinite(Number(currentOdds)) && Number(capturedOdds) !== Number(currentOdds);
       const oddsText = changed ? `予想時 ${formatNumber(capturedOdds, 1)} / 現在 ${currentText}` : currentText;
       const probability = probabilityByNumber.get(Number(runner.number));
-      const probabilityText = probability ? `${formatNumber(probability.v4Probability * 100, 1)}%` : formatNumber(runner.score, 1);
-      const probabilityLabel = probability ? `${profit.modelTrusted ? 'v4勝率' : '参考勝率'} / 適正${formatNumber(probability.fairOdds, 2)}倍` : `${runner.rank}位 / 100点`;
+      const probabilityText = probability ? `${formatNumber(probability.winProbability * 100, 1)}%` : formatNumber(runner.score, 1);
+      const probabilityLabel = probability ? `${profit.modelTrusted ? 'v5勝率' : '参考勝率'} / 複${formatNumber(probability.placeProbability * 100, 1)}%` : `${runner.rank}位 / 100点`;
       return `<button class="runner-card${runner.rank <= 3 ? ' is-top' : ''}" type="button" data-runner-number="${runner.number}" aria-label="${escapeHtml(runner.name)}の詳細">
         <span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span>
         <span class="runner-main"><span class="runner-title"><span class="mark ${markClass(runner.mark)}">${runner.mark || '—'}</span><strong>${escapeHtml(runner.name)}</strong></span><span class="runner-sub"><span>${escapeHtml(runner.sexAge || '')} ${formatNumber(runner.carriedWeight, 1)}kg</span><span>${escapeHtml(bodyWeightText(runner))}</span><span>${escapeHtml(runner.jockey || '騎手未定')}</span><span>${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</span></span><span class="runner-reason">${escapeHtml(runner.reason)}</span></span>
@@ -1285,28 +1325,50 @@
     nodes.budgetInput.value = displayBudget;
     nodes.budgetInput.disabled = Boolean(lockedPlan);
     nodes.budgetOutput.textContent = formatNumber(displayBudget);
-    nodes.ticketConfidence.textContent = `${recommendation.modelTrusted ? 'v4校正済み' : '参考確率'} · ${recommendation.gateStatus}`;
+    nodes.ticketConfidence.textContent = `${recommendation.modelTrusted ? 'v5校正済み' : 'v5参考再計算'} · ${recommendation.gateStatus}`;
     document.querySelectorAll('[data-budget]').forEach(button => {
       button.disabled = Boolean(lockedPlan);
       button.classList.toggle('is-active', Number(button.dataset.budget) === Number(displayBudget));
     });
-    nodes.ticketSummary.classList.add('is-v4');
-    nodes.ticketSummary.innerHTML = `<div class="ticket-metric"><strong>${escapeHtml(recommendation.status === 'BUY' ? '購入' : recommendation.status === 'PAPER_ONLY' ? '仮想' : '見送り')}</strong><span>最終判定</span></div><div class="ticket-metric"><strong>${formatNumber(plan.realAllocated)}円</strong><span>実購入</span></div><div class="ticket-metric"><strong>${formatNumber(plan.paperAllocated)}円</strong><span>仮想検証</span></div><div class="ticket-metric"><strong>単勝のみ</strong><span>検証済券種</span></div>`;
+    nodes.ticketSummary.classList.add('is-v5');
+    const decisionLabel = recommendation.status === 'BUY' ? '購入'
+      : recommendation.status === 'PAPER_ONLY' ? '仮想'
+        : recommendation.status === 'REFERENCE_ONLY' ? '参考' : '見送り';
+    nodes.ticketSummary.innerHTML = `<div class="ticket-metric"><strong>${escapeHtml(decisionLabel)}</strong><span>最終判定</span></div><div class="ticket-metric"><strong>${formatNumber(plan.realAllocated)}円</strong><span>実購入</span></div><div class="ticket-metric"><strong>${formatNumber(plan.paperAllocated)}円</strong><span>仮想検証</span></div><div class="ticket-metric"><strong>単・複・ワイド</strong><span>比較券種</span></div>`;
     const candidate = recommendation.candidate;
     if (!candidate) {
       nodes.ticketGroups.innerHTML = `<div class="empty-state">${escapeHtml(plan.reason || '買い目を計算できません')}</div>`;
       return;
     }
     const ev = candidate.lowerBoundEv === null ? candidate.referenceEv : candidate.lowerBoundEv;
-    const evLabel = candidate.lowerBoundEv === null ? '参考EV' : '保守EV';
-    const statusClass = recommendation.status === 'BUY' ? 'is-buy' : recommendation.status === 'PAPER_ONLY' ? 'is-paper' : 'is-skip';
+    const evLabel = candidate.lowerBoundEv === null ? '10%減EV' : '保守EV';
+    const statusClass = recommendation.status === 'BUY' ? 'is-buy'
+      : recommendation.status === 'PAPER_ONLY' ? 'is-paper'
+        : recommendation.status === 'REFERENCE_ONLY' ? 'is-reference' : 'is-skip';
     const ticket = plan.tickets[0];
-    nodes.ticketGroups.innerHTML = `<article class="v4-decision-card panel ${statusClass}">
-      <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? '90%校正下限で判定' : '参考表示のみ'}</span></div>
-      <div class="decision-horse"><span class="horse-number" style="${frameStyle(prediction.runners.find(runner => Number(runner.number) === candidate.number)?.gate)}">${candidate.number}</span><div><p>${escapeHtml(race.venue)} ${race.raceNumber}R</p><h3>${escapeHtml(candidate.name)}</h3><span>${escapeHtml(recommendation.message)}</span></div></div>
-      <div class="decision-metrics"><div><span>予測勝率</span><strong>${formatNumber(candidate.v4Probability * 100, 1)}%</strong></div><div><span>適正オッズ</span><strong>${formatNumber(candidate.fairOdds, 2)}倍</strong></div><div><span>取得オッズ</span><strong>${formatNumber(candidate.currentOdds, 1)}倍</strong></div><div><span>${evLabel}</span><strong class="${ev >= .05 ? 'is-positive' : 'is-negative'}">${ev === null ? '—' : `${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`}</strong></div></div>
-      ${candidate.probabilityLower90 === null ? `<p class="decision-note">${prediction.publishedPrediction ? '8月9日に算出した最終勝率の再現表示です。v3固定確率ではないため、v4の購入判定や前向き利益検証には使いません。' : 'この確率は端末の100点評価から換算した参考値です。固定v3勝率がないため、購入判定には使いません。'}</p>` : `<p class="decision-note">90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。</p>`}
-      ${ticket ? `<div class="paper-ticket"><span>${ticket.paperOnly ? '仮想購入' : '購入候補'}</span><strong>単勝 ${ticket.numbers[0]}番　${formatNumber(ticket.amount)}円</strong><small>実購入 ${formatNumber(plan.realAllocated)}円</small></div>` : ''}
+    const numbers = candidate.numbers.join('-');
+    const probabilityLabel = candidate.type === '複勝' ? '複勝圏率' : candidate.type === 'ワイド' ? '同時圏内率' : '勝率';
+    const oddsText = candidate.oddsUpper > candidate.oddsLower
+      ? `${formatNumber(candidate.oddsLower, 1)}〜${formatNumber(candidate.oddsUpper, 1)}倍`
+      : `${formatNumber(candidate.oddsLower, 1)}倍`;
+    const candidateHeading = candidate.type === 'ワイド'
+      ? `${numbers}　${candidate.names.map(escapeHtml).join(' − ')}`
+      : `${numbers}番 ${escapeHtml(candidate.name)}`;
+    const firstGate = prediction.runners.find(runner => Number(runner.number) === candidate.numbers[0])?.gate;
+    const probabilityNote = candidate.probabilityLower90 !== null
+      ? `90%勝率下限 ${formatNumber(candidate.probabilityLower90 * 100, 1)}% × オッズ10%低下後 ${formatNumber(candidate.effectiveOdds, 2)}倍で判定。`
+      : candidate.type === '単勝'
+        ? (prediction.publishedPrediction ? '8月9日の発走前保存値を、結果を特徴量に使わずv5で再計算した参考表示です。当時の購入扱いにはしません。' : 'この勝率は固定・校正保証がないため参考表示のみです。')
+        : `${candidate.type}確率は、最終勝率からPlackett–Luce法（温度0.8）で算出。レンジオッズは下限を使い、さらに10%低下させています。券種別の確率下限は前向き検証中です。`;
+    const targets = (recommendation.priceTargets || []).slice(0, 6);
+    const targetMarkup = targets.length ? `<section class="price-target-panel"><div><h3>実オッズ未取得の買える目安</h3><p>下限がこの値以上なら、10%悪化後も期待値+5%以上</p></div><div class="price-target-list">${targets.map(target => `<div><span>${escapeHtml(target.type)} ${target.numbers.join('-')}</span><strong>${formatNumber(target.requiredOddsAtThreshold, 1)}倍以上</strong><small>確率 ${formatNumber(target.probability * 100, 1)}%</small></div>`).join('')}</div></section>` : '';
+    nodes.ticketGroups.innerHTML = `<article class="v4-decision-card v5-decision-card panel ${statusClass}">
+      <div class="decision-topline"><span class="decision-status">${escapeHtml(recommendation.status)}</span><span>${recommendation.modelTrusted ? 'v5発走前判定' : 'v5参考再計算'}</span></div>
+      <div class="decision-horse"><span class="horse-number" style="${frameStyle(firstGate)}">${candidate.numbers[0]}</span><div><p>${escapeHtml(race.venue)} ${race.raceNumber}R · ${escapeHtml(candidate.type)}</p><h3>${candidateHeading}</h3><span>${escapeHtml(recommendation.message)}</span></div></div>
+      <div class="decision-metrics"><div><span>${probabilityLabel}</span><strong>${formatNumber(candidate.probability * 100, 1)}%</strong></div><div><span>適正オッズ</span><strong>${formatNumber(candidate.fairOdds, 2)}倍</strong></div><div><span>取得オッズ下限</span><strong>${oddsText}</strong></div><div><span>予測×下限</span><strong class="${candidate.rawExpectedMultiplier > 1 ? 'is-positive' : 'is-negative'}">${formatNumber(candidate.rawExpectedMultiplier, 2)}</strong></div><div><span>${evLabel}</span><strong class="${ev >= .05 ? 'is-positive' : 'is-negative'}">${ev === null ? '—' : `${ev >= 0 ? '+' : ''}${formatNumber(ev * 100, 1)}%`}</strong></div></div>
+      <p class="decision-note">${escapeHtml(probabilityNote)}</p>
+      ${ticket ? `<div class="paper-ticket"><span>${ticket.paperOnly ? '仮想購入' : '購入候補'}</span><strong>${escapeHtml(ticket.type)} ${ticket.numbers.join('-')}　${formatNumber(ticket.amount)}円</strong><small>実購入 ${formatNumber(plan.realAllocated)}円</small></div>` : ''}
+      ${targetMarkup}
       <details class="decision-blockers"><summary>判定理由</summary><ul>${recommendation.blockers.length ? recommendation.blockers.map(blocker => `<li>${escapeHtml(blocker)}</li>`).join('') : '<li>購入条件を通過</li>'}</ul></details>
     </article>`;
   }
@@ -1359,7 +1421,7 @@
         const differenceLabel = difference === null ? '予想外' : difference === 0 ? '一致' : difference > 0 ? `${difference}位上振れ` : `${Math.abs(difference)}位下振れ`;
         const capturedOdds = Number.isFinite(Number(item.odds)) ? ` · 単${formatNumber(item.odds, 1)}` : '';
         return `<div class="comparison-row"><span class="finish-badge${item.finish <= 3 ? ' is-medal' : ''}">${item.finish}着</span><span class="comparison-name">${escapeHtml(item.name)} <small>${item.number}番 ${item.mark || ''}</small></span><span class="comparison-predicted">予想${item.predictedRank || '—'}位${capturedOdds}</span><span class="rank-diff${difference === 0 ? ' is-good' : Math.abs(difference || 0) >= 4 ? ' is-bad' : ''}">${differenceLabel}</span></div>`;
-      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・v4買い判定' : 'v4単勝の結果'}</h3><p>${prediction.publishedPrediction ? '旧方式のワイド判定は不採用・正式購入0円' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">購入条件を満たした単勝候補はありません</div>'}</div></section>`;
+      }).join('')}</div><section class="ticket-result-section"><div class="ticket-result-heading"><div><h3>${prediction.publishedPrediction ? '8月9日・v5多券種判定' : 'v5買い目の結果'}</h3><p>${prediction.publishedPrediction ? 'v5参考候補は事後再計算として分離・当時の正式購入0円' : `${plan.mode === 'paper' ? '仮想購入' : '保存購入'} ${formatNumber(plan.allocated || 0)}円`}</p></div><strong>${comparison.returnRate === null ? '払戻未登録' : `${plan.mode === 'paper' ? '仮想' : ''}回収率 ${formatNumber(comparison.returnRate, 1)}%`}</strong></div><div class="ticket-result-list">${ticketRows || '<div class="empty-state">正式購入・仮想購入として保存された買い目はありません</div>'}</div></section>`;
     }
     renderRecords();
   }
@@ -1434,7 +1496,7 @@
         ? '架空レースは表示しません。PCで保存したJRA公式の詳細出馬表・結果HTMLを、外部送信せずこの端末内だけで解析します。'
       : referenceArchive
         ? '2026年8月9日の札幌・新潟・中京を、取得済み出馬情報と当日モデル勝率、JRA公式照合済みの上位着順で再現しています。結果後取得分は画面上で明示し、前向き成績には混ぜません。'
-      : `${source.name || 'インポートデータ'}。基礎能力の100点評価はオッズと分離し、v4では最後に市場確率・適正オッズ・保守EVの判定だけへ利用します。`;
+      : `${source.name || 'インポートデータ'}。v5は校正済み最終勝率を二重縮小せず使い、単勝・複勝・ワイドを実オッズ下限で比較します。`;
     nodes.weightChangeLog.innerHTML = state.changes.slice(0, 4).map(change => `<div class="change-item"><strong>${escapeHtml(change.adopted ? '配点更新' : '据え置き')}</strong> · ${escapeHtml(formatTimestamp(change.at))}<br>${escapeHtml(change.reason)}${change.validation ? `（検証 ${change.validation.before} → ${change.validation.after}）` : ''}</div>`).join('');
   }
 
@@ -1486,11 +1548,15 @@
       ? prediction.ticketPlan
       : createProfitPlan(prediction, race, prediction.budget || state.budget);
     const probability = profitPlan.recommendation?.rows?.find(row => Number(row.number) === Number(number));
+    const placeCandidate = profitPlan.recommendation?.candidates?.find(candidate => candidate.type === '複勝' && Number(candidate.number) === Number(number));
+    const placeOddsText = placeCandidate
+      ? `${formatNumber(placeCandidate.oddsLower, 1)}〜${formatNumber(placeCandidate.oddsUpper, 1)}倍`
+      : '未取得';
     nodes.runnerSheetEyebrow.textContent = `${runner.mark} 予想${runner.rank}位 · ${state.edition === 'dayBefore' ? '前日版' : '当日最終版'}`;
     nodes.runnerSheetTitle.textContent = runner.name;
-    nodes.runnerSheetContent.innerHTML = `<div class="runner-profile"><span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span><div><h3>${escapeHtml(runner.name)}</h3><p>${escapeHtml(runner.sexAge || '')} · 斤量${formatNumber(runner.carriedWeight, 1)}kg · ${escapeHtml(runner.jockey || '騎手未定')}<br>${escapeHtml(bodyWeightText(runner))} · ${escapeHtml(runner.trainer || '調教師不明')} · ${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</p><div class="profile-score"><strong>${probability ? `${formatNumber(probability.v4Probability * 100, 1)}%` : formatNumber(runner.score, 1)}</strong><span>${probability ? `${profitPlan.recommendation.modelTrusted ? 'v4勝率' : '参考勝率'} · 適正${formatNumber(probability.fairOdds, 2)}倍` : `点 · データ充足度 ${runner.coverage}%`}</span></div></div></div>
+    nodes.runnerSheetContent.innerHTML = `<div class="runner-profile"><span class="horse-number" style="${frameStyle(runner.gate)}">${runner.number}<small>${formatNumber(runner.gate)}枠</small></span><div><h3>${escapeHtml(runner.name)}</h3><p>${escapeHtml(runner.sexAge || '')} · 斤量${formatNumber(runner.carriedWeight, 1)}kg · ${escapeHtml(runner.jockey || '騎手未定')}<br>${escapeHtml(bodyWeightText(runner))} · ${escapeHtml(runner.trainer || '調教師不明')} · ${escapeHtml(Engine.STYLE_LABELS[runner.runningStyle] || '脚質不明')}</p><div class="profile-score"><strong>${probability ? `${formatNumber(probability.winProbability * 100, 1)}%` : formatNumber(runner.score, 1)}</strong><span>${probability ? `${profitPlan.recommendation.modelTrusted ? 'v5勝率' : '参考勝率'} · 複勝圏${formatNumber(probability.placeProbability * 100, 1)}%` : `点 · データ充足度 ${runner.coverage}%`}</span></div></div></div>
       <section class="detail-section"><h3>評価理由</h3><div class="reason-box">${escapeHtml(runner.reason)}</div></section>
-      ${probability ? `<section class="detail-section"><h3>確率・期待値</h3><div class="score-breakdown"><div class="score-cell"><span>予測勝率</span><strong>${formatNumber(probability.v4Probability * 100, 1)}%</strong><span>${escapeHtml(profitPlan.recommendation.modelSourceNote)}</span></div><div class="score-cell"><span>適正 / 取得オッズ</span><strong>${formatNumber(probability.fairOdds, 2)} / ${formatNumber(probability.currentOdds, 1)}倍</strong><span>取得オッズは10%低下させて判定</span></div><div class="score-cell"><span>90%下限 / 保守EV</span><strong>${probability.probabilityLower90 === null ? '判定対象外' : `${formatNumber(probability.probabilityLower90 * 100, 1)}% / ${probability.lowerBoundEv >= 0 ? '+' : ''}${formatNumber(probability.lowerBoundEv * 100, 1)}%`}</strong><span>利益ゲート ${escapeHtml(profitPlan.recommendation.gateStatus)}</span></div></div></section>` : ''}
+      ${probability ? `<section class="detail-section"><h3>確率・期待値</h3><div class="score-breakdown"><div class="score-cell"><span>勝率 / 複勝圏率</span><strong>${formatNumber(probability.winProbability * 100, 1)}% / ${formatNumber(probability.placeProbability * 100, 1)}%</strong><span>${escapeHtml(profitPlan.recommendation.modelSourceNote)}</span></div><div class="score-cell"><span>単勝 適正 / 取得</span><strong>${formatNumber(probability.fairOdds, 2)} / ${formatNumber(probability.currentOdds, 1)}倍</strong><span>単勝も取得オッズを10%低下させて判定</span></div><div class="score-cell"><span>複勝オッズ / 予測×下限</span><strong>${placeOddsText}${placeCandidate ? ` / ${formatNumber(placeCandidate.rawExpectedMultiplier, 2)}` : ''}</strong><span>複勝率は着順モデル・温度0.8</span></div><div class="score-cell"><span>単勝90%下限 / 保守EV</span><strong>${probability.probabilityLower90 === null ? '判定対象外' : `${formatNumber(probability.probabilityLower90 * 100, 1)}% / ${probability.lowerBoundEv >= 0 ? '+' : ''}${formatNumber(probability.lowerBoundEv * 100, 1)}%`}</strong><span>利益ゲート ${escapeHtml(profitPlan.recommendation.gateStatus)}</span></div></div></section>` : ''}
       <section class="detail-section"><h3>10項目の内訳</h3><div class="score-breakdown">${Engine.CATEGORY_META.map(category => { const score = breakdownCell(runner, category, prediction.weights); return `<div class="score-cell"><span>${escapeHtml(category.label)}</span><strong>${formatNumber(score.points, 1)} / ${formatNumber(score.weight, 1)}点</strong><span>充足度 ${formatNumber(score.coverage * 100, 0)}% · ${escapeHtml(score.evidence?.[0] || '保存時の根拠なし')}</span></div>`; }).join('')}</div></section>
       <section class="detail-section"><h3>直近5走</h3><div class="history-scroll"><table class="history-table"><thead><tr><th>日付・競馬場</th><th>条件</th><th>着順</th><th>着差</th><th>上がり</th><th>指数</th></tr></thead><tbody>${Array.isArray(runner.recentRuns) && runner.recentRuns.length ? runner.recentRuns.slice(0, 5).map(run => `<tr><td>${escapeHtml(run.date)} ${escapeHtml(run.venue)}</td><td>${escapeHtml(SURFACE_LABELS[run.surface] || run.surface || '不明')}${formatNumber(run.distance)}m ${escapeHtml(GOING_LABELS[run.going] || run.going || '')}</td><td>${formatNumber(run.finish)} / ${formatNumber(run.fieldSize)}</td><td>${Number(run.margin) <= 0 ? '1着' : `+${formatNumber(run.margin, 1)}`}</td><td>${formatNumber(run.last3F, 1)}（${formatNumber(run.last3FRank)}位）</td><td>${formatNumber(run.speedRating)}</td></tr>`).join('') : '<tr><td colspan="6">近走データがありません</td></tr>'}</tbody></table></div></section>`;
     openSheet(nodes.runnerBackdrop);
@@ -1638,7 +1704,7 @@
   function optimizeWeightsOffMainThread(races, weights) {
     if (!('Worker' in window)) return Promise.reject(new Error('このブラウザはバックグラウンド検証に対応していません'));
     return new Promise((resolve, reject) => {
-      const worker = new Worker('./learning-worker.js?v=220');
+      const worker = new Worker('./learning-worker.js?v=230');
       const timeout = window.setTimeout(() => {
         worker.terminate();
         reject(new Error('配点検証が時間内に完了しませんでした'));

@@ -52,16 +52,19 @@ test('the real archive renders and both new all-race pages remain interactive', 
   const context = vm.createContext(window);
   for (const source of [engine, profit, importer, app]) vm.runInContext(source, context);
 
-  await waitFor(() => document.querySelectorAll('.daily-preview-summary > div').length === 3, 'daily preview did not render');
-  assert.match(document.getElementById('dailyPreviewSummary').textContent, /0件正式購入0円0件仮想候補0円36件見送り・対象外全36R/);
-  assert.match(document.getElementById('dailyPreviewList').textContent, /正式な買い目はありません/);
-  assert.match(document.getElementById('dailyPreviewList').textContent, /札幌 6R.*14番 ギオンバヤシ.*参考EV -10\.9%.*見送り/s);
+  await waitFor(() => document.querySelectorAll('.daily-preview-summary > div').length === 4, 'daily preview did not render');
+  assert.match(document.getElementById('dailyPreviewSummary').textContent, /0件正式購入0円0件仮想候補0円3件v5参考候補購入0円33件見送り・対象外全36R/);
+  assert.match(document.getElementById('dailyPreviewList').textContent, /中京 11R.*複勝 1.*フロムレイブン.*予測×下限 1\.45.*10%減EV \+30\.3%.*参考・複勝 1/s);
 
   document.querySelector('[data-nav="tickets"]').click();
   await waitFor(() => document.querySelectorAll('.daily-ticket-row').length === 36, 'daily ticket list did not render');
   assert.equal(document.getElementById('ticketView').hidden, false);
   assert.match(document.getElementById('dailyTicketSummary').textContent, /本日の正式購入0円/);
-  assert.equal(document.querySelectorAll('.daily-ticket-row.is-skip').length, 36);
+  assert.equal(document.querySelectorAll('.daily-ticket-row.is-reference').length, 3);
+  assert.equal(document.querySelectorAll('.daily-ticket-row.is-skip').length, 33);
+
+  document.querySelector('[data-ticket-filter="reference"]').click();
+  assert.equal(document.querySelectorAll('.daily-ticket-row').length, 3);
 
   document.querySelector('[data-nav="results"]').click();
   await waitFor(() => document.querySelectorAll('.result-overview-row').length === 36, 'results overview did not render');

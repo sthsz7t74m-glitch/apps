@@ -34,18 +34,14 @@ const race = {
   raceType: 'flat'
 };
 
-test('v4 probability blend follows the fixed residual-shrinkage formula and sums to one', () => {
+test('v5 uses the calibrated final probability directly without a second market shrink', () => {
   const prediction = trustedPrediction();
   const analysis = ProfitEngine.analyze(prediction, { race, gateStatus: 'LOCKED', bankrollYen: 100000 });
-  const total = analysis.rows.reduce((sum, row) => sum + row.v4Probability, 0);
+  const total = analysis.rows.reduce((sum, row) => sum + row.winProbability, 0);
   assert.ok(Math.abs(total - 1) < 1e-12);
-  const model = prediction.runners.map(runner => runner.v3WinProbability);
-  const inverse = prediction.runners.map(runner => 1 / runner.capturedOdds);
-  const inverseTotal = inverse.reduce((sum, value) => sum + value, 0);
-  const market = inverse.map(value => value / inverseTotal);
-  const raw = market.map((q, index) => q * (model[index] / q) ** .8);
-  const rawTotal = raw.reduce((sum, value) => sum + value, 0);
-  assert.ok(Math.abs(analysis.rows[0].v4Probability - raw[0] / rawTotal) < 1e-12);
+  prediction.runners.forEach((runner, index) => {
+    assert.ok(Math.abs(analysis.rows[index].winProbability - runner.v3WinProbability) < 1e-12);
+  });
 });
 
 test('a positive conservative edge remains paper-only while the forward gate is locked', () => {
@@ -73,7 +69,7 @@ test('browser score probabilities are visible for reference but cannot unlock a 
   assert.ok(analysis.rows.every(row => row.probabilityLower90 === null));
 });
 
-test('a published final probability is reproduced exactly and never becomes a v4 bet', () => {
+test('a published final probability is reproduced exactly and remains reference-only', () => {
   const probabilities = [.5168107857362774, .2, .12, .09, .0731892142637226];
   const prediction = trustedPrediction({
     generatedAt: '2026-08-09T10:08:00+09:00',
@@ -92,6 +88,43 @@ test('a published final probability is reproduced exactly and never becomes a v4
   assert.ok(Math.abs(analysis.rows[0].v4Probability - probabilities[0]) < 1e-12);
   assert.equal(analysis.realStakeYen, 0);
   assert.equal(analysis.paperStakeYen, 0);
+});
+
+test('Plackett-Luce place and wide probabilities are coherent for two- and three-place fields', () => {
+  const probabilities = [.5, .2, .12, .1, .08];
+  const topTwo = ProfitEngine.rankingMarginals(probabilities, 2);
+  assert.ok(Math.abs(topTwo.place.reduce((sum, value) => sum + value, 0) - 2) < 1e-12);
+  assert.ok(Math.abs([...topTwo.pair.values()].reduce((sum, value) => sum + value, 0) - 1) < 1e-12);
+  const topThree = ProfitEngine.rankingMarginals(probabilities, 3);
+  assert.ok(Math.abs(topThree.place.reduce((sum, value) => sum + value, 0) - 3) < 1e-12);
+  assert.ok(Math.abs([...topThree.pair.values()].reduce((sum, value) => sum + value, 0) - 3) < 1e-12);
+  assert.ok(topThree.place.every(value => value > 0 && value < 1));
+});
+
+test('place odds use their lower bound and can outrank a win candidate', () => {
+  const prediction = trustedPrediction();
+  const winOdds = [1.6, 5, 9, 12, 15];
+  prediction.runners = prediction.runners.map((runner, index) => ({
+    ...runner,
+    capturedOdds: winOdds[index],
+    placeOdds: index === 1 ? { lower: 4, upper: 6 } : { lower: 1.01, upper: 1.1 }
+  }));
+  const analysis = ProfitEngine.analyze(prediction, { race, gateStatus: 'LOCKED', bankrollYen: 100000 });
+  assert.equal(analysis.candidate.type, '複勝');
+  assert.equal(analysis.candidate.number, 2);
+  assert.equal(analysis.candidate.oddsLower, 4);
+  assert.ok(analysis.candidate.rawExpectedMultiplier > 1);
+});
+
+test('wide odds are compared against exact pair probability and missing prices expose targets', () => {
+  const prediction = trustedPrediction({
+    wideOdds: [{ numbers: [1, 2], lower: 20, upper: 25 }]
+  });
+  const analysis = ProfitEngine.analyze(prediction, { race, gateStatus: 'LOCKED', bankrollYen: 100000 });
+  assert.equal(analysis.candidate.type, 'ワイド');
+  assert.deepEqual(analysis.candidate.numbers, [1, 2]);
+  assert.ok(analysis.candidate.probability > 0);
+  assert.ok(analysis.priceTargets.some(target => target.type === 'ワイド'));
 });
 
 test('snapshot timing outside one to ten minutes before post is rejected', () => {

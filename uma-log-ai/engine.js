@@ -5,7 +5,7 @@
 }(typeof globalThis !== 'undefined' ? globalThis : this, function createEngine() {
   'use strict';
 
-  const ENGINE_VERSION = '2.0.0';
+  const ENGINE_VERSION = '2.1.0';
   const JRA_VENUES = Object.freeze(['札幌', '函館', '福島', '新潟', '東京', '中山', '中京', '京都', '阪神', '小倉']);
 
   const CATEGORY_META = [
@@ -602,7 +602,10 @@
       return places > 0 && first.slice(0, places).includes(numbers[0]);
     }
     if (ticket.type === '馬連') return numbers.every(number => first.slice(0, 2).includes(number));
-    if (ticket.type === 'ワイド') return numbers.every(number => first.includes(number));
+    if (ticket.type === 'ワイド') {
+      const places = fieldSize >= 8 ? 3 : fieldSize >= 4 ? 2 : 0;
+      return places > 0 && numbers.every(number => first.slice(0, places).includes(number));
+    }
     if (ticket.type === '馬単') return numbers[0] === first[0] && numbers[1] === first[1];
     if (ticket.type === '三連複') return numbers.every(number => first.includes(number));
     if (ticket.type === '三連単') return numbers.every((number, index) => number === first[index]);
@@ -925,11 +928,19 @@
       numberValue(horse.bodyWeightChange, `${label}.bodyWeightChange`, { min: -100, max: 100 });
       numberValue(horse.restDays, `${label}.restDays`, { min: 0, max: 2000 });
       numberValue(horse.odds, `${label}.odds`, { min: 1, max: 100000 });
+      numberValue(horse.winOddsSnapshot, `${label}.winOddsSnapshot`, { min: 1, max: 100000 });
+      if (horse.placeOdds !== null && horse.placeOdds !== undefined) {
+        if (typeof horse.placeOdds !== 'object' || Array.isArray(horse.placeOdds)) fail(`${label}.placeOdds が不正です`);
+        numberValue(horse.placeOdds.lower, `${label}.placeOdds.lower`, { required: true, min: 1, max: 100000 });
+        numberValue(horse.placeOdds.upper, `${label}.placeOdds.upper`, { required: true, min: 1, max: 100000 });
+        if (Number(horse.placeOdds.upper) < Number(horse.placeOdds.lower)) fail(`${label}.placeOdds の上限が下限未満です`);
+      }
       numberValue(horse.popularity, `${label}.popularity`, { min: 1, max: 40, integer: true });
       numberValue(horse.number, `${label}.number`, { min: 1, max: 40, integer: true });
       if (horse.scratched !== undefined && typeof horse.scratched !== 'boolean') fail(`${label}.scratched が不正です`);
       ['distanceFit', 'courseFit', 'goingFit', 'paceFit', 'drawFit', 'classFit', 'conditionScore', 'startScore', 'muscleScore', 'temperatureFit', 'windFit'].forEach(key => numberValue(horse[key], `${label}.${key}`, { min: 0, max: 100 }));
       numberValue(horse.v3WinProbability, `${label}.v3WinProbability`, { min: Number.EPSILON, max: 1 - Number.EPSILON });
+      numberValue(horse.v5WinProbability, `${label}.v5WinProbability`, { min: Number.EPSILON, max: 1 - Number.EPSILON });
       validateRateObject(horse.jockeyStats, `${label}.jockeyStats`);
       validateRateObject(horse.trainerStats, `${label}.trainerStats`);
       if (horse.pedigree !== null && horse.pedigree !== undefined) {
@@ -1100,9 +1111,27 @@
           });
         }
       });
-      const v3Probabilities = race.horses.map(horse => numeric(horse.v3WinProbability)).filter(value => value !== null);
-      if (v3Probabilities.length && v3Probabilities.length !== race.horses.length) fail(`${race.id}: v3WinProbability は全出走馬分が必要です`);
-      if (v3Probabilities.length && Math.abs(v3Probabilities.reduce((sum, value) => sum + value, 0) - 1) > 1e-4) fail(`${race.id}: v3WinProbability の合計が1ではありません`);
+      [['v3WinProbability', 'v3'], ['v5WinProbability', 'v5']].forEach(([key, label]) => {
+        const probabilities = race.horses.map(horse => numeric(horse[key])).filter(value => value !== null);
+        if (probabilities.length && probabilities.length !== race.horses.length) fail(`${race.id}: ${key} は全出走馬分が必要です`);
+        if (probabilities.length && Math.abs(probabilities.reduce((sum, value) => sum + value, 0) - 1) > 1e-4) fail(`${race.id}: ${label}勝率の合計が1ではありません`);
+      });
+      if (race.wideOdds !== null && race.wideOdds !== undefined) {
+        if (!Array.isArray(race.wideOdds) || race.wideOdds.length > 276) fail(`${race.id}.wideOdds が不正です`);
+        const wideKeys = new Set();
+        race.wideOdds.forEach((quote, quoteIndex) => {
+          const label = `${race.id}.wideOdds[${quoteIndex}]`;
+          if (!quote || typeof quote !== 'object' || Array.isArray(quote) || !Array.isArray(quote.numbers) || quote.numbers.length !== 2) fail(`${label} が不正です`);
+          const quoteNumbers = quote.numbers.map(Number);
+          if (new Set(quoteNumbers).size !== 2 || quoteNumbers.some(number => !numbers.has(number))) fail(`${label}.numbers が出走馬と一致しません`);
+          const key = normalizeCombo('ワイド', quoteNumbers);
+          if (wideKeys.has(key)) fail(`${label} が重複しています`);
+          wideKeys.add(key);
+          numberValue(quote.lower, `${label}.lower`, { required: true, min: 1, max: 100000 });
+          numberValue(quote.upper, `${label}.upper`, { required: true, min: 1, max: 100000 });
+          if (Number(quote.upper) < Number(quote.lower)) fail(`${label} の上限が下限未満です`);
+        });
+      }
       if (race.publishedPrediction) {
         const activeNumbers = new Set(race.horses.filter(horse => horse.scratched !== true).map(horse => Number(horse.number)));
         const publishedNumbers = new Set(race.publishedPrediction.runners.map(runner => Number(runner.number)));

@@ -62,6 +62,35 @@ def snapshot_iso(value: str | None) -> str | None:
     return parsed.isoformat(timespec="seconds")
 
 
+def parse_odds(path: Path) -> dict[str, Any]:
+    """Parse a locally captured win/place odds table into normalized facts."""
+    lines = content_lines(path)
+    updated = next(
+        (match.group(1) for line in lines if (match := re.fullmatch(r"(\d{4}/\d{1,2}/\d{1,2} \d{1,2}:\d{2}) 更新", line))),
+        None,
+    )
+    runners: dict[int, dict[str, Any]] = {}
+    for line in lines:
+        parts = [part.strip() for part in line.split(" | ")]
+        if len(parts) != 5 or not parts[0].isdigit() or not parts[1].isdigit():
+            continue
+        win = as_number(parts[3])
+        place = re.fullmatch(r"([\d.]+)\s*-\s*([\d.]+)", parts[4])
+        if win is None or not place:
+            continue
+        lower = float(place.group(1))
+        upper = float(place.group(2))
+        if win <= 1 or lower <= 1 or upper < lower:
+            continue
+        runners[int(parts[1])] = {
+            "win": win,
+            "place": {"lower": lower, "upper": upper},
+        }
+    if not runners:
+        raise ValueError(f"No win/place odds parsed from {path}")
+    return {"capturedAt": snapshot_iso(updated), "runners": runners}
+
+
 def class_level(name: str, conditions: str) -> int:
     text = f"{name} {conditions}"
     if re.search(r"G.?1", text, re.I):
@@ -252,6 +281,7 @@ def prediction_payload(rows: list[dict[str, Any]], race: dict[str, Any], summary
 
 def build(args: argparse.Namespace) -> dict[str, Any]:
     cards = {path.stem: parse_card(path) for path in sorted(args.cards.glob("*.txt"))}
+    odds = {path.stem: parse_odds(path) for path in sorted(args.odds.glob("*.txt"))} if args.odds else {}
     predictions = load_predictions(args.predictions_csv)
     summary_document = json.loads(args.predictions_json.read_text(encoding="utf-8"))
     summaries = {row["race_id"]: row for row in summary_document.get("races", [])}
@@ -277,6 +307,16 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             race["oddsSnapshotAt"] = published["capturedAt"]
         else:
             race["modelStatus"] = "out-of-scope"
+
+        captured_odds = odds.get(race_id)
+        if captured_odds:
+            if captured_odds.get("capturedAt"):
+                race["oddsSnapshotAt"] = captured_odds["capturedAt"]
+            for horse in race["horses"]:
+                quote = captured_odds["runners"].get(int(horse["number"]))
+                if quote:
+                    horse["winOddsSnapshot"] = quote["win"]
+                    horse["placeOdds"] = quote["place"]
 
         official = results.get((race["venue"], race["raceNumber"]))
         if not official:
@@ -304,6 +344,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError(f"Expected 36 races, parsed {len(races)}")
     pre_race = sum(race.get("publishedPrediction", {}).get("captureTiming") == "pre-race" for race in races)
     post_race = sum(race.get("publishedPrediction", {}).get("captureTiming") == "post-race" for race in races)
+    place_odds_races = sum(any(horse.get("placeOdds") for horse in race["horses"]) for race in races)
     return {
         "schemaVersion": 1,
         "generatedAt": confirmed_at,
@@ -311,7 +352,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "mode": "reference-archive",
             "datasetId": "uma-log-ai-reference-archive-v1",
             "name": "2026年8月9日 JRA実データ",
-            "detail": f"札幌・新潟・中京36R（発走前参考{pre_race}R／結果後参考{post_race}R／モデル対象外1R）",
+            "detail": f"札幌・新潟・中京36R（発走前参考{pre_race}R／複勝オッズ{place_odds_races}R／結果後参考{post_race}R／モデル対象外1R）",
             "redistributable": True,
             "automated": False,
             "asOfFieldsGuaranteed": False,
@@ -325,6 +366,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
             "preRaceReferenceCount": pre_race,
             "postRaceReferenceCount": post_race,
             "outOfScopeCount": 1,
+            "placeOddsRaceCount": place_odds_races,
             "note": "結果後に取得した予想は前向き成績・利益検証へ含めません",
         },
         "races": races,
@@ -334,6 +376,7 @@ def build(args: argparse.Namespace) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--cards", required=True, type=Path)
+    parser.add_argument("--odds", type=Path)
     parser.add_argument("--predictions-csv", required=True, type=Path)
     parser.add_argument("--predictions-json", required=True, type=Path)
     parser.add_argument("--results-json", required=True, type=Path)

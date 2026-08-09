@@ -1,6 +1,6 @@
 const CACHE_PREFIX = 'uma-log-ai-';
-const CACHE_NAME = `${CACHE_PREFIX}shell-v2.2.0`;
-const APP_SHELL = ['./', './index.html', './styles.css?v=220', './engine.js?v=220', './profit-engine.js?v=220', './jra-importer.js?v=220', './app.js?v=220', './learning-worker.js?v=220', './data/races.json', './data/forward-status.json', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const CACHE_NAME = `${CACHE_PREFIX}shell-v2.3.0`;
+const APP_SHELL = ['./', './index.html', './styles.css?v=230', './engine.js?v=230', './profit-engine.js?v=230', './jra-importer.js?v=230', './app.js?v=230', './learning-worker.js?v=230', './data/races.json', './data/forward-status.json', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)));

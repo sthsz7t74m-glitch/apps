@@ -41,6 +41,14 @@
     return Number.isInteger(parsed) ? parsed : null;
   }
 
+  function oddsRange(value) {
+    const match = clean(value).replace(/,/g, '').match(/(\d+(?:\.\d+)?)\s*(?:-|〜|~)\s*(\d+(?:\.\d+)?)/);
+    if (!match) return null;
+    const lower = Number(match[1]);
+    const upper = Number(match[2]);
+    return lower >= 1 && upper >= lower ? { lower, upper } : null;
+  }
+
   function japaneseDate(value) {
     const match = clean(value).match(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/);
     if (!match) return null;
@@ -223,6 +231,7 @@
     const name = text(row, 'td.horse .name');
     if (!horseNumber || horseNumber !== expectedNumber || !gate || gate < 1 || gate > 8 || !name) throw new Error(`${expectedNumber}番の出走馬情報を完全に読み取れませんでした`);
     const odds = number(text(row, 'td.horse .odds .num'));
+    const placeOdds = oddsRange(text(row, 'td.horse .odds .place_odds, td.horse .odds .place-odds, td.horse .odds .fukusho, td.horse .odds [data-bet-type="place"]'));
     const popularity = integer(text(row, 'td.horse .pop_rank'));
     const jockeyCell = row.querySelector('td.jockey');
     const jockey = text(jockeyCell, 'p.jockey');
@@ -261,6 +270,7 @@
       restDays,
       runningStyle: inferRunningStyle(recentRuns),
       odds: odds && odds >= 1 ? odds : null,
+      ...(placeOdds ? { placeOdds } : {}),
       popularity,
       scratched,
       jockeyStats: stats,

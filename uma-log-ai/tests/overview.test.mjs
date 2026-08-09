@@ -6,7 +6,7 @@ import { readFile } from 'node:fs/promises';
 const require = createRequire(import.meta.url);
 const ProfitEngine = require('../profit-engine.js');
 
-test('August 9 daily list is honest: 36 passes and zero yen under the locked v4 gate', async () => {
+test('August 9 archive remains reference-only with zero yen under the locked v5 gate', async () => {
   const dataset = JSON.parse(await readFile(new URL('../data/races.json', import.meta.url), 'utf8'));
   const plans = dataset.races.map(race => {
     if (!race.publishedPrediction) return null;

@@ -161,6 +161,8 @@ test('ticket availability and place cutoffs follow the saved betting field size'
   assert.ok(four.tickets.every(ticket => ticket.type !== '複勝'));
   assert.equal(Engine.isTicketHit({ type: '複勝', numbers: [3] }, [1, 2, 3], 7), false);
   assert.equal(Engine.isTicketHit({ type: '複勝', numbers: [3] }, [1, 2, 3], 8), true);
+  assert.equal(Engine.isTicketHit({ type: 'ワイド', numbers: [1, 3] }, [1, 2, 3], 7), false);
+  assert.equal(Engine.isTicketHit({ type: 'ワイド', numbers: [1, 3] }, [1, 2, 3], 8), true);
 });
 
 test('result comparison reports winner, top-three overlap, rank error, and ticket hits', () => {

@@ -21,10 +21,10 @@ function pastRun({ date, venue, finish, fieldSize, corner, jockey }) {
   </td>`;
 }
 
-function horseRow({ number, gate, name, odds, popularity, jockey, corner }) {
+function horseRow({ number, gate, name, odds, placeOdds, popularity, jockey, corner }) {
   return `<tr>
     <td class="waku"><img alt="${gate}枠"></td><td class="num">${number}</td>
-    <td class="horse"><p class="name"><a>${name}</a></p><div class="odds"><span class="num">${odds}</span><span class="pop_rank">${popularity}人気</span></div><p class="trainer">調教師${number}</p><ul class="family_line"><li class="sire">父：父馬${number}</li><li class="mare">母：母馬${number}</li></ul><div class="result_line"><span class="cell weight">${470 + number * 2}kg</span><span class="transition">(+2)</span></div></td>
+    <td class="horse"><p class="name"><a>${name}</a></p><div class="odds"><span class="num">${odds}</span>${placeOdds ? `<span class="place_odds">${placeOdds}</span>` : ''}<span class="pop_rank">${popularity}人気</span></div><p class="trainer">調教師${number}</p><ul class="family_line"><li class="sire">父：父馬${number}</li><li class="mare">母：母馬${number}</li></ul><div class="result_line"><span class="cell weight">${470 + number * 2}kg</span><span class="transition">(+2)</span></div></td>
     <td class="jockey"><p class="age">牡3</p><p class="weight">57.0kg</p><p class="jockey">${jockey}</p></td>
     ${pastRun({ date: '2026年8月30日', venue: '新潟', finish: number, fieldSize: 12, corner, jockey })}
   </tr>`;
@@ -37,7 +37,7 @@ function header(id, { venue = '中山', raceNumber = 1, start = '10時00分' } =
 
 function cardHtml(options = {}) {
   return `<!doctype html><html><body><div id="syutsuba">${header('syutsuba', options)}<table class="basic"><tbody>
-    ${horseRow({ number: 1, gate: 1, name: 'テストホースA', odds: 3.2, popularity: 1, jockey: '騎手A', corner: 1 })}
+    ${horseRow({ number: 1, gate: 1, name: 'テストホースA', odds: 3.2, placeOdds: '1.4 - 1.8', popularity: 1, jockey: '騎手A', corner: 1 })}
     ${horseRow({ number: 2, gate: 2, name: 'テストホースB', odds: 5.4, popularity: 2, jockey: '騎手B', corner: 4 })}
     ${horseRow({ number: 3, gate: 3, name: 'テストホースC', odds: 8.6, popularity: 3, jockey: '騎手C', corner: 9 })}
   </tbody></table></div></body></html>`;
@@ -66,6 +66,7 @@ test('saved card HTML produces valid day-before and same-day snapshots without i
   assert.equal(dayBefore.race.horses[0].recentRuns.length, 1);
   assert.deepEqual(Object.keys(dayBefore.race.snapshots), ['dayBefore']);
   assert.equal(dayBefore.race.horses[0].odds, 3.2);
+  assert.deepEqual(dayBefore.race.horses[0].placeOdds, { lower: 1.4, upper: 1.8 });
 
   const sameDay = Importer.importHtml(cardHtml(), dayBefore.dataset, new Date('2026-09-12T09:00:00+09:00'), 'final');
   Engine.validateDataset(sameDay.dataset);

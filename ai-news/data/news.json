@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-14T17:01:09.740Z",
+  "generatedAt": "2026-08-14T17:57:40.919Z",
   "sourceMode": "rss",
   "totalArticles": 418,
-  "totalClusters": 105,
+  "totalClusters": 106,
   "succeededSources": 17,
   "failedSources": 1,
   "deduplication": {
@@ -17,84 +17,84 @@
       "name": "NHK NEWS WEB",
       "ok": true,
       "count": 7,
-      "fetchedAt": "2026-08-14T17:01:09.741Z"
+      "fetchedAt": "2026-08-14T17:57:40.920Z"
     },
     {
       "id": "asahi-news",
       "name": "朝日新聞デジタル",
       "ok": true,
       "count": 35,
-      "fetchedAt": "2026-08-14T17:01:09.784Z"
+      "fetchedAt": "2026-08-14T17:57:40.980Z"
     },
     {
       "id": "mainichi-news",
       "name": "毎日新聞",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-14T17:01:09.785Z"
+      "fetchedAt": "2026-08-14T17:57:40.981Z"
     },
     {
       "id": "bbc-japanese",
       "name": "BBC News Japan",
       "ok": true,
       "count": 38,
-      "fetchedAt": "2026-08-14T17:01:09.786Z"
+      "fetchedAt": "2026-08-14T17:57:40.982Z"
     },
     {
       "id": "livedoor-news",
       "name": "ライブドアニュース",
       "ok": true,
       "count": 24,
-      "fetchedAt": "2026-08-14T17:01:09.787Z"
+      "fetchedAt": "2026-08-14T17:57:40.984Z"
     },
     {
       "id": "itmedia",
       "name": "ITmedia",
       "ok": true,
       "count": 50,
-      "fetchedAt": "2026-08-14T17:01:09.788Z"
+      "fetchedAt": "2026-08-14T17:57:40.985Z"
     },
     {
       "id": "impress-watch",
       "name": "Impress Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-14T17:01:09.788Z"
+      "fetchedAt": "2026-08-14T17:57:40.985Z"
     },
     {
       "id": "cnet-japan",
       "name": "CNET Japan",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-14T17:01:09.789Z"
+      "fetchedAt": "2026-08-14T17:57:40.986Z"
     },
     {
       "id": "gigazine",
       "name": "GIGAZINE",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-14T17:01:09.790Z"
+      "fetchedAt": "2026-08-14T17:57:40.987Z"
     },
     {
       "id": "ascii",
       "name": "ASCII.jp",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-14T17:01:09.791Z"
+      "fetchedAt": "2026-08-14T17:57:40.989Z"
     },
     {
       "id": "pc-watch",
       "name": "PC Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-14T17:01:09.791Z"
+      "fetchedAt": "2026-08-14T17:57:40.989Z"
     },
     {
       "id": "internet-watch",
       "name": "INTERNET Watch",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-08-14T17:01:09.792Z",
+      "fetchedAt": "2026-08-14T17:57:40.990Z",
       "error": "HTTP 404"
     },
     {
@@ -102,42 +102,42 @@
       "name": "AV Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-14T17:01:09.793Z"
+      "fetchedAt": "2026-08-14T17:57:40.991Z"
     },
     {
       "id": "game-watch",
       "name": "GAME Watch",
       "ok": true,
       "count": 29,
-      "fetchedAt": "2026-08-14T17:01:09.793Z"
+      "fetchedAt": "2026-08-14T17:57:40.992Z"
     },
     {
       "id": "jpcert",
       "name": "JPCERT/CC",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-14T17:01:09.794Z"
+      "fetchedAt": "2026-08-14T17:57:40.993Z"
     },
     {
       "id": "jma-extra",
       "name": "気象庁 防災情報",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-14T17:01:09.795Z"
+      "fetchedAt": "2026-08-14T17:57:40.994Z"
     },
     {
       "id": "google-japan",
       "name": "Google Japan Blog",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-14T17:01:09.795Z"
+      "fetchedAt": "2026-08-14T17:57:40.995Z"
     },
     {
       "id": "openai-news",
       "name": "OpenAI News",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-14T17:01:09.796Z"
+      "fetchedAt": "2026-08-14T17:57:40.996Z"
     }
   ],
   "items": [
@@ -157,14 +157,14 @@
       "minutes": 1,
       "priority": 97,
       "breaking": true,
-      "publishedAt": "2026-08-14T16:54:43.000Z",
+      "publishedAt": "2026-08-14T17:51:07.000Z",
       "duplicateCount": 10,
       "sources": [
         {
           "name": "気象庁 防災情報",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20260814165444_0_VPWW53_460040.xml",
-          "publishedAt": "2026-08-14T16:54:43.000Z"
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20260814175108_0_VPWW53_120000.xml",
+          "publishedAt": "2026-08-14T17:51:07.000Z"
         }
       ],
       "confidence": 81,
@@ -191,7 +191,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 82,
+      "priority": 81,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:11.000Z",
       "duplicateCount": 1,
@@ -229,7 +229,7 @@
         "Apple"
       ],
       "minutes": 2,
-      "priority": 81,
+      "priority": 80,
       "breaking": false,
       "publishedAt": "2026-08-14T08:30:14.000Z",
       "duplicateCount": 2,
@@ -271,7 +271,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 79,
+      "priority": 78,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:00.000Z",
       "duplicateCount": 1,
@@ -307,7 +307,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 79,
+      "priority": 78,
       "breaking": false,
       "publishedAt": "2026-08-14T14:27:20.000Z",
       "duplicateCount": 1,
@@ -343,7 +343,7 @@
         "国際"
       ],
       "minutes": 2,
-      "priority": 79,
+      "priority": 78,
       "breaking": false,
       "publishedAt": "2026-08-14T07:31:00.000Z",
       "duplicateCount": 2,
@@ -373,42 +373,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-85f2fa00766b3e0f",
-      "title": "【Amazonセール】アケコン「Victrix Pro FS-12」やゲーミングマウス「Burst II Pro」などタートルビーチ製品がお買い得",
-      "summary": "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
-      "fact": "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 78,
-      "breaking": false,
-      "publishedAt": "2026-08-14T15:05:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2132888.html",
-          "publishedAt": "2026-08-14T15:05:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-16d2213936d05719",
       "title": "千葉豪雨で冠水の国道アンダーパス 停電で排水できず 運転手重体",
       "summary": "千葉豪雨で冠水の国道アンダーパス 停電で排水できず 運転手重体",
@@ -421,7 +385,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 78,
+      "priority": 77,
       "breaking": false,
       "publishedAt": "2026-08-14T14:40:40.000Z",
       "duplicateCount": 1,
@@ -457,7 +421,7 @@
         "科学・文化"
       ],
       "minutes": 1,
-      "priority": 77,
+      "priority": 76,
       "breaking": false,
       "publishedAt": "2026-08-14T15:36:44.000Z",
       "duplicateCount": 1,
@@ -481,6 +445,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-85f2fa00766b3e0f",
+      "title": "【Amazonセール】アケコン「Victrix Pro FS-12」やゲーミングマウス「Burst II Pro」などタートルビーチ製品がお買い得",
+      "summary": "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
+      "fact": "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 76,
+      "breaking": false,
+      "publishedAt": "2026-08-14T15:05:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2132888.html",
+          "publishedAt": "2026-08-14T15:05:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "Amazonにて、TURTLE BEACHのゲーミングデバイス各種が特別価格で販売されている。期間は8月15日0時から8月28日23時59分まで。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-2b45654fa8153ce0",
       "title": "八村塁、河村勇輝が合流 バスケ男子日本代表が練習公開",
       "summary": "八村塁、河村勇輝が合流 バスケ男子日本代表が練習公開",
@@ -493,7 +493,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 75,
+      "priority": 74,
       "breaking": false,
       "publishedAt": "2026-08-14T14:31:03.000Z",
       "duplicateCount": 1,
@@ -529,7 +529,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 74,
+      "priority": 72,
       "breaking": false,
       "publishedAt": "2026-08-14T15:05:00.000Z",
       "duplicateCount": 1,
@@ -565,7 +565,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 72,
+      "priority": 71,
       "breaking": false,
       "publishedAt": "2026-08-14T12:15:00.000Z",
       "duplicateCount": 1,
@@ -602,7 +602,7 @@
         "Steam"
       ],
       "minutes": 1,
-      "priority": 69,
+      "priority": 68,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:00.000Z",
       "duplicateCount": 1,
@@ -638,7 +638,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 69,
+      "priority": 67,
       "breaking": false,
       "publishedAt": "2026-08-14T14:15:47.000Z",
       "duplicateCount": 1,
@@ -674,7 +674,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 67,
+      "priority": 66,
       "breaking": false,
       "publishedAt": "2026-08-14T14:06:13.000Z",
       "duplicateCount": 1,
@@ -710,7 +710,7 @@
         "国際"
       ],
       "minutes": 2,
-      "priority": 67,
+      "priority": 66,
       "breaking": false,
       "publishedAt": "2026-08-14T13:00:00.000Z",
       "duplicateCount": 1,
@@ -746,7 +746,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 67,
+      "priority": 66,
       "breaking": false,
       "publishedAt": "2026-08-14T04:30:00.000Z",
       "duplicateCount": 1,
@@ -782,7 +782,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 64,
+      "priority": 63,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:00.000Z",
       "duplicateCount": 1,
@@ -818,7 +818,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 64,
+      "priority": 63,
       "breaking": false,
       "publishedAt": "2026-08-14T11:31:00.000Z",
       "duplicateCount": 1,
@@ -854,7 +854,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 63,
+      "priority": 62,
       "breaking": false,
       "publishedAt": "2026-08-14T14:00:21.000Z",
       "duplicateCount": 1,
@@ -890,7 +890,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 63,
+      "priority": 62,
       "breaking": false,
       "publishedAt": "2026-08-14T12:57:14.000Z",
       "duplicateCount": 1,
@@ -927,7 +927,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 63,
+      "priority": 62,
       "breaking": false,
       "publishedAt": "2026-08-14T08:16:00.000Z",
       "duplicateCount": 1,
@@ -964,7 +964,7 @@
         "PRTIMESデジタル"
       ],
       "minutes": 1,
-      "priority": 63,
+      "priority": 62,
       "breaking": false,
       "publishedAt": "2026-08-14T08:00:00.000Z",
       "duplicateCount": 1,
@@ -1001,7 +1001,7 @@
         "セブンアール（本文URL自動アフィ化、…"
       ],
       "minutes": 1,
-      "priority": 62,
+      "priority": 61,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:00.000Z",
       "duplicateCount": 1,
@@ -1038,7 +1038,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 62,
+      "priority": 61,
       "breaking": false,
       "publishedAt": "2026-08-14T10:09:31.000Z",
       "duplicateCount": 1,
@@ -1062,42 +1062,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c6c5dcfb26ecdb5f",
-      "title": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
-      "summary": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
-      "fact": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "スポーツ",
-      "tags": [
-        "スポーツ"
-      ],
-      "minutes": 1,
-      "priority": 61,
-      "breaking": false,
-      "publishedAt": "2026-08-14T13:28:39.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260814/k00/00m/050/402000c",
-          "publishedAt": "2026-08-14T13:28:39.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-ebf187a9da7575aa",
       "title": "米ケネディ・センターの建物にトランプ氏の名前再掲示へ、理事会が決定",
       "summary": "米首都ワシントンの総合文化施設「ジョン・F・ケネディ舞台芸術センター」の理事会は13日、同施設の外壁にドナルド・トランプ大統領の名前を再び追加することを決定した。",
@@ -1110,7 +1074,7 @@
         "科学・文化"
       ],
       "minutes": 1,
-      "priority": 61,
+      "priority": 60,
       "breaking": false,
       "publishedAt": "2026-08-14T08:19:27.000Z",
       "duplicateCount": 1,
@@ -1146,7 +1110,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 60,
+      "priority": 59,
       "breaking": false,
       "publishedAt": "2026-08-14T15:00:00.000Z",
       "duplicateCount": 1,
@@ -1182,7 +1146,7 @@
         "科学・文化"
       ],
       "minutes": 1,
-      "priority": 60,
+      "priority": 59,
       "breaking": false,
       "publishedAt": "2026-08-14T10:57:00.000Z",
       "duplicateCount": 1,
@@ -1218,7 +1182,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 59,
+      "priority": 58,
       "breaking": false,
       "publishedAt": "2026-08-14T14:00:00.000Z",
       "duplicateCount": 1,
@@ -1254,7 +1218,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 59,
+      "priority": 58,
       "breaking": false,
       "publishedAt": "2026-08-14T12:28:13.000Z",
       "duplicateCount": 1,
@@ -1278,42 +1242,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-321085c7eb9db91c",
-      "title": "編集後記2026年8月14日",
-      "summary": "執筆中!!",
-      "fact": "執筆中!!",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 59,
-      "breaking": false,
-      "publishedAt": "2026-08-14T11:54:29.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/common/kouki/2132885.html",
-          "publishedAt": "2026-08-14T11:54:29.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "執筆中!!",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-df59aba983d80c5b",
       "title": "Linuxのデスクトップ利用が1日のうちに22％まで急増したことがCloudflareのデータで明らかに",
       "summary": "Linuxデスクトップからのウェブアクセスが、ある平日に全デスクトップ向けトラフィックの約22％を占めるまで急増していたことがCloudflareのデータから明らかになりました。一般的なOSシェア統計ではLinuxのデスクトップシェアは5％前後とされることが多いため、約22％というシェアは異常に高い数字です。 続きを読む...",
@@ -1326,7 +1254,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 58,
+      "priority": 57,
       "breaking": false,
       "publishedAt": "2026-08-14T12:00:00.000Z",
       "duplicateCount": 1,
@@ -1362,7 +1290,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 58,
+      "priority": 57,
       "breaking": false,
       "publishedAt": "2026-08-14T09:50:00.000Z",
       "duplicateCount": 1,
@@ -1398,7 +1326,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 56,
+      "priority": 55,
       "breaking": false,
       "publishedAt": "2026-08-14T14:36:00.000Z",
       "duplicateCount": 1,
@@ -1422,118 +1350,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-6ca902cd26da1228",
-      "title": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
-      "summary": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
-      "fact": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 56,
-      "breaking": false,
-      "publishedAt": "2026-08-14T13:31:28.000Z",
-      "duplicateCount": 3,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260814/k00/00m/050/389000c",
-          "publishedAt": "2026-08-14T13:31:28.000Z"
-        }
-      ],
-      "confidence": 62,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "甲子園最速156キロ 打者の日南学園・谷口「楽しくて」"
-      ]
-    },
-    {
-      "id": "news-e46934eb6c9e7b52",
-      "title": "鹿児島県にある霧島連山の韓国岳火口 心肺停止で見つかった男性が死亡",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 55,
-      "breaking": false,
-      "publishedAt": "2026-08-14T11:04:17.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32068482",
-          "publishedAt": "2026-08-14T11:04:17.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-399167300c6e4e93",
-      "title": "プーチン大統領にウクライナでの「勝利などない」、ノーベル平和賞受賞のジャーナリストがBBCに語る",
-      "summary": "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでムラトフ氏は、ウクライナ全面侵攻の今後の見通しから、加速し続けるロシアの言論統制まで語った。",
-      "fact": "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでムラトフ氏は、ウクライナ全面侵攻の今後の見通しから、加速し続けるロシアの言論統制まで語った。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 2,
-      "priority": 53,
-      "breaking": false,
-      "publishedAt": "2026-08-14T08:13:04.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/c5ydzl3g034o?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-08-14T08:13:04.000Z"
-        }
-      ],
-      "confidence": 59,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでム…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "ロシアの核使用も懸念……ノーベル平和賞受賞者がウクライナでの戦争語る BBC単独取材"
-      ]
-    },
-    {
       "id": "news-88404a36f785e075",
       "title": "156キロ、横浜・織田「1球で雰囲気を変える」 夏の甲子園",
       "summary": "156キロ、横浜・織田「1球で雰囲気を変える」 夏の甲子園",
@@ -1546,7 +1362,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 52,
+      "priority": 55,
       "breaking": false,
       "publishedAt": "2026-08-14T12:35:46.000Z",
       "duplicateCount": 2,
@@ -1578,35 +1394,34 @@
       ]
     },
     {
-      "id": "news-40d4c80e46f90cf4",
-      "title": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
-      "summary": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
-      "fact": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+      "id": "news-c6c5dcfb26ecdb5f",
+      "title": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
+      "summary": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
+      "fact": "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "スポーツ",
       "tags": [
-        "経済",
-        "PRTIMESデジタル"
+        "スポーツ"
       ],
       "minutes": 1,
       "priority": 52,
       "breaking": false,
-      "publishedAt": "2026-08-14T07:30:00.000Z",
+      "publishedAt": "2026-08-14T13:28:39.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/426/4426831?rss",
-          "publishedAt": "2026-08-14T07:30:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260814/k00/00m/050/402000c",
+          "publishedAt": "2026-08-14T13:28:39.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+        "ピンチに「これが高校野球だろう」 横浜・小野主将 夏の甲子園",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1615,35 +1430,108 @@
       "alternateTitles": []
     },
     {
-      "id": "news-93908f44f077f321",
-      "title": "[ITmedia News] 千葉県の豪雨から一夜 2万軒超で停電続く 千葉市では2260人が避難",
-      "summary": "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
-      "fact": "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
+      "id": "news-399167300c6e4e93",
+      "title": "プーチン大統領にウクライナでの「勝利などない」、ノーベル平和賞受賞のジャーナリストがBBCに語る",
+      "summary": "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでムラトフ氏は、ウクライナ全面侵攻の今後の見通しから、加速し続けるロシアの言論統制まで語った。",
+      "fact": "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでムラトフ氏は、ウクライナ全面侵攻の今後の見通しから、加速し続けるロシアの言論統制まで語った。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
+      "category": "国際",
       "tags": [
-        "気象・防災",
-        "防災"
+        "国際"
+      ],
+      "minutes": 2,
+      "priority": 52,
+      "breaking": false,
+      "publishedAt": "2026-08-14T08:13:04.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/c5ydzl3g034o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-08-14T08:13:04.000Z"
+        }
+      ],
+      "confidence": 59,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ロシアの独立系リベラル紙「ノーヴァヤ・ガゼータ」の編集長で、2021年にノーベル平和賞を受賞したドミトリー・ムラトフ氏は、ウクライナでの戦争について、ロシアのウラジーミル・プーチン大統領にとっての「勝利などあり得ない」と語った。BBCのスティーヴ・ローゼンバーグ・ロシア編集長によるインタビューでム…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "ロシアの核使用も懸念……ノーベル平和賞受賞者がウクライナでの戦争語る BBC単独取材"
+      ]
+    },
+    {
+      "id": "news-321085c7eb9db91c",
+      "title": "編集後記2026年8月14日",
+      "summary": "執筆中!!",
+      "fact": "執筆中!!",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
       ],
       "minutes": 1,
-      "priority": 50,
+      "priority": 51,
       "breaking": false,
-      "publishedAt": "2026-08-14T09:16:42.000Z",
+      "publishedAt": "2026-08-14T11:54:29.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ITmedia",
+          "name": "AV Watch",
           "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/14/2000000541",
-          "publishedAt": "2026-08-14T09:16:42.000Z"
+          "url": "https://av.watch.impress.co.jp/docs/common/kouki/2132885.html",
+          "publishedAt": "2026-08-14T11:54:29.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
+        "執筆中!!",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-e46934eb6c9e7b52",
+      "title": "鹿児島県にある霧島連山の韓国岳火口 心肺停止で見つかった男性が死亡",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 51,
+      "breaking": false,
+      "publishedAt": "2026-08-14T11:04:17.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32068482",
+          "publishedAt": "2026-08-14T11:04:17.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1664,7 +1552,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 51,
       "breaking": false,
       "publishedAt": "2026-08-14T10:45:00.000Z",
       "duplicateCount": 1,
@@ -1688,6 +1576,118 @@
       "alternateTitles": []
     },
     {
+      "id": "news-40d4c80e46f90cf4",
+      "title": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+      "summary": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+      "fact": "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済",
+        "PRTIMESデジタル"
+      ],
+      "minutes": 1,
+      "priority": 51,
+      "breaking": false,
+      "publishedAt": "2026-08-14T07:30:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/426/4426831?rss",
+          "publishedAt": "2026-08-14T07:30:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「Voice AI Agent Platform」エコシステム構築に向けた戦略投資方針について",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-6ca902cd26da1228",
+      "title": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
+      "summary": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
+      "fact": "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 50,
+      "breaking": false,
+      "publishedAt": "2026-08-14T13:31:28.000Z",
+      "duplicateCount": 3,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260814/k00/00m/050/389000c",
+          "publishedAt": "2026-08-14T13:31:28.000Z"
+        }
+      ],
+      "confidence": 62,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "甲子園最速156キロ「大怪物」伝説の始まり 横浜・織田の5球",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "甲子園最速156キロ 打者の日南学園・谷口「楽しくて」"
+      ]
+    },
+    {
+      "id": "news-93908f44f077f321",
+      "title": "[ITmedia News] 千葉県の豪雨から一夜 2万軒超で停電続く 千葉市では2260人が避難",
+      "summary": "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
+      "fact": "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 49,
+      "breaking": false,
+      "publishedAt": "2026-08-14T09:16:42.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2608/14/2000000541",
+          "publishedAt": "2026-08-14T09:16:42.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "8月13日の大雨の影響で、千葉県内では14日も大規模な停電が続いている。東京電力パワーグリッドの停電情報によると、14日午後1時時点で、県内では約2万2370軒が停電している。茨城県でも同時点で580軒が停電していという。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-11bde66af37f9e02",
       "title": "好かれ、嫌われた中国の故・朱鎔基元首相 記者に見せた意外な一面",
       "summary": "好かれ、嫌われた中国の故・朱鎔基元首相 記者に見せた意外な一面",
@@ -1700,7 +1700,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 48,
       "breaking": false,
       "publishedAt": "2026-08-14T10:30:00.000Z",
       "duplicateCount": 1,
@@ -1737,7 +1737,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 48,
       "breaking": false,
       "publishedAt": "2026-08-14T08:32:58.000Z",
       "duplicateCount": 1,
@@ -1774,7 +1774,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 48,
       "breaking": false,
       "publishedAt": "2026-08-14T07:10:00.000Z",
       "duplicateCount": 1,
@@ -1810,7 +1810,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 48,
+      "priority": 47,
       "breaking": false,
       "publishedAt": "2026-08-14T13:10:00.000Z",
       "duplicateCount": 1,
@@ -1846,7 +1846,7 @@
         "AI・IT"
       ],
       "minutes": 2,
-      "priority": 48,
+      "priority": 47,
       "breaking": false,
       "publishedAt": "2026-08-14T11:38:55.000Z",
       "duplicateCount": 1,
@@ -1870,6 +1870,89 @@
       "alternateTitles": []
     },
     {
+      "id": "news-c7f0deff46fa7e1f",
+      "title": "[ITmedia Mobile] サムスンがGoogleを祝福――「Google Store 表参道」誕生で ライバル同士の意外なやりとり",
+      "summary": "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活用した体験フロアなど、最先端のAI技術を無料で楽しめる。",
+      "fact": "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活用した体験フロアなど、最先端のAI技術を無料で楽しめる。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "AI",
+        "Google",
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 47,
+      "breaking": false,
+      "publishedAt": "2026-08-14T10:40:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/mobile/articles/2608/14/news083.html",
+          "publishedAt": "2026-08-14T10:40:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-2f782fecbbd03939",
+      "title": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
+      "summary": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
+      "fact": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 45,
+      "breaking": false,
+      "publishedAt": "2026-08-14T10:00:00.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8G35RQV8GULFA00SM.html",
+          "publishedAt": "2026-08-14T10:00:00.000Z"
+        },
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2608/14/2000000551",
+          "publishedAt": "2026-08-14T07:55:06.000Z"
+        }
+      ],
+      "confidence": 70,
+      "consensus": "複数ソース",
+      "keyPoints": [
+        "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
+        "2つの配信元が同じテーマを報じています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "[ITmedia News] ニチレイ、7月のサイバー攻撃で漏えいの可能性 グループ従業員の氏名や社用メアドなど"
+      ]
+    },
+    {
       "id": "news-6dd85c1320956a25",
       "title": "[ITmedia News] 豪雨に備える防災アプリ・サービスまとめ 雨雲レーダーからハザードマップ、通れた道まで",
       "summary": "集中豪雨や台風による被害は各地で相次いでおり、備えの重要性が増している。防災に使えるアプリやサービスをまとめる。",
@@ -1883,7 +1966,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 46,
+      "priority": 45,
       "breaking": false,
       "publishedAt": "2026-08-14T08:55:54.000Z",
       "duplicateCount": 1,
@@ -1920,7 +2003,7 @@
         "Steam"
       ],
       "minutes": 1,
-      "priority": 45,
+      "priority": 44,
       "breaking": false,
       "publishedAt": "2026-08-14T11:00:00.000Z",
       "duplicateCount": 1,
@@ -1944,45 +2027,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c7f0deff46fa7e1f",
-      "title": "[ITmedia Mobile] サムスンがGoogleを祝福――「Google Store 表参道」誕生で ライバル同士の意外なやりとり",
-      "summary": "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活用した体験フロアなど、最先端のAI技術を無料で楽しめる。",
-      "fact": "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活用した体験フロアなど、最先端のAI技術を無料で楽しめる。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "AI",
-        "Google",
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 45,
-      "breaking": false,
-      "publishedAt": "2026-08-14T10:40:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/mobile/articles/2608/14/news083.html",
-          "publishedAt": "2026-08-14T10:40:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "東京・表参道に世界最大規模の直営店「Google Store 表参道」が8月13日にオープン。米国外初かつ世界11店舗目となる同ストアの誕生を祝し、近隣に拠点を置くサムスン公式XがPixelとの「カメラズーム合戦」を展開して話題を呼んでいる。店内では最新のPixel 11シリーズやGeminiを活…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-b98a9266a78a1a5f",
       "title": "横浜とらえた日南学園クリーンアップ、一時同点に 夏の甲子園",
       "summary": "横浜とらえた日南学園クリーンアップ、一時同点に 夏の甲子園",
@@ -1995,7 +2039,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 44,
+      "priority": 43,
       "breaking": false,
       "publishedAt": "2026-08-14T13:05:05.000Z",
       "duplicateCount": 1,
@@ -2019,50 +2063,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-2f782fecbbd03939",
-      "title": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
-      "summary": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
-      "fact": "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 44,
-      "breaking": false,
-      "publishedAt": "2026-08-14T10:00:00.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8G35RQV8GULFA00SM.html",
-          "publishedAt": "2026-08-14T10:00:00.000Z"
-        },
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/14/2000000551",
-          "publishedAt": "2026-08-14T07:55:06.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "ニチレイ、従業員の個人情報が漏洩した可能性 7月のサイバー攻撃で",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "[ITmedia News] ニチレイ、7月のサイバー攻撃で漏えいの可能性 グループ従業員の氏名や社用メアドなど"
-      ]
-    },
-    {
       "id": "news-bde06678d955fd3f",
       "title": "OpenAIにはサム・アルトマンCEOや経営陣に直接苦情を送ることができる専用のメールアドレスがある",
       "summary": "ChatGPTで知られるOpenAIの社内には、サム・アルトマンCEOや社長のグレッグ・ブロックマン氏など経営陣に直接業務における問題を報告して迅速な解決を求める「friction」というメールアドレスがあると元従業員が明かしました。 続きを読む...",
@@ -2076,7 +2076,7 @@
         "AI"
       ],
       "minutes": 1,
-      "priority": 41,
+      "priority": 40,
       "breaking": false,
       "publishedAt": "2026-08-14T11:30:00.000Z",
       "duplicateCount": 1,
@@ -2113,7 +2113,7 @@
         "PRTIMESスタートアップ"
       ],
       "minutes": 1,
-      "priority": 41,
+      "priority": 40,
       "breaking": false,
       "publishedAt": "2026-08-14T08:30:00.000Z",
       "duplicateCount": 1,
@@ -2150,7 +2150,7 @@
         "任天堂"
       ],
       "minutes": 1,
-      "priority": 40,
+      "priority": 39,
       "breaking": false,
       "publishedAt": "2026-08-14T09:49:54.000Z",
       "duplicateCount": 1,
@@ -2186,7 +2186,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 40,
+      "priority": 39,
       "breaking": false,
       "publishedAt": "2026-08-14T05:43:54.000Z",
       "duplicateCount": 1,
@@ -2222,7 +2222,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 39,
+      "priority": 38,
       "breaking": false,
       "publishedAt": "2026-08-14T13:00:12.000Z",
       "duplicateCount": 1,
@@ -2258,7 +2258,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 38,
+      "priority": 37,
       "breaking": false,
       "publishedAt": "2026-08-14T13:00:00.000Z",
       "duplicateCount": 1,
@@ -2296,7 +2296,7 @@
         "トピックス"
       ],
       "minutes": 1,
-      "priority": 35,
+      "priority": 36,
       "breaking": false,
       "publishedAt": "2026-08-14T11:00:00.000Z",
       "duplicateCount": 1,
@@ -2320,6 +2320,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-433917e1c52ba852",
+      "title": "総工費920億円超の海底ケーブルがハリー・ポッターファンの要求でルートを変更",
+      "summary": "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
+      "fact": "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 35,
+      "breaking": false,
+      "publishedAt": "2026-08-14T11:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260814-harry-potter-fans-force-relocation-undersea-cable",
+          "publishedAt": "2026-08-14T11:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-88a554797710088a",
       "title": "乗客が肩まで飛行機の外に吸い出されたライアンエアー機事故、エンジン部品が衝突し窓破損と 暫定報告書",
       "summary": "先月10日にギリシャ・テッサロニキからドイツ・メミンゲンへ向かっていたアイルランドの格安航空ライアンエアーのボーイング機で、窓が壊れ、男性客の頭と右肩が一時、機外に吸い出された事故で、アメリカ国家運輸安全委員会（NTSB）は13日、当該機のエンジンの破片が衝突して割れた窓から吸い出されたとの見解を示した。",
@@ -2332,7 +2368,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 35,
+      "priority": 34,
       "breaking": false,
       "publishedAt": "2026-08-14T05:22:19.000Z",
       "duplicateCount": 1,
@@ -2369,7 +2405,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 34,
+      "priority": 33,
       "breaking": false,
       "publishedAt": "2026-08-14T09:42:00.000Z",
       "duplicateCount": 1,
@@ -2393,106 +2429,35 @@
       "alternateTitles": []
     },
     {
-      "id": "news-433917e1c52ba852",
-      "title": "総工費920億円超の海底ケーブルがハリー・ポッターファンの要求でルートを変更",
-      "summary": "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
-      "fact": "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
+      "id": "news-491b62bc061c84d8",
+      "title": "座っても邪魔にならないサイドファン仕様が便利！ 山善のファン付きベスト「カゼフィット」が12％オフ",
+      "summary": "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
+      "fact": "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
       "category": "AI・IT",
       "tags": [
-        "AI・IT"
+        "AI・IT",
+        "トピックス"
       ],
       "minutes": 1,
-      "priority": 33,
+      "priority": 32,
       "breaking": false,
       "publishedAt": "2026-08-14T11:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
+          "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260814-harry-potter-fans-force-relocation-undersea-cable",
+          "url": "https://ascii.jp/elem/000/004/426/4426666?rss",
           "publishedAt": "2026-08-14T11:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ハリー・ポッターファンが、作中で登場する屋敷しもべ妖精・ドビーのお墓の下を通る海底ケーブルの敷設計画を聞きつけ、ルート変更を要求し、無事ルート変更を実現することに成功しました。 続きを読む...",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-add00731c927b8c8",
-      "title": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
-      "summary": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
-      "fact": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 31,
-      "breaking": false,
-      "publishedAt": "2026-08-14T12:42:34.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260814/k00/00m/030/381000c",
-          "publishedAt": "2026-08-14T12:42:34.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-191320bc5ba5f80e",
-      "title": "[ITmedia Mobile] 「充電／給電」と「機器接続」を両立できる！ バッファローの小型USB Type-Cハブを試す",
-      "summary": "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
-      "fact": "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 31,
-      "breaking": false,
-      "publishedAt": "2026-08-14T09:30:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/mobile/articles/2608/14/news080.html",
-          "publishedAt": "2026-08-14T09:30:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
+        "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2514,7 +2479,7 @@
         "任天堂"
       ],
       "minutes": 1,
-      "priority": 31,
+      "priority": 30,
       "breaking": false,
       "publishedAt": "2026-08-14T08:25:18.000Z",
       "duplicateCount": 1,
@@ -2551,7 +2516,7 @@
         "経済"
       ],
       "minutes": 1,
-      "priority": 31,
+      "priority": 30,
       "breaking": false,
       "publishedAt": "2026-08-14T08:12:32.000Z",
       "duplicateCount": 1,
@@ -2575,35 +2540,70 @@
       "alternateTitles": []
     },
     {
-      "id": "news-491b62bc061c84d8",
-      "title": "座っても邪魔にならないサイドファン仕様が便利！ 山善のファン付きベスト「カゼフィット」が12％オフ",
-      "summary": "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
-      "fact": "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
+      "id": "news-add00731c927b8c8",
+      "title": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
+      "summary": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
+      "fact": "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
+      "category": "国内",
       "tags": [
-        "AI・IT",
-        "トピックス"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 30,
+      "priority": 29,
       "breaking": false,
-      "publishedAt": "2026-08-14T11:00:00.000Z",
+      "publishedAt": "2026-08-14T12:42:34.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/426/4426666?rss",
-          "publishedAt": "2026-08-14T11:00:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260814/k00/00m/030/381000c",
+          "publishedAt": "2026-08-14T12:42:34.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "山善のファン付きベスト「カゼフィット」がAmazonで割引対象。参考価格11,980円のところ、12％オフの10,537円で販売中。座っても邪魔にならないサイドファンを採用し、脇下には保冷剤ポケットも備えている。暑さ対策の選択肢に加えたい一着だ。",
+        "インドネシア、二重国籍を限定的許可へ 「国益貢献の人材」対象",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-cdb1eff6d4d773be",
+      "title": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
+      "summary": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
+      "fact": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 29,
+      "breaking": false,
+      "publishedAt": "2026-08-14T09:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8D3259V8DUTFL01BM.html",
+          "publishedAt": "2026-08-14T09:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2625,7 +2625,7 @@
         "Google"
       ],
       "minutes": 1,
-      "priority": 29,
+      "priority": 28,
       "breaking": false,
       "publishedAt": "2026-08-14T08:00:00.000Z",
       "duplicateCount": 1,
@@ -2661,7 +2661,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 27,
+      "priority": 26,
       "breaking": false,
       "publishedAt": "2026-08-14T12:20:07.000Z",
       "duplicateCount": 1,
@@ -2685,42 +2685,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-cdb1eff6d4d773be",
-      "title": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
-      "summary": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
-      "fact": "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 27,
-      "breaking": false,
-      "publishedAt": "2026-08-14T09:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8D3259V8DUTFL01BM.html",
-          "publishedAt": "2026-08-14T09:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "大切な人に振る舞うウクライナのホルブツィ 乳製品の恵み添えて",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-d546971fdf1b426d",
       "title": "成田空港、大雨で「陸の孤島」 7千人が滞留、旅行客はどう過ごした",
       "summary": "成田空港、大雨で「陸の孤島」 7千人が滞留、旅行客はどう過ごした",
@@ -2733,7 +2697,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 26,
+      "priority": 25,
       "breaking": false,
       "publishedAt": "2026-08-14T08:56:08.000Z",
       "duplicateCount": 1,
@@ -2757,6 +2721,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-547913730ab4b443",
+      "title": "TikTokでものを買う人が急増中、2026年上半期だけで前年比92％増の約80兆円",
+      "summary": "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
+      "fact": "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 24,
+      "breaking": false,
+      "publishedAt": "2026-08-14T10:57:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260814-tiktok-shop",
+          "publishedAt": "2026-08-14T10:57:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-1b51cc143cf50770",
       "title": "イギリスで今年最も暑い日に、ロンドン郊外キュー・ガーデンズで38.1度を記録",
       "summary": "イギリスの気象庁は13日、国内の大部分を襲った熱波の影響で、ロンドン南西部のキュー・ガーデンズで気温が摂氏38.1度に達したと発表した。これは同国の今年に入ってから最も暑い日で、観測史上5番目に暑い日となった。",
@@ -2769,7 +2769,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 25,
+      "priority": 24,
       "breaking": false,
       "publishedAt": "2026-08-14T04:57:54.000Z",
       "duplicateCount": 1,
@@ -2805,7 +2805,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 24,
+      "priority": 23,
       "breaking": false,
       "publishedAt": "2026-08-14T12:20:16.000Z",
       "duplicateCount": 1,
@@ -2841,7 +2841,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 23,
+      "priority": 22,
       "breaking": false,
       "publishedAt": "2026-08-14T12:05:00.000Z",
       "duplicateCount": 1,
@@ -2878,7 +2878,7 @@
         "スマホ"
       ],
       "minutes": 1,
-      "priority": 23,
+      "priority": 22,
       "breaking": false,
       "publishedAt": "2026-08-14T08:00:00.000Z",
       "duplicateCount": 1,
@@ -2902,42 +2902,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-547913730ab4b443",
-      "title": "TikTokでものを買う人が急増中、2026年上半期だけで前年比92％増の約80兆円",
-      "summary": "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
-      "fact": "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 22,
-      "breaking": false,
-      "publishedAt": "2026-08-14T10:57:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260814-tiktok-shop",
-          "publishedAt": "2026-08-14T10:57:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "2026年上半期に「TikTok Shop」でユーザーが支払った金額が前年同期比で92％増加という驚異的な成長を見せていることがTikTokに関するレポートから判明しました。今後も成長は続き、2026年末までに倍増すると推定されています。 続きを読む...",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-addcf51a38eae371",
       "title": "890円の全部のせ！ ほっともっと「牛キャベ丼」に3種トッピングどーん",
       "summary": "ほっともっとでは「牛キャベ丼」（590円）を8月21日より発売します。",
@@ -2951,7 +2915,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 21,
+      "priority": 20,
       "breaking": false,
       "publishedAt": "2026-08-14T10:05:00.000Z",
       "duplicateCount": 1,
@@ -2987,7 +2951,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 19,
+      "priority": 18,
       "breaking": false,
       "publishedAt": "2026-08-14T12:00:00.000Z",
       "duplicateCount": 1,
@@ -3011,6 +2975,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-191320bc5ba5f80e",
+      "title": "[ITmedia Mobile] 「充電／給電」と「機器接続」を両立できる！ バッファローの小型USB Type-Cハブを試す",
+      "summary": "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
+      "fact": "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 18,
+      "breaking": false,
+      "publishedAt": "2026-08-14T09:30:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/mobile/articles/2608/14/news080.html",
+          "publishedAt": "2026-08-14T09:30:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "スマホやタブレットを使っていると「充電／給電とUSBデバイス接続を同時にしたい」欲が高まることがあります。そんな時にお勧めのUSBハブがバッファローから発売されました。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-3be576eeca396434",
       "title": "千葉豪雨、浸水した店内で稼働し続けるパチンコ台 法的な問題は？",
       "summary": "記事を読む",
@@ -3023,7 +3023,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 19,
+      "priority": 17,
       "breaking": false,
       "publishedAt": "2026-08-14T08:41:00.000Z",
       "duplicateCount": 1,
@@ -3059,7 +3059,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 17,
+      "priority": 16,
       "breaking": false,
       "publishedAt": "2026-08-14T07:35:43.000Z",
       "duplicateCount": 1,
@@ -3095,7 +3095,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 15,
+      "priority": 14,
       "breaking": false,
       "publishedAt": "2026-08-14T10:00:00.000Z",
       "duplicateCount": 1,
@@ -3131,7 +3131,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 14,
+      "priority": 13,
       "breaking": false,
       "publishedAt": "2026-08-14T10:00:00.000Z",
       "duplicateCount": 1,
@@ -3168,7 +3168,7 @@
         "FMV Store × ASCII.jp"
       ],
       "minutes": 1,
-      "priority": 14,
+      "priority": 13,
       "breaking": false,
       "publishedAt": "2026-08-14T10:00:00.000Z",
       "duplicateCount": 1,
@@ -3192,6 +3192,78 @@
       "alternateTitles": []
     },
     {
+      "id": "news-89abd2d3504829ff",
+      "title": "[ITmedia PC USER] GMKtec、7.2cm四方のカラフルな超小型ミニPC「G5S」を発売 あえて少し古いCPUを採用して価格を抑制 「桜ピンク」も後日追加",
+      "summary": "中国GMKtecは、約206gで手のひらサイズの超小型ミニPC「G5S」を発売した。Celeron N5095プロセッサを搭載し、デュアル4K出力やWi-Fi 6に対応する。8月末には新色「桜ピンク」も追加予定だ。",
+      "fact": "中国GMKtecは、約206gで手のひらサイズの超小型ミニPC「G5S」を発売した。Celeron N5095プロセッサを搭載し、デュアル4K出力やWi-Fi 6に対応する。8月末には新色「桜ピンク」も追加予定だ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 11,
+      "breaking": false,
+      "publishedAt": "2026-08-14T04:30:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/14/news065.html",
+          "publishedAt": "2026-08-14T04:30:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "中国GMKtecは、約206gで手のひらサイズの超小型ミニPC「G5S」を発売した。Celeron N5095プロセッサを搭載し、デュアル4K出力やWi-Fi 6に対応する。8月末には新色「桜ピンク」も追加予定だ。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-8649846cb47e5635",
+      "title": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
+      "summary": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
+      "fact": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 10,
+      "breaking": false,
+      "publishedAt": "2026-08-14T11:48:45.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260814/k00/00m/040/348000c",
+          "publishedAt": "2026-08-14T11:48:45.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-010bd10d064a5739",
       "title": "[ITmedia PC USER] 「GeForce NOW」のLinux向けクライアントアプリが正式版に 遅延低減の最適化も実施",
       "summary": "NVIDIAが、クラウドゲームサービス「GeForce NOW」のLinuxネイティブアプリの正式版を公開した。クラウド側の遅延低減などの機能強化も実施している。",
@@ -3204,7 +3276,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 11,
+      "priority": 10,
       "breaking": false,
       "publishedAt": "2026-08-14T07:00:00.000Z",
       "duplicateCount": 1,
@@ -3240,7 +3312,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 10,
+      "priority": 9,
       "breaking": false,
       "publishedAt": "2026-08-14T13:15:00.000Z",
       "duplicateCount": 1,
@@ -3277,7 +3349,7 @@
         "アイドル"
       ],
       "minutes": 1,
-      "priority": 10,
+      "priority": 9,
       "breaking": false,
       "publishedAt": "2026-08-14T10:00:00.000Z",
       "duplicateCount": 1,
@@ -3301,42 +3373,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-8649846cb47e5635",
-      "title": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
-      "summary": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
-      "fact": "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 9,
-      "breaking": false,
-      "publishedAt": "2026-08-14T11:48:45.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260814/k00/00m/040/348000c",
-          "publishedAt": "2026-08-14T11:48:45.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "植松死刑囚が最高裁に特別抗告 2度目再審請求巡り 相模原殺傷",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-1938c16269df8e41",
       "title": "[ITmedia News] 千葉の豪雨、変電所の装置も水に浸かる……東電PG、現場写真を公開",
       "summary": "「ミニクラッド」の下部が水に浸かっている様子がとらられている。",
@@ -3349,7 +3385,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 9,
+      "priority": 8,
       "breaking": false,
       "publishedAt": "2026-08-14T05:10:43.000Z",
       "duplicateCount": 1,
@@ -3386,7 +3422,7 @@
         "トピックス"
       ],
       "minutes": 1,
-      "priority": 8,
+      "priority": 7,
       "breaking": false,
       "publishedAt": "2026-08-14T08:00:00.000Z",
       "duplicateCount": 1,
@@ -3422,7 +3458,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 5,
+      "priority": 6,
       "breaking": false,
       "publishedAt": "2026-08-14T11:48:30.000Z",
       "duplicateCount": 1,
@@ -3438,42 +3474,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "横浜が3回戦進出 春夏通算70勝 夏の甲子園、ベスト16出そろう",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-43283ec2c115f2fd",
-      "title": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
-      "summary": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
-      "fact": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 2,
-      "breaking": false,
-      "publishedAt": "2026-08-14T11:31:44.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8G3JTJV8GOIPE009M.html",
-          "publishedAt": "2026-08-14T11:31:44.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3510,6 +3510,42 @@
       "consensus": "単独報道",
       "keyPoints": [
         "水没した車、施設浸水…千葉・大網白里、度重なる水害に住民疲弊",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-43283ec2c115f2fd",
+      "title": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
+      "summary": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
+      "fact": "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 1,
+      "breaking": false,
+      "publishedAt": "2026-08-14T11:31:44.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8G3JTJV8GOIPE009M.html",
+          "publishedAt": "2026-08-14T11:31:44.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "遊泳中に一時行方不明 30代くらいの男性死亡 愛知・豊田の郡界川",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],

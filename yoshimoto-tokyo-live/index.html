@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="./shared-components-v200.css?v=2.4.1">
   <script src="./data.js?v=1.2.0" defer></script>
   <script src="./data-september-v240.js?v=2.4.0" defer></script>
+  <script src="./auto-data.js?v=2.5.0" defer></script>
+  <script src="./future-only-v250.js?v=2.5.0" defer></script>
   <script src="./date-ui.js?v=1.5.0" defer></script>
   <script src="./domain-v200.js?v=2.2.0" defer></script>
   <script src="./app-v200.js?v=2.3.0" defer></script>
@@ -18,7 +20,7 @@
 </head>
 <body>
 <div class="app-shell">
-<header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v2.4.1</span></header>
+<header class="topbar"><span class="back-link">YOSHIMOTO LIVE</span><span class="version">v2.5.0</span></header>
 <main>
 <section class="hero"><p class="eyebrow">TOKYO YOSHIMOTO LIVE</p><h1>普通のネタライブを探す</h1><p class="hero-copy">漫才・コント・寄席を優先表示。出演者・日程・会場・価格から選べます。</p><div class="mode-tabs"><button class="mode-tab is-active" type="button" data-mode="neta">ネタ中心</button><button class="mode-tab" type="button" data-mode="all">すべて</button><button class="mode-tab" type="button" data-mode="available">販売中のみ</button></div></section>
 <nav class="page-tabs dashboard-tabs" id="pageTabs" aria-label="ページ切り替え">
@@ -35,7 +37,7 @@
 <section id="recommendationsPage" class="page-section" hidden><div class="recommendation-intro"><h2>おすすめ公演</h2><p>最推し・お気に入り芸人の出演数、ネタ中心か、販売状況、開催日、価格からおすすめ度を計算します。</p></div><div class="recommendation-filter"><button class="is-active" type="button" data-recommendation-filter="all">総合</button><button type="button" data-recommendation-filter="week">今週</button><button type="button" data-recommendation-filter="many">2組以上出演</button><button type="button" data-recommendation-filter="value">2,500円以下</button></div><section id="recommendationList" class="recommendation-list"></section></section>
 <section id="showsPage" class="page-section" hidden><div class="page-heading"><h2>お気に入り公演</h2><p>公演日の翌日になると自動で削除されます。</p></div><section class="live-list" id="favoriteShowsList"></section></section>
 <section id="artistsPage" class="page-section" hidden><div class="page-heading"><h2>お気に入り芸人</h2><p>出演者名をタップすると、☆ → ★お気に入り → ♥最推し の順に切り替わります。</p></div><section id="favoriteArtistsList"></section></section>
-<footer class="page-note"><p>販売状況・出演者・正確な終演時間は公式ページで最終確認してください。</p></footer>
+<footer class="page-note"><p>公演情報は1日4回自動更新。過去の公演は表示しません。販売状況・出演者・正確な終演時間は公式ページで最終確認してください。</p></footer>
 </main></div>
 </body>
 </html>

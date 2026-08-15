@@ -4,9 +4,18 @@ on:
   schedule:
     - cron: '15 0,6,12,18 * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'yoshimoto-tokyo-live/scripts/update-live.py'
+      - '.github/workflows/update-yoshimoto-live.yml'
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-yoshimoto-tokyo-live
+  cancel-in-progress: true
 
 jobs:
   update:

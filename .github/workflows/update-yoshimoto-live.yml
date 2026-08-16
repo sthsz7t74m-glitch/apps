@@ -1,42 +1,39 @@
-name: Update Yoshimoto Tokyo Live
+name: Update Yoshimoto live data
 
 on:
   schedule:
-    - cron: '15 0,6,12,18 * * *'
+    - cron: "17 21 * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'yoshimoto-tokyo-live/scripts/update-live.py'
-      - '.github/workflows/update-yoshimoto-live.yml'
 
 permissions:
   contents: write
-
-concurrency:
-  group: update-yoshimoto-tokyo-live
-  cancel-in-progress: true
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
-      - name: Install scraper dependencies
-        run: pip install requests beautifulsoup4
-      - name: Fetch latest official live information
-        run: python yoshimoto-tokyo-live/scripts/update-live.py
-      - name: Commit updated data
+          node-version: "20"
+
+      - name: Refresh FANY live data
+        run: node apps/yoshimoto-tokyo-live/scripts/update-live.mjs --days 60 --min-events 60
+
+      - name: Run Yoshimoto live tests
+        run: node --test apps/yoshimoto-tokyo-live/tests/update-live.test.mjs
+
+      - name: Commit changes
         run: |
-          if git diff --quiet -- yoshimoto-tokyo-live/auto-data.js; then
-            echo "No changes"
+          if git diff --quiet -- apps/yoshimoto-tokyo-live/data.js; then
+            echo "No Yoshimoto live data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add yoshimoto-tokyo-live/auto-data.js
-          git commit -m "Update Yoshimoto Tokyo live data"
+          git add apps/yoshimoto-tokyo-live/data.js
+          git commit -m "Update Yoshimoto live data"
           git push

@@ -1,12 +1,39 @@
 (() => {
   "use strict";
 
-  const VERSION = "2.4.1";
+  const VERSION = "2.6.0";
   const $ = (selector) => document.querySelector(selector);
 
   function resetControl(selector, value = "") {
     const control = $(selector);
     if (control) control.value = value;
+  }
+
+  function localDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function defaultFromDate() {
+    const dates = String(window.YOSHIMOTO_LIVE_ROWS || "")
+      .split(/\r?\n/)
+      .map((line) => line.trim().split("|")[0])
+      .filter(Boolean)
+      .sort();
+    const first = dates[0] || "";
+    const last = dates.at(-1) || "";
+    const today = localDateString();
+    return today >= first && today <= last ? today : first;
+  }
+
+  function syncDateDisplay(inputId, displayId) {
+    const input = $(inputId);
+    const display = $(displayId);
+    if (!input || !display) return;
+    display.textContent = input.value ? input.value.replaceAll("-", "/") : "指定なし";
+    display.classList.toggle("is-empty", !input.value);
   }
 
   function installSafeReset() {
@@ -31,11 +58,9 @@
       resetControl("#priceFilter");
       resetControl("#sortFilter", "date");
 
-      const firstDate = String(window.YOSHIMOTO_LIVE_ROWS || "")
-        .split(/\r?\n/)
-        .map((line) => line.trim())
-        .find(Boolean)?.split("|")[0] || "";
-      resetControl("#fromDate", firstDate);
+      resetControl("#fromDate", defaultFromDate());
+      syncDateDisplay("#fromDate", "#fromDateDisplay");
+      syncDateDisplay("#toDate", "#toDateDisplay");
 
       const clearPerformer = $("#clearPerformer");
       const netaMode = document.querySelector('[data-mode="neta"]');
@@ -63,7 +88,7 @@
 
   window.addEventListener("DOMContentLoaded", () => {
     const version = document.querySelector(".version");
-    if (version) version.textContent = `v${VERSION}`;
+    if (version) version.textContent = `v${window.YOSHIMOTO_LIVE_META?.version || VERSION}`;
     installSafeReset();
   });
 })();

@@ -2,6 +2,7 @@
   "use strict";
 
   const D = window.YoshimotoDomain;
+  const META = window.YOSHIMOTO_LIVE_META || {};
   const repo = new D.EventRepository(window.YOSHIMOTO_LIVE_ROWS || "");
   const favorites = new D.FavoriteStore();
   const time = new D.EventTimeService();
@@ -12,6 +13,26 @@
   const $ = (selector) => document.querySelector(selector);
   const ordinary = (event) => ["yose", "neta", "neta-corner", "conte"].includes(event.genre);
   const pad = (value) => String(Math.max(0, Number(value) || 0)).padStart(3, "0");
+
+  function localDateString(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
+
+  function defaultFromDate() {
+    const dates = repo.all().map((event) => event.date).sort();
+    const first = dates[0] || "";
+    const last = dates.at(-1) || "";
+    const today = localDateString();
+    return today >= first && today <= last ? today : first;
+  }
+
+  function formatUpdated(value) {
+    if (!value) return "更新日不明";
+    return String(value).replace("T", " ").replace("+09:00", "");
+  }
 
   class DashboardRenderer {
     constructor(repository, favoriteStore, timeService, recommendationService) {
@@ -136,7 +157,7 @@
 
   function renderPerformers() {
     const element = $("#performerChips");
-    element.innerHTML = repo.performers().map((name) => `<button class="performer-chip${state.performer === name ? " is-active" : ""}" type="button" data-filter-artist="${D.esc(name)}">${D.esc(name)}</button>`).join("");
+    element.innerHTML = repo.performers().slice(0, 80).map((name) => `<button class="performer-chip${state.performer === name ? " is-active" : ""}" type="button" data-filter-artist="${D.esc(name)}">${D.esc(name)}</button>`).join("");
     $("#clearPerformer").hidden = !state.performer;
   }
 
@@ -174,10 +195,16 @@
   }
 
   function init() {
-    $(".version").textContent = "v2.3.0";
+    $(".version").textContent = `v${META.version || "2.6.0"}`;
     favorites.migrateShows(repo.all());
     [...new Set(repo.all().map((event) => event.venue))].sort((a, b) => a.localeCompare(b, "ja")).forEach((venue) => $("#venueFilter").insertAdjacentHTML("beforeend", `<option>${D.esc(venue)}</option>`));
-    if ($("#fromDate")) $("#fromDate").value = repo.all()[0]?.date || "";
+    if ($("#fromDate")) $("#fromDate").value = defaultFromDate();
+    const dataStatus = $("#dataStatus");
+    if (dataStatus) {
+      const fetched = Number(META.fetchedEventCount || repo.all().length);
+      const sourceCount = Array.isArray(META.sourceSummary) ? META.sourceSummary.map(item => `${item.venue}:${item.count}件`).join(" / ") : "";
+      dataStatus.textContent = `更新 ${formatUpdated(META.updatedAt)} ・ 取得範囲 ${META.coverageLabel || "未設定"} ・ ${fetched}公演${sourceCount ? ` ・ ${sourceCount}` : ""}`;
+    }
 
     document.addEventListener("click", (event) => {
       const page = event.target.closest("[data-page]");
@@ -204,6 +231,7 @@
     $("#resetButton")?.addEventListener("click", () => {
       ["#searchInput", "#venueFilter", "#genreFilter", "#toDate", "#statusFilter", "#dayTypeFilter", "#priceFilter"].forEach((selector) => { if ($(selector)) $(selector).value = ""; });
       if ($("#sortFilter")) $("#sortFilter").value = "date";
+      if ($("#fromDate")) $("#fromDate").value = defaultFromDate();
       state.mode = "neta";
       state.performer = "";
       renderAll();

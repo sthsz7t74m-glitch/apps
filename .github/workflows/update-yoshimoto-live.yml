@@ -21,19 +21,19 @@ jobs:
           node-version: "20"
 
       - name: Refresh FANY live data
-        run: node apps/yoshimoto-tokyo-live/scripts/update-live.mjs --days 60 --min-events 60
+        run: node yoshimoto-tokyo-live/scripts/update-live.mjs --days 60 --min-events 60
 
       - name: Run Yoshimoto live tests
-        run: node --test apps/yoshimoto-tokyo-live/tests/update-live.test.mjs
+        run: node --test yoshimoto-tokyo-live/tests/update-live.test.mjs
 
       - name: Commit changes
         run: |
-          if git diff --quiet -- apps/yoshimoto-tokyo-live/data.js; then
+          if git diff --quiet -- yoshimoto-tokyo-live/data.js; then
             echo "No Yoshimoto live data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add apps/yoshimoto-tokyo-live/data.js
+          git add yoshimoto-tokyo-live/data.js
           git commit -m "Update Yoshimoto live data"
           git push

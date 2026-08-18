@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-18T20:32:58.794Z",
+  "generatedAt": "2026-08-18T20:53:03.961Z",
   "sourceMode": "rss",
   "totalArticles": 407,
-  "totalClusters": 108,
+  "totalClusters": 110,
   "succeededSources": 17,
   "failedSources": 1,
   "deduplication": {
@@ -17,84 +17,84 @@
       "name": "NHK NEWS WEB",
       "ok": true,
       "count": 7,
-      "fetchedAt": "2026-08-18T20:32:58.795Z"
+      "fetchedAt": "2026-08-18T20:53:03.962Z"
     },
     {
       "id": "asahi-news",
       "name": "朝日新聞デジタル",
       "ok": true,
       "count": 35,
-      "fetchedAt": "2026-08-18T20:32:58.839Z"
+      "fetchedAt": "2026-08-18T20:53:04.020Z"
     },
     {
       "id": "mainichi-news",
       "name": "毎日新聞",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.840Z"
+      "fetchedAt": "2026-08-18T20:53:04.021Z"
     },
     {
       "id": "bbc-japanese",
       "name": "BBC News Japan",
       "ok": true,
       "count": 38,
-      "fetchedAt": "2026-08-18T20:32:58.841Z"
+      "fetchedAt": "2026-08-18T20:53:04.022Z"
     },
     {
       "id": "livedoor-news",
       "name": "ライブドアニュース",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.842Z"
+      "fetchedAt": "2026-08-18T20:53:04.023Z"
     },
     {
       "id": "itmedia",
       "name": "ITmedia",
       "ok": true,
       "count": 50,
-      "fetchedAt": "2026-08-18T20:32:58.843Z"
+      "fetchedAt": "2026-08-18T20:53:04.024Z"
     },
     {
       "id": "impress-watch",
       "name": "Impress Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.843Z"
+      "fetchedAt": "2026-08-18T20:53:04.025Z"
     },
     {
       "id": "cnet-japan",
       "name": "CNET Japan",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-18T20:32:58.844Z"
+      "fetchedAt": "2026-08-18T20:53:04.026Z"
     },
     {
       "id": "gigazine",
       "name": "GIGAZINE",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-18T20:32:58.845Z"
+      "fetchedAt": "2026-08-18T20:53:04.027Z"
     },
     {
       "id": "ascii",
       "name": "ASCII.jp",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-18T20:32:58.846Z"
+      "fetchedAt": "2026-08-18T20:53:04.028Z"
     },
     {
       "id": "pc-watch",
       "name": "PC Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.846Z"
+      "fetchedAt": "2026-08-18T20:53:04.029Z"
     },
     {
       "id": "internet-watch",
       "name": "INTERNET Watch",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-08-18T20:32:58.847Z",
+      "fetchedAt": "2026-08-18T20:53:04.030Z",
       "error": "HTTP 404"
     },
     {
@@ -102,42 +102,42 @@
       "name": "AV Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.848Z"
+      "fetchedAt": "2026-08-18T20:53:04.031Z"
     },
     {
       "id": "game-watch",
       "name": "GAME Watch",
       "ok": true,
       "count": 29,
-      "fetchedAt": "2026-08-18T20:32:58.848Z"
+      "fetchedAt": "2026-08-18T20:53:04.032Z"
     },
     {
       "id": "jpcert",
       "name": "JPCERT/CC",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-18T20:32:58.849Z"
+      "fetchedAt": "2026-08-18T20:53:04.033Z"
     },
     {
       "id": "jma-extra",
       "name": "気象庁 防災情報",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-18T20:32:58.850Z"
+      "fetchedAt": "2026-08-18T20:53:04.034Z"
     },
     {
       "id": "google-japan",
       "name": "Google Japan Blog",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-18T20:32:58.850Z"
+      "fetchedAt": "2026-08-18T20:53:04.035Z"
     },
     {
       "id": "openai-news",
       "name": "OpenAI News",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-18T20:32:58.851Z"
+      "fetchedAt": "2026-08-18T20:53:04.036Z"
     }
   ],
   "items": [
@@ -157,14 +157,14 @@
       "minutes": 1,
       "priority": 97,
       "breaking": true,
-      "publishedAt": "2026-08-18T20:24:42.000Z",
-      "duplicateCount": 11,
+      "publishedAt": "2026-08-18T20:48:03.000Z",
+      "duplicateCount": 10,
       "sources": [
         {
           "name": "気象庁 防災情報",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20260818202443_0_VPWW53_070000.xml",
-          "publishedAt": "2026-08-18T20:24:42.000Z"
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20260818204804_0_VPWW53_040000.xml",
+          "publishedAt": "2026-08-18T20:48:03.000Z"
         }
       ],
       "confidence": 81,
@@ -272,7 +272,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 85,
+      "priority": 84,
       "breaking": false,
       "publishedAt": "2026-08-18T20:17:01.000Z",
       "duplicateCount": 1,
@@ -332,6 +332,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-7ae0bec7e0919904",
+      "title": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
+      "summary": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
+      "fact": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 82,
+      "breaking": false,
+      "publishedAt": "2026-08-18T20:48:59.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260818/k00/00m/010/358000c",
+          "publishedAt": "2026-08-18T20:48:59.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-9f15799e7617e35a",
       "title": "営農型太陽光発電に急ブレーキ？ 国の新規制案に「足かせ」の声",
       "summary": "営農型太陽光発電に急ブレーキ？ 国の新規制案に「足かせ」の声",
@@ -344,7 +380,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 82,
+      "priority": 78,
       "breaking": false,
       "publishedAt": "2026-08-18T20:30:27.000Z",
       "duplicateCount": 1,
@@ -360,42 +396,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "営農型太陽光発電に急ブレーキ？ 国の新規制案に「足かせ」の声",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-7ae0bec7e0919904",
-      "title": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
-      "summary": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
-      "fact": "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 78,
-      "breaking": false,
-      "publishedAt": "2026-08-18T20:30:14.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260818/k00/00m/010/358000c",
-          "publishedAt": "2026-08-18T20:30:14.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "非核三原則「見直すべきだと思う」27％ 男女で2.6倍の開き",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -438,90 +438,6 @@
       "consensus": "複数ソース",
       "keyPoints": [
         "ウェザーニューズは8月14日、8月13日に千葉県で発生した記録的な大雨「令和8年8月千葉豪雨」について、アプリ利用者から寄せられた約2万件の報告を分析した結果を発表した。浸水・冠水の被害を示す報告のうち55.7％は、ハザードマップなどで示される浸水想定区域や低位地帯の「外」から寄せられていた。従来…",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-78449d891a50e251",
-      "title": "映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」が9月2日より「Disney+」で見放題独占配信決定！",
-      "summary": "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
-      "fact": "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
-      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 78,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:00:07.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/news/2133603.html",
-          "publishedAt": "2026-08-18T09:00:07.000Z"
-        },
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2133560.html",
-          "publishedAt": "2026-08-18T08:16:55.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-489a3bd0a34ee7df",
-      "title": "デル、従来から軽量薄型化したCore 3/Ryzen 200搭載14型/15.3型ノート",
-      "summary": "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
-      "fact": "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
-      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 77,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:54:45.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "PC Watch",
-          "type": "専門メディア",
-          "url": "https://pc.watch.impress.co.jp/docs/news/2133631.html",
-          "publishedAt": "2026-08-18T09:54:45.000Z"
-        },
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/18/news087.html",
-          "publishedAt": "2026-08-18T05:57:00.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
         "2つの配信元が同じテーマを報じています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -573,35 +489,83 @@
       "alternateTitles": []
     },
     {
-      "id": "news-ab9b878930cc7787",
-      "title": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
-      "summary": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
-      "fact": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "id": "news-78449d891a50e251",
+      "title": "映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」が9月2日より「Disney+」で見放題独占配信決定！",
+      "summary": "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
+      "fact": "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
+      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
+      "category": "科学・文化",
       "tags": [
-        "国際"
+        "科学・文化"
       ],
       "minutes": 1,
-      "priority": 74,
+      "priority": 77,
       "breaking": false,
-      "publishedAt": "2026-08-18T16:58:02.000Z",
-      "duplicateCount": 1,
+      "publishedAt": "2026-08-18T09:00:07.000Z",
+      "duplicateCount": 2,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8L5HNVV8LUHBI01PM.html",
-          "publishedAt": "2026-08-18T16:58:02.000Z"
+          "name": "AV Watch",
+          "type": "専門メディア",
+          "url": "https://av.watch.impress.co.jp/docs/news/2133603.html",
+          "publishedAt": "2026-08-18T09:00:07.000Z"
+        },
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2133560.html",
+          "publishedAt": "2026-08-18T08:16:55.000Z"
         }
       ],
-      "confidence": 57,
-      "consensus": "単独報道",
+      "confidence": 70,
+      "consensus": "複数ソース",
       "keyPoints": [
-        "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
-        "現在は1つの配信元から確認しています。",
+        "ウォルト・ディズニー・ジャパンは、映画「スター・ウォーズ／マンダロリアン・アンド・グローグー」を9月2日よりディズニー公式動画配信サービス「Disney+（ディズニープラス）」にて見放題独占配信する。",
+        "2つの配信元が同じテーマを報じています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-489a3bd0a34ee7df",
+      "title": "デル、従来から軽量薄型化したCore 3/Ryzen 200搭載14型/15.3型ノート",
+      "summary": "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
+      "fact": "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
+      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 76,
+      "breaking": false,
+      "publishedAt": "2026-08-18T09:54:45.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "PC Watch",
+          "type": "専門メディア",
+          "url": "https://pc.watch.impress.co.jp/docs/news/2133631.html",
+          "publishedAt": "2026-08-18T09:54:45.000Z"
+        },
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/18/news087.html",
+          "publishedAt": "2026-08-18T05:57:00.000Z"
+        }
+      ],
+      "confidence": 70,
+      "consensus": "複数ソース",
+      "keyPoints": [
+        "デル・テクノロジーズは、従来モデルから薄型/軽量化を図った14型ノート「Dell 14」および15.3型の「Dell 15」を8月18日より順次発売した。各機種でIntelモデルとAMDモデルを用意する。",
+        "2つの配信元が同じテーマを報じています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
@@ -637,6 +601,42 @@
       "consensus": "単独報道",
       "keyPoints": [
         "移民と社会:外国人採用急停止「よくやった」の声も 高市印「厳格化」の行方",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-ab9b878930cc7787",
+      "title": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
+      "summary": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
+      "fact": "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 73,
+      "breaking": false,
+      "publishedAt": "2026-08-18T16:58:02.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8L5HNVV8LUHBI01PM.html",
+          "publishedAt": "2026-08-18T16:58:02.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ミャンマー親軍政権トップ、プーチン氏と会談 ロシア訪問は14回目",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -985,7 +985,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 62,
+      "priority": 61,
       "breaking": false,
       "publishedAt": "2026-08-18T13:58:57.000Z",
       "duplicateCount": 1,
@@ -1119,42 +1119,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-70d842efc7f95dc9",
-      "title": "うつ病患者の脳では記憶や学習に関連する領域が減少しているとの研究結果",
-      "summary": "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
-      "fact": "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 59,
-      "breaking": false,
-      "publishedAt": "2026-08-18T10:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260818-depression-linked-smaller-volume-hippocampus",
-          "publishedAt": "2026-08-18T10:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-fd7cbef597ee51a6",
       "title": "ソフトバンク系、AIイヤホン「GLIDiC AI +u Buds」一般販売 会議や商談も要約",
       "summary": "SB C&Sは8月18日、AIイヤホン「GLIDiC AI +u Buds」を一般発売した。会議や通話をワンプッシュで録音し、AIが文字起こしと要約を行い、「次の一手」まで助言するのが特徴だ。同日から「トレテク！ソフトバンクセレクション」など各オンラインショップで販売し、9月4日には全国のソフトバンクショップでも取り扱いを始める。希望小売価格は税込2万9800円。",
@@ -1190,6 +1154,42 @@
       "keyPoints": [
         "SB C&Sは8月18日、AIイヤホン「GLIDiC AI +u Buds」を一般発売した。会議や通話をワンプッシュで録音し、AIが文字起こしと要約を行い、「次の一手」まで助言するのが特徴だ。同日から「トレテク！ソフトバンクセレクション」など各オンラインショップで販売し、9月4日には全国のソフトバ…",
         "2つの配信元が同じテーマを報じています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-70d842efc7f95dc9",
+      "title": "うつ病患者の脳では記憶や学習に関連する領域が減少しているとの研究結果",
+      "summary": "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
+      "fact": "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 58,
+      "breaking": false,
+      "publishedAt": "2026-08-18T10:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260818-depression-linked-smaller-volume-hippocampus",
+          "publishedAt": "2026-08-18T10:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "以前からうつ病がアルツハイマー病のリスク要因であることが知られていましたが、うつ病と認知機能低下の相互作用はよくわかっていません。うつ病を患う中高年を対象にした新たな研究では、うつ病患者の脳では記憶や学習に関わる海馬の特定領域の体積が減少していることが判明しました。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
@@ -1246,7 +1246,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 55,
+      "priority": 54,
       "breaking": false,
       "publishedAt": "2026-08-18T14:03:26.000Z",
       "duplicateCount": 1,
@@ -1262,80 +1262,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "バックネット裏の観客にも礼 丁寧な有明選手、最後まで礼儀貫く",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-648d125f27a42ef4",
-      "title": "「Steam Machine」を分解してSSDにアクセスするまでの手順を実際にやってみた",
-      "summary": "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確認してみました。 続きを読む...",
-      "fact": "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確認してみました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "Apple",
-        "Steam"
-      ],
-      "minutes": 1,
-      "priority": 53,
-      "breaking": false,
-      "publishedAt": "2026-08-18T13:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260818-steam-machine-teardown",
-          "publishedAt": "2026-08-18T13:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-494e234ad0bcfa80",
-      "title": "[ITmedia ビジネスオンライン] 「ご本人の許可なく」羽生結弦さんらの名前を無断使用 麻辣湯店が謝罪",
-      "summary": "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
-      "fact": "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 53,
-      "breaking": false,
-      "publishedAt": "2026-08-18T10:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/business/articles/2608/18/news099.html",
-          "publishedAt": "2026-08-18T10:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1380,6 +1306,44 @@
       "alternateTitles": []
     },
     {
+      "id": "news-648d125f27a42ef4",
+      "title": "「Steam Machine」を分解してSSDにアクセスするまでの手順を実際にやってみた",
+      "summary": "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確認してみました。 続きを読む...",
+      "fact": "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確認してみました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "Apple",
+        "Steam"
+      ],
+      "minutes": 1,
+      "priority": 52,
+      "breaking": false,
+      "publishedAt": "2026-08-18T13:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260818-steam-machine-teardown",
+          "publishedAt": "2026-08-18T13:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「Steam Machine」はValveが開発したゲーミングPCで、Steamで購入したPCゲームをプレイしたりLinuxデスクトップPCとして各種アプリを実行したりできます。Steam Machineは簡単に分解してSSDを交換することも可能らしいので、実際にSSDを交換するまでの分解手順を確…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-b270b03fbae0486f",
       "title": "千葉豪雨の放置車両を巡り幹線道路上は残り200台に 持ち主が自ら移動",
       "summary": "記事を読む",
@@ -1392,7 +1356,7 @@
         "気象・防災"
       ],
       "minutes": 1,
-      "priority": 52,
+      "priority": 51,
       "breaking": false,
       "publishedAt": "2026-08-18T12:26:54.000Z",
       "duplicateCount": 1,
@@ -1416,10 +1380,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-90ff6e41c7f50007",
-      "title": "広島県で知人男性の腕を刃物で刺した疑い 中国籍の男を逮捕",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-8d5a3535e0c039db",
+      "title": "glo用たばこスティック値上げ 10月に今年2回目の増税",
+      "summary": "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
+      "fact": "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1428,23 +1392,101 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 50,
       "breaking": false,
-      "publishedAt": "2026-08-18T11:32:00.000Z",
+      "publishedAt": "2026-08-18T10:32:25.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32099099",
-          "publishedAt": "2026-08-18T11:32:00.000Z"
+          "name": "Impress Watch",
+          "type": "専門メディア",
+          "url": "https://www.watch.impress.co.jp/docs/news/2133652.html",
+          "publishedAt": "2026-08-18T10:32:25.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
+        "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
         "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-7c8f799f3a1862d0",
+      "title": "[ITmedia News] 通販生活が楽天市場から撤退 迎撃ドローン関連の報道受け「企業理念に反する」",
+      "summary": "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
+      "fact": "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 50,
+      "breaking": false,
+      "publishedAt": "2026-08-18T07:52:05.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000596",
+          "publishedAt": "2026-08-18T07:52:05.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-a269b039aa362cb8",
+      "title": "[ITmedia PC USER] XPPen、有機ELパネルを採用した14型ペンタブレット「Artist Ultra 14」",
+      "summary": "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
+      "fact": "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
+      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 50,
+      "breaking": false,
+      "publishedAt": "2026-08-18T02:56:00.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/18/news075.html",
+          "publishedAt": "2026-08-18T02:56:00.000Z"
+        },
+        {
+          "name": "PC Watch",
+          "type": "専門メディア",
+          "url": "https://pc.watch.impress.co.jp/docs/news/2133358.html",
+          "publishedAt": "2026-08-18T02:09:06.000Z"
+        }
+      ],
+      "confidence": 70,
+      "consensus": "複数ソース",
+      "keyPoints": [
+        "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
+        "2つの配信元が同じテーマを報じています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
@@ -1489,48 +1531,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-a269b039aa362cb8",
-      "title": "[ITmedia PC USER] XPPen、有機ELパネルを採用した14型ペンタブレット「Artist Ultra 14」",
-      "summary": "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
-      "fact": "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
-      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 49,
-      "breaking": false,
-      "publishedAt": "2026-08-18T02:56:00.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/18/news075.html",
-          "publishedAt": "2026-08-18T02:56:00.000Z"
-        },
-        {
-          "name": "PC Watch",
-          "type": "専門メディア",
-          "url": "https://pc.watch.impress.co.jp/docs/news/2133358.html",
-          "publishedAt": "2026-08-18T02:09:06.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "XPPenは、14型有機ELペンタブレット「Artist Ultra 14」を発表した。",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-01dfea67b5e365c1",
       "title": "両親就寝の自宅に放火、殺人未遂容疑などで中学生逮捕 福岡・大牟田",
       "summary": "両親就寝の自宅に放火、殺人未遂容疑などで中学生逮捕 福岡・大牟田",
@@ -1567,10 +1567,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-8d5a3535e0c039db",
-      "title": "glo用たばこスティック値上げ 10月に今年2回目の増税",
-      "summary": "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
-      "fact": "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
+      "id": "news-90ff6e41c7f50007",
+      "title": "広島県で知人男性の腕を刃物で刺した疑い 中国籍の男を逮捕",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1581,57 +1581,20 @@
       "minutes": 1,
       "priority": 48,
       "breaking": false,
-      "publishedAt": "2026-08-18T10:32:25.000Z",
+      "publishedAt": "2026-08-18T11:32:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "Impress Watch",
-          "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2133652.html",
-          "publishedAt": "2026-08-18T10:32:25.000Z"
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32099099",
+          "publishedAt": "2026-08-18T11:32:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ブリティッシュ・アメリカン・タバコ・ジャパン(BATジャパン)は10月1日に、glo HYPER用たばこスティック「ラッキー・ストライク」「ケント」「ネオ」、glo Hilo用たばこスティック「ヴァルト」全銘柄を、20円～40円値上げする。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-15c2a982d794cdb5",
-      "title": "6万円のヘッドホンなんて、高すぎる。「MOMENTUM 5 Wireless」を使うまで、僕はそう思ってた……。",
-      "summary": "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
-      "fact": "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済",
-        "AV"
-      ],
-      "minutes": 1,
-      "priority": 48,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/425/4425549?rss",
-          "publishedAt": "2026-08-18T09:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
+        "記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1786,34 +1749,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7c8f799f3a1862d0",
-      "title": "[ITmedia News] 通販生活が楽天市場から撤退 迎撃ドローン関連の報道受け「企業理念に反する」",
-      "summary": "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
-      "fact": "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
+      "id": "news-494e234ad0bcfa80",
+      "title": "[ITmedia ビジネスオンライン] 「ご本人の許可なく」羽生結弦さんらの名前を無断使用 麻辣湯店が謝罪",
+      "summary": "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
+      "fact": "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "国際",
       "tags": [
-        "経済"
+        "国際"
       ],
       "minutes": 1,
       "priority": 46,
       "breaking": false,
-      "publishedAt": "2026-08-18T07:52:05.000Z",
+      "publishedAt": "2026-08-18T10:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "ITmedia",
           "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000596",
-          "publishedAt": "2026-08-18T07:52:05.000Z"
+          "url": "https://www.itmedia.co.jp/business/articles/2608/18/news099.html",
+          "publishedAt": "2026-08-18T10:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "通信販売カタログ「通販生活」を手掛けるカタログハウスが、楽天グループのECモール「楽天市場」への出店を取りやめたと発表した。楽天グループが迎撃用ドローンを手掛ける独Helsingと提携するとの報道を受け、「企業理念に抵触する」（カタログハウス）として撤退に至った。",
+        "世界最大級の麻辣湯チェーンを展開する「楊国福グループ」（中国）が仙台市青葉区に出店するフランチャイズ店「楊国福麻辣湯仙台駅前店」が、17日のプレオープンの際、開店祝いの花に無断で著名人の名前を使用したとして、グループが謝罪した。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1858,6 +1821,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-de73e320546dd43a",
+      "title": "[ITmedia Mobile] FCNT、スマホ保証サービスの提供を予告 「arrows Alpha2の発売に合わせて準備」",
+      "summary": "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳細な提供時期や内容については、今後FCNTの公式Webサイトにて別途リリースされる予定だ。",
+      "fact": "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳細な提供時期や内容については、今後FCNTの公式Webサイトにて別途リリースされる予定だ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 2,
+      "priority": 42,
+      "breaking": false,
+      "publishedAt": "2026-08-18T12:00:00.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/mobile/articles/2608/18/news100.html",
+          "publishedAt": "2026-08-18T12:00:00.000Z"
+        }
+      ],
+      "confidence": 59,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-af783865309eb5b7",
       "title": "[ITmedia News] 生成AIで巧妙化するデマ──熊本地震で露見した「10年前にはなかった新たな手法」 識者に聞く",
       "summary": "2016年の熊本地震から10年という節目に同じ熊本県で発生した「令和8年熊本地震」。SNSでは発災直後から多くのデマやフェイク情報が拡散し、中には10年前には考えられなかった動きや傾向もみられた。",
@@ -1872,7 +1871,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 43,
+      "priority": 42,
       "breaking": false,
       "publishedAt": "2026-08-18T09:03:55.000Z",
       "duplicateCount": 1,
@@ -1896,34 +1895,35 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7d47ec439a06c1f7",
-      "title": "マウスコンピューター、令和8年8月千葉豪雨で被害を受けた対象製品の無償修理を実施",
-      "summary": "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
-      "fact": "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
+      "id": "news-543b829f1c9517f1",
+      "title": "渋谷に最新ガジェットのショールーム「&count（エンカウント）」をFastlaneがオープン",
+      "summary": "深圳の最先端ガジェットが日本で自由に触れます",
+      "fact": "深圳の最先端ガジェットが日本で自由に触れます",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
+      "category": "国内",
       "tags": [
-        "気象・防災"
+        "国内",
+        "スマホ"
       ],
       "minutes": 1,
-      "priority": 42,
+      "priority": 41,
       "breaking": false,
-      "publishedAt": "2026-08-18T09:07:45.000Z",
+      "publishedAt": "2026-08-18T15:01:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GAME Watch",
+          "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2133604.html",
-          "publishedAt": "2026-08-18T09:07:45.000Z"
+          "url": "https://ascii.jp/elem/000/004/427/4427587?rss",
+          "publishedAt": "2026-08-18T15:01:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
+        "深圳の最先端ガジェットが日本で自由に触れます",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1968,42 +1968,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-de73e320546dd43a",
-      "title": "[ITmedia Mobile] FCNT、スマホ保証サービスの提供を予告 「arrows Alpha2の発売に合わせて準備」",
-      "summary": "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳細な提供時期や内容については、今後FCNTの公式Webサイトにて別途リリースされる予定だ。",
-      "fact": "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳細な提供時期や内容については、今後FCNTの公式Webサイトにて別途リリースされる予定だ。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 2,
-      "priority": 41,
-      "breaking": false,
-      "publishedAt": "2026-08-18T12:00:00.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/mobile/articles/2608/18/news100.html",
-          "publishedAt": "2026-08-18T12:00:00.000Z"
-        }
-      ],
-      "confidence": 59,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "FCNTは8月18日の発表会で、最新スマホ「arrows Alpha2」の発売に合わせた新たな保証サービスの準備を進めていることを明らかにした。発表会に登壇した外谷一磨氏は、購入後も安心して長く使ってもらうために保証を用意し、そこまで含めて価値を提供していきたいと語った。この保証サービスに関する詳…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-4ff36cbac5c53440",
       "title": "「畑の地形まですっかり変わってしまった」千葉豪雨、農家の落胆",
       "summary": "「畑の地形まですっかり変わってしまった」千葉豪雨、農家の落胆",
@@ -2040,10 +2004,46 @@
       "alternateTitles": []
     },
     {
-      "id": "news-3a60a0011d0c2072",
-      "title": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
-      "summary": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
-      "fact": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
+      "id": "news-7d47ec439a06c1f7",
+      "title": "マウスコンピューター、令和8年8月千葉豪雨で被害を受けた対象製品の無償修理を実施",
+      "summary": "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
+      "fact": "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災"
+      ],
+      "minutes": 1,
+      "priority": 41,
+      "breaking": false,
+      "publishedAt": "2026-08-18T09:07:45.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2133604.html",
+          "publishedAt": "2026-08-18T09:07:45.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "マウスコンピューターは、令和8年8月千葉豪雨で被害を受けたユーザーに対し、対象製品の特別保守サービスを実施する。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-77aee9f370197f26",
+      "title": "JALとANA、羽田－岡山間の冬ダイヤ発表 出発時間ずらし調整",
+      "summary": "JALとANA、羽田－岡山間の冬ダイヤ発表 出発時間ずらし調整",
+      "fact": "JALとANA、羽田－岡山間の冬ダイヤ発表 出発時間ずらし調整",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2054,20 +2054,65 @@
       "minutes": 1,
       "priority": 40,
       "breaking": false,
-      "publishedAt": "2026-08-18T13:15:59.000Z",
-      "duplicateCount": 1,
+      "publishedAt": "2026-08-18T12:04:58.000Z",
+      "duplicateCount": 2,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260818/k00/00m/050/331000c",
-          "publishedAt": "2026-08-18T13:15:59.000Z"
+          "url": "https://mainichi.jp/articles/20260818/k00/00m/020/346000c",
+          "publishedAt": "2026-08-18T12:04:58.000Z"
+        },
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8L3JSPV8LULFA010M.html",
+          "publishedAt": "2026-08-18T11:37:08.000Z"
+        }
+      ],
+      "confidence": 70,
+      "consensus": "複数ソース",
+      "keyPoints": [
+        "JALとANA、羽田－岡山間の冬ダイヤ発表 出発時間ずらし調整",
+        "2つの配信元が同じテーマを報じています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "ANAとJAL、羽田―岡山で初ダイヤ調整 新幹線との競争も背景？"
+      ]
+    },
+    {
+      "id": "news-15c2a982d794cdb5",
+      "title": "6万円のヘッドホンなんて、高すぎる。「MOMENTUM 5 Wireless」を使うまで、僕はそう思ってた……。",
+      "summary": "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
+      "fact": "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済",
+        "AV"
+      ],
+      "minutes": 1,
+      "priority": 40,
+      "breaking": false,
+      "publishedAt": "2026-08-18T09:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/425/4425549?rss",
+          "publishedAt": "2026-08-18T09:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
+        "6万円台という投資に妥協なし。日々のリスニングを極上の体験に変え、長年にわたって安心して使い倒せる、ゼンハイザーのフラッグシップワイヤレスヘッドホン「MOMENTUM 5 Wireless」が推せる！",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2112,35 +2157,36 @@
       "alternateTitles": []
     },
     {
-      "id": "news-543b829f1c9517f1",
-      "title": "渋谷に最新ガジェットのショールーム「&count（エンカウント）」をFastlaneがオープン",
-      "summary": "深圳の最先端ガジェットが日本で自由に触れます",
-      "fact": "深圳の最先端ガジェットが日本で自由に触れます",
+      "id": "news-0c30c7ed2e7f8572",
+      "title": "『信長の野望 覇道』公式生放送を8月25日に放送決定！先行サーバーの最新シーズン情報を公開",
+      "summary": "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
+      "fact": "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "ゲーム",
       "tags": [
-        "国内",
-        "スマホ"
+        "ゲーム",
+        "Steam",
+        "アプリゲーム"
       ],
       "minutes": 1,
       "priority": 39,
       "breaking": false,
-      "publishedAt": "2026-08-18T15:01:00.000Z",
+      "publishedAt": "2026-08-18T11:15:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/427/4427587?rss",
-          "publishedAt": "2026-08-18T15:01:00.000Z"
+          "url": "https://ascii.jp/elem/000/004/427/4427584?rss",
+          "publishedAt": "2026-08-18T11:15:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "深圳の最先端ガジェットが日本で自由に触れます",
+        "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2186,124 +2232,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-16ce1362ba42f2d9",
-      "title": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
-      "summary": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
-      "fact": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災"
-      ],
-      "minutes": 1,
-      "priority": 38,
-      "breaking": false,
-      "publishedAt": "2026-08-18T11:26:56.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8L3RL3V8LUTIL01KM.html",
-          "publishedAt": "2026-08-18T11:26:56.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-0c30c7ed2e7f8572",
-      "title": "『信長の野望 覇道』公式生放送を8月25日に放送決定！先行サーバーの最新シーズン情報を公開",
-      "summary": "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
-      "fact": "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "Steam",
-        "アプリゲーム"
-      ],
-      "minutes": 1,
-      "priority": 38,
-      "breaking": false,
-      "publishedAt": "2026-08-18T11:15:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/427/4427584?rss",
-          "publishedAt": "2026-08-18T11:15:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "2026年8月18日、コーエーテクモゲームスはiOS／Android／PC（Steam）でサービス中の『信長の野望 覇道』にて、8月25日21時より公式生放送の実施を決定したと発表。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-77aee9f370197f26",
-      "title": "ANAとJAL、羽田―岡山で初ダイヤ調整 新幹線との競争も背景？",
-      "summary": "ANAとJAL、羽田―岡山で初ダイヤ調整 新幹線との競争も背景？",
-      "fact": "ANAとJAL、羽田―岡山で初ダイヤ調整 新幹線との競争も背景？",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 35,
-      "breaking": false,
-      "publishedAt": "2026-08-18T12:04:58.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260818/k00/00m/020/346000c",
-          "publishedAt": "2026-08-18T12:04:58.000Z"
-        },
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8L3JSPV8LULFA010M.html",
-          "publishedAt": "2026-08-18T11:37:08.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "ANAとJAL、羽田―岡山で初ダイヤ調整 新幹線との競争も背景？",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "JALとANA、羽田－岡山間の冬ダイヤ発表 出発時間ずらし調整"
-      ]
-    },
-    {
       "id": "news-46ede8476084ee13",
       "title": "「スト6」や「Apex」などeスポーツの国別対抗戦「第1回 Esports Nations Cup」が2027年11月へ開催延期にサウジアラビア・リヤドが舞台。地域情勢を巡る不確実性を踏まえ",
       "summary": "Esports Foundationは8月18日、eスポーツの国別対抗戦「第1回 Esports Nations Cup」について、2027年11月に開催を延期すると発表した。",
@@ -2316,7 +2244,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 35,
+      "priority": 38,
       "breaking": false,
       "publishedAt": "2026-08-18T09:37:41.000Z",
       "duplicateCount": 1,
@@ -2340,35 +2268,70 @@
       "alternateTitles": []
     },
     {
-      "id": "news-290df2c6d1c8a12a",
-      "title": "[ITmedia News] エアコン「2027年問題」にらみ、中国勢が価格攻勢 8万円切る水準、日本勢も対応急ぐ",
-      "summary": "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエアコン市場でシェア拡大を狙う。",
-      "fact": "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエアコン市場でシェア拡大を狙う。",
+      "id": "news-16ce1362ba42f2d9",
+      "title": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
+      "summary": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
+      "fact": "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "気象・防災",
       "tags": [
-        "経済",
-        "国際"
+        "気象・防災"
       ],
       "minutes": 1,
-      "priority": 35,
+      "priority": 37,
       "breaking": false,
-      "publishedAt": "2026-08-18T06:03:19.000Z",
+      "publishedAt": "2026-08-18T11:26:56.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000593",
-          "publishedAt": "2026-08-18T06:03:19.000Z"
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8L3RL3V8LUTIL01KM.html",
+          "publishedAt": "2026-08-18T11:26:56.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエア…",
+        "異常気象時はアンダーパス避けて 千葉豪雨で国がタクシー業界に通知",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-2dfe7edfb25f323a",
+      "title": "ホグワーツ特急を模した全長54センチのポップコーンボックスがTOHOシネマズで8月26日発売「ハリー・ポッターと賢者の石」25周年上映を記念して",
+      "summary": "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
+      "fact": "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 34,
+      "breaking": false,
+      "publishedAt": "2026-08-18T09:23:05.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2133615.html",
+          "publishedAt": "2026-08-18T09:23:05.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2405,6 +2368,116 @@
       "consensus": "単独報道",
       "keyPoints": [
         "LINEヤフーは18日、「Yahoo!ショッピング」で2月から提供している「Yahoo!ショッピング AIエージェント」について、今秋に追加する新機能や、ストア運営者向け機能を明らかにした。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-fbbbb91a8606168e",
+      "title": "ゲーミングノートPCを17万円台で買えるチャンス！ 144Hz液晶＆RTX 5050搭載のMSI「Cyborg 15」タイムセール中",
+      "summary": "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルHD液晶は144Hz表示に対応する。Amazon限定モデルを17万円台で購入できる機会だ。",
+      "fact": "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルHD液晶は144Hz表示に対応する。Amazon限定モデルを17万円台で購入できる機会だ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "トピックス"
+      ],
+      "minutes": 2,
+      "priority": 33,
+      "breaking": false,
+      "publishedAt": "2026-08-18T11:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/427/4427245?rss",
+          "publishedAt": "2026-08-18T11:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルH…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-290df2c6d1c8a12a",
+      "title": "[ITmedia News] エアコン「2027年問題」にらみ、中国勢が価格攻勢 8万円切る水準、日本勢も対応急ぐ",
+      "summary": "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエアコン市場でシェア拡大を狙う。",
+      "fact": "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエアコン市場でシェア拡大を狙う。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済",
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 33,
+      "breaking": false,
+      "publishedAt": "2026-08-18T06:03:19.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000593",
+          "publishedAt": "2026-08-18T06:03:19.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "来年4月から家庭用エアコンの省エネ基準が厳しくなり、価格アップなどが予想される「エアコン2027年問題」をにらみ、中国メーカーが日本市場に安価な製品で攻勢を強めている。新基準を満たす6畳用の機種では、TCLが8万円を切る水準で投入し、国内メーカーの標準機より数万円安い。猛暑で生活必需品となったエア…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3a60a0011d0c2072",
+      "title": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
+      "summary": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
+      "fact": "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 32,
+      "breaking": false,
+      "publishedAt": "2026-08-18T13:15:59.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260818/k00/00m/050/331000c",
+          "publishedAt": "2026-08-18T13:15:59.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「誇りを胸に帰ってきて」 有明ナインに被災者拍手 夏の甲子園",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2450,43 +2523,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-fbbbb91a8606168e",
-      "title": "ゲーミングノートPCを17万円台で買えるチャンス！ 144Hz液晶＆RTX 5050搭載のMSI「Cyborg 15」タイムセール中",
-      "summary": "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルHD液晶は144Hz表示に対応する。Amazon限定モデルを17万円台で購入できる機会だ。",
-      "fact": "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルHD液晶は144Hz表示に対応する。Amazon限定モデルを17万円台で購入できる機会だ。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "トピックス"
-      ],
-      "minutes": 2,
-      "priority": 32,
-      "breaking": false,
-      "publishedAt": "2026-08-18T11:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/427/4427245?rss",
-          "publishedAt": "2026-08-18T11:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "MSIのゲーミングノートPC「Cyborg 15（B13WEKG-1182JP）」がAmazonでタイムセール対象。過去価格224,800円のところ、20％オフの179,800円で販売中。Core i7-13620HとGeForce RTX 5050 Laptop GPUを搭載し、15.6型フルH…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-2feec9e2b257b797",
       "title": "米移民当局が電気ショック手袋を導入へ",
       "summary": "米国移民税関執行局（ICE）の職員は、法執行業務中に、相手に電気ショックを与えることができる手袋を間もなく装備することになる。",
@@ -2523,42 +2559,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-2dfe7edfb25f323a",
-      "title": "ホグワーツ特急を模した全長54センチのポップコーンボックスがTOHOシネマズで8月26日発売「ハリー・ポッターと賢者の石」25周年上映を記念して",
-      "summary": "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
-      "fact": "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 31,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:23:05.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2133615.html",
-          "publishedAt": "2026-08-18T09:23:05.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "TOHOシネマズは8月28日に「ハリー・ポッターと賢者の石」を期間限定上映することにあわせて、「The Prime Collection ホグワーツ特急ポップコーンボックス」を8月26日に発売する。価格は9,800円。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-ff8e135e46df3fe6",
       "title": "豪雨で路上に残る車両まだ600台 国や千葉県など官民、撤去で連携",
       "summary": "豪雨で路上に残る車両まだ600台 国や千葉県など官民、撤去で連携",
@@ -2587,6 +2587,43 @@
       "consensus": "単独報道",
       "keyPoints": [
         "豪雨で路上に残る車両まだ600台 国や千葉県など官民、撤去で連携",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-75847c9e76f9f428",
+      "title": "[ITmedia News] 災害便乗の“〇〇Pay詐欺”に注意喚起 最初は多めに返金→信用したら10万円被害 国民生活センター",
+      "summary": "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
+      "fact": "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 28,
+      "breaking": false,
+      "publishedAt": "2026-08-18T07:16:59.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000587",
+          "publishedAt": "2026-08-18T07:16:59.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2776,80 +2813,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-75847c9e76f9f428",
-      "title": "[ITmedia News] 災害便乗の“〇〇Pay詐欺”に注意喚起 最初は多めに返金→信用したら10万円被害 国民生活センター",
-      "summary": "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
-      "fact": "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 26,
-      "breaking": false,
-      "publishedAt": "2026-08-18T07:16:59.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000587",
-          "publishedAt": "2026-08-18T07:16:59.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "国民生活センターは8月17日、「令和8年熊本地震」に便乗し、SNSのダイレクトメッセージ（DM）からコード決済による詐欺に誘導する手口について注意を呼び掛けた。「〇〇Payで返金します」と言われたら詐欺を疑うよう求めている。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-a02799f74d7f9b18",
-      "title": "せっかく買うなら「見た目」にもこだわりたい！ 配線まで美しいRTX 5070搭載ゲーミングPC",
-      "summary": "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
-      "fact": "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "ITC(STORM)（本文URL自動ア…"
-      ],
-      "minutes": 1,
-      "priority": 25,
-      "breaking": false,
-      "publishedAt": "2026-08-18T10:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/427/4427408?rss",
-          "publishedAt": "2026-08-18T10:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-049298c5ce793e85",
       "title": "健大高崎の「新・石垣」が有明を完封 重かった名字が「誇り」に",
       "summary": "健大高崎の「新・石垣」が有明を完封 重かった名字が「誇り」に",
@@ -2878,78 +2841,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "健大高崎の「新・石垣」が有明を完封 重かった名字が「誇り」に",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-52636a60b3e82caf",
-      "title": "うまくいった作業を記録して再利用する「スキル」、LM Studio Bionicが対応",
-      "summary": "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
-      "fact": "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 23,
-      "breaking": false,
-      "publishedAt": "2026-08-18T07:21:54.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "PC Watch",
-          "type": "専門メディア",
-          "url": "https://pc.watch.impress.co.jp/docs/news/2133479.html",
-          "publishedAt": "2026-08-18T07:21:54.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-e1e4657e1690fad2",
-      "title": "英ヴァージン、英仏海峡トンネル経由の鉄道サービス開設へ前進 規制当局が線路利用を仮承認",
-      "summary": "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
-      "fact": "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 23,
-      "breaking": false,
-      "publishedAt": "2026-08-18T06:34:23.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/cwyjz9p7zzgo?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-08-18T06:34:23.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2994,106 +2885,143 @@
       "alternateTitles": []
     },
     {
-      "id": "news-e8b53a46fad4d475",
-      "title": "[ITmedia ビジネスオンライン] 「そごう横浜本店」に名称変更 19年ぶりの「本店」、横浜を中核店にする理由",
-      "summary": "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
-      "fact": "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
+      "id": "news-52636a60b3e82caf",
+      "title": "うまくいった作業を記録して再利用する「スキル」、LM Studio Bionicが対応",
+      "summary": "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
+      "fact": "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
+      "category": "国際",
       "tags": [
-        "AI・IT"
+        "国際"
       ],
       "minutes": 1,
       "priority": 22,
+      "breaking": false,
+      "publishedAt": "2026-08-18T07:21:54.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "PC Watch",
+          "type": "専門メディア",
+          "url": "https://pc.watch.impress.co.jp/docs/news/2133479.html",
+          "publishedAt": "2026-08-18T07:21:54.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "AIエージェントに指示した作業がうまくいったので、記録しておいて次回また利用したい……この再利用できる機能のことを「スキル」と呼ぶが、Element Labsは8月17日(米国時間)、AIエージェントハーネス「LM Studio Bionic」がスキルに対応したと発表した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-e1e4657e1690fad2",
+      "title": "英ヴァージン、英仏海峡トンネル経由の鉄道サービス開設へ前進 規制当局が線路利用を仮承認",
+      "summary": "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
+      "fact": "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 22,
+      "breaking": false,
+      "publishedAt": "2026-08-18T06:34:23.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/cwyjz9p7zzgo?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-08-18T06:34:23.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "英規制当局は17日、英ヴァージンが計画する、英仏海峡トンネルを経由する鉄道サービスの開設について、同社による線路使用を仮承認すると発表した。これにより、イギリスと欧州大陸を結ぶ高速鉄道ユーロスターに対抗する計画が一歩前進することになった。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-d9c93e93b88a07b5",
+      "title": "サンキューマートで「おジャ魔女どれみ ドッカ～ン！」コラボ雑貨9月中旬発売。8月19日12時から予約開始",
+      "summary": "エルソニックはサンキューマートにて、「おジャ魔女どれみ ドッカ～ン！」とのコラボ雑貨を9月中旬に店頭、8月19日12時からECサイトで発売する。",
+      "fact": "エルソニックはサンキューマートにて、「おジャ魔女どれみ ドッカ～ン！」とのコラボ雑貨を9月中旬に店頭、8月19日12時からECサイトで発売する。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 20,
+      "breaking": false,
+      "publishedAt": "2026-08-18T08:29:50.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2133585.html",
+          "publishedAt": "2026-08-18T08:29:50.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "エルソニックはサンキューマートにて、「おジャ魔女どれみ ドッカ～ン！」とのコラボ雑貨を9月中旬に店頭、8月19日12時からECサイトで発売する。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-a02799f74d7f9b18",
+      "title": "せっかく買うなら「見た目」にもこだわりたい！ 配線まで美しいRTX 5070搭載ゲーミングPC",
+      "summary": "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
+      "fact": "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "ITC(STORM)（本文URL自動ア…"
+      ],
+      "minutes": 1,
+      "priority": 19,
       "breaking": false,
       "publishedAt": "2026-08-18T10:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ITmedia",
+          "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/business/articles/2608/18/news097.html",
+          "url": "https://ascii.jp/elem/000/004/427/4427408?rss",
           "publishedAt": "2026-08-18T10:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-3a063b0417bb52da",
-      "title": "ミズノ、ウォーキングシューズ刷新 ビジネスカジュアル強化",
-      "summary": "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
-      "fact": "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 19,
-      "breaking": false,
-      "publishedAt": "2026-08-18T10:02:56.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "Impress Watch",
-          "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2133629.html",
-          "publishedAt": "2026-08-18T10:02:56.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2c20252fa53b7b8a",
-      "title": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
-      "summary": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
-      "fact": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 18,
-      "breaking": false,
-      "publishedAt": "2026-08-18T12:28:17.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8L425CV8LUOHB008M.html",
-          "publishedAt": "2026-08-18T12:28:17.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
+        "Ryzen 7 9700XとRTX 5070を搭載するSTORM「RK2-97X57」。ゲームをしっかり楽しめる性能に加え、曲面OLED水冷や背面配線による美しい内部デザインも魅力。性能も見た目も妥協したくない人に推したい1台だ。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3115,7 +3043,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 14,
+      "priority": 18,
       "breaking": false,
       "publishedAt": "2026-08-18T11:00:00.000Z",
       "duplicateCount": 1,
@@ -3139,6 +3067,150 @@
       "alternateTitles": []
     },
     {
+      "id": "news-2c20252fa53b7b8a",
+      "title": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
+      "summary": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
+      "fact": "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 17,
+      "breaking": false,
+      "publishedAt": "2026-08-18T12:28:17.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8L425CV8LUOHB008M.html",
+          "publishedAt": "2026-08-18T12:28:17.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "新潟産コシヒカリ、JA概算金は昨年比4割安 コメの在庫余りが影響",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-e8b53a46fad4d475",
+      "title": "[ITmedia ビジネスオンライン] 「そごう横浜本店」に名称変更 19年ぶりの「本店」、横浜を中核店にする理由",
+      "summary": "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
+      "fact": "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 17,
+      "breaking": false,
+      "publishedAt": "2026-08-18T10:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/business/articles/2608/18/news097.html",
+          "publishedAt": "2026-08-18T10:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "百貨店大手のそごう・西武は、そごう横浜店の名称を「そごう横浜本店」に変えると発表した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-61484b90fe972929",
+      "title": "ドコモ・バイクシェア障害、返金の詳細発表 原因は「新システムの処理能力不足」とも公表",
+      "summary": "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は8月下旬から順次始め、9月末までに完了する予定だ。",
+      "fact": "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は8月下旬から順次始め、9月末までに完了する予定だ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 17,
+      "breaking": false,
+      "publishedAt": "2026-08-18T09:40:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "CNET Japan",
+          "type": "専門メディア",
+          "url": "https://japan.cnet.com/article/35251660",
+          "publishedAt": "2026-08-18T09:40:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3a063b0417bb52da",
+      "title": "ミズノ、ウォーキングシューズ刷新 ビジネスカジュアル強化",
+      "summary": "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
+      "fact": "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 16,
+      "breaking": false,
+      "publishedAt": "2026-08-18T10:02:56.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "Impress Watch",
+          "type": "専門メディア",
+          "url": "https://www.watch.impress.co.jp/docs/news/2133629.html",
+          "publishedAt": "2026-08-18T10:02:56.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ミズノは、ウォーキングシューズシリーズ「MIZUNO LIFESTYLE」を2026年秋冬シーズンから展開する。同シリーズの新製品として「ME-DELIGHT JQ(エムイー ディライト JQ)」を9月18日に発売する。価格は13,200円。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-3d28f9db6bb50fd5",
       "title": "松坂大輔さん「出会わなければ、ここにいない」 渡辺元智さん死去",
       "summary": "松坂大輔さん「出会わなければ、ここにいない」 渡辺元智さん死去",
@@ -3151,7 +3223,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 13,
+      "priority": 12,
       "breaking": false,
       "publishedAt": "2026-08-18T12:20:55.000Z",
       "duplicateCount": 1,
@@ -3167,42 +3239,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "松坂大輔さん「出会わなければ、ここにいない」 渡辺元智さん死去",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-5401ae2049a097d9",
-      "title": "トランプ氏の再審理要求、米最高裁が再び退ける 作家キャロル氏への性的暴行認めた評決めぐり",
-      "summary": "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
-      "fact": "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 13,
-      "breaking": false,
-      "publishedAt": "2026-08-18T05:06:46.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/c87nv4l8z4po?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-08-18T05:06:46.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3248,42 +3284,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-18337149f9d8b723",
-      "title": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
-      "summary": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
-      "fact": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 11,
-      "breaking": false,
-      "publishedAt": "2026-08-18T12:15:33.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8L3VZLV8LPTQP00WM.html",
-          "publishedAt": "2026-08-18T12:15:33.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-a155ec5d4f853ab4",
       "title": "[ITmedia News] ドコモ・バイクシェア障害、なぜ起きた？ 同社が原因と再発防止策を公表 返金は9月末までに",
       "summary": "ドコモ・バイクシェアは8月18日、7月末から続いた大規模システム障害について、原因と再発防止策、返金対応を報告した。新システム移行後の利用集中で処理能力が不足したことが原因といい、対象期間の利用料金は9月末までに返金を終える予定だ。",
@@ -3296,7 +3296,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 10,
+      "priority": 12,
       "breaking": false,
       "publishedAt": "2026-08-18T09:17:28.000Z",
       "duplicateCount": 1,
@@ -3320,10 +3320,82 @@
       "alternateTitles": []
     },
     {
-      "id": "news-61484b90fe972929",
-      "title": "ドコモ・バイクシェア障害、返金の詳細発表 原因は「新システムの処理能力不足」とも公表",
-      "summary": "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は8月下旬から順次始め、9月末までに完了する予定だ。",
-      "fact": "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は8月下旬から順次始め、9月末までに完了する予定だ。",
+      "id": "news-5401ae2049a097d9",
+      "title": "トランプ氏の再審理要求、米最高裁が再び退ける 作家キャロル氏への性的暴行認めた評決めぐり",
+      "summary": "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
+      "fact": "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 12,
+      "breaking": false,
+      "publishedAt": "2026-08-18T05:06:46.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/c87nv4l8z4po?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-08-18T05:06:46.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "アメリカのトランプ大統領が作家E・ジーン・キャロル氏に対する性的暴行と名誉毀損で損害賠償を命じられた民事訴訟の評決をめぐり、連邦最高裁は17日、これを覆すことを狙うトランプ氏の訴えを再び退けた。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-18337149f9d8b723",
+      "title": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
+      "summary": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
+      "fact": "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 10,
+      "breaking": false,
+      "publishedAt": "2026-08-18T12:15:33.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8L3VZLV8LPTQP00WM.html",
+          "publishedAt": "2026-08-18T12:15:33.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "夏の甲子園、4強出そろう 健大高崎は初、横浜は18年ぶりの準決勝",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-edf4dcc0b0478343",
+      "title": "ドコモバイクシェア、障害期間の利用料金を返金 手続き不要",
+      "summary": "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
+      "fact": "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -3334,20 +3406,20 @@
       "minutes": 1,
       "priority": 9,
       "breaking": false,
-      "publishedAt": "2026-08-18T09:40:00.000Z",
+      "publishedAt": "2026-08-18T09:33:13.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "CNET Japan",
+          "name": "Impress Watch",
           "type": "専門メディア",
-          "url": "https://japan.cnet.com/article/35251660",
-          "publishedAt": "2026-08-18T09:40:00.000Z"
+          "url": "https://www.watch.impress.co.jp/docs/news/2133609.html",
+          "publishedAt": "2026-08-18T09:33:13.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ドコモ・バイクシェアは8月18日、8月上旬に発生したバイクシェアサービスのシステム障害について、原因と対応を報告した。8月1日に切り替えた新システムが、利用の集中する時間帯に処理能力不足に陥り、貸出・返却ができなくなったという。全国すべてのエリアでサービスを再開したのは8月13日。利用料金の返金は…",
+        "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3393,6 +3465,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-8a51f93c8dc493ed",
+      "title": "「ガーナは犯罪現場だった」 奴隷貿易の補償要求を主導するアフリカの国",
+      "summary": "大西洋奴隷貿易に関する世界的な議論は今年、そのトーンに劇的な変化がみられる。奴隷制度から利益を得た国や機関に対し、正式な謝罪、債務減免、金銭的補償を求める声が一段と強くなっている。そうした訴えを主導しているのが、多くの奴隷船の出港地となったガーナだ。",
+      "fact": "大西洋奴隷貿易に関する世界的な議論は今年、そのトーンに劇的な変化がみられる。奴隷制度から利益を得た国や機関に対し、正式な謝罪、債務減免、金銭的補償を求める声が一段と強くなっている。そうした訴えを主導しているのが、多くの奴隷船の出港地となったガーナだ。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 8,
+      "breaking": false,
+      "publishedAt": "2026-08-18T04:30:52.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/cn0nnlyzke9o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-08-18T04:30:52.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "大西洋奴隷貿易に関する世界的な議論は今年、そのトーンに劇的な変化がみられる。奴隷制度から利益を得た国や機関に対し、正式な謝罪、債務減免、金銭的補償を求める声が一段と強くなっている。そうした訴えを主導しているのが、多くの奴隷船の出港地となったガーナだ。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-42f700e9891cde39",
       "title": "有明旋風、ベンチ入り全選手の言葉 工選手「甲子園は教えてくれた」",
       "summary": "有明旋風、ベンチ入り全選手の言葉 工選手「甲子園は教えてくれた」",
@@ -3405,7 +3513,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 6,
+      "priority": 5,
       "breaking": false,
       "publishedAt": "2026-08-18T12:15:00.000Z",
       "duplicateCount": 1,
@@ -3429,42 +3537,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-9eae0d6572d541b4",
-      "title": "[ITmedia News] バスローブ姿で取材対応の秋田県職員 ラブホ不倫現場からリモート対応だった 県が処分",
-      "summary": "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
-      "fact": "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 5,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:01:52.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000599",
-          "publishedAt": "2026-08-18T09:01:52.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-5639ee17f9066d1a",
       "title": "秋篠宮ご夫妻がパラグアイへ 移住90年、日系1世「感謝伝えたい」",
       "summary": "秋篠宮ご夫妻がパラグアイへ 移住90年、日系1世「感謝伝えたい」",
@@ -3477,7 +3549,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 2,
+      "priority": 1,
       "breaking": false,
       "publishedAt": "2026-08-18T12:12:13.000Z",
       "duplicateCount": 1,
@@ -3493,42 +3565,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "秋篠宮ご夫妻がパラグアイへ 移住90年、日系1世「感謝伝えたい」",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-3c8fc2a6cd843956",
-      "title": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
-      "summary": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
-      "fact": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 1,
-      "breaking": false,
-      "publishedAt": "2026-08-18T12:11:35.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260818/k00/00m/050/336000c",
-          "publishedAt": "2026-08-18T12:11:35.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3637,6 +3673,42 @@
       "consensus": "単独報道",
       "keyPoints": [
         "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3c8fc2a6cd843956",
+      "title": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
+      "summary": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
+      "fact": "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-08-18T12:11:35.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260818/k00/00m/050/336000c",
+          "publishedAt": "2026-08-18T12:11:35.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "骨折の有明・工投手「斉藤がいたから自分も…」 夏の甲子園",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3863,42 +3935,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-edf4dcc0b0478343",
-      "title": "ドコモバイクシェア、障害期間の利用料金を返金 手続き不要",
-      "summary": "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
-      "fact": "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 0,
-      "breaking": false,
-      "publishedAt": "2026-08-18T09:33:13.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "Impress Watch",
-          "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2133609.html",
-          "publishedAt": "2026-08-18T09:33:13.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ドコモ・バイクシェアは18日、システム不具合により4日から13日まで停止していた「バイクシェアサービス」について、障害期間中の利用料金を返金すると発表した。原則としてユーザー側の手続きは不要で返金される。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-d4e6d1b88a5979e7",
       "title": "【Teclast】11インチ・90Hzディスプレイ搭載「P50T」が期間限定セール！8月12日～8月19日の7日間、26%OFFの16,900円で販売",
       "summary": "【Teclast】11インチ・90Hzディスプレイ搭載「P50T」が期間限定セール！8月12日～8月19日の7日間、26%OFFの16,900円で販売",
@@ -4045,35 +4081,70 @@
       "alternateTitles": []
     },
     {
-      "id": "news-26377bb8b1898e3c",
-      "title": "「『実践 プラットフォームエンジニアリング』翻訳者と考える、開発者体験を加速する基盤のセルフサービス化」にスリーシェイク所属のエンジニアが登壇",
-      "summary": "「『実践 プラットフォームエンジニアリング』翻訳者と考える、開発者体験を加速する基盤のセルフサービス化」にスリーシェイク所属のエンジニアが登壇",
-      "fact": "「『実践 プラットフォームエンジニアリング』翻訳者と考える、開発者体験を加速する基盤のセルフサービス化」にスリーシェイク所属のエンジニアが登壇",
+      "id": "news-9eae0d6572d541b4",
+      "title": "[ITmedia News] バスローブ姿で取材対応の秋田県職員 ラブホ不倫現場からリモート対応だった 県が処分",
+      "summary": "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
+      "fact": "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
       "category": "AI・IT",
       "tags": [
-        "AI・IT",
-        "PRTIMESデジタル"
+        "AI・IT"
       ],
       "minutes": 1,
       "priority": 0,
       "breaking": false,
-      "publishedAt": "2026-08-18T09:00:00.000Z",
+      "publishedAt": "2026-08-18T09:01:52.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ASCII.jp",
+          "name": "ITmedia",
           "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/427/4427581?rss",
-          "publishedAt": "2026-08-18T09:00:00.000Z"
+          "url": "https://www.itmedia.co.jp/news/article/2608/18/2000000599",
+          "publishedAt": "2026-08-18T09:01:52.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「『実践 プラットフォームエンジニアリング』翻訳者と考える、開発者体験を加速する基盤のセルフサービス化」にスリーシェイク所属のエンジニアが登壇",
+        "秋田県は、産業労働部の報道取材対応時にリモート参加した課長級職員（55）が、参加時の滞在場所などについて虚偽の説明を行ったなどとして同日付で職位を2段階降格の主幹としたうえ、停職6カ月とする分限・懲戒処分にしたと発表した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-f303982069c5debf",
+      "title": "[ITmedia PC USER] Snapdragon X2 Elite搭載「Surface Laptop 13.8インチ」「Surface Pro 13インチ」は快適に使えるのか？ パフォーマンスと互換性をチェックして分かったこと",
+      "summary": "6月中旬に発売されたSnapdragon X2 Eliteを搭載する「Surface Laptop 13.8インチ」「Surface Pro 13インチ」は、果たして快適に使えるのか――実際に使ってみつつ、ベンチマークテストも実行して確かめてみよう。",
+      "fact": "6月中旬に発売されたSnapdragon X2 Eliteを搭載する「Surface Laptop 13.8インチ」「Surface Pro 13インチ」は、果たして快適に使えるのか――実際に使ってみつつ、ベンチマークテストも実行して確かめてみよう。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-08-18T08:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/pcuser/articles/2608/18/news093.html",
+          "publishedAt": "2026-08-18T08:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "6月中旬に発売されたSnapdragon X2 Eliteを搭載する「Surface Laptop 13.8インチ」「Surface Pro 13インチ」は、果たして快適に使えるのか――実際に使ってみつつ、ベンチマークテストも実行して確かめてみよう。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],

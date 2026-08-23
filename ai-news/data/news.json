@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "generatedAt": "2026-08-23T09:35:33.992Z",
+  "generatedAt": "2026-08-23T09:55:11.604Z",
   "sourceMode": "rss",
   "totalArticles": 404,
-  "totalClusters": 89,
+  "totalClusters": 90,
   "succeededSources": 17,
   "failedSources": 1,
   "deduplication": {
@@ -17,84 +17,84 @@
       "name": "NHK NEWS WEB",
       "ok": true,
       "count": 7,
-      "fetchedAt": "2026-08-23T09:35:33.993Z"
+      "fetchedAt": "2026-08-23T09:55:11.605Z"
     },
     {
       "id": "asahi-news",
       "name": "朝日新聞デジタル",
       "ok": true,
       "count": 35,
-      "fetchedAt": "2026-08-23T09:35:34.046Z"
+      "fetchedAt": "2026-08-23T09:55:11.648Z"
     },
     {
       "id": "mainichi-news",
       "name": "毎日新聞",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-23T09:35:34.048Z"
+      "fetchedAt": "2026-08-23T09:55:11.650Z"
     },
     {
       "id": "bbc-japanese",
       "name": "BBC News Japan",
       "ok": true,
       "count": 38,
-      "fetchedAt": "2026-08-23T09:35:34.050Z"
+      "fetchedAt": "2026-08-23T09:55:11.651Z"
     },
     {
       "id": "livedoor-news",
       "name": "ライブドアニュース",
       "ok": true,
       "count": 22,
-      "fetchedAt": "2026-08-23T09:35:34.051Z"
+      "fetchedAt": "2026-08-23T09:55:11.651Z"
     },
     {
       "id": "itmedia",
       "name": "ITmedia",
       "ok": true,
       "count": 50,
-      "fetchedAt": "2026-08-23T09:35:34.052Z"
+      "fetchedAt": "2026-08-23T09:55:11.652Z"
     },
     {
       "id": "impress-watch",
       "name": "Impress Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-23T09:35:34.053Z"
+      "fetchedAt": "2026-08-23T09:55:11.653Z"
     },
     {
       "id": "cnet-japan",
       "name": "CNET Japan",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-23T09:35:34.054Z"
+      "fetchedAt": "2026-08-23T09:55:11.653Z"
     },
     {
       "id": "gigazine",
       "name": "GIGAZINE",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-23T09:35:34.054Z"
+      "fetchedAt": "2026-08-23T09:55:11.654Z"
     },
     {
       "id": "ascii",
       "name": "ASCII.jp",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-23T09:35:34.055Z"
+      "fetchedAt": "2026-08-23T09:55:11.655Z"
     },
     {
       "id": "pc-watch",
       "name": "PC Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-23T09:35:34.056Z"
+      "fetchedAt": "2026-08-23T09:55:11.656Z"
     },
     {
       "id": "internet-watch",
       "name": "INTERNET Watch",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-08-23T09:35:34.057Z",
+      "fetchedAt": "2026-08-23T09:55:11.656Z",
       "error": "HTTP 404"
     },
     {
@@ -102,42 +102,42 @@
       "name": "AV Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-08-23T09:35:34.058Z"
+      "fetchedAt": "2026-08-23T09:55:11.657Z"
     },
     {
       "id": "game-watch",
       "name": "GAME Watch",
       "ok": true,
       "count": 29,
-      "fetchedAt": "2026-08-23T09:35:34.059Z"
+      "fetchedAt": "2026-08-23T09:55:11.658Z"
     },
     {
       "id": "jpcert",
       "name": "JPCERT/CC",
       "ok": true,
       "count": 22,
-      "fetchedAt": "2026-08-23T09:35:34.060Z"
+      "fetchedAt": "2026-08-23T09:55:11.658Z"
     },
     {
       "id": "jma-extra",
       "name": "気象庁 防災情報",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-08-23T09:35:34.060Z"
+      "fetchedAt": "2026-08-23T09:55:11.659Z"
     },
     {
       "id": "google-japan",
       "name": "Google Japan Blog",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-23T09:35:34.061Z"
+      "fetchedAt": "2026-08-23T09:55:11.659Z"
     },
     {
       "id": "openai-news",
       "name": "OpenAI News",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-08-23T09:35:34.062Z"
+      "fetchedAt": "2026-08-23T09:55:11.660Z"
     }
   ],
   "items": [
@@ -157,14 +157,14 @@
       "minutes": 1,
       "priority": 96,
       "breaking": true,
-      "publishedAt": "2026-08-23T09:28:58.000Z",
+      "publishedAt": "2026-08-23T09:44:04.000Z",
       "duplicateCount": 7,
       "sources": [
         {
           "name": "気象庁 防災情報",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20260823092900_0_VPWW53_200000.xml",
-          "publishedAt": "2026-08-23T09:28:58.000Z"
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20260823094405_0_VPWW53_230000.xml",
+          "publishedAt": "2026-08-23T09:44:04.000Z"
         }
       ],
       "confidence": 79,
@@ -191,7 +191,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 93,
+      "priority": 92,
       "breaking": true,
       "publishedAt": "2026-08-23T09:23:34.000Z",
       "duplicateCount": 1,
@@ -288,6 +288,115 @@
       "alternateTitles": []
     },
     {
+      "id": "news-a8e71d031d597266",
+      "title": "台風解析・予報情報（５日予報）（Ｈ３０）",
+      "summary": "【台風解析・予報情報】",
+      "fact": "【台風解析・予報情報】",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 86,
+      "breaking": true,
+      "publishedAt": "2026-08-23T09:53:09.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "気象庁 防災情報",
+          "type": "公式発表",
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20260823095309_0_VPTW61_010000.xml",
+          "publishedAt": "2026-08-23T09:53:09.000Z"
+        }
+      ],
+      "confidence": 66,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "【台風解析・予報情報】",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-6332e21af2d805da",
+      "title": "国宝に「油」? 台湾出身の女逮捕",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 83,
+      "breaking": true,
+      "publishedAt": "2026-08-23T09:18:24.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32138101",
+          "publishedAt": "2026-08-23T09:18:24.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-ab74c757931c7e31",
+      "title": "「VIVANT」出演女優の藤本ルナ 映画監督の谷垣健治氏が結婚を発表",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 83,
+      "breaking": true,
+      "publishedAt": "2026-08-23T09:12:49.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32138110",
+          "publishedAt": "2026-08-23T09:12:49.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-99294f2a1c874ae5",
       "title": "地方気象解説情報",
       "summary": "【沖縄地方気象解説情報（台風第１８号）】台風第１８号は、２５日から２７日頃にかけて沖縄地方に接近する見込みです。沖縄地方では、暴風やうねりを伴う高波に厳重に警戒してください。台風の進路等によっては、沖縄本島地方や先島諸島では、警報級の大雨や高潮となるおそれがあります。風が強まる前に早めの台風対策が必要です。",
@@ -301,10 +410,10 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 86,
+      "priority": 81,
       "breaking": false,
       "publishedAt": "2026-08-23T09:02:29.000Z",
-      "duplicateCount": 4,
+      "duplicateCount": 2,
       "sources": [
         {
           "name": "気象庁 防災情報",
@@ -313,7 +422,7 @@
           "publishedAt": "2026-08-23T09:02:29.000Z"
         }
       ],
-      "confidence": 71,
+      "confidence": 66,
       "consensus": "単独報道",
       "keyPoints": [
         "【沖縄地方気象解説情報（台風第１８号）】台風第１８号は、２５日から２７日頃にかけて沖縄地方に接近する見込みです。沖縄地方では、暴風やうねりを伴う高波に厳重に警戒してください。台風の進路等によっては、沖縄本島地方や先島諸島では、警報級の大雨や高潮となるおそれがあります。風が強まる前に早めの台風対策が…",
@@ -321,10 +430,9 @@
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 3,
+      "semanticClusterSize": 2,
       "alternateTitles": [
-        "地方気象情報",
-        "全般気象情報"
+        "地方気象情報"
       ]
     },
     {
@@ -340,7 +448,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 83,
+      "priority": 79,
       "breaking": true,
       "publishedAt": "2026-08-23T08:53:22.000Z",
       "duplicateCount": 1,
@@ -350,42 +458,6 @@
           "type": "報道機関",
           "url": "https://news.livedoor.com/article/detail/32137952",
           "publishedAt": "2026-08-23T08:53:22.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-0624089e0af393bf",
-      "title": "「映画ちいかわ 人魚の島のひみつ」の興行収入が100億円を突破 公式Xが発表",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 82,
-      "breaking": true,
-      "publishedAt": "2026-08-23T06:20:59.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137255",
-          "publishedAt": "2026-08-23T06:20:59.000Z"
         }
       ],
       "confidence": 57,
@@ -413,7 +485,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 81,
+      "priority": 78,
       "breaking": true,
       "publishedAt": "2026-08-23T08:54:19.000Z",
       "duplicateCount": 1,
@@ -449,7 +521,7 @@
         "経済"
       ],
       "minutes": 1,
-      "priority": 78,
+      "priority": 77,
       "breaking": false,
       "publishedAt": "2026-08-23T09:00:16.000Z",
       "duplicateCount": 1,
@@ -523,7 +595,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 76,
+      "priority": 73,
       "breaking": true,
       "publishedAt": "2026-08-23T08:00:13.000Z",
       "duplicateCount": 1,
@@ -539,78 +611,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "熊本地震で被災した高田焼の窯元 葛藤の中で再出発",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-a2753b240cdd9ebf",
-      "title": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
-      "summary": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
-      "fact": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 75,
-      "breaking": false,
-      "publishedAt": "2026-08-23T09:20:46.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8R326QV8RPTIL009M.html",
-          "publishedAt": "2026-08-23T09:20:46.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2745038f00696ba1",
-      "title": "出社するよりも完全リモートワークの方が幸福度が高いという研究結果",
-      "summary": "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析したところ、完全リモートワークの従業員が最も高い幸福度を報告したことが判明しました。 続きを読む...",
-      "fact": "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析したところ、完全リモートワークの従業員が最も高い幸福度を報告したことが判明しました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済"
-      ],
-      "minutes": 2,
-      "priority": 74,
-      "breaking": false,
-      "publishedAt": "2026-08-23T05:30:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260823-remote-workers-highest-well-being",
-          "publishedAt": "2026-08-23T05:30:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析…",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -656,6 +656,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-2745038f00696ba1",
+      "title": "出社するよりも完全リモートワークの方が幸福度が高いという研究結果",
+      "summary": "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析したところ、完全リモートワークの従業員が最も高い幸福度を報告したことが判明しました。 続きを読む...",
+      "fact": "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析したところ、完全リモートワークの従業員が最も高い幸福度を報告したことが判明しました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 2,
+      "priority": 73,
+      "breaking": false,
+      "publishedAt": "2026-08-23T05:30:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260823-remote-workers-highest-well-being",
+          "publishedAt": "2026-08-23T05:30:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "新型コロナウイルスのパンデミックをきっかけにリモートワークが普及しましたが、従業員の孤立や職場とのつながりの低下を懸念してオフィス勤務へ戻す企業もあります。コロラド大学ボルダー校のステファニー・ジョンソン氏らの研究チームが、アメリカの大規模医療機関が実施した従業員アンケートの回答7704人分を分析…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-823622d5db4311c1",
       "title": "被災した美術工芸品を救え 熊本地震被災地で文化財レスキュー始まる",
       "summary": "被災した美術工芸品を救え 熊本地震被災地で文化財レスキュー始まる",
@@ -669,7 +705,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 73,
+      "priority": 70,
       "breaking": true,
       "publishedAt": "2026-08-23T05:00:00.000Z",
       "duplicateCount": 1,
@@ -693,10 +729,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-6d47ed6d9ef5d22c",
-      "title": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
-      "summary": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
-      "fact": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
+      "id": "news-73238daeb32dec20",
+      "title": "米韓演習縮小の影響は、 米軍事専門家「今夜戦えない軍隊に」",
+      "summary": "米韓演習縮小の影響は、 米軍事専門家「今夜戦えない軍隊に」",
+      "fact": "米韓演習縮小の影響は、 米軍事専門家「今夜戦えない軍隊に」",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -705,22 +741,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 70,
+      "priority": 69,
       "breaking": false,
-      "publishedAt": "2026-08-23T08:24:30.000Z",
+      "publishedAt": "2026-08-23T09:30:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8Q3HJTV8QUTIL00HM.html",
-          "publishedAt": "2026-08-23T08:24:30.000Z"
+          "url": "http://www.asahi.com/articles/ASV8R2RKVV8RUHBI008M.html",
+          "publishedAt": "2026-08-23T09:30:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
+        "米韓演習縮小の影響は、 米軍事専門家「今夜戦えない軍隊に」",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -766,34 +802,107 @@
       "alternateTitles": []
     },
     {
-      "id": "news-90bb9bbbc03fbf16",
-      "title": "640億円の支払いでTikTokがアメリカ司法省との児童オンラインプライバシー保護法違反に関する訴訟に和解",
-      "summary": "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
-      "fact": "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
+      "id": "news-e9755b2cc4daed38",
+      "title": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
+      "summary": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
+      "fact": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
+      "category": "国内",
       "tags": [
-        "国際"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 65,
+      "priority": 68,
       "breaking": false,
-      "publishedAt": "2026-08-23T00:33:00.000Z",
+      "publishedAt": "2026-08-23T09:46:01.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20260823-doj-tiktok-settle-400-million-coppa",
-          "publishedAt": "2026-08-23T00:33:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260823/k00/00m/010/130000c",
+          "publishedAt": "2026-08-23T09:46:01.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
+        "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-990c92adf7e8d942",
+      "title": "中国の最新ロボットが人類超えの記録を連発 スポーツ大会で技術力を展示",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "スポーツ",
+      "tags": [
+        "スポーツ",
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 68,
+      "breaking": false,
+      "publishedAt": "2026-08-23T09:33:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32138187",
+          "publishedAt": "2026-08-23T09:33:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-a2753b240cdd9ebf",
+      "title": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
+      "summary": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
+      "fact": "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 64,
+      "breaking": false,
+      "publishedAt": "2026-08-23T09:20:46.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8R326QV8RPTIL009M.html",
+          "publishedAt": "2026-08-23T09:20:46.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "マンションに血だらけの男性、死亡 刃物で刺されたような傷 大阪",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -842,10 +951,46 @@
       ]
     },
     {
-      "id": "news-538168d6e1c2c7f0",
-      "title": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
-      "summary": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
-      "fact": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
+      "id": "news-90bb9bbbc03fbf16",
+      "title": "640億円の支払いでTikTokがアメリカ司法省との児童オンラインプライバシー保護法違反に関する訴訟に和解",
+      "summary": "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
+      "fact": "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 64,
+      "breaking": false,
+      "publishedAt": "2026-08-23T00:33:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20260823-doj-tiktok-settle-400-million-coppa",
+          "publishedAt": "2026-08-23T00:33:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "アメリカ司法省がショート動画プラットフォームのTikTokに対して児童オンラインプライバシー保護法(COPPA)違反に関する訴訟を起こしていた件で、TikTokが4億ドル(約640億円)の和解金を支払うことに合意しました。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-6d47ed6d9ef5d22c",
+      "title": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
+      "summary": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
+      "fact": "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -854,94 +999,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 62,
+      "priority": 59,
       "breaking": false,
-      "publishedAt": "2026-08-23T08:00:00.000Z",
+      "publishedAt": "2026-08-23T08:24:30.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8R13HGV8RULFA00FM.html",
-          "publishedAt": "2026-08-23T08:00:00.000Z"
+          "url": "http://www.asahi.com/articles/ASV8Q3HJTV8QUTIL00HM.html",
+          "publishedAt": "2026-08-23T08:24:30.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2e0da0e7b3f9ec38",
-      "title": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
-      "summary": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
-      "fact": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 61,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:09:12.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260823/k00/00m/050/142000c",
-          "publishedAt": "2026-08-23T08:09:12.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-f5029ef2773f4b36",
-      "title": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
-      "summary": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
-      "fact": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災"
-      ],
-      "minutes": 1,
-      "priority": 60,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:26:14.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260823/k00/00m/040/147000c",
-          "publishedAt": "2026-08-23T08:26:14.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
+        "「東武建設」を業過致死容疑で家宅捜索 特急4人死亡事故で栃木県警",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -999,7 +1072,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 59,
+      "priority": 57,
       "breaking": false,
       "publishedAt": "2026-08-23T01:00:00.000Z",
       "duplicateCount": 1,
@@ -1023,78 +1096,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-fb420a89775a01e4",
-      "title": "金曜ロードショー公式X、トトロの鳴き声を解説で驚きの声「顔が赤く…」",
-      "summary": "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
-      "fact": "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 57,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:35:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137850",
-          "publishedAt": "2026-08-23T08:35:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-7b6d7f58c9ad0227",
-      "title": "千葉豪雨、水没車両は1万台規模か「まだ10年乗りたかった」愛車との別れに",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災"
-      ],
-      "minutes": 1,
-      "priority": 57,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:34:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137851",
-          "publishedAt": "2026-08-23T08:34:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-ba29c0d396af6d82",
       "title": "[ITmedia ビジネスオンライン] 「寝ホン」はなぜ人気？ Ankerとfinalが睡眠用イヤフォンに注力するワケ",
       "summary": "「寝ホン」と呼ばれる「睡眠用イヤフォン」の人気が拡大している。Ankerは、ノイズキャンセリングやいびきマスキング機能を搭載して人気を集める。一方、50年以上の歴史を持つオーディオブランドfinalは、入眠に特化した滑らかな音質が支持されている。なぜ、同市場が盛り上がっているのか。",
@@ -1107,7 +1108,7 @@
         "経済"
       ],
       "minutes": 1,
-      "priority": 57,
+      "priority": 56,
       "breaking": false,
       "publishedAt": "2026-08-22T22:00:00.000Z",
       "duplicateCount": 1,
@@ -1131,6 +1132,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-f5029ef2773f4b36",
+      "title": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
+      "summary": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
+      "fact": "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災"
+      ],
+      "minutes": 1,
+      "priority": 55,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:26:14.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260823/k00/00m/040/147000c",
+          "publishedAt": "2026-08-23T08:26:14.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "10市で震度5弱の茨城で1人負傷 漏水などの被害相次ぐ",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-d6f22e06b58c777f",
       "title": "ブラックな日常を捨て、過去の借りを返す！と決めた25歳の戦い『この世は戦う価値がある』【Amazonマンガ週末祭】",
       "summary": "人生を諦めた女の逆襲が始まる。ブラックな日常を捨て、過去の貸し借りを清算する旅。絶対2巻まで読んでほしい。『この世は戦う価値がある』が全巻50%還元中！",
@@ -1144,7 +1181,7 @@
         "エンタメ"
       ],
       "minutes": 1,
-      "priority": 55,
+      "priority": 54,
       "breaking": false,
       "publishedAt": "2026-08-23T07:00:00.000Z",
       "duplicateCount": 1,
@@ -1168,42 +1205,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-e9755b2cc4daed38",
-      "title": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
-      "summary": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
-      "fact": "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 54,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:39:33.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260823/k00/00m/010/130000c",
-          "publishedAt": "2026-08-23T07:39:33.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「異常な発達障害者」 横浜市長巡り市議がX投稿 識者ら批判",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-c3a6c2617dde759e",
       "title": "アニメ「ぜんまいざむらい」のめじるしアクセサリー第2弾が8月第4週に発売",
       "summary": "バンダイは、カプセルトイ「ぜんまいざむらい めじるしアクセサリー2」を8月第4週に発売する。全6種類あり、価格は各300円。",
@@ -1216,7 +1217,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 54,
+      "priority": 53,
       "breaking": false,
       "publishedAt": "2026-08-22T15:00:00.000Z",
       "duplicateCount": 1,
@@ -1240,70 +1241,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7f94ad5a2d0428ce",
-      "title": "智弁和歌山 もう新チーム始動→決勝2日後に秋初戦「休む暇ない」",
-      "summary": "ざっくり言うと 智弁和歌山が第108回全国高校野球選手権を制し祝勝会を開いた 主将の松本虎太郎さんが感謝を述べ、3年生が新チームをサポートする意向を示した 決勝2日後の24日には秋季和歌山大会初戦が控え、中谷仁監督は早くも切り替えた 記事を読む",
-      "fact": "ざっくり言うと 智弁和歌山が第108回全国高校野球選手権を制し祝勝会を開いた 主将の松本虎太郎さんが感謝を述べ、3年生が新チームをサポートする意向を示した 決勝2日後の24日には秋季和歌山大会初戦が控え、中谷仁監督は早くも切り替えた 記事を読む",
+      "id": "news-538168d6e1c2c7f0",
+      "title": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
+      "summary": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
+      "fact": "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "スポーツ",
+      "category": "国内",
       "tags": [
-        "スポーツ"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 53,
+      "priority": 52,
       "breaking": false,
-      "publishedAt": "2026-08-23T08:10:39.000Z",
+      "publishedAt": "2026-08-23T08:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137778",
-          "publishedAt": "2026-08-23T08:10:39.000Z"
+          "url": "http://www.asahi.com/articles/ASV8R13HGV8RULFA00FM.html",
+          "publishedAt": "2026-08-23T08:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ざっくり言うと 智弁和歌山が第108回全国高校野球選手権を制し祝勝会を開いた 主将の松本虎太郎さんが感謝を述べ、3年生が新チームをサポートする意向を示した 決勝2日後の24日には秋季和歌山大会初戦が控え、中谷仁監督は早くも切り替えた 記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-94f253a1d9d91dc3",
-      "title": "[ITmedia エンタープライズ] 「既存プロセスにAIを“乗せるだけ”、なぜダメなのか？」 500人の有識者の回答は",
-      "summary": "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
-      "fact": "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済"
-      ],
-      "minutes": 1,
-      "priority": 53,
-      "breaking": false,
-      "publishedAt": "2026-08-22T22:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/enterprise/articles/2608/22/news007.html",
-          "publishedAt": "2026-08-22T22:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
+        "過疎地ガソリンスタンド50カ所、経産省選定で重点支援 概算要求へ",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1350,6 +1315,150 @@
       "alternateTitles": []
     },
     {
+      "id": "news-94f253a1d9d91dc3",
+      "title": "[ITmedia エンタープライズ] 「既存プロセスにAIを“乗せるだけ”、なぜダメなのか？」 500人の有識者の回答は",
+      "summary": "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
+      "fact": "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 52,
+      "breaking": false,
+      "publishedAt": "2026-08-22T22:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/enterprise/articles/2608/22/news007.html",
+          "publishedAt": "2026-08-22T22:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "エージェンティックAIの本格導入に踏み切る企業は増えているが、ほとんどの組織は業務プロセスやデータ基盤、人材の抜本的な見直しなしに大規模展開できる段階にはない。Deloitteの調査から、企業の導入のリアルに迫る。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-7b6d7f58c9ad0227",
+      "title": "千葉豪雨、水没車両は1万台規模か「まだ10年乗りたかった」愛車との別れに",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災"
+      ],
+      "minutes": 1,
+      "priority": 51,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:34:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137851",
+          "publishedAt": "2026-08-23T08:34:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-2e0da0e7b3f9ec38",
+      "title": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
+      "summary": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
+      "fact": "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 51,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:09:12.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260823/k00/00m/050/142000c",
+          "publishedAt": "2026-08-23T08:09:12.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "リンクサイド:中田璃士「シニアも勝つ気持ちでいるので」 東京夏季フィギュア",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-fb420a89775a01e4",
+      "title": "金曜ロードショー公式X、トトロの鳴き声を解説で驚きの声「顔が赤く…」",
+      "summary": "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
+      "fact": "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 49,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:35:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137850",
+          "publishedAt": "2026-08-23T08:35:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ざっくり言うと アニメ映画『となりのトトロ』の制作秘話が金曜ロードショー公式Xで明かされた 終盤でトトロがサツキを見て「かわいい～」と言っているという絵コンテのト書きがあるとのこと トトロの頬が赤くなるシーンの理由が判明し、ネット上で驚きの声が広がっている 記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-050a702db5efdc6b",
       "title": "【格安スマホまとめ】シャオミがスマホ値上げ、arrows Alpha2は10万円弱、Xperia 10の新モデル登場!?",
       "summary": "部材高騰にともなうスマホ価格の上昇が続いている。シャオミが一部モデルの9月からの値上げを発表。また、FCNTは人気モデル「arrows Alpha2」の後継機をリリースしたが、10万円弱からと価格自体は前モデルから上がっている。",
@@ -1363,7 +1472,7 @@
         "スマホ"
       ],
       "minutes": 1,
-      "priority": 50,
+      "priority": 49,
       "breaking": false,
       "publishedAt": "2026-08-23T06:00:00.000Z",
       "duplicateCount": 1,
@@ -1387,42 +1496,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-4c9ceb519402ca3c",
-      "title": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
-      "summary": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
-      "fact": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 48,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:15:10.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260821/k00/00m/200/177000c",
-          "publishedAt": "2026-08-23T07:15:10.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-928a646d0178daf3",
       "title": "村上宗隆が安打 大谷翔平は無安打、チーム5連勝 大リーグ",
       "summary": "村上宗隆が安打 大谷翔平は無安打、チーム5連勝 大リーグ",
@@ -1436,7 +1509,7 @@
         "MLB"
       ],
       "minutes": 1,
-      "priority": 47,
+      "priority": 46,
       "breaking": false,
       "publishedAt": "2026-08-23T04:34:31.000Z",
       "duplicateCount": 1,
@@ -1452,115 +1525,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "村上宗隆が安打 大谷翔平は無安打、チーム5連勝 大リーグ",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-33f5b83817063e9b",
-      "title": "BS12 トゥエルビ「日曜アニメ劇場」にて「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」が本日19時から放送",
-      "summary": "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
-      "fact": "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 47,
-      "breaking": false,
-      "publishedAt": "2026-08-22T15:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2132964.html",
-          "publishedAt": "2026-08-22T15:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-566474c7e55424bc",
-      "title": "江戸前天丼1800円→900円に！ 銀座新オープン店で5日間限定",
-      "summary": "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
-      "fact": "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "グルメ"
-      ],
-      "minutes": 1,
-      "priority": 46,
-      "breaking": false,
-      "publishedAt": "2026-08-23T06:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/428/4428539?rss",
-          "publishedAt": "2026-08-23T06:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-1b2317a76f5dbd66",
-      "title": "[ITmedia ビジネスオンライン] 信者数減、後継者不足……苦境の寺社救え 三菱UFJ銀が寺社支援コンサル",
-      "summary": "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
-      "fact": "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 46,
-      "breaking": false,
-      "publishedAt": "2026-08-23T03:04:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/business/articles/2608/23/news008.html",
-          "publishedAt": "2026-08-23T03:04:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1644,34 +1608,71 @@
       "alternateTitles": []
     },
     {
-      "id": "news-a4f9a597a95e146e",
-      "title": "当日、事故までに列車3本が問題なく現場を通過 警察は作業元請けを家宅捜索",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-33f5b83817063e9b",
+      "title": "BS12 トゥエルビ「日曜アニメ劇場」にて「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」が本日19時から放送",
+      "summary": "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
+      "fact": "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "科学・文化",
       "tags": [
-        "国内"
+        "科学・文化"
       ],
       "minutes": 1,
-      "priority": 45,
+      "priority": 46,
       "breaking": false,
-      "publishedAt": "2026-08-23T08:39:24.000Z",
+      "publishedAt": "2026-08-22T15:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137871",
-          "publishedAt": "2026-08-23T08:39:24.000Z"
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2132964.html",
+          "publishedAt": "2026-08-22T15:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
+        "ワールド・ハイビジョン・チャンネルは、BS12 トゥエルビにてアニメ「機動戦士ガンダムIII めぐりあい宇宙編【HDリマスター版】」を本日8月23日19時から「日曜アニメ劇場」で放送する。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-566474c7e55424bc",
+      "title": "江戸前天丼1800円→900円に！ 銀座新オープン店で5日間限定",
+      "summary": "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
+      "fact": "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "グルメ"
+      ],
+      "minutes": 1,
+      "priority": 45,
+      "breaking": false,
+      "publishedAt": "2026-08-23T06:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/428/4428539?rss",
+          "publishedAt": "2026-08-23T06:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「天ぷら・麺処 新宿亭 銀座店」は8月24日～28日の5日間、ランチタイム限定で「江戸前扇子天丼【上】」を通常価格1800円から半額の900円で提供。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1692,7 +1693,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 45,
+      "priority": 44,
       "breaking": false,
       "publishedAt": "2026-08-22T06:07:45.000Z",
       "duplicateCount": 1,
@@ -1716,6 +1717,114 @@
       "alternateTitles": []
     },
     {
+      "id": "news-099830b182b40aa4",
+      "title": "ネパール人殺害 複数人関与か",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 43,
+      "breaking": false,
+      "publishedAt": "2026-08-23T09:23:20.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32138176",
+          "publishedAt": "2026-08-23T09:23:20.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-4c9ceb519402ca3c",
+      "title": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
+      "summary": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
+      "fact": "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 43,
+      "breaking": false,
+      "publishedAt": "2026-08-23T07:15:10.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260821/k00/00m/200/177000c",
+          "publishedAt": "2026-08-23T07:15:10.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "年齢も言語も超えるツールに 発祥の地誇るけん玉に世界が熱視線",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-1b2317a76f5dbd66",
+      "title": "[ITmedia ビジネスオンライン] 信者数減、後継者不足……苦境の寺社救え 三菱UFJ銀が寺社支援コンサル",
+      "summary": "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
+      "fact": "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 43,
+      "breaking": false,
+      "publishedAt": "2026-08-23T03:04:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/business/articles/2608/23/news008.html",
+          "publishedAt": "2026-08-23T03:04:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "三菱UFJ銀行が、人口減少に伴う信者数の減少や後継者不足などに悩む神社仏閣を対象に、コンサルティングサービス「寺社Connect（コネクト）」を令和9年中に始める。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-e4aaeb45afdbfdd5",
       "title": "岩手・大槌で安全願う神事「大祓」 山林火災の被災地で祈り",
       "summary": "岩手・大槌で安全願う神事「大祓」 山林火災の被災地で祈り",
@@ -1728,7 +1837,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 44,
+      "priority": 39,
       "breaking": false,
       "publishedAt": "2026-08-23T07:07:44.000Z",
       "duplicateCount": 1,
@@ -1744,115 +1853,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "岩手・大槌で安全願う神事「大祓」 山林火災の被災地で祈り",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-c05e592c83619c43",
-      "title": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
-      "summary": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
-      "fact": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 41,
-      "breaking": false,
-      "publishedAt": "2026-08-23T02:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8Q3TG7V8QTZNB00CM.html",
-          "publishedAt": "2026-08-23T02:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-a070340c2afcb7be",
-      "title": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
-      "summary": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
-      "fact": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 40,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:00:32.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260821/k00/00m/200/128000c",
-          "publishedAt": "2026-08-23T07:00:32.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-843f46b014dc148a",
-      "title": "上沼恵美子、秋田県職員の「ラブホ会見」に憤慨「このオッサン、何？」",
-      "summary": "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
-      "fact": "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 39,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:33:01.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137944",
-          "publishedAt": "2026-08-23T08:33:01.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1910,7 +1910,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 38,
+      "priority": 37,
       "breaking": false,
       "publishedAt": "2026-08-23T03:00:00.000Z",
       "duplicateCount": 1,
@@ -1934,78 +1934,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-69b5f208660f059f",
-      "title": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
-      "summary": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
-      "fact": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "スポーツ",
-      "tags": [
-        "スポーツ"
-      ],
-      "minutes": 1,
-      "priority": 37,
-      "breaking": false,
-      "publishedAt": "2026-08-22T22:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8P4TBRV8PUTQP00JM.html",
-          "publishedAt": "2026-08-22T22:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-15c3c9971c7ee0ba",
-      "title": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
-      "summary": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
-      "fact": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 36,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:00:15.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260818/k00/00m/030/130000c",
-          "publishedAt": "2026-08-23T07:00:15.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-3842b86c46b7f7a0",
       "title": "「痛きもちイイ」が癖になる！ 強圧エア＆振動で至福のスッキリタイム「ゴリラ仙人のひとつかみ」",
       "summary": "限界寸前の夜、あるいは仕事中のシビれるような脚の疲れ。その脚を力づくで（でも最高に気持ちよく！）すっきりリフレッシュしてくれるガジェットに出会ってしまったんです。それが、ドウシシャの「ゴリラ仙人のひとつかみ」！",
@@ -2019,7 +1947,7 @@
         "トピックス"
       ],
       "minutes": 1,
-      "priority": 33,
+      "priority": 36,
       "breaking": false,
       "publishedAt": "2026-08-23T04:00:00.000Z",
       "duplicateCount": 1,
@@ -2043,6 +1971,79 @@
       "alternateTitles": []
     },
     {
+      "id": "news-c05e592c83619c43",
+      "title": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
+      "summary": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
+      "fact": "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 36,
+      "breaking": false,
+      "publishedAt": "2026-08-23T02:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8Q3TG7V8QTZNB00CM.html",
+          "publishedAt": "2026-08-23T02:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「見たことない壊れ方」 熊本地震の断層近く、水道管ボキリと折れる",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-69b5f208660f059f",
+      "title": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
+      "summary": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
+      "fact": "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "スポーツ",
+      "tags": [
+        "スポーツ"
+      ],
+      "minutes": 1,
+      "priority": 33,
+      "breaking": false,
+      "publishedAt": "2026-08-22T22:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8P4TBRV8PUTQP00JM.html",
+          "publishedAt": "2026-08-22T22:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "事故続くスポーツの頭部外傷 「まず休ませる」高校野球も広く周知を",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-9b0f697045847d15",
       "title": "[ITmedia Mobile] 14型ノートPCやA4サイズも収納できる 6ポケット構造のバッグインバッグが2480円",
       "summary": "KACHIKAのバッグインバッグがAmazonで販売されている。6つの収納スペースを備え、メイン収納部はダブルファスナー仕様でA4ファイルやノートPCなどを出し入れできる。",
@@ -2055,7 +2056,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 33,
+      "priority": 32,
       "breaking": false,
       "publishedAt": "2026-08-23T02:00:00.000Z",
       "duplicateCount": 1,
@@ -2079,6 +2080,78 @@
       "alternateTitles": []
     },
     {
+      "id": "news-a070340c2afcb7be",
+      "title": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
+      "summary": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
+      "fact": "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 31,
+      "breaking": false,
+      "publishedAt": "2026-08-23T07:00:32.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20260821/k00/00m/200/128000c",
+          "publishedAt": "2026-08-23T07:00:32.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "オンラインの森:「VIVANT」今後の展開も推しキャラも「考察」…記者座談会",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-a4f9a597a95e146e",
+      "title": "当日、事故までに列車3本が問題なく現場を通過 警察は作業元請けを家宅捜索",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 30,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:39:24.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137871",
+          "publishedAt": "2026-08-23T08:39:24.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-fe7d36370bd3e34e",
       "title": "無料で多種多彩なビジョンAIモデルを試用・比較・評価できる「Roboflow Playground」",
       "summary": "ゼロショットコンピュータビジョンモデルとは事前の追加学習やアノテーションデータなしで訓練時に見たことのない 新しいオブジェクトやクラスを認識・検出できるAIモデルです。ゼロショットコンピュータビジョンモデルを比較検討するには最新モデルの調査・クラウドAPIを呼び出すコードの記述・オープンウェイトモデル用インフラ整備といった時間のかかる作業が不可欠であり、下手をすると結果が出るまでに新しいモデルが登場していることすらありえます。「Roboflow Playground」は記事作成時点で130種類以上の人気かつ最先端…",
@@ -2091,7 +2164,7 @@
         "AI・IT"
       ],
       "minutes": 2,
-      "priority": 30,
+      "priority": 29,
       "breaking": false,
       "publishedAt": "2026-08-23T03:00:00.000Z",
       "duplicateCount": 1,
@@ -2128,7 +2201,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 29,
+      "priority": 28,
       "breaking": false,
       "publishedAt": "2026-08-23T03:40:00.000Z",
       "duplicateCount": 1,
@@ -2144,42 +2217,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "bb.q オリーブチキンは、「bb.q CHICKEN」の誕生31周年を記念した「生誕記念ボックス」を990円で販売しています。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-5cf543b5dcf95bf7",
-      "title": "上原浩治氏が曲解された？雑草魂に反論 逸話に「いろいろ書かれました」",
-      "summary": "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
-      "fact": "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 28,
-      "breaking": false,
-      "publishedAt": "2026-08-23T08:07:32.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137744",
-          "publishedAt": "2026-08-23T08:07:32.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2224,10 +2261,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-ba2d23dedc80cfb7",
-      "title": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
-      "summary": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
-      "fact": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
+      "id": "news-15c3c9971c7ee0ba",
+      "title": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
+      "summary": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
+      "fact": "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2236,22 +2273,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 25,
+      "priority": 26,
       "breaking": false,
-      "publishedAt": "2026-08-23T06:45:14.000Z",
+      "publishedAt": "2026-08-23T07:00:15.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260821/k00/00m/040/327000c",
-          "publishedAt": "2026-08-23T06:45:14.000Z"
+          "url": "https://mainichi.jp/articles/20260818/k00/00m/030/130000c",
+          "publishedAt": "2026-08-23T07:00:15.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
+        "特派員の目:それでも価値あるG7サミット トランプ議長の来年が正念場＝鈴木一生",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2260,10 +2297,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-b4ff68a4c84e63cd",
-      "title": "名古屋の私立高で女子生徒の着替え盗撮か 男子生徒複数が画像共有",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-843f46b014dc148a",
+      "title": "上沼恵美子、秋田県職員の「ラブホ会見」に憤慨「このオッサン、何？」",
+      "summary": "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
+      "fact": "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2274,56 +2311,20 @@
       "minutes": 1,
       "priority": 24,
       "breaking": false,
-      "publishedAt": "2026-08-23T07:52:50.000Z",
+      "publishedAt": "2026-08-23T08:33:01.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "ライブドアニュース",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137667",
-          "publishedAt": "2026-08-23T07:52:50.000Z"
+          "url": "https://news.livedoor.com/article/detail/32137944",
+          "publishedAt": "2026-08-23T08:33:01.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b594de06b0868d39",
-      "title": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
-      "summary": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
-      "fact": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 24,
-      "breaking": false,
-      "publishedAt": "2026-08-23T05:43:29.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8Q43XGV8QPTJB003M.html",
-          "publishedAt": "2026-08-23T05:43:29.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
+        "ざっくり言うと 上沼恵美子が読売テレビ「上沼・高田のクギズケ！」に出演し怒りをあらわにした 秋田県職員がバスローブ姿でラブホテルからリモート会見に参加していたという 上沼は律義なアナウンサーのエピソードと対比させ「このオッサン、何？」と叱りつけた 記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2345,7 +2346,7 @@
         "セブンアール（本文URL自動アフィ化、…"
       ],
       "minutes": 1,
-      "priority": 24,
+      "priority": 23,
       "breaking": false,
       "publishedAt": "2026-08-22T15:00:00.000Z",
       "duplicateCount": 1,
@@ -2369,10 +2370,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-0493568362f9db99",
-      "title": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
-      "summary": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
-      "fact": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
+      "id": "news-ba2d23dedc80cfb7",
+      "title": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
+      "summary": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
+      "fact": "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2381,22 +2382,94 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 21,
+      "priority": 22,
       "breaking": false,
-      "publishedAt": "2026-08-23T06:04:36.000Z",
+      "publishedAt": "2026-08-23T06:45:14.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260823/k00/00m/050/120000c",
-          "publishedAt": "2026-08-23T06:04:36.000Z"
+          "url": "https://mainichi.jp/articles/20260821/k00/00m/040/327000c",
+          "publishedAt": "2026-08-23T06:45:14.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
+        "「時をかける少女」ロケの尾道・艮神社 巨樹が見守る継承の歩み",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-5cf543b5dcf95bf7",
+      "title": "上原浩治氏が曲解された？雑草魂に反論 逸話に「いろいろ書かれました」",
+      "summary": "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
+      "fact": "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 20,
+      "breaking": false,
+      "publishedAt": "2026-08-23T08:07:32.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137744",
+          "publishedAt": "2026-08-23T08:07:32.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ざっくり言うと 元巨人投手の上原浩治氏がテレビ朝日系番組で雑草エピソードに言及 遠征時に紙袋だけ持っていたとされる報道に「そうではない」と反論した 財布に3千円しかないという話は「実際に本当だった」と明かし笑いを誘った 記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-b594de06b0868d39",
+      "title": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
+      "summary": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
+      "fact": "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 17,
+      "breaking": false,
+      "publishedAt": "2026-08-23T05:43:29.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8Q43XGV8QPTJB003M.html",
+          "publishedAt": "2026-08-23T05:43:29.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "化学製品メーカーで2人倒れ、搬送後に死亡確認 釜の中で研磨作業中",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2418,7 +2491,7 @@
         "スマホ"
       ],
       "minutes": 1,
-      "priority": 15,
+      "priority": 14,
       "breaking": false,
       "publishedAt": "2026-08-23T03:00:00.000Z",
       "duplicateCount": 1,
@@ -2442,42 +2515,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-2dbc60dff003a79b",
-      "title": "伊達みきおが体調不良でラジオ欠席 バナナマン日村勇紀と重ねる声も",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 13,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:35:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137681",
-          "publishedAt": "2026-08-23T07:35:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-a705e3457bb57644",
       "title": "Switch 2にも使える背面カスタムボタン×4の3WAY接続ゲームコントローラーが10％オフ",
       "summary": "Amazon.co.jpにて、Leadjoyのゲームコントローラー「Leadjoy Xeno Plus」が販売中だ。過去価格は9350円だが、タイムセールにより10％オフの8400円で購入できる（8月21日時点）。",
@@ -2492,7 +2529,7 @@
         "トピックス"
       ],
       "minutes": 1,
-      "priority": 13,
+      "priority": 14,
       "breaking": false,
       "publishedAt": "2026-08-22T12:00:00.000Z",
       "duplicateCount": 1,
@@ -2529,7 +2566,7 @@
         "自動車"
       ],
       "minutes": 1,
-      "priority": 11,
+      "priority": 10,
       "breaking": false,
       "publishedAt": "2026-08-23T03:00:00.000Z",
       "duplicateCount": 1,
@@ -2553,10 +2590,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-6bb2484d7695aaee",
-      "title": "福井県知事の石田嵩人氏の肉体美に楽天・早川隆久も驚愕「ガタイよ！」",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-0493568362f9db99",
+      "title": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
+      "summary": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
+      "fact": "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2567,20 +2604,20 @@
       "minutes": 1,
       "priority": 9,
       "breaking": false,
-      "publishedAt": "2026-08-23T07:20:21.000Z",
+      "publishedAt": "2026-08-23T06:04:36.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
+          "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137559",
-          "publishedAt": "2026-08-23T07:20:21.000Z"
+          "url": "https://mainichi.jp/articles/20260823/k00/00m/050/120000c",
+          "publishedAt": "2026-08-23T06:04:36.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
+        "中田璃士がシニアデビュー 首位発進も「悔しい」 東京夏季",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2589,34 +2626,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-30883d8844ffc15a",
-      "title": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
-      "summary": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
-      "fact": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
+      "id": "news-b4ff68a4c84e63cd",
+      "title": "名古屋の私立高で女子生徒の着替え盗撮か 男子生徒複数が画像共有",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
+      "category": "国内",
       "tags": [
-        "科学・文化"
+        "国内"
       ],
       "minutes": 1,
       "priority": 8,
       "breaking": false,
-      "publishedAt": "2026-08-22T11:00:00.000Z",
+      "publishedAt": "2026-08-23T07:52:50.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
+          "name": "ライブドアニュース",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8Q35CNV8QOXIE04FM.html",
-          "publishedAt": "2026-08-22T11:00:00.000Z"
+          "url": "https://news.livedoor.com/article/detail/32137667",
+          "publishedAt": "2026-08-23T07:52:50.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
+        "記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2638,7 +2675,7 @@
         "トピックス"
       ],
       "minutes": 1,
-      "priority": 8,
+      "priority": 7,
       "breaking": false,
       "publishedAt": "2026-08-22T11:00:00.000Z",
       "duplicateCount": 1,
@@ -2654,42 +2691,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "Amazon.co.jpにて、アイリスオーヤマの21.5型ディスプレー「DT-IF215S-B」が販売中だ。過去価格は1万1980円だが、タイムセールにより10％オフの1万800円で購入できる（8月21日時点）。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-0585d8ca5d4d29d5",
-      "title": "近鉄GHD社長「IR開業でメリット最大化」 直通運転を計画",
-      "summary": "近鉄GHD社長「IR開業でメリット最大化」 直通運転を計画",
-      "fact": "近鉄GHD社長「IR開業でメリット最大化」 直通運転を計画",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 7,
-      "breaking": false,
-      "publishedAt": "2026-08-23T05:15:12.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20260821/k00/00m/020/191000c",
-          "publishedAt": "2026-08-23T05:15:12.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "近鉄GHD社長「IR開業でメリット最大化」 直通運転を計画",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2735,8 +2736,8 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7679dd5534f0d003",
-      "title": "仲里依紗が「顔デケエ」書き込みに「時代遅れ」ブチギレ ファンから共感",
+      "id": "news-2dbc60dff003a79b",
+      "title": "伊達みきおが体調不良でラジオ欠席 バナナマン日村勇紀と重ねる声も",
       "summary": "記事を読む",
       "fact": "記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
@@ -2747,16 +2748,16 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 5,
+      "priority": 3,
       "breaking": false,
-      "publishedAt": "2026-08-23T07:17:50.000Z",
+      "publishedAt": "2026-08-23T07:35:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "ライブドアニュース",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137567",
-          "publishedAt": "2026-08-23T07:17:50.000Z"
+          "url": "https://news.livedoor.com/article/detail/32137681",
+          "publishedAt": "2026-08-23T07:35:00.000Z"
         }
       ],
       "confidence": 57,
@@ -2771,70 +2772,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-4deee842ddeb565f",
-      "title": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
-      "summary": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
-      "fact": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
+      "id": "news-30883d8844ffc15a",
+      "title": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
+      "summary": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
+      "fact": "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
+      "category": "科学・文化",
       "tags": [
-        "国際"
+        "科学・文化"
       ],
       "minutes": 1,
       "priority": 3,
       "breaking": false,
-      "publishedAt": "2026-08-22T06:00:00.000Z",
+      "publishedAt": "2026-08-22T11:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASV8Q15TYV8QUHBI00SM.html",
-          "publishedAt": "2026-08-22T06:00:00.000Z"
+          "url": "http://www.asahi.com/articles/ASV8Q35CNV8QOXIE04FM.html",
+          "publishedAt": "2026-08-22T11:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-cbddc25b70f3a0b9",
-      "title": "ペルーで女性弁護士がレストランで射殺される 元依頼人が殺害を指示か",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 1,
-      "breaking": false,
-      "publishedAt": "2026-08-23T07:15:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137512",
-          "publishedAt": "2026-08-23T07:15:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
+        "観測隊のお仕事体験、夏休みでにぎわう 「大南極展」自由研究フェス",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2879,6 +2844,150 @@
       "alternateTitles": []
     },
     {
+      "id": "news-4deee842ddeb565f",
+      "title": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
+      "summary": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
+      "fact": "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 1,
+      "breaking": false,
+      "publishedAt": "2026-08-22T06:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASV8Q15TYV8QUHBI00SM.html",
+          "publishedAt": "2026-08-22T06:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "米国防総省、星条旗新聞の編集長らに解雇通知 テレビで「検閲」批判",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-6bb2484d7695aaee",
+      "title": "福井県知事の石田嵩人氏の肉体美に楽天・早川隆久も驚愕「ガタイよ！」",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-08-23T07:20:21.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137559",
+          "publishedAt": "2026-08-23T07:20:21.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-7679dd5534f0d003",
+      "title": "仲里依紗が「顔デケエ」書き込みに「時代遅れ」ブチギレ ファンから共感",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-08-23T07:17:50.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137567",
+          "publishedAt": "2026-08-23T07:17:50.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-cbddc25b70f3a0b9",
+      "title": "ペルーで女性弁護士がレストランで射殺される 元依頼人が殺害を指示か",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-08-23T07:15:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32137512",
+          "publishedAt": "2026-08-23T07:15:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-fc70a73a305d54b2",
       "title": "シャンクス役・池田秀一「ONE PIECE DAY」サプライズ出演で会場どよめき",
       "summary": "ざっくり言うと ONE PIECE DAY釻26でシャンクス役・池田秀一（76）がサプライズ登場した 事前収録と説明された後に本人が現れ、会場は悲鳴のような歓声に包まれた 津田健次郎は「汗が…」と驚きを隠せず、息の合った掛け合いを披露した 記事を読む",
@@ -2915,42 +3024,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c8bf4b737e89d67e",
-      "title": "徳島県で車が斜面を30メートル転落 高齢の男性が首の骨を折る重傷",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 0,
-      "breaking": false,
-      "publishedAt": "2026-08-23T06:53:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137389",
-          "publishedAt": "2026-08-23T06:53:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-900d198b967fd181",
       "title": "池袋駅近くの山手線で女性が死亡 3時間の見合わせで8万5千人に影響",
       "summary": "記事を読む",
@@ -2973,42 +3046,6 @@
           "type": "報道機関",
           "url": "https://news.livedoor.com/article/detail/32137283",
           "publishedAt": "2026-08-23T06:31:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-18db2edf4dab4705",
-      "title": "ワンピースカード、異例のコラボ続々「FF」天野喜孝氏が書き下ろし",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 0,
-      "breaking": false,
-      "publishedAt": "2026-08-23T06:26:03.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32137296",
-          "publishedAt": "2026-08-23T06:26:03.000Z"
         }
       ],
       "confidence": 57,
@@ -3393,12 +3430,12 @@
   ],
   "totalClustersBeforeCuration": 150,
   "totalClustersBeforeSemanticMerge": 149,
-  "totalClustersAfterSemanticMerge": 143,
+  "totalClustersAfterSemanticMerge": 144,
   "semanticDeduplication": {
     "algorithm": "title-summary-entity-semantic-v2",
     "threshold": 0.54,
     "maxGapHours": 96,
-    "mergedClusters": 6
+    "mergedClusters": 5
   },
   "curation": {
     "algorithm": "semantic-cluster-and-source-category-balance-v2",

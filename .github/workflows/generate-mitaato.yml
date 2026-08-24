@@ -31,7 +31,7 @@ jobs:
       OPENAI_MODEL: ${{ vars.MITAATO_OPENAI_MODEL || 'gpt-5.6' }}
       OPENAI_IMAGE_MODEL: ${{ vars.MITAATO_IMAGE_MODEL || 'gpt-image-2' }}
       OPENAI_IMAGE_QUALITY: ${{ vars.MITAATO_IMAGE_QUALITY || 'high' }}
-      OPENAI_IMAGE_SIZE: ${{ vars.MITAATO_IMAGE_SIZE || '2560x1344' }}
+      OPENAI_IMAGE_SIZE: ${{ vars.MITAATO_IMAGE_SIZE || '2292x1200' }}
       OPENAI_IMAGE_FORMAT: ${{ vars.MITAATO_IMAGE_FORMAT || 'webp' }}
       OPENAI_IMAGE_COMPRESSION: ${{ vars.MITAATO_IMAGE_COMPRESSION || '100' }}
       THUMBNAIL_BACKFILL_LIMIT: ${{ vars.MITAATO_THUMBNAIL_BACKFILL_LIMIT || '2' }}
@@ -70,6 +70,7 @@ jobs:
           node --check mitaato/thumbnail-scroll.js
           node --check mitaato/article-batch-loader.js
           node --check mitaato/posting-assistant.js
+          node --check mitaato/thumbnail-ratio.js
           node --check mitaato/scripts/prepare-hourly-feed.mjs
           node --check mitaato/scripts/generate-articles.mjs
           node -e "JSON.parse(require('fs').readFileSync('mitaato/data/articles.json','utf8'))"
@@ -89,7 +90,7 @@ jobs:
           const fs = require('fs');
           const p = 'mitaato/data/articles.json';
           const feed = JSON.parse(fs.readFileSync(p, 'utf8'));
-          feed.generator = {...(feed.generator || {}), scheduleLabel: '1時間ごとに2本自動生成', generationCadence: 'hourly', articlesPerRun: 2};
+          feed.generator = {...(feed.generator || {}), scheduleLabel: '1時間ごとに2本自動生成', generationCadence: 'hourly', articlesPerRun: 2, thumbnailRatio: '1.91:1'};
           fs.writeFileSync(p, JSON.stringify(feed, null, 2) + '\n');
           NODE
 

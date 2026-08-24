@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const APP_VERSION = 'v1.4.0';
+  const APP_VERSION = 'v1.5.0';
   const MANIFEST_URL = './data/articles-manifest.json';
   let batchArticles = [];
   let batchUpdatedAt = '';
@@ -60,9 +60,7 @@
         mergeIntoApp();
       } catch (error) {
         console.warn('MITAATO article batch could not be loaded', error);
-      } finally {
-        loadingPromise = null;
-      }
+      } finally { loadingPromise = null; }
     })();
     return loadingPromise;
   }
@@ -70,16 +68,7 @@
   setVersion();
   new MutationObserver(setVersion).observe(document.body, { childList: true, subtree: true, characterData: true });
   loadBatch();
-  [500, 1400, 3000].forEach(delay => setTimeout(() => {
-    setVersion();
-    if (!mergeIntoApp()) loadBatch();
-  }, delay));
-  document.addEventListener('click', event => {
-    if (!event.target.closest('#refreshButton')) return;
-    setTimeout(() => loadBatch(true), 350);
-  });
-  window.addEventListener('pageshow', () => {
-    setVersion();
-    mergeIntoApp();
-  });
+  [500, 1400, 3000].forEach(delay => setTimeout(() => { setVersion(); if (!mergeIntoApp()) loadBatch(); }, delay));
+  document.addEventListener('click', event => { if (!event.target.closest('#refreshButton')) return; setTimeout(() => loadBatch(true), 350); });
+  window.addEventListener('pageshow', () => { setVersion(); mergeIntoApp(); });
 })();

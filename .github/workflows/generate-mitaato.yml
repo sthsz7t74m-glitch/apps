@@ -34,6 +34,9 @@ jobs:
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: ${{ vars.MITAATO_OPENAI_MODEL || 'gpt-5.6' }}
+      OPENAI_IMAGE_MODEL: ${{ vars.MITAATO_IMAGE_MODEL || 'gpt-image-2' }}
+      OPENAI_IMAGE_QUALITY: ${{ vars.MITAATO_IMAGE_QUALITY || 'medium' }}
+      GENERATE_THUMBNAILS: ${{ vars.MITAATO_GENERATE_THUMBNAILS || '1' }}
       ARTICLE_LIMIT: ${{ github.event.inputs.count || vars.MITAATO_ARTICLE_LIMIT || '3' }}
       CATEGORY_HINT: ${{ github.event.inputs.category || 'all' }}
 
@@ -58,13 +61,14 @@ jobs:
             echo 'Repository secret `OPENAI_API_KEY` を設定すると自動生成が始まります。' >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'ready=true' >> "$GITHUB_OUTPUT"
-            echo "Model: $OPENAI_MODEL / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
+            echo "Model: $OPENAI_MODEL / Image: $OPENAI_IMAGE_MODEL ($OPENAI_IMAGE_QUALITY) / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
           fi
 
       - name: Validate files
         if: steps.config.outputs.ready == 'true'
         run: |
           node --check mitaato/app.js
+          node --check mitaato/thumbnail-scroll.js
           node --check mitaato/scripts/generate-articles.mjs
           node -e "JSON.parse(require('fs').readFileSync('mitaato/data/articles.json','utf8'))"
 
@@ -76,13 +80,13 @@ jobs:
         if: steps.config.outputs.ready == 'true'
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- mitaato/data/articles.json)" ]; then
+          if [ -z "$(git status --porcelain -- mitaato/data/articles.json mitaato/thumbnails)" ]; then
             echo 'Article data is unchanged.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add mitaato/data/articles.json
+          git add mitaato/data/articles.json mitaato/thumbnails
           git commit -m 'data: generate MITAATO article drafts'
           git pull --rebase origin main
           git push origin HEAD:main

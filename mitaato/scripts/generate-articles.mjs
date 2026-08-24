@@ -9,8 +9,13 @@ const ROOT = path.resolve(__dirname, '..');
 const DATA_PATH = path.join(ROOT, 'data', 'articles.json');
 const PROMPT_PATH = path.join(ROOT, 'prompts', 'master-prompt.md');
 const API_URL = 'https://api.openai.com/v1/responses';
+const IMAGE_API_URL = 'https://api.openai.com/v1/images/generations';
 const API_KEY = process.env.OPENAI_API_KEY || '';
 const MODEL = process.env.OPENAI_MODEL || 'gpt-5.6';
+const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
+const IMAGE_QUALITY = process.env.OPENAI_IMAGE_QUALITY || 'medium';
+const GENERATE_THUMBNAILS = process.env.GENERATE_THUMBNAILS !== '0';
+const THUMBNAIL_DIR = path.join(ROOT, 'thumbnails');
 const LIMIT = clamp(Number(process.env.ARTICLE_LIMIT || 3), 1, 6);
 const CATEGORY_HINT = String(process.env.CATEGORY_HINT || 'all').trim();
 const DRY_RUN = process.env.DRY_RUN === '1';
@@ -169,15 +174,32 @@ thumbnailPromptは記事固有の用語を検索で確認したうえで、人�
     : null;
   const timestamp = new Date().toISOString();
   const id = target?.id || createId(candidate.topicKey || article.title);
+  const revision = Number(target?.revision || 0) + 1;
+  let thumbnailImage = target?.thumbnailImage || '';
+
+  if (!DRY_RUN && GENERATE_THUMBNAILS && article.thumbnailPrompt) {
+    try {
+      thumbnailImage = await generateThumbnail({
+        prompt: article.thumbnailPrompt,
+        id,
+        revision
+      });
+    } catch (error) {
+      console.error(`Thumbnail generation failed for ${id}:`, error.message);
+      console.log('The article will still be saved with its thumbnail prompt.');
+    }
+  }
+
   generated.push({
     ...article,
     id,
     topicKey: candidate.topicKey,
     score: candidate.score,
     eventDate: candidate.eventDate,
+    thumbnailImage,
     generatedAt: target?.generatedAt || timestamp,
     updatedAt: timestamp,
-    revision: Number(target?.revision || 0) + 1,
+    revision,
     status: 'draft'
   });
 }
@@ -192,11 +214,64 @@ feed.generator = {
   model: MODEL,
   scheduleLabel: '毎日 4:45 自動生成（日本時間）',
   lastGeneratedCount: generated.length,
-  categoryHint: CATEGORY_HINT
+  categoryHint: CATEGORY_HINT,
+  imageModel: GENERATE_THUMBNAILS ? IMAGE_MODEL : '',
+  imageQuality: GENERATE_THUMBNAILS ? IMAGE_QUALITY : '',
+  thumbnailsEnabled: GENERATE_THUMBNAILS
 };
 
 await fs.writeFile(DATA_PATH, `${JSON.stringify(feed, null, 2)}\n`, 'utf8');
 console.log(`Saved ${generated.length} article(s) to ${DATA_PATH}`);
+
+async function generateThumbnail({ prompt, id, revision }) {
+  const fileBase = safeFileBase(id);
+  const fileName = `${fileBase}-r${revision}.webp`;
+  const outputPath = path.join(THUMBNAIL_DIR, fileName);
+  const body = {
+    model: IMAGE_MODEL,
+    prompt,
+    n: 1,
+    size: '1728x912',
+    quality: IMAGE_QUALITY,
+    background: 'opaque',
+    output_format: 'webp',
+    output_compression: 86
+  };
+
+  let lastError;
+  for (let attempt = 1; attempt <= 2; attempt += 1) {
+    try {
+      const response = await fetch(IMAGE_API_URL, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+        signal: AbortSignal.timeout(12 * 60 * 1000)
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(`OpenAI image ${response.status}: ${JSON.stringify(payload)}`);
+      const base64 = payload?.data?.[0]?.b64_json;
+      if (!base64) throw new Error(`Image response did not contain b64_json: ${JSON.stringify(payload).slice(0, 900)}`);
+      await fs.mkdir(THUMBNAIL_DIR, { recursive: true });
+      await fs.writeFile(outputPath, Buffer.from(base64, 'base64'));
+      console.log(`Saved thumbnail: ${outputPath}`);
+      return `./thumbnails/${fileName}`;
+    } catch (error) {
+      lastError = error;
+      console.error(`Thumbnail attempt ${attempt} failed:`, error.message);
+      if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 2500 * attempt));
+    }
+  }
+  throw lastError;
+}
+
+function safeFileBase(value) {
+  const plain = String(value || 'article').normalize('NFKC').toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 72);
+  const hash = crypto.createHash('sha1').update(String(value || 'article')).digest('hex').slice(0, 8);
+  return `${plain || 'article'}-${hash}`;
+}
 
 async function callOpenAI({ prompt, schema, name, maxOutputTokens }) {
   const body = {

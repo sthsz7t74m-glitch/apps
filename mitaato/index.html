@@ -11,6 +11,7 @@
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./thumbnail-scroll.css">
 </head>
 <body>
   <div class="app-shell">
@@ -23,7 +24,7 @@
         </div>
       </div>
       <div class="top-actions">
-        <span class="version">v1.0.0</span>
+        <span class="version">v1.1.0</span>
         <button class="icon-button" id="refreshButton" type="button" aria-label="最新データを取得">↻</button>
       </div>
     </header>
@@ -124,5 +125,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./app.js" defer></script>
+  <script src="./thumbnail-scroll.js" defer></script>
 </body>
 </html>

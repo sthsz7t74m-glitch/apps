@@ -1,0 +1,88 @@
+name: Generate MITAATO article drafts
+
+on:
+  workflow_dispatch:
+    inputs:
+      count:
+        description: '生成する記事数（1〜6）'
+        required: false
+        default: '3'
+      category:
+        description: 'カテゴリ指定（all / 漫画 / アニメ / ドラマ / 映画 / 都市伝説）'
+        required: false
+        default: 'all'
+  schedule:
+    # 毎日 04:45 JST（前日 19:45 UTC）
+    - cron: '45 19 * * *'
+  push:
+    paths:
+      - 'mitaato/scripts/generate-articles.mjs'
+      - 'mitaato/prompts/master-prompt.md'
+      - '.github/workflows/generate-mitaato.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mitaato-article-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.MITAATO_OPENAI_MODEL || 'gpt-5.6' }}
+      ARTICLE_LIMIT: ${{ github.event.inputs.count || vars.MITAATO_ARTICLE_LIMIT || '3' }}
+      CATEGORY_HINT: ${{ github.event.inputs.category || 'all' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check configuration
+        id: config
+        shell: bash
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo '### ミタアト自動生成はスキップされました' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Repository secret `OPENAI_API_KEY` を設定すると自動生成が始まります。' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+            echo "Model: $OPENAI_MODEL / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
+          fi
+
+      - name: Validate files
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          node --check mitaato/app.js
+          node --check mitaato/scripts/generate-articles.mjs
+          node -e "JSON.parse(require('fs').readFileSync('mitaato/data/articles.json','utf8'))"
+
+      - name: Research and generate drafts
+        if: steps.config.outputs.ready == 'true'
+        run: node mitaato/scripts/generate-articles.mjs
+
+      - name: Commit generated drafts
+        if: steps.config.outputs.ready == 'true'
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- mitaato/data/articles.json)" ]; then
+            echo 'Article data is unchanged.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add mitaato/data/articles.json
+          git commit -m 'data: generate MITAATO article drafts'
+          git pull --rebase origin main
+          git push origin HEAD:main

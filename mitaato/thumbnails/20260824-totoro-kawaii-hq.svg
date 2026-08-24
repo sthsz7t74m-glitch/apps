@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1000" role="img" aria-labelledby="t d">
+<title id="t">となりのトトロ トトロは何と言った？</title>
+<desc id="d">絵コンテの「かわいい」</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b2d24"/><stop offset="1" stop-color="#245a43"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <style>
+    .work{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:44px;font-weight:700;letter-spacing:.05em;fill:#fff}
+    .main{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:118px;font-weight:900;letter-spacing:-.035em;fill:#fff;filter:url(#shadow)}
+    .sub{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:52px;font-weight:800;fill:#e7bc52;letter-spacing:.01em}
+    .small{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:40px;font-weight:800;fill:#fff}
+  </style>
+</defs>
+<rect width="1900" height="1000" fill="url(#bg)"/>
+<circle cx="250" cy="180" r="260" fill="#e7bc52" opacity=".08" filter="url(#soft)"/>
+<circle cx="1700" cy="840" r="300" fill="#e7bc52" opacity=".10" filter="url(#soft)"/>
+<g>
+      <rect x="180" y="480" width="420" height="260" rx="18" fill="#eee4c9"/>
+      <rect x="740" y="440" width="420" height="260" rx="18" fill="#eee4c9"/>
+      <rect x="1300" y="500" width="420" height="260" rx="18" fill="#eee4c9"/>
+      <path d="M240 560H540M800 520H1100M1360 580H1660" stroke="#335648" stroke-width="12" stroke-opacity=".5"/>
+      <path d="M250 670 C370 560 500 760 620 650 S880 540 1000 660 S1260 770 1390 640 S1600 530 1700 650" fill="none" stroke="#e7bc52" stroke-width="14"/>
+      <rect x="710" y="710" width="480" height="120" rx="30" fill="#081f19"/>
+      <text x="950" y="790" text-anchor="middle" font-family="sans-serif" font-size="74" font-weight="900" fill="#e7bc52">「かわいい」</text>
+    </g>
+<rect x="50" y="50" width="1800" height="900" rx="36" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+<text x="950" y="95" text-anchor="middle" class="work">となりのトトロ</text>
+<text x="950" y="365" text-anchor="middle" class="main">トトロは何と言った？</text>
+<text x="950" y="880" text-anchor="middle" class="sub">絵コンテの「かわいい」</text>
+</svg>

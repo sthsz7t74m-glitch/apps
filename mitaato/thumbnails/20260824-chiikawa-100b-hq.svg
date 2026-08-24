@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1000" role="img" aria-labelledby="t d">
+<title id="t">映画ちいかわ なぜ30日で100億？</title>
+<desc id="d">かわいさだけじゃない</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9f7fb"/><stop offset="1" stop-color="#cbe7f2"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <style>
+    .work{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:44px;font-weight:700;letter-spacing:.05em;fill:#17384a}
+    .main{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:118px;font-weight:900;letter-spacing:-.035em;fill:#17384a;filter:url(#shadow)}
+    .sub{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:52px;font-weight:800;fill:#1680a6;letter-spacing:.01em}
+    .small{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:40px;font-weight:800;fill:#17384a}
+  </style>
+</defs>
+<rect width="1900" height="1000" fill="url(#bg)"/>
+<circle cx="250" cy="180" r="260" fill="#1680a6" opacity=".08" filter="url(#soft)"/>
+<circle cx="1700" cy="840" r="300" fill="#1680a6" opacity=".10" filter="url(#soft)"/>
+<g>
+      <rect x="300" y="500" width="310" height="240" rx="34" fill="#fff" stroke="#1680a6" stroke-width="7"/>
+      <text x="455" y="625" text-anchor="middle" font-family="sans-serif" font-size="110" font-weight="900" fill="#1680a6">30</text>
+      <text x="455" y="700" text-anchor="middle" font-family="sans-serif" font-size="42" font-weight="800" fill="#1680a6">DAYS</text>
+      <path d="M700 720 C850 680 980 560 1120 610 S1410 380 1600 430" fill="none" stroke="#1680a6" stroke-width="24"/>
+      <path d="M1550 430l80-35-30 82" fill="#1680a6"/>
+      <circle cx="1480" cy="620" r="150" fill="#fff" stroke="#1680a6" stroke-width="8"/>
+      <text x="1480" y="645" text-anchor="middle" font-family="sans-serif" font-size="82" font-weight="900" fill="#1680a6">100億</text>
+    </g>
+<rect x="50" y="50" width="1800" height="900" rx="36" fill="none" stroke="#17384a" stroke-opacity=".12" stroke-width="2"/>
+<text x="950" y="95" text-anchor="middle" class="work">映画ちいかわ</text>
+<text x="950" y="365" text-anchor="middle" class="main">なぜ30日で100億？</text>
+<text x="950" y="880" text-anchor="middle" class="sub">かわいさだけじゃない</text>
+</svg>

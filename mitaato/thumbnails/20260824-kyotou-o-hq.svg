@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1000" role="img" aria-labelledby="t d">
+<title id="t">映画『巨頭オ』 どこまでが元ネタ？</title>
+<desc id="d">20年前の投稿を検証</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#08100e"/><stop offset="1" stop-color="#1b2723"/></linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".45"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+  <style>
+    .work{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:44px;font-weight:700;letter-spacing:.05em;fill:#fff}
+    .main{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:118px;font-weight:900;letter-spacing:-.035em;fill:#fff;filter:url(#shadow)}
+    .sub{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:52px;font-weight:800;fill:#d2c5a5;letter-spacing:.01em}
+    .small{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;font-size:40px;font-weight:800;fill:#fff}
+  </style>
+</defs>
+<rect width="1900" height="1000" fill="url(#bg)"/>
+<circle cx="250" cy="180" r="260" fill="#d2c5a5" opacity=".08" filter="url(#soft)"/>
+<circle cx="1700" cy="840" r="300" fill="#d2c5a5" opacity=".10" filter="url(#soft)"/>
+<g>
+      <rect x="600" y="430" width="700" height="250" rx="16" fill="#a79b7f" stroke="#e8dfc7" stroke-width="5"/>
+      <text x="950" y="590" text-anchor="middle" font-family="sans-serif" font-size="122" font-weight="900" fill="#20231f">巨頭オ</text>
+      <path d="M950 680V820" stroke="#80755f" stroke-width="30"/>
+      <path d="M240 760 C520 620 710 750 950 700 C1210 640 1400 720 1660 590" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="18"/>
+      <circle cx="1580" cy="620" r="150" fill="#000" opacity=".55"/>
+    </g>
+<rect x="50" y="50" width="1800" height="900" rx="36" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="2"/>
+<text x="950" y="95" text-anchor="middle" class="work">映画『巨頭オ』</text>
+<text x="950" y="365" text-anchor="middle" class="main">どこまでが元ネタ？</text>
+<text x="950" y="880" text-anchor="middle" class="sub">20年前の投稿を検証</text>
+</svg>

@@ -1,5 +1,5 @@
-const CACHE='mitaato-desk-v6';
-const STATIC=['./','./index.html','./styles.css','./thumbnail-scroll.css','./version.css','./posting-assistant.css','./app.js','./thumbnail-scroll.js','./article-batch-loader.js','./posting-assistant.js','./manifest.webmanifest','./icons/icon.svg'];
+const CACHE='mitaato-desk-v7';
+const STATIC=['./','./index.html','./styles.css','./thumbnail-scroll.css','./version.css','./posting-assistant.css','./app.js','./thumbnail-scroll.js','./article-batch-loader.js','./posting-assistant.js','./thumbnail-ratio.js','./manifest.webmanifest','./icons/icon.svg'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(STATIC)));self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))));self.clients.claim()});
 self.addEventListener('fetch',event=>{

@@ -13,120 +13,31 @@
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./thumbnail-scroll.css">
   <link rel="stylesheet" href="./version.css">
+  <link rel="stylesheet" href="./posting-assistant.css">
 </head>
-<body data-app-version="v1.3.0">
+<body data-app-version="v1.5.0">
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-wrap">
         <a class="home-link" href="../" aria-label="アプリ一覧へ">‹</a>
-        <div>
-          <p class="eyebrow">NOTE CONTENT DESK</p>
-          <h1>ミタアト</h1>
-        </div>
+        <div><p class="eyebrow">NOTE CONTENT DESK</p><h1>ミタアト</h1></div>
       </div>
-      <div class="top-actions">
-        <span class="version" aria-label="アプリバージョン v1.3.0">v1.3.0</span>
-        <button class="icon-button" id="refreshButton" type="button" aria-label="最新データを取得">↻</button>
-      </div>
+      <div class="top-actions"><span class="version" aria-label="アプリバージョン v1.5.0">v1.5.0</span><button class="icon-button" id="refreshButton" type="button" aria-label="最新データを取得">↻</button></div>
     </header>
-
     <main>
-      <section class="hero">
-        <div>
-          <p class="hero-kicker">生成済みを、あとは貼るだけ。</p>
-          <h2>記事を選び、領域ごとにコピー</h2>
-          <p id="updateText" class="update-text">記事データを読み込んでいます…</p>
-        </div>
-        <div class="hero-actions">
-          <button class="primary-button" id="importButton" type="button">＋ 記事を取り込む</button>
-          <a class="secondary-button" id="generateLink" href="https://github.com/sthsz7t74m-glitch/apps/actions/workflows/generate-mitaato.yml" target="_blank" rel="noopener">今すぐ生成</a>
-        </div>
-      </section>
-
-      <section class="stats" aria-label="記事件数">
-        <button class="stat-card active" data-status-filter="all" type="button"><span id="countAll">0</span><small>すべて</small></button>
-        <button class="stat-card" data-status-filter="draft" type="button"><span id="countDraft">0</span><small>未投稿</small></button>
-        <button class="stat-card" data-status-filter="ready" type="button"><span id="countReady">0</span><small>確認済み</small></button>
-        <button class="stat-card" data-status-filter="posted" type="button"><span id="countPosted">0</span><small>投稿済み</small></button>
-        <button class="stat-card" data-status-filter="hold" type="button"><span id="countHold">0</span><small>保留</small></button>
-      </section>
-
-      <section class="toolbar" aria-label="絞り込み">
-        <label class="search-box">
-          <span>⌕</span>
-          <input id="searchInput" type="search" placeholder="作品名・タイトル・タグで検索" autocomplete="off">
-        </label>
-        <select id="categoryFilter" aria-label="カテゴリ">
-          <option value="all">全カテゴリ</option>
-          <option value="漫画">漫画</option>
-          <option value="アニメ">アニメ</option>
-          <option value="ドラマ">ドラマ</option>
-          <option value="映画">映画</option>
-          <option value="都市伝説">都市伝説</option>
-          <option value="その他">その他</option>
-        </select>
-        <select id="sortSelect" aria-label="並び順">
-          <option value="new">新しい順</option>
-          <option value="score">優先度順</option>
-          <option value="planned">投稿予定順</option>
-        </select>
-      </section>
-
-      <section class="workspace">
-        <aside class="article-pane">
-          <div id="articleList" class="article-list" aria-live="polite"></div>
-          <div id="emptyState" class="empty-state" hidden>
-            <strong>該当する記事はありません</strong>
-            <p>絞り込み条件を変えるか、記事を取り込んでください。</p>
-          </div>
-        </aside>
-
-        <section id="detailPane" class="detail-pane empty-detail">
-          <div class="detail-placeholder">
-            <span>✦</span>
-            <h3>記事を選択</h3>
-            <p>各領域をワンタップでコピーできます。</p>
-          </div>
-        </section>
-      </section>
+      <section class="hero"><div><p class="hero-kicker">生成済みを、あとは貼るだけ。</p><h2>記事を選び、領域ごとにコピー</h2><p id="updateText" class="update-text">記事データを読み込んでいます…</p></div><div class="hero-actions"><button class="primary-button" id="importButton" type="button">＋ 記事を取り込む</button><a class="secondary-button" id="generateLink" href="https://github.com/sthsz7t74m-glitch/apps/actions/workflows/generate-mitaato.yml" target="_blank" rel="noopener">今すぐ生成</a></div></section>
+      <section class="stats" aria-label="記事件数"><button class="stat-card active" data-status-filter="all" type="button"><span id="countAll">0</span><small>すべて</small></button><button class="stat-card" data-status-filter="draft" type="button"><span id="countDraft">0</span><small>未投稿</small></button><button class="stat-card" data-status-filter="ready" type="button"><span id="countReady">0</span><small>確認済み</small></button><button class="stat-card" data-status-filter="posted" type="button"><span id="countPosted">0</span><small>投稿済み</small></button><button class="stat-card" data-status-filter="hold" type="button"><span id="countHold">0</span><small>保留</small></button></section>
+      <section class="toolbar" aria-label="絞り込み"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="作品名・タイトル・タグで検索" autocomplete="off"></label><select id="categoryFilter" aria-label="カテゴリ"><option value="all">全カテゴリ</option><option value="漫画">漫画</option><option value="アニメ">アニメ</option><option value="ドラマ">ドラマ</option><option value="映画">映画</option><option value="都市伝説">都市伝説</option><option value="その他">その他</option></select><select id="sortSelect" aria-label="並び順"><option value="new">新しい順</option><option value="score">優先度順</option><option value="planned">投稿予定順</option></select></section>
+      <section class="workspace"><aside class="article-pane"><div id="articleList" class="article-list" aria-live="polite"></div><div id="emptyState" class="empty-state" hidden><strong>該当する記事はありません</strong><p>絞り込み条件を変えるか、記事を取り込んでください。</p></div></aside><section id="detailPane" class="detail-pane empty-detail"><div class="detail-placeholder"><span>✦</span><h3>記事を選択</h3><p>各領域をワンタップでコピーできます。</p></div></section></section>
     </main>
   </div>
-
   <div id="mobileBackdrop" class="mobile-backdrop" hidden></div>
-
-  <dialog id="importDialog" class="dialog">
-    <form method="dialog" class="dialog-card" id="importForm">
-      <div class="dialog-header">
-        <div><p class="eyebrow">IMPORT</p><h2>記事を取り込む</h2></div>
-        <button class="icon-button" value="cancel" aria-label="閉じる">×</button>
-      </div>
-      <p class="dialog-description">このチャットの分割出力、またはアプリ用JSONをそのまま貼り付けます。</p>
-      <textarea id="importTextarea" rows="14" placeholder="ここに記事全文またはJSONを貼り付け"></textarea>
-      <p id="importError" class="form-error" hidden></p>
-      <div class="dialog-actions">
-        <button class="secondary-button" value="cancel" type="button" id="cancelImport">キャンセル</button>
-        <button class="primary-button" type="submit">取り込む</button>
-      </div>
-    </form>
-  </dialog>
-
-  <dialog id="editDialog" class="dialog">
-    <form method="dialog" class="dialog-card edit-card" id="editForm">
-      <div class="dialog-header">
-        <div><p class="eyebrow">LOCAL EDIT</p><h2>記事を編集</h2></div>
-        <button class="icon-button" value="cancel" aria-label="閉じる">×</button>
-      </div>
-      <div id="editFields" class="edit-fields"></div>
-      <div class="dialog-actions sticky-actions">
-        <button class="secondary-button" value="cancel" type="button" id="cancelEdit">キャンセル</button>
-        <button class="primary-button" type="submit">端末に保存</button>
-      </div>
-    </form>
-  </dialog>
-
+  <dialog id="importDialog" class="dialog"><form method="dialog" class="dialog-card" id="importForm"><div class="dialog-header"><div><p class="eyebrow">IMPORT</p><h2>記事を取り込む</h2></div><button class="icon-button" value="cancel" aria-label="閉じる">×</button></div><p class="dialog-description">このチャットの分割出力、またはアプリ用JSONをそのまま貼り付けます。</p><textarea id="importTextarea" rows="14" placeholder="ここに記事全文またはJSONを貼り付け"></textarea><p id="importError" class="form-error" hidden></p><div class="dialog-actions"><button class="secondary-button" value="cancel" type="button" id="cancelImport">キャンセル</button><button class="primary-button" type="submit">取り込む</button></div></form></dialog>
+  <dialog id="editDialog" class="dialog"><form method="dialog" class="dialog-card edit-card" id="editForm"><div class="dialog-header"><div><p class="eyebrow">LOCAL EDIT</p><h2>記事を編集</h2></div><button class="icon-button" value="cancel" aria-label="閉じる">×</button></div><div id="editFields" class="edit-fields"></div><div class="dialog-actions sticky-actions"><button class="secondary-button" value="cancel" type="button" id="cancelEdit">キャンセル</button><button class="primary-button" type="submit">端末に保存</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./app.js" defer></script>
   <script src="./thumbnail-scroll.js" defer></script>
   <script src="./article-batch-loader.js" defer></script>
+  <script src="./posting-assistant.js" defer></script>
 </body>
 </html>

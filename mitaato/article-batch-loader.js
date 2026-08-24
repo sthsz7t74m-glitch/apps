@@ -6,14 +6,18 @@
   let batchArticles = [];
   let batchUpdatedAt = '';
   let loadingPromise = null;
+  let versionApplying = false;
 
   function setVersion() {
+    if (versionApplying) return;
+    versionApplying = true;
     document.body.dataset.appVersion = APP_VERSION;
     const version = document.querySelector('.version');
-    if (version) {
+    if (version && version.textContent !== APP_VERSION) {
       version.textContent = APP_VERSION;
       version.setAttribute('aria-label', `アプリバージョン ${APP_VERSION}`);
     }
+    versionApplying = false;
   }
 
   function mergeIntoApp() {
@@ -30,6 +34,7 @@
         updateText.dataset.batchLabel = 'true';
         updateText.textContent = `${updateText.textContent} · 記事${app.feed.articles.length}件`;
       }
+      setVersion();
       return true;
     } catch (error) {
       console.warn('MITAATO batch merge failed', error);
@@ -63,6 +68,7 @@
   }
 
   setVersion();
+  new MutationObserver(setVersion).observe(document.body, { childList: true, subtree: true, characterData: true });
   loadBatch();
   [500, 1400, 3000].forEach(delay => setTimeout(() => {
     setVersion();

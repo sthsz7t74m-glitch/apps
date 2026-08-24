@@ -68,11 +68,71 @@
     });
   }
 
+  function setPlanningOpen(row, toggle, open) {
+    row.classList.toggle('is-open', open);
+    toggle.classList.toggle('active', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? '予定を閉じる' : (toggle.dataset.hasPlan === 'true' ? '予定あり' : '投稿予定');
+    if (open) requestAnimationFrame(() => row.querySelector('input')?.focus({ preventScroll: true }));
+  }
+
+  function compactPlanningControls(content, article) {
+    const row = content.querySelector('.planning-row');
+    const actions = content.querySelector('.detail-actions');
+    if (!row || !actions) return;
+
+    row.classList.add('planning-row-compact');
+    row.id = 'planningControls';
+
+    let toggle = actions.querySelector('[data-plan-toggle]');
+    if (!toggle) {
+      toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'ghost-button plan-toggle-button';
+      toggle.dataset.planToggle = 'true';
+      toggle.setAttribute('aria-controls', row.id);
+      actions.append(toggle);
+      toggle.addEventListener('click', () => {
+        setPlanningOpen(row, toggle, !row.classList.contains('is-open'));
+      });
+    }
+
+    const hasPlan = Boolean(article?.plannedAt);
+    toggle.dataset.hasPlan = String(hasPlan);
+    if (!row.classList.contains('is-open')) {
+      toggle.textContent = hasPlan ? '予定あり' : '投稿予定';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function compactMobileLabels(content) {
+    const copy = content.querySelector('#copyBodyButton');
+    const note = content.querySelector('#openNoteButton');
+    if (!copy || !note) return;
+
+    const update = event => {
+      const compact = event.matches;
+      copy.textContent = compact ? '本文コピー' : '本文を一括コピー';
+      note.textContent = compact ? 'note' : 'noteを開く';
+    };
+
+    const media = matchMedia('(max-width: 820px)');
+    update(media);
+    if (!content.dataset.mobileLabelsBound) {
+      content.dataset.mobileLabelsBound = 'true';
+      media.addEventListener?.('change', update);
+    }
+  }
+
   function enhanceDetail() {
     const detail = document.getElementById('detailPane');
     const content = detail?.querySelector('.detail-content');
     if (!content) return;
+
     const article = findArticle(selectedId());
+    compactPlanningControls(content, article);
+    compactMobileLabels(content);
+
     const source = imageFor(article);
     const existing = content.querySelector('.thumbnail-panel');
     if (!source) {
@@ -80,6 +140,7 @@
       return;
     }
     if (existing?.dataset.source === source) return;
+
     existing?.remove();
     const panel = document.createElement('section');
     panel.className = 'thumbnail-panel';
@@ -93,6 +154,7 @@
         <img class="thumbnail-preview" src="${escapeHtml(source)}" alt="${escapeHtml(article?.title || '記事')}のサムネイル" loading="eager">
       </a>`;
     panel.querySelector('img').addEventListener('error', () => panel.classList.add('image-error'), { once: true });
+
     const status = content.querySelector('.status-actions');
     if (status) status.before(panel);
     else content.querySelector('.detail-header')?.after(panel);
@@ -128,6 +190,8 @@
 
   function enhance() {
     scheduled = false;
+    const version = document.querySelector('.version');
+    if (version) version.textContent = 'v1.2.0';
     enhanceList();
     enhanceDetail();
     makeLongSectionsScrollable();

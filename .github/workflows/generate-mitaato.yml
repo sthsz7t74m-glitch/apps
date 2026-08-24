@@ -6,14 +6,15 @@ on:
       count:
         description: '生成する記事数（1〜10）'
         required: false
-        default: '3'
+        default: '2'
       category:
         description: 'カテゴリ指定（all / 漫画 / アニメ / ドラマ / 映画 / 都市伝説）'
         required: false
         default: 'all'
   schedule:
-    # 毎日 04:45 JST（前日 19:45 UTC）
-    - cron: '45 19 * * *'
+    # 1時間ごとに2本。UTC基準だが毎時実行なので日本時間でも毎時。
+    - cron: '7 * * * *'
+
 permissions:
   contents: write
 
@@ -33,9 +34,9 @@ jobs:
       OPENAI_IMAGE_SIZE: ${{ vars.MITAATO_IMAGE_SIZE || '2560x1344' }}
       OPENAI_IMAGE_FORMAT: ${{ vars.MITAATO_IMAGE_FORMAT || 'webp' }}
       OPENAI_IMAGE_COMPRESSION: ${{ vars.MITAATO_IMAGE_COMPRESSION || '100' }}
-      THUMBNAIL_BACKFILL_LIMIT: ${{ vars.MITAATO_THUMBNAIL_BACKFILL_LIMIT || '3' }}
+      THUMBNAIL_BACKFILL_LIMIT: ${{ vars.MITAATO_THUMBNAIL_BACKFILL_LIMIT || '2' }}
       GENERATE_THUMBNAILS: ${{ vars.MITAATO_GENERATE_THUMBNAILS || '1' }}
-      ARTICLE_LIMIT: ${{ github.event.inputs.count || vars.MITAATO_ARTICLE_LIMIT || '3' }}
+      ARTICLE_LIMIT: ${{ github.event_name == 'schedule' && '2' || github.event.inputs.count || '2' }}
       CATEGORY_HINT: ${{ github.event.inputs.category || 'all' }}
 
     steps:
@@ -59,7 +60,7 @@ jobs:
             echo 'Repository secret `OPENAI_API_KEY` を設定すると自動生成が始まります。' >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'ready=true' >> "$GITHUB_OUTPUT"
-            echo "Model: $OPENAI_MODEL / Image: $OPENAI_IMAGE_MODEL $OPENAI_IMAGE_SIZE ($OPENAI_IMAGE_QUALITY, compression=$OPENAI_IMAGE_COMPRESSION) / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
+            echo "Hourly generation: $ARTICLE_LIMIT article(s) / Image: $OPENAI_IMAGE_MODEL $OPENAI_IMAGE_SIZE ($OPENAI_IMAGE_QUALITY)"
           fi
 
       - name: Validate files
@@ -67,12 +68,29 @@ jobs:
         run: |
           node --check mitaato/app.js
           node --check mitaato/thumbnail-scroll.js
+          node --check mitaato/article-batch-loader.js
+          node --check mitaato/scripts/prepare-hourly-feed.mjs
           node --check mitaato/scripts/generate-articles.mjs
           node -e "JSON.parse(require('fs').readFileSync('mitaato/data/articles.json','utf8'))"
 
-      - name: Research and generate drafts
+      - name: Merge full article history for duplicate checking
+        if: steps.config.outputs.ready == 'true'
+        run: node mitaato/scripts/prepare-hourly-feed.mjs
+
+      - name: Research and generate two fresh drafts
         if: steps.config.outputs.ready == 'true'
         run: node mitaato/scripts/generate-articles.mjs
+
+      - name: Mark feed as hourly
+        if: steps.config.outputs.ready == 'true'
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const p = 'mitaato/data/articles.json';
+          const feed = JSON.parse(fs.readFileSync(p, 'utf8'));
+          feed.generator = {...(feed.generator || {}), scheduleLabel: '1時間ごとに2本自動生成', generationCadence: 'hourly', articlesPerRun: 2};
+          fs.writeFileSync(p, JSON.stringify(feed, null, 2) + '\n');
+          NODE
 
       - name: Commit generated drafts
         if: steps.config.outputs.ready == 'true'
@@ -85,6 +103,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add mitaato/data/articles.json mitaato/thumbnails
-          git commit -m 'data: generate MITAATO article drafts'
+          git commit -m 'data: generate hourly MITAATO drafts'
           git pull --rebase origin main
           git push origin HEAD:main

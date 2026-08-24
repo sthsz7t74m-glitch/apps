@@ -1,7 +1,7 @@
 'use strict';
 
 (() => {
-  const APP_VERSION = 'v1.3.0';
+  const APP_VERSION = 'v1.4.0';
   const MANIFEST_URL = './data/articles-manifest.json';
   let batchArticles = [];
   let batchUpdatedAt = '';
@@ -19,15 +19,12 @@
   function mergeIntoApp() {
     try {
       if (typeof app === 'undefined' || typeof render !== 'function' || !batchArticles.length) return false;
-
       const base = Array.isArray(app.feed?.articles) ? app.feed.articles : [];
       const merged = new Map(base.map(article => [article.id, article]));
       batchArticles.forEach(article => merged.set(article.id, article));
-
       app.feed.articles = [...merged.values()];
       if (batchUpdatedAt) app.feed.updatedAt = batchUpdatedAt;
       render();
-
       const updateText = document.getElementById('updateText');
       if (updateText && !updateText.dataset.batchLabel) {
         updateText.dataset.batchLabel = 'true';
@@ -48,15 +45,12 @@
 
   async function loadBatch(force = false) {
     if (loadingPromise && !force) return loadingPromise;
-
     loadingPromise = (async () => {
       try {
         const manifest = await fetchJson(MANIFEST_URL);
         const urls = Array.isArray(manifest.articles) ? manifest.articles : [];
         const results = await Promise.allSettled(urls.map(fetchJson));
-        batchArticles = results
-          .filter(result => result.status === 'fulfilled' && result.value?.id)
-          .map(result => result.value);
+        batchArticles = results.filter(result => result.status === 'fulfilled' && result.value?.id).map(result => result.value);
         batchUpdatedAt = manifest.updatedAt || '';
         mergeIntoApp();
       } catch (error) {
@@ -65,24 +59,19 @@
         loadingPromise = null;
       }
     })();
-
     return loadingPromise;
   }
 
   setVersion();
   loadBatch();
-
-  // app.js の基本フィード取得より先に完了しても、後から確実に再統合する。
   [500, 1400, 3000].forEach(delay => setTimeout(() => {
     setVersion();
     if (!mergeIntoApp()) loadBatch();
   }, delay));
-
   document.addEventListener('click', event => {
     if (!event.target.closest('#refreshButton')) return;
     setTimeout(() => loadBatch(true), 350);
   });
-
   window.addEventListener('pageshow', () => {
     setVersion();
     mergeIntoApp();

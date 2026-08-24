@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: '生成する記事数（1〜6）'
+        description: '生成する記事数（1〜10）'
         required: false
         default: '3'
       category:
@@ -14,12 +14,6 @@ on:
   schedule:
     # 毎日 04:45 JST（前日 19:45 UTC）
     - cron: '45 19 * * *'
-  push:
-    paths:
-      - 'mitaato/scripts/generate-articles.mjs'
-      - 'mitaato/prompts/master-prompt.md'
-      - '.github/workflows/generate-mitaato.yml'
-
 permissions:
   contents: write
 
@@ -30,12 +24,16 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       OPENAI_MODEL: ${{ vars.MITAATO_OPENAI_MODEL || 'gpt-5.6' }}
       OPENAI_IMAGE_MODEL: ${{ vars.MITAATO_IMAGE_MODEL || 'gpt-image-2' }}
       OPENAI_IMAGE_QUALITY: ${{ vars.MITAATO_IMAGE_QUALITY || 'high' }}
+      OPENAI_IMAGE_SIZE: ${{ vars.MITAATO_IMAGE_SIZE || '2560x1344' }}
+      OPENAI_IMAGE_FORMAT: ${{ vars.MITAATO_IMAGE_FORMAT || 'webp' }}
+      OPENAI_IMAGE_COMPRESSION: ${{ vars.MITAATO_IMAGE_COMPRESSION || '100' }}
+      THUMBNAIL_BACKFILL_LIMIT: ${{ vars.MITAATO_THUMBNAIL_BACKFILL_LIMIT || '3' }}
       GENERATE_THUMBNAILS: ${{ vars.MITAATO_GENERATE_THUMBNAILS || '1' }}
       ARTICLE_LIMIT: ${{ github.event.inputs.count || vars.MITAATO_ARTICLE_LIMIT || '3' }}
       CATEGORY_HINT: ${{ github.event.inputs.category || 'all' }}
@@ -61,7 +59,7 @@ jobs:
             echo 'Repository secret `OPENAI_API_KEY` を設定すると自動生成が始まります。' >> "$GITHUB_STEP_SUMMARY"
           else
             echo 'ready=true' >> "$GITHUB_OUTPUT"
-            echo "Model: $OPENAI_MODEL / Image: $OPENAI_IMAGE_MODEL ($OPENAI_IMAGE_QUALITY) / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
+            echo "Model: $OPENAI_MODEL / Image: $OPENAI_IMAGE_MODEL $OPENAI_IMAGE_SIZE ($OPENAI_IMAGE_QUALITY, compression=$OPENAI_IMAGE_COMPRESSION) / Count: $ARTICLE_LIMIT / Category: $CATEGORY_HINT"
           fi
 
       - name: Validate files
@@ -69,7 +67,6 @@ jobs:
         run: |
           node --check mitaato/app.js
           node --check mitaato/thumbnail-scroll.js
-          node --check mitaato/article-batch-loader.js
           node --check mitaato/scripts/generate-articles.mjs
           node -e "JSON.parse(require('fs').readFileSync('mitaato/data/articles.json','utf8'))"
 

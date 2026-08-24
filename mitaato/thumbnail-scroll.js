@@ -1,9 +1,12 @@
 'use strict';
 
 (() => {
+  const APP_VERSION = 'v1.3.0';
   const FEED_URL = './data/articles.json';
   const fallbackArticles = new Map();
   let scheduled = false;
+
+  document.body.dataset.appVersion = APP_VERSION;
 
   function escapeHtml(value = '') {
     return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
@@ -40,7 +43,16 @@
   }
 
   function imageFor(article) {
-    return safeImageUrl(article?.thumbnailImage || article?.thumbnailUrl || '');
+    const original = safeImageUrl(article?.thumbnailImage || article?.thumbnailUrl || '');
+    if (!original || original.startsWith('data:') || original.startsWith('blob:')) return original;
+    try {
+      const url = new URL(original, location.href);
+      const version = article?.revision || article?.updatedAt || APP_VERSION;
+      url.searchParams.set('v', String(version));
+      return url.href;
+    } catch {
+      return original;
+    }
   }
 
   function enhanceList() {
@@ -58,7 +70,7 @@
       const frame = document.createElement('div');
       frame.className = 'article-card-thumb';
       frame.dataset.source = source;
-      frame.innerHTML = `<img src="${escapeHtml(source)}" alt="${escapeHtml(article.title)}のサムネイル" loading="lazy">`;
+      frame.innerHTML = `<img src="${escapeHtml(source)}" alt="${escapeHtml(article.title)}のサムネイル" loading="lazy" decoding="async" fetchpriority="low">`;
       frame.querySelector('img').addEventListener('error', () => {
         frame.remove();
         card.classList.remove('has-thumbnail');
@@ -151,7 +163,7 @@
         <div class="thumbnail-panel-actions"><a class="secondary-button" href="${escapeHtml(source)}" target="_blank" rel="noopener">画像を開く</a></div>
       </div>
       <a class="thumbnail-preview-link" href="${escapeHtml(source)}" target="_blank" rel="noopener" aria-label="サムネイルを拡大表示">
-        <img class="thumbnail-preview" src="${escapeHtml(source)}" alt="${escapeHtml(article?.title || '記事')}のサムネイル" loading="eager">
+        <img class="thumbnail-preview" src="${escapeHtml(source)}" alt="${escapeHtml(article?.title || '記事')}のサムネイル" width="${escapeHtml(article?.thumbnailWidth || 2280)}" height="${escapeHtml(article?.thumbnailHeight || 1200)}" loading="eager" decoding="sync" fetchpriority="high">
       </a>`;
     panel.querySelector('img').addEventListener('error', () => panel.classList.add('image-error'), { once: true });
 
@@ -190,8 +202,12 @@
 
   function enhance() {
     scheduled = false;
+    document.body.dataset.appVersion = APP_VERSION;
     const version = document.querySelector('.version');
-    if (version) version.textContent = 'v1.2.0';
+    if (version) {
+      version.textContent = APP_VERSION;
+      version.setAttribute('aria-label', `アプリバージョン ${APP_VERSION}`);
+    }
     enhanceList();
     enhanceDetail();
     makeLongSectionsScrollable();

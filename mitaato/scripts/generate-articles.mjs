@@ -8,15 +8,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 const DATA_PATH = path.join(ROOT, 'data', 'articles.json');
 const PROMPT_PATH = path.join(ROOT, 'prompts', 'master-prompt.md');
+const THUMBNAIL_DIR = path.join(ROOT, 'thumbnails');
 const API_URL = 'https://api.openai.com/v1/responses';
 const IMAGE_API_URL = 'https://api.openai.com/v1/images/generations';
+
 const API_KEY = process.env.OPENAI_API_KEY || '';
 const MODEL = process.env.OPENAI_MODEL || 'gpt-5.6';
 const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
-const IMAGE_QUALITY = process.env.OPENAI_IMAGE_QUALITY || 'medium';
+const IMAGE_QUALITY = process.env.OPENAI_IMAGE_QUALITY || 'high';
+const IMAGE_SIZE = process.env.OPENAI_IMAGE_SIZE || '2560x1344';
+const IMAGE_FORMAT = process.env.OPENAI_IMAGE_FORMAT || 'webp';
+const IMAGE_COMPRESSION = clamp(Number(process.env.OPENAI_IMAGE_COMPRESSION || 100), 0, 100);
 const GENERATE_THUMBNAILS = process.env.GENERATE_THUMBNAILS !== '0';
-const THUMBNAIL_DIR = path.join(ROOT, 'thumbnails');
-const LIMIT = clamp(Number(process.env.ARTICLE_LIMIT || 3), 1, 6);
+const THUMBNAIL_BACKFILL_LIMIT = clamp(Number(process.env.THUMBNAIL_BACKFILL_LIMIT || 3), 0, 10);
+const LIMIT = clamp(Number(process.env.ARTICLE_LIMIT || 3), 1, 10);
 const CATEGORY_HINT = String(process.env.CATEGORY_HINT || 'all').trim();
 const DRY_RUN = process.env.DRY_RUN === '1';
 
@@ -36,14 +41,21 @@ const jstDate = new Intl.DateTimeFormat('ja-JP', {
 
 const recent = feed.articles
   .filter(article => Date.now() - new Date(article.updatedAt || article.generatedAt || 0).getTime() < 21 * 86400000)
-  .slice(0, 60)
-  .map(article => ({ id: article.id, topicKey: article.topicKey, title: article.title, work: article.work, updatedAt: article.updatedAt || article.generatedAt }));
+  .slice(0, 100)
+  .map(article => ({
+    id: article.id,
+    topicKey: article.topicKey,
+    title: article.title,
+    work: article.work,
+    updatedAt: article.updatedAt || article.generatedAt
+  }));
 
 const discoverySchema = {
-  type: 'object', additionalProperties: false,
+  type: 'object',
+  additionalProperties: false,
   properties: {
     candidates: {
-      type: 'array', minItems: 1, maxItems: 8,
+      type: 'array', minItems: 0, maxItems: 12,
       items: {
         type: 'object', additionalProperties: false,
         properties: {
@@ -68,7 +80,8 @@ const discoverySchema = {
 };
 
 const articleSchema = {
-  type: 'object', additionalProperties: false,
+  type: 'object',
+  additionalProperties: false,
   properties: {
     title: { type: 'string' },
     category: { type: 'string', enum: ['漫画','アニメ','ドラマ','映画','都市伝説','その他'] },
@@ -86,7 +99,10 @@ const articleSchema = {
       items: {
         type: 'object', additionalProperties: false,
         properties: {
-          title: { type: 'string' }, publisher: { type: 'string' }, url: { type: 'string' }, publishedAt: { type: 'string' }
+          title: { type: 'string' },
+          publisher: { type: 'string' },
+          url: { type: 'string' },
+          publishedAt: { type: 'string' }
         },
         required: ['title','publisher','url','publishedAt']
       }
@@ -95,11 +111,12 @@ const articleSchema = {
   required: ['title','category','work','price','spoilerRange','freeSection','paidSection','tags','thumbnailText','thumbnailPrompt','whyNow','sources']
 };
 
-let candidates;
+let candidates = [];
 if (DRY_RUN) {
   candidates = [{
-    topicKey: `dry-run-${Date.now()}`, work: '動作確認', category: 'その他', angle: '自動生成の動作確認',
-    whyNow: 'ワークフローの確認用', eventDate: new Date().toISOString().slice(0,10), score: 50,
+    topicKey: `dry-run-${Date.now()}`,
+    work: '動作確認', category: 'その他', angle: '自動生成の動作確認',
+    whyNow: 'ワークフローの確認用', eventDate: new Date().toISOString().slice(0, 10), score: 50,
     recommendedPrice: '無料', spoilerRange: 'なし', mode: 'new', updateTargetId: '', sourceHints: []
   }];
 } else {
@@ -108,7 +125,7 @@ ${masterPrompt}
 
 今日は日本時間で${jstDate}です。
 最新72時間を中心に、アニメ・漫画・ドラマ・映画・都市伝説の公式発表、最新話、最新回、興行、配信、放送ニュースをWeb検索してください。
-ミタアトの記事候補を最大8件選び、優先度順に返してください。
+ミタアトの記事候補を最大12件選び、優先度順に返してください。
 カテゴリ指定は「${CATEGORY_HINT}」です。allなら全カテゴリを均等に見ます。
 
 候補選定の重み：話題性20、鮮度15、長期検索15、考察余地15、タイトルの引き15、100円相性10、競合の弱さ10。
@@ -118,29 +135,31 @@ ${masterPrompt}
 直近の記事一覧：
 ${JSON.stringify(recent, null, 2)}
 `;
-  const discovered = await callOpenAI({ prompt: discoveryPrompt, schema: discoverySchema, name: 'mitaato_candidates', maxOutputTokens: 7000 });
+  const discovered = await callOpenAI({
+    prompt: discoveryPrompt,
+    schema: discoverySchema,
+    name: 'mitaato_candidates',
+    maxOutputTokens: 9000
+  });
   candidates = discovered.candidates || [];
 }
 
 candidates = candidates
-  .sort((a,b) => Number(b.score || 0) - Number(a.score || 0))
+  .sort((a, b) => Number(b.score || 0) - Number(a.score || 0))
   .filter(candidate => candidate.mode === 'update' || !recent.some(item => item.topicKey === candidate.topicKey))
   .slice(0, LIMIT);
-
-if (!candidates.length) {
-  console.log('No new article candidates.');
-  process.exit(0);
-}
 
 const generated = [];
 for (const [index, candidate] of candidates.entries()) {
   console.log(`[${index + 1}/${candidates.length}] Generating: ${candidate.work} / ${candidate.angle}`);
   let article;
+
   if (DRY_RUN) {
     article = {
-      title: '【動作確認】ミタアト自動生成テスト', category: 'その他', work: '動作確認', price: '無料', spoilerRange: 'なし',
-      freeSection: 'これはDRY_RUNで生成された確認用記事です。\n\n読み終わった。そのあとが面白い。\n\nミタアト。', paidSection: '',
-      tags: '#動作確認 #ミタアト', thumbnailText: '自動生成\n動作確認',
+      title: '【動作確認】ミタアト自動生成テスト', category: 'その他', work: '動作確認',
+      price: '無料', spoilerRange: 'なし',
+      freeSection: 'これはDRY_RUNで生成された確認用記事です。\n\n読み終わった。そのあとが面白い。\n\nミタアト。',
+      paidSection: '', tags: '#動作確認 #ミタアト', thumbnailText: '自動生成\n動作確認',
       thumbnailPrompt: 'note記事用の非常に横長なサムネイル。人物を使わず、生成処理を抽象的な書類とチェックマークで表現する。',
       whyNow: candidate.whyNow,
       sources: [{ title: 'OpenAI API Documentation', publisher: 'OpenAI', url: 'https://developers.openai.com/api/docs', publishedAt: '' }]
@@ -160,9 +179,15 @@ ${masterPrompt}
 タグは必ず改行なしの1行で、#ミタアトを含めます。
 thumbnailTextは3〜4行、短く太い言葉にします。
 thumbnailPromptは記事固有の用語を検索で確認したうえで、人物・キャラクター・顔・目・後ろ姿・シルエット・身体の一部・人型や生物型の代替表現を使わずに作ります。
+サムネイルは高解像度表示を前提に、文字の輪郭を明瞭にし、圧縮ノイズ、細かすぎる模様、小さすぎる文字を避ける指示を含めます。
 本文内に出典番号や架空の引用記号を入れないでください。確認元はsourcesへ正式URLで格納します。
 `;
-    article = await callOpenAI({ prompt: articlePrompt, schema: articleSchema, name: 'mitaato_article', maxOutputTokens: 22000 });
+    article = await callOpenAI({
+      prompt: articlePrompt,
+      schema: articleSchema,
+      name: 'mitaato_article',
+      maxOutputTokens: 22000
+    });
   }
 
   article.tags = normalizeTags(article.tags);
@@ -179,11 +204,7 @@ thumbnailPromptは記事固有の用語を検索で確認したうえで、人�
 
   if (!DRY_RUN && GENERATE_THUMBNAILS && article.thumbnailPrompt) {
     try {
-      thumbnailImage = await generateThumbnail({
-        prompt: article.thumbnailPrompt,
-        id,
-        revision
-      });
+      thumbnailImage = await generateThumbnail({ prompt: article.thumbnailPrompt, id, revision });
     } catch (error) {
       console.error(`Thumbnail generation failed for ${id}:`, error.message);
       console.log('The article will still be saved with its thumbnail prompt.');
@@ -197,6 +218,10 @@ thumbnailPromptは記事固有の用語を検索で確認したうえで、人�
     score: candidate.score,
     eventDate: candidate.eventDate,
     thumbnailImage,
+    thumbnailMimeType: thumbnailImage ? `image/${IMAGE_FORMAT}` : '',
+    thumbnailWidth: thumbnailImage ? Number(IMAGE_SIZE.split('x')[0]) : undefined,
+    thumbnailHeight: thumbnailImage ? Number(IMAGE_SIZE.split('x')[1]) : undefined,
+    thumbnailQuality: thumbnailImage ? IMAGE_QUALITY : '',
     generatedAt: target?.generatedAt || timestamp,
     updatedAt: timestamp,
     revision,
@@ -207,8 +232,30 @@ thumbnailPromptは記事固有の用語を検索で確認したうえで、人�
 const replacements = new Map(generated.map(article => [article.id, article]));
 const untouched = feed.articles.filter(article => !replacements.has(article.id));
 feed.articles = [...generated, ...untouched]
-  .sort((a,b) => new Date(b.updatedAt || b.generatedAt) - new Date(a.updatedAt || a.generatedAt))
+  .sort((a, b) => new Date(b.updatedAt || b.generatedAt) - new Date(a.updatedAt || a.generatedAt))
   .slice(0, 240);
+
+if (!DRY_RUN && GENERATE_THUMBNAILS && THUMBNAIL_BACKFILL_LIMIT > 0) {
+  const missing = feed.articles
+    .filter(article => !article.thumbnailImage && article.thumbnailPrompt)
+    .slice(0, THUMBNAIL_BACKFILL_LIMIT);
+
+  for (const [index, article] of missing.entries()) {
+    console.log(`[thumbnail backfill ${index + 1}/${missing.length}] ${article.title}`);
+    try {
+      const revision = Number(article.revision || 1);
+      article.thumbnailImage = await generateThumbnail({ prompt: article.thumbnailPrompt, id: article.id, revision });
+      article.thumbnailMimeType = `image/${IMAGE_FORMAT}`;
+      article.thumbnailWidth = Number(IMAGE_SIZE.split('x')[0]);
+      article.thumbnailHeight = Number(IMAGE_SIZE.split('x')[1]);
+      article.thumbnailQuality = IMAGE_QUALITY;
+      article.updatedAt = new Date().toISOString();
+    } catch (error) {
+      console.error(`Thumbnail backfill failed for ${article.id}:`, error.message);
+    }
+  }
+}
+
 feed.updatedAt = new Date().toISOString();
 feed.generator = {
   model: MODEL,
@@ -217,6 +264,9 @@ feed.generator = {
   categoryHint: CATEGORY_HINT,
   imageModel: GENERATE_THUMBNAILS ? IMAGE_MODEL : '',
   imageQuality: GENERATE_THUMBNAILS ? IMAGE_QUALITY : '',
+  imageSize: GENERATE_THUMBNAILS ? IMAGE_SIZE : '',
+  imageFormat: GENERATE_THUMBNAILS ? IMAGE_FORMAT : '',
+  imageCompression: GENERATE_THUMBNAILS ? IMAGE_COMPRESSION : 0,
   thumbnailsEnabled: GENERATE_THUMBNAILS
 };
 
@@ -225,17 +275,17 @@ console.log(`Saved ${generated.length} article(s) to ${DATA_PATH}`);
 
 async function generateThumbnail({ prompt, id, revision }) {
   const fileBase = safeFileBase(id);
-  const fileName = `${fileBase}-r${revision}.webp`;
+  const fileName = `${fileBase}-r${revision}.${IMAGE_FORMAT}`;
   const outputPath = path.join(THUMBNAIL_DIR, fileName);
   const body = {
     model: IMAGE_MODEL,
     prompt,
     n: 1,
-    size: '1728x912',
+    size: IMAGE_SIZE,
     quality: IMAGE_QUALITY,
     background: 'opaque',
-    output_format: 'webp',
-    output_compression: 86
+    output_format: IMAGE_FORMAT,
+    output_compression: IMAGE_COMPRESSION
   };
 
   let lastError;
@@ -317,7 +367,10 @@ function extractOutputText(payload) {
 
 function createId(value) {
   const date = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo' }).format(new Date()).replaceAll('-', '');
-  const slug = String(value || 'article').normalize('NFKC').toLowerCase().replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]+/g, '-').replace(/^-|-$/g, '').slice(0, 54);
+  const slug = String(value || 'article').normalize('NFKC').toLowerCase()
+    .replace(/[^a-z0-9ぁ-んァ-ヶ一-龠]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 54);
   const hash = crypto.createHash('sha1').update(`${value}-${Date.now()}`).digest('hex').slice(0, 7);
   return `${date}-${slug || 'article'}-${hash}`;
 }

@@ -73,3 +73,104 @@ html.quiz-mode body{position:fixed;inset:0}
 .quiz-short .quiz-frame.is-answered .quiz-stage{display:flex;justify-content:center}
 .quiz-short .quiz-frame.is-answered .feedback{padding:10px 12px}
 .quiz-short .quiz-frame.is-answered .feedback p{font-size:11px;line-height:1.5}
+
+/* Home prioritizes setup and the start action over decorative headings. */
+html.home-mode,html.home-mode body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none}
+.home-mode body{position:fixed;top:var(--quiz-top,0px);left:0;width:100%;height:var(--quiz-height,100dvh);display:flex;flex-direction:column}
+.home-mode .header{flex:0 0 58px;width:100%;height:58px;min-height:58px;padding:6px 20px;margin:0 auto}
+.home-mode .brand{font-size:19px;letter-spacing:2px;gap:9px}
+.home-mode .brand-seal{width:30px;height:34px;font-size:21px}
+.home-mode .brand small{font-size:9px;letter-spacing:1px;margin-top:3px}
+.home-mode .version{font-size:10px;padding:4px 7px}
+.home-mode .layout{flex:1;min-height:0;width:100%;display:grid;grid-template-columns:210px 1fr}
+.home-mode .sidebar{min-height:0;padding:24px 16px}
+.home-mode .side-bottom{display:none}
+.home-mode main{min-height:0;max-width:780px;padding:24px 32px;display:flex;align-items:center;justify-content:center}
+.home-screen{width:100%;max-height:100%;display:flex;flex-direction:column;gap:12px;min-height:0}
+.home-screen .stats{flex:0 0 auto;margin:0;padding:12px 0}
+.home-screen .stat{padding:0 16px}.home-screen .stat:first-child{padding-left:0}
+.home-screen .stat span{font-size:10px;margin-bottom:5px}.home-screen .stat strong{font-size:23px;line-height:1.2}
+.home-screen .home-controls{display:grid;gap:16px;padding:20px}
+.home-screen .section-title{margin:0;gap:8px}
+.home-screen .section-title h1{font-size:16px;line-height:1.4;letter-spacing:1px}
+.home-screen .section-title small{font-size:11px;white-space:nowrap}
+.home-screen .mode-card{min-height:86px;padding:13px 14px 13px 54px;display:flex;flex-direction:column;justify-content:center}
+.home-screen .mode-card .symbol{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:25px;margin:0}
+.home-screen .mode-card strong{font-size:13px}.home-screen .mode-card small{font-size:11px;margin-top:5px}
+.home-screen .mode-card .check{width:14px;height:14px;line-height:12px;right:8px;top:8px;font-size:9px}
+.home-settings{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:end}
+.home-settings .control{gap:6px;min-width:0}
+.home-settings .segments{display:flex;gap:3px;padding:3px}
+.home-settings .segments button{flex:1;min-width:0;min-height:38px;padding:8px 7px;white-space:nowrap}
+.fixed-format{display:flex;align-items:center;min-height:44px;padding:8px 12px;background:#efeee7;border-radius:6px;color:var(--ink);font-size:12px}
+.home-screen .start-button{min-height:48px;padding:12px 16px}
+.home-screen .home-hint{font-size:10px;text-align:center;margin:0;line-height:1.5}
+.home-screen .home-about{align-self:center;flex:0 0 auto;min-height:32px;padding:6px 10px;font-size:10px;text-decoration:underline;text-underline-offset:3px}
+#about-dialog{max-height:85dvh;overflow:auto}
+#about-dialog .about{margin:0;padding:0;border:0}#about-dialog .about summary{color:var(--ink);font-size:14px;font-weight:700}
+#about-dialog .primary{display:block;width:100%;margin-top:20px}
+@media(max-width:760px){
+ .home-mode .layout{display:flex;flex-direction:column}
+ .home-mode .sidebar{flex:0 0 auto;padding:6px 14px}
+ .home-mode .side-label{display:none}
+ .home-mode .sidebar nav{display:flex;gap:4px}
+ .home-mode .nav{min-height:38px;padding:8px 5px;margin:0;font-size:11px}
+ .home-mode .nav span{display:none}
+ .home-mode main{flex:1;width:100%;padding:10px 18px max(10px,env(safe-area-inset-bottom));align-items:center}
+ .home-screen{gap:10px}
+ .home-screen .stats{padding:10px 0}
+ .home-screen .stat{padding-inline:12px}.home-screen .stat:first-child{padding-left:0}
+ .home-screen .stat span{font-size:9px;margin-bottom:4px}.home-screen .stat strong{font-size:21px}
+ .home-screen .home-controls{padding:16px;gap:14px}
+ .home-screen .mode-grid{gap:10px}
+ .home-screen .mode-card{min-height:80px;padding:12px 10px 12px 44px}
+ .home-screen .mode-card .symbol{left:12px;font-size:23px}
+ .home-screen .mode-card strong{font-size:12px}.home-screen .mode-card small{font-size:10px;margin-top:4px}
+ .home-settings{gap:12px}
+}
+@media(max-width:360px){
+ .home-mode main{padding-inline:12px}.home-screen .home-controls{padding:12px}
+ .home-settings{gap:8px}.home-settings .segments button{padding-inline:4px;font-size:11px}
+ .home-screen .section-title h1{font-size:15px}.home-screen .mode-card{padding-left:37px}
+ .home-screen .mode-card .symbol{left:9px;font-size:21px}.home-screen .mode-card strong{font-size:11px}
+}
+@media(max-height:580px){
+ .home-mode .header{height:50px;min-height:50px;flex-basis:50px}
+ .home-mode .sidebar{padding-block:4px}.home-mode .nav{min-height:34px;padding-block:6px}
+ .home-mode main{padding-top:6px;padding-bottom:max(6px,env(safe-area-inset-bottom))}
+ .home-screen{gap:6px}.home-screen .stats{padding:7px 0}
+ .home-screen .stat span{margin-bottom:3px}.home-screen .stat strong{font-size:19px}
+ .home-screen .home-controls{gap:10px;padding:12px}
+ .home-screen .mode-card{min-height:66px}.home-screen .section-title h1{font-size:14px}
+ .home-screen .start-button{min-height:44px;padding-block:10px}
+ .home-screen .home-about{min-height:28px;padding-block:4px}
+}
+@media(orientation:landscape) and (max-height:500px){
+ .home-mode .layout{display:block}.home-mode .sidebar{display:none}
+ .home-mode .header{height:44px;min-height:44px;flex-basis:44px;padding-block:4px}
+ .home-mode .brand small{display:none}.home-mode .brand-seal{height:30px;width:28px}
+ .home-mode main{height:100%;max-width:980px;padding:8px max(16px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+ .home-screen{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.8fr);grid-template-rows:1fr auto;column-gap:20px;row-gap:6px;height:100%;align-items:center}
+ .home-screen .stats{grid-column:1;grid-row:1;align-self:center;display:grid;grid-template-columns:1fr;padding:0;border:0;gap:9px}
+ .home-screen .stat{padding:0!important;border:0}.home-screen .stat span{display:inline;font-size:10px;margin-right:10px}
+ .home-screen .stat strong{font-size:20px}.home-screen .stat small{font-size:9px}
+ .home-screen .home-controls{grid-column:2;grid-row:1/3;padding:10px 12px;gap:8px}
+ .home-screen .home-about{grid-column:1;grid-row:2;justify-self:start;text-align:left;min-height:28px;padding:4px 0}
+ .home-screen .mode-card{min-height:48px;padding:6px 8px 6px 38px}
+ .home-screen .mode-card .symbol{left:10px;font-size:20px}
+ .home-screen .mode-card strong{font-size:11px}.home-screen .mode-card small{font-size:9px;margin-top:2px}
+ .home-settings .control{gap:3px;font-size:10px}
+ .home-settings .segments button{min-height:32px;padding:5px;font-size:11px}
+ .fixed-format{min-height:38px}
+ .home-screen .start-button{min-height:40px;padding:8px 12px}
+ .home-screen .home-hint{display:none}
+}
+.home-mode body{padding-top:env(safe-area-inset-top)}
+@media(orientation:landscape) and (max-height:500px){
+ .home-mode .layout{display:flex;flex-direction:column}
+ .home-mode .sidebar{display:block;flex:0 0 42px;padding:4px 14px;border-right:0;border-bottom:1px solid var(--line)}
+ .home-mode .side-label{display:none}.home-mode .sidebar nav{display:flex;flex-direction:row;gap:4px}
+ .home-mode .nav{justify-content:center;min-height:34px;padding:6px 5px;margin:0;font-size:11px;gap:5px}
+ .home-mode .nav span{display:none}
+ .home-mode main{flex:1;min-height:0;height:auto}
+}

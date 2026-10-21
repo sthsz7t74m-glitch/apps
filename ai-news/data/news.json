@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-21T17:35:08.454Z",
+  "generatedAt": "2026-10-21T20:51:29.144Z",
   "sourceMode": "rss",
-  "totalArticles": 352,
-  "totalClusters": 105,
+  "totalArticles": 354,
+  "totalClusters": 102,
   "succeededSources": 15,
   "failedSources": 3,
   "deduplication": {
@@ -17,56 +17,56 @@
       "name": "NHK NEWS WEB",
       "ok": true,
       "count": 7,
-      "fetchedAt": "2026-10-21T17:35:08.455Z"
+      "fetchedAt": "2026-10-21T20:51:29.145Z"
     },
     {
       "id": "asahi-news",
       "name": "朝日新聞デジタル",
       "ok": true,
       "count": 35,
-      "fetchedAt": "2026-10-21T17:35:08.514Z"
+      "fetchedAt": "2026-10-21T20:51:29.202Z"
     },
     {
       "id": "mainichi-news",
       "name": "毎日新聞",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-10-21T17:35:08.515Z"
+      "fetchedAt": "2026-10-21T20:51:29.203Z"
     },
     {
       "id": "bbc-japanese",
       "name": "BBC News Japan",
       "ok": true,
       "count": 38,
-      "fetchedAt": "2026-10-21T17:35:08.516Z"
+      "fetchedAt": "2026-10-21T20:51:29.204Z"
     },
     {
       "id": "livedoor-news",
       "name": "ライブドアニュース",
       "ok": true,
       "count": 23,
-      "fetchedAt": "2026-10-21T17:35:08.517Z"
+      "fetchedAt": "2026-10-21T20:51:29.206Z"
     },
     {
       "id": "itmedia",
       "name": "ITmedia",
       "ok": true,
       "count": 50,
-      "fetchedAt": "2026-10-21T17:35:08.519Z"
+      "fetchedAt": "2026-10-21T20:51:29.207Z"
     },
     {
       "id": "impress-watch",
       "name": "Impress Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-10-21T17:35:08.520Z"
+      "fetchedAt": "2026-10-21T20:51:29.208Z"
     },
     {
       "id": "cnet-japan",
       "name": "CNET Japan",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-10-21T17:35:08.520Z",
+      "fetchedAt": "2026-10-21T20:51:29.208Z",
       "error": "フィード内に記事がありません"
     },
     {
@@ -74,14 +74,14 @@
       "name": "GIGAZINE",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-10-21T17:35:08.521Z"
+      "fetchedAt": "2026-10-21T20:51:29.209Z"
     },
     {
       "id": "ascii",
       "name": "ASCII.jp",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-10-21T17:35:08.523Z",
+      "fetchedAt": "2026-10-21T20:51:29.211Z",
       "error": "HTTP 503"
     },
     {
@@ -89,14 +89,14 @@
       "name": "PC Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-10-21T17:35:08.524Z"
+      "fetchedAt": "2026-10-21T20:51:29.211Z"
     },
     {
       "id": "internet-watch",
       "name": "INTERNET Watch",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-10-21T17:35:08.525Z",
+      "fetchedAt": "2026-10-21T20:51:29.212Z",
       "error": "HTTP 404"
     },
     {
@@ -104,50 +104,50 @@
       "name": "AV Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-10-21T17:35:08.526Z"
+      "fetchedAt": "2026-10-21T20:51:29.213Z"
     },
     {
       "id": "game-watch",
       "name": "GAME Watch",
       "ok": true,
       "count": 29,
-      "fetchedAt": "2026-10-21T17:35:08.526Z"
+      "fetchedAt": "2026-10-21T20:51:29.214Z"
     },
     {
       "id": "jpcert",
       "name": "JPCERT/CC",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-10-21T17:35:08.527Z"
+      "fetchedAt": "2026-10-21T20:51:29.215Z"
     },
     {
       "id": "jma-extra",
       "name": "気象庁 防災情報",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-10-21T17:35:08.528Z"
+      "fetchedAt": "2026-10-21T20:51:29.216Z"
     },
     {
       "id": "google-japan",
       "name": "Google Japan Blog",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-10-21T17:35:08.529Z"
+      "fetchedAt": "2026-10-21T20:51:29.217Z"
     },
     {
       "id": "openai-news",
       "name": "OpenAI News",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-10-21T17:35:08.530Z"
+      "fetchedAt": "2026-10-21T20:51:29.217Z"
     }
   ],
   "items": [
     {
-      "id": "news-c8b06e92852618d9",
-      "title": "気象特別警報・警報・注意報",
-      "summary": "【秋田県気象警報・注意報】秋田県では、土砂災害や低い土地の浸水、強風、高波に注意してください。沿岸では、河川の増水に注意してください。",
-      "fact": "【秋田県気象警報・注意報】秋田県では、土砂災害や低い土地の浸水、強風、高波に注意してください。沿岸では、河川の増水に注意してください。",
+      "id": "news-f462b44231e0a6ac",
+      "title": "府県気象解説情報",
+      "summary": "【沖縄本島地方気象解説情報（台風第３０号）】沖縄本島地方に波浪警報を発表しました。沖縄本島地方では、２４日にかけてうねりを伴う高波に警戒してください。また、本島中南部と本島北部では、雨雲の発達の程度によっては警報級の大雨となるおそれがあります。２３日にかけて土砂災害や低い土地の浸水、河川の増水に十分注意してください。",
+      "fact": "【沖縄本島地方気象解説情報（台風第３０号）】沖縄本島地方に波浪警報を発表しました。沖縄本島地方では、２４日にかけてうねりを伴う高波に警戒してください。また、本島中南部と本島北部では、雨雲の発達の程度によっては警報級の大雨となるおそれがあります。２３日にかけて土砂災害や低い土地の浸水、河川の増水に十分注意してください。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -158,27 +158,105 @@
       ],
       "minutes": 1,
       "priority": 97,
-      "breaking": true,
-      "publishedAt": "2026-10-21T17:33:03.000Z",
-      "duplicateCount": 9,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:34:54.000Z",
+      "duplicateCount": 15,
       "sources": [
         {
           "name": "気象庁 防災情報",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021173304_0_VPWW53_015000.xml",
-          "publishedAt": "2026-10-21T17:33:03.000Z"
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021203455_0_VPFJ50_014100.xml",
+          "publishedAt": "2026-10-21T20:34:54.000Z"
         }
       ],
       "confidence": 81,
       "consensus": "単独報道",
       "keyPoints": [
-        "【秋田県気象警報・注意報】秋田県では、土砂災害や低い土地の浸水、強風、高波に注意してください。沿岸では、河川の増水に注意してください。",
+        "【沖縄本島地方気象解説情報（台風第３０号）】沖縄本島地方に波浪警報を発表しました。沖縄本島地方では、２４日にかけてうねりを伴う高波に警戒してください。また、本島中南部と本島北部では、雨雲の発達の程度によっては警報級の大雨となるおそれがあります。２３日にかけて土砂災害や低い土地の浸水、河川の増水に十…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "府県気象情報"
+      ]
+    },
+    {
+      "id": "news-c8b06e92852618d9",
+      "title": "気象特別警報・警報・注意報",
+      "summary": "【網走・北見・紋別地方気象警報・注意報】網走、北見、紋別地方では、強風や落雷に注意してください。網走、紋別地方では、高波に注意してください。",
+      "fact": "【網走・北見・紋別地方気象警報・注意報】網走、北見、紋別地方では、強風や落雷に注意してください。網走、紋別地方では、高波に注意してください。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 91,
+      "breaking": true,
+      "publishedAt": "2026-10-21T20:11:09.000Z",
+      "duplicateCount": 4,
+      "sources": [
+        {
+          "name": "気象庁 防災情報",
+          "type": "公式発表",
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021201111_0_VPWW53_013000.xml",
+          "publishedAt": "2026-10-21T20:11:09.000Z"
+        }
+      ],
+      "confidence": 71,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "【網走・北見・紋別地方気象警報・注意報】網走、北見、紋別地方では、強風や落雷に注意してください。網走、紋別地方では、高波に注意してください。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
       "semanticClusterSize": 1,
       "alternateTitles": []
+    },
+    {
+      "id": "news-67d433705b22156b",
+      "title": "地方気象情報",
+      "summary": "【沖縄地方気象解説情報（台風第３０号）】台風第３０号は、２３日から２４日にかけて非常に強い勢力で先島諸島に接近する見込みです。先島諸島では暴風やうねりを伴う高波、土砂災害に厳重に警戒し、低い土地の浸水、河川の増水や氾濫に警戒してください。沖縄本島地方と大東島地方でもうねりを伴う高波に警戒してください。",
+      "fact": "【沖縄地方気象解説情報（台風第３０号）】台風第３０号は、２３日から２４日にかけて非常に強い勢力で先島諸島に接近する見込みです。先島諸島では暴風やうねりを伴う高波、土砂災害に厳重に警戒し、低い土地の浸水、河川の増水や氾濫に警戒してください。沖縄本島地方と大東島地方でもうねりを伴う高波に警戒してください。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 86,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:30:52.000Z",
+      "duplicateCount": 3,
+      "sources": [
+        {
+          "name": "気象庁 防災情報",
+          "type": "公式発表",
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021203053_0_VPCJ50_471000.xml",
+          "publishedAt": "2026-10-21T20:30:52.000Z"
+        }
+      ],
+      "confidence": 69,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "【沖縄地方気象解説情報（台風第３０号）】台風第３０号は、２３日から２４日にかけて非常に強い勢力で先島諸島に接近する見込みです。先島諸島では暴風やうねりを伴う高波、土砂災害に厳重に警戒し、低い土地の浸水、河川の増水や氾濫に警戒してください。沖縄本島地方と大東島地方でもうねりを伴う高波に警戒してくださ…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "全般気象情報"
+      ]
     },
     {
       "id": "news-16ffe0a004363360",
@@ -193,7 +271,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 90,
+      "priority": 86,
       "breaking": true,
       "publishedAt": "2026-10-21T16:00:00.000Z",
       "duplicateCount": 1,
@@ -217,35 +295,107 @@
       "alternateTitles": []
     },
     {
-      "id": "news-18b1ec3988cddde6",
-      "title": "台風解析・予報情報（５日予報）（Ｈ３０）",
-      "summary": "【台風解析・予報情報】",
-      "fact": "【台風解析・予報情報】",
+      "id": "news-69461028dbe37911",
+      "title": "緊迫する中東情勢:オリーブ収穫中に金属棒で…「まるで戦争」ユダヤ人入植者の横暴",
+      "summary": "緊迫する中東情勢:オリーブ収穫中に金属棒で…「まるで戦争」ユダヤ人入植者の横暴",
+      "fact": "緊迫する中東情勢:オリーブ収穫中に金属棒で…「まるで戦争」ユダヤ人入植者の横暴",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
+      "category": "国際",
       "tags": [
-        "気象・防災",
-        "防災"
+        "国際"
       ],
       "minutes": 1,
-      "priority": 90,
-      "breaking": true,
-      "publishedAt": "2026-10-21T15:41:36.000Z",
+      "priority": 85,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:30:23.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "気象庁 防災情報",
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261019/k00/00m/030/255000c",
+          "publishedAt": "2026-10-21T20:30:23.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "緊迫する中東情勢:オリーブ収穫中に金属棒で…「まるで戦争」ユダヤ人入植者の横暴",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-39cad894cdd240fb",
+      "title": "How AT&T is rethinking in-house legal work with OpenAI",
+      "summary": "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
+      "fact": "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "AI"
+      ],
+      "minutes": 1,
+      "priority": 83,
+      "breaking": false,
+      "publishedAt": "2026-10-21T17:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "OpenAI News",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021154137_0_VPTW60_010000.xml",
-          "publishedAt": "2026-10-21T15:41:36.000Z"
+          "url": "https://openai.com/index/att-legal",
+          "publishedAt": "2026-10-21T17:00:00.000Z"
         }
       ],
       "confidence": 64,
       "consensus": "単独報道",
       "keyPoints": [
-        "【台風解析・予報情報】",
+        "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-1abd022d4a588b1b",
+      "title": "裁判Plus 司法のリアル:性加害者が児相職員に 「ばれない」卑劣さを許した行政のずさん",
+      "summary": "裁判Plus 司法のリアル:性加害者が児相職員に 「ばれない」卑劣さを許した行政のずさん",
+      "fact": "裁判Plus 司法のリアル:性加害者が児相職員に 「ばれない」卑劣さを許した行政のずさん",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 81,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:30:15.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261019/k00/00m/040/263000c",
+          "publishedAt": "2026-10-21T20:30:15.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "裁判Plus 司法のリアル:性加害者が児相職員に 「ばれない」卑劣さを許した行政のずさん",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -266,7 +416,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 86,
+      "priority": 79,
       "breaking": true,
       "publishedAt": "2026-10-21T15:53:13.000Z",
       "duplicateCount": 1,
@@ -290,124 +440,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-75b096442a664f30",
-      "title": "俺が「孫悟空」になる！「ドラゴンボール ゼノバース３」メディア向け発表会レポートナメック人やフリーザ一族も選択できるキャラメイク！お馴染みキャラにも「ソウルチェンジ」で変身！",
-      "summary": "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
-      "fact": "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "Microsoft",
-        "Steam"
-      ],
-      "minutes": 1,
-      "priority": 84,
-      "breaking": true,
-      "publishedAt": "2026-10-21T14:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/kikaku/2146971.html",
-          "publishedAt": "2026-10-21T14:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-8369a8df90d6622b",
-      "title": "秋田・子吉川にレベル5氾濫特別警報 気象庁が安全確保呼びかけ",
-      "summary": "秋田・子吉川にレベル5氾濫特別警報 気象庁が安全確保呼びかけ",
-      "fact": "秋田・子吉川にレベル5氾濫特別警報 気象庁が安全確保呼びかけ",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 83,
-      "breaking": true,
-      "publishedAt": "2026-10-21T14:12:18.000Z",
-      "duplicateCount": 3,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/391000c",
-          "publishedAt": "2026-10-21T14:12:18.000Z"
-        }
-      ],
-      "confidence": 62,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "秋田・子吉川にレベル5氾濫特別警報 気象庁が安全確保呼びかけ",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 3,
-      "alternateTitles": [
-        "秋田・子吉川の氾濫、けが人の情報なし レベル5氾濫特別警報",
-        "秋田・子吉川が氾濫、越水を確認 レベル5氾濫特別警報発表"
-      ]
-    },
-    {
-      "id": "news-16cdbe907f269cf1",
-      "title": "日本音コン本選が開幕 作曲部門の審査結果を発表",
-      "summary": "日本音コン本選が開幕 作曲部門の審査結果を発表",
-      "fact": "日本音コン本選が開幕 作曲部門の審査結果を発表",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 83,
-      "breaking": true,
-      "publishedAt": "2026-10-21T12:45:11.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/200/376000c",
-          "publishedAt": "2026-10-21T12:45:11.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "日本音コン本選が開幕 作曲部門の審査結果を発表",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-48e25fc4c51b2a11",
-      "title": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
-      "summary": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
-      "fact": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
+      "id": "news-5099f3562291dcf0",
+      "title": "北朝鮮、対韓国心理戦の拡声機を月内に「稼働状態」に 与正氏が表明",
+      "summary": "北朝鮮、対韓国心理戦の拡声機を月内に「稼働状態」に 与正氏が表明",
+      "fact": "北朝鮮、対韓国心理戦の拡声機を月内に「稼働状態」に 与正氏が表明",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -416,94 +452,22 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 82,
+      "priority": 78,
       "breaking": false,
-      "publishedAt": "2026-10-21T16:04:47.000Z",
+      "publishedAt": "2026-10-21T20:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP574PVBPUHBI02QM.html",
-          "publishedAt": "2026-10-21T16:04:47.000Z"
+          "url": "http://www.asahi.com/articles/ASVBP45KLVBPUHBI020M.html",
+          "publishedAt": "2026-10-21T20:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-8a0b49a2cdb87c4c",
-      "title": "[ITmedia ビジネスオンライン] 【一体何が？】21日夜に「緊急メンテナンス」続々 業務ツール、ソシャゲ、通販、自治体Webサイトなど",
-      "summary": "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
-      "fact": "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済"
-      ],
-      "minutes": 1,
-      "priority": 82,
-      "breaking": true,
-      "publishedAt": "2026-10-21T11:41:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/business/articles/2610/21/news078.html",
-          "publishedAt": "2026-10-21T11:41:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-d666acad54265a86",
-      "title": "PHPが緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリース",
-      "summary": "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
-      "fact": "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 80,
-      "breaking": true,
-      "publishedAt": "2026-10-21T14:04:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-php-critical-vulnerabilities",
-          "publishedAt": "2026-10-21T14:04:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
+        "北朝鮮、対韓国心理戦の拡声機を月内に「稼働状態」に 与正氏が表明",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -524,7 +488,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 79,
+      "priority": 78,
       "breaking": false,
       "publishedAt": "2026-10-21T09:55:17.000Z",
       "duplicateCount": 2,
@@ -554,10 +518,46 @@
       "alternateTitles": []
     },
     {
-      "id": "news-892d2ba310bb0ecb",
-      "title": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
-      "summary": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
-      "fact": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
+      "id": "news-462d237def2c4a4e",
+      "title": "全国の裁判所めぐり「お宝判決」発掘 著作権法の実像追う研究者",
+      "summary": "全国の裁判所めぐり「お宝判決」発掘 著作権法の実像追う研究者",
+      "fact": "全国の裁判所めぐり「お宝判決」発掘 著作権法の実像追う研究者",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 77,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBN1QT2VBNPTIL00MM.html",
+          "publishedAt": "2026-10-21T20:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "全国の裁判所めぐり「お宝判決」発掘 著作権法の実像追う研究者",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-0a3abe1c8344b2f1",
+      "title": "クマ出没を即時発信 青森県、AI機能付きセンサーカメラを設置",
+      "summary": "クマ出没を即時発信 青森県、AI機能付きセンサーカメラを設置",
+      "fact": "クマ出没を即時発信 青森県、AI機能付きセンサーカメラを設置",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -566,139 +566,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 78,
+      "priority": 76,
       "breaking": false,
-      "publishedAt": "2026-10-21T15:01:49.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP4CXWVBPUTIL02TM.html",
-          "publishedAt": "2026-10-21T15:01:49.000Z"
-        },
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/382000c",
-          "publishedAt": "2026-10-21T14:34:21.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "高市首相「大至急のお願い」 プログラミング言語PHPの脆弱性で"
-      ]
-    },
-    {
-      "id": "news-7e576ed46f44e37a",
-      "title": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
-      "summary": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
-      "fact": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 77,
-      "breaking": false,
-      "publishedAt": "2026-10-21T16:01:57.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3R1BVBPUHBI01NM.html",
-          "publishedAt": "2026-10-21T16:01:57.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-3e26125d210ae1bf",
-      "title": "ニコニコやpixivなど各種ウェブサイトおよびアプリがPHPの緊急パッチに対応するべくメンテナンス入り",
-      "summary": "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。 続きを読む...",
-      "fact": "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 75,
-      "breaking": true,
-      "publishedAt": "2026-10-21T13:13:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-php-php2shell-maintenance",
-          "publishedAt": "2026-10-21T13:13:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b04df8f0831e0899",
-      "title": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
-      "summary": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
-      "fact": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 75,
-      "breaking": true,
-      "publishedAt": "2026-10-21T11:50:32.000Z",
+      "publishedAt": "2026-10-21T20:15:13.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/364000c",
-          "publishedAt": "2026-10-21T11:50:32.000Z"
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/131000c",
+          "publishedAt": "2026-10-21T20:15:13.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
+        "クマ出没を即時発信 青森県、AI機能付きセンサーカメラを設置",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -707,34 +590,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-4380f9f74e070ac6",
-      "title": "国内大手サービスで緊急メンテやサービス停止 PHP脆弱性で対策",
-      "summary": "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
-      "fact": "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
+      "id": "news-5c856667aae402e8",
+      "title": "読む政治:「たまたま女性初でした」 高市首相が「姉」に向けた言葉",
+      "summary": "読む政治:「たまたま女性初でした」 高市首相が「姉」に向けた言葉",
+      "fact": "読む政治:「たまたま女性初でした」 高市首相が「姉」に向けた言葉",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
+      "category": "国内",
       "tags": [
-        "AI・IT"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 74,
-      "breaking": true,
-      "publishedAt": "2026-10-21T13:05:41.000Z",
+      "priority": 71,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:00:29.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "Impress Watch",
-          "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2150159.html",
-          "publishedAt": "2026-10-21T13:05:41.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/038000c",
+          "publishedAt": "2026-10-21T20:00:29.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
+        "読む政治:「たまたま女性初でした」 高市首相が「姉」に向けた言葉",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -781,6 +664,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-becc8ddcba06ab47",
+      "title": "東京都議補選・千代田区、自民「不戦敗」へ 小池知事は支援の前面に",
+      "summary": "東京都議補選・千代田区、自民「不戦敗」へ 小池知事は支援の前面に",
+      "fact": "東京都議補選・千代田区、自民「不戦敗」へ 小池知事は支援の前面に",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 70,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP35WBVBPOXIE040M.html",
+          "publishedAt": "2026-10-21T20:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "東京都議補選・千代田区、自民「不戦敗」へ 小池知事は支援の前面に",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-7728e06b5f089032",
       "title": "【Amazonセール】シャオミのチューナーレステレビがお買い得！75インチの大型モデルも",
       "summary": "AmazonにてXiaomi（シャオミ）製のチューナーレステレビが特別価格で販売されている。期間は11月4日23時59分まで。",
@@ -819,34 +738,34 @@
       ]
     },
     {
-      "id": "news-3a4fd22757a04080",
-      "title": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
-      "summary": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
-      "fact": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
+      "id": "news-8a0b49a2cdb87c4c",
+      "title": "[ITmedia ビジネスオンライン] 【一体何が？】21日夜に「緊急メンテナンス」続々 業務ツール、ソシャゲ、通販、自治体Webサイトなど",
+      "summary": "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
+      "fact": "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "経済",
       "tags": [
-        "国内"
+        "経済"
       ],
       "minutes": 1,
-      "priority": 69,
+      "priority": 70,
       "breaking": false,
-      "publishedAt": "2026-10-21T15:10:10.000Z",
+      "publishedAt": "2026-10-21T11:41:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261022/k00/00m/310/001000c",
-          "publishedAt": "2026-10-21T15:10:10.000Z"
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/business/articles/2610/21/news078.html",
+          "publishedAt": "2026-10-21T11:41:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
+        "10月21日夜に「緊急メンテナンス」の実施を発表する企業が相次いでいる。対象サービスは、業種業界を問わない。いったい何が起きているのか。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -855,34 +774,106 @@
       "alternateTitles": []
     },
     {
-      "id": "news-f80d83b55a7598d2",
-      "title": "地球よりも生命が栄えやすい惑星は存在するのか？",
-      "summary": "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を報じています。 続きを読む...",
-      "fact": "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を報じています。 続きを読む...",
+      "id": "news-1496b34c5009e86e",
+      "title": "太陽光発電、本当に限界? 「次世代」推しの政府が踏むブレーキ",
+      "summary": "太陽光発電、本当に限界? 「次世代」推しの政府が踏むブレーキ",
+      "fact": "太陽光発電、本当に限界? 「次世代」推しの政府が踏むブレーキ",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
+      "category": "国内",
       "tags": [
-        "科学・文化"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 68,
+      "priority": 67,
       "breaking": false,
-      "publishedAt": "2026-10-21T13:20:00.000Z",
+      "publishedAt": "2026-10-21T20:00:29.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-superhabitable-planets",
-          "publishedAt": "2026-10-21T13:20:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261019/k00/00m/040/073000c",
+          "publishedAt": "2026-10-21T20:00:29.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を…",
+        "太陽光発電、本当に限界? 「次世代」推しの政府が踏むブレーキ",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-c6e9448fbdb564f0",
+      "title": "高市首相の外遊、少ない日数と過密日程 外交は内政よりも関心薄い？",
+      "summary": "高市首相の外遊、少ない日数と過密日程 外交は内政よりも関心薄い？",
+      "fact": "高市首相の外遊、少ない日数と過密日程 外交は内政よりも関心薄い？",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 66,
+      "breaking": false,
+      "publishedAt": "2026-10-21T20:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP3WMPVBPUTFK00SM.html",
+          "publishedAt": "2026-10-21T20:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "高市首相の外遊、少ない日数と過密日程 外交は内政よりも関心薄い？",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-48e25fc4c51b2a11",
+      "title": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
+      "summary": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
+      "fact": "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 66,
+      "breaking": false,
+      "publishedAt": "2026-10-21T16:04:47.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP574PVBPUHBI02QM.html",
+          "publishedAt": "2026-10-21T16:04:47.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "プーチン氏、ウクライナ情勢めぐる3カ国協議 「11月再開の用意」",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -966,73 +957,43 @@
       "alternateTitles": []
     },
     {
-      "id": "news-2547b54759a84ebe",
-      "title": "SpaceXとテスラの合併にマスク氏が言及「SI時代に大きな意味がある」",
-      "summary": "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
-      "fact": "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "id": "news-1cfb6291fa158d05",
+      "title": "OpenAI acquires Orchestra Bio",
+      "summary": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
+      "fact": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
+      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "AI・IT",
       "tags": [
-        "経済",
-        "国際"
+        "AI・IT",
+        "AI",
+        "Company"
       ],
       "minutes": 1,
-      "priority": 66,
+      "priority": 65,
       "breaking": false,
-      "publishedAt": "2026-10-21T09:50:08.000Z",
-      "duplicateCount": 1,
+      "publishedAt": "2026-10-21T01:46:00.000Z",
+      "duplicateCount": 2,
       "sources": [
         {
-          "name": "Impress Watch",
+          "name": "GIGAZINE",
           "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2150119.html",
-          "publishedAt": "2026-10-21T09:50:08.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-24e1d5906596711f",
-      "title": "指定河川洪水予報",
-      "summary": "【子吉川レベル２氾濫注意報（警報解除）】【警戒レベル２情報［洪水］】〔警戒レベル５相当から２に切替〕子吉川では、氾濫注意水位を上回る水位が続く見込み",
-      "fact": "【子吉川レベル２氾濫注意報（警報解除）】【警戒レベル２情報［洪水］】〔警戒レベル５相当から２に切替〕子吉川では、氾濫注意水位を上回る水位が続く見込み",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 64,
-      "breaking": false,
-      "publishedAt": "2026-10-21T17:20:09.000Z",
-      "duplicateCount": 1,
-      "sources": [
+          "url": "https://gigazine.net/news/20261021-openai-acquires-orchestra-bio",
+          "publishedAt": "2026-10-21T01:46:00.000Z"
+        },
         {
-          "name": "気象庁 防災情報",
+          "name": "OpenAI News",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20261021172015_0_VXKO55_050000.xml",
-          "publishedAt": "2026-10-21T17:20:09.000Z"
+          "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
+          "publishedAt": "2026-10-20T00:00:00.000Z"
         }
       ],
-      "confidence": 64,
-      "consensus": "単独報道",
+      "confidence": 77,
+      "consensus": "複数ソース",
       "keyPoints": [
-        "【子吉川レベル２氾濫注意報（警報解除）】【警戒レベル２情報［洪水］】〔警戒レベル５相当から２に切替〕子吉川では、氾濫注意水位を上回る水位が続く見込み",
-        "現在は1つの配信元から確認しています。",
+        "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advanc…",
+        "2つの配信元が同じテーマを報じています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
@@ -1040,34 +1001,70 @@
       "alternateTitles": []
     },
     {
-      "id": "news-be4b178ccedfd0d9",
-      "title": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
-      "summary": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
-      "fact": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
+      "id": "news-f80d83b55a7598d2",
+      "title": "地球よりも生命が栄えやすい惑星は存在するのか？",
+      "summary": "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を報じています。 続きを読む...",
+      "fact": "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を報じています。 続きを読む...",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "科学・文化",
       "tags": [
-        "国内"
+        "科学・文化"
       ],
       "minutes": 1,
       "priority": 63,
       "breaking": false,
-      "publishedAt": "2026-10-21T13:52:03.000Z",
+      "publishedAt": "2026-10-21T13:20:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/386000c",
-          "publishedAt": "2026-10-21T13:52:03.000Z"
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261021-superhabitable-planets",
+          "publishedAt": "2026-10-21T13:20:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
+        "地球外生命の探索においては、地球に似た惑星が有力な候補と考えられています。ただ、生命が生まれて繁栄する場所として地球が最適とは限りません。The New York Timesの科学ジャーナリストであるナタリー・ウォルチョーバー氏が、地球よりも生命が栄えやすい惑星の条件について研究者に取材した結果を…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-7e576ed46f44e37a",
+      "title": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
+      "summary": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
+      "fact": "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 62,
+      "breaking": false,
+      "publishedAt": "2026-10-21T16:01:57.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP3R1BVBPUHBI01NM.html",
+          "publishedAt": "2026-10-21T16:01:57.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "米特使、プーチン氏と会談 米国人元教師の解放と軽油供給再開に謝意",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1112,192 +1109,80 @@
       "alternateTitles": []
     },
     {
-      "id": "news-f785a89be33ce9c2",
-      "title": "車で襲われたとされる豪議員、両脚を失う 逮捕された男性が初出廷",
-      "summary": "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
-      "fact": "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 61,
-      "breaking": false,
-      "publishedAt": "2026-10-21T09:31:06.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/cmd7qr3re235o?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T09:31:06.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-1cfb6291fa158d05",
-      "title": "OpenAI acquires Orchestra Bio",
-      "summary": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
-      "fact": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
-      "background": "同じテーマを2つの配信元が報じています。見出しと公開概要を照合し、重なる事実を中心に整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "AI",
-        "Company"
-      ],
-      "minutes": 1,
-      "priority": 60,
-      "breaking": false,
-      "publishedAt": "2026-10-21T01:46:00.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-openai-acquires-orchestra-bio",
-          "publishedAt": "2026-10-21T01:46:00.000Z"
-        },
-        {
-          "name": "OpenAI News",
-          "type": "公式発表",
-          "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
-          "publishedAt": "2026-10-20T00:00:00.000Z"
-        }
-      ],
-      "confidence": 77,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advanc…",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-5092e4ae0d303ba0",
-      "title": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
-      "summary": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
-      "fact": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 59,
-      "breaking": false,
-      "publishedAt": "2026-10-21T13:51:51.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/100/248000c",
-          "publishedAt": "2026-10-21T13:51:51.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b703f4a0dcc04fa0",
-      "title": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
-      "summary": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
-      "fact": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 59,
-      "breaking": false,
-      "publishedAt": "2026-10-21T13:15:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3TQXVBPUCVL03XM.html",
-          "publishedAt": "2026-10-21T13:15:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-ecbd3dcb377b0339",
-      "title": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
-      "summary": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
-      "fact": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
+      "id": "news-2547b54759a84ebe",
+      "title": "SpaceXとテスラの合併にマスク氏が言及「SI時代に大きな意味がある」",
+      "summary": "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
+      "fact": "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
       "category": "経済",
       "tags": [
-        "経済"
+        "経済",
+        "国際"
       ],
       "minutes": 1,
-      "priority": 58,
+      "priority": 62,
       "breaking": false,
-      "publishedAt": "2026-10-21T10:16:18.000Z",
+      "publishedAt": "2026-10-21T09:50:08.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3C6GVBPUTIL00VM.html",
-          "publishedAt": "2026-10-21T10:16:18.000Z"
+          "name": "Impress Watch",
+          "type": "専門メディア",
+          "url": "https://www.watch.impress.co.jp/docs/news/2150119.html",
+          "publishedAt": "2026-10-21T09:50:08.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
+        "SpaceXのイーロン・マスクCEOは20日(米国時間)、同社とEV大手Tesla(テスラ)の合併に向けて特別委員会を設置したと明らかにした。同社の決算会見で言及したもので、同委員会において統合についての議論を進めているという。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
       "analysisMode": "semantic-rules-v2",
       "semanticClusterSize": 1,
       "alternateTitles": []
+    },
+    {
+      "id": "news-8369a8df90d6622b",
+      "title": "秋田・子吉川の氾濫、けが人の情報なし レベル5氾濫特別警報",
+      "summary": "秋田・子吉川の氾濫、けが人の情報なし レベル5氾濫特別警報",
+      "fact": "秋田・子吉川の氾濫、けが人の情報なし レベル5氾濫特別警報",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 60,
+      "breaking": false,
+      "publishedAt": "2026-10-21T14:12:18.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/391000c",
+          "publishedAt": "2026-10-21T14:12:18.000Z"
+        }
+      ],
+      "confidence": 59,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "秋田・子吉川の氾濫、けが人の情報なし レベル5氾濫特別警報",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "秋田・子吉川が氾濫、越水を確認 レベル5氾濫特別警報発表"
+      ]
     },
     {
       "id": "news-9c3bda728f3c18c2",
@@ -1312,7 +1197,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 58,
+      "priority": 60,
       "breaking": false,
       "publishedAt": "2026-10-21T08:20:00.000Z",
       "duplicateCount": 2,
@@ -1357,7 +1242,7 @@
         "任天堂"
       ],
       "minutes": 2,
-      "priority": 57,
+      "priority": 58,
       "breaking": false,
       "publishedAt": "2026-10-21T15:00:00.000Z",
       "duplicateCount": 1,
@@ -1381,34 +1266,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-bfb598e7fbf5fda5",
-      "title": "LG、RGBトリプルレーザーの4K超短焦点プロジェクタ。最大120型の大画面",
-      "summary": "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
-      "fact": "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
+      "id": "news-f785a89be33ce9c2",
+      "title": "車で襲われたとされる豪議員、両脚を失う 逮捕された男性が初出廷",
+      "summary": "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
+      "fact": "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "国際",
       "tags": [
-        "経済"
+        "国際"
       ],
       "minutes": 1,
       "priority": 57,
       "breaking": false,
-      "publishedAt": "2026-10-21T09:00:00.000Z",
+      "publishedAt": "2026-10-21T09:31:06.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/news/2150048.html",
-          "publishedAt": "2026-10-21T09:00:00.000Z"
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/cmd7qr3re235o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T09:31:06.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
+        "オーストラリア・ヴィクトリア州で、連邦下院のヘレン・ヘインズ議員（65、無所属）が車で襲われたとされる事件で、同議員が両脚を失ったと、夫のフィル・ヘインズ氏が21日、明らかにした。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1417,34 +1302,79 @@
       "alternateTitles": []
     },
     {
-      "id": "news-5a306ed70e9f39e8",
-      "title": "リアルタイム文字起こしや特定の人物の音声クローンが可能な音声AI群「Voxtral 3」",
-      "summary": "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
-      "fact": "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
+      "id": "news-892d2ba310bb0ecb",
+      "title": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
+      "summary": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
+      "fact": "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "国内",
       "tags": [
-        "経済"
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 55,
+      "breaking": false,
+      "publishedAt": "2026-10-21T15:01:49.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP4CXWVBPUTIL02TM.html",
+          "publishedAt": "2026-10-21T15:01:49.000Z"
+        },
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/382000c",
+          "publishedAt": "2026-10-21T14:34:21.000Z"
+        }
+      ],
+      "confidence": 70,
+      "consensus": "複数ソース",
+      "keyPoints": [
+        "プログラミング言語「PHP」に重大な脆弱性 予防でサイト休止も",
+        "2つの配信元が同じテーマを報じています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 2,
+      "alternateTitles": [
+        "高市首相「大至急のお願い」 プログラミング言語PHPの脆弱性で"
+      ]
+    },
+    {
+      "id": "news-6328fc5c755a85f5",
+      "title": "PHPの重大脆弱性「PHP2Shell」はセキュリティ企業のCalifとWizがAIを用いて発見しOpenAIの枠組みを使って対策したことが判明",
+      "summary": "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
+      "fact": "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "AI"
       ],
       "minutes": 1,
       "priority": 54,
       "breaking": false,
-      "publishedAt": "2026-10-21T09:39:00.000Z",
+      "publishedAt": "2026-10-21T15:06:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "GIGAZINE",
           "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-voxtral-3",
-          "publishedAt": "2026-10-21T09:39:00.000Z"
+          "url": "https://gigazine.net/news/20261022-php2shell-wiz-openai-calif",
+          "publishedAt": "2026-10-21T15:06:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
+        "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1490,70 +1420,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-97438766987f697e",
-      "title": "ウクライナのために活動するロシア人工作員、偵察活動の映像をBBCに提供",
-      "summary": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
-      "fact": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
+      "id": "news-bfb598e7fbf5fda5",
+      "title": "LG、RGBトリプルレーザーの4K超短焦点プロジェクタ。最大120型の大画面",
+      "summary": "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
+      "fact": "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
+      "category": "経済",
       "tags": [
-        "国際"
+        "経済"
       ],
       "minutes": 1,
       "priority": 53,
       "breaking": false,
-      "publishedAt": "2026-10-21T08:09:50.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/watch/cq78pn85n08yo?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T08:09:50.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-52639ee1f73a8ff9",
-      "title": "ライカ、F1とコラボした特別仕様「ライカQ3 43 “Formula 1 Edition”」",
-      "summary": "ライカカメラは、モータースポーツの最高峰「Formula 1」とコラボレーションしたレンズ一体型デジタルカメラ「ライカQ3 43 “Formula 1 Edition”」を10月21日に発売した。直販価格は1,595,000円。",
-      "fact": "ライカカメラは、モータースポーツの最高峰「Formula 1」とコラボレーションしたレンズ一体型デジタルカメラ「ライカQ3 43 “Formula 1 Edition”」を10月21日に発売した。直販価格は1,595,000円。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "大会結果や選手・チームの今後の日程、評価に影響する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "スポーツ",
-      "tags": [
-        "スポーツ"
-      ],
-      "minutes": 1,
-      "priority": 52,
-      "breaking": false,
-      "publishedAt": "2026-10-21T08:00:00.000Z",
+      "publishedAt": "2026-10-21T09:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "AV Watch",
           "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/news/2150030.html",
-          "publishedAt": "2026-10-21T08:00:00.000Z"
+          "url": "https://av.watch.impress.co.jp/docs/news/2150048.html",
+          "publishedAt": "2026-10-21T09:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ライカカメラは、モータースポーツの最高峰「Formula 1」とコラボレーションしたレンズ一体型デジタルカメラ「ライカQ3 43 “Formula 1 Edition”」を10月21日に発売した。直販価格は1,595,000円。",
+        "LGエレクトロニクス・ジャパンは、AI機能を搭載したプロジェクターシリーズ「LG CineBeam AI」の新モデルとして、4K超短焦点レーザープロジェクター「HU925V」を10月下旬より順次発売する。価格はオープンで、市場想定価格は616,000円前後。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1575,7 +1469,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 51,
+      "priority": 52,
       "breaking": false,
       "publishedAt": "2026-10-21T15:00:00.000Z",
       "duplicateCount": 1,
@@ -1599,118 +1493,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-cf2e58d2ee97b96a",
-      "title": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
-      "summary": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
-      "fact": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 51,
-      "breaking": false,
-      "publishedAt": "2026-10-21T13:05:21.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/378000c",
-          "publishedAt": "2026-10-21T13:05:21.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-87ce0fd3023e8933",
-      "title": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
-      "summary": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
-      "fact": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 51,
-      "breaking": false,
-      "publishedAt": "2026-10-21T12:56:51.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP457VVBPULFA02GM.html",
-          "publishedAt": "2026-10-21T12:56:51.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-802333ccab20ba67",
-      "title": "「ウマ娘」海外ライブ中止 現地参加予定だった人の宿泊費など返金へ",
-      "summary": "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
-      "fact": "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 50,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:39:20.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32623437",
-          "publishedAt": "2026-10-21T11:39:20.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-c7883440559e09c3",
-      "title": "スーダン軍が葬儀参列者と燃料市場をドローン攻撃、300人以上死亡と情報筋",
-      "summary": "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
-      "fact": "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
+      "id": "news-5a306ed70e9f39e8",
+      "title": "リアルタイム文字起こしや特定の人物の音声クローンが可能な音声AI群「Voxtral 3」",
+      "summary": "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
+      "fact": "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1721,57 +1507,20 @@
       "minutes": 1,
       "priority": 50,
       "breaking": false,
-      "publishedAt": "2026-10-21T06:04:20.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/c6jrw5e2j298o?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T06:04:20.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-6328fc5c755a85f5",
-      "title": "PHPの重大脆弱性「PHP2Shell」はセキュリティ企業のCalifとWizがAIを用いて発見しOpenAIの枠組みを使って対策したことが判明",
-      "summary": "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
-      "fact": "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "AI"
-      ],
-      "minutes": 1,
-      "priority": 49,
-      "breaking": false,
-      "publishedAt": "2026-10-21T15:06:00.000Z",
+      "publishedAt": "2026-10-21T09:39:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "GIGAZINE",
           "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261022-php2shell-wiz-openai-calif",
-          "publishedAt": "2026-10-21T15:06:00.000Z"
+          "url": "https://gigazine.net/news/20261021-voxtral-3",
+          "publishedAt": "2026-10-21T09:39:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "プログラミング言語のPHPに「PHP2Shell」と呼ばれる重大な脆弱性が見つかり、緊急アップデートがリリースされました。「PHP2Shell」の2つの脆弱性は、セキュリティ企業のCalifとWizがそれぞれ独立して2026年8月に発見していたことが報告されています。 続きを読む...",
+        "フランス企業のMistral AIが音声AI群「Voxtral 3」をリリースしました。高精度な文字起こしAIと、特定の人物の声をを再現できる音声合成AIが含まれています。 続きを読む...",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1780,34 +1529,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c3e656a9179e2cda",
-      "title": "映画の推し事:コンプラぶっ飛ばす「太陽を盗んだ男」 爆発力とゴジの胎内被ばく",
-      "summary": "映画の推し事:コンプラぶっ飛ばす「太陽を盗んだ男」 爆発力とゴジの胎内被ばく",
-      "fact": "映画の推し事:コンプラぶっ飛ばす「太陽を盗んだ男」 爆発力とゴジの胎内被ばく",
+      "id": "news-3a4fd22757a04080",
+      "title": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
+      "summary": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
+      "fact": "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
+      "category": "国内",
       "tags": [
-        "科学・文化"
+        "国内"
       ],
       "minutes": 1,
       "priority": 49,
       "breaking": false,
-      "publishedAt": "2026-10-21T11:00:14.000Z",
+      "publishedAt": "2026-10-21T15:10:10.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261019/k00/00m/200/085000c",
-          "publishedAt": "2026-10-21T11:00:14.000Z"
+          "url": "https://mainichi.jp/articles/20261022/k00/00m/310/001000c",
+          "publishedAt": "2026-10-21T15:10:10.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "映画の推し事:コンプラぶっ飛ばす「太陽を盗んだ男」 爆発力とゴジの胎内被ばく",
+        "札幌市が公式ホームページ一時停止 PHP脆弱性発見で予防措置",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1816,34 +1565,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-b9bd054336f1f196",
-      "title": "プーチン氏、露で有罪判決の米国人男性解放を表明 特使と面会",
-      "summary": "プーチン氏、露で有罪判決の米国人男性解放を表明 特使と面会",
-      "fact": "プーチン氏、露で有罪判決の米国人男性解放を表明 特使と面会",
+      "id": "news-ecbd3dcb377b0339",
+      "title": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
+      "summary": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
+      "fact": "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
+      "category": "経済",
       "tags": [
-        "国際"
+        "経済"
       ],
       "minutes": 1,
-      "priority": 49,
+      "priority": 48,
       "breaking": false,
-      "publishedAt": "2026-10-21T10:31:51.000Z",
+      "publishedAt": "2026-10-21T10:16:18.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/030/337000c",
-          "publishedAt": "2026-10-21T10:31:51.000Z"
+          "url": "http://www.asahi.com/articles/ASVBP3C6GVBPUTIL00VM.html",
+          "publishedAt": "2026-10-21T10:16:18.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "プーチン氏、露で有罪判決の米国人男性解放を表明 特使と面会",
+        "武部農相側に献金禁止企業から30万円か、衆院選公示日 陳謝し返金",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1864,7 +1613,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 48,
+      "priority": 47,
       "breaking": false,
       "publishedAt": "2026-10-21T14:00:00.000Z",
       "duplicateCount": 1,
@@ -1888,10 +1637,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c5ecea647d0bd1bf",
-      "title": "【解説】 トランプ氏とゼレンスキー氏、依然対立か オスロ会談後に楽観論も流れるが",
-      "summary": "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
-      "fact": "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
+      "id": "news-97438766987f697e",
+      "title": "ウクライナのために活動するロシア人工作員、偵察活動の映像をBBCに提供",
+      "summary": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
+      "fact": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1900,22 +1649,22 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 48,
+      "priority": 47,
       "breaking": false,
-      "publishedAt": "2026-10-21T07:27:31.000Z",
+      "publishedAt": "2026-10-21T08:09:50.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "BBC News Japan",
           "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/cmgqw4weqxveo?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T07:27:31.000Z"
+          "url": "https://www.bbc.com/japanese/watch/cq78pn85n08yo?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T08:09:50.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
+        "ウクライナの情報機関のために秘密裏に活動していたロシア人男性が、ロシア国内で行ったという偵察活動の映像を、BBCに提供した。私たちが「イワン」と呼ぶ男性は、ウクライナがロシアの戦略爆撃機や兵器工場に対して行ったドローン攻撃に、ロシア国内から関与したと話している。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1924,34 +1673,107 @@
       "alternateTitles": []
     },
     {
-      "id": "news-2fda7adf16b4f277",
-      "title": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
-      "summary": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
-      "fact": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
+      "id": "news-d666acad54265a86",
+      "title": "PHPが緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリース",
+      "summary": "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
+      "fact": "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "AI・IT",
       "tags": [
-        "国内"
+        "AI・IT"
       ],
       "minutes": 1,
-      "priority": 47,
+      "priority": 46,
       "breaking": false,
-      "publishedAt": "2026-10-21T12:52:39.000Z",
+      "publishedAt": "2026-10-21T14:04:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP44KNVBPTPOB006M.html",
-          "publishedAt": "2026-10-21T12:52:39.000Z"
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261021-php-critical-vulnerabilities",
+          "publishedAt": "2026-10-21T14:04:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
+        "PHPがPHP2Shellに対処する緊急アップデート「8.5.12」「8.4.27」「8.3.36」「8.2.35」をリリースしました。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-c7883440559e09c3",
+      "title": "スーダン軍が葬儀参列者と燃料市場をドローン攻撃、300人以上死亡と情報筋",
+      "summary": "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
+      "fact": "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 46,
+      "breaking": false,
+      "publishedAt": "2026-10-21T06:04:20.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/c6jrw5e2j298o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T06:04:20.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "政府軍と準軍事組織「迅速支援部隊（RSF）」の間の紛争が続くスーダンで、スーダン政府軍が複数のドローン攻撃を行い、葬儀に向かっていた数十人を含む300人以上を殺害したとして非難されている。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-b04df8f0831e0899",
+      "title": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
+      "summary": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
+      "fact": "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 45,
+      "breaking": false,
+      "publishedAt": "2026-10-21T11:50:32.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/364000c",
+          "publishedAt": "2026-10-21T11:50:32.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "千葉県、住宅が半壊の世帯に20万円支給へ 豪雨・台風被害",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1972,7 +1794,7 @@
         "スポーツ"
       ],
       "minutes": 1,
-      "priority": 47,
+      "priority": 45,
       "breaking": false,
       "publishedAt": "2026-10-21T11:12:01.000Z",
       "duplicateCount": 1,
@@ -1996,6 +1818,44 @@
       "alternateTitles": []
     },
     {
+      "id": "news-75b096442a664f30",
+      "title": "俺が「孫悟空」になる！「ドラゴンボール ゼノバース３」メディア向け発表会レポートナメック人やフリーザ一族も選択できるキャラメイク！お馴染みキャラにも「ソウルチェンジ」で変身！",
+      "summary": "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
+      "fact": "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "Microsoft",
+        "Steam"
+      ],
+      "minutes": 1,
+      "priority": 43,
+      "breaking": false,
+      "publishedAt": "2026-10-21T14:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/kikaku/2146971.html",
+          "publishedAt": "2026-10-21T14:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "【拡大画像へ】 バンダイナムコエンターテインメントは、2027年発売予定のプレイステーション 5/XBOX Series X|S/Steam用3D格闘アクション「ドラゴンボール ゼノバース３」において、複数ユーザーによるマルチプレイモードのメディア向け体験会を実施した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-de9db6f384cbc788",
       "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
       "summary": "Patch the Planet connects security researchers, maintainers, and incident responders to help address critical vulnerabilities across open source.",
@@ -2009,7 +1869,7 @@
         "Security"
       ],
       "minutes": 1,
-      "priority": 44,
+      "priority": 42,
       "breaking": false,
       "publishedAt": "2026-10-21T07:00:00.000Z",
       "duplicateCount": 1,
@@ -2033,10 +1893,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-3f20650f9666ffca",
-      "title": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
-      "summary": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
-      "fact": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+      "id": "news-be4b178ccedfd0d9",
+      "title": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
+      "summary": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
+      "fact": "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2045,22 +1905,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 43,
+      "priority": 41,
       "breaking": false,
-      "publishedAt": "2026-10-21T12:50:00.000Z",
+      "publishedAt": "2026-10-21T13:52:03.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
+          "name": "毎日新聞",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3SVBVBPUTIL02JM.html",
-          "publishedAt": "2026-10-21T12:50:00.000Z"
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/386000c",
+          "publishedAt": "2026-10-21T13:52:03.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+        "岩井コスモ証券に不正アクセス 顧客の意図しない売買注文が成立",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2069,10 +1929,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-111f52855034ea83",
-      "title": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
-      "summary": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
-      "fact": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
+      "id": "news-c5ecea647d0bd1bf",
+      "title": "【解説】 トランプ氏とゼレンスキー氏、依然対立か オスロ会談後に楽観論も流れるが",
+      "summary": "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
+      "fact": "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2081,22 +1941,58 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 43,
+      "priority": 41,
       "breaking": false,
-      "publishedAt": "2026-10-21T09:45:00.000Z",
+      "publishedAt": "2026-10-21T07:27:31.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "朝日新聞デジタル",
+          "name": "BBC News Japan",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP30T0VBPUCVL03BM.html",
-          "publishedAt": "2026-10-21T09:45:00.000Z"
+          "url": "https://www.bbc.com/japanese/articles/cmgqw4weqxveo?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T07:27:31.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
+        "アメリカのトランプ大統領の特使のウィトコフ氏が、オスロで20日午後、ウクライナのゼレンスキー大統領と、会談を前に抱擁を交わした。だが、戦争で荒廃した自国に対するアメリカの現在の政策の方向性について、ゼレンスキー氏が抱いている懸念が払拭された可能性は低い。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-4380f9f74e070ac6",
+      "title": "国内大手サービスで緊急メンテやサービス停止 PHP脆弱性で対策",
+      "summary": "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
+      "fact": "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 39,
+      "breaking": false,
+      "publishedAt": "2026-10-21T13:05:41.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "Impress Watch",
+          "type": "専門メディア",
+          "url": "https://www.watch.impress.co.jp/docs/news/2150159.html",
+          "publishedAt": "2026-10-21T13:05:41.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "Webで広く使われているスクリプト言語「PHP」において日本時間の21日23時から重大なセキュリティリリースが行なわれる。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2117,7 +2013,7 @@
         "科学・文化"
       ],
       "minutes": 1,
-      "priority": 43,
+      "priority": 39,
       "breaking": false,
       "publishedAt": "2026-10-21T07:00:00.000Z",
       "duplicateCount": 1,
@@ -2153,7 +2049,7 @@
         "スポーツ"
       ],
       "minutes": 1,
-      "priority": 42,
+      "priority": 38,
       "breaking": false,
       "publishedAt": "2026-10-21T10:30:00.000Z",
       "duplicateCount": 1,
@@ -2177,70 +2073,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-5fd25723b594d047",
-      "title": "Qwen3.8-Flash-Nextと競合するオープンモデル「Ornith-1.5-122B」が登場",
-      "summary": "AI研究組織のOrnithがAIモデル「Ornith-1.5-122B」を2026年10月20日に公開しました。同等規模のオープンモデルと比べて高性能であることがアピールされています。 続きを読む...",
-      "fact": "AI研究組織のOrnithがAIモデル「Ornith-1.5-122B」を2026年10月20日に公開しました。同等規模のオープンモデルと比べて高性能であることがアピールされています。 続きを読む...",
+      "id": "news-5092e4ae0d303ba0",
+      "title": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
+      "summary": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
+      "fact": "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
+      "category": "国内",
       "tags": [
-        "科学・文化"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 42,
+      "priority": 37,
       "breaking": false,
-      "publishedAt": "2026-10-21T07:49:00.000Z",
+      "publishedAt": "2026-10-21T13:51:51.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-ornith-1-5-122b",
-          "publishedAt": "2026-10-21T07:49:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/100/248000c",
+          "publishedAt": "2026-10-21T13:51:51.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "AI研究組織のOrnithがAIモデル「Ornith-1.5-122B」を2026年10月20日に公開しました。同等規模のオープンモデルと比べて高性能であることがアピールされています。 続きを読む...",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-93bc0390f4ee25f1",
-      "title": "「フォールアウト」コラボカフェをフォトレポ。「タカハシのヌードル」だけじゃない！ メニューも装飾も作品愛たっぷりに世界観表現",
-      "summary": "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS CAFE 表参道店」にて開催する。",
-      "fact": "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS CAFE 表参道店」にて開催する。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 40,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:34:42.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/preview/2150139.html",
-          "publishedAt": "2026-10-21T11:34:42.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS…",
+        "血管炎薬、新規投与差し控え 厚労省、承認取り消しも検討",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2263,7 +2123,7 @@
         "Engineering"
       ],
       "minutes": 1,
-      "priority": 40,
+      "priority": 37,
       "breaking": false,
       "publishedAt": "2026-10-21T07:00:00.000Z",
       "duplicateCount": 1,
@@ -2287,10 +2147,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-4ff59824f651e990",
-      "title": "北朝鮮が金正恩氏の写真公開 死亡説が繰り返し浮上する理由は",
-      "summary": "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
-      "fact": "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
+      "id": "news-802333ccab20ba67",
+      "title": "「ウマ娘」海外ライブ中止 現地参加予定だった人の宿泊費など返金へ",
+      "summary": "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
+      "fact": "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2299,22 +2159,22 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 39,
+      "priority": 36,
       "breaking": false,
-      "publishedAt": "2026-10-21T05:32:19.000Z",
+      "publishedAt": "2026-10-21T11:39:20.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "BBC News Japan",
+          "name": "ライブドアニュース",
           "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/c9rkyjy2z560o?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T05:32:19.000Z"
+          "url": "https://news.livedoor.com/article/detail/32623437",
+          "publishedAt": "2026-10-21T11:39:20.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
+        "ざっくり言うと ウマ娘の公式サイトが海外ライブ中止を受けた今後の対応を5月21日に発表した 現地観覧チケットの払い戻しに加え、宿泊費・交通費の返金も予定しているという 米国ビザを取得できず開催断念となり、今後はロンドンなど3都市で開催予定である 記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2323,10 +2183,46 @@
       "alternateTitles": []
     },
     {
-      "id": "news-f162bf3bf22a44dd",
-      "title": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
-      "summary": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
-      "fact": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+      "id": "news-93bc0390f4ee25f1",
+      "title": "「フォールアウト」コラボカフェをフォトレポ。「タカハシのヌードル」だけじゃない！ メニューも装飾も作品愛たっぷりに世界観表現",
+      "summary": "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS CAFE 表参道店」にて開催する。",
+      "fact": "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS CAFE 表参道店」にて開催する。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 36,
+      "breaking": false,
+      "publishedAt": "2026-10-21T11:34:42.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/preview/2150139.html",
+          "publishedAt": "2026-10-21T11:34:42.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "インフォレンズは、RPG「Fallout」シリーズとコラボレーションしたカフェ「Fallout Collaboration Cafe ～Takahashi's Power Noodles～ in Tower Records Cafe」を10月22日より、東京・表参道の「TOWER RECORDS…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-b703f4a0dcc04fa0",
+      "title": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
+      "summary": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
+      "fact": "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2335,22 +2231,58 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 38,
+      "priority": 34,
       "breaking": false,
-      "publishedAt": "2026-10-21T12:24:07.000Z",
+      "publishedAt": "2026-10-21T13:15:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3T0MVBPULOB018M.html",
-          "publishedAt": "2026-10-21T12:24:07.000Z"
+          "url": "http://www.asahi.com/articles/ASVBP3TQXVBPUCVL03XM.html",
+          "publishedAt": "2026-10-21T13:15:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+        "小学館漫画賞の贈呈式が開催 社長はマンガワン問題で謝罪",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-111f52855034ea83",
+      "title": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
+      "summary": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
+      "fact": "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 33,
+      "breaking": false,
+      "publishedAt": "2026-10-21T09:45:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP30T0VBPUCVL03BM.html",
+          "publishedAt": "2026-10-21T09:45:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "米国での企画展「和食」に7.3万人来場 LAのジャパン・ハウス",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2372,7 +2304,7 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 37,
+      "priority": 33,
       "breaking": false,
       "publishedAt": "2026-10-21T09:20:00.000Z",
       "duplicateCount": 1,
@@ -2396,42 +2328,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-5ac8a7dbf05b7793",
-      "title": "ファーウェイ、“2万円以下イヤフォンで世界最高水準ノイキャン”「FreeBuds Neo」",
-      "summary": "ファーウェイ・ジャパンは、世界最高水準のノイズキャンセリングを謳うコンパクトな完全ワイヤレスイヤフォン「FreeBuds Neo」を、10月21日に発売した。価格はオープン、市場想定価格は17,380円前後。",
-      "fact": "ファーウェイ・ジャパンは、世界最高水準のノイズキャンセリングを謳うコンパクトな完全ワイヤレスイヤフォン「FreeBuds Neo」を、10月21日に発売した。価格はオープン、市場想定価格は17,380円前後。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済"
-      ],
-      "minutes": 1,
-      "priority": 37,
-      "breaking": false,
-      "publishedAt": "2026-10-21T06:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/news/2149523.html",
-          "publishedAt": "2026-10-21T06:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ファーウェイ・ジャパンは、世界最高水準のノイズキャンセリングを謳うコンパクトな完全ワイヤレスイヤフォン「FreeBuds Neo」を、10月21日に発売した。価格はオープン、市場想定価格は17,380円前後。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-ccfd6e4289fea1be",
       "title": "[ITmedia PC USER] 「iPhone Duo」は開けばiPad、閉じればiPhone？ いいえ「別ジャンル」です──使うと見えてくる、Appleが考える「フォルダブルスマホ」の流儀",
       "summary": "Apple初のフォルダブルスマートフォン「iPhone Duo」がまもなく発売される。発売に先んじて試用したところ、Appleの目指す「フォルダブルスマホ」の形が見えてきた。",
@@ -2445,7 +2341,7 @@
         "Apple"
       ],
       "minutes": 1,
-      "priority": 36,
+      "priority": 32,
       "breaking": false,
       "publishedAt": "2026-10-21T12:00:00.000Z",
       "duplicateCount": 1,
@@ -2469,70 +2365,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-26b609ffb80ca102",
-      "title": "[ITmedia エグゼクティブ] 「大企業は一朝一夕には変わらない」 NTTデータ冨安寛氏がAI時代に重視する原理原則",
-      "summary": "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
-      "fact": "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
+      "id": "news-4ff59824f651e990",
+      "title": "北朝鮮が金正恩氏の写真公開 死亡説が繰り返し浮上する理由は",
+      "summary": "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
+      "fact": "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "国際",
       "tags": [
-        "経済"
+        "国際"
       ],
       "minutes": 1,
-      "priority": 36,
+      "priority": 32,
       "breaking": false,
-      "publishedAt": "2026-10-21T06:01:07.000Z",
+      "publishedAt": "2026-10-21T05:32:19.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://mag.executive.itmedia.co.jp/executive/article/2610/20/2000002351",
-          "publishedAt": "2026-10-21T06:01:07.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-f7875698a8a52181",
-      "title": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
-      "summary": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
-      "fact": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 35,
-      "breaking": false,
-      "publishedAt": "2026-10-21T12:10:29.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
+          "name": "BBC News Japan",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/356000c",
-          "publishedAt": "2026-10-21T12:10:29.000Z"
+          "url": "https://www.bbc.com/japanese/articles/c9rkyjy2z560o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T05:32:19.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
+        "北朝鮮のメディアは20日、金正恩総書記の様子を伝えた。脳出血で死亡したとうわさが飛び交った人にしては、驚くほど元気そうに見えた。朝鮮労働党機関紙「労働新聞」が掲載した写真には、42歳の独裁者が娘と一緒に写っていた。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2554,7 +2414,7 @@
         "任天堂"
       ],
       "minutes": 1,
-      "priority": 35,
+      "priority": 31,
       "breaking": false,
       "publishedAt": "2026-10-21T10:12:50.000Z",
       "duplicateCount": 1,
@@ -2578,46 +2438,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-b599253b1c5ebf07",
-      "title": "WFP、資金不足でガザ支援縮小 住民の食料確保がいっそう困難に",
-      "summary": "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
-      "fact": "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 35,
-      "breaking": false,
-      "publishedAt": "2026-10-21T05:28:10.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
-          "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/cqdr863v05eko?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T05:28:10.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-f4edea5ce5d0a588",
-      "title": "【ポケモン】赤レンガパークで「ポケモン」とのコラボが開催決定！シリーズ30周年を記念した特別なイルミネーションが登場",
-      "summary": "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
-      "fact": "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
+      "id": "news-26b609ffb80ca102",
+      "title": "[ITmedia エグゼクティブ] 「大企業は一朝一夕には変わらない」 NTTデータ冨安寛氏がAI時代に重視する原理原則",
+      "summary": "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
+      "fact": "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2626,22 +2450,22 @@
         "経済"
       ],
       "minutes": 1,
-      "priority": 34,
+      "priority": 31,
       "breaking": false,
-      "publishedAt": "2026-10-21T06:03:08.000Z",
+      "publishedAt": "2026-10-21T06:01:07.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GAME Watch",
+          "name": "ITmedia",
           "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2150011.html",
-          "publishedAt": "2026-10-21T06:03:08.000Z"
+          "url": "https://mag.executive.itmedia.co.jp/executive/article/2610/20/2000002351",
+          "publishedAt": "2026-10-21T06:01:07.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
+        "AIの進化がシステム開発を変える中、大企業は既存事業と新技術をどう両立し、組織や人材を変革すべきか。NTTデータグループでCTO等多数の要職を兼任する冨安寛氏に、キャリアの歩みとともに、AI時代に必要な「原理原則」を理解した人材育成や、大企業における段階的な事業変革の考え方について語ってもらった。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2650,10 +2474,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-051cdfbe23769258",
-      "title": "PHP重大欠陥 不正アクセス増加も",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-cf2e58d2ee97b96a",
+      "title": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
+      "summary": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
+      "fact": "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2662,22 +2486,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 32,
+      "priority": 29,
       "breaking": false,
-      "publishedAt": "2026-10-21T13:21:33.000Z",
+      "publishedAt": "2026-10-21T13:05:21.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
+          "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32623964",
-          "publishedAt": "2026-10-21T13:21:33.000Z"
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/378000c",
+          "publishedAt": "2026-10-21T13:05:21.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
+        "長崎で今年2例目の日本脳炎 佐世保の70代女性、発熱と意識障害",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2699,7 +2523,7 @@
         "Apple"
       ],
       "minutes": 1,
-      "priority": 32,
+      "priority": 28,
       "breaking": false,
       "publishedAt": "2026-10-21T12:00:00.000Z",
       "duplicateCount": 1,
@@ -2723,10 +2547,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-028458d688a543ee",
-      "title": "ロシア国内でひそかに行われる反プーチン工作……その内幕を取材",
-      "summary": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
-      "fact": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
+      "id": "news-b599253b1c5ebf07",
+      "title": "WFP、資金不足でガザ支援縮小 住民の食料確保がいっそう困難に",
+      "summary": "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
+      "fact": "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2735,130 +2559,22 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 31,
+      "priority": 28,
       "breaking": false,
-      "publishedAt": "2026-10-21T05:11:55.000Z",
+      "publishedAt": "2026-10-21T05:28:10.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "BBC News Japan",
           "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/articles/cjzxlpz2vpn6o?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T05:11:55.000Z"
+          "url": "https://www.bbc.com/japanese/articles/cqdr863v05eko?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T05:28:10.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-5cb7b38cbd1ebb60",
-      "title": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
-      "summary": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
-      "fact": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 30,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:56:40.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/365000c",
-          "publishedAt": "2026-10-21T11:56:40.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b67c02339538a44d",
-      "title": "Disney＋、今後のマーベル配信作品を披露。「ゾディアック」や「スパイダーマン」など",
-      "summary": "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
-      "fact": "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 30,
-      "breaking": false,
-      "publishedAt": "2026-10-21T06:20:20.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/news/2149992.html",
-          "publishedAt": "2026-10-21T06:20:20.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-563d6579ff93be38",
-      "title": "「氷菓」を手掛けた米澤穂信氏の小説を原作とするADV「本と鍵の季節」体験版が配信推理パートは「エヴァーメイデン」などを手掛けるライアーソフトの海原望氏が担当",
-      "summary": "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
-      "fact": "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 29,
-      "breaking": false,
-      "publishedAt": "2026-10-21T09:25:16.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2150095.html",
-          "publishedAt": "2026-10-21T09:25:16.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
+        "パレスチナ・ガザ地区に食料を供給している主要機関の世界食糧計画（WFP）が、資金不足のため、ガザへの「人命救助の支援を大幅に縮小」せざるを得ないとしている。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2881,7 +2597,7 @@
         "Microsoft"
       ],
       "minutes": 1,
-      "priority": 29,
+      "priority": 28,
       "breaking": false,
       "publishedAt": "2026-10-21T00:12:00.000Z",
       "duplicateCount": 19,
@@ -2905,10 +2621,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-210fa03cde3183d5",
-      "title": "男性重体 妻の車にはねられたか",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
+      "id": "news-87ce0fd3023e8933",
+      "title": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
+      "summary": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
+      "fact": "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2917,22 +2633,94 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 28,
+      "priority": 27,
       "breaking": false,
-      "publishedAt": "2026-10-21T13:17:22.000Z",
+      "publishedAt": "2026-10-21T12:56:51.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ライブドアニュース",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32623901",
-          "publishedAt": "2026-10-21T13:17:22.000Z"
+          "url": "http://www.asahi.com/articles/ASVBP457VVBPULFA02GM.html",
+          "publishedAt": "2026-10-21T12:56:51.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "記事を読む",
+        "イオングループ13社の42サイトに不正アクセス 情報流出は調査中",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-f4edea5ce5d0a588",
+      "title": "【ポケモン】赤レンガパークで「ポケモン」とのコラボが開催決定！シリーズ30周年を記念した特別なイルミネーションが登場",
+      "summary": "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
+      "fact": "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 26,
+      "breaking": false,
+      "publishedAt": "2026-10-21T06:03:08.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2150011.html",
+          "publishedAt": "2026-10-21T06:03:08.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "横浜赤レンガ倉庫にて開催される「Christmas Market in 横浜赤レンガ倉庫」の中で「ポケットモンスター」とのコラボ「えらぶ！ ポケモン イルミネーション 1025」が実施される。詳細は11月中旬頃に発表を予定。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-563d6579ff93be38",
+      "title": "「氷菓」を手掛けた米澤穂信氏の小説を原作とするADV「本と鍵の季節」体験版が配信推理パートは「エヴァーメイデン」などを手掛けるライアーソフトの海原望氏が担当",
+      "summary": "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
+      "fact": "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 25,
+      "breaking": false,
+      "publishedAt": "2026-10-21T09:25:16.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2150095.html",
+          "publishedAt": "2026-10-21T09:25:16.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "集英社ゲームズは、PC用ドラマライク アドベンチャー「本と鍵の季節」の体験版を配信している。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2954,7 +2742,7 @@
         "Apple"
       ],
       "minutes": 1,
-      "priority": 28,
+      "priority": 24,
       "breaking": false,
       "publishedAt": "2026-10-21T12:00:00.000Z",
       "duplicateCount": 1,
@@ -2978,10 +2766,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-0b817c620e8d7198",
-      "title": "全国157地点で真夏日 東京・大阪など各地で史上最も遅い記録",
-      "summary": "全国157地点で真夏日 東京・大阪など各地で史上最も遅い記録",
-      "fact": "全国157地点で真夏日 東京・大阪など各地で史上最も遅い記録",
+      "id": "news-2fda7adf16b4f277",
+      "title": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
+      "summary": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
+      "fact": "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2990,22 +2778,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 26,
+      "priority": 23,
       "breaking": false,
-      "publishedAt": "2026-10-21T11:36:21.000Z",
+      "publishedAt": "2026-10-21T12:52:39.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/359000c",
-          "publishedAt": "2026-10-21T11:36:21.000Z"
+          "url": "http://www.asahi.com/articles/ASVBP44KNVBPTPOB006M.html",
+          "publishedAt": "2026-10-21T12:52:39.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "全国157地点で真夏日 東京・大阪など各地で史上最も遅い記録",
+        "沖縄・宜野湾の民家で75歳女性の遺体、体に複数の切り傷",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3014,8 +2802,260 @@
       "alternateTitles": []
     },
     {
-      "id": "news-5384635fc7f48d8d",
-      "title": "高市早苗首相 PHP脆弱性を巡り修正プログラムの速やかな適用呼びかけ",
+      "id": "news-b67c02339538a44d",
+      "title": "Disney＋、今後のマーベル配信作品を披露。「ゾディアック」や「スパイダーマン」など",
+      "summary": "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
+      "fact": "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 23,
+      "breaking": false,
+      "publishedAt": "2026-10-21T06:20:20.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "AV Watch",
+          "type": "専門メディア",
+          "url": "https://av.watch.impress.co.jp/docs/news/2149992.html",
+          "publishedAt": "2026-10-21T06:20:20.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "米国開催のイベント「New York Comic Con 2026(ニューヨーク・コミコン2026)」にて、Disney＋で今後独占配信される予定のマーベル最新作品群が発表された。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-028458d688a543ee",
+      "title": "ロシア国内でひそかに行われる反プーチン工作……その内幕を取材",
+      "summary": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
+      "fact": "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 23,
+      "breaking": false,
+      "publishedAt": "2026-10-21T05:11:55.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/cjzxlpz2vpn6o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-21T05:11:55.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "ウクライナの情報機関のために秘密裏に活動していたロシア人男性2人がこのほど、ロシア国内の軍事施設や人員を標的とした作戦に関与したと主張し、その作戦について異例の証言を行った。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-f4f738d3fee99e36",
+      "title": "[ITmedia News] 著名ITサービス相次いで緊急メンテへ コドモン、シャドバ、BASE、さくらのレンタルサーバなど 「PHP」脆弱性に起因か",
+      "summary": "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の高い脆弱性が見つかった影響とみられる。",
+      "fact": "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の高い脆弱性が見つかった影響とみられる。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 20,
+      "breaking": false,
+      "publishedAt": "2026-10-21T08:47:19.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/news/article/2610/21/2000002472",
+          "publishedAt": "2026-10-21T08:47:19.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3e26125d210ae1bf",
+      "title": "ニコニコやpixivなど各種ウェブサイトおよびアプリがPHPの緊急パッチに対応するべくメンテナンス入り",
+      "summary": "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。 続きを読む...",
+      "fact": "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 19,
+      "breaking": false,
+      "publishedAt": "2026-10-21T13:13:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261021-php-php2shell-maintenance",
+          "publishedAt": "2026-10-21T13:13:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "数多くのウェブサイトやアプリで使用されているプログラミング言語「PHP」に脆弱(ぜいじゃく)性が見つかり、日本時間の2026年10月21日23時にセキュリティ更新プログラムおよび詳細情報が公開されることがアナウンスされています。この緊急パッチに対応するべく多くのサイトがメンテナンス入りしています。…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3f20650f9666ffca",
+      "title": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+      "summary": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+      "fact": "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 19,
+      "breaking": false,
+      "publishedAt": "2026-10-21T12:50:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP3SVBVBPUTIL02JM.html",
+          "publishedAt": "2026-10-21T12:50:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "20府県警の警察官ら12万5千件の個人情報流出か 氏名やアドレス",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-16cdbe907f269cf1",
+      "title": "日本音コン本選が開幕 作曲部門の審査結果を発表",
+      "summary": "日本音コン本選が開幕 作曲部門の審査結果を発表",
+      "fact": "日本音コン本選が開幕 作曲部門の審査結果を発表",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 16,
+      "breaking": false,
+      "publishedAt": "2026-10-21T12:45:11.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/200/376000c",
+          "publishedAt": "2026-10-21T12:45:11.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "日本音コン本選が開幕 作曲部門の審査結果を発表",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-02f4dd75230684c3",
+      "title": "ドリフトや体当たりで戦車が火花を散らすアクションゲーム「SLAM TANK」の体験版が配信中実況も歓迎な新作をお試しプレイ可能",
+      "summary": "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
+      "fact": "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 15,
+      "breaking": false,
+      "publishedAt": "2026-10-21T08:18:45.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2150081.html",
+          "publishedAt": "2026-10-21T08:18:45.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-051cdfbe23769258",
+      "title": "PHP重大欠陥 不正アクセス増加も",
       "summary": "記事を読む",
       "fact": "記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
@@ -3026,16 +3066,198 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 24,
+      "priority": 14,
       "breaking": false,
-      "publishedAt": "2026-10-21T13:16:07.000Z",
+      "publishedAt": "2026-10-21T13:21:33.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "ライブドアニュース",
           "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32623898",
-          "publishedAt": "2026-10-21T13:16:07.000Z"
+          "url": "https://news.livedoor.com/article/detail/32623964",
+          "publishedAt": "2026-10-21T13:21:33.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-b9e1ce3d6cfd9840",
+      "title": "モーターたった1個で飛行も方向転換もできるドローンをエンジニアが自作",
+      "summary": "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことです。 続きを読む...",
+      "fact": "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことです。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 14,
+      "breaking": false,
+      "publishedAt": "2026-10-21T12:50:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261021-drone-with-one-motor",
+          "publishedAt": "2026-10-21T12:50:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことで…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-a5521b45214d2c02",
+      "title": "【西田宗千佳のRandomTracking】iPhone Duo実機レビュー。高品質な折りたたみ型が抱える「時間の問題」",
+      "summary": "iPhone Duoのレビューをお届けする。",
+      "fact": "iPhone Duoのレビューをお届けする。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "Apple"
+      ],
+      "minutes": 1,
+      "priority": 12,
+      "breaking": false,
+      "publishedAt": "2026-10-21T12:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "AV Watch",
+          "type": "専門メディア",
+          "url": "https://av.watch.impress.co.jp/docs/series/rt/2150072.html",
+          "publishedAt": "2026-10-21T12:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "iPhone Duoのレビューをお届けする。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-f162bf3bf22a44dd",
+      "title": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+      "summary": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+      "fact": "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 11,
+      "breaking": false,
+      "publishedAt": "2026-10-21T12:24:07.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBP3T0MVBPULOB018M.html",
+          "publishedAt": "2026-10-21T12:24:07.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "横浜のごみ集積所で発見の男児の遺体 死後約1週間か 神奈川県警",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-eb02217be5fcefe7",
+      "title": "楽天ブックスにて「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション」販売再開本体＋プロコン＋ポーチの3点セットなども確認",
+      "summary": "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
+      "fact": "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "任天堂"
+      ],
+      "minutes": 1,
+      "priority": 11,
+      "breaking": false,
+      "publishedAt": "2026-10-21T07:48:18.000Z",
+      "duplicateCount": 2,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2150070.html",
+          "publishedAt": "2026-10-21T07:48:18.000Z"
+        }
+      ],
+      "confidence": 59,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-210fa03cde3183d5",
+      "title": "男性重体 妻の車にはねられたか",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 10,
+      "breaking": false,
+      "publishedAt": "2026-10-21T13:17:22.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32623901",
+          "publishedAt": "2026-10-21T13:17:22.000Z"
         }
       ],
       "confidence": 57,
@@ -3062,7 +3284,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 24,
+      "priority": 10,
       "breaking": false,
       "publishedAt": "2026-10-21T11:38:00.000Z",
       "duplicateCount": 1,
@@ -3086,70 +3308,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-f4f738d3fee99e36",
-      "title": "[ITmedia News] 著名ITサービス相次いで緊急メンテへ コドモン、シャドバ、BASE、さくらのレンタルサーバなど 「PHP」脆弱性に起因か",
-      "summary": "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の高い脆弱性が見つかった影響とみられる。",
-      "fact": "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の高い脆弱性が見つかった影響とみられる。",
+      "id": "news-f7875698a8a52181",
+      "title": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
+      "summary": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
+      "fact": "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
+      "category": "国内",
       "tags": [
-        "ゲーム"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 24,
+      "priority": 8,
       "breaking": false,
-      "publishedAt": "2026-10-21T08:47:19.000Z",
+      "publishedAt": "2026-10-21T12:10:29.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2610/21/2000002472",
-          "publishedAt": "2026-10-21T08:47:19.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "保育園向けSaaS「コドモン」、ゲーム「Shadowverse: Worlds Beyond」「さくらのレンタルサーバ」といった著名サービスが相次いで緊急メンテナンスに入ったり、同日午後11時ごろからのメンテナンスを予告したりしている。Web開発で広く使われるプログラミング言語「PHP」で緊急性の…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-e6a9cb75196a1e19",
-      "title": "ハリー英王子、父チャールズ国王と兄ウィリアム皇太子との「和解」望んでいると",
-      "summary": "ハリー王子は米ニューヨークで雑誌GQのインタビューに応じ、「世界で起こっているあらゆる出来事の中で、何より大事なのは和解することだ」と語った。",
-      "fact": "ハリー王子は米ニューヨークで雑誌GQのインタビューに応じ、「世界で起こっているあらゆる出来事の中で、何より大事なのは和解することだ」と語った。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国際",
-      "tags": [
-        "国際"
-      ],
-      "minutes": 1,
-      "priority": 22,
-      "breaking": false,
-      "publishedAt": "2026-10-21T03:39:05.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "BBC News Japan",
+          "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://www.bbc.com/japanese/watch/c3ewened59yeo?at_medium=RSS&at_campaign=rss",
-          "publishedAt": "2026-10-21T03:39:05.000Z"
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/356000c",
+          "publishedAt": "2026-10-21T12:10:29.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ハリー王子は米ニューヨークで雑誌GQのインタビューに応じ、「世界で起こっているあらゆる出来事の中で、何より大事なのは和解することだ」と語った。",
+        "読む政治:消費減税成立へ参院で「あと1人」の皮算用 自民、水面下で交渉",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3158,107 +3344,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-a5521b45214d2c02",
-      "title": "【西田宗千佳のRandomTracking】iPhone Duo実機レビュー。高品質な折りたたみ型が抱える「時間の問題」",
-      "summary": "iPhone Duoのレビューをお届けする。",
-      "fact": "iPhone Duoのレビューをお届けする。",
+      "id": "news-5384635fc7f48d8d",
+      "title": "高市早苗首相 PHP脆弱性を巡り修正プログラムの速やかな適用呼びかけ",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
+      "category": "国内",
       "tags": [
-        "AI・IT",
-        "Apple"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 19,
+      "priority": 6,
       "breaking": false,
-      "publishedAt": "2026-10-21T12:00:00.000Z",
+      "publishedAt": "2026-10-21T13:16:07.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "AV Watch",
-          "type": "専門メディア",
-          "url": "https://av.watch.impress.co.jp/docs/series/rt/2150072.html",
-          "publishedAt": "2026-10-21T12:00:00.000Z"
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32623898",
+          "publishedAt": "2026-10-21T13:16:07.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "iPhone Duoのレビューをお届けする。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b9e1ce3d6cfd9840",
-      "title": "モーターたった1個で飛行も方向転換もできるドローンをエンジニアが自作",
-      "summary": "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことです。 続きを読む...",
-      "fact": "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことです。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 18,
-      "breaking": false,
-      "publishedAt": "2026-10-21T12:50:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261021-drone-with-one-motor",
-          "publishedAt": "2026-10-21T12:50:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "一般的なドローンは複数のモーターを使って飛行や方向転換を行いますが、ソフトウェアエンジニアのジョシュア・バード氏がモーター1個だけで飛行と方向転換ができるドローンを自作しました。3Dプリンターで製作した特殊なプロペラとモーターの回転を高速で調整する仕組みにより、寝室での飛行実験に成功したとのことで…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-02f4dd75230684c3",
-      "title": "ドリフトや体当たりで戦車が火花を散らすアクションゲーム「SLAM TANK」の体験版が配信中実況も歓迎な新作をお試しプレイ可能",
-      "summary": "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
-      "fact": "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 18,
-      "breaking": false,
-      "publishedAt": "2026-10-21T08:18:45.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2150081.html",
-          "publishedAt": "2026-10-21T08:18:45.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "Next Stage Inc.は、PC用アクション「SLAM TANK」の体験版を配信している。",
+        "記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3279,7 +3392,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 13,
+      "priority": 6,
       "breaking": false,
       "publishedAt": "2026-10-21T12:00:00.000Z",
       "duplicateCount": 1,
@@ -3303,10 +3416,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-1d9cf309dbbb1ad3",
-      "title": "武部農相、収支報告書を訂正 前任の簗氏に続き公選法違反疑惑",
-      "summary": "武部農相、収支報告書を訂正 前任の簗氏に続き公選法違反疑惑",
-      "fact": "武部農相、収支報告書を訂正 前任の簗氏に続き公選法違反疑惑",
+      "id": "news-5cb7b38cbd1ebb60",
+      "title": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
+      "summary": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
+      "fact": "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -3315,95 +3428,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 13,
+      "priority": 4,
       "breaking": false,
-      "publishedAt": "2026-10-21T11:32:19.000Z",
+      "publishedAt": "2026-10-21T11:56:40.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/010/352000c",
-          "publishedAt": "2026-10-21T11:32:19.000Z"
+          "url": "https://mainichi.jp/articles/20261021/k00/00m/310/365000c",
+          "publishedAt": "2026-10-21T11:56:40.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "武部農相、収支報告書を訂正 前任の簗氏に続き公選法違反疑惑",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-eb02217be5fcefe7",
-      "title": "楽天ブックスにて「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション」販売再開本体＋プロコン＋ポーチの3点セットなども確認",
-      "summary": "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
-      "fact": "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "任天堂"
-      ],
-      "minutes": 1,
-      "priority": 13,
-      "breaking": false,
-      "publishedAt": "2026-10-21T07:48:18.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2150070.html",
-          "publishedAt": "2026-10-21T07:48:18.000Z"
-        }
-      ],
-      "confidence": 59,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "楽天ブックスにて、コントローラー「Nintendo Switch 2 Proコントローラー ゼルダの伝説 40周年 アニバーサリーエディション（ディスプレイスタンド付き）」の予約受付が再開している。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-cc9f7eec50b0f68c",
-      "title": "無人の交番で「ショウリンジ」と叫ぶ迷惑行為 少年20人超を捜査",
-      "summary": "無人の交番で「ショウリンジ」と叫ぶ迷惑行為 少年20人超を捜査",
-      "fact": "無人の交番で「ショウリンジ」と叫ぶ迷惑行為 少年20人超を捜査",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 10,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:21:15.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBP3HCKVBPPIHB005M.html",
-          "publishedAt": "2026-10-21T11:21:15.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "無人の交番で「ショウリンジ」と叫ぶ迷惑行為 少年20人超を捜査",
+        "アジアパラ、違う歌流れ表彰式をやり直し テコンドー男子",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3424,7 +3464,7 @@
         "AI・IT"
       ],
       "minutes": 1,
-      "priority": 10,
+      "priority": 4,
       "breaking": false,
       "publishedAt": "2026-10-21T11:00:07.000Z",
       "duplicateCount": 1,
@@ -3448,42 +3488,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7be0ffb373118f81",
-      "title": "神戸連続発砲事件、元暴力団組員を殺人の疑いで再逮捕",
-      "summary": "神戸連続発砲事件、元暴力団組員を殺人の疑いで再逮捕",
-      "fact": "神戸連続発砲事件、元暴力団組員を殺人の疑いで再逮捕",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 8,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:31:17.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/040/355000c",
-          "publishedAt": "2026-10-21T11:31:17.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "神戸連続発砲事件、元暴力団組員を殺人の疑いで再逮捕",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-c233820f7385f4ed",
       "title": "神奈川の病院で清掃員が建物3階から約9m下に落下 病院で死亡確認",
       "summary": "記事を読む",
@@ -3496,7 +3500,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 5,
+      "priority": 0,
       "breaking": false,
       "publishedAt": "2026-10-21T13:00:00.000Z",
       "duplicateCount": 1,
@@ -3512,116 +3516,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-64ddfb139fec8a1c",
-      "title": "Using thousands of AI agents to uncover new leads in biological data",
-      "summary": "See how OpenAI, PerturbAI, and Scripps Research used distributed AI agents to uncover promising research leads in data from millions of brain cells.",
-      "fact": "See how OpenAI, PerturbAI, and Scripps Research used distributed AI agents to uncover promising research leads in data from millions of brain cells.",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "AI",
-        "Publication"
-      ],
-      "minutes": 1,
-      "priority": 2,
-      "breaking": false,
-      "publishedAt": "2026-10-21T04:50:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "OpenAI News",
-          "type": "公式発表",
-          "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
-          "publishedAt": "2026-10-21T04:50:00.000Z"
-        }
-      ],
-      "confidence": 64,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "See how OpenAI, PerturbAI, and Scripps Research used distributed AI agents to uncover promising research leads in data from millions of brain cells.",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-7a1fa6552c69ba61",
-      "title": "競技初めてわずか3年、久野竜太朗がアジア新でV アジアパラ陸上",
-      "summary": "競技初めてわずか3年、久野竜太朗がアジア新でV アジアパラ陸上",
-      "fact": "競技初めてわずか3年、久野竜太朗がアジア新でV アジアパラ陸上",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 1,
-      "breaking": false,
-      "publishedAt": "2026-10-21T11:17:31.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261021/k00/00m/050/349000c",
-          "publishedAt": "2026-10-21T11:17:31.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "競技初めてわずか3年、久野竜太朗がアジア新でV アジアパラ陸上",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-88cd0c8897f23798",
-      "title": "[ITmedia PC USER] PLAUD、eSIM内蔵充電ケースを備えたイヤフォン型ウェアラブルAIデバイス「Plaud One」発表",
-      "summary": "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
-      "fact": "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 1,
-      "priority": 1,
-      "breaking": false,
-      "publishedAt": "2026-10-21T10:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/pcuser/articles/2610/21/news069.html",
-          "publishedAt": "2026-10-21T10:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3776,42 +3670,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-6816efa697eb4378",
-      "title": "生後3か月の娘を殺害した罪の内藤沙月被告、初公判で起訴内容を認める",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 0,
-      "breaking": false,
-      "publishedAt": "2026-10-21T12:14:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32623589",
-          "publishedAt": "2026-10-21T12:14:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-1a4081833ad294f6",
       "title": "「PHP」に欠陥 国家サイバー統括室が速やかな対応を取るよう注意喚起",
       "summary": "記事を読む",
@@ -3920,6 +3778,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-88cd0c8897f23798",
+      "title": "[ITmedia PC USER] PLAUD、eSIM内蔵充電ケースを備えたイヤフォン型ウェアラブルAIデバイス「Plaud One」発表",
+      "summary": "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
+      "fact": "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-10-21T10:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ITmedia",
+          "type": "専門メディア",
+          "url": "https://www.itmedia.co.jp/pcuser/articles/2610/21/news069.html",
+          "publishedAt": "2026-10-21T10:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "PLAUDは、AIエージェントに声で指示を行えるウェアラブルデバイス「Plaud One」を発表した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-25b56697282285d4",
       "title": "BLUESOUND、Apple Musicに正式対応。BluOSから直接再生",
       "summary": "PDNは10月21日、日本総代理店を務めるプレミアム・ワイヤレス・マルチルーム・オーディオブランド「BLUESOUND」が、Apple Musicへの対応を開始したと発表した。最新バージョンのBluOSで利用でき、対応製品は無償のソフトウェアアップデートでApple Musicに対応する。",
@@ -3995,12 +3889,12 @@
   ],
   "totalClustersBeforeCuration": 150,
   "totalClustersBeforeSemanticMerge": 149,
-  "totalClustersAfterSemanticMerge": 144,
+  "totalClustersAfterSemanticMerge": 143,
   "semanticDeduplication": {
     "algorithm": "title-summary-entity-semantic-v2",
     "threshold": 0.54,
     "maxGapHours": 96,
-    "mergedClusters": 5
+    "mergedClusters": 6
   },
   "curation": {
     "algorithm": "semantic-cluster-and-source-category-balance-v2",

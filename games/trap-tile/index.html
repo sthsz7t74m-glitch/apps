@@ -26,4 +26,4 @@ timer=setTimeout(()=>{if(isTrap){finished=true;$('message').textContent=currentN
 function settings(){clearTimeout(timer);$('game').classList.remove('active');$('setup').style.display='flex';locked=false}
 $('begin').addEventListener('click',start);$('again').addEventListener('click',newRound);$('settings').addEventListener('click',settings);playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
 })();
-</script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

@@ -32,4 +32,4 @@ $('next').onclick=()=>{if(rolling)return;rolling=true;stopClock();$('clockPanel'
  setTimeout(()=>{clearInterval(animation);const p=pick();used.add(p.key);display(p);rolling=false;$('status').textContent='お題';$('hint').textContent='この文字で始まり、この文字で終わる言葉！ 文字数は自由';$('next').textContent='次のお題';$('next').disabled=false;beginClock()},1000);
 };
 renderSettings();
-</script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

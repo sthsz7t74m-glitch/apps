@@ -47,4 +47,4 @@ function reset(){clearTimers();phase='setup';$('gamewrap').hidden=true;$('gamewr
 playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:4,initial:2});$('begin').onclick=()=>{if(!playerSetup.validate())return;start()};$('reset').onclick=reset;$('showresult').onclick=showResult;
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&['memorize','running','transition','correct'].includes(phase)){clearTimers();phase='finished';zones.forEach(z=>{if(!z.off&&!z.pressed){z.pressed=true;z.foul=true;z.el.classList.add('foul');z.status.textContent='中断';z.tap.disabled=true}});$('overlay').classList.add('hidden');$('showresult').hidden=false}});
 })();
-</script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

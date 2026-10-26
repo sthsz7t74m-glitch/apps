@@ -86,4 +86,4 @@ $('reset').onclick=()=>{
 playerSetup=GamePlayers.create({root:'quickPlayers',min:1,max:8,initial:4});
 showScreen('setup');refresh();
 
-</script><script src="../shared/audio.js"></script></body></html>
+window.GameExitGuard.configure({buttons:["reset","showRank"],isActive:()=>players.length>0&&!finished&&(running||players.some(p=>p.time!==null))});</script><script src="../shared/exit-confirm.js"></script><script src="../shared/audio.js"></script></body></html>

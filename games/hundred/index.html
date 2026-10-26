@@ -186,5 +186,6 @@ cancelAnimation();hideOverlay();number=100;current=0;direction=1;finished=false;
 $('setup').classList.remove('active');$('game').classList.add('active');$('end').classList.remove('show');$('endTurn').hidden=false;cardFace('残り枚数',100);$('message').textContent='カードを1枚めくろう';render();showTurnOverlay()}
 $('draw').addEventListener('click',draw);$('endTurn').addEventListener('click',endTurn);
 $('begin').addEventListener('click',()=>start(true));$('again').addEventListener('click',()=>start(false));$('settings').addEventListener('click',()=>{cancelAnimation();hideOverlay();$('game').classList.remove('active');$('setup').classList.add('active')});
+window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});
 })();
-window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});</script><script src="../shared/audio.js"></script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

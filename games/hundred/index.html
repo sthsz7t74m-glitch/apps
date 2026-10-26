@@ -3,40 +3,64 @@
 <style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:#f5f8ff;color:#173451;font-family:system-ui,-apple-system,sans-serif}button{font:inherit;cursor:pointer;touch-action:manipulation}button:disabled{cursor:default;opacity:.35}.app{max-width:620px;margin:auto;height:100dvh;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 9px);gap:10px}header{display:flex;align-items:center;gap:10px;flex:none}.back{width:38px;height:38px;display:grid;place-items:center;background:#e9f1ff;border-radius:12px;color:#256bdc;text-decoration:none;font-size:27px;font-weight:900}h1{margin:0;font-size:21px}.ver{margin-left:auto;font-size:11px;color:#7590b1}.screen{flex:1;min-height:0;display:none;flex-direction:column;gap:12px}.screen.active{display:flex}.panel{border-radius:19px;border:1px solid #dbe7fa;background:#fff;padding:15px;box-shadow:0 4px 20px #244f8a0b}.setup{overflow:auto;overscroll-behavior:contain}.setup h2{font-size:18px;margin:0 0 10px}.rules{font-size:13px;color:#56728f;line-height:1.7;margin:4px 0}.primary,.secondary{border:0;border-radius:13px;min-height:48px;padding:12px 14px;font-weight:850}.primary{background:#256bdc;color:white}.secondary{background:#eaf2ff;color:#256bdc}.setup .primary{margin-top:auto;flex:none}.status{text-align:center;font-weight:850;color:#426589;font-size:17px}.center{flex:1;min-height:0;border-radius:24px;background:linear-gradient(155deg,#eaf3ff,#dbe9ff);border:1px solid #c5d9f6;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}.counter{width:min(70%,240px);aspect-ratio:4/5;max-height:39dvh;background:#fff;border:4px solid #256bdc;border-radius:23px;box-shadow:0 11px 0 #b8cef1,0 18px 28px #16498a18;display:flex;flex-direction:column;justify-content:center;align-items:center}.counter small{font-size:13px;color:#6a89ae;font-weight:850}.counter strong{font-size:clamp(60px,19vw,112px);color:#256bdc;font-variant-numeric:tabular-nums;letter-spacing:-.09em;padding-right:.1em;line-height:1.2}.counter.danger{border-color:#ef4444}.counter.danger strong{color:#dc2626}.players{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;width:100%}.player{padding:6px 9px;border:1px solid #bfd2eb;border-radius:999px;background:#f8fbff;color:#6b86a5;font-size:12px;font-weight:850;max-width:46%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.player.current{color:white;background:#256bdc;border-color:#256bdc}.message{min-height:19px;text-align:center;color:#5b7493;font-size:12px;font-weight:700}.hand-title{display:flex;justify-content:space-between;font-size:12px;color:#607d9f;font-weight:750}.hand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}.play-card{background:#fff;color:#256bdc;border:2px solid #bcd2f1;border-radius:14px;height:clamp(70px,12dvh,106px);display:flex;flex-direction:column;justify-content:center;align-items:center;font-weight:900;box-shadow:0 4px 0 #ccdcf3}.play-card b{font-size:clamp(22px,7vw,34px)}.play-card span{font-size:10px}.play-card.special{background:#fff4e6;color:#bb6500;border-color:#f5be73;box-shadow:0 4px 0 #f8dfbd}.play-card.reverse{background:#eef2ff;color:#6d49c7;border-color:#b9a8f3;box-shadow:0 4px 0 #ded6f8}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.end{background:#fff2f2;border:2px solid #fecaca;border-radius:16px;padding:12px;text-align:center;display:none}.end.show{display:block}.end h2{margin:0 0 4px;color:#dc2626;font-size:21px}.end p{margin:0;font-size:13px;color:#6c4a4a}.hidden{display:none!important}@media(max-height:670px){.app{gap:6px}.panel{padding:10px}.screen{gap:7px}.counter{max-height:33dvh}.play-card{height:clamp(58px,11dvh,90px)}.center{gap:7px}.status{font-size:15px}.rules{line-height:1.45}}
 </style><style>
-.deck-area{display:flex;align-items:center;justify-content:center;gap:12px;flex:1;min-height:0;width:100%}
+#endTurn{width:100%;flex:none}#endTurn:disabled{background:#dbe6f5;color:#91a5bd;opacity:1}.deck-area{display:flex;align-items:center;justify-content:center;gap:12px;flex:1;min-height:0;width:100%}
 .deck-card{width:min(42%,178px);height:min(31dvh,215px);min-height:125px;flex:none;background:linear-gradient(145deg,#3d70de,#1d50bc);border:4px solid white;border-radius:19px;box-shadow:0 7px 0 #9cbbe8;color:white;font-size:23px;font-weight:950;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px}
 .deck-card:disabled{opacity:.65}.deck-card small{font-size:12px}.flipped{background:white;color:#2459c2;border-color:#b9d0f4}.flipped.special{background:#fff2de;color:#b96706;border-color:#f2c57f}.flipped.reverse{background:#f0ebff;color:#7546c3;border-color:#c2a7ef}
 .arrow-to{font-size:25px;color:#80a0c5;font-weight:900}.stack-caption{font-size:11px;color:#6682a5}
 @media(max-height:660px){.deck-card{height:min(27dvh,165px)}}
 </style></head>
-<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.2.4</span></header>
-<section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。自分の番に山札を1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> スキップは指定枚数を一気に減らし、リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
-<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="center"><div class="players" id="players"></div><div class="counter" id="counter"><small>山札の残り枚数</small><strong id="value">100</strong></div><div class="message" id="message" aria-live="polite">カードを1枚選ぼう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><div class="hand-title"><span>山札</span><span id="direction">進行方向 →</span></div><div class="deck-area"><button type="button" id="draw" class="deck-card"><span>100 GAME</span></button><span class="arrow-to">›</span><div id="flipped" class="deck-card flipped"><small>めくったカード</small><span id="flippedText">—</span></div></div><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
+<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.3.0</span></header>
+<section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。1ターンで山札を1〜5枚めくれます。1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> 1枚引いたらターン終了を選べます。5枚引くと自動交代。スキップは指定枚数を一気に減らし、リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
+<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="center"><div class="players" id="players"></div><div class="counter" id="counter"><small>山札の残り枚数</small><strong id="value">100</strong></div><div class="message" id="message" aria-live="polite">カードを1枚選ぼう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="deck-area"><button type="button" id="draw" class="deck-card"><span>100 GAME</span></button><span class="arrow-to">›</span><div id="flipped" class="deck-card flipped"><small>めくったカード</small><span id="flippedText">—</span></div></div><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
 <script src="../shared/player-setup.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
-let players=[],number=100,current=0,direction=1,finished=false;
+let players=[],number=100,current=0,direction=1,finished=false,draws=0;
 function randomEffect(){
  const roll=Math.floor(Math.random()*33);
  if(roll===0)return ['skip10','skip20','skip30'][Math.floor(Math.random()*3)];
  if(roll===1)return 'reverse';
  return 'normal';
 }
-function render(){ $('value').textContent=number;$('counter').classList.toggle('danger',number<=15);$('turnLabel').textContent=finished?'ゲーム終了':players[current]+' の番';$('direction').textContent=direction===1?'進行方向 →':'進行方向 ←';$('players').replaceChildren();players.forEach((name,i)=>{const e=document.createElement('span');e.className='player'+(!finished&&i===current?' current':'');e.textContent=name;$('players').append(e)});$('draw').disabled=finished}
-function draw(){if(finished)return;const actor=players[current];const effect=randomEffect();let amount=1,caption='';
-if(effect.startsWith('skip')){amount=Number(effect.slice(4));caption=amount+'枚スキップ';}
-else if(effect==='reverse'){direction=-direction;caption='REVERSE';}
-number=Math.max(0,number-amount);
-const flip=$('flipped');flip.className='deck-card flipped'+(effect==='reverse'?' reverse':effect!=='normal'?' special':'');
-$('flippedText').textContent=effect==='normal'?number+'枚':effect==='reverse'?'↶': '−'+amount;
-$('message').textContent=effect==='normal'?actor+' が1枚めくった！':actor+' が '+caption+' を引いた！';
-if(number===0){finished=true;$('result').textContent=actor+' の負け！';$('end').classList.add('show')}else{current=(current+direction+players.length)%players.length}
-render()}
+function render(){
+ $('value').textContent=number;
+ $('counter').classList.toggle('danger',number<=15);
+ $('turnLabel').textContent=finished?'ゲーム終了':players[current]+' の番';
+ $('direction').textContent=direction===1?'進行方向 →':'進行方向 ←';
+ $('drawCount').textContent='このターン '+draws+' / 5枚';
+ $('players').replaceChildren();
+ players.forEach((name,i)=>{const e=document.createElement('span');e.className='player'+(!finished&&i===current?' current':'');e.textContent=name;$('players').append(e)});
+ $('draw').disabled=finished||draws>=5;
+ $('endTurn').disabled=finished||draws===0;
+}
+function endTurn(){
+ if(finished||draws===0)return;
+ current=(current+direction+players.length)%players.length;
+ draws=0;
+ $('message').textContent='次は '+players[current]+' の番！';
+ render();
+}
+function draw(){
+ if(finished||draws>=5)return;
+ const actor=players[current],effect=randomEffect();
+ let amount=1,caption='';
+ if(effect.startsWith('skip')){amount=Number(effect.slice(4));caption=amount+'枚スキップ';}
+ else if(effect==='reverse'){direction=-direction;caption='REVERSE';}
+ draws++;
+ number=Math.max(0,number-amount);
+ const flip=$('flipped');
+ flip.className='deck-card flipped'+(effect==='reverse'?' reverse':effect!=='normal'?' special':'');
+ $('flippedText').textContent=effect==='normal'?number+'枚':effect==='reverse'?'↶':'−'+amount;
+ $('message').textContent=effect==='normal'?actor+' が1枚めくった！':actor+' が '+caption+' を引いた！';
+ if(number===0){finished=true;$('result').textContent=actor+' の負け！';$('end').classList.add('show');}
+ else if(draws===5){endTurn();return;}
+ render();
+}
 function start(choosePlayers){if(choosePlayers){const names=setup.validate();if(!names)return;players=names}
-number=100;current=0;direction=1;finished=false;
+number=100;current=0;direction=1;finished=false;draws=0;
 $('setup').classList.remove('active');$('game').classList.add('active');$('end').classList.remove('show');$('flipped').className='deck-card flipped';$('flippedText').textContent='—';$('message').textContent='カードを1枚めくろう';render()}
-$('draw').addEventListener('click',draw);
+$('draw').addEventListener('click',draw);$('endTurn').addEventListener('click',endTurn);
 $('begin').addEventListener('click',()=>start(true));$('again').addEventListener('click',()=>start(false));$('settings').addEventListener('click',()=>{$('game').classList.remove('active');$('setup').classList.add('active')});
 })();
 </script><script src="../shared/audio.js"></script></body></html>

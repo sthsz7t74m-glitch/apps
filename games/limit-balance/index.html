@@ -43,4 +43,4 @@ function start(){if(!syncQuickPlayers())return;if(!M){alert('物理演算ライ�
 $('start').onclick=start;
 function setup(){GameTurnOverlay.hide();$('game').classList.remove('on');$('result').classList.remove('on');$('setup').classList.remove('hidden');phase='setup'}
 $('again').onclick=start;$('backSetup').onclick=setup;$('reset').onclick=setup;
-mountQuickPlayers();})();</script><script src="../shared/audio.js"></script></body></html>
+mountQuickPlayers();})();window.GameExitGuard.configure({buttons:["again","backSetup","reset"],isActive:()=>$('game').classList.contains('on')&&(phase==='aim'||phase==='fall')});</script><script src="../shared/exit-confirm.js"></script><script src="../shared/audio.js"></script></body></html>

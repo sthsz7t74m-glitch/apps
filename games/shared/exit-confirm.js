@@ -23,7 +23,7 @@
  }
  window.GameExitGuard={
   configure(opts){config=opts;ensure()},
-  confirmAction(target){ensure();returnFocus=target;modal.classList.add('open');const ok=modal.querySelector('.gb-confirm-cancel');ok.focus()}
+  confirmAction(target){ensure();returnFocus=target;const label=target.textContent.trim();const redo=/もう一度|最初から|やり直/.test(label);modal.querySelector('h2').textContent=redo?'本当にやり直しますか？':'本当に終了しますか？';modal.querySelector('.gb-confirm-accept').textContent=redo?'やり直す':'終了する';modal.classList.add('open');const ok=modal.querySelector('.gb-confirm-cancel');ok.focus()}
  };
  document.addEventListener('click',e=>{
   if(!config||!e.isTrusted&&e.target!==bypass)return;

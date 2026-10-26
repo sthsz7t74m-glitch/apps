@@ -46,5 +46,6 @@ function start(){clearTimers();round++;phase='memorize';first=-1;correctAt=0;wro
 function reset(){clearTimers();phase='setup';$('gamewrap').hidden=true;$('gamewrap').style.display='none';$('board').className='board';$('overlay').classList.add('hidden');$('result').classList.remove('on');$('foot').classList.remove('on');$('setup').style.display='flex'}
 playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:4,initial:2});$('begin').onclick=()=>{if(!playerSetup.validate())return;start()};$('reset').onclick=reset;$('showresult').onclick=showResult;
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&['memorize','running','transition','correct'].includes(phase)){clearTimers();phase='finished';zones.forEach(z=>{if(!z.off&&!z.pressed){z.pressed=true;z.foul=true;z.el.classList.add('foul');z.status.textContent='中断';z.tap.disabled=true}});$('overlay').classList.add('hidden');$('showresult').hidden=false}});
+window.GameExitGuard.configure({buttons:["reset","showresult"],isActive:()=>['memorize','running','transition','correct'].includes(phase)});
 })();
-window.GameExitGuard.configure({buttons:["reset","showresult"],isActive:()=>['memorize','running','transition','correct'].includes(phase)});</script><script src="../shared/audio.js"></script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

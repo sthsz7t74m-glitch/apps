@@ -24,5 +24,5 @@
     map.set(key, merged);
   });
   window.AV_ACTRESSES = [...map.values()];
-  window.AV_DIRECTORY_META = { ...(window.AV_DIRECTORY_META || {}), version: '1.2.0', updatedAt: '2026-10-19', liveGeneratedAt: '2026-10-19', liveProfileCount: liveRows.length, liveSourceCount: 7 };
+  window.AV_DIRECTORY_META = { ...(window.AV_DIRECTORY_META || {}), version: '1.2.0', updatedAt: '2026-10-26', liveGeneratedAt: '2026-10-26', liveProfileCount: liveRows.length, liveSourceCount: 7 };
 })();

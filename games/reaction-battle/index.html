@@ -6,7 +6,7 @@
 <div class="gamewrap" id="gamewrap" hidden><div class="board" id="board"></div><div class="overlay hidden" id="overlay"><div class="prompt-card"><small>お題を覚えよう</small><div class="rule" id="rule"></div><small>正解例</small><div class="example" id="example"></div></div><div class="count-label">開始まであと</div><div class="count" id="count">10</div></div></div>
 <div class="result panel" id="result"><h2>結果発表</h2><div id="ranks"></div><p class="help">フライングは失格。反応時間が短い順に表示しています。</p></div>
 <div class="foot" id="foot"><button class="sub" id="reset">もう一度遊ぶ</button><button class="primary" id="showresult" hidden>結果を見る</button></div></div>
-<script src="../shared/player-setup.js"></script><script>
+<script src="../shared/player-setup.js"></script><script src="../shared/exit-confirm.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);let playerSetup;const displayName=i=>playerSetup.getNames()[i]||'ABCD'[i];let n=2,phase='setup',zones=[],rule=null,correctAt=0,first=-1,wrongLeft=0,timers=[],round=0,previousSymbol=null;
 const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
@@ -47,4 +47,4 @@ function reset(){clearTimers();phase='setup';$('gamewrap').hidden=true;$('gamewr
 playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:4,initial:2});$('begin').onclick=()=>{if(!playerSetup.validate())return;start()};$('reset').onclick=reset;$('showresult').onclick=showResult;
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&['memorize','running','transition','correct'].includes(phase)){clearTimers();phase='finished';zones.forEach(z=>{if(!z.off&&!z.pressed){z.pressed=true;z.foul=true;z.el.classList.add('foul');z.status.textContent='中断';z.tap.disabled=true}});$('overlay').classList.add('hidden');$('showresult').hidden=false}});
 })();
-window.GameExitGuard.configure({buttons:["reset","showresult"],isActive:()=>['memorize','running','transition','correct'].includes(phase)});</script><script src="../shared/exit-confirm.js"></script><script src="../shared/audio.js"></script></body></html>
+window.GameExitGuard.configure({buttons:["reset","showresult"],isActive:()=>['memorize','running','transition','correct'].includes(phase)});</script><script src="../shared/audio.js"></script></body></html>

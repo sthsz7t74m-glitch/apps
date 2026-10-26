@@ -187,4 +187,4 @@ $('setup').classList.remove('active');$('game').classList.add('active');$('end')
 $('draw').addEventListener('click',draw);$('endTurn').addEventListener('click',endTurn);
 $('begin').addEventListener('click',()=>start(true));$('again').addEventListener('click',()=>start(false));$('settings').addEventListener('click',()=>{cancelAnimation();hideOverlay();$('game').classList.remove('active');$('setup').classList.add('active')});
 })();
-</script><script src="../shared/audio.js"></script></body></html>
+window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});</script><script src="../shared/exit-confirm.js"></script><script src="../shared/audio.js"></script></body></html>

@@ -30,4 +30,5 @@ function next(){if(phase!=='turnDone')return;if(current===players.length-1){show
 function settings(){GameTurnOverlay.hide();clearInterval(diceTimer);clearTimeout(finishTimer);phase='setup';$('game').classList.remove('on');$('result').classList.remove('on');$('setup').style.display='flex'}
 $('begin').onclick=start;$('roll').onclick=roll;$('stop').onclick=stop;$('next').onclick=next;$('again').onclick=start;$('settings').onclick=settings;
 face(1);
-mountQuickPlayers();})();window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('on')&&phase!=='result'});</script><script src="../shared/audio.js"></script></body></html>
+mountQuickPlayers();window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('on')&&phase!=='result'});
+})();</script><script src="../shared/audio.js"></script></body></html>

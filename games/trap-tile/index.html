@@ -25,5 +25,6 @@ function openTile(i){if(locked||finished||tiles[i].classList.contains('open'))re
 timer=setTimeout(()=>{if(isTrap){finished=true;$('message').textContent=currentName()+' が爆弾を引いた！';$('flash').classList.remove('boom');void $('flash').offsetWidth;$('flash').classList.add('boom');updateStatus();timer=setTimeout(()=>{$('resultText').textContent=currentName()+' の負け！ '+players.filter((_,i)=>i!==(turn-1)%players.length).join('・')+' の勝ち！';$('end').classList.add('show')},700)}else{turn++;locked=false;updateStatus();GameTurnOverlay.show(currentName());$('message').textContent='セーフ！ 次は '+currentName()+' の番！'}},500)}
 function settings(){GameTurnOverlay.hide();clearTimeout(timer);$('game').classList.remove('active');$('setup').style.display='flex';locked=false}
 $('begin').addEventListener('click',start);$('again').addEventListener('click',newRound);$('settings').addEventListener('click',settings);playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
+window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});
 })();
-window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});</script><script src="../shared/audio.js"></script></body></html>
+</script><script src="../shared/audio.js"></script></body></html>

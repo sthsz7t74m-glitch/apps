@@ -8,8 +8,8 @@
 .deck-card:disabled{opacity:.65}.deck-card small{font-size:12px}.flipped{background:white;color:#2459c2;border-color:#b9d0f4}.flipped.special{background:#fff2de;color:#b96706;border-color:#f2c57f}.flipped.reverse{background:#f0ebff;color:#7546c3;border-color:#c2a7ef}
 .arrow-to{font-size:25px;color:#80a0c5;font-weight:900}.stack-caption{font-size:11px;color:#6682a5}
 @media(max-height:660px){.deck-card{height:min(27dvh,165px)}}
- .single-deck{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;border:1px solid #cbdcf3;border-radius:22px;background:linear-gradient(150deg,#eaf3ff,#dceaff);padding:18px}
-.single-deck .deck-card{width:min(73%,295px);height:min(53dvh,420px);max-height:100%;min-height:130px;background:linear-gradient(145deg,#3d70de,#1d50bc);box-shadow:0 9px 0 #a3bce5;color:#fff;border:4px solid #fff;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
+ .single-deck{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;border:1px solid #cbdcf3;border-radius:22px;background:linear-gradient(150deg,#eaf3ff,#dceaff);padding:clamp(20px,4dvh,38px) 18px 20px}
+.single-deck .deck-card{width:min(73vw,295px);height:min(47dvh,390px);max-height:100%;min-height:130px;background:linear-gradient(145deg,#3d70de,#1d50bc);box-shadow:0 9px 0 #a3bce5;color:#fff;border:4px solid #fff;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
 .single-deck .deck-card strong{font-size:clamp(74px,20vw,124px);font-variant-numeric:tabular-nums;line-height:1.2}
 .single-deck .deck-card small{font-size:15px}.single-deck .deck-card.danger{background:linear-gradient(145deg,#ed6666,#cd3434)}.single-deck .deck-card.special{background:linear-gradient(145deg,#e6aa48,#bb7118)}.single-deck .deck-card.reverse{background:linear-gradient(145deg,#a384ea,#6748be)}
 #game>.players{flex:none}
@@ -19,15 +19,19 @@
 .single-deck .deck-card.skip-face strong{font-size:clamp(88px,22vw,139px)}
 .single-deck .deck-card.skip-face small{display:none}
 .single-deck .deck-card.skip-face .card-effect{display:block}
-.single-deck .deck-card.flip-pulse{animation:gb-skip-flip .18s ease-in-out}
-@keyframes gb-skip-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.2)}100%{transform:scaleX(1)}}
+.deck-stage{position:relative;width:100%;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;perspective:900px}
+.flying-card{position:absolute;left:50%;top:50%;width:min(73vw,295px);height:min(47dvh,390px);max-height:100%;border:4px solid #fff;border-radius:19px;background:linear-gradient(145deg,#4980ec,#2655bb);color:white;display:flex;align-items:center;justify-content:center;font-weight:950;font-size:clamp(70px,19vw,115px);box-shadow:0 9px 0 #a3bce5;opacity:0;pointer-events:none;transform:translate(-50%,-50%) rotateY(0deg)}
+.flying-card.fly{animation:gb-card-swipe 250ms cubic-bezier(.4,0,.3,1) both}
+@keyframes gb-card-swipe{0%{opacity:1;transform:translate(-50%,-50%) translateX(0) rotateY(0deg)}100%{opacity:0;transform:translate(-50%,-50%) translateX(75%) rotateY(-70deg)}}
+@media(prefers-reduced-motion:reduce){.flying-card.fly{animation-duration:80ms}}
+
 .single-deck .message{font-size:13px;min-height:18px}
-@media(max-height:650px){.single-deck{padding:8px;gap:8px}.single-deck .deck-card{height:min(42dvh,275px)}}
+@media(max-height:650px){.single-deck{padding:16px 10px 8px;gap:8px}.single-deck .deck-card,.flying-card{height:min(38dvh,255px)}}
 .turn-overlay{position:fixed;inset:0;background:rgba(246,249,255,.76);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}.turn-overlay.show{opacity:1;visibility:visible;pointer-events:auto}.turn-popup{width:min(85vw,370px);min-height:210px;position:relative;display:flex;align-items:center;justify-content:center;background:white;border:2px solid #c7d9f4;border-radius:25px;padding:55px 22px;box-shadow:0 16px 48px #244f8a27}.turn-prefix{position:absolute;top:19px;left:23px;color:#6683aa;font-size:25px;font-weight:900}.turn-name{color:#256bdc;font-weight:950;font-size:clamp(38px,12vw,67px);line-height:1.13;text-align:center;overflow-wrap:anywhere;max-width:100%}.turn-suffix{position:absolute;right:22px;bottom:18px;color:#6683aa;font-size:25px;font-weight:900}@media(max-height:600px){.turn-popup{min-height:165px;padding:42px 18px}.turn-prefix,.turn-suffix{font-size:21px}}
 </style><link rel="stylesheet" href="../shared/turn-overlay.css"></head>
-<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.4.0</span></header>
+<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.4.1</span></header>
 <section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。1ターンで山札を1〜5枚めくれます。1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> 1枚引いたらターン終了を選べます。5枚引くと自動交代。スキップは演出後に指定枚数を自動でめくります（5枚制限には含まれません）。リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
-<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="players" id="players"></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="single-deck"><button type="button" id="draw" class="deck-card"><small id="cardLabel">残り枚数</small><strong id="value">100</strong><span id="cardEffect" class="card-effect" hidden>SKIP</span></button><div class="message" id="message" aria-live="polite">カードを1枚めくろう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
+<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="players" id="players"></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="single-deck"><div class="deck-stage"><button type="button" id="draw" class="deck-card"><small id="cardLabel">残り枚数</small><strong id="value">100</strong><span id="cardEffect" class="card-effect" hidden>SKIP</span></button><div id="flyingCard" class="flying-card" aria-hidden="true"><span id="flyingValue"></span></div></div><div class="message" id="message" aria-live="polite">カードを1枚めくろう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
 <script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
@@ -39,7 +43,7 @@ function randomEffect(){
  if(roll===1)return 'reverse';
  return 'normal';
 }
-function cancelAnimation(){skipToken++;clearTimeout(skipTimer);skipTimer=null;animating=false;clearTimeout(overlayTimer);overlayTimer=null}
+function cancelAnimation(){skipToken++;clearTimeout(skipTimer);skipTimer=null;animating=false;$('flyingCard').classList.remove('fly');clearTimeout(overlayTimer);overlayTimer=null}
 function hideOverlay(){clearTimeout(overlayTimer);GameTurnOverlay.hide();turnLocked=false}
 function showTurnOverlay(){hideOverlay();turnLocked=true;render();GameTurnOverlay.show(players[current]);overlayTimer=setTimeout(()=>{turnLocked=false;render()},1250)}
 function cardFace(label,value,effect=''){
@@ -92,12 +96,16 @@ function animateSkip(amount,actor){
  const step=()=>{
    if(token!==skipToken)return;
    if(left<=0){$('message').textContent=actor+' が '+amount+'枚スキップ！';finishDraw();return}
+   const flying=$('flyingCard');
+   $('flyingValue').textContent=number;
+   flying.classList.remove('fly');
+   void flying.offsetWidth;
+   flying.classList.add('fly');
    number--;left--;
    cardFace('残り枚数',number);
-   $('draw').classList.add('flip-pulse');
    $('message').textContent='SKIP中… あと'+left+'枚';
-   if(number===0){lose(actor);return}
-   skipTimer=setTimeout(step,130);
+   if(number===0){skipTimer=setTimeout(()=>{if(token===skipToken){flying.classList.remove('fly');lose(actor)}},255);return}
+   skipTimer=setTimeout(step,265);
  };
  skipTimer=setTimeout(step,950);
 }

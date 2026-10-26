@@ -7,7 +7,7 @@
 <section class="setup panel" id="setup"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>盤面サイズ</h2><div class="choice" id="sizes"><button type="button" data-side="4">4 × 4</button><button type="button" class="selected" data-side="5">5 × 5</button><button type="button" data-side="6">6 × 6</button></div><p class="description">トラップはたったの1個！<br>順番にタイルを1枚ずつ開こう。安全なタイルは開いたまま。トラップを引いた人が負けで、その場でゲーム終了！<br>誰の番かを自動表示。爆弾を引いたプレイヤーが負け！</p><button type="button" class="primary" id="begin">ゲーム開始</button></section>
 <section class="game" id="game"><div class="status"><strong id="turn">A の番</strong><small id="remaining">残り25マス ／ トラップ1個</small></div><div class="boardwrap"><div class="board" id="board"></div><div class="flash" id="flash"></div><div class="end-banner" id="end"><h2>爆発！ ゲームオーバー</h2><p id="resultText"></p></div></div><div class="message" id="message">好きなタイルを1枚タップ！</div><div class="bottom"><button type="button" id="settings">設定に戻る</button><button type="button" id="again" class="primary">もう一度遊ぶ</button></div></section>
 </div>
-<script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script>
+<script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 let side=5,trap=-1,opened=0,turn=1,locked=false,finished=false,timer=null,players=[],playerSetup=null;
@@ -26,4 +26,4 @@ timer=setTimeout(()=>{if(isTrap){finished=true;$('message').textContent=currentN
 function settings(){GameTurnOverlay.hide();clearTimeout(timer);$('game').classList.remove('active');$('setup').style.display='flex';locked=false}
 $('begin').addEventListener('click',start);$('again').addEventListener('click',newRound);$('settings').addEventListener('click',settings);playerSetup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
 })();
-window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});</script><script src="../shared/exit-confirm.js"></script><script src="../shared/audio.js"></script></body></html>
+window.GameExitGuard.configure({buttons:["again","settings"],isActive:()=>$('game').classList.contains('active')&&!finished});</script><script src="../shared/audio.js"></script></body></html>

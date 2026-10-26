@@ -12,65 +12,124 @@
 .single-deck .deck-card{width:min(73%,295px);height:min(53dvh,420px);max-height:100%;min-height:130px;background:linear-gradient(145deg,#3d70de,#1d50bc);box-shadow:0 9px 0 #a3bce5;color:#fff;border:4px solid #fff;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center}
 .single-deck .deck-card strong{font-size:clamp(74px,20vw,124px);font-variant-numeric:tabular-nums;line-height:1.2}
 .single-deck .deck-card small{font-size:15px}.single-deck .deck-card.danger{background:linear-gradient(145deg,#ed6666,#cd3434)}.single-deck .deck-card.special{background:linear-gradient(145deg,#e6aa48,#bb7118)}.single-deck .deck-card.reverse{background:linear-gradient(145deg,#a384ea,#6748be)}
-#game>.players{flex:none}.single-deck .message{font-size:13px;min-height:18px}
+#game>.players{flex:none}
+#game>.status{margin-top:clamp(10px,2dvh,22px)}
+#game>.hand-title{margin-top:clamp(10px,2dvh,20px)}
+.single-deck .deck-card .card-effect{font-size:clamp(29px,8vw,46px);font-weight:950;letter-spacing:.07em}
+.single-deck .deck-card.skip-face strong{font-size:clamp(88px,22vw,139px)}
+.single-deck .deck-card.skip-face small{display:none}
+.single-deck .deck-card.skip-face .card-effect{display:block}
+.single-deck .deck-card.flip-pulse{animation:gb-skip-flip .18s ease-in-out}
+@keyframes gb-skip-flip{0%{transform:scaleX(1)}50%{transform:scaleX(.2)}100%{transform:scaleX(1)}}
+.single-deck .message{font-size:13px;min-height:18px}
 @media(max-height:650px){.single-deck{padding:8px;gap:8px}.single-deck .deck-card{height:min(42dvh,275px)}}
 .turn-overlay{position:fixed;inset:0;background:rgba(246,249,255,.76);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}.turn-overlay.show{opacity:1;visibility:visible;pointer-events:auto}.turn-popup{width:min(85vw,370px);min-height:210px;position:relative;display:flex;align-items:center;justify-content:center;background:white;border:2px solid #c7d9f4;border-radius:25px;padding:55px 22px;box-shadow:0 16px 48px #244f8a27}.turn-prefix{position:absolute;top:19px;left:23px;color:#6683aa;font-size:25px;font-weight:900}.turn-name{color:#256bdc;font-weight:950;font-size:clamp(38px,12vw,67px);line-height:1.13;text-align:center;overflow-wrap:anywhere;max-width:100%}.turn-suffix{position:absolute;right:22px;bottom:18px;color:#6683aa;font-size:25px;font-weight:900}@media(max-height:600px){.turn-popup{min-height:165px;padding:42px 18px}.turn-prefix,.turn-suffix{font-size:21px}}
 </style><link rel="stylesheet" href="../shared/turn-overlay.css"></head>
-<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.3.3</span></header>
-<section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。1ターンで山札を1〜5枚めくれます。1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> 1枚引いたらターン終了を選べます。5枚引くと自動交代。スキップは指定枚数を一気に減らし、リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
-<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="players" id="players"></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="single-deck"><button type="button" id="draw" class="deck-card"><small>残り枚数</small><strong id="value">100</strong></button><div class="message" id="message" aria-live="polite">カードを1枚めくろう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
+<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.4.0</span></header>
+<section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。1ターンで山札を1〜5枚めくれます。1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> 1枚引いたらターン終了を選べます。5枚引くと自動交代。スキップは演出後に指定枚数を自動でめくります（5枚制限には含まれません）。リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
+<section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="players" id="players"></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="single-deck"><button type="button" id="draw" class="deck-card"><small id="cardLabel">残り枚数</small><strong id="value">100</strong><span id="cardEffect" class="card-effect" hidden>SKIP</span></button><div class="message" id="message" aria-live="polite">カードを1枚めくろう</div></div><div id="end" class="end" aria-live="polite"><h2>ゲーム終了！</h2><p id="result"></p></div><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
 <script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
-let players=[],number=100,current=0,direction=1,finished=false,draws=0,turnLocked=false,overlayTimer=null;
+let players=[],number=100,current=0,direction=1,finished=false,draws=0,turnLocked=false,overlayTimer=null,skipTimer=null,skipToken=0,animating=false;
 function randomEffect(){
  const roll=Math.floor(Math.random()*33);
  if(roll===0)return ['skip10','skip20','skip30'][Math.floor(Math.random()*3)];
  if(roll===1)return 'reverse';
  return 'normal';
 }
+function cancelAnimation(){skipToken++;clearTimeout(skipTimer);skipTimer=null;animating=false;clearTimeout(overlayTimer);overlayTimer=null}
 function hideOverlay(){clearTimeout(overlayTimer);GameTurnOverlay.hide();turnLocked=false}
 function showTurnOverlay(){hideOverlay();turnLocked=true;render();GameTurnOverlay.show(players[current]);overlayTimer=setTimeout(()=>{turnLocked=false;render()},1250)}
+function cardFace(label,value,effect=''){
+ const deck=$('draw');
+ deck.classList.remove('special','reverse','skip-face','flip-pulse');
+ $('cardLabel').textContent=label;
+ $('value').textContent=value;
+ $('cardEffect').hidden=!effect;
+ $('cardEffect').textContent=effect;
+ if(effect==='SKIP')deck.classList.add('special','skip-face');
+ else if(effect==='REVERSE')deck.classList.add('reverse','skip-face');
+}
 function render(){
- $('value').textContent=number;
- $('draw').classList.toggle('danger',number<=15);
+ if(!animating && !finished && !$('draw').classList.contains('skip-face'))$('value').textContent=number;
+ $('draw').classList.toggle('danger',number<=15&&!animating);
  $('turnLabel').textContent=finished?'ゲーム終了':players[current]+' の番';
  $('direction').textContent=direction===1?'進行方向 →':'進行方向 ←';
  $('drawCount').textContent='このターン '+draws+' / 5枚';
  $('players').replaceChildren();
  players.forEach((name,i)=>{const e=document.createElement('span');e.className='player'+(!finished&&i===current?' current':'');e.textContent=name;$('players').append(e)});
- $('draw').disabled=finished||draws>=5||turnLocked;
- $('endTurn').disabled=finished||draws===0||turnLocked;
+ $('draw').disabled=finished||draws>=5||turnLocked||animating;
+ $('endTurn').disabled=finished||draws===0||turnLocked||animating;
 }
 function endTurn(){
- if(finished||draws===0||turnLocked)return;
+ if(finished||draws===0||turnLocked||animating)return;
  current=(current+direction+players.length)%players.length;
  draws=0;
  $('message').textContent='';
+ cardFace('残り枚数',number);
  render();showTurnOverlay();
 }
+function lose(actor){
+ finished=true;animating=false;
+ cardFace('残り枚数',0);
+ $('result').textContent=actor+' の負け！';
+ $('end').classList.add('show');
+ $('message').textContent='山札が0枚になった！';
+ render();
+}
+function finishDraw(){
+ cardFace('残り枚数',number);
+ animating=false;
+ if(draws>=5){endTurn();return}
+ render();
+}
+function animateSkip(amount,actor){
+ animating=true;render();
+ const token=++skipToken;
+ let left=Math.min(amount,number);
+ const step=()=>{
+   if(token!==skipToken)return;
+   if(left<=0){$('message').textContent=actor+' が '+amount+'枚スキップ！';finishDraw();return}
+   number--;left--;
+   cardFace('残り枚数',number);
+   $('draw').classList.add('flip-pulse');
+   $('message').textContent='SKIP中… あと'+left+'枚';
+   if(number===0){lose(actor);return}
+   skipTimer=setTimeout(step,130);
+ };
+ skipTimer=setTimeout(step,950);
+}
 function draw(){
- if(finished||draws>=5||turnLocked)return;
+ if(finished||draws>=5||turnLocked||animating)return;
  const actor=players[current],effect=randomEffect();
- let amount=1,caption='';
- if(effect.startsWith('skip')){amount=Number(effect.slice(4));caption=amount+'枚スキップ';}
- else if(effect==='reverse'){direction=-direction;caption='REVERSE';}
  draws++;
- number=Math.max(0,number-amount);
- const deck=$('draw');
- deck.classList.remove('special','reverse');
- if(effect==='reverse')deck.classList.add('reverse');
- else if(effect!=='normal')deck.classList.add('special');
- $('message').textContent=effect==='normal'?actor+' が1枚めくった！':actor+' が '+caption+' を引いた！';
- if(number===0){finished=true;$('result').textContent=actor+' の負け！';$('end').classList.add('show');}
- else if(draws===5){endTurn();return;}
+ if(effect.startsWith('skip')){
+   const amount=Number(effect.slice(4));
+   cardFace('',amount,'SKIP');
+   $('message').textContent=actor+' が '+amount+' SKIPを引いた！';
+   animateSkip(amount,actor);
+   return;
+ }
+ if(effect==='reverse'){
+   direction=-direction;
+   number--;
+   cardFace('', '↶','REVERSE');
+   $('message').textContent=actor+' がREVERSEを引いた！';
+ }else{
+   number--;
+   cardFace('残り枚数',number);
+   $('message').textContent=actor+' が1枚めくった！';
+ }
+ if(number<=0){lose(actor);return}
+ if(draws===5){endTurn();return}
  render();
 }
 function start(choosePlayers){if(choosePlayers){const names=setup.validate();if(!names)return;players=names}
-hideOverlay();number=100;current=0;direction=1;finished=false;draws=0;
-$('setup').classList.remove('active');$('game').classList.add('active');$('end').classList.remove('show');$('draw').className='deck-card';$('message').textContent='カードを1枚めくろう';render();showTurnOverlay()}
+cancelAnimation();hideOverlay();number=100;current=0;direction=1;finished=false;draws=0;
+$('setup').classList.remove('active');$('game').classList.add('active');$('end').classList.remove('show');cardFace('残り枚数',100);$('message').textContent='カードを1枚めくろう';render();showTurnOverlay()}
 $('draw').addEventListener('click',draw);$('endTurn').addEventListener('click',endTurn);
-$('begin').addEventListener('click',()=>start(true));$('again').addEventListener('click',()=>start(false));$('settings').addEventListener('click',()=>{hideOverlay();$('game').classList.remove('active');$('setup').classList.add('active')});
+$('begin').addEventListener('click',()=>start(true));$('again').addEventListener('click',()=>start(false));$('settings').addEventListener('click',()=>{cancelAnimation();hideOverlay();$('game').classList.remove('active');$('setup').classList.add('active')});
 })();
 </script><script src="../shared/audio.js"></script></body></html>

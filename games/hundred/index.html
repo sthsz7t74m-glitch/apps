@@ -29,7 +29,7 @@
 @media(max-height:650px){.single-deck{padding:16px 10px 8px;gap:8px}.single-deck .deck-card,.flying-card{width:min(55vw,210px,calc((100dvh - 300px)*.67));height:auto;aspect-ratio:2/3}}
 .turn-overlay{position:fixed;inset:0;background:rgba(246,249,255,.76);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s,visibility .2s}.turn-overlay.show{opacity:1;visibility:visible;pointer-events:auto}.turn-popup{width:min(85vw,370px);min-height:210px;position:relative;display:flex;align-items:center;justify-content:center;background:white;border:2px solid #c7d9f4;border-radius:25px;padding:55px 22px;box-shadow:0 16px 48px #244f8a27}.turn-prefix{position:absolute;top:19px;left:23px;color:#6683aa;font-size:25px;font-weight:900}.turn-name{color:#256bdc;font-weight:950;font-size:clamp(38px,12vw,67px);line-height:1.13;text-align:center;overflow-wrap:anywhere;max-width:100%}.turn-suffix{position:absolute;right:22px;bottom:18px;color:#6683aa;font-size:25px;font-weight:900}@media(max-height:600px){.turn-popup{min-height:165px;padding:42px 18px}.turn-prefix,.turn-suffix{font-size:21px}}
 </style><link rel="stylesheet" href="../shared/turn-overlay.css"></head>
-<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.4.4</span></header>
+<body><main class="app"><header><a class="back" href="../" aria-label="一覧に戻る">‹</a><h1>100ゲーム</h1><span class="ver">v0.4.5</span></header>
 <section id="setup" class="screen setup panel active"><h2>プレイヤー設定</h2><div id="quickPlayers"></div><h2>あそびかた</h2><p class="rules">100枚からスタート。1ターンで山札を1〜5枚めくれます。1枚めくると、残り枚数が 100 → 99 → 98… と減っていきます。1枚めくるごとにスキップ・リバースがそれぞれ1/33の確率で登場！</p><p class="rules"><strong>最後の1枚を引いて、残り0枚にした人が負け！</strong> 1枚引いたらターン終了を選べます。5枚引くと自動交代。スキップは演出後に指定枚数を自動でめくります（5枚制限には含まれません）。リバースは順番を逆にします。</p><button class="primary" id="begin">ゲーム開始</button></section>
 <section id="game" class="screen"><div class="status" id="turnLabel">A の番</div><div class="players" id="players"></div><div class="hand-title"><span id="drawCount">このターン 0 / 5枚</span><span id="direction">進行方向 →</span></div><div class="single-deck"><div class="deck-stage"><button type="button" id="draw" class="deck-card"><small id="cardLabel">残り枚数</small><strong id="value">100</strong><span id="cardEffect" class="card-effect" hidden>SKIP</span></button><div id="flyingCard" class="flying-card" aria-hidden="true"><span id="flyingValue"></span></div></div><div class="message" id="message" aria-live="polite">カードを1枚めくろう</div></div><div id="turnAction"><button type="button" id="endTurn" class="primary" disabled>ターン終了</button><div id="end" class="end" aria-live="polite"><p id="result"></p></div></div><div class="controls"><button class="secondary" id="settings">設定に戻る</button><button class="primary" id="again">もう一度</button></div></section></main>
 <script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script>
@@ -89,6 +89,14 @@ function finishDraw(){
  if(draws>=5){endTurn();return}
  render();
 }
+function swipeCard(previous){
+ const flying=$('flyingCard');
+ $('flyingValue').textContent=previous;
+ flying.classList.remove('fly');
+ void flying.offsetWidth;
+ flying.classList.add('fly');
+ if(window.GameAudio)GameAudio.play(510);
+}
 function animateSkip(amount,actor){
  animating=true;render();
  const token=++skipToken;
@@ -96,15 +104,11 @@ function animateSkip(amount,actor){
  const step=()=>{
    if(token!==skipToken)return;
    if(left<=0){$('message').textContent=actor+' が '+amount+'枚スキップ！';finishDraw();return}
-   const flying=$('flyingCard');
-   $('flyingValue').textContent=number;
-   flying.classList.remove('fly');
-   void flying.offsetWidth;
-   flying.classList.add('fly');
+   swipeCard(number);
    number--;left--;
    cardFace('残り枚数',number);
    $('message').textContent='SKIP中… あと'+left+'枚';
-   if(number===0){skipTimer=setTimeout(()=>{if(token===skipToken){flying.classList.remove('fly');lose(actor)}},255);return}
+   if(number===0){skipTimer=setTimeout(()=>{if(token===skipToken){$('flyingCard').classList.remove('fly');lose(actor)}},255);return}
    skipTimer=setTimeout(step,265);
  };
  skipTimer=setTimeout(step,950);
@@ -122,7 +126,9 @@ function draw(){
  }
  if(effect==='reverse'){
    direction=-direction;
+   const previous=number;
    number--;
+   swipeCard(previous);
    cardFace('', '↶','REVERSE');
    $('message').textContent=actor+' がREVERSEを引いた！';
    if(number<=0){lose(actor);return}
@@ -136,7 +142,9 @@ function draw(){
    },950);
    return;
  }else{
+   const previous=number;
    number--;
+   swipeCard(previous);
    cardFace('残り枚数',number);
    $('message').textContent=actor+' が1枚めくった！';
  }

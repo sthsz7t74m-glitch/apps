@@ -104,38 +104,43 @@ m.legs.forEach((leg,i)=>{const phase=time/115+h.num*.6+(i%2?Math.PI:0)+(leg.fron
 if(h.num===lead.num){center.set(x,y,0);dir.set(Math.cos(yaw),Math.sin(yaw),0)}
 }
 const side=new T.Vector3(-dir.y,dir.x,0);
-const homeStretch=type==='loop'&&lead.pos>=.91;const goalShot=homeStretch||(type==='straight'&&lead.pos>=.76);
-let targetPos,focus;
-if(type==='straight'||homeStretch){
-  // Wide TV camera: frame the entire field from first to last, including 8 horses.
-  const pts=models.map(m=>m.group.position);
-  const minX=Math.min(...pts.map(p=>p.x)),maxX=Math.max(...pts.map(p=>p.x));
-  const minY=Math.min(...pts.map(p=>p.y)),maxY=Math.max(...pts.map(p=>p.y));
-  const mid=new T.Vector3((minX+maxX)/2,(minY+maxY)/2,0);
-  const width=maxX-minX+10,height=maxY-minY+11;
-  const tan=Math.tan(T.MathUtils.degToRad(camera.fov/2));
-  // Portrait screens need much more camera distance for horizontally spread horses.
-  const neededZ=Math.max(width/(2*tan*Math.max(.15,camera.aspect)),height/(2*tan),17);
-  const z=neededZ*1.30;
-  // Grandstand-side oblique shot. Keep the same roomy framing while lowering
-  // the camera elevation and introducing a visible side-on angle.
-  // From the final approach onward, lock the TV camera to the finish line.
-  // This shot doesn't move with horses that have already crossed.
-  if(goalShot){
-    const goal=type==='loop'?stadiumPoint(.94):{x:64,y:0};
-    focus=new T.Vector3(goal.x-(type==='loop'?7:8),goal.y,1);
-    const broadcastDistance=Math.max(z, type==='loop'?35:45);
-    targetPos=focus.clone().add(new T.Vector3(-broadcastDistance*.23,-broadcastDistance*.62,broadcastDistance*.75));
-  }else{
-    focus=mid.clone().add(new T.Vector3(0,0,.9));
-    targetPos=focus.clone().add(new T.Vector3(-z*.28,-z*.53,z*.78));
-  }
+// Anchor the shot to the actual horse meshes, never to a separate track coordinate.
+// The follow point is the centroid of the visible field, keeping the leader in frame.
+const pts=models.map(m=>m.group.position.clone());
+const mid=new T.Vector3();
+pts.forEach(p=>mid.add(p));mid.multiplyScalar(1/Math.max(1,pts.length));
+const homeStretch=type==='loop'&&lead.pos>=.94;
+const goalShot=homeStretch||(type==='straight'&&lead.pos>=.91);
+let focus,targetPos;
+if(goalShot){
+  // Finish-line broadcast shot: only lock once the leaders reach the finish.
+  const g=type==='loop'?stadiumPoint(.94):{x:64,y:0};
+  focus=new T.Vector3(g.x,g.y,1.25);
+  const span=Math.max(18,...pts.map(p=>p.distanceTo(focus)));
+  const distance=Math.min(120,Math.max(27,span*2.3));
+  targetPos=focus.clone().addScaledVector(dir,-distance*.28)
+    .addScaledVector(side,-distance*.65).add(new T.Vector3(0,0,distance*.65));
 }else{
-  const back=8,lateral=16;
-  targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,8.5));
-  focus=center.clone().addScaledVector(dir,4.5).add(new T.Vector3(0,0,1.4));
+  focus=mid.clone().lerp(center,.45).add(new T.Vector3(0,0,1.3));
+  const spread=Math.max(5,...pts.map(p=>p.distanceTo(focus)));
+  // Account for portrait aspect ratio; keep a close race-camera until the finish.
+  const dist=Math.max(16,Math.min(54,spread*2.1+14));
+  targetPos=focus.clone().addScaledVector(dir,-dist*.38)
+    .addScaledVector(side,-dist*.76).add(new T.Vector3(0,0,dist*.48));
 }
-const k=lastFrame===0?.96:(goalShot?.045:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
+const k=lastFrame===0?1:(goalShot?.12:.16);
+camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);
+camera.updateMatrixWorld();
+// Protect against the camera drifting away from every horse: correct framing
+// using the same world positions as the horse models.
+let visible=0;
+for(const p of pts){const v=p.clone().add(new T.Vector3(0,0,1.1)).project(camera);
+  if(Number.isFinite(v.x)&&Number.isFinite(v.y)&&Math.abs(v.x)<.88&&Math.abs(v.y)<.88&&v.z<1)visible++;
+}
+if(!goalShot && visible===0){
+  camera.position.copy(targetPos);aimAt.copy(focus);camera.lookAt(aimAt);
+}
+lastFrame=time||1;
 renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

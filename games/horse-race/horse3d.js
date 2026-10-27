@@ -109,9 +109,9 @@ const side=new T.Vector3(-dir.y,dir.x,0);
 const pts=models.map(m=>m.group.position.clone());
 const mid=new T.Vector3();
 pts.forEach(p=>mid.add(p));mid.multiplyScalar(1/Math.max(1,pts.length));
-// The leading horse crosses one fixed course marker (200m remaining).
+// The leading horse crosses one fixed course marker (400m remaining).
 // The switch is latched; changing leaders never returns to a close shot.
-const WIDE_MARK=0.875;
+const WIDE_MARK=0.75;
 if(lead.pos>=WIDE_MARK)wideTriggered=true;
 const goalShot=wideTriggered;
 let focus,targetPos;

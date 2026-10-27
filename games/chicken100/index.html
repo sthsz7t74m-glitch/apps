@@ -16,8 +16,8 @@ header{display:flex;align-items:center;gap:10px;flex:none}header h1{font-size:19
 .note{min-height:38px;font-size:13px;font-weight:850;text-align:center;color:#385c88}.note.alert{color:#b91c1c}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:none}.actions button{min-height:60px}.result{overflow:auto;text-align:center;justify-content:center}.result h2{font-size:27px;margin:0;color:#b91c1c}.result-total{font-size:44px;font-weight:950;color:#dc2626}.result-actions{display:flex;gap:9px}.result-actions button{flex:1}
 @media(max-height:690px){.app{gap:6px}.panel{padding:9px}.arena{padding:8px;gap:5px}.number-card{width:min(35vw,125px);height:min(35vw,125px)}.number-card strong{font-size:clamp(42px,9vmin,70px)}.total{font-size:clamp(42px,11vmin,70px)}.actions button{min-height:47px}}
 </style></head><body><main class="app">
-<header><a href="../" id="exitBack" class="back" aria-label="ゲームBOXへ戻る">‹</a><h1>100チキンレース</h1><span class="version">v1.0.0</span></header>
-<section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p class="muted">ボタンで1〜10の数字を引き、全員共通の合計を増やします。自分の番で最低1回は引き、その後は何回でも挑戦可能！「次の番へ」で交代。<strong>合計100以上にした人が負け！</strong></p><button id="start" class="btn">ゲーム開始</button></section>
+<header><a href="../" id="exitBack" class="back" aria-label="ゲームBOXへ戻る">‹</a><h1>100チキンレース</h1><span class="version">v1.1.0</span></header>
+<section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p class="muted">ボタンで1〜10の数字を引き、全員共通の合計を増やします。自分の番で最低1回は引き、最大3回まで挑戦可能！「次の番へ」で交代。<strong>合計100以上にした人が負け！</strong></p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="panel players" id="players"></div><div class="turn" id="turn"></div><div class="arena" id="arena"><span class="caption">全員共通の合計</span><div id="total" class="total">0 <small>/ 100</small></div><div class="track"><div id="fill" class="fill"></div></div><div id="card" class="number-card"><span id="cardLabel">今回の数字</span><strong id="number">?</strong></div><div id="note" class="note" aria-live="polite">数字を引こう！</div></div><div class="actions"><button id="draw" class="btn">数字を引く</button><button id="next" class="soft" disabled>次の番へ</button></div></section>
 <section id="result" class="result panel"><h2>ゲーム終了！</h2><div class="result-total" id="endTotal"></div><p id="loser"></p><p class="muted">100以上にした人の負け。他のプレイヤーは勝ち！</p><div class="result-actions"><button id="again" class="btn">もう一度遊ぶ</button><button id="settings" class="soft">設定に戻る</button></div></section>
 </main><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script><script>
@@ -30,13 +30,13 @@ function namesHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>
 function render(){
  $('total').innerHTML=total+' <small>/ 100</small>';$('fill').style.width=Math.min(100,total)+'%';$('arena').classList.toggle('danger',total>=80);
  $('turn').textContent=players[current]+' の番';$('players').innerHTML=players.map((p,i)=>'<div class="player '+(current===i?'active':'')+'">'+namesHtml(p)+'</div>').join('');
- $('draw').disabled=phase!=='playing';$('next').disabled=phase!=='playing'||draws<1;
+ $('draw').disabled=phase!=='playing'||draws>=3;$('next').disabled=phase!=='playing'||draws<1;
 }
 function screen(name){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=name==='setup'?'flex':'none';else el.classList.toggle('on',id===name)}}
 function newTurn(){draws=0;phase='playing';$('card').className='number-card';$('number').textContent='?';$('cardLabel').textContent='今回の数字';$('note').className='note';$('note').textContent='最低1回引いてから交代できます';render();GameTurnOverlay.show(players[current])}
 function start(){const names=setup.validate();if(!names)return;clearTimers();players=names;total=0;current=0;screen('game');newTurn()}
 function draw(){
- if(phase!=='playing'||GameTurnOverlay.isShowing())return;
+ if(phase!=='playing'||draws>=3||GameTurnOverlay.isShowing())return;
  phase='rolling';render();$('card').className='number-card rolling';$('cardLabel').textContent='抽選中…';$('note').textContent='何が出る…？';
  // 80以上で徐々にスローダウン。結果の抽選はアニメーションとは別で一度だけ確定する。
  const result=random(),risk=Math.min(1,Math.max(0,(total-70)/25)),duration=650+Math.round(risk*1650);
@@ -53,7 +53,7 @@ function settle(n){
    timeout=setTimeout(()=>{$('endTotal').textContent=total+' / 100';$('loser').textContent='敗者：'+players[current];screen('result')},1200);
  }else{
    phase='playing';$('note').className=total>=90?'note alert':'note';
-   $('note').textContent=total>=90?'危険！ 残り'+(100-total)+'！':n+' が出た！ あと '+(100-total);render();
+   $('note').textContent=draws>=3?'3回引きました！「次の番へ」で交代':total>=90?'危険！ 残り'+(100-total)+'！':n+' が出た！ あと '+(100-total)+'（'+draws+'/3回）';render();
  }
 }
 function next(){if(phase!=='playing'||draws===0)return;current=(current+1)%players.length;newTurn()}

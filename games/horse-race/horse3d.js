@@ -56,13 +56,13 @@ resize();const n=horses.length;const lead=[...horses].sort((a,b)=>b.pos-a.pos)[0
 for(const m of models){const h=horses.find(a=>a.num===m.horse.num);if(!h)continue;let x,y,yaw;if(type==='loop'){const p=stadiumPoint(.94+h.pos,(h.num-(n+1)/2)*.19);x=p.x;y=p.y;yaw=p.yaw}
 else{x=1+h.pos*63;y=(h.num-(n+1)/2)*2.25;yaw=0}
 m.group.position.set(x,y,0);m.group.rotation.z=yaw;
-const motion=h.fin===null?Math.sin(time/115+h.num):0;m.group.position.z=.022*Math.abs(motion);
-m.limbs.forEach((leg,i)=>{leg.rotation.y=h.fin===null?Math.sin(time/110+h.num+i*Math.PI)*.42:0});m.tail.rotation.y=Math.sin(time/210+h.num)*.22;
+const motion=Math.sin(time/115+h.num);m.group.position.z=.022*Math.abs(motion);
+m.limbs.forEach((leg,i)=>{leg.rotation.y=Math.sin(time/110+h.num+i*Math.PI)*.42});m.tail.rotation.y=Math.sin(time/210+h.num)*.22;
 
 if(h.num===lead.num){center.set(x,y,0);dir.set(Math.cos(yaw),Math.sin(yaw),0)}
 }
 const side=new T.Vector3(-dir.y,dir.x,0);
-const homeStretch=type==='loop'&&lead.pos>=.76;
+const homeStretch=type==='loop'&&lead.pos>=.76;const goalShot=homeStretch||(type==='straight'&&lead.pos>=.76);
 let targetPos,focus;
 if(type==='straight'||homeStretch){
   // Wide TV camera: frame the entire field from first to last, including 8 horses.
@@ -77,14 +77,23 @@ if(type==='straight'||homeStretch){
   const z=neededZ*1.30;
   // Grandstand-side oblique shot. Keep the same roomy framing while lowering
   // the camera elevation and introducing a visible side-on angle.
-  focus=mid.clone().add(new T.Vector3(0,0,.9));
-  targetPos=focus.clone().add(new T.Vector3(-z*.28,-z*.53,z*.78));
+  // From the final approach onward, lock the TV camera to the finish line.
+  // This shot doesn't move with horses that have already crossed.
+  if(goalShot){
+    const goal=type==='loop'?stadiumPoint(.94):{x:64,y:0};
+    focus=new T.Vector3(goal.x-(type==='loop'?7:8),goal.y,1);
+    const broadcastDistance=Math.max(z, type==='loop'?35:45);
+    targetPos=focus.clone().add(new T.Vector3(-broadcastDistance*.23,-broadcastDistance*.62,broadcastDistance*.75));
+  }else{
+    focus=mid.clone().add(new T.Vector3(0,0,.9));
+    targetPos=focus.clone().add(new T.Vector3(-z*.28,-z*.53,z*.78));
+  }
 }else{
   const back=8,lateral=16;
   targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,8.5));
   focus=center.clone().addScaledVector(dir,4.5).add(new T.Vector3(0,0,1.4));
 }
-const k=lastFrame===0?.96:(homeStretch?.12:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
+const k=lastFrame===0?.96:(goalShot?.13:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
 renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

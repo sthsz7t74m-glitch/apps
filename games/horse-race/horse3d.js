@@ -116,21 +116,15 @@ if(lead.pos>=WIDE_MARK)wideTriggered=true;
 const goalShot=wideTriggered;
 let focus,targetPos;
 if(goalShot){
-  // At the 400m trigger keep the *horses* on screen, not an empty finish line.
-  // Move the wide camera with the field; transition to a fixed finish view
-  // only once the leader reaches the final 80m.
+  // Hold a finish-line broadcast shot from 400m out. The horses move across
+  // a stationary frame at full pace; a camera chasing them near the line
+  // previously made their forward motion appear to slow down.
   const finish=type==='loop'?stadiumPoint(.94):{x:64,y:0};
-  const atFinish=T.MathUtils.smoothstep(lead.pos,.94,1);
-  const movingFocus=mid.clone().lerp(center,.48).add(new T.Vector3(0,0,1.3));
-  focus=movingFocus.lerp(new T.Vector3(finish.x,finish.y,1.25),atFinish);
-  const finishDir=new T.Vector3(1,0,0),finishSide=new T.Vector3(0,1,0);
-  const fieldSpread=Math.max(5,...pts.map(p=>p.distanceTo(mid)));
-  const distance=Math.max(29,Math.min(65,fieldSpread*2+25));
-  const movingCamera=focus.clone().addScaledVector(dir,-distance*.27)
-    .addScaledVector(side,-distance*.67).add(new T.Vector3(0,0,distance*.68));
-  const finishCamera=focus.clone().addScaledVector(finishDir,-distance*.27)
-    .addScaledVector(finishSide,-distance*.67).add(new T.Vector3(0,0,distance*.68));
-  targetPos=movingCamera.lerp(finishCamera,atFinish);
+  const anchor=new T.Vector3(finish.x-9,finish.y,1.2);
+  const fixedCamera=new T.Vector3(finish.x-25,finish.y-39,29);
+  // On oval races align the shot with the final straight as well.
+  focus=anchor;
+  targetPos=fixedCamera;
 }else{
   focus=mid.clone().lerp(center,.45).add(new T.Vector3(0,0,1.3));
   const spread=Math.max(5,...pts.map(p=>p.distanceTo(focus)));
@@ -139,7 +133,7 @@ if(goalShot){
   targetPos=focus.clone().addScaledVector(dir,-dist*.38)
     .addScaledVector(side,-dist*.76).add(new T.Vector3(0,0,dist*.48));
 }
-const k=lastFrame===0?1:(goalShot?.055:.16);
+const k=lastFrame===0?1:(goalShot?.18:.16);
 camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);
 camera.updateMatrixWorld();
 // Protect against the camera drifting away from every horse: correct framing

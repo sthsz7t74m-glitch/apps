@@ -8,7 +8,7 @@ const $=id=>document.getElementById(id), smooth=(a,b,k)=>a+(b-a)*k;
 let scene,camera,renderer,host,models=[],labels=[],oval,active=false,lastMode='',camAt=new T.Vector3(),aimAt=new T.Vector3(),lastFrame=0;
 const material=(color)=>new T.MeshStandardMaterial({color,roughness:.86,metalness:0});
 const natural=material('#493021'),hoof=material('#2c2725'),eye=material('#121a20'),white=material('#ffffff'),skin=material('#e6b998'),saddle=material('#3b2925');
-const HALF=40,RADIUS=9,TRACK_WIDTH=4.5;
+const HALF=55,RADIUS=9,TRACK_WIDTH=4.5;
 const ARC=Math.PI*RADIUS,LONG=HALF*2,LAP=ARC*2+LONG*2;
 // Stadium geometry: two real straights joined by two semicircular bends.
 // Final portion of the lap is the home straight.
@@ -39,13 +39,12 @@ ball(group,skin,-.03,0,1.98,.13,.13,.14);
 ball(group,silk,-.04,0,2.11,.17,.17,.09);
 for(const side of [-1,1]){tube(group,skin,[.00,side*.15,1.73],[.52,side*.19,1.43],.064);tube(group,hoof,[-.22,side*.11,1.48],[-.24,side*.32,1.06],.092)}
 // 3D number plaque on saddle, not a rotated SVG character.
-const number=makeLabel(String(h.num),h.color);number.scale.set(.75,.38,1);number.position.set(-.12,-.37,1.12);group.add(number);
-return {group,limbs,tail,number,tag:makeLabel(String(h.num)+'番',h.color),horse:h}}
-function clearScene(){for(const m of models){scene.remove(m.group);scene.remove(m.tag)}models=[];for(const obj of [...scene.children])if(obj.userData.track)scene.remove(obj)}
+return {group,limbs,tail,horse:h}}
+function clearScene(){for(const m of models){scene.remove(m.group)}models=[];for(const obj of [...scene.children])if(obj.userData.track)scene.remove(obj)}
 function trackPlane(type){const ground=new T.Mesh(new T.PlaneGeometry(260,260),material('#88bb70'));ground.receiveShadow=true;ground.userData.track=true;scene.add(ground);
 if(type==='loop'){const base=new T.Mesh(new T.ShapeGeometry(stadiumShape(RADIUS+TRACK_WIDTH/2,RADIUS-TRACK_WIDTH/2)),material('#ad8052'));base.position.z=.025;base.userData.track=true;scene.add(base);
 for(const off of [-TRACK_WIDTH/2+.15,TRACK_WIDTH/2-.15]){const pts=[];for(let i=0;i<=240;i++){const p=stadiumPoint(i/240,off);pts.push(new T.Vector3(p.x,p.y,.13))}const rail=new T.Line(new T.BufferGeometry().setFromPoints(pts),new T.LineBasicMaterial({color:'#f9fbf6'}));rail.userData.track=true;scene.add(rail)}
-const goal=new T.Mesh(new T.PlaneGeometry(.18,TRACK_WIDTH),white);goal.position.set(HALF,RADIUS,.065);goal.userData.track=true;scene.add(goal);
+const finishPoint=stadiumPoint(.94);const goal=new T.Mesh(new T.PlaneGeometry(.18,TRACK_WIDTH),white);goal.position.set(finishPoint.x,finishPoint.y,.065);goal.userData.track=true;scene.add(goal);
 }else{const lane=new T.Mesh(new T.PlaneGeometry(110,22),material('#b18a5b'));lane.position.set(38,0,.03);lane.userData.track=true;scene.add(lane);const fin=new T.Mesh(new T.PlaneGeometry(.12,22),white);fin.position.set(64,0,.08);fin.userData.track=true;scene.add(fin);
 for(let i=0;i<9;i++){const p=new T.Mesh(new T.PlaneGeometry(100,.045),white);p.position.set(38,-10+i*2.5,.08);p.userData.track=true;scene.add(p)}}}
 function initialize(){try{host=$('threeMount');if(!host)return false;renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.setClearColor('#91bf73');renderer.outputColorSpace=T.SRGBColorSpace;host.appendChild(renderer.domElement);scene=new T.Scene();scene.background=new T.Color('#a8d393');camera=new T.PerspectiveCamera(48,1,.05,250);camera.up.set(0,0,1);
@@ -54,16 +53,16 @@ function reset(horses,type){if(!active&&!initialize())return false;clearScene();
 function resize(){if(!active)return;const w=host.clientWidth,h=host.clientHeight;if(w<1||h<1)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 function update(horses,type,time){if(!active||type!==lastMode||models.length!==horses.length){if(!reset(horses,type))return false}
 resize();const n=horses.length;const lead=[...horses].sort((a,b)=>b.pos-a.pos)[0];let center=new T.Vector3(),ahead=new T.Vector3(),dir=new T.Vector3(1,0,0);const ordered=[...horses].sort((a,b)=>b.pos-a.pos);
-for(const m of models){const h=horses.find(a=>a.num===m.horse.num);if(!h)continue;let x,y,yaw;if(type==='loop'){const p=stadiumPoint(h.pos,(h.num-(n+1)/2)*.19);x=p.x;y=p.y;yaw=p.yaw}
+for(const m of models){const h=horses.find(a=>a.num===m.horse.num);if(!h)continue;let x,y,yaw;if(type==='loop'){const p=stadiumPoint(.94+h.pos,(h.num-(n+1)/2)*.19);x=p.x;y=p.y;yaw=p.yaw}
 else{x=1+h.pos*63;y=(h.num-(n+1)/2)*2.25;yaw=0}
 m.group.position.set(x,y,0);m.group.rotation.z=yaw;
 const motion=h.fin===null?Math.sin(time/115+h.num):0;m.group.position.z=.022*Math.abs(motion);
 m.limbs.forEach((leg,i)=>{leg.rotation.y=h.fin===null?Math.sin(time/110+h.num+i*Math.PI)*.42:0});m.tail.rotation.y=Math.sin(time/210+h.num)*.22;
-m.tag.visible=false;
+
 if(h.num===lead.num){center.set(x,y,0);dir.set(Math.cos(yaw),Math.sin(yaw),0)}
 }
 const side=new T.Vector3(-dir.y,dir.x,0);
-const homeStretch=type==='loop'&&lead.pos>=((ARC*2+LONG)/LAP);
+const homeStretch=type==='loop'&&lead.pos>=.76;
 let targetPos,focus;
 if(type==='straight'||homeStretch){
   // Wide TV camera: frame the entire field from first to last, including 8 horses.
@@ -83,7 +82,7 @@ if(type==='straight'||homeStretch){
   targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,12));
   focus=center.clone().addScaledVector(dir,3).add(new T.Vector3(0,0,1.1));
 }
-const k=lastFrame===0?.96:.07;camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
+const k=lastFrame===0?.96:(homeStretch?.12:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
 renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

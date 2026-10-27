@@ -8,7 +8,7 @@ const $=id=>document.getElementById(id), smooth=(a,b,k)=>a+(b-a)*k;
 let scene,camera,renderer,host,models=[],labels=[],oval,active=false,lastMode='',camAt=new T.Vector3(),aimAt=new T.Vector3(),lastFrame=0;
 const material=(color)=>new T.MeshStandardMaterial({color,roughness:.86,metalness:0});
 const natural=material('#493021'),hoof=material('#2c2725'),eye=material('#121a20'),white=material('#ffffff'),skin=material('#e6b998'),saddle=material('#3b2925');
-const HALF=16,RADIUS=9,TRACK_WIDTH=4.5;
+const HALF=40,RADIUS=9,TRACK_WIDTH=4.5;
 const ARC=Math.PI*RADIUS,LONG=HALF*2,LAP=ARC*2+LONG*2;
 // Stadium geometry: two real straights joined by two semicircular bends.
 // Final portion of the lap is the home straight.
@@ -42,7 +42,7 @@ for(const side of [-1,1]){tube(group,skin,[.00,side*.15,1.73],[.52,side*.19,1.43
 const number=makeLabel(String(h.num),h.color);number.scale.set(.75,.38,1);number.position.set(-.12,-.37,1.12);group.add(number);
 return {group,limbs,tail,number,tag:makeLabel(String(h.num)+'番',h.color),horse:h}}
 function clearScene(){for(const m of models){scene.remove(m.group);scene.remove(m.tag)}models=[];for(const obj of [...scene.children])if(obj.userData.track)scene.remove(obj)}
-function trackPlane(type){const ground=new T.Mesh(new T.PlaneGeometry(160,160),material('#88bb70'));ground.receiveShadow=true;ground.userData.track=true;scene.add(ground);
+function trackPlane(type){const ground=new T.Mesh(new T.PlaneGeometry(260,260),material('#88bb70'));ground.receiveShadow=true;ground.userData.track=true;scene.add(ground);
 if(type==='loop'){const base=new T.Mesh(new T.ShapeGeometry(stadiumShape(RADIUS+TRACK_WIDTH/2,RADIUS-TRACK_WIDTH/2)),material('#ad8052'));base.position.z=.025;base.userData.track=true;scene.add(base);
 for(const off of [-TRACK_WIDTH/2+.15,TRACK_WIDTH/2-.15]){const pts=[];for(let i=0;i<=240;i++){const p=stadiumPoint(i/240,off);pts.push(new T.Vector3(p.x,p.y,.13))}const rail=new T.Line(new T.BufferGeometry().setFromPoints(pts),new T.LineBasicMaterial({color:'#f9fbf6'}));rail.userData.track=true;scene.add(rail)}
 const goal=new T.Mesh(new T.PlaneGeometry(.18,TRACK_WIDTH),white);goal.position.set(HALF,RADIUS,.065);goal.userData.track=true;scene.add(goal);
@@ -63,14 +63,27 @@ m.tag.visible=false;
 if(h.num===lead.num){center.set(x,y,0);dir.set(Math.cos(yaw),Math.sin(yaw),0)}
 }
 const side=new T.Vector3(-dir.y,dir.x,0);
-// A TV-style elevated 3/4 chase view: not a full-course map; keep pack within shot.
 const homeStretch=type==='loop'&&lead.pos>=((ARC*2+LONG)/LAP);
-const back=type==='loop'?(homeStretch?15:9):11;
-const lateral=type==='loop'?(homeStretch?14:11):12;
-const elevation=homeStretch?18:(type==='loop'?11:12);
-const targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,elevation));
-const focus=center.clone().addScaledVector(dir,homeStretch?5:3).add(new T.Vector3(0,0,1.1));
-const k=lastFrame===0?.96:.045;camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
+let targetPos,focus;
+if(type==='straight'||homeStretch){
+  // Wide TV camera: frame the entire field from first to last, including 8 horses.
+  const pts=models.map(m=>m.group.position);
+  const minX=Math.min(...pts.map(p=>p.x)),maxX=Math.max(...pts.map(p=>p.x));
+  const minY=Math.min(...pts.map(p=>p.y)),maxY=Math.max(...pts.map(p=>p.y));
+  const mid=new T.Vector3((minX+maxX)/2,(minY+maxY)/2,0);
+  const width=maxX-minX+10,height=maxY-minY+11;
+  const tan=Math.tan(T.MathUtils.degToRad(camera.fov/2));
+  // Portrait screens need much more camera distance for horizontally spread horses.
+  const neededZ=Math.max(width/(2*tan*Math.max(.15,camera.aspect)),height/(2*tan),17);
+  const z=neededZ*1.30;
+  focus=mid.clone().add(new T.Vector3(0,0,.7));
+  targetPos=focus.clone().add(new T.Vector3(-z*.13,-z*.10,z));
+}else{
+  const back=10,lateral=11;
+  targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,12));
+  focus=center.clone().addScaledVector(dir,3).add(new T.Vector3(0,0,1.1));
+}
+const k=lastFrame===0?.96:.07;camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
 renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

@@ -24,22 +24,64 @@ function stadiumShape(outer,inner){const outerPts=boundary(outer),innerPts=bound
 function ball(g,m,x,y,z,sx,sy,sz){const p=new T.Mesh(new T.SphereGeometry(1,12,10),m);p.position.set(x,y,z);p.scale.set(sx,sy,sz);p.castShadow=true;p.receiveShadow=true;g.add(p);return p}
 function tube(g,m,a,b,r){const start=new T.Vector3(...a),end=new T.Vector3(...b),d=end.clone().sub(start);const obj=new T.Mesh(new T.CylinderGeometry(r,r,d.length(),8),m);obj.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());obj.position.copy(start).add(end).multiplyScalar(.5);obj.castShadow=true;g.add(obj);return obj}
 function makeLabel(txt,color){const cvs=document.createElement('canvas');cvs.width=256;cvs.height=120;const c=cvs.getContext('2d');c.fillStyle='rgba(255,255,255,.97)';c.beginPath();c.roundRect(5,5,246,110,20);c.fill();c.lineWidth=9;c.strokeStyle=color;c.stroke();c.fillStyle='#172c4b';c.font='bold 55px system-ui';c.textAlign='center';c.textBaseline='middle';c.fillText(txt,128,64);const map=new T.CanvasTexture(cvs);map.colorSpace=T.SRGBColorSpace;const obj=new T.Sprite(new T.SpriteMaterial({map,depthTest:false,transparent:true}));obj.scale.set(1.35,.64,1);obj.renderOrder=99;return obj}
-function buildHorse(h){const group=new T.Group(),flesh=material(h.body||'#a86435'),silk=material(h.color),mane=material('#30251f');
-ball(group,flesh,0,0,1.03,.74,.32,.38);
-ball(group,flesh,.43,0,1.36,.27,.26,.46).rotation.y=-.25;
-ball(group,flesh,.82,0,1.65,.35,.23,.25);
-ball(group,flesh,1.10,0,1.53,.25,.22,.14);
-for(const side of [-1,1]){ball(group,flesh,.75,side*.15,1.94,.075,.075,.17);ball(group,eye,.98,side*.215,1.72,.038,.035,.04)}
-for(let j=0;j<5;j++)ball(group,mane,.34-j*.10,0,1.72-j*.08,.10,.20,.13);
-const limbs=[];for(const x of [-.47,.45])for(const y of [-.23,.23]){const leg=new T.Group();leg.position.set(x,y,.81);tube(leg,flesh,[0,0,0],[.06,0,-.54],.10);ball(leg,hoof,.09,0,-.57,.15,.105,.065);group.add(leg);limbs.push(leg)}
-const tail=new T.Group();tail.position.set(-.70,0,1.16);ball(tail,mane,-.24,0,-.10,.31,.10,.13).rotation.y=.45;group.add(tail);
-ball(group,saddle,-.16,0,1.37,.44,.32,.10);
-ball(group,silk,-.16,0,1.66,.22,.20,.31).rotation.y=-.2;
-ball(group,skin,-.03,0,1.98,.13,.13,.14);
-ball(group,silk,-.04,0,2.11,.17,.17,.09);
-for(const side of [-1,1]){tube(group,skin,[.00,side*.15,1.73],[.52,side*.19,1.43],.064);tube(group,hoof,[-.22,side*.11,1.48],[-.24,side*.32,1.06],.092)}
-// 3D number plaque on saddle, not a rotated SVG character.
-return {group,limbs,tail,horse:h}}
+function buildHorse(h){
+ const group=new T.Group(),coat=material(h.body||'#a86435'),silk=material(h.color),
+ dark=material('#32251f'),leather=material('#493026'),cream=material('#eee9df'),
+ pants=material('#f5f4ee'),boot=material('#20252d'),skin=material('#e5b996');
+ const torso=ball(group,coat,-.10,0,1.12,.77,.34,.39);
+ ball(group,coat,-.61,0,1.12,.35,.34,.37);
+ ball(group,coat,.43,0,1.15,.34,.31,.39);
+ const neck=ball(group,coat,.61,0,1.52,.25,.24,.51);neck.rotation.y=.35;
+ ball(group,coat,.83,0,1.84,.29,.23,.27).rotation.y=-.25;
+ const muzzle=ball(group,coat,1.09,0,1.70,.27,.19,.145);
+ ball(group,material('#bd967d'),1.23,0,1.66,.11,.18,.105);
+ for(const side of [-1,1]){
+  const ear=ball(group,coat,.78,side*.17,2.09,.075,.065,.19);ear.rotation.y=-.20;
+  ball(group,dark,.98,side*.217,1.88,.037,.020,.039);
+  ball(group,boot,1.30,side*.10,1.66,.025,.022,.027);
+  tube(group,leather,[1.01,side*.205,1.79],[1.19,side*.15,1.67],.017);
+  tube(group,leather,[.99,side*.21,1.79],[.69,side*.23,1.48],.014);
+ }
+ for(let j=0;j<7;j++){const t=j/6;const seg=ball(group,dark,.54-t*.35,0,1.96-t*.42,.095,.115,.12);seg.rotation.y=.3}
+ const legs=[];
+ for(const front of [false,true])for(const side of [-1,1]){
+  const pivot=new T.Group();pivot.position.set(front?.47:-.61,side*.25,.95);group.add(pivot);
+  const upper=front?-.43:-.48;
+  tube(pivot,coat,[0,0,0],[front?.03:-.10,0,upper],front?.105:.13);
+  const knee=new T.Group();knee.position.set(front?.03:-.10,0,upper);pivot.add(knee);
+  ball(knee,coat,0,0,0,.105,.11,.12);
+  tube(knee,coat,[0,0,0],[.055,0,-.43],.073);
+  ball(knee,boot,.105,0,-.45,.16,.105,.075);
+  legs.push({pivot,knee,front,side});
+ }
+ const tail=new T.Group();tail.position.set(-.77,0,1.37);group.add(tail);
+ for(let i=0;i<4;i++){const t=ball(tail,dark,-.20-i*.12,(i-1.5)*.028,-.10-i*.045,.24-i*.035,.06,.09);t.rotation.y=-.20}
+ // Saddle cloth, with number visible on both sides.
+ ball(group,leather,-.23,0,1.47,.43,.34,.11);
+ const cloth=ball(group,silk,-.25,0,1.40,.34,.354,.24);
+ for(const side of [-1,1]){
+  const cvs=document.createElement('canvas');cvs.width=128;cvs.height=128;
+  const ctx=cvs.getContext('2d');ctx.fillStyle='white';ctx.font='900 95px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(h.num),64,70);
+  const tex=new T.CanvasTexture(cvs);tex.colorSpace=T.SRGBColorSpace;
+  const badge=new T.Mesh(new T.PlaneGeometry(.32,.32),new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,side:T.DoubleSide}));
+  badge.position.set(-.24,side*.365,1.39);badge.rotation.x=Math.PI/2;group.add(badge);
+ }
+ // Jockey body and forward-leaning arms.
+ const rider=new T.Group();rider.position.set(-.20,0,1.52);group.add(rider);
+ const chest=ball(rider,silk,.17,0,.37,.23,.21,.29);chest.rotation.y=.78;
+ ball(rider,pants,-.15,0,.14,.22,.21,.18);
+ const helmet=ball(rider,silk,.39,0,.77,.17,.16,.12);
+ ball(rider,skin,.41,0,.65,.125,.12,.115);
+ ball(rider,boot,.45,0,.64,.12,.125,.045);
+ for(const side of [-1,1]){
+  tube(rider,silk,[.17,side*.16,.48],[.41,side*.23,.30],.074);
+  tube(rider,skin,[.41,side*.23,.30],[.66,side*.21,.20],.049);
+  tube(rider,pants,[-.18,side*.16,.13],[-.22,side*.32,-.14],.095);
+  tube(rider,boot,[-.22,side*.32,-.14],[-.13,side*.31,-.42],.076);
+  tube(group,leather,[.71,side*.19,1.76],[.47,side*.20,1.40],.012);
+ }
+ return {group,legs,tail,rider,horse:h};
+}
 function clearScene(){for(const m of models){scene.remove(m.group)}models=[];for(const obj of [...scene.children])if(obj.userData.track)scene.remove(obj)}
 function trackPlane(type){const ground=new T.Mesh(new T.PlaneGeometry(260,260),material('#88bb70'));ground.receiveShadow=true;ground.userData.track=true;scene.add(ground);
 if(type==='loop'){const base=new T.Mesh(new T.ShapeGeometry(stadiumShape(RADIUS+TRACK_WIDTH/2,RADIUS-TRACK_WIDTH/2)),material('#ad8052'));base.position.z=.025;base.userData.track=true;scene.add(base);
@@ -57,12 +99,12 @@ for(const m of models){const h=horses.find(a=>a.num===m.horse.num);if(!h)continu
 else{x=1+h.pos*63;y=(h.num-(n+1)/2)*2.25;yaw=0}
 m.group.position.set(x,y,0);m.group.rotation.z=yaw;
 const motion=Math.sin(time/115+h.num);m.group.position.z=.022*Math.abs(motion);
-m.limbs.forEach((leg,i)=>{leg.rotation.y=Math.sin(time/110+h.num+i*Math.PI)*.42});m.tail.rotation.y=Math.sin(time/210+h.num)*.22;
+m.legs.forEach((leg,i)=>{const phase=time/115+h.num*.6+(i%2?Math.PI:0)+(leg.front?0:Math.PI*.72);leg.pivot.rotation.y=Math.sin(phase)*.48;leg.knee.rotation.y=.25+Math.max(0,Math.sin(phase+1.1))*.65});m.tail.rotation.y=Math.sin(time/200+h.num)*.18;m.rider.rotation.y=Math.sin(time/115+h.num)*.025;
 
 if(h.num===lead.num){center.set(x,y,0);dir.set(Math.cos(yaw),Math.sin(yaw),0)}
 }
 const side=new T.Vector3(-dir.y,dir.x,0);
-const homeStretch=type==='loop'&&lead.pos>=.76;const goalShot=homeStretch||(type==='straight'&&lead.pos>=.76);
+const homeStretch=type==='loop'&&lead.pos>=.91;const goalShot=homeStretch||(type==='straight'&&lead.pos>=.76);
 let targetPos,focus;
 if(type==='straight'||homeStretch){
   // Wide TV camera: frame the entire field from first to last, including 8 horses.
@@ -93,7 +135,7 @@ if(type==='straight'||homeStretch){
   targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,8.5));
   focus=center.clone().addScaledVector(dir,4.5).add(new T.Vector3(0,0,1.4));
 }
-const k=lastFrame===0?.96:(goalShot?.13:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
+const k=lastFrame===0?.96:(goalShot?.045:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
 renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

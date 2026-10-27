@@ -112,12 +112,12 @@ if(lead.pos>=.8125)wideTriggered=true; // leading horse reaches 300m remaining
 const finish=type==='loop'?stadiumPoint(.94):{x:64,y:0};
 const finishPoint=new T.Vector3(finish.x,finish.y,1);
 const goalShot=wideTriggered;
-// Fixed broadcast coverage from the 400m-to-go marker through the finish.
+// Fixed broadcast coverage from the 300m-to-go marker through the finish.
 // The composition and its target never follow a horse after the switch.
 if(goalShot){
  const samples=[];
  for(let i=0;i<=16;i++){
-  const fraction=.75+i/16*.25;
+  const fraction=.8125+i/16*.1875;
   if(type==='loop'){
    for(const offset of [-TRACK_WIDTH/2,TRACK_WIDTH/2]){
     const p=stadiumPoint(.94+fraction,offset);

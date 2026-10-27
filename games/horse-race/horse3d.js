@@ -116,15 +116,21 @@ if(lead.pos>=WIDE_MARK)wideTriggered=true;
 const goalShot=wideTriggered;
 let focus,targetPos;
 if(goalShot){
-  // Finish-line broadcast shot: only lock once the leaders reach the finish.
-  const g=type==='loop'?stadiumPoint(.94):{x:64,y:0};
-  focus=new T.Vector3(g.x,g.y,1.25);
-  // Fixed broadcast geometry aligned with the finish straight, not the leader's turning angle.
-  const finishDir=new T.Vector3(1,0,0);
-  const finishSide=new T.Vector3(0,1,0);
-  const distance=type==='loop'?49:57;
-  targetPos=focus.clone().addScaledVector(finishDir,-distance*.28)
-    .addScaledVector(finishSide,-distance*.65).add(new T.Vector3(0,0,distance*.65));
+  // At the 400m trigger keep the *horses* on screen, not an empty finish line.
+  // Move the wide camera with the field; transition to a fixed finish view
+  // only once the leader reaches the final 80m.
+  const finish=type==='loop'?stadiumPoint(.94):{x:64,y:0};
+  const atFinish=T.MathUtils.smoothstep(lead.pos,.94,1);
+  const movingFocus=mid.clone().lerp(center,.48).add(new T.Vector3(0,0,1.3));
+  focus=movingFocus.lerp(new T.Vector3(finish.x,finish.y,1.25),atFinish);
+  const finishDir=new T.Vector3(1,0,0),finishSide=new T.Vector3(0,1,0);
+  const fieldSpread=Math.max(5,...pts.map(p=>p.distanceTo(mid)));
+  const distance=Math.max(29,Math.min(65,fieldSpread*2+25));
+  const movingCamera=focus.clone().addScaledVector(dir,-distance*.27)
+    .addScaledVector(side,-distance*.67).add(new T.Vector3(0,0,distance*.68));
+  const finishCamera=focus.clone().addScaledVector(finishDir,-distance*.27)
+    .addScaledVector(finishSide,-distance*.67).add(new T.Vector3(0,0,distance*.68));
+  targetPos=movingCamera.lerp(finishCamera,atFinish);
 }else{
   focus=mid.clone().lerp(center,.45).add(new T.Vector3(0,0,1.3));
   const spread=Math.max(5,...pts.map(p=>p.distanceTo(focus)));

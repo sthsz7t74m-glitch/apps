@@ -75,12 +75,14 @@ if(type==='straight'||homeStretch){
   // Portrait screens need much more camera distance for horizontally spread horses.
   const neededZ=Math.max(width/(2*tan*Math.max(.15,camera.aspect)),height/(2*tan),17);
   const z=neededZ*1.30;
-  focus=mid.clone().add(new T.Vector3(0,0,.7));
-  targetPos=focus.clone().add(new T.Vector3(-z*.13,-z*.10,z));
+  // Grandstand-side oblique shot. Keep the same roomy framing while lowering
+  // the camera elevation and introducing a visible side-on angle.
+  focus=mid.clone().add(new T.Vector3(0,0,.9));
+  targetPos=focus.clone().add(new T.Vector3(-z*.28,-z*.53,z*.78));
 }else{
-  const back=10,lateral=11;
-  targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,12));
-  focus=center.clone().addScaledVector(dir,3).add(new T.Vector3(0,0,1.1));
+  const back=8,lateral=16;
+  targetPos=center.clone().addScaledVector(dir,-back).addScaledVector(side,-lateral).add(new T.Vector3(0,0,8.5));
+  focus=center.clone().addScaledVector(dir,4.5).add(new T.Vector3(0,0,1.4));
 }
 const k=lastFrame===0?.96:(homeStretch?.12:.07);camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);lastFrame=time||1;
 renderer.render(scene,camera);return true}

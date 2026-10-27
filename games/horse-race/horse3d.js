@@ -152,7 +152,19 @@ else{
 }
 camera.lookAt(aimAt);
 camera.updateMatrixWorld();
+// Guard against empty shots in both course modes: keep at least one horse on screen.
+const onScreen=p=>{
+ const v=p.clone().add(new T.Vector3(0,0,1.25)).project(camera);
+ return Number.isFinite(v.x)&&Number.isFinite(v.y)&&v.z>-1&&v.z<1&&Math.abs(v.x)<.88&&Math.abs(v.y)<.85;
+};
+if(!pts.some(onScreen)){
+ const leaderModel=models.find(m=>m.horse.num===lead.num);
+ const safeFocus=(leaderModel?leaderModel.group.position:center).clone().add(new T.Vector3(0,0,1.15));
+ const safeSide=new T.Vector3(-dir.y,dir.x,0);
+ camera.position.copy(safeFocus.clone().addScaledVector(dir,-10).addScaledVector(safeSide,-20).add(new T.Vector3(0,0,13)));
+ aimAt.copy(safeFocus);camera.lookAt(aimAt);camera.updateMatrixWorld();
+}
 lastFrame=time||1;
-renderer.render(scene,camera);return goalShot || visible>0}
+renderer.render(scene,camera);return true}
 window.Race3D={available:true,reset,update};
 })();

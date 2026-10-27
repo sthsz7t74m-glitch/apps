@@ -115,27 +115,45 @@ const goalShot=wideTriggered;
 let focus=mid.clone().add(new T.Vector3(0,0,1.3));
 // From 400m out, widen gradually and include the finish; do not cut
 // immediately to a stationary empty piece of the course.
+const isLoop=type==='loop';
 if(goalShot){
-  const blend=Math.min(.65,Math.max(0,(lead.pos-.75)/.25)*.65);
+  const maxBlend=isLoop?.12:.48;
+  const blend=Math.min(maxBlend,Math.max(0,(lead.pos-.75)/.25)*maxBlend);
   focus.lerp(finishPoint,blend);
 }
-const spread=Math.max(1,...pts.map(p=>p.distanceTo(mid)));
-const baseDistance=goalShot?Math.max(23,spread*2.4+19):Math.max(16,spread*2+14);
-// Aim across the track from the stands, not lengthwise down an empty lane.
-// A higher elevation keeps the closest runners clear of the screen edge.
-const viewOffset=new T.Vector3(goalShot?-0.46:-0.34,-0.84,.52).normalize();
+// For oval coverage favour the leader and nearest competitors over the
+// entire spread-out field, which otherwise shrinks every horse to a dot.
+const leadModel=models.find(m=>m.horse.num===lead.num);
+const tracked=isLoop
+ ? models.filter(m=>m.horse.num!==lead.num)
+     .sort((a,b)=>a.group.position.distanceTo(center)-b.group.position.distanceTo(center))
+     .slice(0,2).map(m=>m.group.position).concat([center])
+ : pts;
+if(isLoop){
+ const trackedCenter=new T.Vector3();
+ tracked.forEach(p=>trackedCenter.add(p));
+ trackedCenter.multiplyScalar(1/tracked.length);
+ focus.copy(trackedCenter).add(new T.Vector3(0,0,1.3));
+}
+const spread=Math.max(1,...tracked.map(p=>p.distanceTo(focus)));
+const baseDistance=isLoop
+ ? Math.max(13,Math.min(goalShot?24:27,spread*1.4+12))
+ : goalShot?Math.max(23,spread*2.4+19):Math.max(16,spread*2+14);
+const viewOffset=isLoop
+ ? new T.Vector3(-.27,-.78,.43).normalize()
+ : new T.Vector3(goalShot?-.46:-.34,-.84,.52).normalize();
 let distance=baseDistance;
 let desired=focus.clone().addScaledVector(viewOffset,distance);
 const tmpCam=new T.PerspectiveCamera(camera.fov,camera.aspect,camera.near,camera.far);
 tmpCam.up.copy(camera.up);
 const framed=()=>{tmpCam.position.copy(desired);tmpCam.lookAt(focus);tmpCam.updateMatrixWorld();
- const samples=pts.map(p=>p.clone().add(new T.Vector3(0,0,1.25)));
- if(goalShot)samples.push(finishPoint);
+ const samples=tracked.map(p=>p.clone().add(new T.Vector3(0,0,1.25)));
+ if(goalShot&&!isLoop)samples.push(finishPoint);
  return samples.every(p=>{const v=p.project(tmpCam);return v.z<1&&v.z>-1&&Math.abs(v.x)<.78&&Math.abs(v.y)<.74;});
 };
 // Fit the *actual* horses and finish point in portrait AND landscape.
 // This avoids the blank-camera failure seen at the start of a race.
-for(let i=0;i<22&&!framed();i++){
+for(let i=0;i<(isLoop?8:22)&&!framed();i++){
  distance*=1.16;desired=focus.clone().addScaledVector(viewOffset,distance);
 }
 // Only interpolate if the interpolated shot still contains the horses.
@@ -146,7 +164,7 @@ else{
  const proposedPos=camera.position.clone().lerp(desired,blend);
  const proposedAim=aimAt.clone().lerp(focus,blend);
  tmpCam.position.copy(proposedPos);tmpCam.lookAt(proposedAim);tmpCam.updateMatrixWorld();
- const allVisible=pts.every(p=>{const v=p.clone().add(new T.Vector3(0,0,1.25)).project(tmpCam);return v.z<1&&v.z>-1&&Math.abs(v.x)<.94&&Math.abs(v.y)<.90;});
+ const allVisible=tracked.every(p=>{const v=p.clone().add(new T.Vector3(0,0,1.25)).project(tmpCam);return v.z<1&&v.z>-1&&Math.abs(v.x)<.94&&Math.abs(v.y)<.90;});
  if(allVisible){camera.position.copy(proposedPos);aimAt.copy(proposedAim);}
  else{camera.position.copy(desired);aimAt.copy(focus);}
 }

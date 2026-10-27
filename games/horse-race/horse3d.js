@@ -5,7 +5,7 @@
 const T=window.THREE;
 if(!T){window.Race3D={available:false};return}
 const $=id=>document.getElementById(id), smooth=(a,b,k)=>a+(b-a)*k;
-let scene,camera,renderer,host,models=[],labels=[],oval,active=false,lastMode='',camAt=new T.Vector3(),aimAt=new T.Vector3(),lastFrame=0;
+let scene,camera,renderer,host,models=[],labels=[],oval,active=false,lastMode='',camAt=new T.Vector3(),aimAt=new T.Vector3(),lastFrame=0,wideTriggered=false;
 const material=(color)=>new T.MeshStandardMaterial({color,roughness:.86,metalness:0});
 const natural=material('#493021'),hoof=material('#2c2725'),eye=material('#121a20'),white=material('#ffffff'),skin=material('#e6b998'),saddle=material('#3b2925');
 const HALF=55,RADIUS=9,TRACK_WIDTH=4.5;
@@ -91,7 +91,7 @@ const finishPoint=stadiumPoint(.94);const goal=new T.Mesh(new T.PlaneGeometry(.1
 for(let i=0;i<9;i++){const p=new T.Mesh(new T.PlaneGeometry(100,.045),white);p.position.set(38,-10+i*2.5,.08);p.userData.track=true;scene.add(p)}}}
 function initialize(){try{host=$('threeMount');if(!host)return false;renderer=new T.WebGLRenderer({antialias:true,alpha:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));renderer.setClearColor('#91bf73');renderer.outputColorSpace=T.SRGBColorSpace;host.appendChild(renderer.domElement);scene=new T.Scene();scene.background=new T.Color('#a8d393');camera=new T.PerspectiveCamera(48,1,.05,250);camera.up.set(0,0,1);
 const ambient=new T.HemisphereLight('#ffffff','#537747',2.4);scene.add(ambient);const sun=new T.DirectionalLight('#fff4df',2.0);sun.position.set(-9,-12,20);scene.add(sun);scene.add(new T.AmbientLight('#ffffff',.55));active=true;return true}catch(err){console.warn('3D unavailable:',err);window.Race3D.available=false;return false}}
-function reset(horses,type){if(!active&&!initialize())return false;clearScene();lastMode=type;trackPlane(type);models=horses.map(h=>{const m=buildHorse(h);scene.add(m.group);return m});lastFrame=0;resize();return true}
+function reset(horses,type){if(!active&&!initialize())return false;clearScene();lastMode=type;trackPlane(type);models=horses.map(h=>{const m=buildHorse(h);scene.add(m.group);return m});lastFrame=0;wideTriggered=false;resize();return true}
 function resize(){if(!active)return;const w=host.clientWidth,h=host.clientHeight;if(w<1||h<1)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
 function update(horses,type,time){if(!active||type!==lastMode||models.length!==horses.length){if(!reset(horses,type))return false}
 resize();const n=horses.length;const lead=[...horses].sort((a,b)=>b.pos-a.pos)[0];let center=new T.Vector3(),ahead=new T.Vector3(),dir=new T.Vector3(1,0,0);const ordered=[...horses].sort((a,b)=>b.pos-a.pos);
@@ -109,17 +109,22 @@ const side=new T.Vector3(-dir.y,dir.x,0);
 const pts=models.map(m=>m.group.position.clone());
 const mid=new T.Vector3();
 pts.forEach(p=>mid.add(p));mid.multiplyScalar(1/Math.max(1,pts.length));
-const homeStretch=type==='loop'&&lead.pos>=.94;
-const goalShot=homeStretch||(type==='straight'&&lead.pos>=.91);
+// The leading horse crosses one fixed course marker (200m remaining).
+// The switch is latched; changing leaders never returns to a close shot.
+const WIDE_MARK=0.875;
+if(lead.pos>=WIDE_MARK)wideTriggered=true;
+const goalShot=wideTriggered;
 let focus,targetPos;
 if(goalShot){
   // Finish-line broadcast shot: only lock once the leaders reach the finish.
   const g=type==='loop'?stadiumPoint(.94):{x:64,y:0};
   focus=new T.Vector3(g.x,g.y,1.25);
-  const span=Math.max(18,...pts.map(p=>p.distanceTo(focus)));
-  const distance=Math.min(120,Math.max(27,span*2.3));
-  targetPos=focus.clone().addScaledVector(dir,-distance*.28)
-    .addScaledVector(side,-distance*.65).add(new T.Vector3(0,0,distance*.65));
+  // Fixed broadcast geometry aligned with the finish straight, not the leader's turning angle.
+  const finishDir=new T.Vector3(1,0,0);
+  const finishSide=new T.Vector3(0,1,0);
+  const distance=type==='loop'?49:57;
+  targetPos=focus.clone().addScaledVector(finishDir,-distance*.28)
+    .addScaledVector(finishSide,-distance*.65).add(new T.Vector3(0,0,distance*.65));
 }else{
   focus=mid.clone().lerp(center,.45).add(new T.Vector3(0,0,1.3));
   const spread=Math.max(5,...pts.map(p=>p.distanceTo(focus)));
@@ -128,7 +133,7 @@ if(goalShot){
   targetPos=focus.clone().addScaledVector(dir,-dist*.38)
     .addScaledVector(side,-dist*.76).add(new T.Vector3(0,0,dist*.48));
 }
-const k=lastFrame===0?1:(goalShot?.12:.16);
+const k=lastFrame===0?1:(goalShot?.055:.16);
 camera.position.lerp(targetPos,k);aimAt.lerp(focus,k);camera.lookAt(aimAt);
 camera.updateMatrixWorld();
 // Protect against the camera drifting away from every horse: correct framing

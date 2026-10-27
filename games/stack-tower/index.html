@@ -16,7 +16,7 @@ header{display:flex;align-items:center;gap:10px;flex:none}h1{font-size:19px;marg
 .result{justify-content:center;text-align:center;overflow:auto}.result h2{font-size:25px;color:#b91c1c;margin:0}.loser{font-size:clamp(36px,10vw,65px);font-weight:950;color:#b91c1c;overflow-wrap:anywhere}.score{font-size:19px;font-weight:850}.result-actions{display:flex;gap:8px}.result-actions button{flex:1}
 @media(max-height:690px){.app{gap:6px}.panel{padding:9px}.actions button{min-height:52px}.arena-note{top:7px}}
 </style></head><body><main class="app">
-<header><a href="../" id="exitBack" class="back" aria-label="ゲームBOXへ戻る">‹</a><h1>積み上げタワー</h1><span class="version">v1.1.0</span></header>
+<header><a href="../" id="exitBack" class="back" aria-label="ゲームBOXへ戻る">‹</a><h1>積み上げタワー</h1><span class="version">v1.2.0</span></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p class="muted">全員でひとつのタワーを積み上げる協力型チキンレース。左右に往復するブロックを「落とす」で止めます。ずれた分だけ削れ、完全にはみ出したプレイヤーの負け。5段ごとに速度がアップします。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div id="players" class="panel players"></div><div id="turn" class="turn"></div><div class="panel stats"><span>積み上げ <strong id="floors">0</strong> 段</span><span>残り幅 <strong id="widthPercent">100</strong>%</span><span>速度 <strong id="speed">1.0</strong>倍</span></div><div class="arena"><div class="arena-note">青いブロックを灰色の土台に重ねよう</div><svg id="field" viewBox="0 0 1000 440" preserveAspectRatio="none" role="img" aria-label="土台と左右に往復するブロック"><rect x="0" y="0" width="1000" height="440" fill="transparent"/><line x1="0" y1="313" x2="1000" y2="313" stroke="#d9e7f8" stroke-width="2"/><rect id="baseBlock" x="300" y="259" width="400" height="54" rx="2" fill="#94a3b8"/><rect id="movingBlock" x="0" y="202" width="400" height="54" rx="2" fill="#2563eb"/><rect id="cutBlock" x="0" y="202" width="0" height="54" fill="#ef4444" opacity=".7" visibility="hidden"/></svg></div><div id="status" class="status" aria-live="polite">ブロックを落とそう！</div><div class="actions"><button id="drop" class="btn">落とす</button><button id="next" class="soft" disabled>次の人へ</button></div></section>
 <section id="result" class="result panel"><h2>ゲーム終了！</h2><p class="muted">ブロックが完全にはみ出した！ 負けたプレイヤー</p><div id="loser" class="loser"></div><div class="score">記録：<span id="finalFloors">0</span> 段</div><div class="result-actions"><button id="again" class="btn">もう一度遊ぶ</button><button id="settings" class="soft">設定に戻る</button></div></section>
@@ -59,12 +59,12 @@ function drop(){
   if(cutWidth>.001){
    cut.setAttribute('x',cutX);cut.setAttribute('y','205');cut.setAttribute('width',cutWidth);cut.setAttribute('visibility','visible');
    cut.setAttribute('opacity','.7');
-   requestAnimationFrame(()=>{if(token!==animationToken)return;cut.style.transition='transform .42s ease-in,opacity .42s ease-in';cut.style.transform='translateY(170px)';cut.setAttribute('opacity','0')});
+   requestAnimationFrame(()=>{if(token!==animationToken)return;cut.style.transition='transform .6s ease-in,opacity .6s ease-in';cut.style.transform='translateY(170px)';cut.setAttribute('opacity','0')});
   }
   // 次のプレイヤーが狙う土台は、切り取った交差部分だけ。
   baseX=left;width=overlap;floors++;phase='placed';
   // 上段を土台の高さへ移動して灰色へ切り替える。
-  moving.style.transition='transform .22s ease-out';
+  moving.style.transition='transform .46s ease-out';
   moving.style.transform='translateY(54px)';
   $('status').textContent='成功！ 次のプレイヤーへ';
   render();
@@ -75,8 +75,8 @@ function drop(){
    cut.style.transition='none';cut.style.transform='none';cut.setAttribute('visibility','hidden');cut.setAttribute('opacity','.7');
    $('baseBlock').setAttribute('x',baseX);$('baseBlock').setAttribute('width',width);
    moving.setAttribute('visibility','hidden');
-  },240);
- },90);
+  },500);
+ },240);
 }
 function next(){if(phase!=='placed')return;current=(current+1)%names.length;beginTurn()}
 function settings(){cancelMotion();GameTurnOverlay.hide();phase='setup';screen('setup')}

@@ -116,6 +116,8 @@ let focus=mid.clone().add(new T.Vector3(0,0,1.3));
 // From 400m out, widen gradually and include the finish; do not cut
 // immediately to a stationary empty piece of the course.
 const isLoop=type==='loop';
+// The last home straight uses a stable, wider broadcast shot.
+const homeStraight=isLoop&&lead.pos>=.85;
 if(goalShot){
   const maxBlend=isLoop?.12:.48;
   const blend=Math.min(maxBlend,Math.max(0,(lead.pos-.75)/.25)*maxBlend);
@@ -127,7 +129,7 @@ const leadModel=models.find(m=>m.horse.num===lead.num);
 const tracked=isLoop
  ? models.filter(m=>m.horse.num!==lead.num)
      .sort((a,b)=>a.group.position.distanceTo(center)-b.group.position.distanceTo(center))
-     .slice(0,2).map(m=>m.group.position).concat([center])
+     .slice(0,homeStraight?4:2).map(m=>m.group.position).concat([center])
  : pts;
 if(isLoop){
  const trackedCenter=new T.Vector3();
@@ -137,7 +139,8 @@ if(isLoop){
 }
 const spread=Math.max(1,...tracked.map(p=>p.distanceTo(focus)));
 const baseDistance=isLoop
- ? Math.max(13,Math.min(goalShot?24:27,spread*1.4+12))
+ ? (homeStraight?Math.max(31,Math.min(48,spread*1.65+24)):
+    Math.max(13,Math.min(goalShot?24:27,spread*1.4+12)))
  : goalShot?Math.max(23,spread*2.4+19):Math.max(16,spread*2+14);
 const viewOffset=isLoop
  ? new T.Vector3(-.27,-.78,.43).normalize()
@@ -160,7 +163,7 @@ for(let i=0;i<(isLoop?8:22)&&!framed();i++){
 // Otherwise snap to a guaranteed framed shot instead of showing empty turf.
 if(lastFrame===0){camera.position.copy(desired);aimAt.copy(focus);}
 else{
- const blend=goalShot?.095:.18;
+ const blend=homeStraight?.055:(goalShot?.095:.18);
  const proposedPos=camera.position.clone().lerp(desired,blend);
  const proposedAim=aimAt.clone().lerp(focus,blend);
  tmpCam.position.copy(proposedPos);tmpCam.lookAt(proposedAim);tmpCam.updateMatrixWorld();

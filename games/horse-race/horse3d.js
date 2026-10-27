@@ -25,7 +25,7 @@ function ball(g,m,x,y,z,sx,sy,sz){const p=new T.Mesh(new T.SphereGeometry(1,12,1
 function tube(g,m,a,b,r){const start=new T.Vector3(...a),end=new T.Vector3(...b),d=end.clone().sub(start);const obj=new T.Mesh(new T.CylinderGeometry(r,r,d.length(),8),m);obj.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());obj.position.copy(start).add(end).multiplyScalar(.5);obj.castShadow=true;g.add(obj);return obj}
 function makeLabel(txt,color){const cvs=document.createElement('canvas');cvs.width=256;cvs.height=120;const c=cvs.getContext('2d');c.fillStyle='rgba(255,255,255,.97)';c.beginPath();c.roundRect(5,5,246,110,20);c.fill();c.lineWidth=9;c.strokeStyle=color;c.stroke();c.fillStyle='#172c4b';c.font='bold 55px system-ui';c.textAlign='center';c.textBaseline='middle';c.fillText(txt,128,64);const map=new T.CanvasTexture(cvs);map.colorSpace=T.SRGBColorSpace;const obj=new T.Sprite(new T.SpriteMaterial({map,depthTest:false,transparent:true}));obj.scale.set(1.35,.64,1);obj.renderOrder=99;return obj}
 function buildHorse(h){
- const group=new T.Group(),coat=material(h.body||'#a86435'),silk=material(h.color),
+ const group=new T.Group(),coat=material(h.color),silk=material(h.color),
  dark=material('#32251f'),leather=material('#493026'),cream=material('#eee9df'),
  pants=material('#f5f4ee'),boot=material('#20252d'),skin=material('#e5b996');
  const torso=ball(group,coat,-.10,0,1.12,.77,.34,.39);
@@ -152,6 +152,6 @@ if(!goalShot && visible===0){
   camera.position.copy(targetPos);aimAt.copy(focus);camera.lookAt(aimAt);
 }
 lastFrame=time||1;
-renderer.render(scene,camera);return true}
+renderer.render(scene,camera);return goalShot || visible>0}
 window.Race3D={available:true,reset,update};
 })();

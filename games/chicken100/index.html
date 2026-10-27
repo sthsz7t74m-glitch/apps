@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#f5f8ff"><title>100チキンレース | ゲームBOX</title>
+<link rel="stylesheet" href="../shared/player-setup.css"><link rel="stylesheet" href="../shared/turn-overlay.css"><script src="../shared/zoom-lock.js"></script>
+<style>
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font-family:system-ui,-apple-system,sans-serif;background:#f5f8ff;color:#173451}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.42;cursor:default}
+.app{max-width:620px;margin:auto;height:100dvh;padding:calc(env(safe-area-inset-top) + 8px) 12px calc(env(safe-area-inset-bottom) + 9px);display:flex;flex-direction:column;gap:9px}
+header{display:flex;align-items:center;gap:10px;flex:none}header h1{font-size:19px;margin:0}.back{width:36px;height:36px;border-radius:11px;background:#e8f1ff;color:#256bdc;text-decoration:none;display:grid;place-items:center;font-size:25px;font-weight:900}.version{margin-left:auto;font-size:11px;color:#7890ad}
+.panel{background:#fff;border:1px solid #dce8ff;border-radius:17px;padding:13px}.setup{display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto}.muted{font-size:12px;line-height:1.65;color:#64748b;margin:0}.btn,.soft{min-height:51px;padding:11px;border-radius:13px;border:1px solid #256bdc;font-size:15px;font-weight:850}.btn{background:#256bdc;color:#fff}.soft{background:#eef5ff;color:#256bdc;border-color:#cbdcf3}
+.game,.result{display:none;flex:1;min-height:0;flex-direction:column;gap:9px}.game.on,.result.on{display:flex}
+.players{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.player{min-width:0;border-radius:10px;background:#f1f5fc;border:1px solid #dce8ff;padding:8px 5px;text-align:center;font-size:11px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.player.active{color:#1d4ed8;border:2px solid #256bdc;background:#eaf3ff}.turn{font-weight:900;font-size:15px;text-align:center}
+.arena{flex:1;min-height:0;border-radius:19px;background:linear-gradient(160deg,#ebf5ff,#dfeaff);border:1px solid #c7defd;display:flex;align-items:center;justify-content:space-around;flex-direction:column;padding:14px;gap:10px}
+.caption{font-size:13px;color:#627b9e;font-weight:800}.total{font-weight:950;font-size:clamp(58px,13vmin,90px);letter-spacing:-.06em;line-height:1;color:#1d4ed8;font-variant-numeric:tabular-nums}.total small{font-size:19px;color:#7c96ba;letter-spacing:0}
+.track{width:100%;height:14px;border-radius:20px;background:#c8dbf7;overflow:hidden}.fill{height:100%;width:0;background:#256bdc;border-radius:20px;transition:width .3s,background .3s}.danger .fill{background:#ef4444}
+.number-card{width:min(52vw,175px);height:min(52vw,175px);max-height:25dvh;aspect-ratio:1;border-radius:24px;background:#fff;border:3px solid #cbdcf3;box-shadow:0 7px 0 #cfdef2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:background .18s,color .18s,border-color .18s}
+.number-card strong{font-size:clamp(52px,12vmin,87px);font-variant-numeric:tabular-nums;line-height:1}.number-card span{font-weight:800;font-size:12px;color:#64748b}.number-card.rolling{background:#fef3c7;border-color:#f59e0b;color:#92400e}.number-card.rolling span{color:#92400e}.number-card.confirmed{background:#dc2626;border-color:#b91c1c;color:#fff;box-shadow:0 7px 0 #991b1b}.number-card.confirmed span{color:#fff}
+.note{min-height:38px;font-size:13px;font-weight:850;text-align:center;color:#385c88}.note.alert{color:#b91c1c}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:none}.actions button{min-height:60px}.result{overflow:auto;text-align:center;justify-content:center}.result h2{font-size:27px;margin:0;color:#b91c1c}.result-total{font-size:44px;font-weight:950;color:#dc2626}.result-actions{display:flex;gap:9px}.result-actions button{flex:1}
+@media(max-height:690px){.app{gap:6px}.panel{padding:9px}.arena{padding:8px;gap:5px}.number-card{width:min(35vw,125px);height:min(35vw,125px)}.number-card strong{font-size:clamp(42px,9vmin,70px)}.total{font-size:clamp(42px,11vmin,70px)}.actions button{min-height:47px}}
+</style></head><body><main class="app">
+<header><a href="../" id="exitBack" class="back" aria-label="ゲームBOXへ戻る">‹</a><h1>100チキンレース</h1><span class="version">v1.0.0</span></header>
+<section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p class="muted">ボタンで1〜10の数字を引き、全員共通の合計を増やします。自分の番で最低1回は引き、その後は何回でも挑戦可能！「次の番へ」で交代。<strong>合計100以上にした人が負け！</strong></p><button id="start" class="btn">ゲーム開始</button></section>
+<section id="game" class="game"><div class="panel players" id="players"></div><div class="turn" id="turn"></div><div class="arena" id="arena"><span class="caption">全員共通の合計</span><div id="total" class="total">0 <small>/ 100</small></div><div class="track"><div id="fill" class="fill"></div></div><div id="card" class="number-card"><span id="cardLabel">今回の数字</span><strong id="number">?</strong></div><div id="note" class="note" aria-live="polite">数字を引こう！</div></div><div class="actions"><button id="draw" class="btn">数字を引く</button><button id="next" class="soft" disabled>次の番へ</button></div></section>
+<section id="result" class="result panel"><h2>ゲーム終了！</h2><div class="result-total" id="endTotal"></div><p id="loser"></p><p class="muted">100以上にした人の負け。他のプレイヤーは勝ち！</p><div class="result-actions"><button id="again" class="btn">もう一度遊ぶ</button><button id="settings" class="soft">設定に戻る</button></div></section>
+</main><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script><script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+let setup,players=[],current=0,total=0,draws=0,phase='setup',interval=null,timeout=null;
+const random=()=>{if(window.crypto&&crypto.getRandomValues){const a=new Uint32Array(1);crypto.getRandomValues(a);return 1+Math.floor(a[0]/4294967296*10)}return Math.floor(Math.random()*10)+1};
+function clearTimers(){clearInterval(interval);clearTimeout(timeout);interval=null;timeout=null}
+function namesHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ $('total').innerHTML=total+' <small>/ 100</small>';$('fill').style.width=Math.min(100,total)+'%';$('arena').classList.toggle('danger',total>=80);
+ $('turn').textContent=players[current]+' の番';$('players').innerHTML=players.map((p,i)=>'<div class="player '+(current===i?'active':'')+'">'+namesHtml(p)+'</div>').join('');
+ $('draw').disabled=phase!=='playing';$('next').disabled=phase!=='playing'||draws<1;
+}
+function screen(name){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=name==='setup'?'flex':'none';else el.classList.toggle('on',id===name)}}
+function newTurn(){draws=0;phase='playing';$('card').className='number-card';$('number').textContent='?';$('cardLabel').textContent='今回の数字';$('note').className='note';$('note').textContent='最低1回引いてから交代できます';render();GameTurnOverlay.show(players[current])}
+function start(){const names=setup.validate();if(!names)return;clearTimers();players=names;total=0;current=0;screen('game');newTurn()}
+function draw(){
+ if(phase!=='playing'||GameTurnOverlay.isShowing())return;
+ phase='rolling';render();$('card').className='number-card rolling';$('cardLabel').textContent='抽選中…';$('note').textContent='何が出る…？';
+ // 80以上で徐々にスローダウン。結果の抽選はアニメーションとは別で一度だけ確定する。
+ const result=random(),risk=Math.min(1,Math.max(0,(total-70)/25)),duration=650+Math.round(risk*1650);
+ const started=performance.now();let delay=55;let elapsed=0;
+ function tick(){if(phase!=='rolling')return;$('number').textContent=random();elapsed=performance.now()-started;if(elapsed>=duration){settle(result);return}delay=55+Math.pow(elapsed/duration,2)*(90+risk*450);timeout=setTimeout(tick,delay)}
+ tick();
+}
+function settle(n){
+ if(phase!=='rolling')return;
+ clearTimers();draws++;total+=n;
+ $('number').textContent=n;$('card').className='number-card confirmed';$('cardLabel').textContent='確定！';
+ if(total>=100){
+   phase='result';render();$('note').className='note alert';$('note').textContent='100到達！ '+players[current]+' の負け！';
+   timeout=setTimeout(()=>{$('endTotal').textContent=total+' / 100';$('loser').textContent='敗者：'+players[current];screen('result')},1200);
+ }else{
+   phase='playing';$('note').className=total>=90?'note alert':'note';
+   $('note').textContent=total>=90?'危険！ 残り'+(100-total)+'！':n+' が出た！ あと '+(100-total);render();
+ }
+}
+function next(){if(phase!=='playing'||draws===0)return;current=(current+1)%players.length;newTurn()}
+function settings(){clearTimers();GameTurnOverlay.hide();phase='setup';screen('setup')}
+$('draw').onclick=draw;$('next').onclick=next;$('start').onclick=start;$('again').onclick=start;$('settings').onclick=settings;
+setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
+window.GameExitGuard.configure({buttons:['exitBack','again','settings'],isActive:()=>$('game').classList.contains('on')});
+})();</script><script src="../shared/audio.js"></script></body></html>

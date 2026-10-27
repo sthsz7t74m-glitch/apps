@@ -149,6 +149,32 @@ if(goalShot){
  renderer.render(scene,camera);
  return true;
 }
+// Before 300m to go: close tracking shot, never auto-zoom to fit the field.
+// The finish camera above is the ONLY wide/fixed shot.
+if(!goalShot){
+ const leaderPosition=center.clone().add(new T.Vector3(0,0,1.35));
+ const follower=models.filter(m=>m.horse.num!==lead.num)
+  .sort((a,b)=>a.group.position.distanceTo(center)-b.group.position.distanceTo(center))[0];
+ const target=leaderPosition.clone();
+ if(follower&&follower.group.position.distanceTo(center)<9){
+  target.lerp(follower.group.position.clone().add(new T.Vector3(0,0,1.35)),.20);
+ }
+ const sideAngle=new T.Vector3(-dir.y,dir.x,0);
+ const desired=target.clone().addScaledVector(dir,-8)
+  .addScaledVector(sideAngle,-16).add(new T.Vector3(0,0,9));
+ if(lastFrame===0){camera.position.copy(desired);aimAt.copy(target);}
+ else {
+  camera.position.lerp(desired,.16);
+  aimAt.lerp(target,.16);
+ }
+ camera.lookAt(aimAt);camera.updateMatrixWorld();
+ // Immediately recover if a sharp turn pushes the leader outside the viewport.
+ const projected=leaderPosition.clone().project(camera);
+ if(!Number.isFinite(projected.x)||Math.abs(projected.x)>.82||Math.abs(projected.y)>.8||projected.z>=1){
+  camera.position.copy(desired);aimAt.copy(target);camera.lookAt(aimAt);
+ }
+ lastFrame=time||1;renderer.render(scene,camera);return true;
+}
 let focus=mid.clone().add(new T.Vector3(0,0,1.3));
 // From 400m out, widen gradually and include the finish; do not cut
 // immediately to a stationary empty piece of the course.

@@ -108,10 +108,47 @@ const pts=models.map(m=>m.group.position.clone());
 const mid=new T.Vector3();
 pts.forEach(p=>mid.add(p));mid.multiplyScalar(1/Math.max(1,pts.length));
 // Keep the camera on the horse pack at the start, including narrow phone screens.
-if(lead.pos>=.75)wideTriggered=true;
+if(lead.pos>=.8125)wideTriggered=true; // leading horse reaches 300m remaining
 const finish=type==='loop'?stadiumPoint(.94):{x:64,y:0};
 const finishPoint=new T.Vector3(finish.x,finish.y,1);
 const goalShot=wideTriggered;
+// Fixed broadcast coverage from the 400m-to-go marker through the finish.
+// The composition and its target never follow a horse after the switch.
+if(goalShot){
+ const samples=[];
+ for(let i=0;i<=16;i++){
+  const fraction=.75+i/16*.25;
+  if(type==='loop'){
+   for(const offset of [-TRACK_WIDTH/2,TRACK_WIDTH/2]){
+    const p=stadiumPoint(.94+fraction,offset);
+    samples.push(new T.Vector3(p.x,p.y,1));
+   }
+  }else{
+   for(const laneY of [-11,11])samples.push(new T.Vector3(1+63*fraction,laneY,1));
+  }
+ }
+ const target=new T.Vector3();
+ samples.forEach(p=>target.add(p));target.multiplyScalar(1/samples.length);
+ const view=type==='loop'?new T.Vector3(-.32,-.75,.65).normalize():new T.Vector3(-.38,-.8,.55).normalize();
+ const trial=new T.PerspectiveCamera(camera.fov,camera.aspect,camera.near,camera.far);
+ trial.up.copy(camera.up);
+ let distance=25,valid=false;
+ for(let i=0;i<75;i++){
+  trial.position.copy(target).addScaledVector(view,distance);
+  trial.lookAt(target);trial.updateMatrixWorld();
+  valid=samples.every(p=>{
+   const v=p.clone().project(trial);
+   return v.z>-1&&v.z<1&&Math.abs(v.x)<.85&&Math.abs(v.y)<.78;
+  });
+  if(valid)break;
+  distance*=1.10;
+ }
+ camera.position.copy(trial.position);aimAt.copy(target);
+ camera.lookAt(aimAt);camera.updateMatrixWorld();
+ lastFrame=time||1;
+ renderer.render(scene,camera);
+ return true;
+}
 let focus=mid.clone().add(new T.Vector3(0,0,1.3));
 // From 400m out, widen gradually and include the finish; do not cut
 // immediately to a stationary empty piece of the course.

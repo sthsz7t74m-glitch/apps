@@ -24,11 +24,19 @@
   });
   window.RaceMusic={
     playing:false,
-    start(){
+    // Start silent playback inside the user's tap gesture so iOS permits playback
+    // after the three-second countdown.
+    prepare(){
       this.stop();
       this.playing=true;
-      audio.currentTime=0;
-      audio.play().catch(err=>console.warn('Race music playback failed:',err));
+      audio.volume=0;
+      audio.play().catch(err=>console.warn('Race music unlock failed:',err));
+    },
+    start(){
+      this.playing=true;
+      try{audio.currentTime=0}catch{}
+      audio.volume=.65;
+      if(audio.paused)audio.play().catch(err=>console.warn('Race music playback failed:',err));
     },
     stop(){
       this.playing=false;

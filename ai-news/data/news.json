@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-01T15:54:30.829Z",
+  "generatedAt": "2026-11-01T20:23:46.478Z",
   "sourceMode": "rss",
-  "totalArticles": 376,
-  "totalClusters": 83,
+  "totalArticles": 375,
+  "totalClusters": 82,
   "succeededSources": 16,
   "failedSources": 2,
   "deduplication": {
@@ -17,56 +17,56 @@
       "name": "NHK NEWS WEB",
       "ok": true,
       "count": 7,
-      "fetchedAt": "2026-11-01T15:54:30.832Z"
+      "fetchedAt": "2026-11-01T20:23:46.479Z"
     },
     {
       "id": "asahi-news",
       "name": "朝日新聞デジタル",
       "ok": true,
       "count": 35,
-      "fetchedAt": "2026-11-01T15:54:30.905Z"
+      "fetchedAt": "2026-11-01T20:23:46.534Z"
     },
     {
       "id": "mainichi-news",
       "name": "毎日新聞",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-11-01T15:54:30.908Z"
+      "fetchedAt": "2026-11-01T20:23:46.536Z"
     },
     {
       "id": "bbc-japanese",
       "name": "BBC News Japan",
       "ok": true,
       "count": 38,
-      "fetchedAt": "2026-11-01T15:54:30.910Z"
+      "fetchedAt": "2026-11-01T20:23:46.537Z"
     },
     {
       "id": "livedoor-news",
       "name": "ライブドアニュース",
       "ok": true,
       "count": 18,
-      "fetchedAt": "2026-11-01T15:54:30.911Z"
+      "fetchedAt": "2026-11-01T20:23:46.538Z"
     },
     {
       "id": "itmedia",
       "name": "ITmedia",
       "ok": true,
       "count": 50,
-      "fetchedAt": "2026-11-01T15:54:30.912Z"
+      "fetchedAt": "2026-11-01T20:23:46.539Z"
     },
     {
       "id": "impress-watch",
       "name": "Impress Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-11-01T15:54:30.913Z"
+      "fetchedAt": "2026-11-01T20:23:46.540Z"
     },
     {
       "id": "cnet-japan",
       "name": "CNET Japan",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-11-01T15:54:30.914Z",
+      "fetchedAt": "2026-11-01T20:23:46.541Z",
       "error": "HTTP 404"
     },
     {
@@ -74,28 +74,28 @@
       "name": "GIGAZINE",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-11-01T15:54:30.916Z"
+      "fetchedAt": "2026-11-01T20:23:46.542Z"
     },
     {
       "id": "ascii",
       "name": "ASCII.jp",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-11-01T15:54:30.917Z"
+      "fetchedAt": "2026-11-01T20:23:46.543Z"
     },
     {
       "id": "pc-watch",
       "name": "PC Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-11-01T15:54:30.918Z"
+      "fetchedAt": "2026-11-01T20:23:46.544Z"
     },
     {
       "id": "internet-watch",
       "name": "INTERNET Watch",
       "ok": false,
       "count": 0,
-      "fetchedAt": "2026-11-01T15:54:30.919Z",
+      "fetchedAt": "2026-11-01T20:23:46.544Z",
       "error": "HTTP 404"
     },
     {
@@ -103,42 +103,42 @@
       "name": "AV Watch",
       "ok": true,
       "count": 20,
-      "fetchedAt": "2026-11-01T15:54:30.920Z"
+      "fetchedAt": "2026-11-01T20:23:46.545Z"
     },
     {
       "id": "game-watch",
       "name": "GAME Watch",
       "ok": true,
       "count": 29,
-      "fetchedAt": "2026-11-01T15:54:30.921Z"
+      "fetchedAt": "2026-11-01T20:23:46.546Z"
     },
     {
       "id": "jpcert",
       "name": "JPCERT/CC",
       "ok": true,
       "count": 21,
-      "fetchedAt": "2026-11-01T15:54:30.922Z"
+      "fetchedAt": "2026-11-01T20:23:46.547Z"
     },
     {
       "id": "jma-extra",
       "name": "気象庁 防災情報",
       "ok": true,
       "count": 30,
-      "fetchedAt": "2026-11-01T15:54:30.924Z"
+      "fetchedAt": "2026-11-01T20:23:46.548Z"
     },
     {
       "id": "google-japan",
       "name": "Google Japan Blog",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-11-01T15:54:30.925Z"
+      "fetchedAt": "2026-11-01T20:23:46.549Z"
     },
     {
       "id": "openai-news",
       "name": "OpenAI News",
       "ok": true,
       "count": 25,
-      "fetchedAt": "2026-11-01T15:54:30.925Z"
+      "fetchedAt": "2026-11-01T20:23:46.550Z"
     }
   ],
   "items": [
@@ -158,14 +158,14 @@
       "minutes": 1,
       "priority": 98,
       "breaking": true,
-      "publishedAt": "2026-11-01T13:58:04.000Z",
+      "publishedAt": "2026-11-01T20:12:15.000Z",
       "duplicateCount": 14,
       "sources": [
         {
           "name": "気象庁 防災情報",
           "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20261101135805_0_VPWW53_472000.xml",
-          "publishedAt": "2026-11-01T13:58:04.000Z"
+          "url": "https://www.data.jma.go.jp/developer/xml/data/20261101201216_0_VPWW53_015000.xml",
+          "publishedAt": "2026-11-01T20:12:15.000Z"
         }
       ],
       "confidence": 81,
@@ -192,7 +192,7 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 93,
+      "priority": 87,
       "breaking": false,
       "publishedAt": "2026-11-01T12:23:32.000Z",
       "duplicateCount": 2,
@@ -222,10 +222,46 @@
       "alternateTitles": []
     },
     {
-      "id": "news-67fa4cccbcbec4ac",
-      "title": "台風解析・予報情報（５日予報）（Ｈ３０）",
-      "summary": "【台風解析・予報情報】",
-      "fact": "【台風解析・予報情報】",
+      "id": "news-c79c3dc3395a3e07",
+      "title": "＃ビジュ:ダイエットがやめられない 5キロ減に成功も、崩れた12歳の心",
+      "summary": "＃ビジュ:ダイエットがやめられない 5キロ減に成功も、崩れた12歳の心",
+      "fact": "＃ビジュ:ダイエットがやめられない 5キロ減に成功も、崩れた12歳の心",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 81,
+      "breaking": false,
+      "publishedAt": "2026-11-01T20:00:26.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261031/k00/00m/040/074000c",
+          "publishedAt": "2026-11-01T20:00:26.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "＃ビジュ:ダイエットがやめられない 5キロ減に成功も、崩れた12歳の心",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-75aca4c055c48c53",
+      "title": "相次ぐ災害 被災者ニーズ踏まえた支援は 防災庁が直面する課題",
+      "summary": "相次ぐ災害 被災者ニーズ踏まえた支援は 防災庁が直面する課題",
+      "fact": "相次ぐ災害 被災者ニーズ踏まえた支援は 防災庁が直面する課題",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -235,58 +271,22 @@
         "防災"
       ],
       "minutes": 1,
-      "priority": 90,
-      "breaking": true,
-      "publishedAt": "2026-11-01T15:41:36.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "気象庁 防災情報",
-          "type": "公式発表",
-          "url": "https://www.data.jma.go.jp/developer/xml/data/20261101154136_0_VPTW61_010000.xml",
-          "publishedAt": "2026-11-01T15:41:36.000Z"
-        }
-      ],
-      "confidence": 64,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "【台風解析・予報情報】",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-1997f4e265fe549a",
-      "title": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
-      "summary": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
-      "fact": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 87,
-      "breaking": true,
-      "publishedAt": "2026-11-01T14:18:38.000Z",
+      "priority": 79,
+      "breaking": false,
+      "publishedAt": "2026-11-01T20:00:18.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "毎日新聞",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/384000c",
-          "publishedAt": "2026-11-01T14:18:38.000Z"
+          "url": "https://mainichi.jp/articles/20261026/k00/00m/040/326000c",
+          "publishedAt": "2026-11-01T20:00:18.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
+        "相次ぐ災害 被災者ニーズ踏まえた支援は 防災庁が直面する課題",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -295,119 +295,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-1260b515da7ef4ff",
-      "title": "[ITmedia Mobile] KDDIの名機「INFOBAR」に新展開、11月18日に何かを発表――砂原哲氏が明かす",
-      "summary": "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では歴代実機の展示やAIを活用した体験型コンテンツが用意されている。",
-      "fact": "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では歴代実機の展示やAIを活用した体験型コンテンツが用意されている。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 2,
-      "priority": 86,
-      "breaking": true,
-      "publishedAt": "2026-11-01T13:30:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/mobile/articles/2611/01/news007.html",
-          "publishedAt": "2026-11-01T13:30:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では…",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-455478d128ad9401",
-      "title": "アニメ『ぼっち・ざ・ろっく！』前日譚を描く『映画ぼっち・ざ・ろっく！ 星のあしあと』2027年公開決定で特報映像登場",
-      "summary": "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
-      "fact": "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 84,
-      "breaking": true,
-      "publishedAt": "2026-11-01T13:32:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261101-bocchi-the-rock-hoshi-no-ashiato",
-          "publishedAt": "2026-11-01T13:32:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-0fa559fb8017184d",
-      "title": "「プチプラネット」のSwitch2版がリリース決定！ 2027年に配信へ「原神」手掛けるHoYoverseの新作。サービス開始後に使える交換コードも公開",
-      "summary": "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
-      "fact": "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "任天堂"
-      ],
-      "minutes": 1,
-      "priority": 83,
-      "breaking": true,
-      "publishedAt": "2026-11-01T11:46:14.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2152919.html",
-          "publishedAt": "2026-11-01T11:46:14.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-f085b8965b6e3341",
-      "title": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
-      "summary": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
-      "fact": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
+      "id": "news-4504a11a7f2ec3a7",
+      "title": "紫綬褒章受ける奈良美智さん 感謝しつつ「物分かりよくはならない」",
+      "summary": "紫綬褒章受ける奈良美智さん 感謝しつつ「物分かりよくはならない」",
+      "fact": "紫綬褒章受ける奈良美智さん 感謝しつつ「物分かりよくはならない」",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -416,22 +307,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 78,
+      "priority": 79,
       "breaking": false,
-      "publishedAt": "2026-11-01T14:45:14.000Z",
+      "publishedAt": "2026-11-01T20:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
           "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC12DRVVC1ULOB00FM.html",
-          "publishedAt": "2026-11-01T14:45:14.000Z"
+          "url": "http://www.asahi.com/articles/ASVB04G0LVB0UCVL00GM.html",
+          "publishedAt": "2026-11-01T20:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
+        "紫綬褒章受ける奈良美智さん 感謝しつつ「物分かりよくはならない」",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -452,7 +343,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 75,
+      "priority": 72,
       "breaking": false,
       "publishedAt": "2026-11-01T15:00:00.000Z",
       "duplicateCount": 1,
@@ -476,46 +367,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-3122a3353d15ed90",
-      "title": "リンクサイド:りかしん、進化中 「偽物だけど、本物の愛を…」 全日本予選会",
-      "summary": "リンクサイド:りかしん、進化中 「偽物だけど、本物の愛を…」 全日本予選会",
-      "fact": "リンクサイド:りかしん、進化中 「偽物だけど、本物の愛を…」 全日本予選会",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 72,
-      "breaking": false,
-      "publishedAt": "2026-11-01T14:11:51.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/304000c",
-          "publishedAt": "2026-11-01T14:11:51.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "リンクサイド:りかしん、進化中 「偽物だけど、本物の愛を…」 全日本予選会",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-d26d907f837e56c5",
-      "title": "無料ストレージベンチマークアプリ「ATTO Disk Benchmark」の使い方まとめ、「小さいサイズのファイルでも高速に読み書きできるか？」といった観点でSSDの性能を分析して適切な用途を見極め可能",
-      "summary": "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO Disk Benchmark」はファイルサイズことの読み込み・書き込み速度を測定できる無料のベンチマークアプリで、SSDの性能検証や購入検討時の指標として役に立ちます。 続きを読む...",
-      "fact": "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO Disk Benchmark」はファイルサイズことの読み込み・書き込み速度を測定できる無料のベンチマークアプリで、SSDの性能検証や購入検討時の指標として役に立ちます。 続きを読む...",
+      "id": "news-1260b515da7ef4ff",
+      "title": "[ITmedia Mobile] KDDIの名機「INFOBAR」に新展開、11月18日に何かを発表――砂原哲氏が明かす",
+      "summary": "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では歴代実機の展示やAIを活用した体験型コンテンツが用意されている。",
+      "fact": "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では歴代実機の展示やAIを活用した体験型コンテンツが用意されている。",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -526,20 +381,92 @@
       "minutes": 2,
       "priority": 72,
       "breaking": false,
-      "publishedAt": "2026-11-01T13:32:00.000Z",
+      "publishedAt": "2026-11-01T13:30:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
+          "name": "ITmedia",
           "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261101-atto-disk-benchmark",
-          "publishedAt": "2026-11-01T13:32:00.000Z"
+          "url": "https://www.itmedia.co.jp/mobile/articles/2611/01/news007.html",
+          "publishedAt": "2026-11-01T13:30:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO…",
+        "KDDIでau Design projectのプロデューサーを務める砂原哲氏が、自身のXアカウントで「INFOBARの日」とGINZA 456で開催中の展覧会について発信した。初代モデル発売から23年を迎えた節目に触れつつ、11月18日に新情報を公開する予定であることを予告している。銀座の会場では…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-d999defd2dcefa11",
+      "title": "毎日歌壇・俳壇11月2日の特選より",
+      "summary": "毎日歌壇・俳壇11月2日の特選より",
+      "fact": "毎日歌壇・俳壇11月2日の特選より",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 70,
+      "breaking": false,
+      "publishedAt": "2026-11-01T19:00:10.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/200/091000c",
+          "publishedAt": "2026-11-01T19:00:10.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "毎日歌壇・俳壇11月2日の特選より",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-6c919396e145089c",
+      "title": "マクドナルド「チーチー」4種が11月4日より限定販売！新たに「チーチーてりやきチキンジューシーマック」登場",
+      "summary": "日本マクドナルドは、「チーズチーズてりやきチキンジューシーマック」など計4種を11月4日より3週間限定で、全国のマクドナルド店舗にて販売する。",
+      "fact": "日本マクドナルドは、「チーズチーズてりやきチキンジューシーマック」など計4種を11月4日より3週間限定で、全国のマクドナルド店舗にて販売する。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 70,
+      "breaking": false,
+      "publishedAt": "2026-11-01T19:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2152702.html",
+          "publishedAt": "2026-11-01T19:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "日本マクドナルドは、「チーズチーズてりやきチキンジューシーマック」など計4種を11月4日より3週間限定で、全国のマクドナルド店舗にて販売する。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -560,7 +487,7 @@
         "ゲーム"
       ],
       "minutes": 1,
-      "priority": 71,
+      "priority": 67,
       "breaking": false,
       "publishedAt": "2026-11-01T15:00:00.000Z",
       "duplicateCount": 1,
@@ -584,34 +511,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-731f1a15f795e327",
-      "title": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
-      "summary": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
-      "fact": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+      "id": "news-455478d128ad9401",
+      "title": "アニメ『ぼっち・ざ・ろっく！』前日譚を描く『映画ぼっち・ざ・ろっく！ 星のあしあと』2027年公開決定で特報映像登場",
+      "summary": "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
+      "fact": "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "科学・文化",
       "tags": [
-        "国内"
+        "科学・文化"
       ],
       "minutes": 1,
-      "priority": 68,
+      "priority": 67,
       "breaking": false,
-      "publishedAt": "2026-11-01T14:08:31.000Z",
+      "publishedAt": "2026-11-01T13:32:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/317000c",
-          "publishedAt": "2026-11-01T14:08:31.000Z"
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261101-bocchi-the-rock-hoshi-no-ashiato",
+          "publishedAt": "2026-11-01T13:32:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+        "2022年放送のTVアニメが大ヒットし、2024年には劇場版総集編が前後編構成で公開された『ぼっち・ざ・ろっく！』の新展開として、原作コミックス5巻に掲載された物語の前日譚が映画化されることになりました。 続きを読む...",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -620,35 +547,70 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c92ead8c119ee704",
-      "title": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
-      "summary": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
-      "fact": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
+      "id": "news-d26d907f837e56c5",
+      "title": "無料ストレージベンチマークアプリ「ATTO Disk Benchmark」の使い方まとめ、「小さいサイズのファイルでも高速に読み書きできるか？」といった観点でSSDの性能を分析して適切な用途を見極め可能",
+      "summary": "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO Disk Benchmark」はファイルサイズことの読み込み・書き込み速度を測定できる無料のベンチマークアプリで、SSDの性能検証や購入検討時の指標として役に立ちます。 続きを読む...",
+      "fact": "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO Disk Benchmark」はファイルサイズことの読み込み・書き込み速度を測定できる無料のベンチマークアプリで、SSDの性能検証や購入検討時の指標として役に立ちます。 続きを読む...",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "AI・IT",
       "tags": [
-        "経済",
-        "PRTIMESスタートアップ"
+        "AI・IT"
       ],
-      "minutes": 1,
-      "priority": 67,
+      "minutes": 2,
+      "priority": 66,
       "breaking": false,
-      "publishedAt": "2026-11-01T06:00:00.000Z",
+      "publishedAt": "2026-11-01T13:32:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "ASCII.jp",
+          "name": "GIGAZINE",
           "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/447/4447596?rss",
-          "publishedAt": "2026-11-01T06:00:00.000Z"
+          "url": "https://gigazine.net/news/20261101-atto-disk-benchmark",
+          "publishedAt": "2026-11-01T13:32:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
+        "SSDは「1MBのファイルを1000個移動する」という操作より「1GBのファイルを1個移動する」という操作の方が短時間で処理できます。このため購入するSSDを選択する際は単純な読み込み・書き込み速度だけでなく「どれくらいの大きさのファイルを高速に読み書きできるか」という観点も重要です。「ATTO…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-f085b8965b6e3341",
+      "title": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
+      "summary": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
+      "fact": "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 63,
+      "breaking": false,
+      "publishedAt": "2026-11-01T14:45:14.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVC12DRVVC1ULOB00FM.html",
+          "publishedAt": "2026-11-01T14:45:14.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "現職の佐藤光氏が3選を果たす 神奈川・茅ケ崎市長選",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -669,7 +631,7 @@
         "科学・文化"
       ],
       "minutes": 1,
-      "priority": 66,
+      "priority": 59,
       "breaking": false,
       "publishedAt": "2026-11-01T13:09:00.000Z",
       "duplicateCount": 1,
@@ -693,6 +655,43 @@
       "alternateTitles": []
     },
     {
+      "id": "news-0fa559fb8017184d",
+      "title": "「プチプラネット」のSwitch2版がリリース決定！ 2027年に配信へ「原神」手掛けるHoYoverseの新作。サービス開始後に使える交換コードも公開",
+      "summary": "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
+      "fact": "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム",
+        "任天堂"
+      ],
+      "minutes": 1,
+      "priority": 59,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:46:14.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/news/2152919.html",
+          "publishedAt": "2026-11-01T11:46:14.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "HoYoverseは、シミュレーション「プチプラネット」についてNintendo Switch 2版の配信を2027年に決定した。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-9236f71c4558d11b",
       "title": "Wikipediaの編集者はどのようにしてAI生成テキストを見つけて除外しているのか？",
       "summary": "あらゆるプラットフォームにAI生成テキストがあふれている中で、WikipediaではAIに記事本文を生成させたり書き換えさせたりすることを原則禁じるガイドラインが設定されています。そのガイドラインに違反するコンテンツを見つけて削除することを目的としたボランティア活動「WikiProject AI Cleanup」の創設メンバーが、活動について語っています。 続きを読む...",
@@ -705,7 +704,7 @@
         "AI・IT"
       ],
       "minutes": 2,
-      "priority": 64,
+      "priority": 58,
       "breaking": false,
       "publishedAt": "2026-11-01T10:00:00.000Z",
       "duplicateCount": 1,
@@ -729,114 +728,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-66c267d554da4f06",
-      "title": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
-      "summary": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
-      "fact": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 63,
-      "breaking": false,
-      "publishedAt": "2026-11-01T14:08:04.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/348000c",
-          "publishedAt": "2026-11-01T14:08:04.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2b9e6d8aac21efbf",
-      "title": "男性をボンネットに乗せたまま約2キロ走行か、殺人未遂疑いで79歳女逮捕",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 63,
-      "breaking": true,
-      "publishedAt": "2026-11-01T10:12:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32707640",
-          "publishedAt": "2026-11-01T10:12:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-8dec8292cfa91c7e",
-      "title": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
-      "summary": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
-      "fact": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 62,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:45:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC13QRZVC1BNQI056M.html",
-          "publishedAt": "2026-11-01T11:45:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-9491b77584877a2a",
       "title": "200万円台で買えるV8レクサス！ 初代LS後期型が今、中古車で最高に狙い目な4つの理由",
       "summary": "中古で200万円台から狙える国内初代レクサス「LS」後期型のレビューです。スピンドルグリル採用で古さを感じさせず、剛性やサスが改良された「Fスポーツ」は特におすすめ。税金は高額ですが、392馬力のV8エンジンや極上の豪華内装など、高級車ならではの色褪せない魅力が詰まっています。",
@@ -850,7 +741,7 @@
         "自動車"
       ],
       "minutes": 1,
-      "priority": 61,
+      "priority": 58,
       "breaking": false,
       "publishedAt": "2026-11-01T08:00:00.000Z",
       "duplicateCount": 1,
@@ -874,106 +765,35 @@
       "alternateTitles": []
     },
     {
-      "id": "news-368c1ed1a5d7bfbb",
-      "title": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
-      "summary": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
-      "fact": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
+      "id": "news-c92ead8c119ee704",
+      "title": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
+      "summary": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
+      "fact": "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "経済",
       "tags": [
-        "国内"
+        "経済",
+        "PRTIMESスタートアップ"
       ],
       "minutes": 1,
-      "priority": 59,
+      "priority": 57,
       "breaking": false,
-      "publishedAt": "2026-11-01T13:55:47.000Z",
+      "publishedAt": "2026-11-01T06:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/381000c",
-          "publishedAt": "2026-11-01T13:55:47.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2cb37ca919c84504",
-      "title": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
-      "summary": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
-      "fact": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 58,
-      "breaking": false,
-      "publishedAt": "2026-11-01T13:44:34.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVB03J6HVB0OXIE033M.html",
-          "publishedAt": "2026-11-01T13:44:34.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2563063812052edd",
-      "title": "近未来的な外観のワイヤレスヘッドホン「Headphone (1) Pro」レビュー、3個のドライバー搭載＆10個のマイクでノイズリダクション",
-      "summary": "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドライバーでサウンド再生」「10個のマイクでノイズキャンセリング」といったようにサウンドへのこだわりも充実しています。そんなHeadphone (1) Proを借りることができたので、実際に使ってみました。 続きを読む...",
-      "fact": "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドライバーでサウンド再生」「10個のマイクでノイズキャンセリング」といったようにサウンドへのこだわりも充実しています。そんなHeadphone (1) Proを借りることができたので、実際に使ってみました。 続きを読む...",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT"
-      ],
-      "minutes": 2,
-      "priority": 58,
-      "breaking": false,
-      "publishedAt": "2026-11-01T09:30:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GIGAZINE",
+          "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261101-nothing-headphone-1-pro",
-          "publishedAt": "2026-11-01T09:30:00.000Z"
+          "url": "https://ascii.jp/elem/000/004/447/4447596?rss",
+          "publishedAt": "2026-11-01T06:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドラ…",
+        "VTuberと企業を“対等”につなぐお仕事マッチングプラットフォーム「V-sta（ブイスタ）」が正式リリース。個人勢も事務所所属も、規模を問わず大手企業コラボに挑戦できる新しい仕組みを提供開始",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -995,7 +815,7 @@
         "Apple"
       ],
       "minutes": 1,
-      "priority": 58,
+      "priority": 56,
       "breaking": false,
       "publishedAt": "2026-11-01T08:00:00.000Z",
       "duplicateCount": 1,
@@ -1019,6 +839,150 @@
       "alternateTitles": []
     },
     {
+      "id": "news-1997f4e265fe549a",
+      "title": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
+      "summary": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
+      "fact": "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 55,
+      "breaking": false,
+      "publishedAt": "2026-11-01T14:18:38.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/384000c",
+          "publishedAt": "2026-11-01T14:18:38.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "関東・東日本学生空手道大会が開催 各階級の優勝者決まる",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-8dec8292cfa91c7e",
+      "title": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
+      "summary": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
+      "fact": "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 53,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:45:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVC13QRZVC1BNQI056M.html",
+          "publishedAt": "2026-11-01T11:45:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "一音一音に魂、音楽との出会いの本質 全日本吹奏楽コン高校を聴いて",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-731f1a15f795e327",
+      "title": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+      "summary": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+      "fact": "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 50,
+      "breaking": false,
+      "publishedAt": "2026-11-01T14:08:31.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/317000c",
+          "publishedAt": "2026-11-01T14:08:31.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "駅伝365:3位の創価大・榎木監督「実は1週間前に…」全日本大学駅伝詳報",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-2563063812052edd",
+      "title": "近未来的な外観のワイヤレスヘッドホン「Headphone (1) Pro」レビュー、3個のドライバー搭載＆10個のマイクでノイズリダクション",
+      "summary": "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドライバーでサウンド再生」「10個のマイクでノイズキャンセリング」といったようにサウンドへのこだわりも充実しています。そんなHeadphone (1) Proを借りることができたので、実際に使ってみました。 続きを読む...",
+      "fact": "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドライバーでサウンド再生」「10個のマイクでノイズキャンセリング」といったようにサウンドへのこだわりも充実しています。そんなHeadphone (1) Proを借りることができたので、実際に使ってみました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT"
+      ],
+      "minutes": 2,
+      "priority": 50,
+      "breaking": false,
+      "publishedAt": "2026-11-01T09:30:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261101-nothing-headphone-1-pro",
+          "publishedAt": "2026-11-01T09:30:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "Nothingは内部構造がスケスケなスマートフォンやイヤホンなど特徴的な外見のデバイスを開発する企業です。Nothingが2026年9月に発売したワイヤレスヘッドホン「Headphone (1) Pro」は、アルミニウム削り出しボディとチタン合金アームで近未来的な外見に仕上がっており、「3個のドラ…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-488e89eaab8c6828",
       "title": "なぜアメリカにはあんなにたくさん普段使わないモノを収納するための「セルフストレージ施設」があるのか？",
       "summary": "セルフストレージとは個人や企業が一時的または長期的に物品を保管するためのスペースを貸し出す事業であり、日本では一般的に「トランクルーム」の一形態と認識されています。アメリカ国内には世界のセルフストレージ容量の約90％が集積しているとされていますが、なぜそんなにも多くのセルフストレージ施設があるのでしょうか？The New Yorkerのライターであるデイヴィッド・オーウェン氏は旅行を通じて「アメリカ文化の二大柱は教会とセルフストレージである」と考えるに至り、アメリカ社会とセルフストレージの結びつきについて考察しま…",
@@ -1031,7 +995,7 @@
         "経済"
       ],
       "minutes": 2,
-      "priority": 55,
+      "priority": 49,
       "breaking": false,
       "publishedAt": "2026-11-01T03:00:00.000Z",
       "duplicateCount": 1,
@@ -1055,79 +1019,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-0d932cc3b783c6a4",
-      "title": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
-      "summary": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
-      "fact": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 54,
-      "breaking": false,
-      "publishedAt": "2026-11-01T13:41:28.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC14GMHVC1OXIE013M.html",
-          "publishedAt": "2026-11-01T13:41:28.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-081cf61db29f312e",
-      "title": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
-      "summary": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
-      "fact": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "気象・防災",
-      "tags": [
-        "気象・防災",
-        "防災"
-      ],
-      "minutes": 1,
-      "priority": 54,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:13:13.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/010/309000c",
-          "publishedAt": "2026-11-01T11:13:13.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-68bd621b23336985",
       "title": "Amazonのクラウドサービス「AWS」がカードゲームになった「AWS BuilderCards」を実際に遊んでみた",
       "summary": "Amazonのクラウドコンピューティングサービス「Amazon Web Services(AWS)」の仕組みを遊びながら学べるカードゲーム「AWS BuilderCards」の日本語版第2版が、2026年9月25日に発売されました。実在するAWSのサービスを組み合わせてシステムを構築するという、一風変わったカードゲームがどのようなものなのか、実際に遊んで確かめてみました。 続きを読む...",
@@ -1140,7 +1031,7 @@
         "ゲーム"
       ],
       "minutes": 2,
-      "priority": 54,
+      "priority": 48,
       "breaking": false,
       "publishedAt": "2026-11-01T07:45:00.000Z",
       "duplicateCount": 1,
@@ -1176,7 +1067,7 @@
         "経済"
       ],
       "minutes": 1,
-      "priority": 53,
+      "priority": 47,
       "breaking": false,
       "publishedAt": "2026-10-31T23:00:00.000Z",
       "duplicateCount": 1,
@@ -1200,6 +1091,115 @@
       "alternateTitles": []
     },
     {
+      "id": "news-66c267d554da4f06",
+      "title": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
+      "summary": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
+      "fact": "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 46,
+      "breaking": false,
+      "publishedAt": "2026-11-01T14:08:04.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/348000c",
+          "publishedAt": "2026-11-01T14:08:04.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "駅伝365:「僕の区間が早大の弱点…」6区好走の堀野正太 全日本大学駅伝",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-2cb37ca919c84504",
+      "title": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
+      "summary": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
+      "fact": "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 46,
+      "breaking": false,
+      "publishedAt": "2026-11-01T13:44:34.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVB03J6HVB0OXIE033M.html",
+          "publishedAt": "2026-11-01T13:44:34.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "東京都議補選千代田、小池知事が擁立主導 参政は神谷氏が異例の態勢",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-081cf61db29f312e",
+      "title": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
+      "summary": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
+      "fact": "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "安全確保や交通、生活インフラに直結するため、自治体や公式機関の最新情報を確認する必要があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "気象・防災",
+      "tags": [
+        "気象・防災",
+        "防災"
+      ],
+      "minutes": 1,
+      "priority": 46,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:13:13.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/010/309000c",
+          "publishedAt": "2026-11-01T11:13:13.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "防災庁、2日発足 内閣直属、初代防災相は細野復興相が兼務へ",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-54d4bf83353012d8",
       "title": "柚子がふわっと香る！「檸檬堂」に冬限定のレモンサワー登場",
       "summary": "コカ・コーラシステムは10月26日から、缶チューハイ「季節の檸檬堂 冬の香る柚子とレモン」を全国で期間限定発売しています。",
@@ -1213,7 +1213,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 52,
+      "priority": 46,
       "breaking": false,
       "publishedAt": "2026-11-01T08:30:00.000Z",
       "duplicateCount": 1,
@@ -1237,42 +1237,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-0151d8693984abf7",
-      "title": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
-      "summary": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
-      "fact": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 50,
-      "breaking": false,
-      "publishedAt": "2026-11-01T13:26:05.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC14DGXVC1UTQP00HM.html",
-          "publishedAt": "2026-11-01T13:26:05.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-51893cf4c9a168b9",
       "title": "無料で完全にWindowsでローカル動作できるElevenLabs代替ツール「VoiceStudio」、音声クローン・音声デザイン・動画吹き替え・音声入力・文字起こし・オーディオブック作成を多言語で可能",
       "summary": "短い録音から人物の声を再現する音声クローン・文章による新しい声の設計・動画の多言語吹き替え・音声の文字起こし・長文を読み上げるオーディオブック制作などAIによる音声処理にはさまざまな機能があります。こうした機能を1つのアプリから利用でき、音声モデルの切り替えやAIエージェントとの連携にも対応するほか、Windows上で音声生成をローカル実行できる無料のオープンソースElevenLabs代替ツールが「VoiceStudio」です。 続きを読む...",
@@ -1286,7 +1250,7 @@
         "Microsoft"
       ],
       "minutes": 2,
-      "priority": 50,
+      "priority": 45,
       "breaking": false,
       "publishedAt": "2026-11-01T09:00:00.000Z",
       "duplicateCount": 1,
@@ -1322,7 +1286,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 50,
+      "priority": 45,
       "breaking": false,
       "publishedAt": "2026-11-01T01:00:00.000Z",
       "duplicateCount": 1,
@@ -1358,7 +1322,7 @@
         "スポーツ"
       ],
       "minutes": 1,
-      "priority": 48,
+      "priority": 43,
       "breaking": false,
       "publishedAt": "2026-11-01T10:31:22.000Z",
       "duplicateCount": 1,
@@ -1374,114 +1338,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "東京羽田がSMBCに快勝 バスケットボールWリーグ",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-70297877011d2531",
-      "title": "「EBiDAN」BUDDiiSのYUMAが11月1日付で卒業発表 健康と将来を考慮",
-      "summary": "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
-      "fact": "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 46,
-      "breaking": false,
-      "publishedAt": "2026-11-01T09:12:31.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32707271",
-          "publishedAt": "2026-11-01T09:12:31.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-33e90d739a819e4b",
-      "title": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
-      "summary": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
-      "fact": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 45,
-      "breaking": false,
-      "publishedAt": "2026-11-01T13:03:39.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC13RFTVC1PTQP00WM.html",
-          "publishedAt": "2026-11-01T13:03:39.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-d9aa5a8ff03e6a58",
-      "title": "ゼファーは北欧神話をリスペクト、ジョブ別初心者の館が進行中？ 「FFXIV」東京ファンフェスインタビュー",
-      "summary": "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
-      "fact": "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム"
-      ],
-      "minutes": 1,
-      "priority": 45,
-      "breaking": false,
-      "publishedAt": "2026-11-01T00:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/interview/2152886.html",
-          "publishedAt": "2026-11-01T00:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1526,6 +1382,78 @@
       "alternateTitles": []
     },
     {
+      "id": "news-368c1ed1a5d7bfbb",
+      "title": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
+      "summary": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
+      "fact": "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 42,
+      "breaking": false,
+      "publishedAt": "2026-11-01T13:55:47.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/381000c",
+          "publishedAt": "2026-11-01T13:55:47.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「戦いの神様」にあやかり大暴れ JFE西・田中多聞 日本選手権",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-0d932cc3b783c6a4",
+      "title": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
+      "summary": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
+      "fact": "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 42,
+      "breaking": false,
+      "publishedAt": "2026-11-01T13:41:28.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVC14GMHVC1OXIE013M.html",
+          "publishedAt": "2026-11-01T13:41:28.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "都議補選千代田区、前区議の林則行氏が当選確実 自民公認は得られず",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-750a55255eb3b69e",
       "title": "【明日から】唐揚げ定食、2割引き1190円→950円に、ご飯おかわりも無料",
       "summary": "「伝説のすた丼屋」は11月2日～19日の期間、「すたみな唐揚げ」の累計販売数1000万食突破を記念して、唐揚げ定食3商品を最大20％オフで販売。期間中も定食のご飯おかわり無料サービスを実施。",
@@ -1539,7 +1467,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 42,
+      "priority": 40,
       "breaking": false,
       "publishedAt": "2026-11-01T08:00:00.000Z",
       "duplicateCount": 1,
@@ -1563,34 +1491,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-de5a6c4ee3ea9580",
-      "title": "男性管理職は娘が生まれると女性従業員の雇用を増やす傾向があるとの研究結果",
-      "summary": "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
-      "fact": "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
+      "id": "news-70297877011d2531",
+      "title": "「EBiDAN」BUDDiiSのYUMAが11月1日付で卒業発表 健康と将来を考慮",
+      "summary": "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
+      "fact": "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
+      "category": "科学・文化",
       "tags": [
-        "経済"
+        "科学・文化"
       ],
       "minutes": 1,
-      "priority": 40,
+      "priority": 38,
       "breaking": false,
-      "publishedAt": "2026-10-31T23:00:00.000Z",
+      "publishedAt": "2026-11-01T09:12:31.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GIGAZINE",
-          "type": "専門メディア",
-          "url": "https://gigazine.net/news/20261101-male-managers-daughter-hiring-women",
-          "publishedAt": "2026-10-31T23:00:00.000Z"
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32707271",
+          "publishedAt": "2026-11-01T09:12:31.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
+        "ざっくり言うと ダンス＆ボーカルグループ・BUDDiiSのYUMAが11月1日付で卒業すると発表された 体調不良や持病を踏まえ医師が激しいパフォーマンスを伴う活動は困難と診断した 本人の体調を考慮し卒業に伴うイベント等は予定していないと公式サイトで伝えた 記事を読む",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1599,10 +1527,82 @@
       "alternateTitles": []
     },
     {
-      "id": "news-7a01945cd8d57e32",
-      "title": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
-      "summary": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
-      "fact": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+      "id": "news-d9aa5a8ff03e6a58",
+      "title": "ゼファーは北欧神話をリスペクト、ジョブ別初心者の館が進行中？ 「FFXIV」東京ファンフェスインタビュー",
+      "summary": "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
+      "fact": "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "ゲーム",
+      "tags": [
+        "ゲーム"
+      ],
+      "minutes": 1,
+      "priority": 38,
+      "breaking": false,
+      "publishedAt": "2026-11-01T00:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GAME Watch",
+          "type": "専門メディア",
+          "url": "https://game.watch.impress.co.jp/docs/interview/2152886.html",
+          "publishedAt": "2026-11-01T00:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "「ファイナルファンタジーXIV」のお祭り「ファイナルファンタジーXIV ファンフェスティバル 2026 in 東京」の初日が幕を閉じた。初日の基調講演では2時間以上に渡ってプロデューサー兼ディレクターの吉田直樹氏より多くの発表が行なわれた。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-28e27e07b3565057",
+      "title": "【米中間選挙2026】11月3日にアメリカで中間選挙 勝敗はどこで決まるのか",
+      "summary": "アメリカ国民は11月3日に投票所へ向かい、ドナルド・トランプ大統領の残る任期がどのように展開するかを決定する。主要な世論調査、選挙戦、そして争点について分析する。",
+      "fact": "アメリカ国民は11月3日に投票所へ向かい、ドナルド・トランプ大統領の残る任期がどのように展開するかを決定する。主要な世論調査、選挙戦、そして争点について分析する。",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "外交、安全保障、経済など複数分野へ影響が広がる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国際",
+      "tags": [
+        "国際"
+      ],
+      "minutes": 1,
+      "priority": 38,
+      "breaking": false,
+      "publishedAt": "2026-10-31T09:05:06.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "BBC News Japan",
+          "type": "報道機関",
+          "url": "https://www.bbc.com/japanese/articles/cmvgxvgrk9w1o?at_medium=RSS&at_campaign=rss",
+          "publishedAt": "2026-10-31T09:05:06.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "アメリカ国民は11月3日に投票所へ向かい、ドナルド・トランプ大統領の残る任期がどのように展開するかを決定する。主要な世論調査、選挙戦、そして争点について分析する。",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-0151d8693984abf7",
+      "title": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
+      "summary": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
+      "fact": "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1611,22 +1611,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 39,
+      "priority": 37,
       "breaking": false,
-      "publishedAt": "2026-11-01T12:33:42.000Z",
+      "publishedAt": "2026-11-01T13:26:05.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/368000c",
-          "publishedAt": "2026-11-01T12:33:42.000Z"
+          "url": "http://www.asahi.com/articles/ASVC14DGXVC1UTQP00HM.html",
+          "publishedAt": "2026-11-01T13:26:05.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+        "国学院大、遠すぎた早大の背中 創価大は3位、大東大はシード権獲得",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1648,7 +1648,7 @@
         "AV"
       ],
       "minutes": 1,
-      "priority": 38,
+      "priority": 36,
       "breaking": false,
       "publishedAt": "2026-11-01T08:00:00.000Z",
       "duplicateCount": 1,
@@ -1672,6 +1672,78 @@
       "alternateTitles": []
     },
     {
+      "id": "news-de5a6c4ee3ea9580",
+      "title": "男性管理職は娘が生まれると女性従業員の雇用を増やす傾向があるとの研究結果",
+      "summary": "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
+      "fact": "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 34,
+      "breaking": false,
+      "publishedAt": "2026-10-31T23:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "GIGAZINE",
+          "type": "専門メディア",
+          "url": "https://gigazine.net/news/20261101-male-managers-daughter-hiring-women",
+          "publishedAt": "2026-10-31T23:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "企業や組織における男女平等を実現するには、従業員の採用や評価に責任を持つ管理職や経営陣の意識を変えることが必要不可欠です。アメリカやデンマークの研究チームが発表した論文では、男性管理職に娘が生まれると女性従業員の雇用が増え、女性の収入も増加する傾向があることが示されました。 続きを読む...",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-33e90d739a819e4b",
+      "title": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
+      "summary": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
+      "fact": "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 33,
+      "breaking": false,
+      "publishedAt": "2026-11-01T13:03:39.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVC13RFTVC1PTQP00WM.html",
+          "publishedAt": "2026-11-01T13:03:39.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "18歳中田璃士、動けず フリーで失速2位「神様が『違うよ』って」",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-d2cce82eb20dc345",
       "title": "474万円借金、苦しむ米国の若者 「大学に行けば良い仕事」どこへ",
       "summary": "474万円借金、苦しむ米国の若者 「大学に行けば良い仕事」どこへ",
@@ -1684,7 +1756,7 @@
         "国際"
       ],
       "minutes": 1,
-      "priority": 37,
+      "priority": 31,
       "breaking": false,
       "publishedAt": "2026-11-01T02:00:00.000Z",
       "duplicateCount": 1,
@@ -1708,78 +1780,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-97a3a8c7403f0181",
-      "title": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
-      "summary": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
-      "fact": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 35,
-      "breaking": false,
-      "publishedAt": "2026-11-01T12:31:02.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/367000c",
-          "publishedAt": "2026-11-01T12:31:02.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-466eae57f953caab",
-      "title": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
-      "summary": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
-      "fact": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 34,
-      "breaking": false,
-      "publishedAt": "2026-11-01T12:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC13JL4VC1UCVL003M.html",
-          "publishedAt": "2026-11-01T12:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-fa544b517f387f97",
       "title": "ハンバーグもから揚もウインナーも！ ほっともっとの新作ミックス弁当が760円～",
       "summary": "ほっともっとは本日11月1日から、「デミハンバーグミックス弁当」「和風ハンバーグミックス弁当」（各760円～）を発売します。",
@@ -1793,7 +1793,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 33,
+      "priority": 28,
       "breaking": false,
       "publishedAt": "2026-11-01T07:30:00.000Z",
       "duplicateCount": 1,
@@ -1817,6 +1817,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-7a01945cd8d57e32",
+      "title": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+      "summary": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+      "fact": "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 25,
+      "breaking": false,
+      "publishedAt": "2026-11-01T12:33:42.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/368000c",
+          "publishedAt": "2026-11-01T12:33:42.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "苦かった2大大会の初登板 東海理化の新人・大嶋柊 日本選手権",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-bdebca280a89f1fb",
       "title": "ビアードパパの「おさつバターシュー」がうまそ～！お芋×バターは反則級",
       "summary": "ビアードパパは11月1日より「おさつバターシュー」（360円）を販売します。",
@@ -1830,7 +1866,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 29,
+      "priority": 24,
       "breaking": false,
       "publishedAt": "2026-11-01T07:15:00.000Z",
       "duplicateCount": 1,
@@ -1854,10 +1890,10 @@
       "alternateTitles": []
     },
     {
-      "id": "news-51a819a4197760b5",
-      "title": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
-      "summary": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
-      "fact": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
+      "id": "news-466eae57f953caab",
+      "title": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
+      "summary": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
+      "fact": "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -1866,22 +1902,22 @@
         "国内"
       ],
       "minutes": 1,
-      "priority": 27,
+      "priority": 22,
       "breaking": false,
-      "publishedAt": "2026-11-01T11:50:15.000Z",
+      "publishedAt": "2026-11-01T12:00:00.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
+          "name": "朝日新聞デジタル",
           "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/310/327000c",
-          "publishedAt": "2026-11-01T11:50:15.000Z"
+          "url": "http://www.asahi.com/articles/ASVC13JL4VC1UCVL003M.html",
+          "publishedAt": "2026-11-01T12:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
+        "朝日新聞出版、対談本を販売中止、回収へ 内容に複数の誤り、おわび",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1890,34 +1926,34 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c9d0b64fa49d3946",
-      "title": "SIEのロイヤリティプログラム「PlayStation Stars」が明日11月2日終了",
-      "summary": "ソニー・インタラクティブエンタテインメント（SIE）は、ロイヤリティプログラム「PlayStation Stars」のサービスを明日11月2日に終了する。",
-      "fact": "ソニー・インタラクティブエンタテインメント（SIE）は、ロイヤリティプログラム「PlayStation Stars」のサービスを明日11月2日に終了する。",
+      "id": "news-97a3a8c7403f0181",
+      "title": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
+      "summary": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
+      "fact": "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
+      "category": "国内",
       "tags": [
-        "ゲーム"
+        "国内"
       ],
       "minutes": 1,
-      "priority": 27,
+      "priority": 20,
       "breaking": false,
-      "publishedAt": "2026-10-31T15:00:00.000Z",
+      "publishedAt": "2026-11-01T12:31:02.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2151683.html",
-          "publishedAt": "2026-10-31T15:00:00.000Z"
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/367000c",
+          "publishedAt": "2026-11-01T12:31:02.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "ソニー・インタラクティブエンタテインメント（SIE）は、ロイヤリティプログラム「PlayStation Stars」のサービスを明日11月2日に終了する。",
+        "JFE西日本・綿屋樹、夏の悔しさを晴らす適時打 日本選手権",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -1939,7 +1975,7 @@
         "グルメ"
       ],
       "minutes": 1,
-      "priority": 25,
+      "priority": 19,
       "breaking": false,
       "publishedAt": "2026-11-01T06:50:00.000Z",
       "duplicateCount": 1,
@@ -1963,187 +1999,6 @@
       "alternateTitles": []
     },
     {
-      "id": "news-c9c3dd9b7a1803f8",
-      "title": "朝日新聞出版、事実関係の誤りで新書回収へ 当事者の指摘で発覚",
-      "summary": "記事を読む",
-      "fact": "記事を読む",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 24,
-      "breaking": false,
-      "publishedAt": "2026-11-01T13:29:30.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ライブドアニュース",
-          "type": "報道機関",
-          "url": "https://news.livedoor.com/article/detail/32708549",
-          "publishedAt": "2026-11-01T13:29:30.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "記事を読む",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-4349ac8100184529",
-      "title": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
-      "summary": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
-      "fact": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 23,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:49:59.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/167000c",
-          "publishedAt": "2026-11-01T11:49:59.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-2bf733f247d51a97",
-      "title": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
-      "summary": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
-      "fact": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "科学・文化",
-      "tags": [
-        "科学・文化"
-      ],
-      "minutes": 1,
-      "priority": 22,
-      "breaking": false,
-      "publishedAt": "2026-11-01T02:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVBY326RVBYUTFL009M.html",
-          "publishedAt": "2026-11-01T02:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-35213ae7f1539209",
-      "title": "【Switch2】HOME画面におけるバッテリー残量の数値の表示方法数字の表示をON/OFF切り替え可能！",
-      "summary": "Nintendo Switch 2のHOME画面にてバッテリー残量の数値を表示させる方法を紹介する。",
-      "fact": "Nintendo Switch 2のHOME画面にてバッテリー残量の数値を表示させる方法を紹介する。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "発売予定、価格、対応機種、遊べる内容の判断に関係する情報です。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "ゲーム",
-      "tags": [
-        "ゲーム",
-        "任天堂"
-      ],
-      "minutes": 1,
-      "priority": 22,
-      "breaking": false,
-      "publishedAt": "2026-10-31T15:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "GAME Watch",
-          "type": "専門メディア",
-          "url": "https://game.watch.impress.co.jp/docs/news/2149748.html",
-          "publishedAt": "2026-10-31T15:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "Nintendo Switch 2のHOME画面にてバッテリー残量の数値を表示させる方法を紹介する。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-0f4de0f07137a6fb",
-      "title": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
-      "summary": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
-      "fact": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 21,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:33:26.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC12HWDVC1UTQP009M.html",
-          "publishedAt": "2026-11-01T11:33:26.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
       "id": "news-c87ea70ea9464c92",
       "title": "[ITmedia Mobile] 「iPad mini（A20 Pro）」は何が進化した？ 「iPhone Duo」とはどう違う？ スペックや用途を比較する",
       "summary": "新iPad miniは有機ELやIP67防水に対応し、大幅な薄型・軽量化と性能向上を果たした。同じA20 Proを積む折りたたみ機iPhone Duoとは、重量が同等ながら画面サイズや用途が異なる。1台完結を狙うか、既存スマホとの2台持ちで役割とコストを分けるかが選択の鍵だ。",
@@ -2157,7 +2012,7 @@
         "Apple"
       ],
       "minutes": 1,
-      "priority": 21,
+      "priority": 19,
       "breaking": false,
       "publishedAt": "2026-11-01T04:05:00.000Z",
       "duplicateCount": 1,
@@ -2173,79 +2028,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "新iPad miniは有機ELやIP67防水に対応し、大幅な薄型・軽量化と性能向上を果たした。同じA20 Proを積む折りたたみ機iPhone Duoとは、重量が同等ながら画面サイズや用途が異なる。1台完結を狙うか、既存スマホとの2台持ちで役割とコストを分けるかが選択の鍵だ。",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-b0abfe73171d8ac5",
-      "title": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
-      "summary": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
-      "fact": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "PRTIMESスタートアップ"
-      ],
-      "minutes": 1,
-      "priority": 19,
-      "breaking": false,
-      "publishedAt": "2026-11-01T06:00:00.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/447/4447597?rss",
-          "publishedAt": "2026-11-01T06:00:00.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-35e9321fec47b119",
-      "title": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
-      "summary": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
-      "fact": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 18,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:49:42.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/356000c",
-          "publishedAt": "2026-11-01T11:49:42.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2292,10 +2074,83 @@
       "alternateTitles": []
     },
     {
-      "id": "news-91766ea9c3efb2f9",
-      "title": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
-      "summary": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
-      "fact": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+      "id": "news-2bf733f247d51a97",
+      "title": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
+      "summary": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
+      "fact": "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "研究、健康、文化活動や今後の製品・サービスにつながる可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "科学・文化",
+      "tags": [
+        "科学・文化"
+      ],
+      "minutes": 1,
+      "priority": 14,
+      "breaking": false,
+      "publishedAt": "2026-11-01T02:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVBY326RVBYUTFL009M.html",
+          "publishedAt": "2026-11-01T02:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "広がるAI使った科学研究 費用助成に応募殺到、高まるスパコン需要",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-3591dde28781ed02",
+      "title": "Weekly Report: VeloCloud OrchestratorにSQLインジェクションの脆弱性",
+      "summary": "VeloCloud OrchestratorにSQLインジェクションの脆弱性",
+      "fact": "VeloCloud OrchestratorにSQLインジェクションの脆弱性",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "Google"
+      ],
+      "minutes": 1,
+      "priority": 14,
+      "breaking": false,
+      "publishedAt": "2026-10-28T00:07:00.000Z",
+      "duplicateCount": 12,
+      "sources": [
+        {
+          "name": "JPCERT/CC",
+          "type": "公式発表",
+          "url": "https://www.jpcert.or.jp/wr/2026/wr261028.html",
+          "publishedAt": "2026-10-28T00:07:00.000Z"
+        }
+      ],
+      "confidence": 81,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "VeloCloud OrchestratorにSQLインジェクションの脆弱性",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-b0abfe73171d8ac5",
+      "title": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
+      "summary": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
+      "fact": "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
       "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
@@ -2305,7 +2160,7 @@
         "PRTIMESスタートアップ"
       ],
       "minutes": 1,
-      "priority": 15,
+      "priority": 13,
       "breaking": false,
       "publishedAt": "2026-11-01T06:00:00.000Z",
       "duplicateCount": 1,
@@ -2313,14 +2168,50 @@
         {
           "name": "ASCII.jp",
           "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/447/4447595?rss",
+          "url": "https://ascii.jp/elem/000/004/447/4447597?rss",
           "publishedAt": "2026-11-01T06:00:00.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+        "父ノ背中、10周年ファンミーティングで新メンバー3名加入と5つの新プロジェクトを発表 ゲーマー向け総合サイト「デバイス大辞典」本日公開",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-51a819a4197760b5",
+      "title": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
+      "summary": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
+      "fact": "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 12,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:50:15.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/310/327000c",
+          "publishedAt": "2026-11-01T11:50:15.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "花園かけた決勝は流通経大柏VS東海大浦安に 高校ラグビー・千葉",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2342,7 +2233,7 @@
         "PRTIMESスタートアップ"
       ],
       "minutes": 1,
-      "priority": 15,
+      "priority": 10,
       "breaking": false,
       "publishedAt": "2026-11-01T01:00:00.000Z",
       "duplicateCount": 1,
@@ -2366,6 +2257,187 @@
       "alternateTitles": []
     },
     {
+      "id": "news-91766ea9c3efb2f9",
+      "title": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+      "summary": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+      "fact": "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "AI・IT",
+      "tags": [
+        "AI・IT",
+        "PRTIMESスタートアップ"
+      ],
+      "minutes": 1,
+      "priority": 9,
+      "breaking": false,
+      "publishedAt": "2026-11-01T06:00:00.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/447/4447595?rss",
+          "publishedAt": "2026-11-01T06:00:00.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "在籍4,000人超のAIコミュニティ「AI木曜会」、学び・質問・イベントをひとつにまとめた「AI木曜会ポータル」を正式リリース",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-4349ac8100184529",
+      "title": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
+      "summary": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
+      "fact": "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 8,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:49:59.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/167000c",
+          "publishedAt": "2026-11-01T11:49:59.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "JFE西日本が4大会連続で初戦突破 東海理化降す 日本選手権",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-0f4de0f07137a6fb",
+      "title": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
+      "summary": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
+      "fact": "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 8,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:33:26.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVC12HWDVC1UTQP009M.html",
+          "publishedAt": "2026-11-01T11:33:26.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "本田真凜が「すごいでしょ」と思った瞬間 しょまりん、自然体の演技",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-c9c3dd9b7a1803f8",
+      "title": "朝日新聞出版、事実関係の誤りで新書回収へ 当事者の指摘で発覚",
+      "summary": "記事を読む",
+      "fact": "記事を読む",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 6,
+      "breaking": false,
+      "publishedAt": "2026-11-01T13:29:30.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "ライブドアニュース",
+          "type": "報道機関",
+          "url": "https://news.livedoor.com/article/detail/32708549",
+          "publishedAt": "2026-11-01T13:29:30.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-35e9321fec47b119",
+      "title": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
+      "summary": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
+      "fact": "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 4,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:49:42.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/356000c",
+          "publishedAt": "2026-11-01T11:49:42.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "個人戦8強ゼロの東洋大 団体8年ぶり制覇 全国学生相撲選手権",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-aa7909b0bf3b8adc",
       "title": "MILKLIVEが月額最大1万円の家賃補助制度を開始",
       "summary": "MILKLIVEが月額最大1万円の家賃補助制度を開始",
@@ -2379,7 +2451,7 @@
         "PRTIMESスタートアップ"
       ],
       "minutes": 1,
-      "priority": 10,
+      "priority": 1,
       "breaking": false,
       "publishedAt": "2026-11-01T05:14:02.000Z",
       "duplicateCount": 1,
@@ -2395,234 +2467,6 @@
       "consensus": "単独報道",
       "keyPoints": [
         "MILKLIVEが月額最大1万円の家賃補助制度を開始",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-8c9b4b198a1ee6d5",
-      "title": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
-      "summary": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
-      "fact": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 8,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:29:16.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/342000c",
-          "publishedAt": "2026-11-01T11:29:16.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-73c0375afd3fd470",
-      "title": "青学大、箱根へ光明 原監督「戦えるメドついた」 全日本大学駅伝",
-      "summary": "青学大、箱根へ光明 原監督「戦えるメドついた」 全日本大学駅伝",
-      "fact": "青学大、箱根へ光明 原監督「戦えるメドついた」 全日本大学駅伝",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 5,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:06:08.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVC13F95VC1UTQP00HM.html",
-          "publishedAt": "2026-11-01T11:06:08.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "青学大、箱根へ光明 原監督「戦えるメドついた」 全日本大学駅伝",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-4c8b613b7b32e075",
-      "title": "[ITmedia News] AI学習への利用拒否をrobots.txtで一括指定へ OpenAIやGoogleなどが対応表明",
-      "summary": "OpenAI、Google、Microsoftは、Webサイト運営者がAI学習へのコンテンツ利用に関する意向を一括で指定できる共通の仕組みへの対応を発表した。Anthropicも担当者が個人名義で実装を表明している。robots.txtに共通トークンを記述するだけで、AI各社のAIクローラーを一元管理できるようになる。",
-      "fact": "OpenAI、Google、Microsoftは、Webサイト運営者がAI学習へのコンテンツ利用に関する意向を一括で指定できる共通の仕組みへの対応を発表した。Anthropicも担当者が個人名義で実装を表明している。robots.txtに共通トークンを記述するだけで、AI各社のAIクローラーを一元管理できるようになる。",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "AI",
-        "Google",
-        "Microsoft"
-      ],
-      "minutes": 1,
-      "priority": 4,
-      "breaking": false,
-      "publishedAt": "2026-11-01T00:00:00.000Z",
-      "duplicateCount": 2,
-      "sources": [
-        {
-          "name": "Impress Watch",
-          "type": "専門メディア",
-          "url": "https://www.watch.impress.co.jp/docs/news/2152852.html",
-          "publishedAt": "2026-11-01T00:00:00.000Z"
-        },
-        {
-          "name": "ITmedia",
-          "type": "専門メディア",
-          "url": "https://www.itmedia.co.jp/news/article/2611/01/2000002776",
-          "publishedAt": "2026-10-31T23:31:07.000Z"
-        }
-      ],
-      "confidence": 70,
-      "consensus": "複数ソース",
-      "keyPoints": [
-        "OpenAI、Google、Microsoftは、Webサイト運営者がAI学習へのコンテンツ利用に関する意向を一括で指定できる共通の仕組みへの対応を発表した。Anthropicも担当者が個人名義で実装を表明している。robots.txtに共通トークンを記述するだけで、AI各社のAIクローラーを一元…",
-        "2つの配信元が同じテーマを報じています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 2,
-      "alternateTitles": [
-        "AI学習の可否をrobots.txtで指定 Google、MS、OpenAIらが共通仕様を27年導入"
-      ]
-    },
-    {
-      "id": "news-4403972246ac604a",
-      "title": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
-      "summary": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
-      "fact": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
-      "tags": [
-        "国内"
-      ],
-      "minutes": 1,
-      "priority": 3,
-      "breaking": false,
-      "publishedAt": "2026-11-01T11:24:53.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/010/351000c",
-          "publishedAt": "2026-11-01T11:24:53.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-60c03445ab3c09a0",
-      "title": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
-      "summary": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
-      "fact": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "経済",
-      "tags": [
-        "経済"
-      ],
-      "minutes": 1,
-      "priority": 3,
-      "breaking": false,
-      "publishedAt": "2026-10-31T13:31:49.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "朝日新聞デジタル",
-          "type": "報道機関",
-          "url": "http://www.asahi.com/articles/ASVB83VWFVB8UEFT00JM.html",
-          "publishedAt": "2026-10-31T13:31:49.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
-        "現在は1つの配信元から確認しています。",
-        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
-      ],
-      "analysisMode": "semantic-rules-v2",
-      "semanticClusterSize": 1,
-      "alternateTitles": []
-    },
-    {
-      "id": "news-397c582ffa7d346b",
-      "title": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
-      "summary": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
-      "fact": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
-      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
-      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "AI・IT",
-      "tags": [
-        "AI・IT",
-        "PRTIMESデジタル"
-      ],
-      "minutes": 1,
-      "priority": 1,
-      "breaking": false,
-      "publishedAt": "2026-11-01T03:44:53.000Z",
-      "duplicateCount": 1,
-      "sources": [
-        {
-          "name": "ASCII.jp",
-          "type": "専門メディア",
-          "url": "https://ascii.jp/elem/000/004/447/4447600?rss",
-          "publishedAt": "2026-11-01T03:44:53.000Z"
-        }
-      ],
-      "confidence": 57,
-      "consensus": "単独報道",
-      "keyPoints": [
-        "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2667,6 +2511,42 @@
       "alternateTitles": []
     },
     {
+      "id": "news-8c9b4b198a1ee6d5",
+      "title": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
+      "summary": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
+      "fact": "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:29:16.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/342000c",
+          "publishedAt": "2026-11-01T11:29:16.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "好投手前に光った「伝統」の小技 明徳義塾が高知破る 秋季四国",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
       "id": "news-451c2273ccbfec60",
       "title": "GMOの一連の不正アクセス、攻撃側に北朝鮮系ハッカー関与か",
       "summary": "記事を読む",
@@ -2695,6 +2575,42 @@
       "consensus": "単独報道",
       "keyPoints": [
         "記事を読む",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-4403972246ac604a",
+      "title": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
+      "summary": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
+      "fact": "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "国内",
+      "tags": [
+        "国内"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-11-01T11:24:53.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "毎日新聞",
+          "type": "報道機関",
+          "url": "https://mainichi.jp/articles/20261101/k00/00m/010/351000c",
+          "publishedAt": "2026-11-01T11:24:53.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "新人13人が乱立、有権者が求めるものは? 福岡市長選告示",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -2775,34 +2691,35 @@
       "alternateTitles": []
     },
     {
-      "id": "news-1d1ba9df945764a2",
-      "title": "「ずっと願っていた」日産復活 変わらぬ風景、支える応援団",
-      "summary": "「ずっと願っていた」日産復活 変わらぬ風景、支える応援団",
-      "fact": "「ずっと願っていた」日産復活 変わらぬ風景、支える応援団",
+      "id": "news-397c582ffa7d346b",
+      "title": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
+      "summary": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
+      "fact": "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
       "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
-      "importance": "制度、生活、交通、地域社会への影響を確認する必要があるニュースです。",
+      "importance": "利用中のサービス、業務環境、端末、セキュリティの選択に影響する可能性があります。",
       "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
-      "category": "国内",
+      "category": "AI・IT",
       "tags": [
-        "国内"
+        "AI・IT",
+        "PRTIMESデジタル"
       ],
       "minutes": 1,
       "priority": 0,
       "breaking": false,
-      "publishedAt": "2026-11-01T10:53:14.000Z",
+      "publishedAt": "2026-11-01T03:44:53.000Z",
       "duplicateCount": 1,
       "sources": [
         {
-          "name": "毎日新聞",
-          "type": "報道機関",
-          "url": "https://mainichi.jp/articles/20261101/k00/00m/050/295000c",
-          "publishedAt": "2026-11-01T10:53:14.000Z"
+          "name": "ASCII.jp",
+          "type": "専門メディア",
+          "url": "https://ascii.jp/elem/000/004/447/4447600?rss",
+          "publishedAt": "2026-11-01T03:44:53.000Z"
         }
       ],
       "confidence": 57,
       "consensus": "単独報道",
       "keyPoints": [
-        "「ずっと願っていた」日産復活 変わらぬ風景、支える応援団",
+        "11月1日犬の日、ハロウィン翌日の渋谷の街を忠犬ハチ公が洗浄!? ケルヒャー洗伝PROJECT、洗浄アート「ハチ公、渋谷を洗います」公開!",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],
@@ -3173,6 +3090,42 @@
       "consensus": "単独報道",
       "keyPoints": [
         "カシオ計算機は、指輪型のデジタルウォッチ「CASIO RING WATCH」の新作として、定番モデル「A168」の機能とデザインを指輪サイズで再現した「CRW-002」2機種を11月に発売する。電池駆動のクオーツ式時計で、価格はシルバーの「CRW-002D-1AJR」が19,800円、ゴールドの「…",
+        "現在は1つの配信元から確認しています。",
+        "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
+      ],
+      "analysisMode": "semantic-rules-v2",
+      "semanticClusterSize": 1,
+      "alternateTitles": []
+    },
+    {
+      "id": "news-60c03445ab3c09a0",
+      "title": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
+      "summary": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
+      "fact": "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
+      "background": "配信元が公開した見出しと概要をもとに、出来事の要点を整理しています。",
+      "importance": "企業活動や物価、家計、投資環境へ波及する可能性がある動きです。",
+      "outlook": "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。",
+      "category": "経済",
+      "tags": [
+        "経済"
+      ],
+      "minutes": 1,
+      "priority": 0,
+      "breaking": false,
+      "publishedAt": "2026-10-31T13:31:49.000Z",
+      "duplicateCount": 1,
+      "sources": [
+        {
+          "name": "朝日新聞デジタル",
+          "type": "報道機関",
+          "url": "http://www.asahi.com/articles/ASVB83VWFVB8UEFT00JM.html",
+          "publishedAt": "2026-10-31T13:31:49.000Z"
+        }
+      ],
+      "confidence": 57,
+      "consensus": "単独報道",
+      "keyPoints": [
+        "【随時更新】個人情報の漏洩の恐れ、公表した主な企業一覧",
         "現在は1つの配信元から確認しています。",
         "追加発表や続報で内容が更新される可能性があります。元記事の更新時刻と公式発表を確認してください。"
       ],

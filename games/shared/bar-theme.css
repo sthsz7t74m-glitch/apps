@@ -1,0 +1,38 @@
+/* BAR 飲んでなくない？ shared dark-pink theme v2.19.0 */
+:root{color-scheme:dark;--bar-bg:#0B050D;--bar-surface:#1a101b;--bar-surface-2:#271629;--bar-pink:#F04DAA;--bar-text:#fff3fb;--bar-muted:#ceb3c6;--bar-line:#773351}
+html,body{background:var(--bar-bg)!important;color:var(--bar-text)!important}
+body{color:var(--bar-text)!important}
+header h1,h1,h2,h3,strong,label,.score-name,.score-points,.total-label,.turnbar,.score-heading{color:var(--bar-text)}
+.version,header small,.muted,.help,.hint,.description,.game-desc,.turnbar small,.score-heading span,.score-points small,.rank .detail,.gb-player-head small{color:var(--bar-muted)!important}
+.panel,.setup.panel,.result.panel,.card-panel,.setting-panel{background:var(--bar-surface)!important;color:var(--bar-text)!important;border-color:var(--bar-line)!important;box-shadow:0 3px 14px #0005}
+.back,header a.back{background:#291729!important;color:var(--bar-pink)!important;border:1px solid #803457!important}
+button,select,input,textarea{color:var(--bar-text)}
+input:not([type=checkbox]):not([type=radio]),select,textarea{background:#221524!important;border-color:#884063!important;color:var(--bar-text)!important;outline-color:var(--bar-pink)!important}
+input::placeholder,textarea::placeholder{color:#b38ca7!important}
+.btn,button.btn,button.primary,.primary-btn,.gb-player-count button.active{background:var(--bar-pink)!important;border-color:var(--bar-pink)!important;color:#180a13!important}
+.soft,button.soft,.secondary-btn{background:#321b2e!important;border-color:#9c4a75!important;color:#ffacd7!important}
+.btn:disabled,.soft:disabled{opacity:.45}
+.gb-player-count button{background:#201322!important;border-color:#813c62!important;color:#ffe4f4!important}
+.gb-player-count button.active{box-shadow:0 0 10px #f04daa55}
+.gb-player-row{background:#201322!important;border-color:#683251!important}
+.gb-player-row label{background:var(--bar-pink)!important;color:#180a13!important}
+.gb-player-row input{background:transparent!important;border:0!important;color:var(--bar-text)!important}
+.gb-player-row:focus-within{border-color:var(--bar-pink)!important}
+.gb-turn-overlay{background:#0b050dd6!important}
+.gb-turn-popup{background:#211322!important;border-color:var(--bar-pink)!important;box-shadow:0 18px 50px #000a,0 0 22px #f04daa36!important}
+.gb-turn-name{color:var(--bar-pink)!important}
+.gb-turn-prefix,.gb-turn-suffix{color:#ffd0e9!important}
+.score,.score-card,.player-card{background:#241628!important;border-color:#69364f!important;color:var(--bar-text)}
+.score.active{border-color:var(--bar-pink)!important;background:#47203c!important}
+.score.done{background:#201721!important}
+.tabletop{background:linear-gradient(150deg,#211321,#321a30)!important;border-color:#874265!important}
+.total,.message{color:var(--bar-pink)!important}
+.die{background:#fff7fb!important;border-color:#f3a8d2!important;box-shadow:0 8px 0 #8f4d75,0 14px 25px #0006!important}
+.die circle{fill:#c9267b!important}
+.hist-item,.tag{background:#301a2e!important;border-color:#84446a!important;color:#ffc4e1!important}
+.hist-empty{color:var(--bar-muted)!important}
+.rank{border-color:#633048!important}
+.rank.winner{background:#442038!important;color:#ffd3e9!important}
+.rank .points{color:#ff9acd}
+input[type=range],input[type=checkbox],input[type=radio]{accent-color:var(--bar-pink)}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #ff8dcb;outline-offset:2px}

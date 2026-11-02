@@ -36,3 +36,22 @@ input::placeholder,textarea::placeholder{color:#b38ca7!important}
 .rank .points{color:#ff9acd}
 input[type=range],input[type=checkbox],input[type=radio]{accent-color:var(--bar-pink)}
 button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #ff8dcb;outline-offset:2px}
+
+/* v2.20.0: complete coverage for individual games */
+html{background:#0B050D!important}
+body main,body .app{color:#fff3fb}
+header a:not(.back){background:#291729!important;border-color:#803457!important;color:#F04DAA!important}
+header .ver{color:#ceb3c6!important}
+button:not(.btn):not(.primary):not(.primary-btn):not(.gb-player-count button):not(.gb-player-row button):not(.gb-player-row label):not(.danger):not(.bust):not(.correct):not(.wrong){background:#321b2e!important;border-color:#874265!important;color:#ffb9dd!important}
+button.primary,.primary,button#begin,button#roll,button#start,button#startBtn,button#startGame,button#newGame,.gb-player-count button.active{background:#F04DAA!important;border-color:#F04DAA!important;color:#180a13!important}
+button:disabled{opacity:.45!important}
+.range-divider,.divider{background:#713952!important}
+.range b,.timer strong,.clock strong,.category,.score-points{color:#fff3fb!important}
+.pair strong,.number,.number strong,.total,.message:not(.bust):not(.perfect){color:#F04DAA!important}
+.pair small,.pair b,.stage p,.eyebrow,.bottom,.examples small{color:#d6b1c9!important}
+.examples span,.chip,.pill,.tag{background:#301a2e!important;color:#ffc8e4!important;border-color:#874265!important}
+.timer-settings{border-color:#713952!important}
+.modal{background:#0b050de0!important}
+.timer,.clock,.score,.rank,.stage{color:#fff3fb}
+select option{background:#211322;color:#fff3fb}
+input[type=checkbox],input[type=radio]{accent-color:#F04DAA!important}

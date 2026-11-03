@@ -55,6 +55,7 @@
 .dice-panel .dice-stage{flex-shrink:0}.dice-panel .dice-result{min-width:36px}
 .event-box{width:min(92vw,410px)!important;min-height:0!important;gap:14px!important;padding:clamp(14px,4vw,22px)!important}
 .event-box h2{line-height:1.25;font-size:clamp(19px,5.5vw,25px)!important;overflow-wrap:anywhere}
+.event-body:empty{display:none!important}
 .event-body{display:flex!important;flex-direction:column;justify-content:center;align-items:stretch;gap:9px;min-height:0!important;font-size:16px!important;line-height:1.4!important;width:100%;text-align:left}
 .event-row{display:grid;grid-template-columns:minmax(74px,35%) minmax(0,1fr);align-items:center;gap:10px;background:#301b2d;border:1px solid #70405e;border-radius:12px;padding:11px 12px;min-width:0}
 .event-key{font-size:clamp(12px,3.5vw,15px);color:#e9aacd;font-weight:800;white-space:nowrap}
@@ -91,7 +92,7 @@
 .game .ranking .rank-place,.game .ranking .rank-first{font-size:12px!important;font-weight:850!important;color:#f0c0db!important}
 .game .ranking .rank-place small{font-size:9px!important}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.9</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.10</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -247,12 +248,8 @@ function revealCurrentTurn(){
  $('tapTurnOverlay').classList.remove('on');
  if(phase!=='ready'||skips[current]<=0)return;
  skips[current]--;
- const resting=players[current],remaining=skips[current];
- showEvent('1回休み',[
-   ['プレイヤー',resting],
-   ['今回の番','お休み'],
-   ['残りの休み',remaining+'回']
- ],()=>advanceTurn());
+ const resting=players[current];
+ showEvent(resting+'は今回お休み',[],()=>advanceTurn());
 }
 function completeTurn(){
  if(phase==='finished'||phase==='setup')return;

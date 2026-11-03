@@ -91,7 +91,7 @@
 .game .ranking .rank-place,.game .ranking .rank-first{font-size:12px!important;font-weight:850!important;color:#f0c0db!important}
 .game .ranking .rank-place small{font-size:9px!important}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.1</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.2</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -401,7 +401,7 @@ function resolveLanding(){
  if(ev[0]==='skip'){
    skips[current]++;
    $('message').textContent='次の番は1回休み！';
-   showEvent('1回休みを獲得',[
+   showEvent('1回休み！',[
      ['プレイヤー',players[current]],
      ['効果','次回の番を1回休む']
    ]);return;
@@ -420,8 +420,7 @@ function resolveLanding(){
    $('message').textContent='あっち向いてホイ開催！';
    showEvent('あっち向いてホイ！',[
      ['受ける側',players[current]],
-     ['する側',other.name],
-     ['対決','2人であっち向いてホイ！']
+     ['する側',other.name]
    ]);return;
  }
  if(ev[0]==='kame'){

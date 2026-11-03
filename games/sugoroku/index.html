@@ -91,7 +91,7 @@
 .game .ranking .rank-place,.game .ranking .rank-first{font-size:12px!important;font-weight:850!important;color:#f0c0db!important}
 .game .ranking .rank-place small{font-size:9px!important}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.4</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.5</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -353,11 +353,12 @@ function animateRoute(route,done){
  if(!route.length){done();return}
  timer=setTimeout(step,210);
 }
-function showEvent(title,rows,onClose){
+function showEvent(title,rows,onClose,buttonLabel='確認して次の人へ'){
  phase='event';busy=false;
  eventCloseAction=onClose||(()=>advanceTurn());
  render();
  $('eventTitle').textContent=title;
+ $('eventClose').textContent=buttonLabel;
  // Render each semantic row independently; never rely on a long sentence wrapping.
  const data=Array.isArray(rows)?rows:[['内容',String(rows)]];
  $('eventBody').innerHTML=data.map(([label,value])=>'<div class="event-row"><span class="event-key">'+esc(label)+'</span><strong class="event-value">'+esc(value)+'</strong></div>').join('');
@@ -413,7 +414,7 @@ function resolveLanding(){
    showEvent('もう1回！',[
      ['プレイヤー',players[current]],
      ['効果','続けてサイコロを振る']
-   ],()=>{phase='ready';busy=false;render()});return;
+   ],()=>{phase='ready';busy=false;render()},'確認してもう1回振る');return;
  }
  if(ev[0]==='penalty'){$('message').textContent='罰ゲームマス！';showPenalty();return;}
  if(ev[0]==='hoi'){

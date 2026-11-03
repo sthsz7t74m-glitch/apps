@@ -46,8 +46,11 @@
 .game .actions{flex:0 0 auto}
 .game #settings{flex:0 0 auto}
 @media(max-height:760px){.game .status{padding:7px 10px}.game .info .panel{padding:6px}.game .dice-panel .dice-row{padding:1px 0}.game .actions .btn{min-height:45px}.game #settings{min-height:30px!important}}
+
+/* v1.7.2: distinct start square before tile 1; no overlay or collision with number 1 */
+.board .tile-shape[data-tile="0"]{fill:#51304a}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.7.1</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.7.2</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -108,13 +111,15 @@ function closedTilePath(a,b){
    ' '+two.map(p=>'L '+pointText(p)).join(' ')+' Z';
 }
 const tilePaths=Array.from({length:30},(_,i)=>closedTilePath(borders[i],borders[i+1]));
-const outerPath=closedTilePath(borders[0],borders[30]);
-const dividerPaths=Array.from({length:29},(_,i)=>{
- const at=borders[i+1];
+const START_EDGE=-120;
+const startTilePath=closedTilePath(START_EDGE,borders[0]);
+const outerPath=closedTilePath(START_EDGE,borders[30]);
+const dividerPaths=Array.from({length:30},(_,i)=>{
+ const at=borders[i];
  return 'M '+pointText(edge(at,-1))+' L '+pointText(edge(at,1));
 });
 function positionOf(n){
- const p=centerline(centers[Math.max(0,n-1)]);
+ const p=centerline(n===0?-80:centers[n-1]);
  return {x:p.x,y:p.y};
 }
 function playerDots(n){
@@ -126,7 +131,7 @@ function playerDots(n){
  }).join('');
 }
 function renderBoard(){
- let tiles='',labels='',dots='';
+ let tiles='<path class="tile-shape" data-tile="0" d="'+startTilePath+'" fill="#51304a"/>',labels='',dots='';
  for(let n=1;n<=30;n++){
    const pos=positionOf(n),ev=events[n];
    const fill=n===30?'#F04DAA':ev?tileColors[ev[0]]:'#241526';
@@ -136,10 +141,10 @@ function renderBoard(){
    dots+=playerDots(n);
  }
  const divisions=dividerPaths.map(d=>'<path class="tile-boundary" d="'+d+'"/>').join('');
- const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -4 606 540" preserveAspectRatio="none" role="img" aria-label="30個の独立したマスを持つS字型すごろく">'
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-109 -4 667 540" preserveAspectRatio="none" role="img" aria-label="STARTと30個の独立したマスを持つS字型すごろく">'
   +'<g id="tileFills">'+tiles+'</g><g id="tileDividers">'+divisions+'</g>'
   +'<path class="road-perimeter" d="'+outerPath+'"/>'
-  +'<text class="board-caption" x="55" y="8">START</text>'
+  +'<text class="tile-number tile-goal" x="-25" y="69">START</text>'
   +'<text class="board-caption" x="455" y="528">FINISH</text>'
   +labels+dots+playerDots(0)+'</svg>';
  $('board').innerHTML=svg;

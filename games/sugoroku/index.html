@@ -23,13 +23,21 @@
 .rank-remaining b{font-size:13px;color:#fff3fb}.rank-remaining small{font-size:10px;margin-left:2px}
 .reel-button.is-confirmed,.reel-button.is-confirmed:disabled{background:#40253b!important;border-color:#8e587b!important;color:#f1cce3!important;opacity:1!important;box-shadow:none!important}
 @media(max-height:700px){.ranking{gap:2px;max-height:min(20dvh,144px)}.ranking .rank-row{min-height:20px;padding:2px 4px}.ranking .rank-name{font-size:11px}}
+
+/* v1.6.1: prevent penalty modal layout shifts when either reel locks */
+.punishment-box{display:flex;flex-direction:column;min-height:390px;justify-content:flex-start}
+.punishment-box .reels{flex:none}
+.punishment-box .reel-button{height:43px;min-height:43px;max-height:43px;line-height:1.25;white-space:nowrap;overflow:hidden}
+.punishment-box .penalty-result{height:68px!important;min-height:68px!important;max-height:68px!important;box-sizing:border-box;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;overflow-wrap:anywhere;font-size:clamp(16px,5vw,25px)!important;line-height:1.25!important;margin:12px 0!important}
+.punishment-box #penaltyClose{display:block!important;flex:none;min-height:43px;margin-top:0!important}
+@media(max-height:640px){.punishment-box{min-height:352px;padding:12px!important}.punishment-box .reels{margin:10px 0}.punishment-box .penalty-result{height:60px!important;min-height:60px!important;max-height:60px!important;margin:8px 0!important}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.6.0</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.6.1</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
 </main><button type="button" id="tapTurnOverlay" class="tap-turn-overlay" aria-label="次のプレイヤーの番を開始"><span class="tap-turn-content"><span class="tap-turn-prefix">次は</span><strong id="tapTurnName" class="tap-turn-name"></strong><span class="tap-turn-suffix">の番！</span><span class="tap-turn-hint">画面をタップしてスタート</span></span></button>
-<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="display:none;margin-top:9px">結果を確認して次の人へ</button></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
+<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="visibility:hidden;margin-top:9px">結果を確認して次の人へ</button></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -200,7 +208,7 @@ function showPenalty(){
  $('penaltyResult').textContent='それぞれのボタンで抽選！';
  $('spinDrink').disabled=false;$('spinCount').disabled=false;
  $('spinDrink').textContent='飲み物を回す';$('spinCount').textContent='杯数を回す';$('spinDrink').classList.remove('is-confirmed');$('spinCount').classList.remove('is-confirmed');
- $('penaltyClose').style.display='none';
+ $('penaltyClose').style.visibility='hidden';
  fillReel('drinkReel',drinkOptions,'グラス');fillReel('countReel',countOptions,'1杯');
  $('punishment').classList.add('on');
 }
@@ -219,7 +227,7 @@ function spinOneReel(type){
    penaltySelection[type]=result;btn.textContent='確定';btn.classList.add('is-confirmed');
    if(penaltySelection.drink!==null&&penaltySelection.count!==null){
       $('penaltyResult').textContent=penaltySelection.drink+' '+penaltySelection.count;
-      $('penaltyClose').style.display='block';
+      $('penaltyClose').style.visibility='visible';
    }else $('penaltyResult').textContent=(isDrink?'飲み物':'杯数')+'が確定！ もう片方も回そう';
  },2600);
 }

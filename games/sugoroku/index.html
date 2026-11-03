@@ -70,7 +70,7 @@
 .reel-rail{position:absolute;inset:0;z-index:2;border-left:3px solid #F04DAA;border-right:3px solid #F04DAA;box-shadow:inset 0 0 13px #F04DAA44;pointer-events:none}
 .dice-panel .dice-subtitle{margin-top:2px}.dice-panel .info-label{text-align:center}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.9.0</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.9.1</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -306,7 +306,7 @@ function spinOneReel(type){
 }
 function closePenalty(){
  if(phase!=='penalty'||penaltySelection.drink===null||penaltySelection.count===null)return;
- $('punishment').classList.remove('on');completeTurn();
+ $('punishment').classList.remove('on');advanceTurn();
 }
 // One destination per die pip; reaching 30 mid-roll reverses the remaining moves.
 function createDiceRoute(start,steps){
@@ -332,7 +332,7 @@ function animateRoute(route,done){
 }
 function showEvent(title,rows,onClose){
  phase='event';busy=false;
- eventCloseAction=onClose||(()=>completeTurn());
+ eventCloseAction=onClose||(()=>advanceTurn());
  render();
  $('eventTitle').textContent=title;
  // Render each semantic row independently; never rely on a long sentence wrapping.

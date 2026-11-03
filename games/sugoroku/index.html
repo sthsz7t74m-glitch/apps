@@ -34,7 +34,7 @@
 
 /* v1.7.0: result acknowledgement and event overlays */
 .actions{display:block}.actions .btn{width:100%;min-height:49px}
-.shield-count{font-style:normal;background:#24755c;border-radius:5px;padding:2px 4px;margin-right:4px;color:#fff;font-size:9px;font-weight:900}
+.shield-count{font-style:normal;background:#24755c;border-radius:5px;padding:2px 4px;margin-right:4px;color:#fff;font-size:9px;font-weight:900}.skip-count{font-style:normal;background:#385578;border-radius:5px;padding:2px 4px;margin-right:4px;color:#fff;font-size:9px;font-weight:900}
 .event-box{min-height:260px;justify-content:center;gap:16px}
 .event-body{white-space:pre-line;color:#fff3fb;font-size:clamp(16px,4.5vw,21px);font-weight:800;line-height:1.75;min-height:80px;display:grid;place-items:center}
 .event-box button{flex:none}
@@ -91,7 +91,7 @@
 .game .ranking .rank-place,.game .ranking .rank-first{font-size:12px!important;font-weight:850!important;color:#f0c0db!important}
 .game .ranking .rank-place small{font-size:9px!important}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.7</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.8</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -226,7 +226,7 @@ function render(){
     +'<span class="rank-place">'+rank+'<small>位</small></span>'
     +'<span class="rank-dot" style="background:'+colors[p.i]+'"></span>'
     +'<strong class="rank-name" title="'+esc(p.name)+'">'+esc(p.name)+'</strong>'
-    +'<span class="rank-remaining">'+(shields[p.i]?'<em class="shield-count">盾'+shields[p.i]+'</em>':'')+'<b>'+p.remain+'</b><small>マス</small></span></div>';
+    +'<span class="rank-remaining">'+(shields[p.i]?'<em class="shield-count">盾'+shields[p.i]+'</em>':'')+(skips[p.i]?'<em class="skip-count">休'+skips[p.i]+'</em>':'')+'<b>'+p.remain+'</b><small>マス</small></span></div>';
  }).join('');
 
  $('roll').disabled=busy||phase!=='ready';
@@ -256,13 +256,13 @@ function revealCurrentTurn(){
 }
 function completeTurn(){
  if(phase==='finished'||phase==='setup')return;
- // Show the final die/board result for three seconds, then the next-player tap popup.
+ // Show the final die/board result for 1.5 seconds, then the next-player tap popup.
  phase='review';busy=false;render();
  if(timer){clearTimeout(timer);clearInterval(timer)}
  timer=setTimeout(()=>{
    timer=null;
    if(phase==='review')advanceTurn();
- },3000);
+ },1500);
 }
 function start(){
  const names=setup.validate();if(!names)return;

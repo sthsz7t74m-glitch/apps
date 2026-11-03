@@ -31,26 +31,34 @@
 .punishment-box .penalty-result{height:68px!important;min-height:68px!important;max-height:68px!important;box-sizing:border-box;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;overflow-wrap:anywhere;font-size:clamp(16px,5vw,25px)!important;line-height:1.25!important;margin:12px 0!important}
 .punishment-box #penaltyClose{display:block!important;flex:none;min-height:43px;margin-top:0!important}
 @media(max-height:640px){.punishment-box{min-height:352px;padding:12px!important}.punishment-box .reels{margin:10px 0}.punishment-box .penalty-result{height:60px!important;min-height:60px!important;max-height:60px!important;margin:8px 0!important}}
+
+/* v1.7.0: result acknowledgement and event overlays */
+.actions{display:flex;flex-direction:column;gap:6px}.actions .btn,.actions .soft{width:100%;min-height:49px}
+#confirmTurn{background:#4a2440!important;border-color:#f04daa!important;color:#ffcee8!important}
+.shield-count{font-style:normal;background:#24755c;border-radius:5px;padding:2px 4px;margin-right:4px;color:#fff;font-size:9px;font-weight:900}
+.event-box{min-height:260px;justify-content:center;gap:16px}
+.event-body{white-space:pre-line;color:#fff3fb;font-size:clamp(16px,4.5vw,21px);font-weight:800;line-height:1.75;min-height:80px;display:grid;place-items:center}
+.event-box button{flex:none}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.6.1</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.7.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
-<section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
+<section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button><button id="confirmTurn" class="soft" style="display:none">結果を確認して次の人へ</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
 </main><button type="button" id="tapTurnOverlay" class="tap-turn-overlay" aria-label="次のプレイヤーの番を開始"><span class="tap-turn-content"><span class="tap-turn-prefix">次は</span><strong id="tapTurnName" class="tap-turn-name"></strong><span class="tap-turn-suffix">の番！</span><span class="tap-turn-hint">画面をタップしてスタート</span></span></button>
-<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="visibility:hidden;margin-top:9px">結果を確認して次の人へ</button></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
+<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="visibility:hidden;margin-top:9px">結果を確認して次の人へ</button></div></div><div id="eventOverlay" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="eventTitle"><div class="punishment-box event-box"><h2 id="eventTitle"></h2><div id="eventBody" class="event-body"></div><button type="button" id="eventClose" class="btn">確認して次の人へ</button></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
 <script>
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const events={5:['penalty','罰ゲーム'],6:['again','もう1回'],12:['skip','1回休み'],16:['penalty','罰ゲーム'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
+const events={3:['shield','回避+1'],5:['penalty','罰ゲーム'],6:['again','もう1回'],9:['kame','かめぴょん'],12:['skip','1回休み'],15:['game','ゲーム開催'],16:['penalty','罰ゲーム'],19:['hoi','あっち向いてホイ'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
 const colors=['#f04daa','#479dee','#f1a52a','#9c6bf0','#27b78d','#e66767','#7380e3','#bc6c37'];
 const pipPositions={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function showDie(n){$('die').innerHTML=Array.from({length:9},(_,i)=>'<span class="pip '+(pipPositions[n||1].includes(i)?'show':'')+'"></span>').join('');$('die').setAttribute('aria-label',n?'サイコロ '+n:'サイコロ');}
 const setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
-let players=[],positions=[],skips=[],current=0,turnCount=1,phase='setup',last=0,busy=false,timer=null;
+let players=[],positions=[],skips=[],shields=[],current=0,turnCount=1,phase='setup',last=0,busy=false,timer=null;
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function screen(which){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=which==='setup'?'flex':'none';else el.classList.toggle('on',which===id)}}
-const tileColors={skip:'#385578',again:'#A34279',penalty:'#853451'};
+const tileColors={skip:'#385578',again:'#A34279',penalty:'#853451',shield:'#287961',kame:'#7b538f',game:'#75548e',hoi:'#9a6a36'};
 // Geometric model: each of 30 tiles is its own closed SVG path.
 // A shared arc-length centerline gives the exact same endpoints to neighbouring tiles.
 // Filling every tile path (not clipping rectangles over a stroked road) prevents partial fills.
@@ -138,13 +146,13 @@ function render(){
    if(p.remain!==previousRemain)rank=index+1;
    previousRemain=p.remain;
    return '<div class="rank-row'+(p.i===current?' rank-active':'')+'">'
-    +'<span class="rank-place'+(rank===1?' rank-first':'')+'">'+(rank===1?'♛':rank)+'<small>位</small></span>'
+    +'<span class="rank-place'+(rank===1?' rank-first':'')+'">'+rank+'<small>位</small></span>'
     +'<span class="rank-dot" style="background:'+colors[p.i]+'"></span>'
     +'<strong class="rank-name" title="'+esc(p.name)+'">'+esc(p.name)+'</strong>'
-    +'<span class="rank-remaining"><b>'+p.remain+'</b><small>マス</small></span></div>';
+    +'<span class="rank-remaining">'+(shields[p.i]?'<em class="shield-count">盾'+shields[p.i]+'</em>':'')+'<b>'+p.remain+'</b><small>マス</small></span></div>';
  }).join('');
  showDie(last);$('value').textContent=last||'—';
- $('roll').disabled=busy||phase!=='ready';
+ $('roll').disabled=busy||phase!=='ready';$('confirmTurn').style.display=phase==='review'?'block':'none';
 }
 function showTapTurn(){
  $('tapTurnName').textContent=players[current];
@@ -165,15 +173,16 @@ function advanceTurn(){
 }
 function completeTurn(){
  if(phase==='finished'||phase==='setup')return;
- phase='transition';busy=true;render();
- timer=setTimeout(()=>{timer=null;advanceTurn()},350);
+ // Keep the final dice value and position visible until the user acknowledges.
+ phase='review';busy=false;render();
 }
+$('confirmTurn').onclick=()=>{if(phase!=='review')return;advanceTurn()};
 function start(){
  const names=setup.validate();if(!names)return;
  reelRun++;
  if(timer){clearTimeout(timer);clearInterval(timer);timer=null}
- $('punishment').classList.remove('on');$('tapTurnOverlay').classList.remove('on');
- players=names;positions=players.map(()=>0);skips=players.map(()=>0);
+ $('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');$('tapTurnOverlay').classList.remove('on');
+ players=names;positions=players.map(()=>0);skips=players.map(()=>0);shields=players.map(()=>0);
  current=0;turnCount=1;last=0;busy=false;phase='ready';screen('game');
  $('message').textContent='サイコロを振ろう！';render();showTapTurn();
 }
@@ -257,17 +266,48 @@ function animateRoute(route,done){
  if(!route.length){done();return}
  timer=setTimeout(step,210);
 }
+function showEvent(title,body){
+ phase='event';busy=false;render();
+ $('eventTitle').textContent=title;$('eventBody').textContent=body;
+ $('eventOverlay').classList.add('on');
+}
+$('eventClose').onclick=()=>{
+ if(phase!=='event')return;
+ $('eventOverlay').classList.remove('on');completeTurn();
+};
 function afterMove(){
  if(positions[current]===30){busy=false;finish();return;}
  const pos=positions[current],ev=events[pos];
- if(!ev){busy=false;$('message').textContent=pos+'マスに到着！';completeTurn();return;}
-
  busy=false;
+ if(!ev){$('message').textContent=pos+'マスに到着！';completeTurn();return;}
+ if(ev[0]==='shield'){
+   shields[current]++;$('message').textContent='罰ゲーム回避を1つ獲得！';
+   showEvent('防御を獲得！',players[current]+' は罰ゲームを1回回避できるようになった！ 所持：'+shields[current]+'個');return;
+ }
  if(ev[0]==='skip'){skips[current]++;$('message').textContent='次の番は1回休み！';completeTurn();return;}
- else if(ev[0]==='again'){phase='ready';$('message').textContent='もう1回サイコロを振れる！';}
- else if(ev[0]==='penalty'){$('message').textContent='罰ゲームマス！';showPenalty();return;}
- else {completeTurn();return;}
- render();
+ if(ev[0]==='again'){phase='ready';$('message').textContent='もう1回サイコロを振れる！';render();return;}
+ if(ev[0]==='penalty'){
+   if(shields[current]>0){
+     shields[current]--;$('message').textContent='防御を1個使って罰ゲームを回避！';
+     showEvent('罰ゲーム回避！',players[current]+' の防御が発動。残り'+shields[current]+'個');return;
+   }
+   $('message').textContent='罰ゲームマス！';showPenalty();return;
+ }
+ if(ev[0]==='hoi'){
+   const others=players.map((name,i)=>({name,i})).filter(o=>o.i!==current);
+   const challenger=others[Math.floor(Math.random()*others.length)];
+   $('message').textContent='あっち向いてホイ開催！';
+   showEvent('あっち向いてホイ！','受ける側：'+players[current]+'　／　する側：'+challenger.name+'\n2人であっち向いてホイを行ってください。');return;
+ }
+ if(ev[0]==='kame'){
+   $('message').textContent='かめぴょん開催！';
+   showEvent('かめぴょん開催！',players[current]+' が「かめぴょん」を開催！\n遊び終わったら次の人へ進んでください。');return;
+ }
+ if(ev[0]==='game'){
+   $('message').textContent='ゲーム開催！';
+   showEvent('ゲーム開催！',players[current]+' がミニゲームを開催！\n遊び終わったら次の人へ進んでください。');return;
+ }
+ completeTurn();
 }
 function roll(){
  if(phase!=='ready'||busy||$('tapTurnOverlay').classList.contains('on'))return;
@@ -282,8 +322,8 @@ function roll(){
  },75);
 }
 $('spinDrink').onclick=()=>spinOneReel('drink');$('spinCount').onclick=()=>spinOneReel('count');$('penaltyClose').onclick=closePenalty;
-function settings(){reelRun++;for(const type of ['drink','count']){clearTimeout(reelTimers[type]);reelTimers[type]=null}if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('tapTurnOverlay').classList.remove('on');$('punishment').classList.remove('on');busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
+function settings(){reelRun++;for(const type of ['drink','count']){clearTimeout(reelTimers[type]);reelTimers[type]=null}if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('tapTurnOverlay').classList.remove('on');$('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
 $('start').onclick=start;$('roll').onclick=roll;$('settings').onclick=settings;$('again').onclick=start;$('backToSettings').onclick=settings;
-GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='transition'||phase==='penalty'||busy});
+GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='review'||phase==='event'||phase==='penalty'||busy});
 })();
 </script><script src="../shared/audio.js"></script></body></html>

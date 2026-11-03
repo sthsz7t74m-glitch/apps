@@ -3,9 +3,9 @@
 <link rel="stylesheet" href="../shared/player-setup.css"><link rel="stylesheet" href="../shared/turn-overlay.css"><script src="../shared/zoom-lock.js"></script>
 <style>
 :root{--pink:#F04DAA;--ink:#0B050D;--panel:#1d101f;--muted:#d6b4cc}
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:radial-gradient(circle at 90% 12%,#310e2a 0,transparent 34%),radial-gradient(circle at 5% 75%,#251025 0,transparent 32%),var(--ink);color:#fff3fb;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.48;cursor:default}.app{height:100dvh;max-width:630px;padding:calc(env(safe-area-inset-top) + 7px) 11px calc(env(safe-area-inset-bottom) + 9px);margin:auto;display:flex;flex-direction:column;gap:8px}header{display:flex;align-items:center;gap:9px;flex:none}header h1{font-size:19px;margin:0;color:#fff}header small{margin-left:auto;color:var(--muted);font-size:11px}.back{background:#291729;border:1px solid #7c395e;color:#ffb2da;border-radius:12px;text-decoration:none;display:grid;place-items:center;width:36px;height:36px;font-size:25px}.panel{background:#1b101d;border:1px solid #8f3e67;border-radius:18px;padding:12px;box-shadow:0 3px 14px #0005}.setup{overflow:auto;display:flex;flex-direction:column;gap:12px}.setup p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}.btn{border:1px solid var(--pink);border-radius:15px;background:var(--pink);color:#180a13;font-weight:900;min-height:49px;padding:10px}.soft{border:1px solid #9b4677;border-radius:14px;background:#321b2e;color:#ffd3e9;font-weight:850;min-height:43px;padding:9px}.game,.result{display:none;flex:1;min-height:0;flex-direction:column;gap:8px}.game.on,.result.on{display:flex}.status{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px}.status strong{font-size:14px;color:#fff}.status span{font-size:12px;color:var(--muted)}.board-wrap{min-height:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px}.board-title{font-size:11px;display:flex;justify-content:space-between;color:#ffbbdc;font-weight:800;padding:0 7px}.board{width:100%;flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;overflow:hidden}.board svg{width:100%;height:100%;display:block;overflow:visible}.path-outer{fill:none;stroke:#F04DAA;stroke-width:82;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px #F04DAA66)}.path-inner{fill:none;stroke:#241526;stroke-width:76;stroke-linecap:round;stroke-linejoin:round}.tile-special{stroke:none}.tile-boundary{stroke:#b56a97;stroke-width:2.5;opacity:1}.board svg{isolation:isolate}.tile-number,.tile-effect{paint-order:stroke;stroke:#241526;stroke-width:1px;stroke-linejoin:round}.punishment-cover{position:fixed;inset:0;background:#0b050de8;display:none;align-items:center;justify-content:center;z-index:1000;padding:18px}.punishment-cover.on{display:flex}.punishment-box{width:min(100%,390px);border:2px solid #f04daa;border-radius:24px;padding:18px;text-align:center;background:#211322;box-shadow:0 0 22px #f04daa44}.punishment-box h2{font-size:21px;margin:0 0 12px;color:#ff91c7}.wheel-wrap{width:min(66vw,240px);height:min(66vw,240px);position:relative;margin:12px auto 18px}.wheel{width:100%;height:100%;border-radius:50%;border:6px solid #ffb2dc;background:conic-gradient(#92355f 0deg 60deg,#653a9d 60deg 120deg,#285f95 120deg 180deg,#a34279 180deg 240deg,#385578 240deg 300deg,#ad507d 300deg 360deg);box-shadow:0 0 16px #f04daa66;transition:transform 2.8s cubic-bezier(.14,.85,.16,1)}.wheel-label{position:absolute;top:50%;left:50%;font-weight:900;color:#fff;font-size:13px;white-space:nowrap;text-shadow:0 1px 4px #000;transform-origin:center}.wheel-arrow{position:absolute;z-index:2;top:-12px;left:50%;transform:translateX(-50%);color:#fff;font-size:30px;filter:drop-shadow(0 1px 2px #000)}.penalty-result{min-height:44px;color:#fff3fb;font-size:20px;font-weight:900;margin:8px 0 14px}.penalty-help{font-size:12px;color:#e8bed7}.punishment-box button{width:100%}.tile-number{font-family:system-ui,-apple-system,sans-serif;font-size:24px;font-weight:900;text-anchor:middle;fill:#FFF3FB;dominant-baseline:middle}.tile-number.event-number{font-size:21px}.tile-effect{font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:800;text-anchor:middle;fill:#fff;dominant-baseline:middle}.tile-goal{font-size:16px;fill:#fff}.tile-focus{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:4 4;opacity:.8}.position-dot{stroke:#fff;stroke-width:2.4;filter:drop-shadow(0 1px 2px #000c)}.position-dot.active{stroke:#fff;stroke-width:3.4;filter:drop-shadow(0 0 4px #fff9)}.board-caption{fill:#ffd7ea;font-size:12px;font-weight:900;font-family:system-ui,-apple-system,sans-serif;letter-spacing:1px;text-anchor:middle}.turn-hint{fill:#ffb2d7;opacity:.8;font-size:15px;font-family:system-ui,-apple-system,sans-serif;text-anchor:middle}.info{display:grid;grid-template-columns:1fr 1fr;gap:7px;flex:none}.info .panel{padding:9px;min-width:0}.info-label{font-size:11px;color:var(--muted);font-weight:800}.dice-row{display:flex;align-items:center;gap:10px}.dice-face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1;border-radius:10px;border:2px solid #f7afd8;background:#fff8fd;box-shadow:0 4px 0 #a15485;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;padding:7px;align-items:center;justify-items:center}.pip{width:8px;height:8px;background:#70264f;border-radius:50%;visibility:hidden}.pip.show{visibility:visible}.value{font-size:28px;color:var(--pink);font-weight:950}.ranking{font-size:11px;line-height:1.5;max-height:80px;overflow:auto}.ranking div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.message{min-height:20px;text-align:center;font-size:12px;color:#ffc7e4;font-weight:800}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}.actions .btn{box-shadow:0 0 16px #f04daa55}.result{text-align:center;justify-content:center;overflow:auto}.result h2{color:var(--pink);font-size:28px}.result .winner{font-size:clamp(29px,9vw,50px);font-weight:950;color:#fff}.result .final{font-size:14px;line-height:1.9;color:var(--muted)}.result .btn{margin-top:12px}@media(max-height:700px){.app{gap:5px}.board{column-gap:5px;row-gap:8px}.cell{border-radius:8px}.panel{padding:7px}.board-title{display:none}.status{padding:7px}.info .panel{padding:6px}.info{gap:5px}.dice-face{width:40px;height:40px;flex-basis:40px;padding:5px;gap:2px}.pip{width:7px;height:7px}.value{font-size:23px}.actions .btn,.actions .soft{min-height:43px}.cell .event{font-size:8px}}@media(max-width:350px){.app{padding-left:6px;padding-right:6px}.board{column-gap:5px;row-gap:8px}.cell .event{font-size:8px}}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:radial-gradient(circle at 90% 12%,#310e2a 0,transparent 34%),radial-gradient(circle at 5% 75%,#251025 0,transparent 32%),var(--ink);color:#fff3fb;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.48;cursor:default}.app{height:100dvh;max-width:630px;padding:calc(env(safe-area-inset-top) + 7px) 11px calc(env(safe-area-inset-bottom) + 9px);margin:auto;display:flex;flex-direction:column;gap:8px}header{display:flex;align-items:center;gap:9px;flex:none}header h1{font-size:19px;margin:0;color:#fff}header small{margin-left:auto;color:var(--muted);font-size:11px}.back{background:#291729;border:1px solid #7c395e;color:#ffb2da;border-radius:12px;text-decoration:none;display:grid;place-items:center;width:36px;height:36px;font-size:25px}.panel{background:#1b101d;border:1px solid #8f3e67;border-radius:18px;padding:12px;box-shadow:0 3px 14px #0005}.setup{overflow:auto;display:flex;flex-direction:column;gap:12px}.setup p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}.btn{border:1px solid var(--pink);border-radius:15px;background:var(--pink);color:#180a13;font-weight:900;min-height:49px;padding:10px}.soft{border:1px solid #9b4677;border-radius:14px;background:#321b2e;color:#ffd3e9;font-weight:850;min-height:43px;padding:9px}.game,.result{display:none;flex:1;min-height:0;flex-direction:column;gap:8px}.game.on,.result.on{display:flex}.status{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px}.status strong{font-size:14px;color:#fff}.status span{font-size:12px;color:var(--muted)}.board-wrap{min-height:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px}.board-title{font-size:11px;display:flex;justify-content:space-between;color:#ffbbdc;font-weight:800;padding:0 7px}.board{width:100%;flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;overflow:hidden}.board svg{width:100%;height:100%;display:block;overflow:visible}.tile-shape{stroke:none}.road-perimeter{fill:none;stroke:#F04DAA;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 3px #F04DAA66)}.tile-boundary{stroke:#713952;stroke-width:2.2;fill:none}.board svg{isolation:isolate}.tile-number,.tile-effect{paint-order:stroke;stroke:#241526;stroke-width:.7px;stroke-linejoin:round}.punishment-cover{position:fixed;inset:0;background:#0b050de8;display:none;align-items:center;justify-content:center;z-index:1000;padding:18px}.punishment-cover.on{display:flex}.punishment-box{width:min(100%,390px);border:2px solid #f04daa;border-radius:24px;padding:18px;text-align:center;background:#211322;box-shadow:0 0 22px #f04daa44}.punishment-box h2{font-size:21px;margin:0 0 12px;color:#ff91c7}.wheel-wrap{width:min(66vw,240px);height:min(66vw,240px);position:relative;margin:12px auto 18px}.wheel{width:100%;height:100%;border-radius:50%;border:6px solid #ffb2dc;background:conic-gradient(#92355f 0deg 60deg,#653a9d 60deg 120deg,#285f95 120deg 180deg,#a34279 180deg 240deg,#385578 240deg 300deg,#ad507d 300deg 360deg);box-shadow:0 0 16px #f04daa66;transition:transform 2.8s cubic-bezier(.14,.85,.16,1)}.wheel-label{position:absolute;top:50%;left:50%;font-weight:900;color:#fff;font-size:13px;white-space:nowrap;text-shadow:0 1px 4px #000;transform-origin:center}.wheel-arrow{position:absolute;z-index:2;top:-12px;left:50%;transform:translateX(-50%);color:#fff;font-size:30px;filter:drop-shadow(0 1px 2px #000)}.penalty-result{min-height:44px;color:#fff3fb;font-size:20px;font-weight:900;margin:8px 0 14px}.penalty-help{font-size:12px;color:#e8bed7}.punishment-box button{width:100%}.tile-number{font-family:system-ui,-apple-system,sans-serif;font-size:24px;font-weight:900;text-anchor:middle;fill:#FFF3FB;dominant-baseline:middle}.tile-number.event-number{font-size:21px}.tile-effect{font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:800;text-anchor:middle;fill:#fff;dominant-baseline:middle}.tile-goal{font-size:16px;fill:#fff}.tile-focus{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:4 4;opacity:.8}.position-dot{stroke:#fff;stroke-width:2.4;filter:drop-shadow(0 1px 2px #000c)}.position-dot.active{stroke:#fff;stroke-width:3.4;filter:drop-shadow(0 0 4px #fff9)}.board-caption{fill:#ffd7ea;font-size:12px;font-weight:900;font-family:system-ui,-apple-system,sans-serif;letter-spacing:1px;text-anchor:middle}.turn-hint{fill:#ffb2d7;opacity:.8;font-size:15px;font-family:system-ui,-apple-system,sans-serif;text-anchor:middle}.info{display:grid;grid-template-columns:1fr 1fr;gap:7px;flex:none}.info .panel{padding:9px;min-width:0}.info-label{font-size:11px;color:var(--muted);font-weight:800}.dice-row{display:flex;align-items:center;gap:10px}.dice-face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1;border-radius:10px;border:2px solid #f7afd8;background:#fff8fd;box-shadow:0 4px 0 #a15485;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;padding:7px;align-items:center;justify-items:center}.pip{width:8px;height:8px;background:#70264f;border-radius:50%;visibility:hidden}.pip.show{visibility:visible}.value{font-size:28px;color:var(--pink);font-weight:950}.ranking{font-size:11px;line-height:1.5;max-height:80px;overflow:auto}.ranking div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.message{min-height:20px;text-align:center;font-size:12px;color:#ffc7e4;font-weight:800}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}.actions .btn{box-shadow:0 0 16px #f04daa55}.result{text-align:center;justify-content:center;overflow:auto}.result h2{color:var(--pink);font-size:28px}.result .winner{font-size:clamp(29px,9vw,50px);font-weight:950;color:#fff}.result .final{font-size:14px;line-height:1.9;color:var(--muted)}.result .btn{margin-top:12px}@media(max-height:700px){.app{gap:5px}.board{column-gap:5px;row-gap:8px}.cell{border-radius:8px}.panel{padding:7px}.board-title{display:none}.status{padding:7px}.info .panel{padding:6px}.info{gap:5px}.dice-face{width:40px;height:40px;flex-basis:40px;padding:5px;gap:2px}.pip{width:7px;height:7px}.value{font-size:23px}.actions .btn,.actions .soft{min-height:43px}.cell .event{font-size:8px}}@media(max-width:350px){.app{padding-left:6px;padding-right:6px}.board{column-gap:5px;row-gap:8px}.cell .event{font-size:8px}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.2.0</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.3.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel"><div class="info-label">前回の出目</div><div class="dice-row"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span><span id="value" class="value">—</span></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button><button id="next" class="soft" disabled>次の番へ</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -23,53 +23,79 @@ let players=[],positions=[],skips=[],current=0,turnCount=1,phase='setup',last=0,
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function screen(which){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=which==='setup'?'flex':'none';else el.classList.toggle('on',which===id)}}
 const tileColors={plus:'#285F95',minus:'#92355F',warp:'#653A9D',skip:'#385578',again:'#A34279',penalty:'#853451'};
-const pathD='M 55 64 H 455 Q 510 64 510 115 Q 510 166 455 166 H 55 Q 0 166 0 217 Q 0 268 55 268 H 455 Q 510 268 510 319 Q 510 370 455 370 H 55 Q 0 370 0 421 Q 0 472 55 472 H 455';
+// Geometric model: each of 30 tiles is its own closed SVG path.
+// A shared arc-length centerline gives the exact same endpoints to neighbouring tiles.
+// Filling every tile path (not clipping rectangles over a stroked road) prevents partial fills.
+const RADIUS=51,HALF_WIDTH=37,ROW_LENGTH=400,TURN_LENGTH=Math.PI*RADIUS;
+const RUN_LENGTH=ROW_LENGTH+TURN_LENGTH;
+const centers=Array.from({length:30},(_,i)=>Math.floor(i/6)*RUN_LENGTH+(i%6)*80);
+const borders=Array.from({length:31},(_,i)=>i===0?-40:i===30?centers[29]+40:(centers[i-1]+centers[i])/2);
+function centerline(s){
+ if(s<0)return {x:55+s,y:64,tx:1,ty:0};
+ const max=centers[29];
+ if(s>max)return {x:455+s-max,y:472,tx:1,ty:0};
+ const row=Math.min(4,Math.floor(s/RUN_LENGTH)),local=s-row*RUN_LENGTH;
+ const y=64+row*102,goingRight=row%2===0;
+ if(local<=ROW_LENGTH||row===4){
+   return {x:goingRight?55+local:455-local,y,tx:goingRight?1:-1,ty:0};
+ }
+ const t=(local-ROW_LENGTH)/TURN_LENGTH;
+ const theta=-Math.PI/2+(goingRight?1:-1)*Math.PI*t;
+ const cx=goingRight?455:55,cy=y+RADIUS;
+ return {
+   x:cx+RADIUS*Math.cos(theta),y:cy+RADIUS*Math.sin(theta),
+   tx:goingRight?-Math.sin(theta):Math.sin(theta),
+   ty:goingRight?Math.cos(theta):-Math.cos(theta)
+ };
+}
+function edge(s,side){
+ const p=centerline(s);
+ return {x:p.x-p.ty*HALF_WIDTH*side,y:p.y+p.tx*HALF_WIDTH*side};
+}
+const fmt=n=>Number(n.toFixed(3));
+const pointText=p=>fmt(p.x)+' '+fmt(p.y);
+function sampleEdges(a,b,side,reverse=false){
+ const samples=Math.max(2,Math.ceil((b-a)/4));
+ const points=Array.from({length:samples+1},(_,i)=>edge(a+(b-a)*i/samples,side));
+ return reverse?points.reverse():points;
+}
+function closedTilePath(a,b){
+ const one=sampleEdges(a,b,-1),two=sampleEdges(a,b,1,true);
+ return 'M '+pointText(one[0])+' '+one.slice(1).map(p=>'L '+pointText(p)).join(' ')+
+   ' '+two.map(p=>'L '+pointText(p)).join(' ')+' Z';
+}
+const tilePaths=Array.from({length:30},(_,i)=>closedTilePath(borders[i],borders[i+1]));
+const outerPath=closedTilePath(borders[0],borders[30]);
+const dividerPaths=Array.from({length:29},(_,i)=>{
+ const at=borders[i+1];
+ return 'M '+pointText(edge(at,-1))+' L '+pointText(edge(at,1));
+});
 function positionOf(n){
- if(n===0)return {x:55,y:64};
- const row=Math.floor((n-1)/6),col=(n-1)%6;
- return {x:55+80*(row%2?5-col:col),y:64+102*row};
+ const p=centerline(centers[Math.max(0,n-1)]);
+ return {x:p.x,y:p.y};
 }
 function playerDots(n){
  const indices=players.map((p,i)=>positions[i]===n?i:-1).filter(i=>i>=0);
  return indices.map((i,k)=>{
-   const column=k%4,level=Math.floor(k/4),offset=(Math.min(indices.length-level*4,4)-1)*5;
-   const pos=positionOf(n),x=pos.x+column*10-offset,y=pos.y-29+level*12;
-   return '<circle class="position-dot'+(current===i?' active':'')+'" cx="'+x+'" cy="'+y+'" r="5.5" fill="'+colors[i]+'"><title>'+esc(players[i])+'</title></circle>';
+   const col=k%4,level=Math.floor(k/4),count=Math.min(indices.length-level*4,4);
+   const pos=positionOf(n),x=pos.x+(col-(count-1)/2)*10,y=pos.y-29+level*12;
+   return '<circle class="position-dot'+(current===i?' active':'')+'" cx="'+fmt(x)+'" cy="'+fmt(y)+'" r="5.5" fill="'+colors[i]+'"><title>'+esc(players[i])+'</title></circle>';
  }).join('');
 }
-
 function renderBoard(){
- let decorations='',dividers='',labels='',dots='';
+ let tiles='',labels='',dots='';
  for(let n=1;n<=30;n++){
-   const pos=positionOf(n),ev=events[n],row=Math.floor((n-1)/6),col=(n-1)%6;
-   const isLeft=pos.x===55,isRight=pos.x===455;
-   const hasLeftTurn=isLeft&&row>0&&row<4;
-   const hasRightTurn=isRight&&row<4;
-   let left=pos.x-40,right=pos.x+40,top=pos.y-40,bottom=pos.y+40;
-   // Include the whole U-turn in the adjacent end squares. Split it exactly halfway between rows.
-   if(isLeft&&row%2===0&&row>0){left=-48;top=pos.y-51}
-   if(isLeft&&row%2===1){left=-48;bottom=pos.y+51}
-   if(isRight&&row%2===0&&row<4){right=560;bottom=pos.y+51}
-   if(isRight&&row%2===1){right=560;top=pos.y-51}
+   const pos=positionOf(n),ev=events[n];
    const fill=n===30?'#F04DAA':ev?tileColors[ev[0]]:'#241526';
-   decorations+='<rect class="tile-special" x="'+left+'" y="'+top+'" width="'+(right-left)+'" height="'+(bottom-top)+'" fill="'+fill+'"/>';
-   if(col!==0){
-     const dividerX=pos.x+(row%2?40:-40);
-     dividers+='<path class="tile-boundary" d="M '+dividerX+' '+(pos.y-43)+' V '+(pos.y+43)+'"/>';
-   }
-   if(row<4&&(row%2===0?isRight:isLeft)){
-     const dividerY=pos.y+51;
-     dividers+='<path class="tile-boundary" d="M '+(row%2===0?470:-48)+' '+dividerY+' H '+(row%2===0?555:40)+'"/>';
-   }
-   if(ev){
-     labels+='<text class="tile-number event-number" x="'+pos.x+'" y="'+(pos.y-8)+'">'+n+'</text><text class="tile-effect" x="'+pos.x+'" y="'+(pos.y+15)+'">'+esc(ev[1])+'</text>';
-   }else labels+='<text class="tile-number'+(n===30?' tile-goal':'')+'" x="'+pos.x+'" y="'+(pos.y+5)+'">'+(n===30?'GOAL':n)+'</text>';
+   tiles+='<path class="tile-shape" data-tile="'+n+'" d="'+tilePaths[n-1]+'" fill="'+fill+'"/>';
+   if(ev)labels+='<text class="tile-number event-number" x="'+fmt(pos.x)+'" y="'+fmt(pos.y-8)+'">'+n+'</text><text class="tile-effect" x="'+fmt(pos.x)+'" y="'+fmt(pos.y+15)+'">'+esc(ev[1])+'</text>';
+   else labels+='<text class="tile-number'+(n===30?' tile-goal':'')+'" x="'+fmt(pos.x)+'" y="'+fmt(pos.y+5)+'">'+(n===30?'GOAL':n)+'</text>';
    dots+=playerDots(n);
  }
- const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -4 606 540" preserveAspectRatio="none" role="img" aria-label="スタートからゴールまで30マスのS字型すごろく">'
-  +'<defs><clipPath id="roadClip"><path d="'+pathD+'" fill="none" stroke="#fff" stroke-width="76" stroke-linecap="round" stroke-linejoin="round"/></clipPath></defs>'
-  +'<path class="path-outer" d="'+pathD+'"/><path class="path-inner" d="'+pathD+'"/>'
-  +'<g clip-path="url(#roadClip)">'+decorations+dividers+'</g>'
+ const divisions=dividerPaths.map(d=>'<path class="tile-boundary" d="'+d+'"/>').join('');
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-48 -4 606 540" preserveAspectRatio="none" role="img" aria-label="30個の独立したマスを持つS字型すごろく">'
+  +'<g id="tileFills">'+tiles+'</g><g id="tileDividers">'+divisions+'</g>'
+  +'<path class="road-perimeter" d="'+outerPath+'"/>'
   +'<text class="board-caption" x="55" y="8">START</text>'
   +'<text class="board-caption" x="455" y="528">FINISH</text>'
   +labels+dots+playerDots(0)+'</svg>';

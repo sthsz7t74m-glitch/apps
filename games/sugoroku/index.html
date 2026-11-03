@@ -69,8 +69,25 @@
 .number-reel-item{height:58px;display:flex;align-items:center;justify-content:center;color:#fff3fb;font-size:clamp(31px,8vw,43px);font-weight:950;font-variant-numeric:tabular-nums;line-height:1}
 .reel-rail{position:absolute;inset:0;z-index:2;border-left:3px solid #F04DAA;border-right:3px solid #F04DAA;box-shadow:inset 0 0 13px #F04DAA44;pointer-events:none}
 .dice-panel .dice-subtitle{margin-top:2px}.dice-panel .info-label{text-align:center}
+
+/* v2.0.0 — streamlined lower dashboard. Keep the reel frame as the sole neon outline. */
+.game .info{gap:12px;align-items:stretch}
+.game .info>.panel{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;padding:4px 0!important;overflow:visible}
+.game .dice-panel:after{display:none}
+.game .dice-panel .number-reel-shell{width:min(100%,108px);margin:10px auto 0;box-shadow:0 0 10px #F04DAA2b,inset 0 0 12px #0008}
+.game .info-label{padding:0 3px;color:#edb2d2!important;letter-spacing:.03em}
+.game .ranking{padding:2px 0;gap:0!important;max-height:min(22dvh,170px);scrollbar-width:none}
+.game .ranking::-webkit-scrollbar{display:none}
+.game .ranking .rank-row{border:0!important;border-bottom:1px solid #68324e!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;min-height:25px;padding:4px 5px!important}
+.game .ranking .rank-active{border-radius:8px!important;background:#F04DAA25!important;border-bottom-color:transparent!important}
+.game .ranking .rank-place{color:#f0c0db!important}
+.game .ranking .rank-first{color:#ffd36b!important}
+.game .ranking .rank-name{font-weight:900}
+.game .ranking .rank-remaining{font-size:11px}
+.game .board{margin:0 auto;max-width:100%;min-width:0;overflow:hidden}
+@media(max-height:740px){.game .info{gap:7px}.game .ranking .rank-row{min-height:22px;padding:2px 3px!important}.game .dice-panel .number-reel-shell{margin-top:5px}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.9.1</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v2.0.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="off"></div><div class="info"><div class="panel dice-panel"><div class="info-label">ROLL RESULT <span class="dice-subtitle">今回の出目</span></div><div class="number-reel-shell"><span class="reel-rail" aria-hidden="true"></span><div id="numberReel" class="number-reel" role="img" aria-label="出目リール"><div class="number-reel-item">—</div></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">リールを回す</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -80,7 +97,7 @@
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const events={3:['shield','回避+1'],5:['penalty','罰ゲーム'],6:['again','もう1回'],9:['kame','かめぴょん'],12:['skip','1回休み'],15:['game','ゲーム開催'],16:['penalty','罰ゲーム'],19:['hoi','ホイ対決'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
+const events={3:['shield','回避+1'],5:['penalty','罰ゲーム'],6:['again','もう1回'],8:['hoi','ホイ対決'],9:['kame','かめぴょん'],12:['skip','1回休み'],14:['shield','回避+1'],15:['game','ゲーム開催'],16:['penalty','罰ゲーム'],19:['hoi','ホイ対決'],20:['kame','かめぴょん'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み'],28:['game','ゲーム開催']};
 const colors=['#f04daa','#479dee','#f1a52a','#9c6bf0','#27b78d','#e66767','#7380e3','#bc6c37'];
 const NUMBER_REEL_SIZE=58,NUMBER_REEL_LAST=41;
 let reelEpoch=0;
@@ -185,7 +202,7 @@ function renderBoard(){
    dots+=playerDots(n);
  }
  const divisions=dividerPaths.map(d=>'<path class="tile-boundary" d="'+d+'"/>').join('');
- const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-109 -4 667 540" preserveAspectRatio="none" role="img" aria-label="STARTと30個の独立したマスを持つS字型すごろく">'
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-109 -4 648 540" preserveAspectRatio="xMidYMid meet" role="img" aria-label="STARTと30個の独立したマスを持つS字型すごろく">'
   +'<g id="tileFills">'+tiles+'</g><g id="tileDividers">'+divisions+'</g>'
   +'<path class="road-perimeter" d="'+outerPath+'"/>'
   +'<text class="tile-number tile-goal" x="-25" y="69">START</text>'
@@ -358,6 +375,16 @@ function afterMove(){
 function resolveLanding(){
  const pos=positions[current],ev=events[pos];if(!ev){completeTurn();return;}
  busy=false;
+ // All event types except skip/again trigger the shield check, including shield awards.
+ if(ev[0]!=='skip'&&ev[0]!=='again'&&shields[current]>0){
+   shields[current]--;
+   showEvent('防御発動！',[
+     ['プレイヤー',players[current]],
+     ['回避したマス',ev[1]],
+     ['使用','防御 × 1'],
+     ['残り',shields[current]+'個']
+   ]);return;
+ }
  if(ev[0]==='shield'){
    shields[current]++;
    $('message').textContent='罰ゲーム回避を1つ獲得！';
@@ -382,18 +409,7 @@ function resolveLanding(){
      ['効果','続けてサイコロを振る']
    ],()=>{phase='ready';busy=false;render()});return;
  }
- if(ev[0]==='penalty'){
-   if(shields[current]>0){
-     shields[current]--;
-     $('message').textContent='防御を1個使って罰ゲームを回避！';
-     showEvent('罰ゲーム回避！',[
-       ['プレイヤー',players[current]],
-       ['使用','防御 × 1'],
-       ['残り',shields[current]+'個']
-     ]);return;
-   }
-   $('message').textContent='罰ゲームマス！';showPenalty();return;
- }
+ if(ev[0]==='penalty'){$('message').textContent='罰ゲームマス！';showPenalty();return;}
  if(ev[0]==='hoi'){
    const others=players.map((name,i)=>({name,i})).filter(p=>p.i!==current);
    const other=others[Math.floor(Math.random()*others.length)];

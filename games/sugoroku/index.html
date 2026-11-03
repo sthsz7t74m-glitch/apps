@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../shared/player-setup.css"><link rel="stylesheet" href="../shared/turn-overlay.css"><script src="../shared/zoom-lock.js"></script>
 <style>
 :root{--pink:#F04DAA;--ink:#0B050D;--panel:#1d101f;--muted:#d6b4cc}
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:radial-gradient(circle at 90% 12%,#310e2a 0,transparent 34%),radial-gradient(circle at 5% 75%,#251025 0,transparent 32%),var(--ink);color:#fff3fb;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.48;cursor:default}.app{height:100dvh;max-width:630px;padding:calc(env(safe-area-inset-top) + 7px) 11px calc(env(safe-area-inset-bottom) + 9px);margin:auto;display:flex;flex-direction:column;gap:8px}header{display:flex;align-items:center;gap:9px;flex:none}header h1{font-size:19px;margin:0;color:#fff}header small{margin-left:auto;color:var(--muted);font-size:11px}.back{background:#291729;border:1px solid #7c395e;color:#ffb2da;border-radius:12px;text-decoration:none;display:grid;place-items:center;width:36px;height:36px;font-size:25px}.panel{background:#1b101d;border:1px solid #8f3e67;border-radius:18px;padding:12px;box-shadow:0 3px 14px #0005}.setup{overflow:auto;display:flex;flex-direction:column;gap:12px}.setup p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}.btn{border:1px solid var(--pink);border-radius:15px;background:var(--pink);color:#180a13;font-weight:900;min-height:49px;padding:10px}.soft{border:1px solid #9b4677;border-radius:14px;background:#321b2e;color:#ffd3e9;font-weight:850;min-height:43px;padding:9px}.game,.result{display:none;flex:1;min-height:0;flex-direction:column;gap:8px}.game.on,.result.on{display:flex}.status{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px}.status strong{font-size:14px;color:#fff}.status span{font-size:12px;color:var(--muted)}.board-wrap{min-height:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px}.board-title{font-size:11px;display:flex;justify-content:space-between;color:#ffbbdc;font-weight:800;padding:0 7px}.board{width:100%;flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;overflow:hidden}.board svg{width:100%;height:100%;display:block;overflow:visible}.tile-shape{stroke:none}.road-perimeter{fill:none;stroke:#F04DAA;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 3px #F04DAA66)}.tile-boundary{stroke:#713952;stroke-width:2.2;fill:none}.board svg{isolation:isolate}.tile-number,.tile-effect{paint-order:stroke;stroke:#241526;stroke-width:.7px;stroke-linejoin:round}.punishment-cover{position:fixed;inset:0;background:#0b050de8;display:none;align-items:center;justify-content:center;z-index:1000;padding:18px}.punishment-cover.on{display:flex}.punishment-box{width:min(100%,390px);border:2px solid #f04daa;border-radius:24px;padding:18px;text-align:center;background:#211322;box-shadow:0 0 22px #f04daa44}.punishment-box h2{font-size:21px;margin:0 0 12px;color:#ff91c7}.wheel-wrap{width:min(66vw,240px);height:min(66vw,240px);position:relative;margin:12px auto 18px}.wheel{width:100%;height:100%;border-radius:50%;border:6px solid #ffb2dc;background:conic-gradient(#92355f 0deg 60deg,#653a9d 60deg 120deg,#285f95 120deg 180deg,#a34279 180deg 240deg,#385578 240deg 300deg,#ad507d 300deg 360deg);box-shadow:0 0 16px #f04daa66;transition:transform 2.8s cubic-bezier(.14,.85,.16,1)}.wheel-label{position:absolute;top:50%;left:50%;font-weight:900;color:#fff;font-size:13px;white-space:nowrap;text-shadow:0 1px 4px #000;transform-origin:center}.wheel-arrow{position:absolute;z-index:2;top:-12px;left:50%;transform:translateX(-50%);color:#fff;font-size:30px;filter:drop-shadow(0 1px 2px #000)}.penalty-result{min-height:44px;color:#fff3fb;font-size:20px;font-weight:900;margin:8px 0 14px}.penalty-help{font-size:12px;color:#e8bed7}.punishment-box button{width:100%}.tile-number{font-family:system-ui,-apple-system,sans-serif;font-size:24px;font-weight:900;text-anchor:middle;fill:#FFF3FB;dominant-baseline:middle}.tile-number.event-number{font-size:21px}.tile-effect{font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:800;text-anchor:middle;fill:#fff;dominant-baseline:middle}.tile-goal{font-size:16px;fill:#fff}.tile-focus{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:4 4;opacity:.8}.position-dot{stroke:#fff;stroke-width:2.4;filter:drop-shadow(0 1px 2px #000c)}.position-dot.active{stroke:#fff;stroke-width:3.4;filter:drop-shadow(0 0 4px #fff9)}.board-caption{fill:#ffd7ea;font-size:12px;font-weight:900;font-family:system-ui,-apple-system,sans-serif;letter-spacing:1px;text-anchor:middle}.turn-hint{fill:#ffb2d7;opacity:.8;font-size:15px;font-family:system-ui,-apple-system,sans-serif;text-anchor:middle}.info{display:grid;grid-template-columns:1fr 1fr;gap:7px;flex:none}.info .panel{padding:9px;min-width:0}.info-label{font-size:11px;color:var(--muted);font-weight:800}.dice-row{display:flex;align-items:center;gap:10px}.dice-face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1;border-radius:10px;border:2px solid #f7afd8;background:#fff8fd;box-shadow:0 4px 0 #a15485;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;padding:7px;align-items:center;justify-items:center}.pip{width:8px;height:8px;background:#70264f;border-radius:50%;visibility:hidden}.pip.show{visibility:visible}.value{font-size:28px;color:var(--pink);font-weight:950}.ranking{font-size:11px;line-height:1.5;max-height:80px;overflow:auto}.ranking div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.message{min-height:20px;text-align:center;font-size:12px;color:#ffc7e4;font-weight:800}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}.actions .btn{box-shadow:0 0 16px #f04daa55}.result{text-align:center;justify-content:center;overflow:auto}.result h2{color:var(--pink);font-size:28px}.result .winner{font-size:clamp(29px,9vw,50px);font-weight:950;color:#fff}.result .final{font-size:14px;line-height:1.9;color:var(--muted)}.result .btn{margin-top:12px}@media(max-height:700px){.app{gap:5px}.board{column-gap:5px;row-gap:8px}.cell{border-radius:8px}.panel{padding:7px}.board-title{display:none}.status{padding:7px}.info .panel{padding:6px}.info{gap:5px}.dice-face{width:40px;height:40px;flex-basis:40px;padding:5px;gap:2px}.pip{width:7px;height:7px}.value{font-size:23px}.actions .btn,.actions .soft{min-height:43px}.cell .event{font-size:8px}}@media(max-width:350px){.app{padding-left:6px;padding-right:6px}.board{column-gap:5px;row-gap:8px}.cell .event{font-size:8px}}
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:radial-gradient(circle at 90% 12%,#310e2a 0,transparent 34%),radial-gradient(circle at 5% 75%,#251025 0,transparent 32%),var(--ink);color:#fff3fb;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",sans-serif}button,input{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.48;cursor:default}.app{height:100dvh;max-width:630px;padding:calc(env(safe-area-inset-top) + 7px) 11px calc(env(safe-area-inset-bottom) + 9px);margin:auto;display:flex;flex-direction:column;gap:8px}header{display:flex;align-items:center;gap:9px;flex:none}header h1{font-size:19px;margin:0;color:#fff}header small{margin-left:auto;color:var(--muted);font-size:11px}.back{background:#291729;border:1px solid #7c395e;color:#ffb2da;border-radius:12px;text-decoration:none;display:grid;place-items:center;width:36px;height:36px;font-size:25px}.panel{background:#1b101d;border:1px solid #8f3e67;border-radius:18px;padding:12px;box-shadow:0 3px 14px #0005}.setup{overflow:auto;display:flex;flex-direction:column;gap:12px}.setup p{font-size:13px;line-height:1.6;color:var(--muted);margin:0}.btn{border:1px solid var(--pink);border-radius:15px;background:var(--pink);color:#180a13;font-weight:900;min-height:49px;padding:10px}.soft{border:1px solid #9b4677;border-radius:14px;background:#321b2e;color:#ffd3e9;font-weight:850;min-height:43px;padding:9px}.game,.result{display:none;flex:1;min-height:0;flex-direction:column;gap:8px}.game.on,.result.on{display:flex}.status{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px}.status strong{font-size:14px;color:#fff}.status span{font-size:12px;color:var(--muted)}.board-wrap{min-height:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px}.board-title{font-size:11px;display:flex;justify-content:space-between;color:#ffbbdc;font-weight:800;padding:0 7px}.board{width:100%;flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;overflow:hidden}.board svg{width:100%;height:100%;display:block;overflow:visible}.tile-shape{stroke:none}.road-perimeter{fill:none;stroke:#F04DAA;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round;filter:drop-shadow(0 0 3px #F04DAA66)}.tile-boundary{stroke:#713952;stroke-width:2.2;fill:none}.board svg{isolation:isolate}.tile-number,.tile-effect{paint-order:stroke;stroke:#241526;stroke-width:.7px;stroke-linejoin:round}.punishment-cover{position:fixed;inset:0;background:#0b050de8;display:none;align-items:center;justify-content:center;z-index:1000;padding:18px}.punishment-cover.on{display:flex}.punishment-box{width:min(100%,390px);border:2px solid #f04daa;border-radius:24px;padding:18px;text-align:center;background:#211322;box-shadow:0 0 22px #f04daa44}.punishment-box h2{font-size:21px;margin:0 0 12px;color:#ff91c7}.wheel-wrap{width:min(66vw,240px);height:min(66vw,240px);position:relative;margin:12px auto 18px}.wheel{width:100%;height:100%;border-radius:50%;border:6px solid #ffb2dc;background:conic-gradient(#92355f 0deg 60deg,#653a9d 60deg 120deg,#285f95 120deg 180deg,#a34279 180deg 240deg,#385578 240deg 300deg,#ad507d 300deg 360deg);box-shadow:0 0 16px #f04daa66;transition:transform 2.8s cubic-bezier(.14,.85,.16,1)}.wheel-label{position:absolute;top:50%;left:50%;font-weight:900;color:#fff;font-size:13px;white-space:nowrap;text-shadow:0 1px 4px #000;transform-origin:center}.wheel-arrow{position:absolute;z-index:2;top:-12px;left:50%;transform:translateX(-50%);color:#fff;font-size:30px;filter:drop-shadow(0 1px 2px #000)}.penalty-result{min-height:44px;color:#fff3fb;font-size:20px;font-weight:900;margin:8px 0 14px}.penalty-help{font-size:12px;color:#e8bed7}.punishment-box button{width:100%}.tile-number{font-family:system-ui,-apple-system,sans-serif;font-size:24px;font-weight:900;text-anchor:middle;fill:#FFF3FB;dominant-baseline:middle}.tile-number.event-number{font-size:21px}.tile-effect{font-family:system-ui,-apple-system,sans-serif;font-size:13px;font-weight:800;text-anchor:middle;fill:#fff;dominant-baseline:middle}.tile-goal{font-size:16px;fill:#fff}.tile-focus{fill:none;stroke:#fff;stroke-width:2;stroke-dasharray:4 4;opacity:.8}.position-dot{stroke:none;filter:drop-shadow(0 1px 2px #000b)}.position-dot.active{stroke:none;filter:drop-shadow(0 0 5px #fff8)}.board-caption{fill:#ffd7ea;font-size:12px;font-weight:900;font-family:system-ui,-apple-system,sans-serif;letter-spacing:1px;text-anchor:middle}.turn-hint{fill:#ffb2d7;opacity:.8;font-size:15px;font-family:system-ui,-apple-system,sans-serif;text-anchor:middle}.info{display:grid;grid-template-columns:1fr 1fr;gap:7px;flex:none}.info .panel{padding:9px;min-width:0}.info-label{font-size:11px;color:var(--muted);font-weight:800}.dice-row{display:flex;align-items:center;gap:10px}.dice-face{width:48px;height:48px;flex:0 0 48px;aspect-ratio:1;border-radius:10px;border:2px solid #f7afd8;background:#fff8fd;box-shadow:0 4px 0 #a15485;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px;padding:7px;align-items:center;justify-items:center}.pip{width:8px;height:8px;background:#70264f;border-radius:50%;visibility:hidden}.pip.show{visibility:visible}.value{font-size:28px;color:var(--pink);font-weight:950}.ranking{font-size:11px;line-height:1.5;max-height:80px;overflow:auto}.ranking div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.message{min-height:20px;text-align:center;font-size:12px;color:#ffc7e4;font-weight:800}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}.actions .btn{box-shadow:0 0 16px #f04daa55}.result{text-align:center;justify-content:center;overflow:auto}.result h2{color:var(--pink);font-size:28px}.result .winner{font-size:clamp(29px,9vw,50px);font-weight:950;color:#fff}.result .final{font-size:14px;line-height:1.9;color:var(--muted)}.result .btn{margin-top:12px}@media(max-height:700px){.app{gap:5px}.board{column-gap:5px;row-gap:8px}.cell{border-radius:8px}.panel{padding:7px}.board-title{display:none}.status{padding:7px}.info .panel{padding:6px}.info{gap:5px}.dice-face{width:40px;height:40px;flex-basis:40px;padding:5px;gap:2px}.pip{width:7px;height:7px}.value{font-size:23px}.actions .btn,.actions .soft{min-height:43px}.cell .event{font-size:8px}}@media(max-width:350px){.app{padding-left:6px;padding-right:6px}.board{column-gap:5px;row-gap:8px}.cell .event{font-size:8px}}
 
 /* v1.4.0 — enhanced dice display and twin vertical slot reels */
 .dice-panel{position:relative;overflow:hidden;background:linear-gradient(135deg,#2c1429 0%,#150c19 75%)!important;border-color:#b45383!important;box-shadow:inset 0 1px 0 #ffb5df27,0 0 13px #f04daa25!important}.dice-panel:after{content:"";position:absolute;right:-30px;top:-42px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,#f04daa23,transparent 68%);pointer-events:none}.dice-panel .info-label{color:#f9b9df!important;font-size:10px;letter-spacing:.09em}.dice-subtitle{letter-spacing:0;display:block;color:#d6b4cc;font-size:10px;margin-top:2px}.dice-panel .dice-row{gap:15px;justify-content:flex-start;padding:4px 2px 6px}.dice-stage{display:grid;place-items:center;flex:0 0 62px;width:62px;height:65px;border-radius:16px;background:radial-gradient(circle at 30% 25%,#60274e,#30162e 70%);border:1px solid #9b4a76;box-shadow:0 0 15px #f04daa25,inset 0 1px 0 #f5a8d440}.dice-panel .dice-face{width:46px!important;height:46px!important;flex-basis:46px!important;transform:rotate(-9deg);border:2px solid #fff!important;border-radius:11px!important;background:linear-gradient(140deg,#fff,#ffddef)!important;box-shadow:4px 6px 0 #a7437c,5px 8px 13px #0009!important}.dice-panel .pip{width:8px!important;height:8px!important;background:#8c2863!important}.dice-result{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}.dice-result-caption{font-size:10px;color:#c58aaa;letter-spacing:.15em;font-weight:900}.dice-panel .value{font-size:clamp(33px,9vw,47px)!important;line-height:1;font-weight:950;color:#f04daa!important;text-shadow:0 0 14px #f04daa66}.reels{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:12px;margin:14px 0}.reel-column{min-width:0}.reel-title{font-size:11px;color:#f5a4ce;font-weight:900;letter-spacing:.03em;margin-bottom:7px}.reel-viewport{height:162px;overflow:hidden;position:relative;background:#100b16;border:2px solid #9b4476;border-radius:15px;box-shadow:inset 0 0 18px #000b,0 0 14px #f04daa24}.reel-viewport:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,#0c0718ed 0%,transparent 31%,transparent 69%,#0c0718ed 100%);pointer-events:none;z-index:2}.reel-strip{will-change:transform;transform:translateY(0)}.reel-item{height:54px;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding:0 3px;color:#fff0f8;font-weight:900;font-size:clamp(15px,4.7vw,22px)}.reel-line{position:absolute;z-index:3;left:0;right:0;top:54px;height:54px;border-block:2px solid #f04daa;box-shadow:0 0 14px #f04daa66;pointer-events:none;background:#f04daa0a}.penalty-result{font-size:clamp(20px,6vw,28px)!important;color:#ff87c4!important;min-height:38px!important}.penalty-note{margin:12px 0 0;font-size:11px!important;line-height:1.5}.punishment-box{padding:16px!important}.punishment-box h2{margin-bottom:6px!important}@media(max-height:680px){.dice-stage{width:50px;height:53px;flex-basis:50px}.dice-panel .dice-face{transform:rotate(-9deg) scale(.84)}.dice-panel .dice-row{padding:1px 0}.reels{margin:9px 0}}
@@ -17,7 +17,7 @@
 .ranking .rank-active{border-color:#F04DAA;background:#48203b;box-shadow:inset 0 0 7px #F04DAA22}
 .rank-place{flex:0 0 25px;text-align:center;color:#ebc3dc;font-weight:950;font-size:12px;white-space:nowrap}
 .rank-place small{font-size:9px;margin-left:1px}.rank-first{color:#ffd36b;font-size:15px}
-.rank-dot{flex:0 0 9px;width:9px;height:9px;border:1px solid #ffeafa;border-radius:50%;box-shadow:0 0 4px #ffffff44}
+.rank-dot{flex:0 0 9px;width:9px;height:9px;border:0;border-radius:50%;box-shadow:0 0 4px #ffffff44}
 .ranking .rank-name{display:block;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:850;font-size:12px}
 .rank-remaining{flex:none;white-space:nowrap;text-align:right;color:#ffc4e2;font-variant-numeric:tabular-nums}
 .rank-remaining b{font-size:13px;color:#fff3fb}.rank-remaining small{font-size:10px;margin-left:2px}
@@ -49,8 +49,20 @@
 
 /* v1.7.2: distinct start square before tile 1; no overlay or collision with number 1 */
 .board .tile-shape[data-tile="0"]{fill:#51304a}
+
+/* v1.8.0: centered dice and carefully typeset popup rows */
+.dice-panel .dice-row{justify-content:center!important;gap:clamp(8px,2.4vw,18px)!important;padding-inline:2px!important}
+.dice-panel .dice-stage{flex-shrink:0}.dice-panel .dice-result{min-width:36px}
+.event-box{width:min(92vw,410px)!important;min-height:0!important;gap:14px!important;padding:clamp(14px,4vw,22px)!important}
+.event-box h2{line-height:1.25;font-size:clamp(19px,5.5vw,25px)!important;overflow-wrap:anywhere}
+.event-body{display:flex!important;flex-direction:column;justify-content:center;align-items:stretch;gap:9px;min-height:0!important;font-size:16px!important;line-height:1.4!important;width:100%;text-align:left}
+.event-row{display:grid;grid-template-columns:minmax(74px,35%) minmax(0,1fr);align-items:center;gap:10px;background:#301b2d;border:1px solid #70405e;border-radius:12px;padding:11px 12px;min-width:0}
+.event-key{font-size:clamp(12px,3.5vw,15px);color:#e9aacd;font-weight:800;white-space:nowrap}
+.event-value{font-size:clamp(15px,4.4vw,20px);color:#fff3fb;font-weight:900;overflow-wrap:anywhere;word-break:normal;line-break:strict;min-width:0}
+.event-box button{min-height:48px}
+@media(max-height:670px){.event-row{padding:7px 9px}.event-body{gap:6px}.event-box{gap:10px!important}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.7.2</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.8.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・折り返しゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
@@ -65,7 +77,7 @@ const colors=['#f04daa','#479dee','#f1a52a','#9c6bf0','#27b78d','#e66767','#7380
 const pipPositions={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function showDie(n){$('die').innerHTML=Array.from({length:9},(_,i)=>'<span class="pip '+(pipPositions[n||1].includes(i)?'show':'')+'"></span>').join('');$('die').setAttribute('aria-label',n?'サイコロ '+n:'サイコロ');}
 const setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
-let players=[],positions=[],skips=[],shields=[],current=0,turnCount=1,phase='setup',last=0,busy=false,timer=null;
+let players=[],positions=[],skips=[],shields=[],current=0,turnCount=1,phase='setup',last=0,busy=false,timer=null,eventCloseAction=null;
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function screen(which){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=which==='setup'?'flex':'none';else el.classList.toggle('on',which===id)}}
 const tileColors={skip:'#385578',again:'#A34279',penalty:'#853451',shield:'#287961',kame:'#7b538f',game:'#75548e',hoi:'#9a6a36'};
@@ -173,15 +185,19 @@ function showTapTurn(){
 function advanceTurn(){
  if(phase==='finished'||phase==='setup')return;
  current=(current+1)%players.length;turnCount++;
- // Skip a resting player automatically; never leave the game stuck on a disabled roll.
- let skipped=[];
- for(let i=0;i<players.length&&skips[current]>0;i++){
-   skips[current]--;skipped.push(players[current]);
-   current=(current+1)%players.length;turnCount++;
+ if(skips[current]>0){
+   skips[current]--;
+   const missing=players[current],remaining=skips[current];
+   $('message').textContent=missing+'は1回休み！';
+   showEvent('1回休み',[
+     ['プレイヤー',missing],
+     ['今回の番','お休み'],
+     ['残りの休み',remaining+'回']
+   ],()=>advanceTurn());
+   return;
  }
  phase='ready';busy=false;last=0;
- $('message').textContent=skipped.length?skipped.join('・')+'は1回休み！':'サイコロを振ろう！';
- render();showTapTurn();
+ $('message').textContent='サイコロを振ろう！';render();showTapTurn();
 }
 function completeTurn(){
  if(phase==='finished'||phase==='setup')return;
@@ -197,7 +213,7 @@ function start(){
  const names=setup.validate();if(!names)return;
  reelRun++;
  if(timer){clearTimeout(timer);clearInterval(timer);timer=null}
- $('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');$('tapTurnOverlay').classList.remove('on');
+ eventCloseAction=null;$('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');$('tapTurnOverlay').classList.remove('on');
  players=names;positions=players.map(()=>0);skips=players.map(()=>0);shields=players.map(()=>0);
  current=0;turnCount=1;last=0;busy=false;phase='ready';screen('game');
  $('message').textContent='サイコロを振ろう！';render();showTapTurn();
@@ -282,46 +298,93 @@ function animateRoute(route,done){
  if(!route.length){done();return}
  timer=setTimeout(step,210);
 }
-function showEvent(title,body){
- phase='event';busy=false;render();
- $('eventTitle').textContent=title;$('eventBody').textContent=body;
+function showEvent(title,rows,onClose){
+ phase='event';busy=false;
+ eventCloseAction=onClose||(()=>completeTurn());
+ render();
+ $('eventTitle').textContent=title;
+ // Render each semantic row independently; never rely on a long sentence wrapping.
+ const data=Array.isArray(rows)?rows:[['内容',String(rows)]];
+ $('eventBody').innerHTML=data.map(([label,value])=>'<div class="event-row"><span class="event-key">'+esc(label)+'</span><strong class="event-value">'+esc(value)+'</strong></div>').join('');
  $('eventOverlay').classList.add('on');
 }
 $('eventClose').onclick=()=>{
  if(phase!=='event')return;
- $('eventOverlay').classList.remove('on');completeTurn();
+ $('eventOverlay').classList.remove('on');
+ const action=eventCloseAction;eventCloseAction=null;
+ if(action)action();
 };
 function afterMove(){
  if(positions[current]===30){busy=false;finish();return;}
- const pos=positions[current],ev=events[pos];
+ const pos=positions[current];
+ if(!events[pos]){$('message').textContent=pos+'マスに到着！';busy=false;completeTurn();return;}
+ // Pause after the last visible token movement before presenting any event.
+ $('message').textContent=pos+'マスに到着！';
+ phase='event-pending';busy=true;render();
+ timer=setTimeout(()=>{timer=null;if(phase==='event-pending')resolveLanding();},750);
+}
+function resolveLanding(){
+ const pos=positions[current],ev=events[pos];if(!ev){completeTurn();return;}
  busy=false;
- if(!ev){$('message').textContent=pos+'マスに到着！';completeTurn();return;}
  if(ev[0]==='shield'){
-   shields[current]++;$('message').textContent='罰ゲーム回避を1つ獲得！';
-   showEvent('防御を獲得！',players[current]+' は罰ゲームを1回回避できるようになった！ 所持：'+shields[current]+'個');return;
+   shields[current]++;
+   $('message').textContent='罰ゲーム回避を1つ獲得！';
+   showEvent('防御を獲得！',[
+     ['プレイヤー',players[current]],
+     ['獲得','罰ゲーム回避 × 1'],
+     ['所持数',shields[current]+'個']
+   ]);return;
  }
- if(ev[0]==='skip'){skips[current]++;$('message').textContent='次の番は1回休み！';completeTurn();return;}
- if(ev[0]==='again'){phase='ready';$('message').textContent='もう1回サイコロを振れる！';render();return;}
+ if(ev[0]==='skip'){
+   skips[current]++;
+   $('message').textContent='次の番は1回休み！';
+   showEvent('1回休みを獲得',[
+     ['プレイヤー',players[current]],
+     ['効果','次回の番を1回休む']
+   ]);return;
+ }
+ if(ev[0]==='again'){
+   $('message').textContent='もう1回サイコロを振れる！';
+   showEvent('もう1回！',[
+     ['プレイヤー',players[current]],
+     ['効果','続けてサイコロを振る']
+   ],()=>{phase='ready';busy=false;render()});return;
+ }
  if(ev[0]==='penalty'){
    if(shields[current]>0){
-     shields[current]--;$('message').textContent='防御を1個使って罰ゲームを回避！';
-     showEvent('罰ゲーム回避！',players[current]+' の防御が発動。残り'+shields[current]+'個');return;
+     shields[current]--;
+     $('message').textContent='防御を1個使って罰ゲームを回避！';
+     showEvent('罰ゲーム回避！',[
+       ['プレイヤー',players[current]],
+       ['使用','防御 × 1'],
+       ['残り',shields[current]+'個']
+     ]);return;
    }
    $('message').textContent='罰ゲームマス！';showPenalty();return;
  }
  if(ev[0]==='hoi'){
-   const others=players.map((name,i)=>({name,i})).filter(o=>o.i!==current);
-   const challenger=others[Math.floor(Math.random()*others.length)];
+   const others=players.map((name,i)=>({name,i})).filter(p=>p.i!==current);
+   const other=others[Math.floor(Math.random()*others.length)];
    $('message').textContent='あっち向いてホイ開催！';
-   showEvent('あっち向いてホイ！','受ける側：'+players[current]+'　／　する側：'+challenger.name+'\n2人であっち向いてホイを行ってください。');return;
+   showEvent('あっち向いてホイ！',[
+     ['受ける側',players[current]],
+     ['する側',other.name],
+     ['対決','2人であっち向いてホイ！']
+   ]);return;
  }
  if(ev[0]==='kame'){
    $('message').textContent='かめぴょん開催！';
-   showEvent('かめぴょん開催！',players[current]+' が「かめぴょん」を開催！\n遊び終わったら次の人へ進んでください。');return;
+   showEvent('かめぴょん開催！',[
+     ['開催者',players[current]],
+     ['内容','かめぴょんを遊ぶ']
+   ]);return;
  }
  if(ev[0]==='game'){
    $('message').textContent='ゲーム開催！';
-   showEvent('ゲーム開催！',players[current]+' がミニゲームを開催！\n遊び終わったら次の人へ進んでください。');return;
+   showEvent('ゲーム開催！',[
+     ['開催者',players[current]],
+     ['内容','ミニゲームを遊ぶ']
+   ]);return;
  }
  completeTurn();
 }
@@ -338,8 +401,8 @@ function roll(){
  },75);
 }
 $('spinDrink').onclick=()=>spinOneReel('drink');$('spinCount').onclick=()=>spinOneReel('count');$('penaltyClose').onclick=closePenalty;
-function settings(){reelRun++;for(const type of ['drink','count']){clearTimeout(reelTimers[type]);reelTimers[type]=null}if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('tapTurnOverlay').classList.remove('on');$('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
+function settings(){reelRun++;for(const type of ['drink','count']){clearTimeout(reelTimers[type]);reelTimers[type]=null}if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('tapTurnOverlay').classList.remove('on');$('punishment').classList.remove('on');$('eventOverlay').classList.remove('on');eventCloseAction=null;busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
 $('start').onclick=start;$('roll').onclick=roll;$('settings').onclick=settings;$('again').onclick=start;$('backToSettings').onclick=settings;
-GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='review'||phase==='event'||phase==='penalty'||busy});
+GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='review'||phase==='event'||phase==='event-pending'||phase==='penalty'||busy});
 })();
 </script><script src="../shared/audio.js"></script></body></html>

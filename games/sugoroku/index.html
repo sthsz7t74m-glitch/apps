@@ -10,18 +10,31 @@
 
 /* v1.5.0 compact single-row reels and tap-to-reveal handoff */
 .actions{display:block}.actions .btn{display:block;width:100%}.reel-viewport{height:54px!important;border-radius:12px!important}.reel-viewport:before{background:linear-gradient(to bottom,#0c071862,transparent 36%,transparent 64%,#0c071862)!important}.reel-line{top:0!important;height:54px!important;border-block:0!important;border-left:3px solid #F04DAA;border-right:3px solid #F04DAA;box-shadow:inset 0 0 12px #f04daa22!important}.reel-button{display:block;width:100%;margin-top:9px;min-height:43px;font-size:13px;padding:7px 3px}.reels{align-items:start;margin:16px 0}.penalty-result{margin:15px 0!important;line-height:1.4}.tap-turn-overlay{position:fixed;inset:0;z-index:990;background:rgba(11,5,13,.95);border:0;color:#fff3fb;display:none;align-items:center;justify-content:center;padding:22px;cursor:pointer;width:100%;height:100dvh;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}.tap-turn-overlay.on{display:flex}.tap-turn-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px 18px;min-height:240px;width:min(100%,400px);border:2px solid #F04DAA;border-radius:26px;background:#211322;box-shadow:0 0 32px #f04daa40}.tap-turn-prefix,.tap-turn-suffix{font-size:24px;font-weight:900;color:#ffc5e3}.tap-turn-name{font-size:clamp(42px,13vw,74px);font-weight:950;color:#F04DAA;overflow-wrap:anywhere;line-height:1.15}.tap-turn-hint{font-size:14px;color:#e9b4d3;font-weight:800;animation:tapPulse 1.5s infinite}@keyframes tapPulse{50%{opacity:.45}}@media(prefers-reduced-motion:reduce){.tap-turn-hint{animation:none}}
+
+/* v1.6.0: compact ranking cards and calm confirmed buttons */
+.ranking{display:flex;flex-direction:column;gap:4px;font-size:11px;line-height:1.2;max-height:min(21dvh,164px);overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;padding:3px 1px}
+.ranking .rank-row{display:flex;align-items:center;gap:5px;min-width:0;min-height:23px;flex:none;padding:3px 6px;border:1px solid #62304d;border-radius:8px;background:#2b192c;color:#fff3fb}
+.ranking .rank-active{border-color:#F04DAA;background:#48203b;box-shadow:inset 0 0 7px #F04DAA22}
+.rank-place{flex:0 0 25px;text-align:center;color:#ebc3dc;font-weight:950;font-size:12px;white-space:nowrap}
+.rank-place small{font-size:9px;margin-left:1px}.rank-first{color:#ffd36b;font-size:15px}
+.rank-dot{flex:0 0 9px;width:9px;height:9px;border:1px solid #ffeafa;border-radius:50%;box-shadow:0 0 4px #ffffff44}
+.ranking .rank-name{display:block;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:850;font-size:12px}
+.rank-remaining{flex:none;white-space:nowrap;text-align:right;color:#ffc4e2;font-variant-numeric:tabular-nums}
+.rank-remaining b{font-size:13px;color:#fff3fb}.rank-remaining small{font-size:10px;margin-left:2px}
+.reel-button.is-confirmed,.reel-button.is-confirmed:disabled{background:#40253b!important;border-color:#8e587b!important;color:#f1cce3!important;opacity:1!important;box-shadow:none!important}
+@media(max-height:700px){.ranking{gap:2px;max-height:min(20dvh,144px)}.ranking .rank-row{min-height:20px;padding:2px 4px}.ranking .rank-name{font-size:11px}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.5.0</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.6.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
 </main><button type="button" id="tapTurnOverlay" class="tap-turn-overlay" aria-label="次のプレイヤーの番を開始"><span class="tap-turn-content"><span class="tap-turn-prefix">次は</span><strong id="tapTurnName" class="tap-turn-name"></strong><span class="tap-turn-suffix">の番！</span><span class="tap-turn-hint">画面をタップしてスタート</span></span></button>
-<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="display:none;margin-top:9px">結果を確認して次の人へ</button><p class="penalty-help penalty-note">飲酒は任意です。ノンアルコールへの変更・パスもOK。</p></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
+<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="display:none;margin-top:9px">結果を確認して次の人へ</button></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
 <script>
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const events={5:['penalty','罰ゲーム'],6:['again','もう1回'],8:['warp','ワープ'],12:['skip','1回休み'],16:['penalty','罰ゲーム'],22:['warp','ワープ'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
+const events={5:['penalty','罰ゲーム'],6:['again','もう1回'],12:['skip','1回休み'],16:['penalty','罰ゲーム'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
 const colors=['#f04daa','#479dee','#f1a52a','#9c6bf0','#27b78d','#e66767','#7380e3','#bc6c37'];
 const pipPositions={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function showDie(n){$('die').innerHTML=Array.from({length:9},(_,i)=>'<span class="pip '+(pipPositions[n||1].includes(i)?'show':'')+'"></span>').join('');$('die').setAttribute('aria-label',n?'サイコロ '+n:'サイコロ');}
@@ -29,7 +42,7 @@ const setup=GamePlayers.create({root:'quickPlayers',min:2,max:8,initial:4});
 let players=[],positions=[],skips=[],current=0,turnCount=1,phase='setup',last=0,busy=false,timer=null;
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function screen(which){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=which==='setup'?'flex':'none';else el.classList.toggle('on',which===id)}}
-const tileColors={warp:'#653A9D',skip:'#385578',again:'#A34279',penalty:'#853451'};
+const tileColors={skip:'#385578',again:'#A34279',penalty:'#853451'};
 // Geometric model: each of 30 tiles is its own closed SVG path.
 // A shared arc-length centerline gives the exact same endpoints to neighbouring tiles.
 // Filling every tile path (not clipping rectangles over a stroked road) prevents partial fills.
@@ -111,7 +124,17 @@ function renderBoard(){
 function render(){
  renderBoard();
  $('turn').textContent=(players[current]||'プレイヤー1')+'の番';$('round').textContent=turnCount+'ターン目';
- $('ranking').innerHTML=players.map((p,i)=>({p,i,remain:30-positions[i]})).sort((a,b)=>a.remain-b.remain||a.i-b.i).map((o,k)=>'<div><b style="color:'+colors[o.i]+'">'+(k+1)+'位 ●</b> '+esc(o.p)+' あと'+o.remain+'マス</div>').join('');
+ const ranking=players.map((name,i)=>({name,i,remain:30-positions[i]})).sort((a,b)=>a.remain-b.remain||a.i-b.i);
+ let previousRemain=-1,rank=0;
+ $('ranking').innerHTML=ranking.map((p,index)=>{
+   if(p.remain!==previousRemain)rank=index+1;
+   previousRemain=p.remain;
+   return '<div class="rank-row'+(p.i===current?' rank-active':'')+'">'
+    +'<span class="rank-place'+(rank===1?' rank-first':'')+'">'+(rank===1?'♛':rank)+'<small>位</small></span>'
+    +'<span class="rank-dot" style="background:'+colors[p.i]+'"></span>'
+    +'<strong class="rank-name" title="'+esc(p.name)+'">'+esc(p.name)+'</strong>'
+    +'<span class="rank-remaining"><b>'+p.remain+'</b><small>マス</small></span></div>';
+ }).join('');
  showDie(last);$('value').textContent=last||'—';
  $('roll').disabled=busy||phase!=='ready';
 }
@@ -176,7 +199,7 @@ function showPenalty(){
  $('penaltyPlayer').textContent=players[current]+' の罰ゲーム！';
  $('penaltyResult').textContent='それぞれのボタンで抽選！';
  $('spinDrink').disabled=false;$('spinCount').disabled=false;
- $('spinDrink').textContent='飲み物を回す';$('spinCount').textContent='杯数を回す';
+ $('spinDrink').textContent='飲み物を回す';$('spinCount').textContent='杯数を回す';$('spinDrink').classList.remove('is-confirmed');$('spinCount').classList.remove('is-confirmed');
  $('penaltyClose').style.display='none';
  fillReel('drinkReel',drinkOptions,'グラス');fillReel('countReel',countOptions,'1杯');
  $('punishment').classList.add('on');
@@ -186,14 +209,14 @@ function spinOneReel(type){
  const isDrink=type==='drink',options=isDrink?drinkOptions:countOptions;
  const result=weightedPick(options),reel=fillReel(isDrink?'drinkReel':'countReel',options,result);
  const btn=$(isDrink?'spinDrink':'spinCount'),run=reelRun;
- btn.disabled=true;btn.textContent='抽選中…';
+ btn.disabled=true;btn.classList.remove('is-confirmed');btn.textContent='抽選中…';
  void reel.offsetHeight;
  reel.style.transition='transform 2.5s cubic-bezier(.12,.68,.14,1)';
  reel.style.transform='translateY('+(-REEL_TARGET_INDEX*REEL_ITEM_HEIGHT)+'px)';
  reelTimers[type]=setTimeout(()=>{
    reelTimers[type]=null;
    if(run!==reelRun||phase!=='penalty')return;
-   penaltySelection[type]=result;btn.textContent='確定：'+result;
+   penaltySelection[type]=result;btn.textContent='確定';btn.classList.add('is-confirmed');
    if(penaltySelection.drink!==null&&penaltySelection.count!==null){
       $('penaltyResult').textContent=penaltySelection.drink+' '+penaltySelection.count;
       $('penaltyClose').style.display='block';
@@ -204,32 +227,33 @@ function closePenalty(){
  if(phase!=='penalty'||penaltySelection.drink===null||penaltySelection.count===null)return;
  $('punishment').classList.remove('on');completeTurn();
 }
-function moveTo(target,done){
- const from=positions[current],direction=Math.sign(target-from);
- if(!direction){done();return;}
+// One destination per die pip; reaching 30 mid-roll reverses the remaining moves.
+function createDiceRoute(start,steps){
+ const route=[];let position=start,direction=1;
+ for(let i=0;i<steps;i++){
+   if(position===30)direction=-1;
+   position+=direction;route.push(position);
+ }
+ return route;
+}
+function animateRoute(route,done){
+ let index=0;
  function step(){
    if(phase==='setup'||phase==='finished')return;
-   positions[current]+=direction;
+   positions[current]=route[index++];
    $('message').textContent=players[current]+' が '+positions[current]+' マス目へ移動！';
    render();
-   if(positions[current]===target){timer=null;done();return;}
+   if(index===route.length){timer=null;done();return}
    timer=setTimeout(step,210);
  }
+ if(!route.length){done();return}
  timer=setTimeout(step,210);
 }
 function afterMove(){
  if(positions[current]===30){busy=false;finish();return;}
  const pos=positions[current],ev=events[pos];
  if(!ev){busy=false;$('message').textContent=pos+'マスに到着！';completeTurn();return;}
- if(ev[0]==='warp'){
-   const requested=pos+4;
-   // Exact-landing rule also applies to special movement toward GOAL.
-   const destination=requested>30?pos:Math.max(0,requested);
-   $('message').textContent=ev[1]+'！ '+(destination===pos?'ゴールを超えるため進めない':destination+'マスへ移動');
-   if(destination===pos){busy=false;completeTurn();return;}
-   moveTo(destination,()=>{busy=false;if(positions[current]===30){finish();return;}$('message').textContent=positions[current]+'マスへ移動した！';completeTurn()});
-   return;
- }
+
  busy=false;
  if(ev[0]==='skip'){skips[current]++;$('message').textContent='次の番は1回休み！';completeTurn();return;}
  else if(ev[0]==='again'){phase='ready';$('message').textContent='もう1回サイコロを振れる！';}
@@ -244,12 +268,9 @@ function roll(){
    showDie(Math.floor(Math.random()*6)+1);$('value').textContent='…';
    if(++ticks<7)return;
    clearInterval(timer);timer=null;
-   const remaining=30-positions[current],overshoot=n>remaining;
-   if(overshoot){
-     busy=false;$('message').textContent='出目は'+n+'。残り'+remaining+'マスなので進めない！';completeTurn();return;
-   }
-   $('message').textContent='出目は'+n+'！ 1マスずつ進むよ';
-   moveTo(positions[current]+n,afterMove);
+   const route=createDiceRoute(positions[current],n);
+   $('message').textContent='出目は'+n+'！ '+(route.includes(30)&&route[route.length-1]!==30?'ゴールで折り返し！':'1マスずつ進むよ');
+   animateRoute(route,afterMove);
  },75);
 }
 $('spinDrink').onclick=()=>spinOneReel('drink');$('spinCount').onclick=()=>spinOneReel('count');$('penaltyClose').onclick=closePenalty;

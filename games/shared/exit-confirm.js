@@ -1,4 +1,4 @@
-/* GameBOX: shared confirmation for abandoning an active game */
+/* GameBOX: shared confirmation for abandoning an active game v1.1.0 (BAR high contrast) */
 (function(){
  'use strict';
  let config=null,bypass=null,modal=null,returnFocus=null;
@@ -6,7 +6,7 @@
  function ensure(){
   if(modal)return;
   const style=document.createElement('style');
-  style.textContent='.gb-confirm-backdrop{position:fixed;inset:0;z-index:20000;background:#142c4b77;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(3px)}.gb-confirm-backdrop.open{display:flex}.gb-confirm-box{background:#fff;color:#173451;border-radius:23px;border:1px solid #dce8ff;box-shadow:0 18px 54px #142c4b45;padding:24px;width:min(100%,360px);text-align:center}.gb-confirm-box h2{font-size:21px;margin:0 0 10px}.gb-confirm-box p{font-size:14px;line-height:1.55;color:#60748e;margin:0 0 21px}.gb-confirm-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gb-confirm-buttons button{border:0;border-radius:12px;font:inherit;font-weight:800;padding:13px 6px;min-height:48px;touch-action:manipulation}.gb-confirm-cancel{background:#eaf2ff;color:#256bdc}.gb-confirm-accept{background:#dc3535;color:white}';
+  style.textContent='.gb-confirm-backdrop{position:fixed;inset:0;z-index:20000;background:rgba(5,2,8,.84);display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(5px)}.gb-confirm-backdrop.open{display:flex}.gb-confirm-box{box-sizing:border-box;background:#211322!important;color:#fff3fb!important;border-radius:23px;border:2px solid #a7487b!important;box-shadow:0 18px 54px #000a,0 0 20px #f04daa22;padding:24px;width:min(100%,360px);text-align:center}.gb-confirm-box h2{font-size:21px;margin:0 0 12px;color:#fff3fb!important;font-weight:900}.gb-confirm-box p{font-size:14px;line-height:1.65;color:#f0cade!important;margin:0 0 22px}.gb-confirm-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gb-confirm-buttons button{box-sizing:border-box;border:1px solid transparent!important;border-radius:12px;font:inherit;font-weight:850;padding:13px 6px;min-height:50px;touch-action:manipulation}.gb-confirm-buttons .gb-confirm-cancel{background:#382039!important;border-color:#a45885!important;color:#fff3fb!important}.gb-confirm-buttons .gb-confirm-accept{background:#f04daa!important;border-color:#f04daa!important;color:#180a13!important}.gb-confirm-buttons button:focus-visible{outline:3px solid #ffb9df!important;outline-offset:3px}@media(max-width:350px){.gb-confirm-box{padding:18px}.gb-confirm-buttons{gap:8px}}';
   document.head.append(style);
   modal=el('div','gb-confirm-backdrop');
   modal.setAttribute('role','presentation');

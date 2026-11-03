@@ -50,7 +50,7 @@
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const events={3:['shield','回避+1'],5:['penalty','罰ゲーム'],6:['again','もう1回'],9:['kame','かめぴょん'],12:['skip','1回休み'],15:['game','ゲーム開催'],16:['penalty','罰ゲーム'],19:['hoi','あっち向いてホイ'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
+const events={3:['shield','回避+1'],5:['penalty','罰ゲーム'],6:['again','もう1回'],9:['kame','かめぴょん'],12:['skip','1回休み'],15:['game','ゲーム開催'],16:['penalty','罰ゲーム'],19:['hoi','ホイ対決'],23:['penalty','罰ゲーム'],25:['again','もう1回'],27:['skip','1回休み']};
 const colors=['#f04daa','#479dee','#f1a52a','#9c6bf0','#27b78d','#e66767','#7380e3','#bc6c37'];
 const pipPositions={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
 function showDie(n){$('die').innerHTML=Array.from({length:9},(_,i)=>'<span class="pip '+(pipPositions[n||1].includes(i)?'show':'')+'"></span>').join('');$('die').setAttribute('aria-label',n?'サイコロ '+n:'サイコロ');}

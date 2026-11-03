@@ -7,12 +7,16 @@
 
 /* v1.4.0 — enhanced dice display and twin vertical slot reels */
 .dice-panel{position:relative;overflow:hidden;background:linear-gradient(135deg,#2c1429 0%,#150c19 75%)!important;border-color:#b45383!important;box-shadow:inset 0 1px 0 #ffb5df27,0 0 13px #f04daa25!important}.dice-panel:after{content:"";position:absolute;right:-30px;top:-42px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,#f04daa23,transparent 68%);pointer-events:none}.dice-panel .info-label{color:#f9b9df!important;font-size:10px;letter-spacing:.09em}.dice-subtitle{letter-spacing:0;display:block;color:#d6b4cc;font-size:10px;margin-top:2px}.dice-panel .dice-row{gap:15px;justify-content:flex-start;padding:4px 2px 6px}.dice-stage{display:grid;place-items:center;flex:0 0 62px;width:62px;height:65px;border-radius:16px;background:radial-gradient(circle at 30% 25%,#60274e,#30162e 70%);border:1px solid #9b4a76;box-shadow:0 0 15px #f04daa25,inset 0 1px 0 #f5a8d440}.dice-panel .dice-face{width:46px!important;height:46px!important;flex-basis:46px!important;transform:rotate(-9deg);border:2px solid #fff!important;border-radius:11px!important;background:linear-gradient(140deg,#fff,#ffddef)!important;box-shadow:4px 6px 0 #a7437c,5px 8px 13px #0009!important}.dice-panel .pip{width:8px!important;height:8px!important;background:#8c2863!important}.dice-result{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}.dice-result-caption{font-size:10px;color:#c58aaa;letter-spacing:.15em;font-weight:900}.dice-panel .value{font-size:clamp(33px,9vw,47px)!important;line-height:1;font-weight:950;color:#f04daa!important;text-shadow:0 0 14px #f04daa66}.reels{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:12px;margin:14px 0}.reel-column{min-width:0}.reel-title{font-size:11px;color:#f5a4ce;font-weight:900;letter-spacing:.03em;margin-bottom:7px}.reel-viewport{height:162px;overflow:hidden;position:relative;background:#100b16;border:2px solid #9b4476;border-radius:15px;box-shadow:inset 0 0 18px #000b,0 0 14px #f04daa24}.reel-viewport:before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,#0c0718ed 0%,transparent 31%,transparent 69%,#0c0718ed 100%);pointer-events:none;z-index:2}.reel-strip{will-change:transform;transform:translateY(0)}.reel-item{height:54px;display:flex;align-items:center;justify-content:center;white-space:nowrap;padding:0 3px;color:#fff0f8;font-weight:900;font-size:clamp(15px,4.7vw,22px)}.reel-line{position:absolute;z-index:3;left:0;right:0;top:54px;height:54px;border-block:2px solid #f04daa;box-shadow:0 0 14px #f04daa66;pointer-events:none;background:#f04daa0a}.penalty-result{font-size:clamp(20px,6vw,28px)!important;color:#ff87c4!important;min-height:38px!important}.penalty-note{margin:12px 0 0;font-size:11px!important;line-height:1.5}.punishment-box{padding:16px!important}.punishment-box h2{margin-bottom:6px!important}@media(max-height:680px){.dice-stage{width:50px;height:53px;flex-basis:50px}.dice-panel .dice-face{transform:rotate(-9deg) scale(.84)}.dice-panel .dice-row{padding:1px 0}.reels{margin:9px 0}}
+
+/* v1.5.0 compact single-row reels and tap-to-reveal handoff */
+.actions{display:block}.actions .btn{display:block;width:100%}.reel-viewport{height:54px!important;border-radius:12px!important}.reel-viewport:before{background:linear-gradient(to bottom,#0c071862,transparent 36%,transparent 64%,#0c071862)!important}.reel-line{top:0!important;height:54px!important;border-block:0!important;border-left:3px solid #F04DAA;border-right:3px solid #F04DAA;box-shadow:inset 0 0 12px #f04daa22!important}.reel-button{display:block;width:100%;margin-top:9px;min-height:43px;font-size:13px;padding:7px 3px}.reels{align-items:start;margin:16px 0}.penalty-result{margin:15px 0!important;line-height:1.4}.tap-turn-overlay{position:fixed;inset:0;z-index:990;background:rgba(11,5,13,.95);border:0;color:#fff3fb;display:none;align-items:center;justify-content:center;padding:22px;cursor:pointer;width:100%;height:100dvh;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}.tap-turn-overlay.on{display:flex}.tap-turn-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px 18px;min-height:240px;width:min(100%,400px);border:2px solid #F04DAA;border-radius:26px;background:#211322;box-shadow:0 0 32px #f04daa40}.tap-turn-prefix,.tap-turn-suffix{font-size:24px;font-weight:900;color:#ffc5e3}.tap-turn-name{font-size:clamp(42px,13vw,74px);font-weight:950;color:#F04DAA;overflow-wrap:anywhere;line-height:1.15}.tap-turn-hint{font-size:14px;color:#e9b4d3;font-weight:800;animation:tapPulse 1.5s infinite}@keyframes tapPulse{50%{opacity:.45}}@media(prefers-reduced-motion:reduce){.tap-turn-hint{animation:none}}
 </style><link rel="stylesheet" href="../shared/bar-theme.css?v=2.22.1"></head><body><main class="app">
-<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.4.0</small></header>
+<header><a id="exitBack" class="back" href="../" aria-label="ゲーム一覧に戻る">‹</a><h1>🎲 すごろく</h1><small>v1.5.0</small></header>
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p>サイコロを振って30マスのゴールへ！ プラス・マイナス・ワープ・1回休み・もう1回・罰ゲームなどのイベントが発生します。<br>今回はルールを調整するための雛形です。</p><button id="start" class="btn">ゲーム開始</button></section>
-<section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button><button id="next" class="soft" disabled>次の番へ</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
+<section id="game" class="game"><div class="status panel"><strong id="turn">プレイヤー1の番</strong><span id="round">1ターン目</span></div><div class="board-wrap"><div class="board-title"><span>START → GOAL</span><span>30マス・ぴったりゴール</span></div><div id="board" class="board" aria-label="30マスのすごろく盤面"></div></div><div id="message" class="message" aria-live="polite">サイコロを振ろう！</div><div class="info"><div class="panel dice-panel"><div class="info-label">DICE RESULT <span class="dice-subtitle">前回の出目</span></div><div class="dice-row"><span class="dice-stage"><span id="die" class="dice-face" role="img" aria-label="サイコロ"></span></span><div class="dice-result"><span class="dice-result-caption">ROLL</span><span id="value" class="value">—</span></div></div></div><div class="panel"><div class="info-label">順位（ゴールまで）</div><div id="ranking" class="ranking"></div></div></div><div class="actions"><button id="roll" class="btn">🎲 サイコロを振る</button></div><button id="settings" class="soft" style="min-height:32px;font-size:12px">設定に戻る</button></section>
 <section id="result" class="result panel"><h2>🎉 ゴール！</h2><div id="winner" class="winner"></div><div id="final" class="final"></div><button id="again" class="btn">もう一度遊ぶ</button><button id="backToSettings" class="soft">人数設定に戻る</button></section>
-</main><div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div></div></div><div class="penalty-result" id="penaltyResult">2本のリールで結果を決定</div><button id="penaltySpin" class="btn">リールを回す</button><button id="penaltyClose" class="soft" style="display:none;margin-top:9px">結果を確認して戻る</button><p class="penalty-help penalty-note">飲酒は任意です。無理せずノンアルコールへの変更・パスもOK。</p></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
+</main><button type="button" id="tapTurnOverlay" class="tap-turn-overlay" aria-label="次のプレイヤーの番を開始"><span class="tap-turn-content"><span class="tap-turn-prefix">次は</span><strong id="tapTurnName" class="tap-turn-name"></strong><span class="tap-turn-suffix">の番！</span><span class="tap-turn-hint">画面をタップしてスタート</span></span></button>
+<div id="punishment" class="punishment-cover" role="dialog" aria-modal="true" aria-labelledby="penaltyTitle"><div class="punishment-box"><h2 id="penaltyTitle">罰ゲーム · SLOT</h2><p class="penalty-help" id="penaltyPlayer"></p><div class="reels"><div class="reel-column"><div class="reel-title">DRINK / 飲み物</div><div class="reel-viewport"><div class="reel-strip" id="drinkReel"></div><div class="reel-line"></div></div><button id="spinDrink" class="btn reel-button">飲み物を回す</button></div><div class="reel-column"><div class="reel-title">COUNT / 杯数</div><div class="reel-viewport"><div class="reel-strip" id="countReel"></div><div class="reel-line"></div></div><button id="spinCount" class="btn reel-button">杯数を回す</button></div></div><div class="penalty-result" id="penaltyResult">それぞれのボタンで抽選！</div><button id="penaltyClose" class="soft" style="display:none;margin-top:9px">結果を確認して次の人へ</button><p class="penalty-help penalty-note">飲酒は任意です。ノンアルコールへの変更・パスもOK。</p></div></div><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script>
 <script>
 (()=>{
 'use strict';
@@ -109,17 +113,40 @@ function render(){
  $('turn').textContent=(players[current]||'プレイヤー1')+'の番';$('round').textContent=turnCount+'ターン目';
  $('ranking').innerHTML=players.map((p,i)=>({p,i,remain:30-positions[i]})).sort((a,b)=>a.remain-b.remain||a.i-b.i).map((o,k)=>'<div><b style="color:'+colors[o.i]+'">'+(k+1)+'位 ●</b> '+esc(o.p)+' あと'+o.remain+'マス</div>').join('');
  showDie(last);$('value').textContent=last||'—';
- $('roll').disabled=busy||phase!=='ready';$('next').disabled=busy||phase!=='rolled';
+ $('roll').disabled=busy||phase!=='ready';
+}
+function showTapTurn(){
+ $('tapTurnName').textContent=players[current];
+ $('tapTurnOverlay').classList.add('on');
+}
+function advanceTurn(){
+ if(phase==='finished'||phase==='setup')return;
+ current=(current+1)%players.length;turnCount++;
+ // Skip a resting player automatically; never leave the game stuck on a disabled roll.
+ let skipped=[];
+ for(let i=0;i<players.length&&skips[current]>0;i++){
+   skips[current]--;skipped.push(players[current]);
+   current=(current+1)%players.length;turnCount++;
+ }
+ phase='ready';busy=false;last=0;
+ $('message').textContent=skipped.length?skipped.join('・')+'は1回休み！':'サイコロを振ろう！';
+ render();showTapTurn();
+}
+function completeTurn(){
+ if(phase==='finished'||phase==='setup')return;
+ phase='transition';busy=true;render();
+ timer=setTimeout(()=>{timer=null;advanceTurn()},350);
 }
 function start(){
  const names=setup.validate();if(!names)return;
- reelRun++;if(timer){clearTimeout(timer);clearInterval(timer);timer=null} $('punishment').classList.remove('on');players=names;positions=players.map(()=>0);skips=players.map(()=>0);current=0;turnCount=1;last=0;busy=false;phase='ready';screen('game');$('message').textContent='サイコロを振ろう！';render();GameTurnOverlay.show(players[current]);
+ reelRun++;
+ if(timer){clearTimeout(timer);clearInterval(timer);timer=null}
+ $('punishment').classList.remove('on');$('tapTurnOverlay').classList.remove('on');
+ players=names;positions=players.map(()=>0);skips=players.map(()=>0);
+ current=0;turnCount=1;last=0;busy=false;phase='ready';screen('game');
+ $('message').textContent='サイコロを振ろう！';render();showTapTurn();
 }
-function endTurn(){
- if(phase!=='rolled'||busy)return;
- current=(current+1)%players.length;turnCount++;phase='ready';last=0;$('message').textContent='サイコロを振ろう！';render();GameTurnOverlay.show(players[current]);
- if(skips[current]>0){skips[current]--;$('message').textContent=players[current]+'は1回休み！';phase='rolled';render();}
-}
+$('tapTurnOverlay').onclick=()=>{$('tapTurnOverlay').classList.remove('on')};
 function finish(){
  phase='finished';render();$('winner').textContent=players[current];$('final').innerHTML=players.map((p,i)=>esc(p)+'：'+positions[i]+'マス').join('<br>');screen('result');
 }
@@ -129,60 +156,53 @@ const drinkOptions=[{name:'グラス',weight:50},{name:'焼酎',weight:30},{name
 // Confirmed: 1杯80%, 0杯10%, 2杯10%.
 const countOptions=[{name:'1杯',weight:80},{name:'0杯',weight:10},{name:'2杯',weight:10}];
 const REEL_ITEM_HEIGHT=54,REEL_TARGET_INDEX=43;
-let reelRun=0;
+let reelRun=0,penaltySelection={drink:null,count:null},reelTimers={drink:null,count:null};
 function weightedPick(options){
  const total=options.reduce((sum,item)=>sum+item.weight,0);
  let r=Math.random()*total;
- for(const item of options){r-=item.weight;if(r<0)return item.name;}
+ for(const item of options){r-=item.weight;if(r<0)return item.name}
  return options[options.length-1].name;
 }
 function fillReel(id,options,result){
- const reel=$(id),arr=[];
- for(let i=0;i<=REEL_TARGET_INDEX+2;i++){
-   arr.push(i===REEL_TARGET_INDEX?result:options[Math.floor(Math.random()*options.length)].name);
- }
- reel.style.transition='none';
- reel.style.transform='translateY(0px)';
- reel.innerHTML=arr.map((label,i)=>'<div class="reel-item'+(i===REEL_TARGET_INDEX?' selected':'')+'">'+esc(label)+'</div>').join('');
- return reel;
+ const el=$(id),items=[];
+ for(let i=0;i<=REEL_TARGET_INDEX+2;i++)
+   items.push(i===REEL_TARGET_INDEX?result:options[Math.floor(Math.random()*options.length)].name);
+ el.style.transition='none';el.style.transform='translateY(0px)';
+ el.innerHTML=items.map((label,i)=>'<div class="reel-item'+(i===REEL_TARGET_INDEX?' selected':'')+'">'+esc(label)+'</div>').join('');
+ return el;
 }
 function showPenalty(){
- phase='penalty';busy=false;render();
+ phase='penalty';busy=false;render();penaltySelection={drink:null,count:null};
  $('penaltyPlayer').textContent=players[current]+' の罰ゲーム！';
- $('penaltyResult').textContent='2本のリールで結果を決定';
- $('penaltySpin').disabled=false;$('penaltySpin').style.display='block';
+ $('penaltyResult').textContent='それぞれのボタンで抽選！';
+ $('spinDrink').disabled=false;$('spinCount').disabled=false;
+ $('spinDrink').textContent='飲み物を回す';$('spinCount').textContent='杯数を回す';
  $('penaltyClose').style.display='none';
- // Visible idle values are examples, not the future weighted result.
- fillReel('drinkReel',drinkOptions,'グラス');
- fillReel('countReel',countOptions,'1杯');
+ fillReel('drinkReel',drinkOptions,'グラス');fillReel('countReel',countOptions,'1杯');
  $('punishment').classList.add('on');
 }
-function spinPenalty(){
- if(phase!=='penalty'||busy)return;
- busy=true;$('penaltySpin').disabled=true;
- const run=++reelRun;
- const drink=weightedPick(drinkOptions),count=weightedPick(countOptions);
- const d=fillReel('drinkReel',drinkOptions,drink);
- const n=fillReel('countReel',countOptions,count);
- $('penaltyResult').textContent='抽選中…';
- // Reflow ensures the transition starts from zero even on repeated games.
- void d.offsetHeight;
- const destination=54-REEL_TARGET_INDEX*REEL_ITEM_HEIGHT;
- d.style.transition='transform 2.5s cubic-bezier(.12,.68,.14,1)';
- n.style.transition='transform 3.2s cubic-bezier(.10,.70,.12,1)';
- d.style.transform='translateY('+destination+'px)';
- n.style.transform='translateY('+destination+'px)';
- timer=setTimeout(()=>{
-   if(run!==reelRun)return;
-   timer=null;busy=false;
-   $('penaltyResult').textContent=drink+' '+count;
-   $('penaltySpin').style.display='none';
-   $('penaltyClose').style.display='block';
- },3300);
+function spinOneReel(type){
+ if(phase!=='penalty'||penaltySelection[type]!==null||reelTimers[type]!==null)return;
+ const isDrink=type==='drink',options=isDrink?drinkOptions:countOptions;
+ const result=weightedPick(options),reel=fillReel(isDrink?'drinkReel':'countReel',options,result);
+ const btn=$(isDrink?'spinDrink':'spinCount'),run=reelRun;
+ btn.disabled=true;btn.textContent='抽選中…';
+ void reel.offsetHeight;
+ reel.style.transition='transform 2.5s cubic-bezier(.12,.68,.14,1)';
+ reel.style.transform='translateY('+(-REEL_TARGET_INDEX*REEL_ITEM_HEIGHT)+'px)';
+ reelTimers[type]=setTimeout(()=>{
+   reelTimers[type]=null;
+   if(run!==reelRun||phase!=='penalty')return;
+   penaltySelection[type]=result;btn.textContent='確定：'+result;
+   if(penaltySelection.drink!==null&&penaltySelection.count!==null){
+      $('penaltyResult').textContent=penaltySelection.drink+' '+penaltySelection.count;
+      $('penaltyClose').style.display='block';
+   }else $('penaltyResult').textContent=(isDrink?'飲み物':'杯数')+'が確定！ もう片方も回そう';
+ },2600);
 }
 function closePenalty(){
- if(busy||phase!=='penalty'||$('penaltyClose').style.display==='none')return;
- $('punishment').classList.remove('on');phase='rolled';render();
+ if(phase!=='penalty'||penaltySelection.drink===null||penaltySelection.count===null)return;
+ $('punishment').classList.remove('on');completeTurn();
 }
 function moveTo(target,done){
  const from=positions[current],direction=Math.sign(target-from);
@@ -200,25 +220,25 @@ function moveTo(target,done){
 function afterMove(){
  if(positions[current]===30){busy=false;finish();return;}
  const pos=positions[current],ev=events[pos];
- if(!ev){busy=false;phase='rolled';$('message').textContent=pos+'マスに到着！';render();return;}
+ if(!ev){busy=false;$('message').textContent=pos+'マスに到着！';completeTurn();return;}
  if(ev[0]==='warp'){
    const requested=pos+4;
    // Exact-landing rule also applies to special movement toward GOAL.
    const destination=requested>30?pos:Math.max(0,requested);
    $('message').textContent=ev[1]+'！ '+(destination===pos?'ゴールを超えるため進めない':destination+'マスへ移動');
-   if(destination===pos){busy=false;phase='rolled';render();return;}
-   moveTo(destination,()=>{busy=false;if(positions[current]===30){finish();return;}phase='rolled';$('message').textContent=positions[current]+'マスへ移動した！';render()});
+   if(destination===pos){busy=false;completeTurn();return;}
+   moveTo(destination,()=>{busy=false;if(positions[current]===30){finish();return;}$('message').textContent=positions[current]+'マスへ移動した！';completeTurn()});
    return;
  }
  busy=false;
- if(ev[0]==='skip'){skips[current]++;phase='rolled';$('message').textContent='次の番は1回休み！';}
+ if(ev[0]==='skip'){skips[current]++;$('message').textContent='次の番は1回休み！';completeTurn();return;}
  else if(ev[0]==='again'){phase='ready';$('message').textContent='もう1回サイコロを振れる！';}
  else if(ev[0]==='penalty'){$('message').textContent='罰ゲームマス！';showPenalty();return;}
- else phase='rolled';
+ else {completeTurn();return;}
  render();
 }
 function roll(){
- if(phase!=='ready'||busy||GameTurnOverlay.isShowing())return;
+ if(phase!=='ready'||busy||$('tapTurnOverlay').classList.contains('on'))return;
  busy=true;const n=Math.floor(Math.random()*6)+1;last=n;$('message').textContent='サイコロを振っています…';render();
  let ticks=0;timer=setInterval(()=>{
    showDie(Math.floor(Math.random()*6)+1);$('value').textContent='…';
@@ -226,15 +246,15 @@ function roll(){
    clearInterval(timer);timer=null;
    const remaining=30-positions[current],overshoot=n>remaining;
    if(overshoot){
-     busy=false;phase='rolled';$('message').textContent='出目は'+n+'。残り'+remaining+'マスなので進めない！';render();return;
+     busy=false;$('message').textContent='出目は'+n+'。残り'+remaining+'マスなので進めない！';completeTurn();return;
    }
    $('message').textContent='出目は'+n+'！ 1マスずつ進むよ';
    moveTo(positions[current]+n,afterMove);
  },75);
 }
-$('penaltySpin').onclick=spinPenalty;$('penaltyClose').onclick=closePenalty;
-function settings(){reelRun++;if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('punishment').classList.remove('on');busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
-$('start').onclick=start;$('roll').onclick=roll;$('next').onclick=endTurn;$('settings').onclick=settings;$('again').onclick=start;$('backToSettings').onclick=settings;
-GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='rolled'||phase==='penalty'||busy});
+$('spinDrink').onclick=()=>spinOneReel('drink');$('spinCount').onclick=()=>spinOneReel('count');$('penaltyClose').onclick=closePenalty;
+function settings(){reelRun++;for(const type of ['drink','count']){clearTimeout(reelTimers[type]);reelTimers[type]=null}if(timer){clearInterval(timer);clearTimeout(timer);timer=null}$('tapTurnOverlay').classList.remove('on');$('punishment').classList.remove('on');busy=false;phase='setup';GameTurnOverlay.hide();screen('setup')}
+$('start').onclick=start;$('roll').onclick=roll;$('settings').onclick=settings;$('again').onclick=start;$('backToSettings').onclick=settings;
+GameExitGuard.configure({buttons:['exitBack','settings','again','backToSettings'],isActive:()=>phase==='ready'||phase==='transition'||phase==='penalty'||busy});
 })();
 </script><script src="../shared/audio.js"></script></body></html>

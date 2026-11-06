@@ -55,3 +55,13 @@ button:disabled{opacity:.45!important}
 .timer,.clock,.score,.rank,.stage{color:#fff3fb}
 select option{background:#211322;color:#fff3fb}
 input[type=checkbox],input[type=radio]{accent-color:#F04DAA!important}
+
+/* v2.23.0: keep exit/settings controls away from primary game actions. */
+:is(#settings,#backToSettings)[type=button],button#settings,button#backToSettings{
+  width:fit-content!important;max-width:100%;min-width:0!important;
+  align-self:flex-end!important;margin-top:18px!important;margin-left:auto!important;
+  padding:9px 15px!important;min-height:38px!important;font-size:12px!important;
+  font-weight:750!important;flex:0 0 auto!important;
+}
+/* In horizontal action groups, reserve a gap without stretching the exit action. */
+:is(.actions,.buttons,.bottom,.result-actions,.race-controls):has(> #settings,> #backToSettings){column-gap:14px;row-gap:14px;flex-wrap:wrap}

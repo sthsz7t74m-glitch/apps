@@ -31,4 +31,43 @@
   if(!config.isActive())return;
   e.preventDefault();e.stopImmediatePropagation();window.GameExitGuard.confirmAction(button);
  },true);
+ // Keep settings controls in the header, away from large gameplay buttons.
+ function installTopSettings(){
+  const header=document.querySelector('.app > header, main > header, .app header');
+  if(!header||document.getElementById('gb-top-settings'))return;
+  const sources=[...document.querySelectorAll('button#settings,button#backToSettings')];
+  if(!sources.length)return;
+  const style=document.createElement('style');
+  style.textContent='.gb-top-settings-source{position:absolute!important;visibility:hidden!important;pointer-events:none!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important}.gb-top-settings{flex:none!important;min-width:0!important;width:auto!important;max-width:96px!important;min-height:34px!important;padding:5px 10px!important;margin:0 0 0 6px!important;border:1px solid #874265!important;border-radius:11px!important;background:#321b2e!important;color:#ffb9dd!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important;line-height:1.2!important;touch-action:manipulation}.gb-top-settings[hidden]{display:none!important}';
+  document.head.append(style);
+  const top=document.createElement('button');
+  top.type='button';top.id='gb-top-settings';top.className='gb-top-settings';top.textContent='設定';top.title='設定に戻る';top.setAttribute('aria-label','設定に戻る');top.hidden=true;
+  const version=header.querySelector('.version,.ver,small');
+  if(version)header.insertBefore(top,version);else header.append(top);
+  let active=null;
+  const isParentVisible=source=>{
+   for(let node=source.parentElement;node;node=node.parentElement){
+    const cs=getComputedStyle(node);
+    if(cs.display==='none'||cs.visibility==='hidden')return false;
+   }
+   return true;
+  };
+  function refresh(){
+   const next=sources.find(isParentVisible)||null;
+   if(active!==next)active=next;
+   for(const source of sources)source.classList.toggle('gb-top-settings-source',source===active);
+   top.hidden=!active;
+  }
+  top.addEventListener('click',()=>{
+   if(!active)return;
+   if(config&&config.buttons.includes(active.id)&&config.isActive())window.GameExitGuard.confirmAction(active);
+   else active.click();
+  });
+  const observer=new MutationObserver(refresh);
+  observer.observe(document.body,{attributes:true,attributeFilter:['class','style','hidden'],subtree:true});
+  refresh();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installTopSettings,{once:true});
+ else installTopSettings();
+
 })();

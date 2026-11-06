@@ -56,7 +56,7 @@
    const next=sources.find(isParentVisible)||null;
    if(active!==next)active=next;
    for(const source of sources)source.classList.toggle('gb-top-settings-source',source===active);
-   top.hidden=!active;
+   if(top.hidden===Boolean(active))top.hidden=!active;
   }
   top.addEventListener('click',()=>{
    if(!active)return;

@@ -10,7 +10,8 @@ let previous=0;
 document.addEventListener('touchend',event=>{
  if(event.changedTouches.length!==1||event.touches.length)return;
  const target=event.target;
- // Native controls already have touch-action: manipulation; never cancel their taps.\n if(target.closest?.('a,button,input,textarea,select,label,summary,[role="button"],[contenteditable="true"]')){previous=0;return;}
+ // Native controls already have touch-action: manipulation; never cancel their taps.
+ if(target.closest?.('a,button,input,textarea,select,label,summary,[role="button"],[contenteditable="true"]')){previous=0;return;}
  const now=Date.now();if(now-previous<310)event.preventDefault();previous=now;
 },{passive:false});
 })();

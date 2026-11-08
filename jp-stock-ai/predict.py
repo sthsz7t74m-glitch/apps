@@ -68,28 +68,47 @@ def prepare(raw):
     y = close.shift(-HORIZON) / close - 1
     return close, x, y
 
-def one_week_ago_check(close, features, target, common):
-    """Simulate a decision made five sessions ago, without future labels."""
-    cutoff_pos = len(close) - 1 - HORIZON
-    cutoff_date = close.index[cutoff_pos]
+def daily_forecast(close, features, cutoff_pos, common):
+    """Fit independent models for horizons 1..5 with labels mature at cutoff."""
+    cutoff_price = float(close.iloc[cutoff_pos])
     input_row = features.iloc[[cutoff_pos]]
     if not input_row.notna().all(axis=None):
-        raise ValueError("過去時点の特徴量が不正です")
-    # Labels at cutoff were observable only for rows <= cutoff - 5 sessions.
-    limit = cutoff_pos - HORIZON + 1
-    past_x, past_y = features.iloc[:limit], target.iloc[:limit]
-    eligible = past_x.notna().all(axis=1) & past_y.notna() & np.isfinite(past_y)
-    train_x = past_x.loc[eligible]
-    train_y = past_y.loc[eligible].clip(-0.5, 0.5)
-    if len(train_x) < 350:
-        raise ValueError("過去時点の学習データ不足")
-    model = HistGradientBoostingRegressor(**common)
-    model.fit(train_x, train_y)
-    predicted_return = float(np.clip(model.predict(input_row)[0], -0.3, 0.3))
+        raise ValueError("予測基準日の特徴量が不正です")
+    result = [{"day": 0, "price": round(cutoff_price, 2)}]
+    # For a k-session target, the latest observable training target
+    # starts at or before cutoff_pos-k.
+    for horizon in range(1, HORIZON + 1):
+        label = close.shift(-horizon) / close - 1
+        limit = cutoff_pos - horizon + 1
+        past_x, past_y = features.iloc[:limit], label.iloc[:limit]
+        eligible = past_x.notna().all(axis=1) & past_y.notna() & np.isfinite(past_y)
+        xtrain = past_x.loc[eligible]
+        ytrain = past_y.loc[eligible].clip(-0.5, 0.5)
+        if len(xtrain) < 350:
+            raise ValueError(f"{horizon}日先の学習データが不足")
+        reg = HistGradientBoostingRegressor(**common)
+        reg.fit(xtrain, ytrain)
+        predicted_change = float(np.clip(reg.predict(input_row)[0], -0.3, 0.3))
+        result.append({"day": horizon, "price": round(cutoff_price * (1 + predicted_change), 2),
+                       "return_pct": round(predicted_change * 100, 2)})
+    return result
+
+
+def one_week_ago_check(close, features, target, common):
+    """Reconstruct 1..5 day predictions with only information available at cutoff."""
+    cutoff_pos = len(close) - 1 - HORIZON
+    cutoff_date = close.index[cutoff_pos]
+    predicted = daily_forecast(close, features, cutoff_pos, common)
     start_price = float(close.iloc[cutoff_pos])
     actual_price = float(close.iloc[-1])
-    predicted_price = start_price * (1 + predicted_return)
+    predicted_price = predicted[-1]["price"]
+    predicted_return = predicted_price / start_price - 1
     actual_return = actual_price / start_price - 1
+    actual_series = [
+        {"day": offset, "date": close.index[cutoff_pos + offset].strftime("%Y-%m-%d"),
+         "price": round(float(close.iloc[cutoff_pos + offset]), 2)}
+        for offset in range(HORIZON + 1)
+    ]
     return {
         "asof": cutoff_date.strftime("%Y-%m-%d"),
         "target_date": close.index[-1].strftime("%Y-%m-%d"),
@@ -101,8 +120,9 @@ def one_week_ago_check(close, features, target, common):
         "price_error_yen": round(predicted_price - actual_price, 2),
         "absolute_error_pct": round(abs(predicted_price / actual_price - 1) * 100, 2),
         "direction_correct": bool((predicted_return > 0) == (actual_return > 0)),
-        "train_samples": len(train_x),
-        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+        "daily_forecast": predicted,
+        "daily_actual": actual_series,
+        "method": "各1～5取引日先を独立学習。各予測時点までに確定済みの教師データのみ使用"
     }
 
 
@@ -151,8 +171,11 @@ def forecast(code, name):
     ranking_reason = ("誤差・方向的中率とも基準値を上回る" if quality_pass else "検証成績が単純予測の基準を両方は超えていない")
     dates = dataset.index[first_test:]
     historical_check = one_week_ago_check(close, features, target, common)
+    future_daily = daily_forecast(close, features, len(close) - 1, common)
+    change = future_daily[-1]['price'] / current - 1
     return {
         "one_week_ago_check": historical_check,
+        "daily_forecast": future_daily,
         "ranking_quality": ranking_quality, "ranking_quality_pass": quality_pass,
         "ranking_quality_reason": ranking_reason,
         "code": code, "name": name, "asof": close.index[-1].strftime("%Y-%m-%d"),
@@ -172,7 +195,7 @@ def forecast(code, name):
     }
 
 def main():
-    payload = {"version":"0.3.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
+    payload = {"version":"0.5.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
     for code, name in TICKERS.items():
         try:
             payload["stocks"].append(forecast(code,name))

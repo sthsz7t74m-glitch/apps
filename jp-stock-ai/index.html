@@ -19,10 +19,14 @@ svg.chart{width:100%;height:190px;display:block;overflow:visible}.axis{font-size
 #error{color:#9f3341;background:#fff0f1;border:1px solid #f5d3d7;padding:14px;border-radius:14px}#error[hidden],#content[hidden],#pastPanel[hidden]{display:none}
 .footer{font-size:12px;color:#8290a5;line-height:1.7;margin-top:20px}
 @media(max-width:390px){.shell{padding-left:12px;padding-right:12px}.panel{padding:14px}.hero{gap:8px}.tile{padding:10px}}
+
+.ranking-actions{display:flex;gap:8px;margin:12px 0}.ranking-actions button{flex:1;border:1px solid #d8e3f4;background:#f4f7fc;border-radius:11px;padding:11px 8px;color:#415571;font-weight:750;cursor:pointer}.ranking-actions button.active{background:#276de4;color:#fff;border-color:#276de4}.rank-list{display:grid;gap:8px}.rank-item{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid #e2e9f4;border-radius:14px;padding:12px;background:white;color:inherit;cursor:pointer}.rank-no{font-size:14px;color:#8ba0b9;font-weight:800;width:24px;text-align:center}.rank-info{flex:1;min-width:0}.rank-title{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-meta{font-size:11px;color:#7b8aa0;margin-top:5px}.rank-change{font-weight:800;font-size:18px;white-space:nowrap}.quality{font-size:10px;padding:3px 6px;border-radius:5px;background:#f1f5fa;color:#66788e}.quality.good{background:#e3f5ed;color:#13785b}.rank-empty{padding:14px;color:#70809a;font-size:13px;background:#f7f9fd;border-radius:10px}.ranking-note{color:#748299;font-size:12px;line-height:1.7}#rankPanel[hidden]{display:none}
 </style></head><body><main class="shell">
-<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.2.0</span></header>
-<section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted">東証の主要10銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span></div></section>
+<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.3.0</span></header>
+<section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted">東証の主要50銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span></div></section>
 <p id="error" role="alert" hidden></p>
+<section class="panel" id="rankPanel" hidden><div class="eyebrow">AI SIGNAL RANKING</div><h2 style="margin-top:6px">買い候補・売り候補ランキング</h2><p class="ranking-note">今後5取引日の予測騰落率で並べた研究用ランキング。利益・売買推奨を保証するものではありません。検証成績が単純予測を上回る銘柄には「基準通過」を表示。</p><div class="ranking-actions"><button type="button" class="active" id="buyTab" aria-pressed="true">買い候補 ↑</button><button type="button" id="sellTab" aria-pressed="false">売り候補 ↓</button></div><div class="rank-list" id="rankList"></div><p class="ranking-note" id="rankSummary"></p></section>
+
 <div id="content" hidden>
 <section class="panel"><div class="eyebrow">5-SESSION FORECAST</div><h2 id="stockTitle" style="margin-top:5px"></h2><div class="hero"><div class="tile"><span>直近終値（調整後）</span><strong id="price"></strong></div><div class="tile"><span>5取引日後の予測値</span><strong id="forecast"></strong></div></div><div class="subline"><strong class="big" id="change"></strong><span class="pill">予測騰落率</span></div><div class="muted" id="asof"></div></section>
 <section class="panel"><h2>株価推移と予測</h2><svg id="chart" class="chart" viewBox="0 0 340 190" role="img" aria-label="最近の終値と5取引日後の予測値の折れ線グラフ"></svg><div class="legend"><span><b></b>過去の株価</span><span><b class="dashed"></b>予測</span></div></section>
@@ -38,6 +42,32 @@ const $ = id => document.getElementById(id);
 const yen = n => new Intl.NumberFormat("ja-JP",{style:"currency",currency:"JPY",maximumFractionDigits:2}).format(n);
 const pct = n => (n>0?"+":"")+Number(n).toFixed(2)+"%";
 let stocks=[];
+let rankMode="buy";
+let rankingReady=false;
+function renderRanking(){
+ if(!rankingReady)return;
+ const isBuy=rankMode==="buy";
+ $("buyTab").classList.toggle("active",isBuy);$("sellTab").classList.toggle("active",!isBuy);
+ $("buyTab").setAttribute("aria-pressed",String(isBuy));$("sellTab").setAttribute("aria-pressed",String(!isBuy));
+ const eligible=stocks.filter(s=>Number.isFinite(s.return_pct) && (isBuy?s.return_pct>0:s.return_pct<0));
+ eligible.sort((a,b)=>isBuy?b.return_pct-a.return_pct:a.return_pct-b.return_pct);
+ $("rankList").replaceChildren();
+ if(!eligible.length){const x=document.createElement("div");x.className="rank-empty";x.textContent="該当する予測銘柄はありません。";$("rankList").append(x);}
+ eligible.slice(0,20).forEach((s,i)=>{
+  const button=document.createElement("button");button.type="button";button.className="rank-item";
+  const number=document.createElement("span");number.className="rank-no";number.textContent=i+1;
+  const info=document.createElement("div");info.className="rank-info";
+  const name=document.createElement("div");name.className="rank-title";name.textContent=s.code+" "+s.name;
+  const meta=document.createElement("div");meta.className="rank-meta";meta.textContent="基準日 "+s.asof+" ・ 予測 "+yen(s.forecast);
+  const quality=document.createElement("span");quality.className="quality"+(s.ranking_quality_pass?" good":"");quality.textContent=s.ranking_quality_pass?"基準通過":"精度未確認";
+  meta.append(" ",quality);info.append(name,meta);
+  const value=document.createElement("span");value.className="rank-change "+(isBuy?"positive":"negative");value.textContent=pct(s.return_pct);
+  button.append(number,info,value);
+  button.addEventListener("click",()=>{$("ticker").value=s.code;render(s);$("content").scrollIntoView({behavior:"smooth",block:"start"});});
+  $("rankList").append(button);
+ });
+ $("rankSummary").textContent="全"+stocks.length+"銘柄中、"+eligible.length+"銘柄が該当。最大20件表示。実績検証の基準通過は"+eligible.filter(s=>s.ranking_quality_pass).length+"件。基準通過でも将来の利益を保証しません。";
+}
 function renderChart(s){
  const values=s.history.slice(-45).map(p=>p.price),future=s.forecast, all=[...values,future];
  const lo=Math.min(...all),hi=Math.max(...all), pad=Math.max((hi-lo)*.16,hi*.007),min=lo-pad,max=hi+pad;
@@ -82,9 +112,27 @@ async function main(){
   if(!response.ok)throw new Error("予測データがまだ作成されていません。GitHub Actionsから初回実行してください。");
   const payload=await response.json();
   if(!Array.isArray(payload.stocks)||!payload.stocks.length)throw new Error("有効な予測データがありません。");
-  stocks=payload.stocks;
+  stocks=payload.stocks.filter(s=>Number.isFinite(s.return_pct) && s.metrics && s.asof);
+  if(!stocks.length)throw new Error("有効な予測銘柄がありません。");
+  const maxAsOf=stocks.map(s=>s.asof).sort().at(-1);
+  const dayAge=(Date.now()-new Date(maxAsOf+"T00:00:00+09:00").getTime())/86400000;
+  const fresh=dayAge>=0 && dayAge<=7;
+  const currentStocks=stocks.filter(s=>s.asof===maxAsOf);
+  if(fresh && currentStocks.length){
+   stocks=currentStocks;
+   rankingReady=true;
+   $("rankPanel").hidden=false;
+   renderRanking();
+  }else{
+   $("rankPanel").hidden=true;
+   const warn=document.createElement("div");warn.className="note";
+   warn.textContent="データが古いため現在のランキングは非表示です。最終基準日: "+maxAsOf;
+   $("rankPanel").after(warn);
+  }
   $("ticker").replaceChildren(...stocks.map(s=>{const o=document.createElement("option");o.value=s.code;o.textContent=s.code+"｜"+s.name;return o;}));
   $("ticker").disabled=false;
+  $("buyTab").addEventListener("click",()=>{rankMode="buy";renderRanking();});
+  $("sellTab").addEventListener("click",()=>{rankMode="sell";renderRanking();});
   $("ticker").addEventListener("change",()=>render(stocks.find(s=>s.code===$("ticker").value)));
   $("updated").textContent="最終計算: "+new Date(payload.generated_at).toLocaleString("ja-JP",{timeZone:"Asia/Tokyo"})+" JST";
   render(stocks[0]);

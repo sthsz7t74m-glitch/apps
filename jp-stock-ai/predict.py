@@ -52,6 +52,44 @@ def prepare(raw):
     y = close.shift(-HORIZON) / close - 1
     return close, x, y
 
+def one_week_ago_check(close, features, target, common):
+    """Simulate a decision made five sessions ago, without future labels."""
+    cutoff_pos = len(close) - 1 - HORIZON
+    cutoff_date = close.index[cutoff_pos]
+    input_row = features.iloc[[cutoff_pos]]
+    if not input_row.notna().all(axis=None):
+        raise ValueError("過去時点の特徴量が不正です")
+    # Labels at cutoff were observable only for rows <= cutoff - 5 sessions.
+    limit = cutoff_pos - HORIZON + 1
+    past_x, past_y = features.iloc[:limit], target.iloc[:limit]
+    eligible = past_x.notna().all(axis=1) & past_y.notna() & np.isfinite(past_y)
+    train_x = past_x.loc[eligible]
+    train_y = past_y.loc[eligible].clip(-0.5, 0.5)
+    if len(train_x) < 350:
+        raise ValueError("過去時点の学習データ不足")
+    model = HistGradientBoostingRegressor(**common)
+    model.fit(train_x, train_y)
+    predicted_return = float(np.clip(model.predict(input_row)[0], -0.3, 0.3))
+    start_price = float(close.iloc[cutoff_pos])
+    actual_price = float(close.iloc[-1])
+    predicted_price = start_price * (1 + predicted_return)
+    actual_return = actual_price / start_price - 1
+    return {
+        "asof": cutoff_date.strftime("%Y-%m-%d"),
+        "target_date": close.index[-1].strftime("%Y-%m-%d"),
+        "asof_price": round(start_price, 2),
+        "predicted_price": round(predicted_price, 2),
+        "actual_price": round(actual_price, 2),
+        "predicted_return_pct": round(predicted_return * 100, 2),
+        "actual_return_pct": round(actual_return * 100, 2),
+        "price_error_yen": round(predicted_price - actual_price, 2),
+        "absolute_error_pct": round(abs(predicted_price / actual_price - 1) * 100, 2),
+        "direction_correct": bool((predicted_return > 0) == (actual_return > 0)),
+        "train_samples": len(train_x),
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+    }
+
+
 def forecast(code, name):
     raw = yf.download(code + ".T", period="7y", auto_adjust=True, progress=False, threads=False)
     if raw.empty or len(raw) < 480:
@@ -91,7 +129,9 @@ def forecast(code, name):
     probability = float(clf.predict_proba(last)[0, 1])
     current = float(close.iloc[-1])
     dates = dataset.index[first_test:]
+    historical_check = one_week_ago_check(close, features, target, common)
     return {
+        "one_week_ago_check": historical_check,
         "code": code, "name": name, "asof": close.index[-1].strftime("%Y-%m-%d"),
         "price": round(current, 2), "forecast": round(current * (1 + change), 2),
         "return_pct": round(change * 100, 2), "up_probability_pct": round(probability * 100, 1),
@@ -109,7 +149,7 @@ def forecast(code, name):
     }
 
 def main():
-    payload = {"version":"0.1.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
+    payload = {"version":"0.2.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
     for code, name in TICKERS.items():
         try:
             payload["stocks"].append(forecast(code,name))

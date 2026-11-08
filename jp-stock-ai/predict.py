@@ -126,6 +126,60 @@ def one_week_ago_check(close, features, target, common):
     }
 
 
+def rolling_one_day_forecasts(close, features, common, shown_days=70, refit_every=10):
+    """Out-of-sample daily predictions for every plotted historical session.
+
+    For a target session at index t, use features and price from t-1.
+    Model is fitted with only 1-day labels fully observed at or before t-1.
+    Refit periodically to bound compute; never train on a future observation.
+    """
+    start = max(1, len(close) - shown_days)
+    target = close.shift(-1) / close - 1
+    model = None
+    records = []
+    for t in range(start, len(close)):
+        origin = t - 1
+        if model is None or (t - start) % refit_every == 0:
+            train_x = features.iloc[:origin]
+            train_y = target.iloc[:origin]
+            valid = train_x.notna().all(axis=1) & train_y.notna() & np.isfinite(train_y)
+            train_x = train_x.loc[valid]
+            train_y = train_y.loc[valid].clip(-0.5, 0.5)
+            if len(train_x) < 350:
+                raise ValueError("連続バックテストの学習データが不足")
+            model = HistGradientBoostingRegressor(**common)
+            model.fit(train_x, train_y)
+        input_row = features.iloc[[origin]]
+        if not input_row.notna().all(axis=None):
+            raise ValueError("連続バックテストの特徴量が不正")
+        predicted_return = float(np.clip(model.predict(input_row)[0], -0.3, 0.3))
+        predicted_price = float(close.iloc[origin]) * (1 + predicted_return)
+        observed_price = float(close.iloc[t])
+        records.append({
+            "date": close.index[t].strftime("%Y-%m-%d"),
+            "prediction_asof": close.index[origin].strftime("%Y-%m-%d"),
+            "predicted_price": round(predicted_price, 2),
+            "actual_price": round(observed_price, 2),
+            "previous_price": round(float(close.iloc[origin]), 2),
+            "direction_correct": bool((predicted_return > 0) == (observed_price > float(close.iloc[origin])))
+        })
+    if not records:
+        raise ValueError("連続バックテストの予測が生成されていません")
+    error = [abs(r["predicted_price"] / r["actual_price"] - 1) * 100 for r in records]
+    naive = [abs(r["previous_price"] / r["actual_price"] - 1) * 100 for r in records]
+    return {
+        "points": records,
+        "metrics": {
+            "samples": len(records),
+            "direction_accuracy_pct": round(100 * sum(r["direction_correct"] for r in records) / len(records), 1),
+            "mean_absolute_price_error_pct": round(float(np.mean(error)), 2),
+            "unchanged_price_baseline_error_pct": round(float(np.mean(naive)), 2),
+        },
+        "method": "1取引日前に既知の価格と特徴量から翌日を予測。教師ラベルは予測時点までに確定したもののみ。モデルは10取引日ごとに更新。"
+    }
+
+
+
 def forecast(code, name):
     raw = yf.download(code + ".T", period="7y", auto_adjust=True, progress=False, threads=False)
     if raw.empty or len(raw) < 480:
@@ -172,10 +226,12 @@ def forecast(code, name):
     dates = dataset.index[first_test:]
     historical_check = one_week_ago_check(close, features, target, common)
     future_daily = daily_forecast(close, features, len(close) - 1, common)
+    rolling_history = rolling_one_day_forecasts(close, features, common)
     change = future_daily[-1]['price'] / current - 1
     return {
         "one_week_ago_check": historical_check,
         "daily_forecast": future_daily,
+        "rolling_history": rolling_history,
         "ranking_quality": ranking_quality, "ranking_quality_pass": quality_pass,
         "ranking_quality_reason": ranking_reason,
         "code": code, "name": name, "asof": close.index[-1].strftime("%Y-%m-%d"),
@@ -195,7 +251,7 @@ def forecast(code, name):
     }
 
 def main():
-    payload = {"version":"0.5.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
+    payload = {"version":"0.6.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
     for code, name in TICKERS.items():
         try:
             payload["stocks"].append(forecast(code,name))

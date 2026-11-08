@@ -83,8 +83,9 @@ function drawLines(svgId, series, dates, opts={}){
  for(let i=0;i<4;i++){
    const value=lo+(hi-lo)*i/3, yy=y(value);
    add("line",{x1:left,y1:yy,x2:right,y2:yy,class:"gridline"});
-   add("text",{x:left-6,y:yy+4,class:"axis","text-anchor":"end"},Math.round(value).toLocaleString("ja-JP"));
+   add("text",{x:left-6,y:yy+4,class:"axis","text-anchor":"end"},svgId==="returnsChart"?value.toFixed(1)+"%":Math.round(value).toLocaleString("ja-JP"));
  }
+ if(svgId==="returnsChart" && lo<=0 && hi>=0){const z=y(0);add("line",{x1:left,y1:z,x2:right,y2:z,stroke:"#9eaec5","stroke-width":"1.4","stroke-dasharray":"3 4"});}
  for(const line of series){
    const pts=line.values.map((v,i)=>Number.isFinite(v)?[i,v]:null).filter(Boolean);
    if(pts.length>1)add("polyline",{points:pts.map(p=>x(p[0])+","+y(p[1])).join(" "),class:line.kind==="forecast"?"forecast":"path"});

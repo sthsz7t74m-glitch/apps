@@ -23,8 +23,8 @@ svg.chart{width:100%;height:auto;display:block;overflow:visible}.axis{font-size:
 .ranking-actions{display:flex;gap:8px;margin:12px 0}.ranking-actions button{flex:1;border:1px solid #d8e3f4;background:#f4f7fc;border-radius:11px;padding:11px 8px;color:#415571;font-weight:750;cursor:pointer}.ranking-actions button.active{background:#276de4;color:#fff;border-color:#276de4}.rank-list{display:grid;gap:8px}.rank-item{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid #e2e9f4;border-radius:14px;padding:12px;background:white;color:inherit;cursor:pointer}.rank-no{font-size:14px;color:#8ba0b9;font-weight:800;width:24px;text-align:center}.rank-info{flex:1;min-width:0}.rank-title{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-meta{font-size:11px;color:#7b8aa0;margin-top:5px}.rank-change{font-weight:800;font-size:18px;white-space:nowrap}.quality{font-size:10px;padding:3px 6px;border-radius:5px;background:#f1f5fa;color:#66788e}.quality.good{background:#e3f5ed;color:#13785b}.rank-empty{padding:14px;color:#70809a;font-size:13px;background:#f7f9fd;border-radius:10px}.ranking-note{color:#748299;font-size:12px;line-height:1.7}#rankPanel[hidden],#replayGraphPanel[hidden],#replayUnavailable[hidden]{display:none}
 .replay-heading{font-size:15px;margin:18px 0 10px}.replay-chart{height:auto;max-height:260px}.replay-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:9px 0}.replay-legend span{font-size:11px}.replay-footnote{font-size:12px;line-height:1.65;color:#65758e;margin:10px 0 16px}
 </style></head><body><main class="shell">
-<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.5.0</span></header>
-<section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted" id="tickerLabel">東証の主要銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span></div></section>
+<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.5.1</span></header>
+<section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted" id="tickerLabel">東証の主要銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span><span id="dataVersion" class="pill" hidden></span></div></section>
 <p id="error" role="alert" hidden></p>
 <section class="panel" id="rankPanel" hidden><div class="eyebrow">AI SIGNAL RANKING</div><h2 style="margin-top:6px">買い候補・売り候補ランキング</h2><p class="ranking-note">今後5取引日の予測騰落率で並べた研究用ランキング。利益・売買推奨を保証するものではありません。検証成績が単純予測を上回る銘柄には「基準通過」を表示。</p><div class="ranking-actions"><button type="button" class="active" id="buyTab" aria-pressed="true">買い候補 ↑</button><button type="button" id="sellTab" aria-pressed="false">売り候補 ↓</button></div><div class="rank-list" id="rankList"></div><p class="ranking-note" id="rankSummary"></p></section>
 
@@ -155,11 +155,19 @@ function render(s){
 }
 async function main(){
  try{
-  const response=await fetch("./data/predictions.json",{cache:"no-store"});
+  const response=await fetch("./data/predictions.json?refresh="+Date.now(),{cache:"no-store"});
   if(!response.ok)throw new Error("予測データがまだ作成されていません。GitHub Actionsから初回実行してください。");
   const payload=await response.json();
   if(!Array.isArray(payload.stocks)||!payload.stocks.length)throw new Error("有効な予測データがありません。");
   stocks=payload.stocks.filter(s=>Number.isFinite(s.return_pct) && s.metrics && s.asof);
+  const hasDaily=stocks.some(s=>Array.isArray(s.daily_forecast)&&s.daily_forecast.length===6);
+  $("dataVersion").hidden=false;
+  $("dataVersion").textContent="予測データ v"+(payload.version||"不明")+(hasDaily?"・日別予測あり":"・旧形式");
+  if(!hasDaily){
+   const warning=document.createElement("div");warning.className="note";
+   warning.textContent="旧形式の予測データを取得しました。再読み込みすると、1〜5取引日のAI予測が表示されます。";
+   $("ticker").after(warning);
+  }
   $("tickerLabel").textContent="分析済み "+stocks.length+"銘柄";
   if(!stocks.length)throw new Error("有効な予測銘柄がありません。");
   const maxAsOf=stocks.map(s=>s.asof).sort().at(-1);

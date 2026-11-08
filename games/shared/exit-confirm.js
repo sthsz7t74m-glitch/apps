@@ -1,4 +1,4 @@
-/* BAR: shared confirmation and compact relocated settings layout v1.2.0 */
+/* BAR: shared confirmation and compact relocated settings layout v1.2.1 */
 (function(){
  'use strict';
  let config=null,bypass=null,modal=null,returnFocus=null;
@@ -52,28 +52,44 @@
    }
    return true;
   };
+  const observeOptions={attributes:true,attributeFilter:['class','style','hidden'],subtree:true};
+  let observer=null;
+  let queued=false;
+  const setClass=(node,className,on)=>{
+   if(node.classList.contains(className)!==on)node.classList.toggle(className,on);
+  };
   function refresh(){
-   const next=sources.find(isParentVisible)||null;
-   if(active!==next)active=next;
-   for(const source of sources){
-    const relocated=source===active;
-    source.classList.toggle('gb-top-settings-source',relocated);
-    const parent=source.parentElement;
-    if(!parent)continue;
-    // A relocated button must not occupy a grid column or leave an empty controls row.
-    parent.classList.toggle('gb-top-settings-compact',relocated);
-    const onlyControl=parent.children.length===1&&!parent.textContent.replace(source.textContent,'').trim();
-    parent.classList.toggle('gb-top-settings-empty',relocated&&onlyControl);
+   // Never observe our own DOM mutations: otherwise this can create an
+   // unbounded MutationObserver microtask loop and freeze mobile Safari.
+   if(observer)observer.disconnect();
+   try {
+    const next=sources.find(isParentVisible)||null;
+    active=next;
+    for(const source of sources){
+     const relocated=source===active;
+     setClass(source,'gb-top-settings-source',relocated);
+     const parent=source.parentElement;
+     if(!parent)continue;
+     // Keep layout changes minimal and do not write unchanged class attributes.
+     setClass(parent,'gb-top-settings-compact',relocated);
+     const onlyControl=parent.children.length===1&&!parent.textContent.replace(source.textContent,'').trim();
+     setClass(parent,'gb-top-settings-empty',relocated&&onlyControl);
+    }
+    if(top.hidden===!!active)top.hidden=!active;
+   } finally {
+    if(observer)observer.observe(document.body,observeOptions);
    }
-   top.hidden=!active;
   }
   top.addEventListener('click',()=>{
    if(!active)return;
    if(config&&config.buttons.includes(active.id)&&config.isActive())window.GameExitGuard.confirmAction(active);
    else active.click();
   });
-  const observer=new MutationObserver(refresh);
-  observer.observe(document.body,{attributes:true,attributeFilter:['class','style','hidden'],subtree:true});
+  observer=new MutationObserver(()=>{
+   if(queued)return;
+   queued=true;
+   requestAnimationFrame(()=>{queued=false;refresh()});
+  });
   refresh();
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',installTopSettings,{once:true});

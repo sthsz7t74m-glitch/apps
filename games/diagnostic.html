@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BAR 接続診断</title><style>body{font:16px system-ui,-apple-system,sans-serif;background:#0b050d;color:#fff3fb;padding:20px;line-height:1.6}main{max-width:600px;margin:auto}h1{color:#f04daa}button,a{display:block;box-sizing:border-box;width:100%;padding:13px;margin:12px 0;border:1px solid #f04daa;border-radius:12px;background:#291729;color:#fff3fb;font:inherit;text-align:center;text-decoration:none}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#201322;padding:15px;border-radius:12px;font-size:13px}</style></head><body><main><h1>接続診断 v1</h1><p id="visible">この文字が見えれば、診断ページのHTMLは受信できています。</p><button id="test">通信を診断</button><pre id="result">未実行</pre><a href="./sugoroku/index.html">すごろくを直接開く</a><a href="./index.html">ゲーム一覧に戻る</a></main><script>
+(function(){'use strict';
+var out=document.getElementById('result');
+var resources=['./sugoroku/index.html','./shared/player-setup.js','./shared/turn-overlay.js','./shared/exit-confirm.js?v=1.2.1','./shared/audio.js','./shared/bar-theme.css'];
+var start=performance.now();
+function line(s){out.textContent+='\n'+s}
+document.getElementById('test').addEventListener('click',async function(){
+out.textContent='診断開始: '+new Date().toLocaleString('ja-JP');
+line('現在URL: '+location.href);
+line('Online: '+navigator.onLine);
+for(var url of resources){
+var controller=new AbortController();
+var tid=setTimeout(function(){controller.abort()},8000);
+var t=performance.now();
+try{var r=await fetch(url,{cache:'no-store',signal:controller.signal});line(url+' → HTTP '+r.status+' / '+Math.round(performance.now()-t)+'ms / '+(r.headers.get('content-type')||'?'))}
+catch(e){line(url+' → '+e.name+' / '+Math.round(performance.now()-t)+'ms')}
+finally{clearTimeout(tid)}
+}
+line('診断完了。結果をスクリーンショットで共有してください。');
+});
+})();
+</script></body></html>

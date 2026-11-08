@@ -1,6 +1,6 @@
 {
   "version": "0.3.0",
-  "generated_at": "2026-11-08T14:31:18.971684+00:00",
+  "generated_at": "2026-11-08T14:34:26.127281+00:00",
   "horizon_sessions": 5,
   "stocks": [
     {
@@ -25,9 +25,9 @@
       "name": "アサヒグループHD",
       "asof": "2026-11-06",
       "price": 1698.5,
-      "forecast": 1731.78,
-      "return_pct": 1.96,
-      "up_probability_pct": 52.9,
+      "forecast": 1729.44,
+      "return_pct": 1.82,
+      "up_probability_pct": 52.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -496,7 +496,7 @@
       "price": 4268.0,
       "forecast": 4499.29,
       "return_pct": 5.42,
-      "up_probability_pct": 92.6,
+      "up_probability_pct": 91.7,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -946,12 +946,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 7401.0,
-        "predicted_price": 7319.69,
+        "predicted_price": 7314.4,
         "actual_price": 6269.0,
-        "predicted_return_pct": -1.1,
+        "predicted_return_pct": -1.17,
         "actual_return_pct": -15.3,
-        "price_error_yen": 1050.69,
-        "absolute_error_pct": 16.76,
+        "price_error_yen": 1045.4,
+        "absolute_error_pct": 16.68,
         "direction_correct": true,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -965,7 +965,7 @@
       "price": 6269.0,
       "forecast": 6535.56,
       "return_pct": 4.25,
-      "up_probability_pct": 78.1,
+      "up_probability_pct": 76.6,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -1859,7 +1859,7 @@
         {
           "date": "2026-10-26",
           "actual_return_pct": 2.39,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.27
         },
         {
           "date": "2026-10-27",
@@ -1884,12 +1884,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 3674.0,
-        "predicted_price": 3693.95,
+        "predicted_price": 3692.85,
         "actual_price": 3800.0,
-        "predicted_return_pct": 0.54,
+        "predicted_return_pct": 0.51,
         "actual_return_pct": 3.43,
-        "price_error_yen": -106.05,
-        "absolute_error_pct": 2.79,
+        "price_error_yen": -107.15,
+        "absolute_error_pct": 2.82,
         "direction_correct": true,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -1907,9 +1907,9 @@
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 44.1,
+        "direction_accuracy_pct": 45.1,
         "naive_direction_accuracy_pct": 53.4,
-        "mae_return_pct": 2.28,
+        "mae_return_pct": 2.27,
         "flat_baseline_mae_pct": 2.11
       },
       "history": [
@@ -2198,42 +2198,42 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 0.87,
-          "predicted_return_pct": -0.23
+          "predicted_return_pct": -0.1
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 2.03,
-          "predicted_return_pct": -0.87
+          "predicted_return_pct": -0.81
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 1.78,
-          "predicted_return_pct": -0.14
+          "predicted_return_pct": -0.11
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -0.26,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.34
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 0.63,
-          "predicted_return_pct": -1.01
+          "predicted_return_pct": -1.13
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.09,
-          "predicted_return_pct": -0.1
+          "predicted_return_pct": -0.12
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -2.11,
-          "predicted_return_pct": -0.9
+          "predicted_return_pct": -0.97
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.77,
-          "predicted_return_pct": -0.23
+          "predicted_return_pct": -0.3
         },
         {
           "date": "2026-09-29",
@@ -2243,17 +2243,17 @@
         {
           "date": "2026-09-30",
           "actual_return_pct": 0.31,
-          "predicted_return_pct": -0.28
+          "predicted_return_pct": -0.37
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 1.15,
-          "predicted_return_pct": -0.59
+          "predicted_return_pct": -0.57
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 3.43,
-          "predicted_return_pct": 0.31
+          "predicted_return_pct": 0.41
         },
         {
           "date": "2026-10-05",
@@ -2263,27 +2263,27 @@
         {
           "date": "2026-10-06",
           "actual_return_pct": 4.82,
-          "predicted_return_pct": -0.38
+          "predicted_return_pct": -0.34
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 5.72,
-          "predicted_return_pct": -0.85
+          "predicted_return_pct": -0.66
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 5.68,
-          "predicted_return_pct": -0.77
+          "predicted_return_pct": -0.68
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 5.45,
-          "predicted_return_pct": -0.62
+          "predicted_return_pct": -0.57
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 4.52,
-          "predicted_return_pct": -0.54
+          "predicted_return_pct": -0.51
         },
         {
           "date": "2026-10-14",
@@ -2293,52 +2293,52 @@
         {
           "date": "2026-10-15",
           "actual_return_pct": 0.92,
-          "predicted_return_pct": -1.19
+          "predicted_return_pct": -1.17
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 1.5,
-          "predicted_return_pct": -1.0
+          "predicted_return_pct": -1.01
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 0.08,
-          "predicted_return_pct": -1.33
+          "predicted_return_pct": -1.36
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -1.19,
-          "predicted_return_pct": -1.18
+          "predicted_return_pct": -1.25
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -1.8,
-          "predicted_return_pct": -1.23
+          "predicted_return_pct": -1.12
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -1.92,
-          "predicted_return_pct": -0.76
+          "predicted_return_pct": -0.81
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -0.82,
-          "predicted_return_pct": -0.99
+          "predicted_return_pct": -0.93
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": 0.32,
-          "predicted_return_pct": -1.27
+          "predicted_return_pct": -1.13
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -0.4,
-          "predicted_return_pct": -0.89
+          "predicted_return_pct": -0.84
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 6.37,
-          "predicted_return_pct": -0.42
+          "predicted_return_pct": -0.31
         },
         {
           "date": "2026-10-29",
@@ -2353,11 +2353,11 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 6471.0,
-        "predicted_price": 6396.35,
+        "predicted_price": 6396.34,
         "actual_price": 6560.0,
         "predicted_return_pct": -1.15,
         "actual_return_pct": 1.38,
-        "price_error_yen": -163.65,
+        "price_error_yen": -163.66,
         "absolute_error_pct": 2.49,
         "direction_correct": false,
         "train_samples": 1640,
@@ -2822,12 +2822,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 6653.0,
-        "predicted_price": 6646.33,
+        "predicted_price": 6631.81,
         "actual_price": 6806.0,
-        "predicted_return_pct": -0.1,
+        "predicted_return_pct": -0.32,
         "actual_return_pct": 2.3,
-        "price_error_yen": -159.67,
-        "absolute_error_pct": 2.35,
+        "price_error_yen": -174.19,
+        "absolute_error_pct": 2.56,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -3783,9 +3783,9 @@
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 50.0,
+        "direction_accuracy_pct": 49.7,
         "naive_direction_accuracy_pct": 51.2,
-        "mae_return_pct": 3.43,
+        "mae_return_pct": 3.42,
         "flat_baseline_mae_pct": 3.19
       },
       "history": [
@@ -4074,47 +4074,47 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -5.0,
-          "predicted_return_pct": -1.9
+          "predicted_return_pct": -2.08
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": -2.78,
-          "predicted_return_pct": -1.06
+          "predicted_return_pct": -1.0
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -3.33,
-          "predicted_return_pct": 0.0
+          "predicted_return_pct": -0.23
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -5.54,
-          "predicted_return_pct": -1.07
+          "predicted_return_pct": -1.18
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -3.87,
-          "predicted_return_pct": -0.81
+          "predicted_return_pct": -1.0
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -2.22,
-          "predicted_return_pct": -1.06
+          "predicted_return_pct": -1.28
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -4.81,
-          "predicted_return_pct": -1.37
+          "predicted_return_pct": -1.33
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -1.94,
-          "predicted_return_pct": 0.15
+          "predicted_return_pct": 0.49
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": -1.7,
-          "predicted_return_pct": 0.64
+          "predicted_return_pct": 0.63
         },
         {
           "date": "2026-09-30",
@@ -4124,102 +4124,102 @@
         {
           "date": "2026-10-01",
           "actual_return_pct": 1.77,
-          "predicted_return_pct": -0.16
+          "predicted_return_pct": -0.13
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 5.4,
-          "predicted_return_pct": 1.79
+          "predicted_return_pct": 1.7
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 5.39,
-          "predicted_return_pct": 1.16
+          "predicted_return_pct": 1.23
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 5.99,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.41
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 7.95,
-          "predicted_return_pct": -1.38
+          "predicted_return_pct": -1.23
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 7.98,
-          "predicted_return_pct": -1.94
+          "predicted_return_pct": -1.66
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 8.54,
-          "predicted_return_pct": -0.7
+          "predicted_return_pct": -0.82
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 9.6,
-          "predicted_return_pct": 0.11
+          "predicted_return_pct": 0.07
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 7.44,
-          "predicted_return_pct": -0.18
+          "predicted_return_pct": -0.06
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 5.2,
-          "predicted_return_pct": 1.57
+          "predicted_return_pct": 1.55
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 3.6,
-          "predicted_return_pct": 2.45
+          "predicted_return_pct": 2.67
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 1.64,
-          "predicted_return_pct": 1.2
+          "predicted_return_pct": 1.39
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -1.37,
-          "predicted_return_pct": -1.07
+          "predicted_return_pct": -1.12
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -2.04,
-          "predicted_return_pct": 1.55
+          "predicted_return_pct": 1.36
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -3.35,
-          "predicted_return_pct": -1.38
+          "predicted_return_pct": -1.31
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 4.79,
-          "predicted_return_pct": -2.23
+          "predicted_return_pct": -2.28
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": 6.32,
-          "predicted_return_pct": -1.88
+          "predicted_return_pct": -1.8
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": 8.63,
-          "predicted_return_pct": -0.98
+          "predicted_return_pct": -0.82
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 17.17,
-          "predicted_return_pct": -0.87
+          "predicted_return_pct": -0.74
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": 11.32,
-          "predicted_return_pct": -0.41
+          "predicted_return_pct": -0.57
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -4229,13 +4229,13 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 3477.0,
-        "predicted_price": 3475.42,
+        "predicted_price": 3480.85,
         "actual_price": 3288.0,
-        "predicted_return_pct": -0.05,
+        "predicted_return_pct": 0.11,
         "actual_return_pct": -5.44,
-        "price_error_yen": 187.42,
-        "absolute_error_pct": 5.7,
-        "direction_correct": true,
+        "price_error_yen": 192.85,
+        "absolute_error_pct": 5.87,
+        "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
       },
@@ -4248,7 +4248,7 @@
       "price": 3288.0,
       "forecast": 3238.03,
       "return_pct": -1.52,
-      "up_probability_pct": 36.8,
+      "up_probability_pct": 37.5,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -5186,7 +5186,7 @@
       "price": 2962.0,
       "forecast": 3412.92,
       "return_pct": 15.22,
-      "up_probability_pct": 68.5,
+      "up_probability_pct": 68.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -5531,7 +5531,7 @@
         {
           "date": "2026-10-01",
           "actual_return_pct": 2.68,
-          "predicted_return_pct": -0.78
+          "predicted_return_pct": -0.77
         },
         {
           "date": "2026-10-02",
@@ -5636,11 +5636,11 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 18890.0,
-        "predicted_price": 18641.86,
+        "predicted_price": 18641.87,
         "actual_price": 17000.0,
         "predicted_return_pct": -1.31,
         "actual_return_pct": -10.01,
-        "price_error_yen": 1641.86,
+        "price_error_yen": 1641.87,
         "absolute_error_pct": 9.66,
         "direction_correct": true,
         "train_samples": 1640,
@@ -6124,13 +6124,13 @@
       "price": 21790.0,
       "forecast": 21800.08,
       "return_pct": 0.05,
-      "up_probability_pct": 45.4,
+      "up_probability_pct": 45.9,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
         "direction_accuracy_pct": 48.8,
         "naive_direction_accuracy_pct": 50.0,
-        "mae_return_pct": 3.3,
+        "mae_return_pct": 3.32,
         "flat_baseline_mae_pct": 3.04
       },
       "history": [
@@ -6419,152 +6419,152 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 0.14,
-          "predicted_return_pct": -1.2
+          "predicted_return_pct": -1.29
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 2.18,
-          "predicted_return_pct": -1.69
+          "predicted_return_pct": -1.78
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 2.0,
-          "predicted_return_pct": -1.12
+          "predicted_return_pct": -1.21
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 0.92,
-          "predicted_return_pct": -2.02
+          "predicted_return_pct": -1.95
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 1.79,
-          "predicted_return_pct": -2.54
+          "predicted_return_pct": -2.49
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 2.18,
-          "predicted_return_pct": -2.43
+          "predicted_return_pct": -2.38
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -0.44,
-          "predicted_return_pct": -0.14
+          "predicted_return_pct": 0.13
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -1.01,
-          "predicted_return_pct": -0.38
+          "predicted_return_pct": -0.37
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 0.87,
-          "predicted_return_pct": -1.1
+          "predicted_return_pct": -1.05
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 0.69,
-          "predicted_return_pct": 0.55
+          "predicted_return_pct": 0.8
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 0.02,
-          "predicted_return_pct": -0.53
+          "predicted_return_pct": -0.47
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 2.84,
-          "predicted_return_pct": -3.89
+          "predicted_return_pct": -3.87
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 4.73,
-          "predicted_return_pct": -3.66
+          "predicted_return_pct": -3.64
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 3.3,
-          "predicted_return_pct": -1.54
+          "predicted_return_pct": -1.4
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 1.14,
-          "predicted_return_pct": -2.81
+          "predicted_return_pct": -3.02
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 1.69,
-          "predicted_return_pct": -2.26
+          "predicted_return_pct": -2.31
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 1.28,
-          "predicted_return_pct": -3.38
+          "predicted_return_pct": -3.42
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": -0.21,
-          "predicted_return_pct": -2.74
+          "predicted_return_pct": -2.67
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": -1.07,
-          "predicted_return_pct": -2.0
+          "predicted_return_pct": -2.03
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": -0.31,
-          "predicted_return_pct": -1.9
+          "predicted_return_pct": -1.96
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -0.75,
-          "predicted_return_pct": -1.84
+          "predicted_return_pct": -1.87
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -0.19,
-          "predicted_return_pct": -1.89
+          "predicted_return_pct": -1.94
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 0.44,
-          "predicted_return_pct": -0.96
+          "predicted_return_pct": -1.01
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": 0.89,
-          "predicted_return_pct": -0.15
+          "predicted_return_pct": -0.24
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -0.49,
-          "predicted_return_pct": 0.61
+          "predicted_return_pct": 0.58
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -0.59,
-          "predicted_return_pct": 0.95
+          "predicted_return_pct": 0.9
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -1.85,
-          "predicted_return_pct": -0.56
+          "predicted_return_pct": -0.6
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -2.99,
-          "predicted_return_pct": -1.63
+          "predicted_return_pct": -1.66
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -0.33,
-          "predicted_return_pct": -0.25
+          "predicted_return_pct": -0.33
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": 3.07,
-          "predicted_return_pct": -0.75
+          "predicted_return_pct": -0.82
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -7043,12 +7043,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 3683.0,
-        "predicted_price": 4003.78,
+        "predicted_price": 3996.17,
         "actual_price": 3008.0,
-        "predicted_return_pct": 8.71,
+        "predicted_return_pct": 8.5,
         "actual_return_pct": -18.33,
-        "price_error_yen": 995.78,
-        "absolute_error_pct": 33.1,
+        "price_error_yen": 988.17,
+        "absolute_error_pct": 32.85,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -7060,9 +7060,9 @@
       "name": "パナソニックHD",
       "asof": "2026-11-06",
       "price": 3008.0,
-      "forecast": 3154.46,
-      "return_pct": 4.87,
-      "up_probability_pct": 76.4,
+      "forecast": 3153.42,
+      "return_pct": 4.83,
+      "up_probability_pct": 74.4,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -7529,8 +7529,8 @@
       "name": "ソニーグループ",
       "asof": "2026-11-06",
       "price": 4142.0,
-      "forecast": 4144.93,
-      "return_pct": 0.07,
+      "forecast": 4132.47,
+      "return_pct": -0.23,
       "up_probability_pct": 66.3,
       "metrics": {
         "samples": 1645,
@@ -7981,12 +7981,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 2772.0,
-        "predicted_price": 2697.59,
+        "predicted_price": 2698.37,
         "actual_price": 2107.0,
-        "predicted_return_pct": -2.68,
+        "predicted_return_pct": -2.66,
         "actual_return_pct": -23.99,
-        "price_error_yen": 590.59,
-        "absolute_error_pct": 28.03,
+        "price_error_yen": 591.37,
+        "absolute_error_pct": 28.07,
         "direction_correct": true,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -7998,15 +7998,15 @@
       "name": "TDK",
       "asof": "2026-11-06",
       "price": 2107.0,
-      "forecast": 2233.04,
+      "forecast": 2233.06,
       "return_pct": 5.98,
-      "up_probability_pct": 52.1,
+      "up_probability_pct": 53.9,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 54.9,
+        "direction_accuracy_pct": 53.4,
         "naive_direction_accuracy_pct": 53.4,
-        "mae_return_pct": 5.71,
+        "mae_return_pct": 5.75,
         "flat_baseline_mae_pct": 5.41
       },
       "history": [
@@ -8295,152 +8295,152 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 4.9,
-          "predicted_return_pct": -0.71
+          "predicted_return_pct": 0.16
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 5.1,
-          "predicted_return_pct": -0.11
+          "predicted_return_pct": 0.4
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 2.89,
-          "predicted_return_pct": 1.08
+          "predicted_return_pct": 1.17
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 4.91,
-          "predicted_return_pct": -1.43
+          "predicted_return_pct": -1.04
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 5.67,
-          "predicted_return_pct": 0.93
+          "predicted_return_pct": 0.7
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 9.23,
-          "predicted_return_pct": 0.69
+          "predicted_return_pct": 0.43
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": 8.3,
-          "predicted_return_pct": 2.59
+          "predicted_return_pct": 2.22
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": 17.65,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.15
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 24.29,
-          "predicted_return_pct": 2.3
+          "predicted_return_pct": 1.96
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 18.42,
-          "predicted_return_pct": 5.2
+          "predicted_return_pct": 4.92
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 4.78,
-          "predicted_return_pct": 2.92
+          "predicted_return_pct": 2.85
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 2.19,
-          "predicted_return_pct": 1.57
+          "predicted_return_pct": 1.58
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -9.11,
-          "predicted_return_pct": 2.26
+          "predicted_return_pct": 2.06
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": -13.12,
-          "predicted_return_pct": 3.06
+          "predicted_return_pct": 2.91
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -17.75,
-          "predicted_return_pct": 1.37
+          "predicted_return_pct": 1.31
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": -12.3,
-          "predicted_return_pct": 1.2
+          "predicted_return_pct": 1.04
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": -10.86,
-          "predicted_return_pct": -1.36
+          "predicted_return_pct": -1.38
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": -9.54,
-          "predicted_return_pct": -1.53
+          "predicted_return_pct": -1.74
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": -7.92,
-          "predicted_return_pct": -2.57
+          "predicted_return_pct": -2.63
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": -4.24,
-          "predicted_return_pct": -0.97
+          "predicted_return_pct": -0.85
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -10.75,
-          "predicted_return_pct": -0.09
+          "predicted_return_pct": 0.36
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -11.24,
-          "predicted_return_pct": 0.55
+          "predicted_return_pct": 0.83
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -6.23,
-          "predicted_return_pct": 6.05
+          "predicted_return_pct": 5.88
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -3.86,
-          "predicted_return_pct": 3.93
+          "predicted_return_pct": 4.12
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -0.31,
-          "predicted_return_pct": 6.52
+          "predicted_return_pct": 6.19
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -2.0,
-          "predicted_return_pct": 3.52
+          "predicted_return_pct": 3.75
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -2.73,
-          "predicted_return_pct": 8.04
+          "predicted_return_pct": 7.97
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -7.77,
-          "predicted_return_pct": 4.82
+          "predicted_return_pct": 4.93
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -19.3,
-          "predicted_return_pct": 2.11
+          "predicted_return_pct": 1.88
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -23.99,
-          "predicted_return_pct": -1.08
+          "predicted_return_pct": -0.95
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -8919,12 +8919,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 1868.5,
-        "predicted_price": 1897.08,
+        "predicted_price": 1897.27,
         "actual_price": 1860.5,
-        "predicted_return_pct": 1.53,
+        "predicted_return_pct": 1.54,
         "actual_return_pct": -0.43,
-        "price_error_yen": 36.58,
-        "absolute_error_pct": 1.97,
+        "price_error_yen": 36.77,
+        "absolute_error_pct": 1.98,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -9407,7 +9407,7 @@
       "price": 5312.0,
       "forecast": 5425.01,
       "return_pct": 2.13,
-      "up_probability_pct": 78.6,
+      "up_probability_pct": 76.4,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -9874,9 +9874,9 @@
       "name": "村田製作所",
       "asof": "2026-11-06",
       "price": 4882.0,
-      "forecast": 5361.59,
-      "return_pct": 9.82,
-      "up_probability_pct": 68.7,
+      "forecast": 5355.93,
+      "return_pct": 9.71,
+      "up_probability_pct": 70.7,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -10343,8 +10343,8 @@
       "name": "三菱重工業",
       "asof": "2026-11-06",
       "price": 2912.5,
-      "forecast": 3038.43,
-      "return_pct": 4.32,
+      "forecast": 3043.96,
+      "return_pct": 4.51,
       "up_probability_pct": 65.4,
       "metrics": {
         "samples": 1645,
@@ -10795,12 +10795,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 2162.0,
-        "predicted_price": 2145.91,
+        "predicted_price": 2144.83,
         "actual_price": 1957.0,
-        "predicted_return_pct": -0.74,
+        "predicted_return_pct": -0.79,
         "actual_return_pct": -9.48,
-        "price_error_yen": 188.91,
-        "absolute_error_pct": 9.65,
+        "price_error_yen": 187.83,
+        "absolute_error_pct": 9.6,
         "direction_correct": true,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -11283,7 +11283,7 @@
       "price": 3338.0,
       "forecast": 3279.53,
       "return_pct": -1.75,
-      "up_probability_pct": 26.2,
+      "up_probability_pct": 25.2,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -11752,11 +11752,11 @@
       "price": 1831.0,
       "forecast": 1850.06,
       "return_pct": 1.04,
-      "up_probability_pct": 40.7,
+      "up_probability_pct": 41.3,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 45.7,
+        "direction_accuracy_pct": 46.3,
         "naive_direction_accuracy_pct": 51.5,
         "mae_return_pct": 3.49,
         "flat_baseline_mae_pct": 3.13
@@ -12047,132 +12047,132 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 3.22,
-          "predicted_return_pct": 0.37
+          "predicted_return_pct": 0.4
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 3.61,
-          "predicted_return_pct": 0.19
+          "predicted_return_pct": 0.0
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 1.99,
-          "predicted_return_pct": -0.06
+          "predicted_return_pct": 0.01
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -0.28,
-          "predicted_return_pct": -1.55
+          "predicted_return_pct": -1.51
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 1.66,
-          "predicted_return_pct": -0.51
+          "predicted_return_pct": -0.44
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.1,
-          "predicted_return_pct": 0.47
+          "predicted_return_pct": 0.37
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -2.1,
-          "predicted_return_pct": 0.29
+          "predicted_return_pct": 0.01
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.39,
-          "predicted_return_pct": -0.87
+          "predicted_return_pct": -1.06
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 1.11,
-          "predicted_return_pct": 0.17
+          "predicted_return_pct": 0.15
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 0.09,
-          "predicted_return_pct": -0.92
+          "predicted_return_pct": -1.11
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 0.97,
-          "predicted_return_pct": -2.14
+          "predicted_return_pct": -2.32
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 3.72,
-          "predicted_return_pct": -0.59
+          "predicted_return_pct": -0.53
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 4.65,
-          "predicted_return_pct": 0.92
+          "predicted_return_pct": 0.94
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 5.21,
-          "predicted_return_pct": -0.12
+          "predicted_return_pct": 0.07
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 5.49,
-          "predicted_return_pct": 0.88
+          "predicted_return_pct": 0.83
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 4.96,
-          "predicted_return_pct": -0.57
+          "predicted_return_pct": -0.79
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 4.69,
-          "predicted_return_pct": -0.73
+          "predicted_return_pct": -0.82
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 2.82,
-          "predicted_return_pct": 0.04
+          "predicted_return_pct": 0.19
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 1.61,
-          "predicted_return_pct": 1.09
+          "predicted_return_pct": 1.16
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 1.15,
-          "predicted_return_pct": 1.52
+          "predicted_return_pct": 1.4
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -0.14,
-          "predicted_return_pct": 1.43
+          "predicted_return_pct": 1.4
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -0.5,
-          "predicted_return_pct": 1.12
+          "predicted_return_pct": 1.13
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -0.86,
-          "predicted_return_pct": 0.59
+          "predicted_return_pct": 0.7
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -2.3,
-          "predicted_return_pct": 0.22
+          "predicted_return_pct": 0.32
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -1.86,
-          "predicted_return_pct": 0.07
+          "predicted_return_pct": 0.09
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -0.47,
-          "predicted_return_pct": -1.38
+          "predicted_return_pct": -1.32
         },
         {
           "date": "2026-10-26",
@@ -12182,17 +12182,17 @@
         {
           "date": "2026-10-27",
           "actual_return_pct": 0.53,
-          "predicted_return_pct": -1.47
+          "predicted_return_pct": -1.41
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 10.16,
-          "predicted_return_pct": -1.86
+          "predicted_return_pct": -1.73
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": 3.86,
-          "predicted_return_pct": -1.96
+          "predicted_return_pct": -1.9
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -12219,9 +12219,9 @@
       "name": "オリンパス",
       "asof": "2026-11-06",
       "price": 1743.0,
-      "forecast": 1776.97,
-      "return_pct": 1.95,
-      "up_probability_pct": 80.7,
+      "forecast": 1776.31,
+      "return_pct": 1.91,
+      "up_probability_pct": 80.1,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -12671,12 +12671,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 26330.0,
-        "predicted_price": 26600.05,
+        "predicted_price": 26604.2,
         "actual_price": 22395.0,
-        "predicted_return_pct": 1.03,
+        "predicted_return_pct": 1.04,
         "actual_return_pct": -14.94,
-        "price_error_yen": 4205.05,
-        "absolute_error_pct": 18.78,
+        "price_error_yen": 4209.2,
+        "absolute_error_pct": 18.8,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -12690,11 +12690,11 @@
       "price": 22395.0,
       "forecast": 22881.45,
       "return_pct": 2.17,
-      "up_probability_pct": 73.8,
+      "up_probability_pct": 74.5,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 45.7,
+        "direction_accuracy_pct": 47.2,
         "naive_direction_accuracy_pct": 54.6,
         "mae_return_pct": 3.67,
         "flat_baseline_mae_pct": 3.45
@@ -12985,142 +12985,142 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 3.17,
-          "predicted_return_pct": -0.86
+          "predicted_return_pct": -0.65
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 5.17,
-          "predicted_return_pct": -0.92
+          "predicted_return_pct": -0.99
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 5.36,
-          "predicted_return_pct": -1.23
+          "predicted_return_pct": -1.31
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 3.22,
-          "predicted_return_pct": 0.36
+          "predicted_return_pct": 0.23
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 5.03,
-          "predicted_return_pct": -1.85
+          "predicted_return_pct": -2.06
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 6.12,
-          "predicted_return_pct": -0.66
+          "predicted_return_pct": -0.82
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": 3.66,
-          "predicted_return_pct": -1.32
+          "predicted_return_pct": -1.45
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": 4.57,
-          "predicted_return_pct": 0.53
+          "predicted_return_pct": 0.09
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 8.93,
-          "predicted_return_pct": 0.74
+          "predicted_return_pct": 0.9
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 6.59,
-          "predicted_return_pct": 0.21
+          "predicted_return_pct": -0.07
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 2.6,
-          "predicted_return_pct": 1.28
+          "predicted_return_pct": 1.21
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 3.62,
-          "predicted_return_pct": 1.18
+          "predicted_return_pct": 0.75
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 3.33,
-          "predicted_return_pct": 2.37
+          "predicted_return_pct": 1.88
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 0.4,
-          "predicted_return_pct": -0.84
+          "predicted_return_pct": -0.93
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -0.72,
-          "predicted_return_pct": 0.56
+          "predicted_return_pct": 0.47
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 2.5,
-          "predicted_return_pct": 1.0
+          "predicted_return_pct": 0.72
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 2.1,
-          "predicted_return_pct": 1.89
+          "predicted_return_pct": 2.03
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 2.67,
-          "predicted_return_pct": 2.22
+          "predicted_return_pct": 2.23
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 4.35,
-          "predicted_return_pct": -1.24
+          "predicted_return_pct": -1.29
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 5.71,
-          "predicted_return_pct": -0.3
+          "predicted_return_pct": -0.15
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 1.75,
-          "predicted_return_pct": 1.8
+          "predicted_return_pct": 1.88
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 2.07,
-          "predicted_return_pct": 2.09
+          "predicted_return_pct": 2.26
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 1.46,
-          "predicted_return_pct": 1.66
+          "predicted_return_pct": 1.55
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -0.34,
-          "predicted_return_pct": 2.81
+          "predicted_return_pct": 2.87
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -0.19,
-          "predicted_return_pct": 1.89
+          "predicted_return_pct": 2.2
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 0.42,
-          "predicted_return_pct": 1.0
+          "predicted_return_pct": 0.64
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -5.11,
-          "predicted_return_pct": 0.37
+          "predicted_return_pct": 0.53
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -7.41,
-          "predicted_return_pct": -1.35
+          "predicted_return_pct": -1.24
         },
         {
           "date": "2026-10-28",
@@ -13130,7 +13130,7 @@
         {
           "date": "2026-10-29",
           "actual_return_pct": -14.94,
-          "predicted_return_pct": -1.61
+          "predicted_return_pct": -1.55
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -13159,7 +13159,7 @@
       "price": 8178.0,
       "forecast": 8540.23,
       "return_pct": 4.43,
-      "up_probability_pct": 83.3,
+      "up_probability_pct": 83.4,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -13628,13 +13628,13 @@
       "price": 3545.0,
       "forecast": 3547.88,
       "return_pct": 0.08,
-      "up_probability_pct": 45.7,
+      "up_probability_pct": 42.5,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 47.2,
+        "direction_accuracy_pct": 46.9,
         "naive_direction_accuracy_pct": 62.3,
-        "mae_return_pct": 2.84,
+        "mae_return_pct": 2.83,
         "flat_baseline_mae_pct": 2.52
       },
       "history": [
@@ -13923,112 +13923,112 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 3.37,
-          "predicted_return_pct": -3.29
+          "predicted_return_pct": -3.16
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 5.27,
-          "predicted_return_pct": -1.83
+          "predicted_return_pct": -2.03
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 3.84,
-          "predicted_return_pct": -2.35
+          "predicted_return_pct": -2.48
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 4.39,
-          "predicted_return_pct": -3.16
+          "predicted_return_pct": -3.03
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 4.99,
-          "predicted_return_pct": -2.39
+          "predicted_return_pct": -2.48
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 1.78,
-          "predicted_return_pct": -3.4
+          "predicted_return_pct": -3.42
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": 1.47,
-          "predicted_return_pct": -3.3
+          "predicted_return_pct": -3.31
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": 1.92,
-          "predicted_return_pct": -3.52
+          "predicted_return_pct": -3.58
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 0.15,
-          "predicted_return_pct": -3.96
+          "predicted_return_pct": -3.88
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 0.43,
-          "predicted_return_pct": -3.06
+          "predicted_return_pct": -2.85
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 1.75,
-          "predicted_return_pct": -2.92
+          "predicted_return_pct": -2.96
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 3.19,
-          "predicted_return_pct": -3.12
+          "predicted_return_pct": -3.1
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 2.61,
-          "predicted_return_pct": -2.34
+          "predicted_return_pct": -2.24
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 2.46,
-          "predicted_return_pct": -2.62
+          "predicted_return_pct": -2.66
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 3.73,
-          "predicted_return_pct": -3.03
+          "predicted_return_pct": -2.91
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 6.88,
-          "predicted_return_pct": -2.56
+          "predicted_return_pct": -2.76
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 6.19,
-          "predicted_return_pct": -3.44
+          "predicted_return_pct": -3.43
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 5.09,
-          "predicted_return_pct": -2.23
+          "predicted_return_pct": -2.38
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 3.68,
-          "predicted_return_pct": -2.02
+          "predicted_return_pct": -2.15
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 1.38,
-          "predicted_return_pct": -2.84
+          "predicted_return_pct": -2.92
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -2.14,
-          "predicted_return_pct": -3.14
+          "predicted_return_pct": -3.3
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -3.05,
-          "predicted_return_pct": -4.09
+          "predicted_return_pct": -3.89
         },
         {
           "date": "2026-10-20",
@@ -14038,37 +14038,37 @@
         {
           "date": "2026-10-21",
           "actual_return_pct": -1.64,
-          "predicted_return_pct": -1.5
+          "predicted_return_pct": -1.44
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -0.55,
-          "predicted_return_pct": -1.47
+          "predicted_return_pct": -1.63
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -0.41,
-          "predicted_return_pct": -1.58
+          "predicted_return_pct": -1.63
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -0.27,
-          "predicted_return_pct": -1.33
+          "predicted_return_pct": -1.35
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -0.41,
-          "predicted_return_pct": -1.35
+          "predicted_return_pct": -1.32
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 2.36,
-          "predicted_return_pct": -1.29
+          "predicted_return_pct": -1.38
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -2.74,
-          "predicted_return_pct": 0.53
+          "predicted_return_pct": 0.52
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -14078,12 +14078,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 2321.5,
-        "predicted_price": 2349.48,
+        "predicted_price": 2345.23,
         "actual_price": 2241.0,
-        "predicted_return_pct": 1.21,
+        "predicted_return_pct": 1.02,
         "actual_return_pct": -3.47,
-        "price_error_yen": 108.48,
-        "absolute_error_pct": 4.84,
+        "price_error_yen": 104.23,
+        "absolute_error_pct": 4.65,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -14095,15 +14095,15 @@
       "name": "伊藤忠商事",
       "asof": "2026-11-06",
       "price": 2241.0,
-      "forecast": 2269.92,
-      "return_pct": 1.29,
-      "up_probability_pct": 57.4,
+      "forecast": 2265.47,
+      "return_pct": 1.09,
+      "up_probability_pct": 55.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 54.6,
+        "direction_accuracy_pct": 55.9,
         "naive_direction_accuracy_pct": 58.6,
-        "mae_return_pct": 2.88,
+        "mae_return_pct": 2.86,
         "flat_baseline_mae_pct": 2.67
       },
       "history": [
@@ -14392,112 +14392,112 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -5.13,
-          "predicted_return_pct": 0.01
+          "predicted_return_pct": 0.03
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": -4.74,
-          "predicted_return_pct": -0.28
+          "predicted_return_pct": -0.19
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -4.16,
-          "predicted_return_pct": -0.41
+          "predicted_return_pct": -0.32
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -8.04,
-          "predicted_return_pct": -0.45
+          "predicted_return_pct": -0.49
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -3.34,
-          "predicted_return_pct": 1.53
+          "predicted_return_pct": 1.5
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 0.18,
-          "predicted_return_pct": 0.17
+          "predicted_return_pct": 0.42
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -0.62,
-          "predicted_return_pct": 1.81
+          "predicted_return_pct": 2.01
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.29,
-          "predicted_return_pct": 2.29
+          "predicted_return_pct": 2.28
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 1.16,
-          "predicted_return_pct": 2.32
+          "predicted_return_pct": 2.36
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -2.08,
-          "predicted_return_pct": 2.29
+          "predicted_return_pct": 2.43
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -2.91,
-          "predicted_return_pct": 1.09
+          "predicted_return_pct": 1.24
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": -0.94,
-          "predicted_return_pct": 1.16
+          "predicted_return_pct": 1.21
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 0.98,
-          "predicted_return_pct": 0.99
+          "predicted_return_pct": 1.11
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 2.24,
-          "predicted_return_pct": 0.47
+          "predicted_return_pct": 0.62
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 2.75,
-          "predicted_return_pct": 0.42
+          "predicted_return_pct": 0.45
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 6.8,
-          "predicted_return_pct": 0.17
+          "predicted_return_pct": 0.26
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 7.66,
-          "predicted_return_pct": -0.33
+          "predicted_return_pct": -0.22
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 3.56,
-          "predicted_return_pct": -0.23
+          "predicted_return_pct": -0.36
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 3.23,
-          "predicted_return_pct": 0.71
+          "predicted_return_pct": 0.69
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 4.77,
-          "predicted_return_pct": 1.77
+          "predicted_return_pct": 1.86
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 0.74,
-          "predicted_return_pct": 1.27
+          "predicted_return_pct": 1.21
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 2.18,
-          "predicted_return_pct": 0.4
+          "predicted_return_pct": 0.42
         },
         {
           "date": "2026-10-20",
@@ -14507,37 +14507,37 @@
         {
           "date": "2026-10-21",
           "actual_return_pct": 0.3,
-          "predicted_return_pct": 0.23
+          "predicted_return_pct": 0.31
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -0.24,
-          "predicted_return_pct": 1.57
+          "predicted_return_pct": 1.77
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 1.11,
-          "predicted_return_pct": 0.46
+          "predicted_return_pct": 0.57
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -4.2,
-          "predicted_return_pct": 0.0
+          "predicted_return_pct": -0.06
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -4.02,
-          "predicted_return_pct": -0.39
+          "predicted_return_pct": -0.4
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 3.66,
-          "predicted_return_pct": 1.19
+          "predicted_return_pct": 1.15
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -3.47,
-          "predicted_return_pct": 0.85
+          "predicted_return_pct": 0.77
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -14564,15 +14564,15 @@
       "name": "丸紅",
       "asof": "2026-11-06",
       "price": 4726.0,
-      "forecast": 4751.67,
-      "return_pct": 0.54,
+      "forecast": 4745.68,
+      "return_pct": 0.42,
       "up_probability_pct": 43.7,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 46.0,
+        "direction_accuracy_pct": 45.1,
         "naive_direction_accuracy_pct": 59.6,
-        "mae_return_pct": 4.11,
+        "mae_return_pct": 4.13,
         "flat_baseline_mae_pct": 3.71
       },
       "history": [
@@ -14861,92 +14861,92 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -4.18,
-          "predicted_return_pct": 1.65
+          "predicted_return_pct": 1.91
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": -0.73,
-          "predicted_return_pct": 1.73
+          "predicted_return_pct": 1.59
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -2.99,
-          "predicted_return_pct": 1.11
+          "predicted_return_pct": 1.65
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -4.77,
-          "predicted_return_pct": 1.42
+          "predicted_return_pct": 1.66
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -1.79,
-          "predicted_return_pct": 2.15
+          "predicted_return_pct": 2.16
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 0.35,
-          "predicted_return_pct": 2.36
+          "predicted_return_pct": 2.13
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -2.63,
-          "predicted_return_pct": 1.78
+          "predicted_return_pct": 1.86
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": 0.6,
-          "predicted_return_pct": 1.41
+          "predicted_return_pct": 1.46
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 2.1,
-          "predicted_return_pct": -1.77
+          "predicted_return_pct": -2.33
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -0.77,
-          "predicted_return_pct": 1.0
+          "predicted_return_pct": 0.97
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -2.52,
-          "predicted_return_pct": 1.34
+          "predicted_return_pct": 0.81
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": -0.49,
-          "predicted_return_pct": 1.41
+          "predicted_return_pct": 1.53
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 0.92,
-          "predicted_return_pct": 0.05
+          "predicted_return_pct": -0.09
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 1.12,
-          "predicted_return_pct": -0.3
+          "predicted_return_pct": -0.32
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 0.58,
-          "predicted_return_pct": -0.82
+          "predicted_return_pct": -1.01
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 3.69,
-          "predicted_return_pct": 1.57
+          "predicted_return_pct": 1.45
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 5.04,
-          "predicted_return_pct": -0.5
+          "predicted_return_pct": -0.31
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 0.64,
-          "predicted_return_pct": 0.95
+          "predicted_return_pct": 0.08
         },
         {
           "date": "2026-10-14",
@@ -14956,57 +14956,57 @@
         {
           "date": "2026-10-15",
           "actual_return_pct": 3.01,
-          "predicted_return_pct": -0.14
+          "predicted_return_pct": -0.16
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 1.95,
-          "predicted_return_pct": 0.78
+          "predicted_return_pct": 0.82
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 2.79,
-          "predicted_return_pct": -0.43
+          "predicted_return_pct": -0.44
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 4.36,
-          "predicted_return_pct": 0.75
+          "predicted_return_pct": 0.57
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": 1.82,
-          "predicted_return_pct": 0.56
+          "predicted_return_pct": 0.38
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": 0.77,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.43
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -1.0,
-          "predicted_return_pct": 1.23
+          "predicted_return_pct": 1.36
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -5.04,
-          "predicted_return_pct": -1.85
+          "predicted_return_pct": -1.64
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -6.66,
-          "predicted_return_pct": -2.02
+          "predicted_return_pct": -2.0
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 1.31,
-          "predicted_return_pct": -0.1
+          "predicted_return_pct": -0.23
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -5.44,
-          "predicted_return_pct": 2.09
+          "predicted_return_pct": 1.87
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -15033,15 +15033,15 @@
       "name": "三井物産",
       "asof": "2026-11-06",
       "price": 4620.0,
-      "forecast": 4825.9,
-      "return_pct": 4.46,
+      "forecast": 4826.89,
+      "return_pct": 4.48,
       "up_probability_pct": 74.5,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 53.1,
+        "direction_accuracy_pct": 51.5,
         "naive_direction_accuracy_pct": 59.6,
-        "mae_return_pct": 3.34,
+        "mae_return_pct": 3.38,
         "flat_baseline_mae_pct": 3.18
       },
       "history": [
@@ -15330,102 +15330,102 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -2.54,
-          "predicted_return_pct": 1.23
+          "predicted_return_pct": 1.11
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 0.04,
-          "predicted_return_pct": 1.6
+          "predicted_return_pct": 1.57
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -2.96,
-          "predicted_return_pct": 1.74
+          "predicted_return_pct": 1.71
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -6.25,
-          "predicted_return_pct": 1.57
+          "predicted_return_pct": 1.55
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -3.13,
-          "predicted_return_pct": 1.69
+          "predicted_return_pct": 1.81
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.94,
-          "predicted_return_pct": 0.54
+          "predicted_return_pct": 0.73
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -1.97,
-          "predicted_return_pct": 1.51
+          "predicted_return_pct": 1.81
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.53,
-          "predicted_return_pct": 1.03
+          "predicted_return_pct": 1.08
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 2.75,
-          "predicted_return_pct": 1.32
+          "predicted_return_pct": 1.27
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -0.47,
-          "predicted_return_pct": 1.73
+          "predicted_return_pct": 1.76
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -3.09,
-          "predicted_return_pct": 1.99
+          "predicted_return_pct": 1.7
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": -2.59,
-          "predicted_return_pct": 2.63
+          "predicted_return_pct": 2.56
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -0.3,
-          "predicted_return_pct": 1.25
+          "predicted_return_pct": 1.26
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 0.12,
-          "predicted_return_pct": 2.93
+          "predicted_return_pct": 2.82
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 0.0,
-          "predicted_return_pct": 0.67
+          "predicted_return_pct": 0.61
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 4.95,
-          "predicted_return_pct": 2.83
+          "predicted_return_pct": 2.84
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 4.71,
-          "predicted_return_pct": 1.96
+          "predicted_return_pct": 2.18
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 0.81,
-          "predicted_return_pct": 2.11
+          "predicted_return_pct": 2.0
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 0.22,
-          "predicted_return_pct": 0.93
+          "predicted_return_pct": 0.94
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 1.53,
-          "predicted_return_pct": 2.14
+          "predicted_return_pct": 2.11
         },
         {
           "date": "2026-10-16",
@@ -15435,17 +15435,17 @@
         {
           "date": "2026-10-19",
           "actual_return_pct": 1.78,
-          "predicted_return_pct": 1.73
+          "predicted_return_pct": 1.71
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 3.17,
-          "predicted_return_pct": 2.32
+          "predicted_return_pct": 2.45
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": 1.27,
-          "predicted_return_pct": 1.62
+          "predicted_return_pct": 1.94
         },
         {
           "date": "2026-10-22",
@@ -15455,27 +15455,27 @@
         {
           "date": "2026-10-23",
           "actual_return_pct": 1.3,
-          "predicted_return_pct": 0.62
+          "predicted_return_pct": 0.48
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -3.38,
-          "predicted_return_pct": 1.51
+          "predicted_return_pct": 1.6
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -4.05,
-          "predicted_return_pct": 0.69
+          "predicted_return_pct": 0.48
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -0.06,
-          "predicted_return_pct": 0.3
+          "predicted_return_pct": 0.21
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -9.38,
-          "predicted_return_pct": 0.98
+          "predicted_return_pct": 0.81
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -15508,9 +15508,9 @@
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 52.5,
+        "direction_accuracy_pct": 52.2,
         "naive_direction_accuracy_pct": 52.8,
-        "mae_return_pct": 6.51,
+        "mae_return_pct": 6.48,
         "flat_baseline_mae_pct": 6.36
       },
       "history": [
@@ -15799,37 +15799,37 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 5.87,
-          "predicted_return_pct": -2.01
+          "predicted_return_pct": -1.7
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 11.59,
-          "predicted_return_pct": -0.36
+          "predicted_return_pct": -0.19
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 8.96,
-          "predicted_return_pct": -0.57
+          "predicted_return_pct": -0.28
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 13.7,
-          "predicted_return_pct": -1.09
+          "predicted_return_pct": -0.87
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 12.06,
-          "predicted_return_pct": 1.24
+          "predicted_return_pct": 1.28
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 17.52,
-          "predicted_return_pct": 1.36
+          "predicted_return_pct": 1.24
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": 7.84,
-          "predicted_return_pct": 1.9
+          "predicted_return_pct": 2.15
         },
         {
           "date": "2026-09-28",
@@ -15839,112 +15839,112 @@
         {
           "date": "2026-09-29",
           "actual_return_pct": 11.3,
-          "predicted_return_pct": 1.05
+          "predicted_return_pct": 1.09
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 5.8,
-          "predicted_return_pct": 1.56
+          "predicted_return_pct": 1.6
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -3.1,
-          "predicted_return_pct": 0.37
+          "predicted_return_pct": 0.42
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 2.85,
-          "predicted_return_pct": 0.26
+          "predicted_return_pct": 0.12
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -9.48,
-          "predicted_return_pct": 2.73
+          "predicted_return_pct": 2.7
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": -12.22,
-          "predicted_return_pct": 3.52
+          "predicted_return_pct": 3.36
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -17.08,
-          "predicted_return_pct": 3.72
+          "predicted_return_pct": 3.32
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": -12.8,
-          "predicted_return_pct": 2.48
+          "predicted_return_pct": 2.11
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": -16.83,
-          "predicted_return_pct": 0.4
+          "predicted_return_pct": 0.34
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": -12.72,
-          "predicted_return_pct": 2.27
+          "predicted_return_pct": 2.18
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": -9.61,
-          "predicted_return_pct": 3.08
+          "predicted_return_pct": 3.01
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": -8.83,
-          "predicted_return_pct": -3.21
+          "predicted_return_pct": -3.44
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -11.03,
-          "predicted_return_pct": -3.63
+          "predicted_return_pct": -3.76
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -11.98,
-          "predicted_return_pct": -2.34
+          "predicted_return_pct": -2.44
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -6.89,
-          "predicted_return_pct": -3.06
+          "predicted_return_pct": -3.18
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -3.49,
-          "predicted_return_pct": -2.47
+          "predicted_return_pct": -2.54
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": 6.19,
-          "predicted_return_pct": -3.55
+          "predicted_return_pct": -3.68
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 0.59,
-          "predicted_return_pct": -2.77
+          "predicted_return_pct": -2.9
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": 9.82,
-          "predicted_return_pct": -5.26
+          "predicted_return_pct": -5.03
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": 2.91,
-          "predicted_return_pct": -5.46
+          "predicted_return_pct": -5.37
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -10.73,
-          "predicted_return_pct": -3.66
+          "predicted_return_pct": -4.02
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -17.66,
-          "predicted_return_pct": -1.7
+          "predicted_return_pct": -1.61
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -15971,13 +15971,13 @@
       "name": "三菱商事",
       "asof": "2026-11-06",
       "price": 4958.0,
-      "forecast": 5134.72,
-      "return_pct": 3.56,
+      "forecast": 5134.89,
+      "return_pct": 3.57,
       "up_probability_pct": 86.6,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 45.1,
+        "direction_accuracy_pct": 44.8,
         "naive_direction_accuracy_pct": 53.7,
         "mae_return_pct": 3.53,
         "flat_baseline_mae_pct": 3.34
@@ -16268,7 +16268,7 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -3.61,
-          "predicted_return_pct": 0.92
+          "predicted_return_pct": 0.93
         },
         {
           "date": "2026-09-15",
@@ -16293,92 +16293,92 @@
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.57,
-          "predicted_return_pct": 1.08
+          "predicted_return_pct": 1.23
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -2.14,
-          "predicted_return_pct": 0.71
+          "predicted_return_pct": 0.73
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.99,
-          "predicted_return_pct": 0.08
+          "predicted_return_pct": 0.14
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 1.64,
-          "predicted_return_pct": 1.62
+          "predicted_return_pct": 1.61
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -1.95,
-          "predicted_return_pct": 0.46
+          "predicted_return_pct": 0.48
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -2.8,
-          "predicted_return_pct": 0.82
+          "predicted_return_pct": 0.84
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": -2.09,
-          "predicted_return_pct": 1.27
+          "predicted_return_pct": 1.29
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -0.19,
-          "predicted_return_pct": 0.59
+          "predicted_return_pct": 0.62
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 1.06,
-          "predicted_return_pct": 1.34
+          "predicted_return_pct": 1.31
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -0.04,
-          "predicted_return_pct": -0.61
+          "predicted_return_pct": -0.58
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 2.96,
-          "predicted_return_pct": 0.94
+          "predicted_return_pct": 0.96
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 3.59,
-          "predicted_return_pct": -0.11
+          "predicted_return_pct": -0.14
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 0.26,
-          "predicted_return_pct": 1.05
+          "predicted_return_pct": 1.06
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": -0.36,
-          "predicted_return_pct": 0.66
+          "predicted_return_pct": 0.63
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 2.59,
-          "predicted_return_pct": 1.99
+          "predicted_return_pct": 1.96
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -0.23,
-          "predicted_return_pct": 1.26
+          "predicted_return_pct": 1.28
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 3.13,
-          "predicted_return_pct": 0.73
+          "predicted_return_pct": 0.74
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 4.75,
-          "predicted_return_pct": 0.82
+          "predicted_return_pct": 0.84
         },
         {
           "date": "2026-10-21",
@@ -16388,27 +16388,27 @@
         {
           "date": "2026-10-22",
           "actual_return_pct": 2.36,
-          "predicted_return_pct": 0.65
+          "predicted_return_pct": 0.66
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 1.91,
-          "predicted_return_pct": 0.75
+          "predicted_return_pct": 0.71
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -2.81,
-          "predicted_return_pct": -1.11
+          "predicted_return_pct": -1.1
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": 4.29,
-          "predicted_return_pct": 0.27
+          "predicted_return_pct": 0.28
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 8.81,
-          "predicted_return_pct": -1.24
+          "predicted_return_pct": -1.23
         },
         {
           "date": "2026-10-29",
@@ -16442,7 +16442,7 @@
       "price": 3224.0,
       "forecast": 3050.26,
       "return_pct": -5.39,
-      "up_probability_pct": 45.8,
+      "up_probability_pct": 45.0,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -17853,9 +17853,9 @@
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 49.4,
+        "direction_accuracy_pct": 51.2,
         "naive_direction_accuracy_pct": 61.4,
-        "mae_return_pct": 2.97,
+        "mae_return_pct": 2.95,
         "flat_baseline_mae_pct": 2.8
       },
       "history": [
@@ -18144,17 +18144,17 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -1.66,
-          "predicted_return_pct": 0.22
+          "predicted_return_pct": 0.69
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 1.01,
-          "predicted_return_pct": 0.38
+          "predicted_return_pct": 0.18
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -0.63,
-          "predicted_return_pct": 1.06
+          "predicted_return_pct": 1.0
         },
         {
           "date": "2026-09-17",
@@ -18164,132 +18164,132 @@
         {
           "date": "2026-09-18",
           "actual_return_pct": -1.12,
-          "predicted_return_pct": 0.21
+          "predicted_return_pct": 0.17
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.56,
-          "predicted_return_pct": 1.18
+          "predicted_return_pct": 1.06
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -5.25,
-          "predicted_return_pct": 0.25
+          "predicted_return_pct": 0.37
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -2.88,
-          "predicted_return_pct": 0.47
+          "predicted_return_pct": 0.58
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 0.1,
-          "predicted_return_pct": -0.1
+          "predicted_return_pct": 0.05
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -1.57,
-          "predicted_return_pct": -1.72
+          "predicted_return_pct": -2.18
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -2.71,
-          "predicted_return_pct": -0.03
+          "predicted_return_pct": 0.26
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 0.44,
-          "predicted_return_pct": 0.7
+          "predicted_return_pct": 0.56
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -0.19,
-          "predicted_return_pct": -1.4
+          "predicted_return_pct": -0.7
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": -1.23,
-          "predicted_return_pct": -0.48
+          "predicted_return_pct": -0.1
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -2.65,
-          "predicted_return_pct": 0.33
+          "predicted_return_pct": 0.76
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 1.83,
-          "predicted_return_pct": -0.98
+          "predicted_return_pct": -1.02
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 1.4,
-          "predicted_return_pct": 0.89
+          "predicted_return_pct": 0.93
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": -1.78,
-          "predicted_return_pct": 0.89
+          "predicted_return_pct": 1.09
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 0.69,
-          "predicted_return_pct": 1.05
+          "predicted_return_pct": 1.15
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 0.77,
-          "predicted_return_pct": 0.54
+          "predicted_return_pct": 0.69
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -2.12,
-          "predicted_return_pct": 1.39
+          "predicted_return_pct": 1.35
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -2.0,
-          "predicted_return_pct": 0.78
+          "predicted_return_pct": 1.0
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": 1.24,
-          "predicted_return_pct": 1.54
+          "predicted_return_pct": 1.5
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -1.11,
-          "predicted_return_pct": 0.72
+          "predicted_return_pct": 0.61
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": 1.08,
-          "predicted_return_pct": 1.41
+          "predicted_return_pct": 1.67
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 1.99,
-          "predicted_return_pct": 0.42
+          "predicted_return_pct": 0.53
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": 0.23,
-          "predicted_return_pct": 0.74
+          "predicted_return_pct": 0.98
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -1.84,
-          "predicted_return_pct": 1.15
+          "predicted_return_pct": 1.22
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 1.47,
-          "predicted_return_pct": 1.01
+          "predicted_return_pct": 1.13
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -7.31,
-          "predicted_return_pct": 0.64
+          "predicted_return_pct": 0.38
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -18299,12 +18299,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 567.0,
-        "predicted_price": 563.52,
+        "predicted_price": 564.11,
         "actual_price": 569.8,
-        "predicted_return_pct": -0.61,
+        "predicted_return_pct": -0.51,
         "actual_return_pct": 0.49,
-        "price_error_yen": -6.28,
-        "absolute_error_pct": 1.1,
+        "price_error_yen": -5.69,
+        "absolute_error_pct": 1.0,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -18768,12 +18768,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 3523.0,
-        "predicted_price": 3559.87,
+        "predicted_price": 3574.65,
         "actual_price": 3829.0,
-        "predicted_return_pct": 1.05,
+        "predicted_return_pct": 1.47,
         "actual_return_pct": 8.69,
-        "price_error_yen": -269.13,
-        "absolute_error_pct": 7.03,
+        "price_error_yen": -254.35,
+        "absolute_error_pct": 6.64,
         "direction_correct": true,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -18787,7 +18787,7 @@
       "price": 3829.0,
       "forecast": 3855.63,
       "return_pct": 0.7,
-      "up_probability_pct": 70.5,
+      "up_probability_pct": 71.9,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -20175,12 +20175,12 @@
         "asof": "2026-10-29",
         "target_date": "2026-11-06",
         "asof_price": 7457.0,
-        "predicted_price": 7487.2,
+        "predicted_price": 7484.17,
         "actual_price": 6516.0,
-        "predicted_return_pct": 0.4,
+        "predicted_return_pct": 0.36,
         "actual_return_pct": -12.62,
-        "price_error_yen": 971.2,
-        "absolute_error_pct": 14.9,
+        "price_error_yen": 968.17,
+        "absolute_error_pct": 14.86,
         "direction_correct": false,
         "train_samples": 1640,
         "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
@@ -20192,9 +20192,9 @@
       "name": "商船三井",
       "asof": "2026-11-06",
       "price": 6516.0,
-      "forecast": 6868.62,
-      "return_pct": 5.41,
-      "up_probability_pct": 81.8,
+      "forecast": 6898.32,
+      "return_pct": 5.87,
+      "up_probability_pct": 82.1,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -20661,9 +20661,9 @@
       "name": "NTT",
       "asof": "2026-11-06",
       "price": 160.2,
-      "forecast": 162.91,
-      "return_pct": 1.69,
-      "up_probability_pct": 58.1,
+      "forecast": 162.41,
+      "return_pct": 1.38,
+      "up_probability_pct": 59.2,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -21132,7 +21132,7 @@
       "price": 2833.5,
       "forecast": 2910.99,
       "return_pct": 2.73,
-      "up_probability_pct": 72.9,
+      "up_probability_pct": 73.4,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -21601,13 +21601,13 @@
       "price": 235.4,
       "forecast": 238.1,
       "return_pct": 1.15,
-      "up_probability_pct": 74.1,
+      "up_probability_pct": 74.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 51.5,
+        "direction_accuracy_pct": 52.5,
         "naive_direction_accuracy_pct": 55.6,
-        "mae_return_pct": 1.83,
+        "mae_return_pct": 1.82,
         "flat_baseline_mae_pct": 1.78
       },
       "history": [
@@ -21896,152 +21896,152 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -1.79,
-          "predicted_return_pct": 0.3
+          "predicted_return_pct": 0.1
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": -1.88,
-          "predicted_return_pct": 0.15
+          "predicted_return_pct": -0.03
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -1.73,
-          "predicted_return_pct": -0.57
+          "predicted_return_pct": -0.71
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -3.06,
-          "predicted_return_pct": -1.05
+          "predicted_return_pct": -0.98
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -1.04,
-          "predicted_return_pct": -0.91
+          "predicted_return_pct": -0.85
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -0.44,
-          "predicted_return_pct": -1.3
+          "predicted_return_pct": -1.4
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -1.69,
-          "predicted_return_pct": -1.51
+          "predicted_return_pct": -1.32
         },
         {
           "date": "2026-09-28",
           "actual_return_pct": -0.67,
-          "predicted_return_pct": -1.97
+          "predicted_return_pct": -1.88
         },
         {
           "date": "2026-09-29",
           "actual_return_pct": 0.04,
-          "predicted_return_pct": -0.76
+          "predicted_return_pct": -0.71
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": -0.17,
-          "predicted_return_pct": -0.36
+          "predicted_return_pct": -0.77
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 0.21,
-          "predicted_return_pct": 0.51
+          "predicted_return_pct": 0.68
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 1.94,
-          "predicted_return_pct": 1.1
+          "predicted_return_pct": 0.68
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 1.89,
-          "predicted_return_pct": 0.89
+          "predicted_return_pct": 1.14
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": 0.92,
-          "predicted_return_pct": 0.18
+          "predicted_return_pct": 0.13
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": 0.83,
-          "predicted_return_pct": 0.66
+          "predicted_return_pct": 0.47
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 1.41,
-          "predicted_return_pct": 0.02
+          "predicted_return_pct": -0.04
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 1.78,
-          "predicted_return_pct": 0.84
+          "predicted_return_pct": 0.73
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 1.73,
-          "predicted_return_pct": 0.37
+          "predicted_return_pct": 0.7
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 1.99,
-          "predicted_return_pct": 0.29
+          "predicted_return_pct": 0.12
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 1.61,
-          "predicted_return_pct": -0.38
+          "predicted_return_pct": -0.65
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -2.98,
-          "predicted_return_pct": -0.19
+          "predicted_return_pct": -0.04
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -3.61,
-          "predicted_return_pct": -0.16
+          "predicted_return_pct": -0.1
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -5.62,
-          "predicted_return_pct": -0.01
+          "predicted_return_pct": 0.08
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -6.45,
-          "predicted_return_pct": -0.28
+          "predicted_return_pct": -0.2
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -5.64,
-          "predicted_return_pct": -0.37
+          "predicted_return_pct": -0.06
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -1.35,
-          "predicted_return_pct": 0.25
+          "predicted_return_pct": 0.29
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -1.05,
-          "predicted_return_pct": 0.85
+          "predicted_return_pct": 0.86
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": 0.0,
-          "predicted_return_pct": 0.81
+          "predicted_return_pct": 0.85
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": 5.81,
-          "predicted_return_pct": 1.06
+          "predicted_return_pct": 1.27
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": 1.16,
-          "predicted_return_pct": -0.14
+          "predicted_return_pct": 0.08
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
@@ -22070,7 +22070,7 @@
       "price": 3260.0,
       "forecast": 3400.47,
       "return_pct": 4.31,
-      "up_probability_pct": 65.2,
+      "up_probability_pct": 64.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -22537,8 +22537,8 @@
       "name": "ファーストリテイリング",
       "asof": "2026-11-06",
       "price": 77950.0,
-      "forecast": 77863.81,
-      "return_pct": -0.11,
+      "forecast": 77793.06,
+      "return_pct": -0.2,
       "up_probability_pct": 46.3,
       "metrics": {
         "samples": 1645,

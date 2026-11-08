@@ -20,7 +20,7 @@ header{display:flex;align-items:center;gap:10px;flex:none}header h1{font-size:19
 <section id="setup" class="setup panel"><strong>プレイヤー登録（2〜8人）</strong><div id="quickPlayers"></div><p class="muted">ボタンで1〜10の数字を引き、全員共通の合計を増やします。自分の番で最低1回は引き、最大3回まで挑戦可能！「次の番へ」で交代。<strong>100ぴったりならカウント＋1で合計0に戻る。100を超えた人が負けで、敗者ポイント＝超過分＋カウント！</strong></p><button id="start" class="btn">ゲーム開始</button></section>
 <section id="game" class="game"><div class="panel players" id="players"></div><div class="turn" id="turn"></div><div class="arena" id="arena"><span class="caption">全員共通の合計</span><div id="total" class="total">0 <small>/ 100</small></div><div class="caption">100ぴったり回数：<strong id="exactCount">0</strong> 回</div><div class="track"><div id="fill" class="fill"></div></div><div id="card" class="number-card"><span id="cardLabel">今回の数字</span><strong id="number">?</strong></div><div id="note" class="note" aria-live="polite">数字を引こう！</div></div><div class="actions"><button id="draw" class="btn">数字を引く</button><button id="next" class="soft" disabled>次の番へ</button></div></section>
 <section id="result" class="result panel"><h2>ゲーム終了！</h2><p class="loser-label">負けたプレイヤー</p><div id="loser" class="loser-name"></div><div class="final-value">最終合計 <strong id="endTotal"></strong></div><div class="calc" aria-label="敗者ポイント計算"><div class="calc-row"><span class="calc-label">オーバー分</span><span></span><span id="overValue" class="calc-num">0</span></div><div class="calc-row"><span class="calc-label">100ぴったり回数</span><span>＋</span><span id="exactValue" class="calc-num">0</span></div><div class="calc-rule"></div><div class="calc-row answer"><span class="calc-label">負けポイント</span><span>＝</span><span><span id="pointValue">0</span> pt</span></div></div><p class="muted">100を超えた人が負け。他のプレイヤーは勝ち！</p><div class="result-actions"><button id="again" class="btn">もう一度遊ぶ</button><button id="settings" class="soft">設定に戻る</button></div></section>
-</main><script src="../shared/player-setup.js"></script><script src="../shared/screen-manager.js?v=2.24.0"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script><script>
+</main><script src="../shared/player-setup.js"></script><script src="../shared/turn-overlay.js"></script><script src="../shared/exit-confirm.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 let setup,players=[],current=0,total=0,exactCount=0,draws=0,phase='setup',interval=null,timeout=null;
@@ -32,7 +32,7 @@ function render(){
  $('turn').textContent=players[current]+' の番';$('players').innerHTML=players.map((p,i)=>'<div class="player '+(current===i?'active':'')+'">'+namesHtml(p)+'</div>').join('');
  $('draw').disabled=phase!=='playing'||draws>=3;$('next').disabled=phase!=='playing'||draws<1;
 }
-function screen(name){GameScreens.show(name)}
+function screen(name){for(const id of ['setup','game','result']){const el=$(id);if(id==='setup')el.style.display=name==='setup'?'flex':'none';else el.classList.toggle('on',id===name)}}
 function newTurn(){draws=0;phase='playing';$('card').className='number-card';$('number').textContent='?';$('cardLabel').textContent='今回の数字';$('note').className='note';$('note').textContent='最低1回引いてから交代できます';render();GameTurnOverlay.show(players[current])}
 function start(){const names=setup.validate();if(!names)return;clearTimers();players=names;total=0;exactCount=0;current=0;screen('game');newTurn()}
 function draw(){

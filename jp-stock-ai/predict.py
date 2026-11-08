@@ -12,17 +12,33 @@ from sklearn.metrics import mean_absolute_error
 
 ROOT = Path(__file__).resolve().parent
 TICKERS = {
-    "7203": "トヨタ自動車",
-    "6758": "ソニーグループ",
-    "7974": "任天堂",
-    "8306": "三菱UFJフィナンシャル・グループ",
-    "9432": "NTT",
-    "9984": "ソフトバンクグループ",
-    "6861": "キーエンス",
-    "8035": "東京エレクトロン",
-    "6098": "リクルートホールディングス",
-    "4063": "信越化学工業",
+    "7203": "トヨタ自動車", "6758": "ソニーグループ",
+    "7974": "任天堂", "8306": "三菱UFJ FG",
+    "9432": "NTT", "9984": "ソフトバンクグループ",
+    "6861": "キーエンス", "8035": "東京エレクトロン",
+    "6098": "リクルートHD", "4063": "信越化学工業",
+    "6501": "日立製作所", "6752": "パナソニックHD",
+    "7267": "本田技研工業", "6902": "デンソー",
+    "8031": "三井物産", "8058": "三菱商事",
+    "8001": "伊藤忠商事", "8002": "丸紅",
+    "8316": "三井住友FG", "8411": "みずほFG",
+    "8766": "東京海上HD", "8591": "オリックス",
+    "9433": "KDDI", "9434": "ソフトバンク",
+    "9983": "ファーストリテイリング", "7976": "三菱鉛筆",
+    "6367": "ダイキン工業", "6954": "ファナック",
+    "7011": "三菱重工業", "7012": "川崎重工業",
+    "5401": "日本製鉄", "5803": "フジクラ",
+    "4568": "第一三共", "4502": "武田薬品工業",
+    "4519": "中外製薬", "4901": "富士フイルムHD",
+    "2914": "日本たばこ産業", "4452": "花王",
+    "2802": "味の素", "2502": "アサヒグループHD",
+    "7733": "オリンパス", "7741": "HOYA",
+    "6981": "村田製作所", "6762": "TDK",
+    "9101": "日本郵船", "9104": "商船三井",
+    "9020": "東日本旅客鉄道", "9022": "東海旅客鉄道",
+    "9843": "ニトリHD", "4661": "オリエンタルランド",
 }
+
 HORIZON = 5
 FEATURES = ["ret1", "ret5", "ret10", "ret20", "ma5", "ma20", "ma60", "vol5", "vol20", "volume_ratio", "range1", "rsi14"]
 
@@ -128,10 +144,17 @@ def forecast(code, name):
     change = float(np.clip(reg.predict(last)[0], -0.3, 0.3))
     probability = float(clf.predict_proba(last)[0, 1])
     current = float(close.iloc[-1])
+    if not (np.isfinite(current) and current > 0):
+        raise ValueError("終値が不正です")
+    quality_pass = bool(mae < baseline_mae and accuracy > baseline_acc)
+    ranking_quality = "検証基準通過" if quality_pass else "精度未確認"
+    ranking_reason = ("誤差・方向的中率とも基準値を上回る" if quality_pass else "検証成績が単純予測の基準を両方は超えていない")
     dates = dataset.index[first_test:]
     historical_check = one_week_ago_check(close, features, target, common)
     return {
         "one_week_ago_check": historical_check,
+        "ranking_quality": ranking_quality, "ranking_quality_pass": quality_pass,
+        "ranking_quality_reason": ranking_reason,
         "code": code, "name": name, "asof": close.index[-1].strftime("%Y-%m-%d"),
         "price": round(current, 2), "forecast": round(current * (1 + change), 2),
         "return_pct": round(change * 100, 2), "up_probability_pct": round(probability * 100, 1),
@@ -149,7 +172,7 @@ def forecast(code, name):
     }
 
 def main():
-    payload = {"version":"0.2.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
+    payload = {"version":"0.3.0", "generated_at": datetime.now(timezone.utc).isoformat(), "horizon_sessions": HORIZON, "stocks": [], "errors": []}
     for code, name in TICKERS.items():
         try:
             payload["stocks"].append(forecast(code,name))
@@ -159,6 +182,8 @@ def main():
             print("ERROR", code, exc)
     if not payload["stocks"]:
         raise RuntimeError("全銘柄のデータ取得に失敗。公開済みのJSONは保持します。")
+    payload["stocks"].sort(key=lambda row: row["code"])
+    payload["universe_count"] = len(TICKERS)
     (ROOT/"data").mkdir(exist_ok=True)
     (ROOT/"data"/"predictions.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 if __name__ == "__main__":

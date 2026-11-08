@@ -1,4 +1,4 @@
-/* GameBOX: shared optional player setup */
+/* BAR: shared optional player setup v1.1.0 */
 (function(){
  'use strict';
  const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -24,7 +24,13 @@
    }
    function validate(){const names=getNames();if(new Set(names).size!==names.length){alert('同じ名前は使用できません');return null}return names}
    draw();
-   return {getNames,validate,getCount:()=>count,reset:()=>{saved.fill('');count=Math.min(max,Math.max(min,initial));draw();onChange()}};
+   // Build game-specific player records only after shared name validation.
+   function createPlayers(factory=name=>({name})){
+     const names=validate();
+     if(!names)return null;
+     return names.map((name,index)=>factory(name,index));
+   }
+   return {getNames,validate,createPlayers,getCount:()=>count,reset:()=>{saved.fill('');count=Math.min(max,Math.max(min,initial));draw();onChange()}};
  }
  window.GamePlayers={create};
 })();

@@ -1,16 +1,30 @@
 {
-  "version": "0.1.0",
-  "generated_at": "2026-11-08T14:21:49.273112+00:00",
+  "version": "0.2.0",
+  "generated_at": "2026-11-08T14:26:41.560736+00:00",
   "horizon_sessions": 5,
   "stocks": [
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 3077.0,
+        "predicted_price": 3066.48,
+        "actual_price": 3338.0,
+        "predicted_return_pct": -0.34,
+        "actual_return_pct": 8.48,
+        "price_error_yen": -271.52,
+        "absolute_error_pct": 8.13,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "7203",
       "name": "トヨタ自動車",
       "asof": "2026-11-06",
       "price": 3338.0,
       "forecast": 3279.53,
       "return_pct": -1.75,
-      "up_probability_pct": 24.8,
+      "up_probability_pct": 26.8,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
@@ -456,6 +470,20 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 3936.0,
+        "predicted_price": 3995.14,
+        "actual_price": 4142.0,
+        "predicted_return_pct": 1.5,
+        "actual_return_pct": 5.23,
+        "price_error_yen": -146.86,
+        "absolute_error_pct": 3.55,
+        "direction_correct": true,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "6758",
       "name": "ソニーグループ",
       "asof": "2026-11-06",
@@ -908,6 +936,20 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 8158.0,
+        "predicted_price": 8072.56,
+        "actual_price": 8178.0,
+        "predicted_return_pct": -1.05,
+        "actual_return_pct": 0.25,
+        "price_error_yen": -105.44,
+        "absolute_error_pct": 1.29,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "7974",
       "name": "任天堂",
       "asof": "2026-11-06",
@@ -1360,6 +1402,20 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 3464.0,
+        "predicted_price": 3542.36,
+        "actual_price": 3224.0,
+        "predicted_return_pct": 2.26,
+        "actual_return_pct": -6.93,
+        "price_error_yen": 318.36,
+        "absolute_error_pct": 9.87,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "8306",
       "name": "三菱UFJフィナンシャル・グループ",
       "asof": "2026-11-06",
@@ -1812,17 +1868,31 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 171.5,
+        "predicted_price": 171.69,
+        "actual_price": 160.2,
+        "predicted_return_pct": 0.11,
+        "actual_return_pct": -6.59,
+        "price_error_yen": 11.49,
+        "absolute_error_pct": 7.17,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "9432",
       "name": "NTT",
       "asof": "2026-11-06",
       "price": 160.2,
-      "forecast": 162.79,
-      "return_pct": 1.62,
-      "up_probability_pct": 56.7,
+      "forecast": 162.73,
+      "return_pct": 1.58,
+      "up_probability_pct": 57.7,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 45.4,
+        "direction_accuracy_pct": 44.1,
         "naive_direction_accuracy_pct": 54.9,
         "mae_return_pct": 1.84,
         "flat_baseline_mae_pct": 1.77
@@ -2113,37 +2183,37 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": -1.91,
-          "predicted_return_pct": 0.77
+          "predicted_return_pct": 1.04
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": -1.12,
-          "predicted_return_pct": 0.59
+          "predicted_return_pct": 0.58
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": -1.36,
-          "predicted_return_pct": 1.06
+          "predicted_return_pct": 1.18
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": -3.34,
-          "predicted_return_pct": -0.22
+          "predicted_return_pct": -0.35
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": -1.7,
-          "predicted_return_pct": 0.71
+          "predicted_return_pct": 0.89
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": -1.1,
-          "predicted_return_pct": 0.51
+          "predicted_return_pct": 0.52
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": -2.01,
-          "predicted_return_pct": 0.27
+          "predicted_return_pct": 0.34
         },
         {
           "date": "2026-09-28",
@@ -2158,22 +2228,22 @@
         {
           "date": "2026-09-30",
           "actual_return_pct": 0.29,
-          "predicted_return_pct": -0.37
+          "predicted_return_pct": -0.42
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": 1.06,
-          "predicted_return_pct": -0.27
+          "predicted_return_pct": -0.24
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 1.77,
-          "predicted_return_pct": -0.3
+          "predicted_return_pct": -0.33
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": 1.94,
-          "predicted_return_pct": -0.14
+          "predicted_return_pct": -0.15
         },
         {
           "date": "2026-10-06",
@@ -2183,87 +2253,101 @@
         {
           "date": "2026-10-07",
           "actual_return_pct": 0.7,
-          "predicted_return_pct": -0.33
+          "predicted_return_pct": -0.31
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": 1.39,
-          "predicted_return_pct": -0.1
+          "predicted_return_pct": -0.21
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": 1.27,
-          "predicted_return_pct": -0.31
+          "predicted_return_pct": -0.46
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": 2.19,
-          "predicted_return_pct": 0.23
+          "predicted_return_pct": -0.02
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": 2.14,
-          "predicted_return_pct": 0.18
+          "predicted_return_pct": 0.13
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": 2.77,
-          "predicted_return_pct": 0.53
+          "predicted_return_pct": 0.41
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": 0.17,
-          "predicted_return_pct": 0.12
+          "predicted_return_pct": 0.09
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": 0.74,
-          "predicted_return_pct": 0.3
+          "predicted_return_pct": 0.23
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -1.75,
-          "predicted_return_pct": 0.48
+          "predicted_return_pct": 0.26
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -2.44,
-          "predicted_return_pct": 0.53
+          "predicted_return_pct": 0.33
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": -3.71,
-          "predicted_return_pct": 0.84
+          "predicted_return_pct": 0.92
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": -0.86,
-          "predicted_return_pct": 0.47
+          "predicted_return_pct": 0.53
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": -1.08,
-          "predicted_return_pct": 0.16
+          "predicted_return_pct": 0.26
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": -5.75,
-          "predicted_return_pct": 0.26
+          "predicted_return_pct": 0.1
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -4.07,
-          "predicted_return_pct": 0.64
+          "predicted_return_pct": 0.55
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -6.59,
-          "predicted_return_pct": 0.44
+          "predicted_return_pct": 0.43
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 4765.0,
+        "predicted_price": 4950.23,
+        "actual_price": 3549.0,
+        "predicted_return_pct": 3.89,
+        "actual_return_pct": -25.52,
+        "price_error_yen": 1401.23,
+        "absolute_error_pct": 39.48,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "9984",
       "name": "ソフトバンクグループ",
       "asof": "2026-11-06",
@@ -2716,6 +2800,20 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 76360.0,
+        "predicted_price": 77177.6,
+        "actual_price": 69750.0,
+        "predicted_return_pct": 1.07,
+        "actual_return_pct": -8.66,
+        "price_error_yen": 7427.6,
+        "absolute_error_pct": 10.65,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "6861",
       "name": "キーエンス",
       "asof": "2026-11-06",
@@ -3168,19 +3266,33 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 10035.0,
+        "predicted_price": 9553.46,
+        "actual_price": 8263.0,
+        "predicted_return_pct": -4.8,
+        "actual_return_pct": -17.66,
+        "price_error_yen": 1290.46,
+        "absolute_error_pct": 15.62,
+        "direction_correct": true,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "8035",
       "name": "東京エレクトロン",
       "asof": "2026-11-06",
       "price": 8263.0,
-      "forecast": 8916.49,
-      "return_pct": 7.91,
+      "forecast": 8924.58,
+      "return_pct": 8.01,
       "up_probability_pct": 76.3,
       "metrics": {
         "samples": 1645,
         "test_samples": 324,
-        "direction_accuracy_pct": 52.5,
+        "direction_accuracy_pct": 52.2,
         "naive_direction_accuracy_pct": 52.8,
-        "mae_return_pct": 6.51,
+        "mae_return_pct": 6.48,
         "flat_baseline_mae_pct": 6.36
       },
       "history": [
@@ -3469,37 +3581,37 @@
         {
           "date": "2026-09-14",
           "actual_return_pct": 5.87,
-          "predicted_return_pct": -2.01
+          "predicted_return_pct": -1.7
         },
         {
           "date": "2026-09-15",
           "actual_return_pct": 11.59,
-          "predicted_return_pct": -0.36
+          "predicted_return_pct": -0.19
         },
         {
           "date": "2026-09-16",
           "actual_return_pct": 8.96,
-          "predicted_return_pct": -0.57
+          "predicted_return_pct": -0.28
         },
         {
           "date": "2026-09-17",
           "actual_return_pct": 13.7,
-          "predicted_return_pct": -1.09
+          "predicted_return_pct": -0.87
         },
         {
           "date": "2026-09-18",
           "actual_return_pct": 12.06,
-          "predicted_return_pct": 1.24
+          "predicted_return_pct": 1.28
         },
         {
           "date": "2026-09-24",
           "actual_return_pct": 17.52,
-          "predicted_return_pct": 1.36
+          "predicted_return_pct": 1.24
         },
         {
           "date": "2026-09-25",
           "actual_return_pct": 7.84,
-          "predicted_return_pct": 1.9
+          "predicted_return_pct": 2.15
         },
         {
           "date": "2026-09-28",
@@ -3509,117 +3621,131 @@
         {
           "date": "2026-09-29",
           "actual_return_pct": 11.3,
-          "predicted_return_pct": 1.05
+          "predicted_return_pct": 1.09
         },
         {
           "date": "2026-09-30",
           "actual_return_pct": 5.8,
-          "predicted_return_pct": 1.56
+          "predicted_return_pct": 1.6
         },
         {
           "date": "2026-10-01",
           "actual_return_pct": -3.1,
-          "predicted_return_pct": 0.37
+          "predicted_return_pct": 0.42
         },
         {
           "date": "2026-10-02",
           "actual_return_pct": 2.85,
-          "predicted_return_pct": 0.26
+          "predicted_return_pct": 0.12
         },
         {
           "date": "2026-10-05",
           "actual_return_pct": -9.48,
-          "predicted_return_pct": 2.73
+          "predicted_return_pct": 2.7
         },
         {
           "date": "2026-10-06",
           "actual_return_pct": -12.22,
-          "predicted_return_pct": 3.52
+          "predicted_return_pct": 3.36
         },
         {
           "date": "2026-10-07",
           "actual_return_pct": -17.08,
-          "predicted_return_pct": 3.72
+          "predicted_return_pct": 3.32
         },
         {
           "date": "2026-10-08",
           "actual_return_pct": -12.8,
-          "predicted_return_pct": 2.48
+          "predicted_return_pct": 2.11
         },
         {
           "date": "2026-10-09",
           "actual_return_pct": -16.83,
-          "predicted_return_pct": 0.4
+          "predicted_return_pct": 0.34
         },
         {
           "date": "2026-10-13",
           "actual_return_pct": -12.72,
-          "predicted_return_pct": 2.27
+          "predicted_return_pct": 2.18
         },
         {
           "date": "2026-10-14",
           "actual_return_pct": -9.61,
-          "predicted_return_pct": 3.08
+          "predicted_return_pct": 3.01
         },
         {
           "date": "2026-10-15",
           "actual_return_pct": -8.83,
-          "predicted_return_pct": -3.21
+          "predicted_return_pct": -3.44
         },
         {
           "date": "2026-10-16",
           "actual_return_pct": -11.03,
-          "predicted_return_pct": -3.63
+          "predicted_return_pct": -3.76
         },
         {
           "date": "2026-10-19",
           "actual_return_pct": -11.98,
-          "predicted_return_pct": -2.34
+          "predicted_return_pct": -2.44
         },
         {
           "date": "2026-10-20",
           "actual_return_pct": -6.89,
-          "predicted_return_pct": -3.06
+          "predicted_return_pct": -3.18
         },
         {
           "date": "2026-10-21",
           "actual_return_pct": -3.49,
-          "predicted_return_pct": -2.47
+          "predicted_return_pct": -2.54
         },
         {
           "date": "2026-10-22",
           "actual_return_pct": 6.19,
-          "predicted_return_pct": -3.55
+          "predicted_return_pct": -3.68
         },
         {
           "date": "2026-10-23",
           "actual_return_pct": 0.59,
-          "predicted_return_pct": -2.77
+          "predicted_return_pct": -2.9
         },
         {
           "date": "2026-10-26",
           "actual_return_pct": 9.82,
-          "predicted_return_pct": -5.26
+          "predicted_return_pct": -5.03
         },
         {
           "date": "2026-10-27",
           "actual_return_pct": 2.91,
-          "predicted_return_pct": -5.46
+          "predicted_return_pct": -5.37
         },
         {
           "date": "2026-10-28",
           "actual_return_pct": -10.73,
-          "predicted_return_pct": -3.66
+          "predicted_return_pct": -4.02
         },
         {
           "date": "2026-10-29",
           "actual_return_pct": -17.66,
-          "predicted_return_pct": -1.7
+          "predicted_return_pct": -1.61
         }
       ],
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 18890.0,
+        "predicted_price": 18641.87,
+        "actual_price": 17000.0,
+        "predicted_return_pct": -1.31,
+        "actual_return_pct": -10.01,
+        "price_error_yen": 1641.87,
+        "absolute_error_pct": 9.66,
+        "direction_correct": true,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "6098",
       "name": "リクルートホールディングス",
       "asof": "2026-11-06",
@@ -4072,6 +4198,20 @@
       "disclaimer": "推定値です。上昇確率は未校正。過去の成績は将来の成果を保証しません。"
     },
     {
+      "one_week_ago_check": {
+        "asof": "2026-10-29",
+        "target_date": "2026-11-06",
+        "asof_price": 6010.0,
+        "predicted_price": 6053.45,
+        "actual_price": 5312.0,
+        "predicted_return_pct": 0.72,
+        "actual_return_pct": -11.61,
+        "price_error_yen": 741.45,
+        "absolute_error_pct": 13.96,
+        "direction_correct": false,
+        "train_samples": 1640,
+        "method": "5取引日前に判明していた価格・特徴量・確定ラベルだけを使用"
+      },
       "code": "4063",
       "name": "信越化学工業",
       "asof": "2026-11-06",

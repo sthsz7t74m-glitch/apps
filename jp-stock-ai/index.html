@@ -20,9 +20,10 @@ svg.chart{width:100%;height:190px;display:block;overflow:visible}.axis{font-size
 .footer{font-size:12px;color:#8290a5;line-height:1.7;margin-top:20px}
 @media(max-width:390px){.shell{padding-left:12px;padding-right:12px}.panel{padding:14px}.hero{gap:8px}.tile{padding:10px}}
 
-.ranking-actions{display:flex;gap:8px;margin:12px 0}.ranking-actions button{flex:1;border:1px solid #d8e3f4;background:#f4f7fc;border-radius:11px;padding:11px 8px;color:#415571;font-weight:750;cursor:pointer}.ranking-actions button.active{background:#276de4;color:#fff;border-color:#276de4}.rank-list{display:grid;gap:8px}.rank-item{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid #e2e9f4;border-radius:14px;padding:12px;background:white;color:inherit;cursor:pointer}.rank-no{font-size:14px;color:#8ba0b9;font-weight:800;width:24px;text-align:center}.rank-info{flex:1;min-width:0}.rank-title{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-meta{font-size:11px;color:#7b8aa0;margin-top:5px}.rank-change{font-weight:800;font-size:18px;white-space:nowrap}.quality{font-size:10px;padding:3px 6px;border-radius:5px;background:#f1f5fa;color:#66788e}.quality.good{background:#e3f5ed;color:#13785b}.rank-empty{padding:14px;color:#70809a;font-size:13px;background:#f7f9fd;border-radius:10px}.ranking-note{color:#748299;font-size:12px;line-height:1.7}#rankPanel[hidden]{display:none}
+.ranking-actions{display:flex;gap:8px;margin:12px 0}.ranking-actions button{flex:1;border:1px solid #d8e3f4;background:#f4f7fc;border-radius:11px;padding:11px 8px;color:#415571;font-weight:750;cursor:pointer}.ranking-actions button.active{background:#276de4;color:#fff;border-color:#276de4}.rank-list{display:grid;gap:8px}.rank-item{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid #e2e9f4;border-radius:14px;padding:12px;background:white;color:inherit;cursor:pointer}.rank-no{font-size:14px;color:#8ba0b9;font-weight:800;width:24px;text-align:center}.rank-info{flex:1;min-width:0}.rank-title{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-meta{font-size:11px;color:#7b8aa0;margin-top:5px}.rank-change{font-weight:800;font-size:18px;white-space:nowrap}.quality{font-size:10px;padding:3px 6px;border-radius:5px;background:#f1f5fa;color:#66788e}.quality.good{background:#e3f5ed;color:#13785b}.rank-empty{padding:14px;color:#70809a;font-size:13px;background:#f7f9fd;border-radius:10px}.ranking-note{color:#748299;font-size:12px;line-height:1.7}#rankPanel[hidden],#replayGraphPanel[hidden],#replayUnavailable[hidden]{display:none}
+.replay-heading{font-size:15px;margin:18px 0 10px}.replay-chart{height:auto;max-height:260px}.replay-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:9px 0}.replay-legend span{font-size:11px}.replay-footnote{font-size:12px;line-height:1.65;color:#65758e;margin:10px 0 16px}
 </style></head><body><main class="shell">
-<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.3.0</span></header>
+<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.4.0</span></header>
 <section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted" id="tickerLabel">東証の主要銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span></div></section>
 <p id="error" role="alert" hidden></p>
 <section class="panel" id="rankPanel" hidden><div class="eyebrow">AI SIGNAL RANKING</div><h2 style="margin-top:6px">買い候補・売り候補ランキング</h2><p class="ranking-note">今後5取引日の予測騰落率で並べた研究用ランキング。利益・売買推奨を保証するものではありません。検証成績が単純予測を上回る銘柄には「基準通過」を表示。</p><div class="ranking-actions"><button type="button" class="active" id="buyTab" aria-pressed="true">買い候補 ↑</button><button type="button" id="sellTab" aria-pressed="false">売り候補 ↓</button></div><div class="rank-list" id="rankList"></div><p class="ranking-note" id="rankSummary"></p></section>
@@ -30,7 +31,7 @@ svg.chart{width:100%;height:190px;display:block;overflow:visible}.axis{font-size
 <div id="content" hidden>
 <section class="panel"><div class="eyebrow">5-SESSION FORECAST</div><h2 id="stockTitle" style="margin-top:5px"></h2><div class="hero"><div class="tile"><span>直近終値（調整後）</span><strong id="price"></strong></div><div class="tile"><span>5取引日後の予測値</span><strong id="forecast"></strong></div></div><div class="subline"><strong class="big" id="change"></strong><span class="pill">予測騰落率</span></div><div class="muted" id="asof"></div></section>
 <section class="panel"><h2>株価推移と予測</h2><svg id="chart" class="chart" viewBox="0 0 340 190" role="img" aria-label="最近の終値と5取引日後の予測値の折れ線グラフ"></svg><div class="legend"><span><b></b>過去の株価</span><span><b class="dashed"></b>予測</span></div></section>
-<section class="panel" id="pastPanel" hidden><div class="eyebrow">HISTORICAL REPLAY</div><h2 style="margin-top:6px">5取引日前の予想は当たった？</h2><p class="muted" id="pastDates"></p><div class="hero"><div class="tile"><span>当時のAI予測価格</span><strong id="pastPrediction"></strong></div><div class="tile"><span>実際の到達価格</span><strong id="pastActual"></strong></div></div><div class="metrics" style="margin-top:10px"><div class="metric"><span>予測誤差（実際価格比）</span><strong id="pastError"></strong></div><div class="metric"><span>上昇・下落の判定</span><strong id="pastDirection"></strong></div></div><p class="muted" id="pastReturns"></p><p class="note">その日の予測を後から再現した検証です。実際に当日に配信・保存した予測履歴とは異なります。調整後株価は後日変更される場合があります。</p></section>
+<section class="panel" id="pastPanel" hidden><div class="eyebrow">HISTORICAL REPLAY</div><h2 style="margin-top:6px">5取引日前の予想は当たった？</h2><p class="muted" id="pastDates"></p><div class="hero"><div class="tile"><span>当時のAI予測価格</span><strong id="pastPrediction"></strong></div><div class="tile"><span>実際の到達価格</span><strong id="pastActual"></strong></div></div><div class="metrics" style="margin-top:10px"><div class="metric"><span>予測誤差（実際価格比）</span><strong id="pastError"></strong></div><div class="metric"><span>上昇・下落の判定</span><strong id="pastDirection"></strong></div></div><p class="muted" id="pastReturns"></p><div id="replayGraphPanel" hidden><h3 class="replay-heading">AI予測と実際の値動き</h3><svg id="replayChart" class="chart replay-chart" viewBox="0 0 340 218" role="img" aria-label="5取引日前のAI予測終点と、その後5取引日の実際の株価を比較したグラフ"></svg><div class="legend replay-legend"><span><b></b>実際の終値</span><span><b class="dashed"></b>AI予測終点への補助線</span></div><p class="replay-footnote">オレンジ点線は起点と5取引日後のAI予測価格を結んだ補助線です。途中の日々の価格はAIが予測したものではありません。</p></div><p id="replayUnavailable" class="note" hidden></p><p class="note">その日の予測を後から再現した検証です。実際に当日に配信・保存した予測履歴とは異なります。調整後株価は後日変更される場合があります。</p></section>
 <section class="panel"><h2>AIの判定と検証結果</h2><div class="metrics"><div class="metric"><span>上昇判定スコア（未校正）</span><strong id="prob"></strong></div><div class="metric"><span>方向的中率（検証期間）</span><strong id="accuracy"></strong></div><div class="metric"><span>騰落率の平均絶対誤差</span><strong id="mae"></strong></div><div class="metric"><span>変化なし予測の平均絶対誤差</span><strong id="baseline"></strong></div></div><p class="muted" id="samples"></p><p class="note" id="accuracyNote"></p></section>
 <section class="panel"><h2>この予測の見方</h2><p class="muted">過去約7年の株価・出来高・移動平均・RSIなどから、5取引日先の騰落率を学習しています。時系列に沿った未学習期間で検証し、比較指標も表示しています。</p><div class="note">確率は校正していないAIの推定スコアです。実際の上昇確率や利益を保証しません。予測値は投資助言ではなく学習・検証用です。</div></section>
 </div>
@@ -82,6 +83,50 @@ function renderChart(s){
  append("text",{x:20,y:185,class:"axis"},s.history.at(-45)?.date||s.history[0]?.date||"");
  append("text",{x:321,y:185,"text-anchor":"end",class:"axis"},"5取引日後（予測）");
 }
+function drawReplayChart(s,h){
+ const rows=(Array.isArray(s.history)?s.history:[]).filter(p=>p.date>=h.asof&&p.date<=h.target_date&&Number.isFinite(p.price));
+ const end=rows.length-1, ok=rows.length===6&&rows[0].date===h.asof&&rows[end].date===h.target_date
+   &&Number.isFinite(h.asof_price)&&Number.isFinite(h.predicted_price)&&Number.isFinite(h.actual_price)
+   &&h.asof_price>0&&h.predicted_price>0&&h.actual_price>0;
+ if(!ok){
+  $("replayGraphPanel").hidden=true;
+  $("replayUnavailable").hidden=false;
+  $("replayUnavailable").textContent="グラフに必要な6取引日分の株価がそろっていません。次回の株価データ更新後に確認してください。";
+  return;
+ }
+ $("replayUnavailable").hidden=true;
+ $("replayGraphPanel").hidden=false;
+ const values=rows.map(p=>Number(p.price));
+ // The historical model predicts only the fifth-session endpoint, not a daily path.
+ const lower=Math.min(...values,h.predicted_price,h.asof_price);
+ const upper=Math.max(...values,h.predicted_price,h.asof_price);
+ const padding=Math.max((upper-lower)*.17,upper*.003,0.1);
+ const min=lower-padding,max=upper+padding;
+ const x=i=>44+i/5*268, y=v=>166-(v-min)/(max-min)*133;
+ const svg=$("replayChart");svg.replaceChildren();
+ const NS="http://www.w3.org/2000/svg";
+ const add=(tag,attrs,text)=>{
+  const node=document.createElementNS(NS,tag);
+  for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));
+  if(text!==undefined)node.textContent=text;
+  svg.appendChild(node);return node;
+ };
+ const amount=v=>new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0}).format(v);
+ for(let i=0;i<4;i++){
+  const value=min+(max-min)*i/3, yy=y(value);
+  add("line",{x1:44,y1:yy,x2:317,y2:yy,class:"gridline"});
+  add("text",{x:39,y:yy+4,class:"axis","text-anchor":"end"},amount(value));
+ }
+ // Display endpoints first, then actual path over the forecast connector.
+ add("line",{x1:x(0),y1:y(h.asof_price),x2:x(5),y2:y(h.predicted_price),class:"forecast"});
+ add("polyline",{points:values.map((v,i)=>x(i)+","+y(v)).join(" "),class:"path"});
+ values.forEach((v,i)=>add("circle",{cx:x(i),cy:y(v),r:2.7,fill:"#2873e6"}));
+ add("circle",{cx:x(5),cy:y(h.predicted_price),r:5,fill:"#ec8a3c",stroke:"#fff","stroke-width":1.5});
+ add("circle",{cx:x(5),cy:y(values[5]),r:4.5,fill:"#2873e6",stroke:"#fff","stroke-width":1.5});
+ rows.forEach((r,i)=>add("text",{x:x(i),y:190,class:"axis","text-anchor":"middle"},r.date.slice(5).replace("-","/")));
+ add("text",{x:44,y:207,class:"axis"}, "起点");
+ add("text",{x:312,y:207,class:"axis","text-anchor":"end"}, "5取引日後");
+}
 function render(s){
  $("stockTitle").textContent=s.code+" "+s.name;
  $("price").textContent=yen(s.price);$("forecast").textContent=yen(s.forecast);
@@ -102,8 +147,9 @@ function render(s){
   $("pastDirection").textContent=h.direction_correct?"的中":"不的中";
   $("pastDirection").className=h.direction_correct?"positive":"negative";
   $("pastReturns").textContent="予測 "+pct(h.predicted_return_pct)+" ／ 実績 "+pct(h.actual_return_pct)+" ／ 価格差 "+yen(h.price_error_yen);
+  drawReplayChart(s,h);
   $("pastPanel").hidden=false;
- }else{$("pastPanel").hidden=true;}
+ }else{$("pastPanel").hidden=true;$("replayGraphPanel").hidden=true;}
  renderChart(s);$("content").hidden=false;
 }
 async function main(){

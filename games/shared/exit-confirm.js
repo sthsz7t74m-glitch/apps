@@ -1,4 +1,4 @@
-/* GameBOX: shared confirmation for abandoning an active game v1.1.0 (BAR high contrast) */
+/* BAR: shared confirmation and compact relocated settings layout v1.2.0 */
 (function(){
  'use strict';
  let config=null,bypass=null,modal=null,returnFocus=null;
@@ -38,7 +38,7 @@
   const sources=[...document.querySelectorAll('button#settings,button#backToSettings')];
   if(!sources.length)return;
   const style=document.createElement('style');
-  style.textContent='.gb-top-settings-source{position:absolute!important;visibility:hidden!important;pointer-events:none!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important}.gb-top-settings{flex:none!important;min-width:0!important;width:auto!important;max-width:96px!important;min-height:34px!important;padding:5px 10px!important;margin:0 0 0 6px!important;border:1px solid #874265!important;border-radius:11px!important;background:#321b2e!important;color:#ffb9dd!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important;line-height:1.2!important;touch-action:manipulation}.gb-top-settings[hidden]{display:none!important}';
+  style.textContent='.gb-top-settings-source{display:none!important}.gb-top-settings-compact{grid-template-columns:minmax(0,1fr)!important}.gb-top-settings-compact:not(.gb-top-settings-empty)>:not(.gb-top-settings-source){min-width:0}.gb-top-settings-compact.gb-top-settings-empty{display:contents!important}.gb-top-settings{flex:none!important;min-width:0!important;width:auto!important;max-width:96px!important;min-height:34px!important;padding:5px 10px!important;margin:0 0 0 6px!important;border:1px solid #874265!important;border-radius:11px!important;background:#321b2e!important;color:#ffb9dd!important;font-size:12px!important;font-weight:800!important;white-space:nowrap!important;line-height:1.2!important;touch-action:manipulation}.gb-top-settings[hidden]{display:none!important}';
   document.head.append(style);
   const top=document.createElement('button');
   top.type='button';top.id='gb-top-settings';top.className='gb-top-settings';top.textContent='設定';top.title='設定に戻る';top.setAttribute('aria-label','設定に戻る');top.hidden=true;
@@ -55,8 +55,17 @@
   function refresh(){
    const next=sources.find(isParentVisible)||null;
    if(active!==next)active=next;
-   for(const source of sources)source.classList.toggle('gb-top-settings-source',source===active);
-   if(top.hidden===Boolean(active))top.hidden=!active;
+   for(const source of sources){
+    const relocated=source===active;
+    source.classList.toggle('gb-top-settings-source',relocated);
+    const parent=source.parentElement;
+    if(!parent)continue;
+    // A relocated button must not occupy a grid column or leave an empty controls row.
+    parent.classList.toggle('gb-top-settings-compact',relocated);
+    const onlyControl=parent.children.length===1&&!parent.textContent.replace(source.textContent,'').trim();
+    parent.classList.toggle('gb-top-settings-empty',relocated&&onlyControl);
+   }
+   top.hidden=!active;
   }
   top.addEventListener('click',()=>{
    if(!active)return;

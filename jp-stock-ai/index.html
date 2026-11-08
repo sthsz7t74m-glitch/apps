@@ -23,15 +23,15 @@ svg.chart{width:100%;height:190px;display:block;overflow:visible}.axis{font-size
 .ranking-actions{display:flex;gap:8px;margin:12px 0}.ranking-actions button{flex:1;border:1px solid #d8e3f4;background:#f4f7fc;border-radius:11px;padding:11px 8px;color:#415571;font-weight:750;cursor:pointer}.ranking-actions button.active{background:#276de4;color:#fff;border-color:#276de4}.rank-list{display:grid;gap:8px}.rank-item{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid #e2e9f4;border-radius:14px;padding:12px;background:white;color:inherit;cursor:pointer}.rank-no{font-size:14px;color:#8ba0b9;font-weight:800;width:24px;text-align:center}.rank-info{flex:1;min-width:0}.rank-title{font-weight:750;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rank-meta{font-size:11px;color:#7b8aa0;margin-top:5px}.rank-change{font-weight:800;font-size:18px;white-space:nowrap}.quality{font-size:10px;padding:3px 6px;border-radius:5px;background:#f1f5fa;color:#66788e}.quality.good{background:#e3f5ed;color:#13785b}.rank-empty{padding:14px;color:#70809a;font-size:13px;background:#f7f9fd;border-radius:10px}.ranking-note{color:#748299;font-size:12px;line-height:1.7}#rankPanel[hidden],#replayGraphPanel[hidden],#replayUnavailable[hidden]{display:none}
 .replay-heading{font-size:15px;margin:18px 0 10px}.replay-chart{height:auto;max-height:260px}.replay-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:9px 0}.replay-legend span{font-size:11px}.replay-footnote{font-size:12px;line-height:1.65;color:#65758e;margin:10px 0 16px}
 </style></head><body><main class="shell">
-<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.4.0</span></header>
+<header class="top"><div><a class="back" href="../">← MY APPS</a><div class="eyebrow" style="margin-top:14px">JAPANESE STOCK FORECAST</div><h1>日本株 AI予測</h1><div class="muted">5取引日後の値動きを機械学習で分析</div></div><span class="pill">v0.5.0</span></header>
 <section class="panel"><h2>銘柄を選ぶ</h2><label for="ticker" class="muted" id="tickerLabel">東証の主要銘柄</label><select id="ticker" disabled><option>データを読み込み中…</option></select><div class="subline muted"><span id="updated">更新状況を確認中</span></div></section>
 <p id="error" role="alert" hidden></p>
 <section class="panel" id="rankPanel" hidden><div class="eyebrow">AI SIGNAL RANKING</div><h2 style="margin-top:6px">買い候補・売り候補ランキング</h2><p class="ranking-note">今後5取引日の予測騰落率で並べた研究用ランキング。利益・売買推奨を保証するものではありません。検証成績が単純予測を上回る銘柄には「基準通過」を表示。</p><div class="ranking-actions"><button type="button" class="active" id="buyTab" aria-pressed="true">買い候補 ↑</button><button type="button" id="sellTab" aria-pressed="false">売り候補 ↓</button></div><div class="rank-list" id="rankList"></div><p class="ranking-note" id="rankSummary"></p></section>
 
 <div id="content" hidden>
 <section class="panel"><div class="eyebrow">5-SESSION FORECAST</div><h2 id="stockTitle" style="margin-top:5px"></h2><div class="hero"><div class="tile"><span>直近終値（調整後）</span><strong id="price"></strong></div><div class="tile"><span>5取引日後の予測値</span><strong id="forecast"></strong></div></div><div class="subline"><strong class="big" id="change"></strong><span class="pill">予測騰落率</span></div><div class="muted" id="asof"></div></section>
-<section class="panel"><h2>株価推移と予測</h2><svg id="chart" class="chart" viewBox="0 0 340 190" role="img" aria-label="最近の終値と5取引日後の予測値の折れ線グラフ"></svg><div class="legend"><span><b></b>過去の株価</span><span><b class="dashed"></b>予測</span></div></section>
-<section class="panel" id="pastPanel" hidden><div class="eyebrow">HISTORICAL REPLAY</div><h2 style="margin-top:6px">5取引日前の予想は当たった？</h2><p class="muted" id="pastDates"></p><div class="hero"><div class="tile"><span>当時のAI予測価格</span><strong id="pastPrediction"></strong></div><div class="tile"><span>実際の到達価格</span><strong id="pastActual"></strong></div></div><div class="metrics" style="margin-top:10px"><div class="metric"><span>予測誤差（実際価格比）</span><strong id="pastError"></strong></div><div class="metric"><span>上昇・下落の判定</span><strong id="pastDirection"></strong></div></div><p class="muted" id="pastReturns"></p><div id="replayGraphPanel" hidden><h3 class="replay-heading">AI予測と実際の値動き</h3><svg id="replayChart" class="chart replay-chart" viewBox="0 0 340 218" role="img" aria-label="5取引日前のAI予測終点と、その後5取引日の実際の株価を比較したグラフ"></svg><div class="legend replay-legend"><span><b></b>実際の終値</span><span><b class="dashed"></b>AI予測終点への補助線</span></div><p class="replay-footnote">オレンジ点線は起点と5取引日後のAI予測価格を結んだ補助線です。途中の日々の価格はAIが予測したものではありません。</p></div><p id="replayUnavailable" class="note" hidden></p><p class="note">その日の予測を後から再現した検証です。実際に当日に配信・保存した予測履歴とは異なります。調整後株価は後日変更される場合があります。</p></section>
+<section class="panel"><h2>株価推移と1〜5取引日先のAI予測</h2><svg id="chart" class="chart" viewBox="0 0 340 190" role="img" aria-label="最近の終値と5取引日後の予測値の折れ線グラフ"></svg><div class="legend"><span><b></b>過去の株価</span><span><b class="dashed"></b>AI日次予測</span></div><p class="replay-footnote" id="currentChartNote"></p></section>
+<section class="panel" id="pastPanel" hidden><div class="eyebrow">HISTORICAL REPLAY</div><h2 style="margin-top:6px">5取引日前の予想は当たった？</h2><p class="muted" id="pastDates"></p><div class="hero"><div class="tile"><span>当時のAI予測価格</span><strong id="pastPrediction"></strong></div><div class="tile"><span>実際の到達価格</span><strong id="pastActual"></strong></div></div><div class="metrics" style="margin-top:10px"><div class="metric"><span>予測誤差（実際価格比）</span><strong id="pastError"></strong></div><div class="metric"><span>上昇・下落の判定</span><strong id="pastDirection"></strong></div></div><p class="muted" id="pastReturns"></p><p class="note" id="dailyErrorSummary" hidden></p><div id="replayGraphPanel" hidden><h3 class="replay-heading">AI予測と実際の値動き</h3><svg id="replayChart" class="chart replay-chart" viewBox="0 0 340 218" role="img" aria-label="予測時点以前だけで学習した1〜5取引日後のAI予測と、その後の実際の終値を重ねたグラフ"></svg><div class="legend replay-legend"><span><b></b>実際の終値</span><span><b class="dashed"></b>各日のAI予測</span></div><p class="replay-footnote">オレンジ点線の1〜5日目は、それぞれの取引日数を予測対象にした独立したAIモデルの予測値です。予測基準日より後の情報は学習に使用していません。</p></div><p id="replayUnavailable" class="note" hidden></p><p class="note">その日の予測を後から再現した検証です。実際に当日に配信・保存した予測履歴とは異なります。調整後株価は後日変更される場合があります。</p></section>
 <section class="panel"><h2>AIの判定と検証結果</h2><div class="metrics"><div class="metric"><span>上昇判定スコア（未校正）</span><strong id="prob"></strong></div><div class="metric"><span>方向的中率（検証期間）</span><strong id="accuracy"></strong></div><div class="metric"><span>騰落率の平均絶対誤差</span><strong id="mae"></strong></div><div class="metric"><span>変化なし予測の平均絶対誤差</span><strong id="baseline"></strong></div></div><p class="muted" id="samples"></p><p class="note" id="accuracyNote"></p></section>
 <section class="panel"><h2>この予測の見方</h2><p class="muted">過去約7年の株価・出来高・移動平均・RSIなどから、5取引日先の騰落率を学習しています。時系列に沿った未学習期間で検証し、比較指標も表示しています。</p><div class="note">確率は校正していないAIの推定スコアです。実際の上昇確率や利益を保証しません。予測値は投資助言ではなく学習・検証用です。</div></section>
 </div>
@@ -69,63 +69,62 @@ function renderRanking(){
  });
  $("rankSummary").textContent="全"+stocks.length+"銘柄中、"+eligible.length+"銘柄が該当。最大20件表示。実績検証の基準通過は"+eligible.filter(s=>s.ranking_quality_pass).length+"件。基準通過でも将来の利益を保証しません。";
 }
-function renderChart(s){
- const values=s.history.slice(-45).map(p=>p.price),future=s.forecast, all=[...values,future];
- const lo=Math.min(...all),hi=Math.max(...all), pad=Math.max((hi-lo)*.16,hi*.007),min=lo-pad,max=hi+pad;
- const x=i=>20+i/(values.length+4)*302, y=v=>166-(v-min)/(max-min)*145;
- const svg=$("chart");svg.replaceChildren();
+function drawLines(svgId, series, dates, opts={}){
+ const svg=$(svgId);svg.replaceChildren();
+ const valid=series.flatMap(s=>s.values).filter(Number.isFinite);
+ if(!valid.length)return;
+ const mn=Math.min(...valid),mx=Math.max(...valid);
+ const pad=Math.max((mx-mn)*.16,mx*.003,.1),lo=mn-pad,hi=mx+pad;
+ const left=44,right=318,top=15,bottom=169;
+ const x=i=>left+i/(dates.length-1)*(right-left);
+ const y=v=>bottom-(v-lo)/(hi-lo)*(bottom-top);
  const NS="http://www.w3.org/2000/svg";
- const append=(tag,attrs,text)=>{const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;svg.appendChild(e);return e;};
- for(let i=0;i<4;i++){const v=min+(max-min)*i/3,yy=y(v);append("line",{x1:20,y1:yy,x2:323,y2:yy,class:"gridline"});append("text",{x:19,y:yy-3,class:"axis"},Math.round(v).toLocaleString("ja-JP"));}
- append("polyline",{points:values.map((v,i)=>x(i)+","+y(v)).join(" "),class:"path"});
- append("line",{x1:x(values.length-1),y1:y(values.at(-1)),x2:x(values.length+4),y2:y(future),class:"forecast"});
- append("circle",{cx:x(values.length+4),cy:y(future),r:4,class:"dot"});
- append("text",{x:20,y:185,class:"axis"},s.history.at(-45)?.date||s.history[0]?.date||"");
- append("text",{x:321,y:185,"text-anchor":"end",class:"axis"},"5取引日後（予測）");
+ const add=(tag,attrs,t)=>{const el=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,String(v));if(t!==undefined)el.textContent=t;svg.appendChild(el);return el;};
+ for(let i=0;i<4;i++){
+   const value=lo+(hi-lo)*i/3, yy=y(value);
+   add("line",{x1:left,y1:yy,x2:right,y2:yy,class:"gridline"});
+   add("text",{x:left-6,y:yy+4,class:"axis","text-anchor":"end"},Math.round(value).toLocaleString("ja-JP"));
+ }
+ for(const line of series){
+   const pts=line.values.map((v,i)=>Number.isFinite(v)?[i,v]:null).filter(Boolean);
+   if(pts.length>1)add("polyline",{points:pts.map(p=>x(p[0])+","+y(p[1])).join(" "),class:line.kind==="forecast"?"forecast":"path"});
+   for(const [i,v] of pts)add("circle",{cx:x(i),cy:y(v),r:line.kind==="forecast"?3.2:2.7,fill:line.kind==="forecast"?"#ec8a3c":"#2873e6"});
+ }
+ dates.forEach((date,i)=>{if(opts.compact&&i>0&&i<dates.length-1)return;add("text",{x:x(i),y:193,class:"axis","text-anchor":i===0?"start":i===dates.length-1?"end":"middle"},date);});
+}
+function renderChart(s){
+ const hist=Array.isArray(s.history)?s.history.slice(-40):[];
+ if(hist.length<2)return;
+ const path=Array.isArray(s.daily_forecast)&&s.daily_forecast.length===6
+   ?s.daily_forecast.map(p=>p.price):[s.price,s.forecast];
+ const isDaily=path.length===6;
+ const values=hist.map(p=>p.price);
+ const future=isDaily?path.slice(1):[null,null,null,null,path.at(-1)];
+ const dates=[...Array(hist.length-1).fill(""),hist.at(-1).date.slice(5),...Array(4).fill(""),"5取引日後"];
+ const actual=[...values,...Array(5).fill(null)];
+ const ai=[...Array(hist.length-1).fill(null),values.at(-1),...future];
+ drawLines("chart",[{values:actual,kind:"actual"},{values:ai,kind:"forecast"}],dates,{compact:true});
+ $("currentChartNote").textContent=isDaily?"オレンジ線は1〜5取引日先を個別に予測した価格です。":"過去データ形式のため5取引日後のみ表示。日次予測は次回の分析更新から反映します。";
 }
 function drawReplayChart(s,h){
- const rows=(Array.isArray(s.history)?s.history:[]).filter(p=>p.date>=h.asof&&p.date<=h.target_date&&Number.isFinite(p.price));
- const end=rows.length-1, ok=rows.length===6&&rows[0].date===h.asof&&rows[end].date===h.target_date
-   &&Number.isFinite(h.asof_price)&&Number.isFinite(h.predicted_price)&&Number.isFinite(h.actual_price)
-   &&h.asof_price>0&&h.predicted_price>0&&h.actual_price>0;
- if(!ok){
-  $("replayGraphPanel").hidden=true;
-  $("replayUnavailable").hidden=false;
-  $("replayUnavailable").textContent="グラフに必要な6取引日分の株価がそろっていません。次回の株価データ更新後に確認してください。";
-  return;
+ const f=h.daily_forecast,a=h.daily_actual;
+ const valid=Array.isArray(f)&&Array.isArray(a)&&f.length===6&&a.length===6
+   &&f.every((p,i)=>p.day===i&&Number.isFinite(p.price))
+   &&a.every((p,i)=>p.day===i&&Number.isFinite(p.price));
+ if(!valid){
+   $("replayGraphPanel").hidden=true;
+   $("replayUnavailable").hidden=false;
+   $("replayUnavailable").textContent="日ごとの過去AI予測は、次回のモデル再学習・データ更新後から表示されます。";
+   $("dailyErrorSummary").hidden=true;
+   return;
  }
- $("replayUnavailable").hidden=true;
- $("replayGraphPanel").hidden=false;
- const values=rows.map(p=>Number(p.price));
- // The historical model predicts only the fifth-session endpoint, not a daily path.
- const lower=Math.min(...values,h.predicted_price,h.asof_price);
- const upper=Math.max(...values,h.predicted_price,h.asof_price);
- const padding=Math.max((upper-lower)*.17,upper*.003,0.1);
- const min=lower-padding,max=upper+padding;
- const x=i=>44+i/5*268, y=v=>166-(v-min)/(max-min)*133;
- const svg=$("replayChart");svg.replaceChildren();
- const NS="http://www.w3.org/2000/svg";
- const add=(tag,attrs,text)=>{
-  const node=document.createElementNS(NS,tag);
-  for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));
-  if(text!==undefined)node.textContent=text;
-  svg.appendChild(node);return node;
- };
- const amount=v=>new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0}).format(v);
- for(let i=0;i<4;i++){
-  const value=min+(max-min)*i/3, yy=y(value);
-  add("line",{x1:44,y1:yy,x2:317,y2:yy,class:"gridline"});
-  add("text",{x:39,y:yy+4,class:"axis","text-anchor":"end"},amount(value));
- }
- // Display endpoints first, then actual path over the forecast connector.
- add("line",{x1:x(0),y1:y(h.asof_price),x2:x(5),y2:y(h.predicted_price),class:"forecast"});
- add("polyline",{points:values.map((v,i)=>x(i)+","+y(v)).join(" "),class:"path"});
- values.forEach((v,i)=>add("circle",{cx:x(i),cy:y(v),r:2.7,fill:"#2873e6"}));
- add("circle",{cx:x(5),cy:y(h.predicted_price),r:5,fill:"#ec8a3c",stroke:"#fff","stroke-width":1.5});
- add("circle",{cx:x(5),cy:y(values[5]),r:4.5,fill:"#2873e6",stroke:"#fff","stroke-width":1.5});
- rows.forEach((r,i)=>add("text",{x:x(i),y:190,class:"axis","text-anchor":"middle"},r.date.slice(5).replace("-","/")));
- add("text",{x:44,y:207,class:"axis"}, "起点");
- add("text",{x:312,y:207,class:"axis","text-anchor":"end"}, "5取引日後");
+ $("replayUnavailable").hidden=true;$("replayGraphPanel").hidden=false;
+ drawLines("replayChart",[{values:f.map(p=>p.price),kind:"forecast"},{values:a.map(p=>p.price),kind:"actual"}],a.map(p=>p.date.slice(5).replace("-","/")));
+ const errors=f.slice(1).map((p,i)=>Math.abs(p.price-a[i+1].price)/a[i+1].price*100);
+ const avg=errors.reduce((total,v)=>total+v,0)/errors.length;
+ const dayHit=f.slice(1).filter((p,i)=>(p.price>f[0].price)===(a[i+1].price>a[0].price)).length;
+ $("dailyErrorSummary").textContent="この5日間の価格誤差率（平均） "+avg.toFixed(2)+"% ／ 上昇・下落方向の的中 "+dayHit+"/5日。これは1回の過去再現例で、統計的な信頼確率ではありません。";
+ $("dailyErrorSummary").hidden=false;
 }
 function render(s){
  $("stockTitle").textContent=s.code+" "+s.name;

@@ -1,4 +1,4 @@
-/* GameBOX: shared turn transition popup */
+/* BAR: shared turn transition popup v1.1.0 */
 (function(){
  'use strict';
  let overlay=null,timer=null;
@@ -23,6 +23,20 @@
    timer=setTimeout(hide,ms);
  }
  function isShowing(){return !!overlay&&overlay.classList.contains('gb-show')}
- window.GameTurnOverlay={show,hide,isShowing};
+ // Resolve either a string name or a player record without altering the game state.
+ function showPlayer(players,index,ms=1200){
+   if(!Array.isArray(players)||!Number.isInteger(index)||index<0||index>=players.length)return false;
+   const player=players[index];
+   const name=typeof player==='string'?player:player&&player.name;
+   if(name===undefined||name===null)return false;
+   show(name,ms);
+   return true;
+ }
+ // Games with cyclic turns can share this index calculation.
+ function nextIndex(index,count){
+   if(!Number.isInteger(index)||!Number.isInteger(count)||count<1)return index;
+   return (index+1)%count;
+ }
+ window.GameTurnOverlay={show,hide,isShowing,showPlayer,nextIndex};
  document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
 })();

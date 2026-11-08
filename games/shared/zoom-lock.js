@@ -1,4 +1,4 @@
-/* GameBOX: disable unintended pinch/double-tap zoom on game UI. */
+/* BAR: prevent unwanted zoom without cancelling legitimate quick control taps (v2.23.1). */
 (function(){
 'use strict';
 const viewport=document.querySelector('meta[name="viewport"]');
@@ -10,7 +10,7 @@ let previous=0;
 document.addEventListener('touchend',event=>{
  if(event.changedTouches.length!==1||event.touches.length)return;
  const target=event.target;
- if(target.closest?.('input,textarea,select,[contenteditable="true"]')){previous=0;return;}
+ // Native controls already have touch-action: manipulation; never cancel their taps.\n if(target.closest?.('a,button,input,textarea,select,label,summary,[role="button"],[contenteditable="true"]')){previous=0;return;}
  const now=Date.now();if(now-previous<310)event.preventDefault();previous=now;
 },{passive:false});
 })();

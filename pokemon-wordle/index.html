@@ -9,7 +9,7 @@ header{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:cente
 .key.unavailable{visibility:hidden;pointer-events:none}
 .status-row{position:relative;display:flex;align-items:center;justify-content:center;min-height:26px}.status-row .status{padding:0 58px}.hint-button{justify-self:start;font-size:11px;padding:5px 9px;color:#f1d18b;background:#263749}.hint-dialog{width:min(calc(100% - 32px),460px);max-height:80dvh;padding:16px;border:1px solid #415165;border-radius:12px;background:#182431;color:#f4f7fa}.hint-dialog::backdrop{background:#000a}.hint-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.hint-head h2{font-size:17px;margin:0}.hint-head button{padding:7px 12px}.hint-count{font-size:13px;color:#bdcad5}.hint-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:55dvh;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:0;list-style:none}.hint-list li{padding:8px;background:#263749;border-radius:6px;text-align:center;font-size:14px;white-space:nowrap}
 </style></head><body><main>
-<header><button id="hint" class="hint-button" type="button">ヒント</button><h1>ポケモン5文字クイズ</h1><small>v1.1.9</small></header>
+<header><button id="hint" class="hint-button" type="button">ヒント</button><h1>ポケモン5文字クイズ</h1><small>v1.1.10</small></header>
 <div class="settings"><div class="range"><span class="range-label">出題範囲</span><select id="start" aria-label="開始世代"></select><span class="range-separator">〜</span><select id="end" aria-label="終了世代"></select><small id="pool"></small></div><button id="new">↻ 新しい問題</button></div>
 <div class="legend"><span><i class="unused"></i>未使用</span><span><i class="correct"></i>位置一致</span><span><i class="present"></i>文字一致</span><span><i class="absent"></i>含まれない</span></div>
 <div id="board" class="board" aria-label="回答履歴"></div><p id="status" class="status" role="status"></p>
@@ -52,11 +52,14 @@ function showHint(){
  $("hint-dialog").showModal();list.scrollTop=0;
 }
 function updatePool(){$("pool").textContent=candidates().length+"種"}
+const rangeKey='pokemon-wordle-generation-range';
+function saveRange(){try{localStorage.setItem(rangeKey,JSON.stringify([+start.value,+end.value]))}catch{}}
+function restoreRange(){try{const saved=JSON.parse(localStorage.getItem(rangeKey));if(Array.isArray(saved)&&saved.length===2&&saved.every(g=>Number.isInteger(g)&&g>=1&&g<=9)&&saved[0]<=saved[1]){start.value=saved[0];end.value=saved[1]}}catch{}}
 function startGame(){
  if(judging)return;
  const pool=candidates();if(!pool.length)return;
  const choices=pool.length>1?pool.filter(p=>p!==target):pool;target=choices[Math.floor(Math.random()*choices.length)];
- activeStart=+start.value;activeEnd=+end.value;history=[];current=[];marks={};done=false;updatePool();render();
+ activeStart=+start.value;activeEnd=+end.value;saveRange();history=[];current=[];marks={};done=false;updatePool();render();
 }
 function matchingNames(){
  const prefix=current.join("");return [...new Set(activePool().map(p=>p[1]).filter(name=>name.startsWith(prefix)))];
@@ -93,7 +96,7 @@ async function submit(){
  history.push({guess:[...current],result});done=current.join("")===target[1]||history.length===10;current=[];judging=false;revealed=0;pendingResult=null;render();
 }
 for(let g=1;g<=9;g++){start.add(new Option("第"+g+"世代",g));end.add(new Option("第"+g+"世代",g))}
-end.value=9;
+end.value=9;restoreRange();
 start.onchange=()=>{if(+start.value>+end.value)end.value=start.value;startGame()};
 end.onchange=()=>{if(+end.value<+start.value)start.value=end.value;startGame()};
 $("hint").onclick=showHint;$("hint-close").onclick=()=>$("hint-dialog").close();

@@ -8,7 +8,7 @@
 header{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:center;padding:2px 0}header h1{font-size:clamp(16px,4.6vw,21px);letter-spacing:-.045em;text-align:center;white-space:nowrap}header small{text-align:right;font-size:10px}header a{font-size:11px} .settings{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #293746;border-bottom:1px solid #293746}.range{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}.range-label{font-size:10px;color:#aab9c8;white-space:nowrap}.settings select{font-size:12px;padding:5px 2px;background:#1b2836;border:1px solid #415165;border-radius:5px}.range-separator{color:#8291a1}#pool{white-space:nowrap;font-size:10px}.settings #new{background:#263749;color:#eaf0f7;border:1px solid #405268;padding:7px 8px;font-size:11px;white-space:nowrap;flex-shrink:0}.legend{gap:10px;font-size:10px;padding:2px 0}.legend span{display:flex;align-items:center;white-space:nowrap}.legend i{flex-shrink:0}.status{font-weight:650;color:#b9c7d5}@media(max-width:360px){.range-label{display:none}.settings{gap:4px}.legend{gap:6px}}
 .key.unavailable{visibility:hidden;pointer-events:none}
 </style></head><body><main>
-<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.3</small></header>
+<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.4</small></header>
 <div class="settings"><div class="range"><span class="range-label">出題範囲</span><select id="start" aria-label="開始世代"></select><span class="range-separator">〜</span><select id="end" aria-label="終了世代"></select><small id="pool"></small></div><button id="new">↻ 新しい問題</button></div>
 <div class="legend"><span><i class="unused"></i>未使用</span><span><i class="correct"></i>位置一致</span><span><i class="present"></i>文字一致</span><span><i class="absent"></i>含まれない</span></div>
 <div id="board" class="board" aria-label="回答履歴"></div><p id="status" class="status" role="status"></p>
@@ -20,7 +20,7 @@ header{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:cente
 const $=id=>document.getElementById(id), start=$("start"),end=$("end");
 const rows=["ワラヤマハナタサカア","　リ　ミヒニチシキイ","　ルユムフヌツスクウ","　レ　メヘネテセケエ","ンロヨモホノトソコオ","　♂ッャァパバダザガ","　♀ヴ　ィピビヂジギ","　２ーュゥプブヅズグ","　Ｚ　　ェペベデゼゲ","　　　ョォポボドゾゴ"];
 const rank={absent:1,present:2,correct:3};
-let target,history=[],current=[],marks={},done=false,activeStart=1,activeEnd=9;
+let target,history=[],current=[],marks={},done=false,activeStart=1,activeEnd=9, judging=false, revealed=0, pendingResult=null;
 const valid=new Set(POKEMON.map(p=>p[1]));
 function score(answer,guess){
  const remaining=[...answer], result=Array(5).fill("absent");
@@ -31,6 +31,7 @@ function score(answer,guess){
 function candidates(){return POKEMON.filter(p=>p[2]>=+start.value&&p[2]<=+end.value)}
 function updatePool(){$("pool").textContent=candidates().length+"種"}
 function startGame(){
+ if(judging)return;
  const pool=candidates();if(!pool.length)return;
  const choices=pool.length>1?pool.filter(p=>p!==target):pool;target=choices[Math.floor(Math.random()*choices.length)];
  activeStart=+start.value;activeEnd=+end.value;history=[];current=[];marks={};done=false;updatePool();render();
@@ -44,21 +45,27 @@ function render(message){
  const board=$("board");board.replaceChildren();
  for(let r=0;r<10;r++)for(let c=0;c<5;c++){
  const tile=document.createElement("div");tile.className="tile";tile.style.gridRow=String(r%5+1);tile.style.gridColumn=String(c+1+(r>=5?6:0));if(history[r]){tile.textContent=history[r].guess[c];tile.classList.add(history[r].result[c]);tile.setAttribute("aria-label",tile.textContent+" "+({correct:"位置も一致",present:"文字のみ一致",absent:"一致なし"}[history[r].result[c]]))}
- else if(r===history.length&&!done){tile.textContent=current[c]||"";if(c===current.length)tile.classList.add("active")}
+ else if(r===history.length&&!done){tile.textContent=current[c]||"";if(judging&&c<revealed){tile.classList.add(pendingResult[c]);tile.setAttribute("aria-label",tile.textContent+" "+({correct:"位置も一致",present:"文字のみ一致",absent:"一致なし"}[pendingResult[c]]))}else if(c===current.length)tile.classList.add("active")}
  if(/[♀♂]/.test(tile.textContent)){tile.classList.add('symbol');tile.textContent+='\uFE0E'}board.append(tile)}
  const next=nextChars();
- document.querySelectorAll(".key").forEach(k=>{const unavailable=!done&&!next.has(k.dataset.char);k.className="key"+(marks[k.dataset.char]?" "+marks[k.dataset.char]:"")+(unavailable?" unavailable":"");k.disabled=done||unavailable});
- const invalidName=current.length===5&&!valid.has(current.join(""));$("submit").disabled=done||current.length!==5||invalidName;$("submit").textContent=invalidName?"存在しないポケモン":"回答する";$("del").disabled=done||!current.length;
- $("status").textContent=message||(invalidName&&!done?"存在する5文字の名前を入力してください":"")||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):(activeStart!==+start.value||activeEnd!==+end.value?"第"+activeStart+"〜"+activeEnd+"世代 ・ ":"")+"残り "+(10-history.length)+" 回");
+ document.querySelectorAll(".key").forEach(k=>{const unavailable=!done&&!next.has(k.dataset.char);k.className="key"+(marks[k.dataset.char]?" "+marks[k.dataset.char]:"")+(unavailable?" unavailable":"");k.disabled=done||judging||unavailable});
+ const invalidName=current.length===5&&!valid.has(current.join(""));$("submit").disabled=done||judging||current.length!==5||invalidName;$("submit").textContent=judging?"判定中…":invalidName?"存在しないポケモン":"回答する";$("del").disabled=done||judging||!current.length;
+ $("new").disabled=start.disabled=end.disabled=judging;
+ $("status").textContent=(judging?"判定中…":"")||message||(invalidName&&!done?"存在する5文字の名前を入力してください":"")||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):(activeStart!==+start.value||activeEnd!==+end.value?"第"+activeStart+"〜"+activeEnd+"世代 ・ ":"")+"残り "+(10-history.length)+" 回");
 }
-function input(c){if(done||current.length===5||!nextChars().has(c))return;current.push(c);render()}
-function erase(){if(!done){current.pop();render()}}
-function submit(){
- if(done||current.length!==5)return;
+function input(c){if(done||judging||current.length===5||!nextChars().has(c))return;current.push(c);render()}
+function erase(){if(!done&&!judging){current.pop();render()}}
+async function submit(){
+ if(done||judging||current.length!==5)return;
  if(!valid.has(current.join(""))){render("5文字のポケモン名を入力してください（回数は消費しません）");return}
  if(history.some(h=>h.guess.join("")===current.join(""))){render("その名前は回答済みです");return}
- const result=score(target[1],current);current.forEach((c,i)=>{if(!marks[c]||rank[result[i]]>rank[marks[c]])marks[c]=result[i]});
- history.push({guess:[...current],result});done=current.join("")===target[1]||history.length===10;current=[];render();
+ const result=score(target[1],current);judging=true;revealed=0;pendingResult=result;render();
+ for(let i=0;i<5;i++){
+  await new Promise(resolve=>setTimeout(resolve,250));
+  const c=current[i];if(!marks[c]||rank[result[i]]>rank[marks[c]])marks[c]=result[i];
+  revealed=i+1;render();
+ }
+ history.push({guess:[...current],result});done=current.join("")===target[1]||history.length===10;current=[];judging=false;revealed=0;pendingResult=null;render();
 }
 for(let g=1;g<=9;g++){start.add(new Option("第"+g+"世代",g));end.add(new Option("第"+g+"世代",g))}
 end.value=9;

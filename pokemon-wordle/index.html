@@ -7,7 +7,7 @@
 .board{width:min(100%,334px);grid-template-columns:repeat(5,minmax(0,1fr)) 8px repeat(5,minmax(0,1fr));gap:3px;margin:0 auto}.board .tile{width:100%;height:auto;aspect-ratio:1;min-width:0;font-size:clamp(14px,4vw,20px)}
 header{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:center;padding:2px 0}header h1{font-size:clamp(16px,4.6vw,21px);letter-spacing:-.045em;text-align:center;white-space:nowrap}header small{text-align:right;font-size:10px}header a{font-size:11px} .settings{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #293746;border-bottom:1px solid #293746}.range{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}.range-label{font-size:10px;color:#aab9c8;white-space:nowrap}.settings select{font-size:12px;padding:5px 2px;background:#1b2836;border:1px solid #415165;border-radius:5px}.range-separator{color:#8291a1}#pool{white-space:nowrap;font-size:10px}.settings #new{background:#263749;color:#eaf0f7;border:1px solid #405268;padding:7px 8px;font-size:11px;white-space:nowrap;flex-shrink:0}.legend{gap:10px;font-size:10px;padding:2px 0}.legend span{display:flex;align-items:center;white-space:nowrap}.legend i{flex-shrink:0}.status{font-weight:650;color:#b9c7d5}@media(max-width:360px){.range-label{display:none}.settings{gap:4px}.legend{gap:6px}}
 </style></head><body><main>
-<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.1</small></header>
+<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.2</small></header>
 <div class="settings"><div class="range"><span class="range-label">出題範囲</span><select id="start" aria-label="開始世代"></select><span class="range-separator">〜</span><select id="end" aria-label="終了世代"></select><small id="pool"></small></div><button id="new">↻ 新しい問題</button></div>
 <div class="legend"><span><i class="unused"></i>未使用</span><span><i class="correct"></i>位置一致</span><span><i class="present"></i>文字一致</span><span><i class="absent"></i>含まれない</span></div>
 <div id="board" class="board" aria-label="回答履歴"></div><p id="status" class="status" role="status"></p>
@@ -41,8 +41,8 @@ function render(message){
  else if(r===history.length&&!done){tile.textContent=current[c]||"";if(c===current.length)tile.classList.add("active")}
  if(/[♀♂]/.test(tile.textContent)){tile.classList.add('symbol');tile.textContent+='\uFE0E'}board.append(tile)}
  document.querySelectorAll(".key").forEach(k=>{k.className="key"+(marks[k.dataset.char]?" "+marks[k.dataset.char]:"");k.disabled=done});
- $("submit").disabled=done||current.length!==5;$("del").disabled=done||!current.length;
- $("status").textContent=message||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):(activeStart!==+start.value||activeEnd!==+end.value?"第"+activeStart+"〜"+activeEnd+"世代 ・ ":"")+"残り "+(10-history.length)+" 回");
+ const invalidName=current.length===5&&!valid.has(current.join(""));$("submit").disabled=done||current.length!==5||invalidName;$("submit").textContent=invalidName?"存在しないポケモン":"回答する";$("del").disabled=done||!current.length;
+ $("status").textContent=message||(invalidName&&!done?"存在する5文字の名前を入力してください":"")||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):(activeStart!==+start.value||activeEnd!==+end.value?"第"+activeStart+"〜"+activeEnd+"世代 ・ ":"")+"残り "+(10-history.length)+" 回");
 }
 function input(c){if(done||current.length===5)return;current.push(c);render()}
 function erase(){if(!done){current.pop();render()}}

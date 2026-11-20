@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101923"><title>ポケモン5文字クイズ</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent} :root{color-scheme:dark;font-family:system-ui,sans-serif;background:#101923;color:#f4f7fa;--green:#23864c;--yellow:#e9b83f;--gray:#47515b}body{margin:0}main{max-width:520px;margin:auto;padding:8px 12px max(10px,env(safe-area-inset-bottom));min-height:100dvh;display:flex;flex-direction:column;gap:8px}header{display:flex;align-items:center;justify-content:space-between}h1{font-size:20px;margin:0;letter-spacing:-.05em}header a,small{color:#aab9c8;font-size:11px;text-decoration:none}button,select{font:inherit;color:inherit;touch-action:manipulation}button{cursor:pointer;border:0;border-radius:7px;background:#263749;font-weight:750}button:disabled{opacity:.45;cursor:default}.settings{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:12px}.settings select{background:#253447;border:1px solid #526171;border-radius:7px;padding:6px}.settings button{padding:7px 12px;background:#e24e4e}.legend{display:flex;justify-content:center;gap:12px;font-size:10px;color:#bdcad5}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px}.correct{background:var(--green)!important;color:white!important}.present{background:var(--yellow)!important;color:#252010!important}.absent{background:var(--gray)!important;color:#d3d9df!important}.board{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;width:min(100%,230px);margin:auto;flex:none}.tile{height:clamp(22px,3.9dvh,38px);display:grid;place-items:center;border:1px solid #3f5062;border-radius:4px;font-size:clamp(15px,2.7dvh,22px);font-weight:900;background:#182431}.tile.active{border-color:#a3bbd5}.tile.correct,.tile.present,.tile.absent{border-color:transparent}.status{text-align:center;font-size:12px;min-height:18px;color:#e1e8f0;margin:0}.keyboard{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:3px;direction:ltr}.key{height:clamp(26px,4.5dvh,42px);font-size:clamp(12px,2.2dvh,17px);padding:0;min-width:0;border:1px solid #405268}.key:active{transform:scale(.94)}.key.absent{opacity:.65}.actions{display:grid;grid-template-columns:1fr 2fr;gap:6px}.actions button{height:35px}.actions .submit{background:#367bd3}.note{text-align:center;font-size:10px;color:#aab9c8;margin:0}@media(max-height:700px){main{gap:5px;padding-top:5px}.legend{gap:7px}.tile{height:23px}.key{height:27px}.actions button{height:30px}}
+</style></head><body><main>
+<header><a href="../">‹ MY APPS</a><h1>ポケモン5文字クイズ</h1><small>v1.0.0</small></header>
+<div class="settings"><label>開始 <select id="start"></select></label><span>〜</span><label>終了 <select id="end"></select></label><button id="new">新しい問題</button><small id="pool"></small></div>
+<div class="legend"><span><i class="correct"></i>位置も一致</span><span><i class="present"></i>文字のみ一致</span><span><i class="absent"></i>含まれない</span></div>
+<div id="board" class="board" aria-label="回答履歴"></div><p id="status" class="status" role="status"></p>
+<div id="keyboard" class="keyboard" aria-label="五十音キーボード"></div>
+<div class="actions"><button id="del">⌫ 1文字消す</button><button id="submit" class="submit">回答する</button></div>
+<p class="note">小文字・長音・記号も1文字として数えます。データ：<a href="https://github.com/PokeAPI/pokeapi" style="color:inherit">PokéAPI</a></p>
+</main><script src="data.js"></script><script>
+"use strict";
+const $=id=>document.getElementById(id), start=$("start"),end=$("end");
+const rows=["アカサタナハマヤラワ","イキシチニヒミ　リ　","ウクスツヌフムユル　","エケセテネヘメ　レ　","オコソトノホモヨロン","ガギグゲゴザジズゼゾ","ダヂヅデドバビブベボ","パピプペポヴー♀♂２","ァィゥェォッャュョＺ"];
+const rank={absent:1,present:2,correct:3};
+let target,history=[],current=[],marks={},done=false,activeStart=1,activeEnd=9;
+const valid=new Set(POKEMON.map(p=>p[1]));
+function score(answer,guess){
+ const remaining=[...answer], result=Array(5).fill("absent");
+ for(let i=0;i<5;i++)if(remaining[i]===guess[i]){result[i]="correct";remaining[i]=null}
+ for(let i=0;i<5;i++)if(result[i]!=="correct"){const pos=remaining.indexOf(guess[i]);if(pos!==-1){result[i]="present";remaining[pos]=null}}
+ return result;
+}
+function candidates(){return POKEMON.filter(p=>p[2]>=+start.value&&p[2]<=+end.value)}
+function updatePool(){$("pool").textContent=candidates().length+"種"}
+function startGame(){
+ const pool=candidates();if(!pool.length)return;
+ const choices=pool.length>1?pool.filter(p=>p!==target):pool;target=choices[Math.floor(Math.random()*choices.length)];
+ activeStart=+start.value;activeEnd=+end.value;history=[];current=[];marks={};done=false;updatePool();render();
+}
+function render(message){
+ const board=$("board");board.replaceChildren();
+ for(let r=0;r<10;r++)for(let c=0;c<5;c++){
+ const tile=document.createElement("div");tile.className="tile";if(history[r]){tile.textContent=history[r].guess[c];tile.classList.add(history[r].result[c]);tile.setAttribute("aria-label",tile.textContent+" "+({correct:"位置も一致",present:"文字のみ一致",absent:"一致なし"}[history[r].result[c]]))}
+ else if(r===history.length&&!done){tile.textContent=current[c]||"";if(c===current.length)tile.classList.add("active")}
+ board.append(tile)}
+ document.querySelectorAll(".key").forEach(k=>{k.className="key"+(marks[k.dataset.char]?" "+marks[k.dataset.char]:"");k.disabled=done});
+ $("submit").disabled=done||current.length!==5;$("del").disabled=done||!current.length;
+ $("status").textContent=message||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):"第"+activeStart+"〜"+activeEnd+"世代 ・ 残り "+(10-history.length)+" 回");
+}
+function input(c){if(done||current.length===5)return;current.push(c);render()}
+function erase(){if(!done){current.pop();render()}}
+function submit(){
+ if(done||current.length!==5)return;
+ if(!valid.has(current.join(""))){render("5文字のポケモン名を入力してください（回数は消費しません）");return}
+ if(history.some(h=>h.guess.join("")===current.join(""))){render("その名前は回答済みです");return}
+ const result=score(target[1],current);current.forEach((c,i)=>{if(!marks[c]||rank[result[i]]>rank[marks[c]])marks[c]=result[i]});
+ history.push({guess:[...current],result});done=current.join("")===target[1]||history.length===10;current=[];render();
+}
+for(let g=1;g<=9;g++){start.add(new Option("第"+g+"世代",g));end.add(new Option("第"+g+"世代",g))}
+end.value=9;
+start.onchange=()=>{if(+start.value>+end.value)end.value=start.value;updatePool();render("範囲を変更しました。「新しい問題」で開始")};
+end.onchange=()=>{if(+end.value<+start.value)start.value=end.value;updatePool();render("範囲を変更しました。「新しい問題」で開始")};
+$("new").onclick=startGame;$("del").onclick=erase;$("submit").onclick=submit;
+for(const row of rows)for(const c of row){const k=document.createElement(c==="　"?"span":"button");if(c!=="　"){k.type="button";k.className="key";k.dataset.char=c;k.textContent=c;k.onclick=()=>input(c)}$("keyboard").append(k)}
+document.addEventListener("keydown",e=>{if(e.target.matches("select,button")||e.isComposing)return;if(e.key==="Backspace"){e.preventDefault();erase()}else if(e.key==="Enter")submit();else{let c=e.key.normalize("NFKC").replace(/[ぁ-ゖ]/g,s=>String.fromCharCode(s.charCodeAt(0)+96));if(c==="2")c="２";if(c.toUpperCase()==="Z")c="Ｚ";if(rows.some(r=>r.includes(c)))input(c)}});
+startGame();
+</script></body></html>

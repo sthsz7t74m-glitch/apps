@@ -7,15 +7,16 @@
 .board{width:min(100%,334px);grid-template-columns:repeat(5,minmax(0,1fr)) 8px repeat(5,minmax(0,1fr));gap:3px;margin:0 auto}.board .tile{width:100%;height:auto;aspect-ratio:1;min-width:0;font-size:clamp(14px,4vw,20px)}
 header{display:grid;grid-template-columns:1fr auto 1fr;gap:4px;align-items:center;padding:2px 0}header h1{font-size:clamp(16px,4.6vw,21px);letter-spacing:-.045em;text-align:center;white-space:nowrap}header small{text-align:right;font-size:10px}header a{font-size:11px} .settings{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:8px;align-items:center;padding:7px 0;border-top:1px solid #293746;border-bottom:1px solid #293746}.range{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0}.range-label{font-size:10px;color:#aab9c8;white-space:nowrap}.settings select{font-size:12px;padding:5px 2px;background:#1b2836;border:1px solid #415165;border-radius:5px}.range-separator{color:#8291a1}#pool{white-space:nowrap;font-size:10px}.settings #new{background:#263749;color:#eaf0f7;border:1px solid #405268;padding:7px 8px;font-size:11px;white-space:nowrap;flex-shrink:0}.legend{gap:10px;font-size:10px;padding:2px 0}.legend span{display:flex;align-items:center;white-space:nowrap}.legend i{flex-shrink:0}.status{font-weight:650;color:#b9c7d5}@media(max-width:360px){.range-label{display:none}.settings{gap:4px}.legend{gap:6px}}
 .key.unavailable{visibility:hidden;pointer-events:none}
+.status-row{position:relative;display:flex;align-items:center;justify-content:center;min-height:26px}.status-row .status{padding:0 58px}.hint-button{position:absolute;right:0;font-size:11px;padding:5px 9px;color:#f1d18b;background:#263749}.hint-dialog{width:min(calc(100% - 32px),460px);max-height:80dvh;padding:16px;border:1px solid #415165;border-radius:12px;background:#182431;color:#f4f7fa}.hint-dialog::backdrop{background:#000a}.hint-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.hint-head h2{font-size:17px;margin:0}.hint-head button{padding:7px 12px}.hint-count{font-size:13px;color:#bdcad5}.hint-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:55dvh;overflow-y:auto;overscroll-behavior:contain;margin:0;padding:0;list-style:none}.hint-list li{padding:8px;background:#263749;border-radius:6px;text-align:center;font-size:14px;white-space:nowrap}
 </style></head><body><main>
-<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.4</small></header>
+<header><span aria-hidden="true"></span><h1>ポケモン5文字クイズ</h1><small>v1.1.5</small></header>
 <div class="settings"><div class="range"><span class="range-label">出題範囲</span><select id="start" aria-label="開始世代"></select><span class="range-separator">〜</span><select id="end" aria-label="終了世代"></select><small id="pool"></small></div><button id="new">↻ 新しい問題</button></div>
 <div class="legend"><span><i class="unused"></i>未使用</span><span><i class="correct"></i>位置一致</span><span><i class="present"></i>文字一致</span><span><i class="absent"></i>含まれない</span></div>
-<div id="board" class="board" aria-label="回答履歴"></div><p id="status" class="status" role="status"></p>
+<div id="board" class="board" aria-label="回答履歴"></div><div class="status-row"><p id="status" class="status" role="status"></p><button id="hint" class="hint-button" type="button">ヒント</button></div>
 <div id="keyboard" class="keyboard" aria-label="五十音キーボード"></div>
 <div class="actions"><button id="del">⌫ 1文字消す</button><button id="submit" class="submit">回答する</button></div>
 <p class="note">小文字・長音・記号も1文字として数えます。データ：<a href="https://github.com/PokeAPI/pokeapi" style="color:inherit">PokéAPI</a></p>
-</main><script src="data.js"></script><script>
+</main><dialog id="hint-dialog" class="hint-dialog" aria-labelledby="hint-title"><div class="hint-head"><h2 id="hint-title">該当するポケモン</h2><button id="hint-close" type="button">閉じる</button></div><p id="hint-count" class="hint-count"></p><ul id="hint-list" class="hint-list"></ul></dialog><script src="data.js"></script><script>
 "use strict";
 const $=id=>document.getElementById(id), start=$("start"),end=$("end");
 const rows=["ワラヤマハナタサカア","　リ　ミヒニチシキイ","　ルユムフヌツスクウ","　レ　メヘネテセケエ","ンロヨモホノトソコオ","　♂ッャァパバダザガ","　♀ヴ　ィピビヂジギ","　２ーュゥプブヅズグ","　Ｚ　　ェペベデゼゲ","　　　ョォポボドゾゴ"];
@@ -29,6 +30,17 @@ function score(answer,guess){
  return result;
 }
 function candidates(){return POKEMON.filter(p=>p[2]>=+start.value&&p[2]<=+end.value)}
+function hintCandidates(){
+ return POKEMON.filter(p=>p[2]>=activeStart&&p[2]<=activeEnd&&history.every(h=>score(p[1],h.guess).every((mark,i)=>mark===h.result[i])));
+}
+function showHint(){
+ if(judging||done)return;
+ const matches=hintCandidates().map(p=>p[1]).sort((a,b)=>a.localeCompare(b,"ja"));
+ $("hint-count").textContent="現在の候補："+matches.length+"種（判定結果と出題範囲に一致）";
+ const list=$("hint-list");list.replaceChildren();
+ for(const name of matches){const item=document.createElement("li");item.textContent=name;list.append(item)}
+ $("hint-dialog").showModal();list.scrollTop=0;
+}
 function updatePool(){$("pool").textContent=candidates().length+"種"}
 function startGame(){
  if(judging)return;
@@ -50,7 +62,7 @@ function render(message){
  const next=nextChars();
  document.querySelectorAll(".key").forEach(k=>{const unavailable=!done&&!next.has(k.dataset.char);k.className="key"+(marks[k.dataset.char]?" "+marks[k.dataset.char]:"")+(unavailable?" unavailable":"");k.disabled=done||judging||unavailable});
  const invalidName=current.length===5&&!valid.has(current.join(""));$("submit").disabled=done||judging||current.length!==5||invalidName;$("submit").textContent=judging?"判定中…":invalidName?"存在しないポケモン":"回答する";$("del").disabled=done||judging||!current.length;
- $("new").disabled=start.disabled=end.disabled=judging;
+ $("new").disabled=start.disabled=end.disabled=judging;$("hint").disabled=judging||done;
  $("status").textContent=(judging?"判定中…":"")||message||(invalidName&&!done?"存在する5文字の名前を入力してください":"")||(done?(history.at(-1).guess.join("")===target[1]?"正解！ "+target[1]+"（"+history.length+"回）":"ゲーム終了！ 正解は "+target[1]):(activeStart!==+start.value||activeEnd!==+end.value?"第"+activeStart+"〜"+activeEnd+"世代 ・ ":"")+"残り "+(10-history.length)+" 回");
 }
 function input(c){if(done||judging||current.length===5||!nextChars().has(c))return;current.push(c);render()}
@@ -71,8 +83,9 @@ for(let g=1;g<=9;g++){start.add(new Option("第"+g+"世代",g));end.add(new Opti
 end.value=9;
 start.onchange=()=>{if(+start.value>+end.value)end.value=start.value;updatePool();render("範囲を変更しました。「新しい問題」で開始")};
 end.onchange=()=>{if(+end.value<+start.value)start.value=end.value;updatePool();render("範囲を変更しました。「新しい問題」で開始")};
+$("hint").onclick=showHint;$("hint-close").onclick=()=>$("hint-dialog").close();
 $("new").onclick=startGame;$("del").onclick=erase;$("submit").onclick=submit;
 for(const row of rows)for(const c of row){const k=document.createElement(c==="　"?"span":"button");if(c!=="　"){k.type="button";k.className="key";k.dataset.char=c;k.textContent=c+(/[♀♂]/.test(c)?'\uFE0E':'');k.onclick=()=>input(c)}$("keyboard").append(k)}
-document.addEventListener("keydown",e=>{if(e.target.matches("select,button")||e.isComposing)return;if(e.key==="Backspace"){e.preventDefault();erase()}else if(e.key==="Enter")submit();else{let c=e.key.normalize("NFKC").replace(/[ぁ-ゖ]/g,s=>String.fromCharCode(s.charCodeAt(0)+96));if(c==="2")c="２";if(c.toUpperCase()==="Z")c="Ｚ";if(rows.some(r=>r.includes(c)))input(c)}});
+document.addEventListener("keydown",e=>{if($("hint-dialog").open||e.target.matches("select,button")||e.isComposing)return;if(e.key==="Backspace"){e.preventDefault();erase()}else if(e.key==="Enter")submit();else{let c=e.key.normalize("NFKC").replace(/[ぁ-ゖ]/g,s=>String.fromCharCode(s.charCodeAt(0)+96));if(c==="2")c="２";if(c.toUpperCase()==="Z")c="Ｚ";if(rows.some(r=>r.includes(c)))input(c)}});
 startGame();
 </script></body></html>

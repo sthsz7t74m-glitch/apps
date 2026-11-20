@@ -4,6 +4,8 @@
 
 ## 収録アプリ
 
+- [HUE FINDER｜色相環](./hue-finder/) — HEXカラーコードからHSL色相環の位置・補色を確認
+
 - [ポケモン5文字クイズ](./pokemon-wordle/) — 第1〜9世代の5文字名を10回以内に推理するWordle風ゲーム
 
 - [日本株 AI予測](./jp-stock-ai/) — 5取引日後の株価予測、時系列バックテスト、日次更新（初回はGitHub Actions手動実行）
